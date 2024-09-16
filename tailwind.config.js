@@ -10,17 +10,18 @@ export default {
         serif: ["Signifier", ...fontFamily.serif],
       },
       colors: {
-        background: "#efeeea",
-        grey: "#a7a9ac",
-        pacific: "#47c3ca",
-        crema: "#fadb95",
-        green: '#1acc5d',
-        cherry: '#ff492b',
-        orange: '#ff8c42',
-        pink: "#ffa5a7",
-        clay: '#8db09f',
-        rust: '#a43d01',
-        lemon: '#e8ec3a'
+        'midnight-green': "#022B26",
+        olive: '#828C1A',
+        chartreuse: '#D0D12C',
+        vanilla: '#F0D8AE',
+        mahogany: '#684C0D',
+        citrus: '#DFFF00',
+        bone: {
+          DEFAULT: '#E9E2C3',
+          tint: '#FAF8EC'
+        },
+        charcoal: '#000000',
+        error: '#FF0000'
       }
     },
   },

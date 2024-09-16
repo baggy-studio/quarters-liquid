@@ -1,0 +1,22 @@
+<div class="px-4 gap-3 grid-cols-[repeat(20,minmax(0,1fr))] absolute top-0 left-0 w-full h-full hidden lg:grid">
+  {% for i in (1..20) %}
+    <div class="w-full h-full bg-error/10"></div>
+  {% endfor %}
+</div>
+<div class="px-4 gap-2 grid-cols-10 absolute top-0 left-0 w-full h-full grid lg:hidden">
+  {% for i in (1..10) %}
+    <div class="w-full h-full bg-error/10"></div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Grid",
+  "class": "fixed top-0 left-0 w-screen z-10 h-screen",
+  "presets": [
+    {
+      "name": "Grid"
+    }
+  ]
+}
+{% endschema %}

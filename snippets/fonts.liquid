@@ -1,38 +1,61 @@
-{{ 'ESBuild-Medium.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
-{{ 'ESBuild-Semibold.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
-{{ 'signifier-light.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
-{{ 'signifier-light-italic.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
+{{ 'ABCMarist-Book.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
+{{ 'ABCMonumentGrotesk-Medium.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
+{{ 'ABCMonumentGrotesk-Regular.static.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
 
 <style>
   @font-face {
-    font-family: 'Build';
+    font-family: "ABC Marist";
+    font-style: normal;
+    font-weight: 300;
+    src: url('{{ 'ABCMarist-Book.static.woff2' | asset_url }}') format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "ABC Monument Grotesk";
     font-style: normal;
     font-weight: 500;
-    src: url('{{ 'ESBuild-Medium.static.woff2' | asset_url }}') format('woff2');
+    src: url('{{ 'ABCMonumentGrotesk-Medium.static.woff2' | asset_url }}') format("woff2");
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Build';
+    font-family: "ABC Monument Grotesk";
     font-style: normal;
-    font-weight: 600;
-    src: url('{{ 'ESBuild-Semibold.static.woff2' | asset_url }}') format('woff2');
-    font-display: swap;
-  } 
-
-  @font-face {
-    font-family: 'Signifier';
-    font-style: normal;
-    font-weight: 300;
-    src: url('{{ 'signifier-light.static.woff2' | asset_url }}') format('woff2');
+    font-weight: 400;
+    src: url('{{ 'ABCMonumentGrotesk-Regular.static.woff2' | asset_url }}') format("woff2");
     font-display: swap;
   }
 
   @font-face {
-    font-family: 'Signifier';
+    font-family: "Corfe";
+    font-style: italic;
+    font-weight: 400;
+    src: url('{{ 'CorfeItalic.static.woff2' | asset_url }}') format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Droulers";
+    font-style: normal;
+    font-weight: 400;
+    src: url('{{ 'Droulers-Regular.static.woff2' | asset_url }}') format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "ABC Monument Grotesk";
+    font-style: italic;
+    font-weight: 400;
+    src: url('{{ 'ABCMonumentGrotesk-RegularItalic.static.woff2' | asset_url }}') format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "ABC Marist";
     font-style: italic;
     font-weight: 300;
-    src: url('{{ 'signifier-light-italic.static.woff2' | asset_url }}') format('woff2');
+    src: url('{{ 'ABCMarist-BookItalic.woff2' | asset_url }}') format("woff2");
     font-display: swap;
   }
 </style>

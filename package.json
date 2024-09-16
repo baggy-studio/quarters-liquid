@@ -6,9 +6,9 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "shopify:pull": "shopify theme pull --store its-erly.myshopify.com",
-    "shopify:dev": "shopify theme dev --store its-erly.myshopify.com",
-    "shopify:push": "shopify theme push --store its-erly.myshopify.com"
+    "shopify:pull": "shopify theme pull --store quartersnewyork.myshopify.com",
+    "shopify:dev": "shopify theme dev --store quartersnewyork.myshopify.com",
+    "shopify:push": "shopify theme push --store quartersnewyork.myshopify.com"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.1",

@@ -1,0 +1,40 @@
+<aside
+  aria-modal
+  role="dialog"
+  x-data="cookieConsent"
+  class="absolute top-0  overflow-y-clip left-0 w-full bottom-0 flex items-end pointer-events-none select-none z-20"
+>
+  <div :class="{
+    'pointer-events-auto delay-1000': visible,
+    'translate-y-full': !visible
+  }" class="bottom-0 sticky w-full translate-y-full h-10 bg-pacific flex items-center justify-center duration-[400ms] ease-[--arrow-easing]">
+    <div class="w-full small-sans font-medium lg:font-semibold text-left sm:text-center relative px-5">
+      {{ section.settings.content }}
+    </div>
+    <button @click="close" title="Close" class="absolute right-3 w-4 h-4">
+      <svg class="w-full h-full stroke-current" viewBox="0 0 16 16" fill="none">
+        <path d="M1.14001 15.61L15.61 1.14001" stroke-width="1"/>
+        <path d="M1.14001 1.14001L15.61 15.61" stroke-width="1"/>
+      </svg>
+    </button>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Cookie Consent",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Richtext"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cookie Consent"
+    }
+  ]
+}
+{% endschema %}

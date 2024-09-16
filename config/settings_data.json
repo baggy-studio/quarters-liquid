@@ -1,0 +1,19 @@
+{
+  "current": {
+    "sections": {
+      "menu": {
+        "type": "menu",
+        "settings": {
+          "menu": "main-menu"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

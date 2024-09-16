@@ -1,0 +1,28 @@
+<div
+  role="header"
+  class="relative overflow-hidden before:block before:h-2.5 before:w-full before:bg-orange after:block after:h-2.5 after:w-full after:bg-pink select-none"
+>
+
+  <div class="w-full small-sans font-semibold text-center flex items-center justify-center bg-pacific h-7 lg:h-[30px] prose-a:after:absolute prose-a:after:inset-0 prose-a:after:block">
+    {{ section.settings.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Richtext"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner"
+    }
+  ]
+}
+{% endschema %}

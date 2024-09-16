@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --header-height: 50px;
+        --fade-out-easing: cubic-bezier(0.65, 0.05, 0.36, 1);
+        --default-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @screen lg {
+        :root {
+            --header-height: 60px;
+        }
+    }
+
+    body {
+        @apply font-sans bg-white text-black font-medium;
+    }
+    
+    a, button {
+        @apply outline-none focus:outline-none;
+    }
+
+    #preview-bar-iframe {
+        display: none !important;
+    }
+}
+
+@layer utilities {
+
+    /* Headings */
+    .h1-sans {
+        @apply font-sans;
+        font-size: 22px;
+        line-height: 1.06;
+
+        @screen lg {
+            font-size: 30px;
+        }
+    }
+
+    .h1-serif {
+        @apply font-serif;
+        font-size: 22px;
+        line-height: 1.06;
+
+        @screen lg {
+            font-size: 30px;
+        }
+    }
+
+    /* Subheadings */
+    .h2-sans {
+        @apply font-sans;
+        font-size: 15px;
+        line-height: 1.06;
+
+        @screen lg {
+            font-size: 20px;
+        }
+    }
+
+    .h2-serif {
+        @apply font-sans;
+        font-size: 15px;
+        line-height: 1.06;
+
+        @screen lg {
+            font-size: 20px;
+        }
+    }
+
+    /* Body */
+    .body-serif {
+        @apply font-serif;
+        font-size: 12px;
+
+        @screen lg {
+            font-size: 16px;
+        }
+    }
+
+    .body-sans {
+        @apply font-sans;
+        font-size: 12px;
+
+        @screen lg {
+            font-size: 16px;
+        }
+    }
+
+    /* Small */
+    .small-serif {
+        @apply font-serif;
+        font-size: 12px;
+
+        @screen lg {
+            font-size: 14px;
+        }
+    }
+
+    .small-sans {
+        @apply font-sans;
+        font-size: 12px;
+
+        @screen lg {
+            font-size: 14px;
+        }
+    }
+
+    /* Micro */
+    .micro-serif {
+        @apply font-serif;
+        font-size: 10px;
+
+        @screen lg {
+            font-size: 12px;
+        }
+    }
+
+    .micro-sans {
+        @apply font-sans;
+        font-size: 10px;
+
+        @screen lg {
+            font-size: 12px;
+        }
+    }
+
+    /* Special Text */
+    .legal-serif {
+        @apply font-serif;
+        font-size: 12px;
+
+        @screen lg {
+            font-size: 16px;
+        }
+    }
+}
+
+@layer components {
+    .button {
+        @apply font-sans flex items-center justify-center w-full uppercase;
+    }
+
+    .nav-link {
+        @apply uppercase font-sans font-semibold small-sans;
+    }
+
+    .nav-item {
+        @apply text-[15px] leading-none lg:leading-[1.75] w-max focus:text-pacific hover:text-pacific ease-[--default-ease] transition-all duration-[400ms];
+    }
+
+    .nav-item.has-sub-menu {
+        @apply -translate-x-2.5 focus:translate-x-2 hover:translate-x-2 aria-expanded:text-pacific aria-expanded:translate-x-2 inline-flex before:text-current before:-translate-x-2 before:block before:content-['→'] items-center;
+    }
+}

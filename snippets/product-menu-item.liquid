@@ -1,0 +1,9 @@
+<div class="flex items-center gap-[15px] relative w-max">
+  <figure class="h-[67px] w-[46px] flex items-center justify-center">
+    {% render 'image', image: product.featured_image, width: 184, natural: true, sizes: '46px' %}
+  </figure>
+  <a href="{{ product.url }}" title="{{ product.title }}" class="flex flex-col font-serif leading-none after:absolute after:inset-0 small-serif">
+    <span>{{ product.title }}</span>
+    <span class="text-grey">{{ product.metafields.descriptors.subtitle }}</span>
+  </a>
+</div>

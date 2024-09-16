@@ -1,0 +1,83 @@
+{% liquid
+  assign menu = section.settings.menu
+%}
+
+<menu
+  x-ref="menu"
+  :class="
+    { 
+      'pointer-events-auto': menu,
+    }
+  "
+  @keyup.escape.window="closeMenu"
+  x-trap="menu"
+  aria-label="Main Menu"
+  :aria-hidden="!menu"
+  class="opacity-0 sticky top-[--header-height] w-full h-[calc(100vh-var(--header-height))] bg-background lg:bg-transparent rounded-b-xl lg:rounded-none"
+>
+  <ul class="h-full flex flex-col gap-y-10 py-[30px] lg:py-[60px] lg:bg-white/90 relative px-9 lg:px-10 rounded-b-xl lg:rounded-b-[26px] w-full lg:w-[calc(100vw/3)]">
+    {% for category in menu.links %}
+      <li class="flex flex-col w-full">
+        {% if category.title != 'Hidden Title' %}
+          <a
+            title="{{ category.title }}"
+            href="{{ category.url }}"
+            class="body-sans font-semibold leading-[1.75] block w-max"
+          >
+            {{- category.title -}}
+          </a>
+        {% endif %}
+        {% if category.links != blank %}
+          <ul class="flex flex-col overflow-hidden w-full">
+            {% for link in category.links %}
+              {% assign hasSubMenu = false %}
+
+              {% if link.links != blank %}
+                {% assign hasSubMenu = true %}
+              {% endif %}
+
+              {% assign submenuId = link.title | handleize %}
+              <li class="contents">
+                <a
+                  href="{{ link.url }}"
+                  title="{{ link.title }}"
+                  {% if hasSubMenu %}
+                    @mouseover="openSubMenu('{{ submenuId }}')"
+                    :aria-expanded="subMenu === '{{ submenuId }}'"
+                  {% else %}
+                    @mouseover="closeSubMenu"
+                  {% endif %}
+                  class="nav-item {% if hasSubMenu %} has-sub-menu {% endif %}"
+                >
+                  {{- link.title -}}
+                </a>
+                {% if link.links != blank %}
+                  {% render 'submenu', link: link %}
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</menu>
+
+{% schema %}
+{
+  "name": "Menu",
+  "class": "absolute top-0 left-0 pointer-events-none z-10 bottom-0 w-full",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Shop Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {% if template == 'cart' %}
+      <script>
+        window.location.href = '/?cart=true';
+      </script>
+    {% endif %}
+    {% if settings.favicon != blank %}
+      <link
+        fetchpriority="low"
+        rel="icon"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+        sizes="32x32"
+      >
+    {% endif %}
+
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description | default: shop.name | escape }}">
+    {% render 'meta-tags' %}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- liquid
+      render 'vite-tag' with 'main.css'
+      render 'vite-tag' with 'main.js'
+    -%}
+    {% render 'fonts' %}
+    {{ content_for_header }}
+  </head>
+  <body >
+    {% render 'svg' %}
+    {% if template == 'password' %}
+      {% render 'password' %}
+    {% else %}
+      <a class="sr-only" href="#main">Skip to main content</a>
+      <div class="antialiased" x-data="app">
+        {% sections 'header-group' %}
+        <div class="relative">
+          {% section 'menu' %}
+          <main
+            id="main"
+            class="min-h-screen flex flex-col gap-20"
+          >
+            <h1 class="sr-only">{{ page_title }}</h1>
+            {{ content_for_layout }}
+            <div class="h-screen bg-orange"></div>
+          </main>
+          {% sections 'footer-group' %}
+          {% render 'sail' %}
+          {% sections 'aside-group' %}
+        </div>
+      </div>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,45 @@
+{% comment %}
+  Renders a specific image.
+
+  Accepts:
+  - image: {object} Img object (required)
+  - priority: {boolean} Prioritize the image (optional)
+  - alt: {string} Custom image ALT (optional)
+  - width: {integer} Desired width for the image (optional)
+  - natural: {boolean} Maintain natural aspect ratio (optional)
+  - class: {string} Custom classes (optional)
+  - sizes: {string} Custom sizes (optional)
+
+  Usage:
+  {% render 'image', image: product.featured_image, width: 92, natural: true %}
+{% endcomment %}
+
+{% liquid
+    assign image_alt = alt | default: image.alt | escape
+    assign classes = 'absolute top-0 left-0 w-full h-full object-cover ' | append: class
+  
+    if priority == true
+      assign preload = true
+      assign lazyload = 'eager'
+    else
+      assign lazyload = 'lazy'
+      assign preload = false
+    endif
+  
+    if natural
+      assign classes = 'w-full h-auto object-contain max-h-full' | append: class
+    endif
+  
+    assign half_width = width | times: 2
+    assign width_set = half_width | append: ', ' | append: width
+  %}
+  
+  {% if image != blank %}
+    {{
+      image
+      | image_url: width: width, height: height
+      | image_tag: sizes: sizes, alt: image_alt, class: classes, loading: lazyload, preload: preload, widths: width_set
+    }}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'w-full h-full rounded border' }}
+  {% endif %}

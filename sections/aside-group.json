@@ -1,0 +1,31 @@
+{
+  "type": "aside",
+  "name": "Aside",
+  "sections": {
+    "cart_Vtp9qk": {
+      "type": "cart",
+      "settings": {
+        "upsellTitle": "Complete your routine",
+        "maxUpsells": 2,
+        "emptyUpsellTitle": "Discover our routines",
+        "emptyBody": "",
+        "emptyCTAText": "Shop all our product",
+        "emptyCTALink": "",
+        "freeShippingInitial": "",
+        "freeShippingText": "",
+        "freeShippingSuccess": "",
+        "freeShippingThreshold": 100
+      }
+    },
+    "cookie_consent_8YtCpj": {
+      "type": "cookie-consent",
+      "settings": {
+        "content": "<p>By continuing to use this site you consent with our cookie policy<\/p>"
+      }
+    }
+  },
+  "order": [
+    "cart_Vtp9qk",
+    "cookie_consent_8YtCpj"
+  ]
+}

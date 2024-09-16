@@ -1,0 +1,25 @@
+<section class="container"> 
+  <div x-data="{ count: 0 }">
+    <button @click="count++">
+      Counter <output x-text="count">0</output>
+    </button>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hello World",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hello World"
+    }
+  ]
+}
+{% endschema %}

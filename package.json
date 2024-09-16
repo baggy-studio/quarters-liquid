@@ -1,0 +1,36 @@
+{
+  "name": "with-alpine",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "shopify:pull": "shopify theme pull --store its-erly.myshopify.com",
+    "shopify:dev": "shopify theme dev --store its-erly.myshopify.com",
+    "shopify:push": "shopify theme push --store its-erly.myshopify.com"
+  },
+  "dependencies": {
+    "@alpinejs/collapse": "^3.14.1",
+    "@alpinejs/focus": "^3.14.1",
+    "@alpinejs/intersect": "^3.14.1",
+    "@swup/a11y-plugin": "^5.0.0",
+    "@swup/fragment-plugin": "^1.1.1",
+    "@swup/js-plugin": "^3.2.0",
+    "@swup/preload-plugin": "^3.2.10",
+    "@swup/scroll-plugin": "^3.3.2",
+    "alpinejs": "^3.11.1",
+    "embla-carousel": "^8.2.0",
+    "embla-carousel-auto-scroll": "^8.2.0",
+    "motion": "^10.18.0",
+    "swup": "^4.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.14",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10",
+    "vite": "^4.1.4",
+    "vite-plugin-shopify": "^3.0.1"
+  }
+}

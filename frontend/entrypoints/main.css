@@ -4,30 +4,32 @@
 
 @layer base {
     :root {
-        --header-height: 50px;
         --fade-out-easing: cubic-bezier(0.65, 0.05, 0.36, 1);
         --default-ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @screen lg {
-        :root {
-            --header-height: 60px;
-        }
+    body {
+        @apply bg-bone-tint text-mahogany font-marist;
     }
 
-    body {
-       
-    }
-    
-    a, button {
+    a,
+    button {
         @apply outline-none focus:outline-none;
     }
+
+    ul, li {
+        @apply leading-none;
+    }
 }
 
-@layer utilities {
-
-}
+@layer utilities {}
 
 @layer components {
-   
+    .nav-link {
+        @apply font-marist text-base leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+    }
+
+    .menu-item {
+        @apply font-marist text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+    }
 }

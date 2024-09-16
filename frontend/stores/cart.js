@@ -47,7 +47,7 @@ export default {
     }
   },
   open() {
-    this.container.scroll({ top: 0 });
+   // this.container.scroll({ top: 0 });
     this.active = true;
   },
   close() {

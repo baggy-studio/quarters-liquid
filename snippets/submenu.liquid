@@ -1,22 +1,9 @@
-<ul
-  x-trap="subMenu === '{{ link.title | handleize }}'"
-  x-transition:enter="transition-opacity ease-[--fade-out-easing] duration-300"
-  x-transition:enter-start="opacity-0"
-  x-transition:enter-end="opacity-100"
-  x-transition:leave="transition-opacity ease-[--fade-out-easing] duration-300 delay-200"
-  x-transition:leave-start="opacity-100"
-  x-transition:leave-end="opacity-0"
-  x-show="subMenu === '{{ link.title | handleize }}'"
-  :class="subMenu !== '{{ link.title | handleize }}' ? 'pointer-events-none z-0' : 'z-[1]'"
-  class="h-full hidden gap-y-[15px] py-[60px] bg-white px-5 lg:px-10 rounded-b-[26px] lg:flex flex-col absolute left-[calc(100vw/3)] w-[calc(100vw/3)] top-0"
->
-  {% for sublink in link.links %}
-    <li class="contents">
-      {% if sublink.type == 'product_link' %}
-        {% render 'product-menu-item', product: sublink.object %}
-      {% else %}
-        <a href="{{ sublink.url }}" title="{{ sublink.title }}" class="nav-item">{{ sublink.title }}</a>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+<div class="overflow-hidden contents gap-4 lg:block">
+  <ul class="flex flex-col gap-1.5 lg:gap-0 pt-6 py-[18px] lg:pl-[30px] lg:pb-4 lg:pt-2 ">
+    {% for sublink in link.links %}
+      <li class="contents">
+          <a href="{{ sublink.url }}" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

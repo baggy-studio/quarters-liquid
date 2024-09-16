@@ -4,59 +4,65 @@
 
 <menu
   x-ref="menu"
-  :class="
-    { 
-      'pointer-events-auto': menu,
-    }
-  "
   @keyup.escape.window="closeMenu"
   x-trap="menu"
   aria-label="Main Menu"
   :aria-hidden="!menu"
-  class="opacity-0 sticky top-[--header-height] w-full h-[calc(100vh-var(--header-height))] bg-background lg:bg-transparent rounded-b-xl lg:rounded-none"
+  style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
+  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1]"
 >
-  <ul class="h-full flex flex-col gap-y-10 py-[30px] lg:py-[60px] lg:bg-white/90 relative px-9 lg:px-10 rounded-b-xl lg:rounded-b-[26px] w-full lg:w-[calc(100vw/3)]">
-    {% for category in menu.links %}
-      <li class="flex flex-col w-full">
-        {% if category.title != 'Hidden Title' %}
-          <a
-            title="{{ category.title }}"
-            href="{{ category.url }}"
-            class="body-sans font-semibold leading-[1.75] block w-max"
+  <ul class="h-full flex flex-col gap-1.5 lg:gap-0 relative px-4 w-full pt-[120px] lg:pt-20 pb-4 lg:pb-8">
+    {% for navLink in menu.links %}
+      <li
+        {% if navLink.links != blank %}
+          x-data="{ open: false }"
+        {% endif %}
+        class="
+          first:border-t first:pt-4 border-current block
+          {% if navLink.links != blank %}
+            lg:contents
+          {% else %}
+           lg:hidden
+          {% endif %}
+        "
+      >
+        {% if navLink.links != blank %}
+          <button
+            @click="open = !open"
+            title="{{ navLink.title }}"
+            class="menu-item w-full flex items-center justify-between lg:hidden"
           >
-            {{- category.title -}}
+            {{- navLink.title -}}
+            {% render 'accordion-icon' %}
+          </button>
+        {% else %}
+          <a
+            href="{{ navLink.url }}"
+            title="{{ navLink.title }}"
+            class="menu-item lg:hidden"
+          >
+            {{- navLink.title -}}
           </a>
         {% endif %}
-        {% if category.links != blank %}
-          <ul class="flex flex-col overflow-hidden w-full">
-            {% for link in category.links %}
-              {% assign hasSubMenu = false %}
-
-              {% if link.links != blank %}
-                {% assign hasSubMenu = true %}
-              {% endif %}
-
-              {% assign submenuId = link.title | handleize %}
-              <li class="contents">
-                <a
-                  href="{{ link.url }}"
-                  title="{{ link.title }}"
-                  {% if hasSubMenu %}
-                    @mouseover="openSubMenu('{{ submenuId }}')"
-                    :aria-expanded="subMenu === '{{ submenuId }}'"
-                  {% else %}
-                    @mouseover="closeSubMenu"
+        {% if navLink.links != blank %}
+          <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.600ms>
+            <ul class="grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents">
+              {% for link in navLink.links %}
+                <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4">
+                  <a
+                    href="{{ link.url }}"
+                    title="{{ link.title }}"
+                    class="menu-item"
+                  >
+                    {{- link.title -}}
+                  </a>
+                  {% if link.links != blank %}
+                    {% render 'submenu', link: link %}
                   {% endif %}
-                  class="nav-item {% if hasSubMenu %} has-sub-menu {% endif %}"
-                >
-                  {{- link.title -}}
-                </a>
-                {% if link.links != blank %}
-                  {% render 'submenu', link: link %}
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
         {% endif %}
       </li>
     {% endfor %}
@@ -66,7 +72,7 @@
 {% schema %}
 {
   "name": "Menu",
-  "class": "absolute top-0 left-0 pointer-events-none z-10 bottom-0 w-full",
+  "class": "contents",
   "settings": [
     {
       "type": "link_list",

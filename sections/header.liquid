@@ -1,64 +1,43 @@
-<header class="sticky top-0 z-10 h-[--header-height]">
-  <nav aria-label="Main Navigation" class="w-full h-full bg-white flex items-center justify-between px-5 lg:px-10 relative">
-    <button 
-      @click="toggleMenu"
-      title="Toggle Menu"
-      class="lg:hidden w-4 h-4 relative flex items-center justify-center before:absolute before:block before:-inset-4"
-    >
-      <span
-        class="absolute w-full h-[1px] bg-current block transition-all duration-300 origin-center translate-y-[-3px]"
-        :class="
-          {
-              'rotate-45 translate-y-0': menu,
-            'translate-y-[-3px]': !menu
-          }
-        "
-      ></span>
-      <span
-        class="absolute w-full h-[1px] bg-current block transition-all duration-300 origin-center translate-y-[3px]"
-        :class="
-          {
-              '-rotate-45 translate-y-0': menu,
-            'translate-y-[3px]': !menu
-          }
-        "
-      ></span>
-    </button>
-    <ul class="hidden lg:flex items-center gap-6">
+<header class="fixed left-0 w-full top-0 h-max z-10 p-4 group">
+  <nav aria-label="Main Navigation" class="w-full flex items-start justify-between relative">
+    <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
         <li class="contents">
           <a
             {% if forloop.first %}
-              @mouseover="openMenu"
-            {% else %}
-              @mouseover="closeMenu"
+              @click="toggleMenu"
             {% endif %}
-            title="{{ link.title }}" href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+            title="{{ link.title }}"
+            href="{{ link.url }}"
+            class="nav-link group-hover:opacity-50 hover:!opacity-100"
+          >
+            {{- link.title -}}
+          </a>
         </li>
       {% endfor %}
     </ul>
-    <ul class="contents lg:flex items-center gap-6">
-      <li class="hidden lg:contents">
-        <a title="Account" href="/account" class="nav-link" data-no-swup>Account</a>
-      </li>
-      <li class="contents">
-        <a title="Cart" href="/cart" data-no-swup class="nav-link flex items-center gap-2">
-          <span class="hidden lg:contents">Cart</span>
-          <span class="w-5 h-5 shrink-0 flex items-center justify-center rounded-full border-current border">
-            {{- cart.item_count -}}
-          </span>
-        </a>
-      </li>
-    </ul>
-    <h1 class="flex items-center absolute top-0 left-0 w-full h-full justify-center pointer-events-none">
+    <button
+      @click="toggleMenu"
+      title="Toggle Menu"
+      class="lg:hidden nav-link group-hover:opacity-50 hover:!opacity-100"
+    >
+      Menu
+    </button>
+    <button title="Bag" @click="$store.cart.open" class="nav-link group-hover:opacity-50 hover:!opacity-100">
+      Bag (
+      {{- cart.item_count -}}
+      )
+    </button>
+    <h1 class="flex items-start absolute top-0 left-0 w-full h-full justify-center pointer-events-none">
       <a href="/" title="Erly" class="nav-link pointer-events-auto">
-        <svg class="fill-current h-7 w-[60px] aspect-auto shrink-0">
+        <svg class="fill-current h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] aspect-auto shrink-0">
           <use xlink:href="#wordmark"></use>
         </svg>
       </a>
     </h1>
   </nav>
 </header>
+
 {% schema %}
 {
   "name": "Header",

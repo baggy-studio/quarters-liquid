@@ -1,27 +1,8 @@
 {
   "sections": {
-    "hero_BVc4qN": {
-      "type": "hero",
-      "blocks": {
-        "all_TRj3Ed": {
-          "type": "all",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/1925_IMGN_LJC230127_VOGUE-SPAIN_DEVYN_06_RGB_F1_CMS.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "all_TRj3Ed"
-      ],
-      "settings": {
-        "content": "<p>Summer Staples as<br\/>Pocket Sized Wonders<\/p>",
-        "ctaText": "Discover Minis",
-        "ctaLink": "shopify:\/\/products\/daily-splash",
-        "ctaColor": "#ff8c42"
-      }
-    }
+   
   },
   "order": [
-    "hero_BVc4qN"
+   
   ]
 }

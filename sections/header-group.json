@@ -2,12 +2,6 @@
   "type": "header",
   "name": "Header",
   "sections": {
-    "banner_wBQVC4": {
-      "type": "banner",
-      "settings": {
-        "content": "<p>Get 10% off on your first order. <a href=\"\/pages\/contact\" title=\"Contact\">Sign up here →<\/a><\/p>"
-      }
-    },
     "header_j7EMEV": {
       "type": "header",
       "settings": {
@@ -16,7 +10,6 @@
     }
   },
   "order": [
-    "banner_wBQVC4",
     "header_j7EMEV"
   ]
 }

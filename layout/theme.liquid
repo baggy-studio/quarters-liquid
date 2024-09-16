@@ -42,17 +42,19 @@
       {% render 'password' %}
     {% else %}
       <a class="sr-only" href="#main">Skip to main content</a>
-      <div class="antialiased" x-data="app">
+      <div class="antialiased" x-data="app" style="--menu-height: 0px">
         {% sections 'header-group' %}
-        <div class="relative">
-          {% section 'menu' %}
+        {% section 'menu' %}
+        <div class="relative lg:translate-y-[--menu-height]" x-ref="main">
           <main
             id="main"
             class="min-h-screen flex flex-col gap-20"
           >
             <h1 class="sr-only">{{ page_title }}</h1>
             {{ content_for_layout }}
-            <div class="h-screen bg-orange"></div>
+            <div class="h-screen bg-chartreuse">
+              <h1 class="text-4xl">{{ page_title }}</h1>
+            </div>
           </main>
           {% sections 'footer-group' %}
           {% render 'sail' %}

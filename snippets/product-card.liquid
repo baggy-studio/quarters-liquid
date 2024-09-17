@@ -4,16 +4,16 @@
   <figure class="w-full relative aspect-[2/3]">
     {% render 'image', width: 201, height: 252, image: selectedVariant.image, priority: priority %}
   </figure>
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col">
     <h3 class="contents">
       <a
         aria-label="{{ product.title }}"
         href="{{ selectedVariant.url }}"
-        class="after:absolute after:top-0 after:left-0 after:w-full after:h-full"
+        class="after:absolute after:top-0 after:left-0 after:w-full after:h-full small-serif"
       >
         {{- product.title -}}
       </a>
     </h3>
-    <p>{{ selectedVariant.price | money }}</p>
+    <p class="small-accent">{{ selectedVariant.price | money }}</p>
   </div>
 </div>

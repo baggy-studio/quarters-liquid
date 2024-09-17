@@ -6,10 +6,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        serif: ["ABC Marist", ...fontFamily.serif],
         sans: ["ABC Monument Grotesk", ...fontFamily.sans],
         corfe: ["Corfe", ...fontFamily.serif],
-        marist: ["ABC Marist", ...fontFamily.serif],
-        serif: ["Droulers", ...fontFamily.serif],
+        droulers: ["Droulers", ...fontFamily.serif],
       },
       colors: {
         'midnight-green': "#022B26",

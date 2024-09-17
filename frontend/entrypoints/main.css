@@ -9,7 +9,7 @@
     }
 
     body {
-        @apply bg-bone-tint text-mahogany font-marist;
+        @apply bg-bone-tint text-mahogany font-serif;
     }
 
     a,
@@ -22,14 +22,66 @@
     }
 }
 
-@layer utilities {}
+@layer utilities {
+    .large-serif {
+        @apply font-serif text-[22px] leading-[27px] lg:text-2xl lg:leading-[29px];
+    }
+
+    .large-italic {
+        @apply italic font-corfe text-[22px] leading-[27px] lg:text-2xl lg:leading-[29px];
+    }
+
+    .large-accent {
+        @apply font-droulers text-[20px] leading-[27px] lg:text-[22px] lg:leading-[29px];
+    }
+
+    .subheading {
+        @apply font-sans text-[11px] leading-[1.5] uppercase tracking-[0.04em];
+    }
+
+    .medium-serif {
+        @apply font-serif text-base leading-[20px];
+    }
+
+    .medium-italic {
+        @apply italic font-corfe text-base leading-[20px];
+    }
+
+    .medium-sans {
+        @apply font-sans text-[15px] leading-[20px];
+    }
+
+    .medium-accent {
+        @apply font-droulers text-[14.5px] leading-[20px];
+    }
+
+    .small-serif {
+        @apply font-serif text-[15px] leading-[18px] lg:text-[14px] lg:leading-[17px];
+    }
+
+    .small-sans {
+        @apply font-sans text-[14px] leading-[18px] lg:text-[13px]  lg:leading-[17px];
+    }
+
+    .small-accent {
+        @apply font-droulers text-[12px] leading-[18px] lg:text-[13px]  lg:leading-[17px];
+    }
+
+    .spicy-header {
+        @apply font-droulers text-[54px] leading-[1.2];
+    }
+
+    .spicy-body {
+        @apply font-droulers text-[18px] leading-[24px];
+    }
+}
 
 @layer components {
     .nav-link {
-        @apply font-marist text-base leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+        @apply font-serif text-base leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
     }
 
     .menu-item {
-        @apply font-marist text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+        @apply font-serif text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
     }
 }

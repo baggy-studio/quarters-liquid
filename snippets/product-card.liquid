@@ -1,13 +1,18 @@
 {% assign selectedVariant = product.selected_or_first_available_variant %}
 
 <div class="flex flex-col gap-2 relative">
-  <figure class="w-full relative aspect-[201/252]">
-    {% render 'image', width: 402, height: 504, image: product.featured_image, priority: priority %}
-  </figure>
+  <div class="w-full relative aspect-[201/252]">
+    {% if selectedVariant.featured_image %}
+      {% render 'image', width: 402, height: 504, image: selectedVariant.image, priority: priority %}
+    {% else %}
+      {% render 'image', width: 402, height: 504, image: product.featured_image, priority: priority %}
+    {% endif %}
+    
+  </div>
   <div class="flex flex-col">
     <h3 class="contents">
       <a
-        aria-label="{{ product.title }}"
+        aria-label="{{ selectedVariant.title }}"
         href="{{ selectedVariant.url }}"
         class="after:absolute after:top-0 after:left-0 after:w-full after:h-full small-serif"
       >

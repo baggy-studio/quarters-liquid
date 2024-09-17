@@ -1,16 +1,22 @@
 <div class="pt-[160px] w-full px-4" x-data="collection('{{ collection.url }}')">
+  <p>
+    {{ collection.url }}
+  </p>
   <div class="w-full relative border-t pt-3 border-current">
-    <div
+    <section
       id="collection"
-      class="duration-[--fade-duration] ease-[--fade-easing] transition-opacity"
+      class="flex flex-col gap-12 lg:gap-[71px]"
     >
       {% render 'collection-nav', menu: section.settings.menu %}
-      <ul class="w-full pt-12 lg:pt-[71px] pb-32 lg:pb-36 grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]">
+      <ul
+        id="product-grid"
+        class="w-full pb-32 lg:pb-36 grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
+      >
         {% paginate collection.products by 40 %}
           {% for product in collection.products %}
             {% assign is_priority = false %}
 
-            {% if forloop.index0 < 8 %}
+            {% if forloop.index0 < 9 %}
               {% assign is_priority = true %}
             {% endif %}
 
@@ -20,18 +26,12 @@
               </div>
             </li>
           {% endfor %}
-
-          <div class="col-span-full flex justify-center items-center">
+          <li class="col-span-full flex justify-center items-center">
             {{- paginate | default_pagination -}}
-          </div>
+          </li>
         {% endpaginate %}
       </ul>
-      <style>
-        #collection.is-animating {
-          opacity: 0;
-        }
-      </style>
-    </div>
+    </section>
   </div>
 </div>
 

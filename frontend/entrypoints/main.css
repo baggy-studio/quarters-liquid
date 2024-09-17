@@ -4,8 +4,12 @@
 
 @layer base {
     :root {
+        --fade-in-delay: 200ms;
+        --fade-in-duration: 200ms;
+        --fade-in-easing: linear;
+
+        --fade-out-duration: 600ms;
         --fade-out-easing: cubic-bezier(0.65, 0.05, 0.36, 1);
-        --default-ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     body {
@@ -17,9 +21,12 @@
         @apply outline-none focus:outline-none;
     }
 
-    ul, li {
+    ul,
+    li {
         @apply leading-none;
     }
+
+
 }
 
 @layer utilities {
@@ -60,11 +67,11 @@
     }
 
     .small-sans {
-        @apply font-sans text-[14px] leading-[18px] lg:text-[13px]  lg:leading-[17px];
+        @apply font-sans text-[14px] leading-[18px] lg:text-[13px] lg:leading-[17px];
     }
 
     .small-accent {
-        @apply font-droulers text-[12px] leading-[18px] lg:text-[13px]  lg:leading-[17px];
+        @apply font-droulers text-[12px] leading-[18px] lg:text-[13px] lg:leading-[17px];
     }
 
     .spicy-header {
@@ -88,4 +95,25 @@
     .collection-link {
         @apply hover:opacity-50 duration-200 ease-linear;
     }
+}
+
+/*
+ * The transition when filtering the characters.
+ * Here, we are animating the `.teaeser` elements individually
+ */
+
+#collection, #product-grid {
+    @apply transition-opacity;
+}
+
+#collection.is-animating, #product-grid.is-animating {
+    opacity: 0;
+}
+
+#collection.is-changing, #product-grid.is-changing {
+    @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+}
+
+#collection.is-leaving, #product-grid.is-leaving {
+    @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }

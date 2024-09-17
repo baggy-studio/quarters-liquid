@@ -9,7 +9,7 @@
   aria-label="Main Menu"
   :aria-hidden="!menu"
   style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
-  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1] pb-4 lg:pb-8"
+  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1] pb-4 lg:pb-0"
 >
   <ul class="flex flex-col gap-1.5 lg:gap-0 relative px-4 w-full pt-[120px] lg:pt-20 pb-[107px] lg:pb-0">
     {% for navLink in menu.links %}
@@ -49,7 +49,7 @@
             <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
               <ul class="grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents">
                 {% for link in navLink.links %}
-                  <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4">
+                  <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4 lg:last:pb-8 lg:last:border-b lg:last:border-current">
                     <a
                       href="{{ link.url }}"
                       title="{{ link.title }}"

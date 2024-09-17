@@ -9,10 +9,12 @@ export default () => ({
 
   visible: true,
   init() {
-    this.trackMenuHeight(); 
+    this.trackMenuHeight();
 
     swup.hooks.on('animation:out:start', () => {
-      this.closeMenu();
+      if (this.menu) {
+        this.closeMenu();
+      }
     });
 
     window.addEventListener('resize', () => {
@@ -38,6 +40,7 @@ export default () => ({
     }, { duration: 1.2, easing: expoInOut })
   },
   closeMenu() {
+    if (!this.menu) return;
     this.menu = false;
 
     animate((progress) => {
@@ -52,12 +55,22 @@ export default () => ({
     }
   },
   updateMenuHeight(height = 0) {
-    const progress = range(0, 1, 0, this.menuHeight, height);
+
+    const url = swup.getCurrentUrl();
+
+    let progress = range(0, 1, 0, this.menuHeight, height);;
+
+    if (url.includes('collections/') && window.innerWidth >= 1024) {
+      this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
+    } else {
+      this.$root.style.setProperty('--transform-y', `${progress}px`);
+    }
+
     this.$root.style.setProperty('--menu-height', `${progress}px`);
   },
   trackMenuHeight() {
-    this.menuHeight = this.$refs.menu.getBoundingClientRect().height; 
-    
+    this.menuHeight = this.$refs.menu.getBoundingClientRect().height;
+
     if (this.menu) {
       this.updateMenuHeight(1);
     }

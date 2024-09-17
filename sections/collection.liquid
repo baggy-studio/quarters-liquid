@@ -3,11 +3,9 @@
     id="collection"
     class="duration-[--fade-duration] ease-[--fade-easing] transition-opacity"
   >
-    <nav class="w-full grid grid-cols-20 gap-3 border-t pt-3 border-current">
+    <nav class="w-full grid grid-cols-20 gap-3 border-t pt-3 border-current subheading">
       <h2 class="whitespace-nowrap leading-none">
-        <a href="/collections/all" title="All Items" class="hover:underline">
-          All Items
-        </a>
+        <a href="/collections/all" title="All Items" class="hover:underline"> All Items </a>
       </h2>
       <ul class="col-start-3">
         <li>
@@ -23,44 +21,46 @@
           </a>
         </li>
       </ul>
-    </nav> 
-      {% if section.settings.menu %}
-        <nav class="hidden lg:contents">
-          <ul class="flex items-center justify-center group border-b-2 border-current gap-9 text-[36px] tracking-[-0.03em] font-jubilee">
-            {% for link in section.settings.menu.links -%}
-              <li class="contents">
-                <a
-                  href="{{ link.url }}"
-                  aria-label="{{ link.title }}"
-                  @click="setCollection"
-                  data-swup-history="replace"
-                  :class="
-                    {
-                    'after:-translate-x-full': '{{ link.url }}' !== activeUrl
-                    }
-                  "
-                  class="relative collection-link overflow-hidden after:origin-left after:duration-300 after:ease-in-out after:w-full after:absolute after:left-0 after:bottom-0 after:h-0.5 after:bg-current hover:after:translate-x-0 focus:after:translate-x-0 active:after:translate-x-0 {% unless link.active %} after:-translate-x-full {% endunless %}"
-                >
-                  {{ link.title }}
-                </a>
-              </li>
-            {%- endfor %}
-          </ul>
-        </nav>
-      {% endif %} 
+    </nav>
+    {% if section.settings.menu %}
+      <nav class="hidden lg:contents">
+        <ul class="">
+          {% for link in section.settings.menu.links -%}
+            <li class="contents">
+              <a
+                href="{{ link.url }}"
+                aria-label="{{ link.title }}"
+                @click="setCollection"
+                data-swup-history="replace"
+                :class="
+                  {
+                  'after:-translate-x-full': '{{ link.url }}' !== activeUrl
+                  }
+                "
+                class="relative collection-link overflow-hidden after:origin-left after:duration-300 after:ease-in-out after:w-full after:absolute after:left-0 after:bottom-0 after:h-0.5 after:bg-current hover:after:translate-x-0 focus:after:translate-x-0 active:after:translate-x-0 {% unless link.active %} after:-translate-x-full {% endunless %}"
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    {% endif %}
     <section
-      class="w-full lg:grid lg:grid-cols-20 lg:gap-3 pt-12 lg:pt-[71px]"
+      class="w-full pt-12 lg:pt-[71px] pb-32 lg:pb-36"
     >
-      <ul class="lg:col-start-2 lg:col-end-[20] grid grid-cols-4 lg:grid-cols-18 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]">
+      <ul class="grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]">
         {% for product in collection.products %}
-          {% assign isPriority = false %}
+          {% assign is_priority = false %}
 
-          {% if forloop.index0 < 4 %}
-            {% assign isPriority = true %}
+          {% if forloop.index0 < 8 %}
+            {% assign is_priority = true %}
           {% endif %}
 
-          <li class="col-span-2 lg:col-span-3">
-            {% render 'product-card', product: product, priority: isPriority %}
+          <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
+            <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+              {% render 'product-card', product: product, priority: is_priority %}
+            </div>
           </li>
         {% endfor %}
       </ul>

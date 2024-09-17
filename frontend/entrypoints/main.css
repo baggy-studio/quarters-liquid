@@ -36,7 +36,7 @@
     }
 
     .subheading {
-        @apply font-sans text-[11px] leading-[1.5] uppercase tracking-[0.04em];
+        @apply font-medium font-sans text-[11px] leading-[1.5] uppercase tracking-[0.04em];
     }
 
     .medium-serif {

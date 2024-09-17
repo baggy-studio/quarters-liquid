@@ -40,8 +40,10 @@ export default () => ({
     }, { duration: 1.2, easing: expoInOut })
   },
   closeMenu() {
-    if (!this.menu) return;
-    this.menu = false;
+    if (!this.menu) {
+      return
+    };
+    this.menu = false;  
 
     animate((progress) => {
       this.updateMenuHeight(1 - progress)

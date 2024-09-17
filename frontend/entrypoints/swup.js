@@ -4,14 +4,13 @@ import Swup from "swup";
 import SwupFragmentPlugin from "@swup/fragment-plugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 import SwupJsPlugin from '@swup/js-plugin'; 
+import { cubicInOut } from '@/easing.ts';
 
 import { animate } from "motion"
 
 let sail = document.getElementById('sail');
 
-export function cubicInOut(t) {
-  return t < 0.5 ? 4.0 * t * t * t : 0.5 * Math.pow(2.0 * t - 2.0, 3.0) + 1.0;
-}
+
 
 export const swup = new Swup({
   animateHistoryBrowsing: true,

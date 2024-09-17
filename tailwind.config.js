@@ -28,6 +28,9 @@ export default {
       gridTemplateColumns: {
         '20': 'repeat(20, minmax(0, 1fr))',
         '18': 'repeat(18, minmax(0, 1fr))'
+      },
+      gridColumn: {
+        'span-13': 'span 13 / span 13',
       }
     },
   },

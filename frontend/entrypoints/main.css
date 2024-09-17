@@ -84,4 +84,8 @@
     .menu-item {
         @apply font-serif text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
     }
+
+    .collection-link {
+        @apply hover:opacity-50 duration-200 ease-linear;
+    }
 }

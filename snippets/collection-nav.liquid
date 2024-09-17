@@ -1,0 +1,76 @@
+{% assign is_all_collection = false %}
+
+{% if collection.url == '/collections/all' %}
+  {% assign is_all_collection = true %}
+{% endif %}
+
+<nav aria-label="Collection Navigation" class="w-full grid grid-cols-20 gap-3 subheading">
+  {% unless is_all_collection %}
+    <a
+      href="/collections/all"
+      title="All Items"
+      data-swup-history="replace"
+      class="hover:underline leading-none whitespace-nowrap col-span-2"
+    >
+      All Items
+    </a>
+    <h2 class="whitespace-nowrap leading-none col-span-2">
+      {{ collection.title }}
+    </h2>
+  {% else %}
+    <h2 class="whitespace-nowrap leading-none col-span-2 underline">All Items</h2>
+  {% endunless %}
+  {% if is_all_collection %}
+    {% for parentLink in section.settings.menu.links limit: 2 -%}
+      {%- if forloop.first -%}
+        <ul class="col-span-13 flex items-center gap-4">
+          {% for link in parentLink.links -%}
+            {% assign collection = link.object %}
+            <li class="contents">
+              <a
+                data-swup-history="replace"
+                title="{{ collection.title }}"
+                class="collection-link"
+                href="{{ collection.url }}"
+              >
+                {{ collection.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {% else %}
+        <ul class="col-span-5 flex items-center gap-4">
+          {% for link in parentLink.links -%}
+            {% assign collection = link.object %}
+            <li class="contents">
+              <a
+                data-swup-history="replace"
+                title="{{ collection.title }}"
+                class="collection-link whitespace-nowrap"
+                href="{{ collection.url }}"
+              >
+                {{ collection.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {% endif %}
+    {%- endfor %}
+  {% else %}
+    <ul class="col-span-13 flex items-center gap-4">
+      <li class="contents">
+        <a
+          data-swup-history="replace"
+          title="{{ collection.title }}"
+          class="collection-link"
+          href="{{ collection.url }}"
+        >
+          All {{ collection.title }}
+        </a>
+      </li>
+      {% for product_type in collection.all_types -%}
+        
+      {%- endfor %}
+    </ul>
+  {% endif %}
+</nav>

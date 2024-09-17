@@ -1,8 +1,13 @@
 {
   "sections": {
-    "main": {
-      "type": "hello-world"
+    "collection_36q88x": {
+      "type": "collection",
+      "settings": {
+        "menu": "collection-menu"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "collection_36q88x"
+  ]
 }

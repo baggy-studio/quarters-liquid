@@ -24,6 +24,10 @@ export default {
         },
         charcoal: '#000000',
         error: '#FF0000'
+      },
+      gridTemplateColumns: {
+        '20': 'repeat(20, minmax(0, 1fr))',
+        '18': 'repeat(18, minmax(0, 1fr))'
       }
     },
   },

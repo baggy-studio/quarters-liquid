@@ -2,6 +2,7 @@
   <nav aria-label="Main Navigation" class="w-full flex items-start justify-between relative">
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
+        {% unless link.title == 'Mobile Only' %}
         <li class="contents">
           <a
             {% if forloop.first %}
@@ -13,7 +14,8 @@
           >
             {{- link.title -}}
           </a>
-        </li>
+          </li>
+        {% endunless %}
       {% endfor %}
     </ul>
     <button

@@ -3,7 +3,7 @@ import "vite/modulepreload-polyfill";
 import { swup } from "./swup";
 
 import Alpine from "alpinejs";
-import collapse from "@alpinejs/collapse";
+import collapse from "@/plugins/collapse";
 import focus from "@alpinejs/focus";
 import intersect from "@alpinejs/intersect";
 

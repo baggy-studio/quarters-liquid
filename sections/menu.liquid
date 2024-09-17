@@ -9,62 +9,75 @@
   aria-label="Main Menu"
   :aria-hidden="!menu"
   style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
-  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1]"
+  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1] pb-4 lg:pb-8"
 >
-  <ul class="h-full flex flex-col gap-1.5 lg:gap-0 relative px-4 w-full pt-[120px] lg:pt-20 pb-4 lg:pb-8">
+  <ul class="flex flex-col gap-1.5 lg:gap-0 relative px-4 w-full pt-[120px] lg:pt-20 pb-[107px] lg:pb-0">
     {% for navLink in menu.links %}
-      <li
-        {% if navLink.links != blank %}
-          x-data="{ open: false }"
-        {% endif %}
-        class="
-          first:border-t first:pt-4 border-current block
+      {% unless navLink.title == 'Mobile Only' %}
+        <li
           {% if navLink.links != blank %}
-            lg:contents
-          {% else %}
-           lg:hidden
+            x-data="{ open: false }"
           {% endif %}
-        "
-      >
-        {% if navLink.links != blank %}
-          <button
-            @click="open = !open"
-            title="{{ navLink.title }}"
-            class="menu-item w-full flex items-center justify-between lg:hidden"
-          >
-            {{- navLink.title -}}
-            {% render 'accordion-icon' %}
-          </button>
-        {% else %}
-          <a
-            href="{{ navLink.url }}"
-            title="{{ navLink.title }}"
-            class="menu-item lg:hidden"
-          >
-            {{- navLink.title -}}
-          </a>
-        {% endif %}
-        {% if navLink.links != blank %}
-          <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.600ms>
-            <ul class="grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents">
-              {% for link in navLink.links %}
-                <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4">
-                  <a
-                    href="{{ link.url }}"
-                    title="{{ link.title }}"
-                    class="menu-item"
-                  >
-                    {{- link.title -}}
-                  </a>
-                  {% if link.links != blank %}
-                    {% render 'submenu', link: link %}
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      </li>
+          class="
+            first:border-t first:pt-4 border-current block
+            {% if navLink.links != blank %}
+              lg:contents
+            {% else %}
+             lg:hidden
+            {% endif %}
+          "
+        >
+          {% if navLink.links != blank %}
+            <button
+              @click="open = !open"
+              title="{{ navLink.title }}"
+              class="menu-item w-full flex items-center justify-between lg:hidden"
+            >
+              {{- navLink.title -}}
+              {% render 'accordion-icon' %}
+            </button>
+          {% else %}
+            <a
+              href="{{ navLink.url }}"
+              title="{{ navLink.title }}"
+              class="menu-item lg:hidden"
+            >
+              {{- navLink.title -}}
+            </a>
+          {% endif %}
+          {% if navLink.links != blank %}
+            <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
+              <ul class="grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents">
+                {% for link in navLink.links %}
+                  <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4">
+                    <a
+                      href="{{ link.url }}"
+                      title="{{ link.title }}"
+                      class="menu-item"
+                    >
+                      {{- link.title -}}
+                    </a>
+                    {% if link.links != blank %}
+                      {% render 'submenu', link: link %}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
+  <ul class="px-4 flex flex-col gap-2 lg:hidden">
+    {% for navLink in menu.links %}
+      {% if navLink.title == 'Mobile Only' and navLink.links != blank %}
+        {% for link in navLink.links %}
+          <li class="first:border-t first:border-current first:pt-3">
+            <a title="{{ link.title }}" href="{{ link.url }}" class="text-[14px] leading-[18px] font-sans">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
   </ul>
 </menu>

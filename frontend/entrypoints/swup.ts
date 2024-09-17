@@ -9,20 +9,18 @@ const rules: Array<FragmentRule> = [
   {
     from: "/collections/all",
     to: "/collections/:handle?",
-    containers: ["#collection"],
+    containers: ["#collection"]
   },
   // Rule 1: Navigating from a Collection to All Items
   {
     from: "/collections/:handle?",
     to: "/collections/all",
-    containers: ["#collection"],
+    containers: ["#collection"]
   },
-
-  // Rule 2: Navigating from a Collection to a Collection or Filtering within a Collection
   {
     from: "/collections/:handle?",
     to: "/collections/:handle?",
-    containers: ["#product-grid"],
+    containers: ["#product-grid"]
   },
 ];
 
@@ -31,7 +29,8 @@ export const swup = new Swup({
   containers: ["#main"],
   plugins: [
     new SwupFragmentPlugin({
-      rules
+      rules,
+      debug: true
     }),
     new SwupPreloadPlugin({
       preloadHoveredLinks: true,

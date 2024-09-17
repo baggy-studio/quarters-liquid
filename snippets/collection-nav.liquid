@@ -9,7 +9,6 @@
     <a
       href="/collections/all"
       title="All Items"
-      data-swup-history="replace"
       class="hover:underline leading-none whitespace-nowrap col-span-2"
     >
       All Items
@@ -28,7 +27,6 @@
             {% assign collection = link.object %}
             <li class="contents">
               <a
-                data-swup-history="replace"
                 title="{{ collection.title }}"
                 class="collection-link"
                 href="{{ collection.url }}"
@@ -44,7 +42,6 @@
             {% assign collection = link.object %}
             <li class="contents">
               <a
-                data-swup-history="replace"
                 title="{{ collection.title }}"
                 class="collection-link whitespace-nowrap"
                 href="{{ collection.url }}"
@@ -60,7 +57,6 @@
     <ul class="col-span-13 flex items-center gap-4">
       <li class="contents">
         <a
-          data-swup-history="replace"
           title="{{ collection.title }}"
           class="collection-link"
           href="{{ collection.url }}"
@@ -68,8 +64,30 @@
           All {{ collection.title }}
         </a>
       </li>
-      {% for product_type in collection.all_types -%}
-        
+      {% for filter in collection.filters -%}
+        {% if filter.label == 'Category' %}
+          {% for value in filter.values -%}
+            <li class="contents">
+              <a
+                title="{{ value.label }}"
+                class="collection-link aria-[current=page]:opacity-50 active:opacity-50
+                
+                {% if value.active %}
+                  hover:!opacity-100
+                {% endif %}
+                "
+                {% if value.active %}
+                  href="{{ value.url_to_remove }}"
+                  aria-current="page"
+                {% else %}
+                  href="{{ value.url_to_add }}"
+                {% endif %}
+              >
+                {{ value.label }}
+              </a>
+            </li>
+          {%- endfor %}
+        {% endif %}
       {%- endfor %}
     </ul>
   {% endif %}

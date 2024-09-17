@@ -1,33 +1,35 @@
-<div class="pt-[160px] w-full px-4" x-data="collection('{{ collection.url }}')">
+<div class="pt-[120px] lg:pt-[160px] w-full px-4" x-data="collection('{{ collection.url }}')">
   <div class="w-full relative border-t pt-3 border-current">
     <section
       id="collection"
       class="flex flex-col gap-12 lg:gap-[71px]"
     >
       {% render 'collection-nav', menu: section.settings.menu %}
-      <ul
-        id="product-grid"
-        class="w-full pb-32 lg:pb-36 grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
-      >
-        {% paginate collection.products by 40 %}
-          {% for product in collection.products %}
-            {% assign is_priority = false %}
+      <div id="product-grid" class="w-full pb-32 lg:pb-36 flex flex-col gap-y-8 lg:gap-y-[66px]">
+        <ul
+          data-product-grid
+          class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
+        >
+          {% paginate collection.products by 40 %}
+            {% for product in collection.products %}
+              {% assign is_priority = false %}
 
-            {% if forloop.index0 < 9 %}
-              {% assign is_priority = true %}
-            {% endif %}
+              {% if forloop.index0 < 9 %}
+                {% assign is_priority = true %}
+              {% endif %}
 
-            <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
-              <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
-                {% render 'product-card', product: product, priority: is_priority %}
-              </div>
+              <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
+                <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                  {% render 'product-card', product: product, priority: is_priority %}
+                </div>
+              </li>
+            {% endfor %}
+            <li class="col-span-full flex justify-center items-center">
+              {{- paginate | default_pagination -}}
             </li>
-          {% endfor %}
-          <li class="col-span-full flex justify-center items-center">
-            {{- paginate | default_pagination -}}
-          </li>
-        {% endpaginate %}
-      </ul>
+          {% endpaginate %}
+        </ul>
+      </div>
     </section>
   </div>
 </div>

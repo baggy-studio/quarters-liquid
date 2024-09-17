@@ -102,18 +102,27 @@
  * Here, we are animating the `.teaeser` elements individually
  */
 
-#collection, #product-grid {
+#collection,
+#product-grid,
+#main {
     @apply transition-opacity;
+    will-change: opacity;
 }
 
-#collection.is-animating, #product-grid.is-animating {
-    opacity: 0;
+html.is-animating #main,
+#collection.is-animating,
+#product-grid.is-animating {
+   opacity: 0;
 }
 
-#collection.is-changing, #product-grid.is-changing {
+html.is-changing #main,
+#collection.is-changing,
+#product-grid.is-changing {
     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }
 
-#collection.is-leaving, #product-grid.is-leaving {
+html.is-leaving #main,
+#collection.is-leaving,
+#product-grid.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }

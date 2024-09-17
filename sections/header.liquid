@@ -3,17 +3,24 @@
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}
-        <li class="contents">
-          <a
+          <li class="contents">
             {% if forloop.first %}
-              @click="toggleMenu"
+              <button
+                @click="toggleMenu"
+                title="Shop"
+                class="nav-link group-hover:opacity-50 hover:!opacity-100"
+              >
+                {{ link.title }}
+              </button>
+            {% else %}
+              <a 
+                title="{{ link.title }}"
+                href="{{ link.url }}"
+                class="nav-link group-hover:opacity-50 hover:!opacity-100"
+              >
+                {{- link.title -}}
+              </a>
             {% endif %}
-            title="{{ link.title }}"
-            href="{{ link.url }}"
-            class="nav-link group-hover:opacity-50 hover:!opacity-100"
-          >
-            {{- link.title -}}
-          </a>
           </li>
         {% endunless %}
       {% endfor %}

@@ -35,11 +35,19 @@
   %}
   
   {% if image != blank %}
+    {% if priority %}
+    {{
+      image
+      | image_url: width: width, height: height
+      | image_tag: sizes: sizes, alt: image_alt, class: classes, loading: lazyload, preload: preload, widths: width_set, fetchPriority: 'high'
+    }}
+    {% else %}
     {{
       image
       | image_url: width: width, height: height
       | image_tag: sizes: sizes, alt: image_alt, class: classes, loading: lazyload, preload: preload, widths: width_set
     }}
+    {% endif %}
   {% else %}
     {{ 'image' | placeholder_svg_tag: 'w-full h-full rounded border' }}
   {% endif %}

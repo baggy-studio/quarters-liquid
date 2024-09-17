@@ -2,15 +2,9 @@ import SwupPreloadPlugin from "@swup/preload-plugin";
 import SwupA11yPlugin from "@swup/a11y-plugin";
 import Swup from "swup";
 import SwupFragmentPlugin, { Rule as FragmentRule } from "@swup/fragment-plugin";
-import SwupScrollPlugin from "@swup/scroll-plugin";
-import SwupJsPlugin from '@swup/js-plugin';
-import { cubicInOut } from '@/easing.ts';
+import SwupScrollPlugin from "@swup/scroll-plugin"; 
 
-import { animate } from "motion"
-
-let sail = document.getElementById('sail');
-
-const rules: FragmentRule[] = [
+const rules: Array<FragmentRule> = [
   // Rule 0: Navigating from All Items to a Collection
   {
     from: "/collections/all",
@@ -36,24 +30,6 @@ export const swup = new Swup({
   animateHistoryBrowsing: true,
   containers: ["#main"],
   plugins: [
-    new SwupJsPlugin({
-      animations: [
-        {
-          from: '(.*)',
-          to: '(.*)',
-          out: async () => {
-            if (sail) {
-              await animate(sail, { opacity: 1 }, { duration: 0.6, easing: cubicInOut }).finished
-            }
-          },
-          in: async () => {
-            if (sail) {
-              await animate(sail, { opacity: 0 }, { duration: 0.2, easing: 'linear' }).finished;
-            }
-          }
-        }
-      ]
-    }),
     new SwupFragmentPlugin({
       rules
     }),

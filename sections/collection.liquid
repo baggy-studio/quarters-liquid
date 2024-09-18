@@ -18,14 +18,14 @@
                 {% assign is_priority = true %}
               {% endif %}
 
-              <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
+              <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3 product-grid-item">
                 <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
                   {% render 'product-card', product: product, priority: is_priority %}
                 </div>
               </li>
             {% endfor %}
             <li class="col-span-full flex justify-center items-center">
-              {{- paginate | default_pagination -}}
+              <a href="{{- paginate.next.url -}}" title="Next page" data-next-page>Next page</a>
             </li>
           {% endpaginate %}
         </ul>

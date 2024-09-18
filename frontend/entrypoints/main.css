@@ -125,4 +125,9 @@ html.is-leaving #main,
 #collection.is-leaving,
 #product-grid.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+} 
+
+
+.product-grid-item {
+    @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }

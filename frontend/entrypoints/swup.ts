@@ -34,8 +34,7 @@ export const swup = new Swup({
   containers: ["#main"],
   plugins: [
     new SwupFragmentPlugin({
-      rules,
-      debug: true
+      rules
     }),
     new SwupPreloadPlugin({
       preloadHoveredLinks: true,
@@ -49,6 +48,7 @@ export const swup = new Swup({
         samePageWithHash: false,
         samePage: false,
       },
+      shouldResetScrollPosition: (link) => !link.matches('.backlink')
     }),
   ],
 });

@@ -2,7 +2,7 @@ import SwupPreloadPlugin from "@swup/preload-plugin";
 import SwupA11yPlugin from "@swup/a11y-plugin";
 import Swup from "swup";
 import SwupFragmentPlugin, { Rule as FragmentRule } from "@swup/fragment-plugin";
-import SwupScrollPlugin from "@swup/scroll-plugin"; 
+import SwupScrollPlugin from "@swup/scroll-plugin";
 
 const rules: Array<FragmentRule> = [
   // Rule 0: Navigating from All Items to a Collection
@@ -18,8 +18,13 @@ const rules: Array<FragmentRule> = [
     containers: ["#collection"]
   },
   {
-    from: "/collections/:handle?",
-    to: "/collections/:handle?",
+    from: "/collections/:handle",
+    to: "/collections/:handle",
+    containers: ["#collection"]
+  },
+  {
+    from: ['/collections/:handle?', "/collections/:handle\\?filter.p.t.category=:filter"],
+    to: ["/collections/:handle\\?filter.p.t.category=:filter", '/collections/:handle?'],
     containers: ["#product-grid"]
   },
 ];

@@ -1,7 +1,7 @@
 {% assign selectedVariant = product.selected_or_first_available_variant %}
 
 <div class="flex flex-col gap-2 relative">
-  <div class="w-full relative aspect-[201/252]">
+  <div class="w-full relative aspect-[176/221] lg:aspect-[201/252]">
     {% if selectedVariant.featured_image %}
       {% render 'image', width: 402, height: 504, image: selectedVariant.image, priority: priority %}
     {% else %}

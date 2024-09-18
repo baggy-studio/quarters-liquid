@@ -4,12 +4,12 @@
   {% assign is_all_collection = true %}
 {% endif %}
 
-<nav aria-label="Collection Navigation" class="w-full grid grid-cols-20 gap-3 subheading">
+<nav aria-label="Collection Navigation" class="w-full grid grid-cols-2 lg:grid-cols-20 gap-2 lg:gap-3 subheading">
   {% unless is_all_collection %}
     <a
       href="/collections/all"
       title="All Items"
-      class="hover:underline leading-none whitespace-nowrap col-span-2"
+      class="hover:underline leading-none whitespace-nowrap col-span-2 lg:block hidden"
     >
       All Items
     </a>
@@ -17,7 +17,7 @@
       {{ collection.title }}
     </h2>
   {% else %}
-    <h2 class="whitespace-nowrap leading-none col-span-2 underline">All Items</h2>
+    <h2 class="whitespace-nowrap leading-none col-span-2 lg:underline">All Items</h2>
   {% endunless %}
   {% if is_all_collection %}
     {% for parentLink in section.settings.menu.links limit: 2 -%}
@@ -54,41 +54,57 @@
       {% endif %}
     {%- endfor %}
   {% else %}
-    <ul class="col-span-13 flex items-center gap-4">
-      <li class="contents">
-        <a
-          title="{{ collection.title }}"
-          class="collection-link"
-          href="{{ collection.url }}"
-        >
-          All {{ collection.title }}
-        </a>
-      </li>
+    <ul class="
+      {% if is_all_collection %}
+        lg:col-span-13 
+      {% else %}
+        lg:col-span-16
+      {% endif %}
+      
+      
+      flex items-center flex-wrap gap-x-4 gap-y-2">
+      {% assign has_category_filter = false %}
+      {% assign is_filtered = false %}
+
       {% for filter in collection.filters -%}
-        {% if filter.label == 'Category' %}
-          {% for value in filter.values -%}
-            <li class="contents">
-              <a
-                title="{{ value.label }}"
-                class="collection-link aria-[current=page]:opacity-50 active:opacity-50
-                
-                {% if value.active %}
-                  hover:!opacity-100
-                {% endif %}
-                "
-                {% if value.active %}
-                  href="{{ value.url_to_remove }}"
-                  aria-current="page"
-                {% else %}
-                  href="{{ value.url_to_add }}"
-                {% endif %}
-              >
-                {{ value.label }}
-              </a>
-            </li>
-          {%- endfor %}
+        {% if filter.label == 'Category' and filter.values.size > 0 %}
+          {% assign has_category_filter = true %} 
+
+          {% if filter.active_values.size > 0 %}
+            {% assign is_filtered = true %}
+          {% endif %}
         {% endif %}
       {%- endfor %}
+
+      {% if has_category_filter and collection.all_products_count > 1 %}
+        <li class="contents">
+          <a
+            title="All {{ collection.title }}"
+            class="collection-link"
+            href="{{ collection.url }}"
+
+            :aria-current="filters.length === 0 ? 'page' : undefined"
+            {% unless is_filtered %}
+              aria-current="page"
+            {% endunless %}
+
+          
+          >
+            All {{ collection.title }}
+          </a>
+        </li>
+      {% endif %}
+      {% if collection.products_count > 1 %}
+        {% for filter in collection.filters -%}
+          {% if filter.label == 'Category' %}
+            {% for value in filter.values -%}
+              <li class="contents">
+                {% render 'filter', filter: filter, value: value %}
+              </li>
+            {%- endfor %}
+          {% endif %}
+        {%- endfor %}
+      {% endif %}
     </ul>
   {% endif %}
 </nav>

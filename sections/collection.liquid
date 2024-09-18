@@ -10,16 +10,6 @@
         class="w-full pb-32 lg:pb-36 flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px]"
       >
         {% paginate collection.products by 40 %}
-          {% if paginate.previous.url != blank %}
-            <a
-              href="{{ paginate.previous.url }}"
-              class="w-max collection-link subheading"
-              title="Load previous"
-              id="load-previous"
-            >
-              Load previous
-            </a>
-          {% endif %}
           <ul
             data-product-grid
             class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"

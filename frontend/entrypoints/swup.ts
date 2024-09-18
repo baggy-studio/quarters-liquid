@@ -18,15 +18,10 @@ const rules: Array<FragmentRule> = [
     containers: ["#collection"]
   },
   {
-    from: "/collections/:handle",
-    to: "/collections/:handle",
-    containers: ["#collection"]
-  },
-  {
-    from: ['/collections/:handle?', "/collections/:handle\\?filter.p.t.category=:filter"],
-    to: ["/collections/:handle\\?filter.p.t.category=:filter", '/collections/:handle?'],
+    from: "/collections/:handle?",
+    to: "/collections/:handle?",
     containers: ["#product-grid"]
-  },
+  }
 ];
 
 export const swup = new Swup({

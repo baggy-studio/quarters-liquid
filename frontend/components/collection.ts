@@ -3,15 +3,30 @@ import { updateHistoryRecord } from "swup";
 
 const scrollId = "collection-scroll-position"
 
-function getFilters(pathname: string) {
-  return [];
+function fetchCollectionData() {
+  if (window.location.pathname.includes("/collections/all")) return
+
+  const script = document.querySelector('[data-collection-filters]');
+
+  if (!script) return {
+    filters: [],
+    collectionUrl: null,
+  };
+
+  const data = JSON.parse(script?.innerHTML);
+
+  return {
+    filters: data.filters || [],
+    collectionUrl: data.collection_url || "",
+  };
 }
 
 export default (collectionPathname) => ({
+  ...fetchCollectionData(),
   activeUrl: collectionPathname,
-  filters: getFilters(collectionPathname + window.location.search),
   scrollPosition: localStorage.getItem(scrollId) || 0,
   init() {
+    console.log("filters", this.filters, this.collectionUrl)
     if (window.history.state && window.history.state.productGrid) {
       this.hydrateProducts()
     }
@@ -27,12 +42,12 @@ export default (collectionPathname) => ({
         this.saveScroll()
       } else {
         this.activeUrl = visit.to.url;
-        this.filters = getFilters(this.activeUrl);
       }
     });
 
     window.addEventListener("unload", this.saveScroll);
   },
+
   destroy() {
     window.removeEventListener("unload", this.saveScroll);
   },

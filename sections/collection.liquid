@@ -11,17 +11,18 @@
       >
         {% paginate collection.products by 40 %}
           {% if paginate.previous.url != blank %}
-            <a 
+            <a
               href="{{ paginate.previous.url }}"
               class="w-max collection-link subheading"
-              id="previous-page"
+              title="Load previous"
+              id="load-previous"
             >
-              Previous page
+              Load previous
             </a>
           {% endif %}
           <ul
             data-product-grid
-            class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
+            class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
           >
             {% for product in collection.products %}
               {% assign is_priority = false %}
@@ -42,9 +43,10 @@
               x-intersect:enter.margin.900px="loadProducts()"
               href="{{ paginate.next.url }}"
               class="w-max collection-link subheading"
-              id="next-page"
+              id="load-more"
+              title="Load more"
             >
-              Next page
+              Load more
             </a>
           {% endif %}
         {% endpaginate %}

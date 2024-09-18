@@ -4,14 +4,12 @@ import { updateHistoryRecord } from "swup";
 const scrollId = "collection-scroll-position"
 
 function getFilters(pathname: string) {
-  const url = new URL(pathname, window.location.origin);
-  return url.searchParams.getAll("filter.p.t.category") || [];
+  return [];
 }
 
 export default (collectionPathname) => ({
   activeUrl: collectionPathname,
   filters: getFilters(collectionPathname + window.location.search),
-  shouldLoad: false,
   scrollPosition: localStorage.getItem(scrollId) || 0,
   init() {
     if (window.history.state && window.history.state.productGrid) {
@@ -45,7 +43,7 @@ export default (collectionPathname) => ({
     window.scroll(0, parseInt(this.scrollPosition))
   },
   async loadProducts() {
-    const nextPage = document.getElementById("next-page") as HTMLAnchorElement | null;
+    const nextPage = document.getElementById("load-more") as HTMLAnchorElement | null;
 
     if (!nextPage) return;
 
@@ -72,16 +70,16 @@ export default (collectionPathname) => ({
   },
   appendProducts({ html, url }) {
     const newProductGrid = html.querySelector('[data-product-grid]');
-    const nextLink = html.querySelector("#next-page");
+    const nextLink = html.querySelector("#load-more");
 
     const productGrid = document.querySelector('[data-product-grid]');
 
     if (!productGrid || !newProductGrid) return;
 
     if (nextLink) {
-      document.getElementById("next-page")?.replaceWith(nextLink.cloneNode(true));
+      document.getElementById("load-more")?.replaceWith(nextLink.cloneNode(true));
     } else {
-      document.getElementById("next-page")?.remove();
+      document.getElementById("load-more")?.remove();
     }
 
     productGrid.append(...newProductGrid.children);

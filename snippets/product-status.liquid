@@ -1,3 +1,14 @@
-<div class="flex gap-2 items-center before:w-[9px] before:h-[9px] before:bg-current before:rounded-full before:block before:shrink-0">
-    <p class="small-accent">On Hold</p>
+
+<div class="flex gap-2 items-center 
+    {% unless type == 'inquire' %}
+        before:w-[9px] before:h-[9px] before:bg-current before:rounded-full before:block before:shrink-0
+    {% endunless %}
+    ">
+    {% if type == 'sold-out' %}
+        <p class="small-accent uppercase">Sold Out</p>
+    {% elsif type == 'on-hold' %}
+        <p class="small-accent uppercase">On Hold</p>
+    {% elsif type == 'inquire' %}
+        <p class="small-accent uppercase">Inquire</p>
+    {% endif %}
 </div>

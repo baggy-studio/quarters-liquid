@@ -9,7 +9,7 @@
         id="product-grid"
         class="w-full pb-32 lg:pb-36 flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px]"
       >
-        {% paginate collection.products by 8 %}
+        {% paginate collection.products by 40 %}
           {% if paginate.previous.url != blank %}
             <a 
               href="{{ paginate.previous.url }}"

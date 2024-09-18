@@ -20,19 +20,29 @@ export default (collectionPathname) => ({
 
     if (this.scrollPosition) {
       setTimeout(() => {
-        window.scroll(0, parseInt(this.scrollPosition))
-        localStorage.removeItem(scrollId)
+        this.restoreScroll()
       })
     }
 
     swup.hooks.on("visit:start", (visit) => {
       if (!visit.to.url.includes("/collections/")) {
-        localStorage.setItem(scrollId, window.scrollY.toString())
+        this.saveScroll()
       } else {
         this.activeUrl = visit.to.url;
         this.filters = getFilters(this.activeUrl);
       }
     });
+
+    window.addEventListener("unload", this.saveScroll);
+  },
+  destroy() {
+    window.removeEventListener("unload", this.saveScroll);
+  },
+  saveScroll() {
+    localStorage.setItem(scrollId, window.scrollY.toString())
+  },
+  restoreScroll() {
+    window.scroll(0, parseInt(this.scrollPosition))
   },
   async loadProducts() {
     const nextPage = document.getElementById("next-page") as HTMLAnchorElement | null;

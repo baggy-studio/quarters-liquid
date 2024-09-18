@@ -5,12 +5,24 @@
       class="flex flex-col gap-12 lg:gap-[71px]"
     >
       {% render 'collection-nav', menu: section.settings.menu %}
-      <div id="product-grid" class="w-full pb-32 lg:pb-36 flex flex-col gap-y-8 lg:gap-y-[66px]">
-        <ul
-          data-product-grid
-          class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
-        >
-          {% paginate collection.products by 40 %}
+      <div
+        id="product-grid"
+        class="w-full pb-32 lg:pb-36 flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px]"
+      >
+        {% paginate collection.products by 8 %}
+          {% if paginate.previous.url != blank %}
+            <a 
+              href="{{ paginate.previous.url }}"
+              class="w-max collection-link subheading"
+              id="previous-page"
+            >
+              Previous page
+            </a>
+          {% endif %}
+          <ul
+            data-product-grid
+            class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[66px]"
+          >
             {% for product in collection.products %}
               {% assign is_priority = false %}
 
@@ -24,11 +36,18 @@
                 </div>
               </li>
             {% endfor %}
-            <li class="col-span-full flex justify-center items-center">
-              <a href="{{- paginate.next.url -}}" title="Next page" data-next-page>Next page</a>
-            </li>
-          {% endpaginate %}
-        </ul>
+          </ul>
+          {% if paginate.next.url != blank %}
+            <a
+              x-intersect:enter.margin.900px="loadProducts()"
+              href="{{ paginate.next.url }}"
+              class="w-max collection-link subheading"
+              id="next-page"
+            >
+              Next page
+            </a>
+          {% endif %}
+        {% endpaginate %}
       </div>
     </section>
   </div>

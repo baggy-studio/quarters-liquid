@@ -1,9 +1,7 @@
 import { swup } from "@/entrypoints/swup";
+import { updateHistoryRecord } from "swup";
 
-const nextLinkSelector = '[data-next-page]';
-const listSelector = '[data-product-grid]';
-const listItemSelector = '.product-grid-item';
-const buttonSelector = '.load-more';
+const scrollId = "collection-scroll-position"
 
 function getFilters(pathname: string) {
   const url = new URL(pathname, window.location.origin);
@@ -13,65 +11,74 @@ function getFilters(pathname: string) {
 export default (collectionPathname) => ({
   activeUrl: collectionPathname,
   filters: getFilters(collectionPathname + window.location.search),
+  shouldLoad: false,
+  scrollPosition: localStorage.getItem(scrollId) || 0,
   init() {
+
+    if (this.scrollPosition) {
+      setTimeout(() => {
+        window.scroll(0, parseInt(this.scrollPosition))
+        localStorage.removeItem(scrollId)
+      })
+    }
+
     swup.hooks.on("visit:start", (visit) => {
-      this.activeUrl = visit.to.url;
-      this.filters = getFilters(this.activeUrl);
-    });
-
-    this.initInfiniteScroll();
-
-    swup.hooks.on("page:view", this.initInfiniteScroll);
-  },
-  initInfiniteScroll() {
-    const el = document.querySelector(listSelector);
-
-    if (!el) return;
-
-    const nextLink = document.querySelector(nextLinkSelector);
-
-    if (!nextLink) return;
-
-    const infScroll = new InfiniteScroll(el, {
-      path: nextLinkSelector,
-      append: listItemSelector,
-      history: false,
-      prefill: false,
-      button: buttonSelector,
-      loadOnScroll: true,
-      scrollThreshold: window.innerHeight,
-    });
-
-    infScroll.on("append", (doc, _path, items) => {
-      window.history.replaceState(null, '', _path);
-
-      // Get the next link. If there is no more available, replace it with an empty <span>
-      const nextLink = doc.querySelector(nextLinkSelector) ?? doc.createElement('span');
-      document.querySelector(nextLinkSelector)?.replaceWith(nextLink);
-      // Update the cache
-      this.updateCache(listSelector, items, nextLink);
+      if (!visit.to.url.includes("/collections/")) {
+        localStorage.setItem(scrollId, window.scrollY.toString())
+      } else {
+        this.activeUrl = visit.to.url;
+        this.filters = getFilters(this.activeUrl);
+      }
     });
   },
-  updateCache(containerSelector, items, nextLink) {
-    const url = swup.getCurrentUrl();
+  async loadProducts() {
+    const nextPage = document.getElementById("next-page") as HTMLAnchorElement | null;
+
+    if (!nextPage) return;
+
+    try {
+      const response = await fetch(nextPage.href);
+      const page = await response.text();
+      
+      this.appendProducts(page);
+    } catch (error) {
+      console.log("error", error)
+      console.error(error);
+    }
+  },
+  appendProducts(page) {
+    const html = new DOMParser().parseFromString(page.html, 'text/html')
+
+    const newProductGrid = html.querySelector('[data-product-grid]');
+    const nextLink = html.querySelector("#next-page");
+
+    const productGrid = document.querySelector('[data-product-grid]');
+
+    if (!productGrid || !newProductGrid) return;
+
+    if (nextLink) {
+      document.getElementById("next-page")?.replaceWith(nextLink.cloneNode(true));
+    } else {
+      document.getElementById("next-page")?.remove();
+    }
+
+    productGrid.append(...newProductGrid.children);
+
+    try {
+      this.updateCache(page.url);
+      updateHistoryRecord(page.url);
+    } catch (error) {
+      console.error('Failed to replace state', error);
+    }
+  },
+  updateCache(url) {
     const cachedPage = swup.cache.get(url);
     if (!cachedPage) return;
 
-    const cachedDocument = new DOMParser().parseFromString(cachedPage.html, 'text/html')
-    const container = cachedDocument.querySelector(containerSelector);
-    if (!container) return;
-
-    // Update the items
-    const clonedItems = [...items].map(item => item.cloneNode(true));
-    container.append(...clonedItems);
-
-    // Update the next link
-    if (nextLink) {
-      cachedDocument.querySelector(nextLinkSelector)?.replaceWith(nextLink.cloneNode(true));
-    }
-
     // Save the modified html as a string in the cache entry
-    cachedPage.html = cachedDocument.documentElement.outerHTML;
+   
+    cachedPage.html = document.documentElement.outerHTML;
+    console.log("cachedPage", cachedPage)
     swup.cache.update(url, cachedPage);
   }
 });

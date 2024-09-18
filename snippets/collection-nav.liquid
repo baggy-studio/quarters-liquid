@@ -17,7 +17,15 @@
       {{ collection.title }}
     </h2>
   {% else %}
-    <h2 class="whitespace-nowrap leading-none col-span-2 lg:underline">All Items</h2>
+    <h2 class="whitespace-nowrap leading-none col-span-2 lg:underline">
+      <a
+        href="/collections/all"
+        title="All Items"
+        class="contents"
+      >
+        All Items
+      </a>
+    </h2>
   {% endunless %}
   {% if is_all_collection %}
     {% for parentLink in section.settings.menu.links limit: 2 -%}
@@ -54,21 +62,24 @@
       {% endif %}
     {%- endfor %}
   {% else %}
-    <ul class="
-      {% if is_all_collection %}
-        lg:col-span-13 
-      {% else %}
-        lg:col-span-16
-      {% endif %}
-      
-      
-      flex items-center flex-wrap gap-x-4 gap-y-2">
+    <ul
+      class="
+        {% if is_all_collection %}
+          lg:col-span-13
+        {% else %}
+          lg:col-span-16
+        {% endif %}
+
+
+        flex items-center flex-wrap gap-x-4 gap-y-2
+      "
+    >
       {% assign has_category_filter = false %}
       {% assign is_filtered = false %}
 
       {% for filter in collection.filters -%}
         {% if filter.label == 'Category' and filter.values.size > 0 %}
-          {% assign has_category_filter = true %} 
+          {% assign has_category_filter = true %}
 
           {% if filter.active_values.size > 0 %}
             {% assign is_filtered = true %}
@@ -87,8 +98,6 @@
             {% unless is_filtered %}
               aria-current="page"
             {% endunless %}
-
-          
           >
             All {{ collection.title }}
           </a>

@@ -38,7 +38,6 @@ export const swup = new Swup({
     }),
     new SwupPreloadPlugin({
       preloadHoveredLinks: true,
-      preloadVisibleLinks: true,
     }),
     new SwupA11yPlugin(),
     new SwupScrollPlugin({
@@ -48,7 +47,6 @@ export const swup = new Swup({
         samePageWithHash: false,
         samePage: false,
       },
-      shouldResetScrollPosition: (link) => !link.matches('.backlink')
     }),
   ],
 });

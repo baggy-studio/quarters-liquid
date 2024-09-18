@@ -15,6 +15,11 @@ export default (collectionPathname) => ({
   scrollPosition: localStorage.getItem(scrollId) || 0,
   init() {
 
+
+    if (window.history.state && window.history.state.productGrid) {
+      this.hydrateProducts()
+    }
+
     if (this.scrollPosition) {
       setTimeout(() => {
         window.scroll(0, parseInt(this.scrollPosition))
@@ -38,17 +43,26 @@ export default (collectionPathname) => ({
 
     try {
       const response = await fetch(nextPage.href);
-      const page = await response.text();
-      
-      this.appendProducts(page);
+      const data = await response.text();
+
+      let html = document.createElement("html");
+      html.innerHTML = data;
+
+      this.appendProducts({ html, url: nextPage.href });
     } catch (error) {
       console.log("error", error)
       console.error(error);
     }
   },
-  appendProducts(page) {
-    const html = new DOMParser().parseFromString(page.html, 'text/html')
+  hydrateProducts() {
+    const productGrid = document.querySelector('[data-product-grid]');
+    const cachedProductGrid = JSON.parse(window.history.state.productGrid);
 
+    if (!productGrid || !cachedProductGrid) return;
+
+    productGrid.innerHTML = cachedProductGrid;
+  },
+  appendProducts({ html, url }) {
     const newProductGrid = html.querySelector('[data-product-grid]');
     const nextLink = html.querySelector("#next-page");
 
@@ -65,20 +79,11 @@ export default (collectionPathname) => ({
     productGrid.append(...newProductGrid.children);
 
     try {
-      this.updateCache(page.url);
-      updateHistoryRecord(page.url);
+      updateHistoryRecord(url, {
+        productGrid: JSON.stringify(productGrid.innerHTML)
+      });
     } catch (error) {
       console.error('Failed to replace state', error);
     }
-  },
-  updateCache(url) {
-    const cachedPage = swup.cache.get(url);
-    if (!cachedPage) return;
-
-    // Save the modified html as a string in the cache entry
-   
-    cachedPage.html = document.documentElement.outerHTML;
-    console.log("cachedPage", cachedPage)
-    swup.cache.update(url, cachedPage);
   }
 });

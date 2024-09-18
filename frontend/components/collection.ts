@@ -14,8 +14,6 @@ export default (collectionPathname) => ({
   shouldLoad: false,
   scrollPosition: localStorage.getItem(scrollId) || 0,
   init() {
-
-
     if (window.history.state && window.history.state.productGrid) {
       this.hydrateProducts()
     }

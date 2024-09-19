@@ -1,5 +1,11 @@
 {
   "sections": {
+    "page_settings_t9GB6h": {
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "light"
+      }
+    },
     "hero_9KEkWq": {
       "type": "hero",
       "blocks": {
@@ -21,14 +27,14 @@
         "mobile_cfjBrF"
       ],
       "settings": {
-        "content": "",
-        "ctaText": "Discover Minis",
-        "ctaLink": "",
-        "ctaColor": "#ff8c42"
+        "content": "<p>A marriage of warmth and grandeur, whimsy and irreverence, <a href=\"\/collections\/all\" title=\"All products\">Quarters<\/a> is a multifaceted space that occupies 7,000 square feet over two floors of a historic 19th-century Tribeca loft.<\/p>",
+        "address": "<p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2<\/a>\u2028<\/p><p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">New York, N.Y. 10013<\/a><\/p>",
+        "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com<\/a><\/p><p><a href=\"https:\/\/www.instagram.com\/shopquarters\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/shopquarters\/\">@shopquarters<\/a><\/p>"
       }
     }
   },
   "order": [
+    "page_settings_t9GB6h",
     "hero_9KEkWq"
   ]
 }

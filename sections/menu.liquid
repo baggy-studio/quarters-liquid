@@ -2,14 +2,15 @@
   assign menu = section.settings.menu
 %}
 
-<menu
+<menu 
   x-ref="menu"
   @keyup.escape.window="closeMenu"
   x-trap="menu"
   aria-label="Main Menu"
   :aria-hidden="!menu"
   style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
-  class="fixed top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1] pb-4 lg:pb-0"
+  x-effect="menu ? lockScroll() : unlockScroll()"
+  class="fixed text-mahogany top-0 left-0 w-full h-screen overflow-scroll lg:overflow-hidden lg:h-max bg-bone-tint z-[1] pb-4 lg:pb-0"
 >
   <ul class="flex flex-col gap-1.5 lg:gap-0 relative px-4 w-full pt-[120px] lg:pt-20 pb-[107px] lg:pb-0">
     {% for navLink in menu.links %}

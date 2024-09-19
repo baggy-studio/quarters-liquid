@@ -1,8 +1,34 @@
 {
   "sections": {
-   
+    "hero_9KEkWq": {
+      "type": "hero",
+      "blocks": {
+        "desktop_iWdeWf": {
+          "type": "desktop",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/desktop.jpg"
+          }
+        },
+        "mobile_cfjBrF": {
+          "type": "mobile",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/mobile.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "desktop_iWdeWf",
+        "mobile_cfjBrF"
+      ],
+      "settings": {
+        "content": "",
+        "ctaText": "Discover Minis",
+        "ctaLink": "",
+        "ctaColor": "#ff8c42"
+      }
+    }
   },
   "order": [
-   
+    "hero_9KEkWq"
   ]
 }

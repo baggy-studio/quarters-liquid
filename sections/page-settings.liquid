@@ -1,0 +1,33 @@
+<style id="page-settings">
+  :root {
+    {% if section.settings.headerTheme == 'light' %}
+    --header-theme: #FAF8EC;
+    {% else %}
+    --header-theme: #684C0D;
+    {% endif %}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Page Settings",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "select",
+      "id": "headerTheme",
+      "label": "Initial Navigation Theme",
+      "options": [
+        { "label": "Light", "value": "light" },
+        { "label": "Dark", "value": "dark" }
+      ],
+      "default": "dark"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Settings"
+    }
+  ]
+}
+{% endschema %}

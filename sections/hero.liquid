@@ -1,4 +1,4 @@
-<div class="h-screen overflow-hidden w-full relative">
+<div class="h-svh overflow-hidden w-full relative">
   <div class="absolute top-0 left-0 w-full h-full">
     {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
 
@@ -29,6 +29,29 @@
         {% endif %}
       </div>
     {% endif %}
+  </div>
+  <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-bone-tint" >
+    <button
+      @click="openMenu"
+      title="Menu"
+      class="h-max w-max md:pointer-events-none transition-opacity duration-[600ms] ease-[--fade-out-easing]"
+      :class="menu && 'pointer-events-none md:opacity-0'"
+    >
+      <svg class="fill-current h-9 w-[212px] lg:h-[66px] lg:w-[400px] aspect-auto shrink-0">
+        <use xlink:href="#wordmark"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="absolute top-0 p-4 left-0 w-full h-full text-bone-tint flex items-end lg:translate-y-[calc(var(--transform-y)*-1)]">
+    <div class="w-full gap-3 grid-cols-2 contents lg:grid items-end">
+      <div class="w-full relative lg:block hidden">
+        <div class="medium-serif text-balance max-w-[455px] richtext">{{ section.settings.content }}</div>
+      </div>
+      <div class="w-full relative flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-3" x-ref="hero-content">
+        <div class="subheading">{{ section.settings.address }}</div>
+        <div class="subheading lg:block grid grid-cols-10 first:prose-p:col-span-6">{{ section.settings.contact }}</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -92,21 +115,14 @@
       "label": "Content"
     },
     {
-      "type": "text",
-      "id": "ctaText",
-      "label": "CTA Text",
-      "default": "Discover Minis"
+      "type": "richtext",
+      "id": "address",
+      "label": "Address"
     },
     {
-      "type": "url",
-      "id": "ctaLink",
-      "label": "CTA Link"
-    },
-    {
-      "type": "color",
-      "id": "ctaColor",
-      "label": "CTA Color",
-      "default": "#ff8c42"
+      "type": "richtext",
+      "id": "contact",
+      "label": "Contact"
     }
   ],
   "presets": [

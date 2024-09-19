@@ -7,9 +7,12 @@ export default () => ({
   menu: false,
   menuHeight: 0,
 
-  visible: true,
   init() {
     this.trackMenuHeight();
+
+    swup.hooks.before('content:replace', (visit) => {
+      console.log(visit);
+    });
 
     swup.hooks.on('animation:out:start', () => {
       if (this.menu) {
@@ -77,4 +80,10 @@ export default () => ({
       this.updateMenuHeight(1);
     }
   },
+  lockScroll() {
+    document.body.style.overflow = 'hidden';
+  },
+  unlockScroll() {
+    document.body.style.overflow = 'auto';
+  }
 });

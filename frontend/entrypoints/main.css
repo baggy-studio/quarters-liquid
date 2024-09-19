@@ -89,7 +89,7 @@
     }
 
     .menu-item {
-        @apply font-serif text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+        @apply w-max font-serif text-[22px] lg:text-base leading-[27px] lg:leading-[20px] text-current hover:italic;
     }
 
     .collection-link {
@@ -126,3 +126,7 @@ html.is-leaving #main,
 #product-grid.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }  
+
+.richtext a {
+    @apply underline decoration-1 underline-offset-2 hover:opacity-50 duration-200 ease-linear;
+}

@@ -1,36 +1,34 @@
-<div class="relative lg:px-10">
-  <div class="h-[calc(100vh-var(--header-height))] max-h-[874px] rounded-b-[26px] overflow-hidden w-full relative">
-    <div class="absolute top-0 left-0 w-full h-full">
-      {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
+<div class="h-screen overflow-hidden w-full relative">
+  <div class="absolute top-0 left-0 w-full h-full">
+    {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
 
-      {% if allBlock != blank %}
-        <div class="absolute top-0 left-0 w-full h-full">
-          {% if allBlock.settings.video != blank %}
-            {% render 'video'; video: allBlock.settings.video; loop: true %}
-          {% else %}
-            {% render 'image'; image: allBlock.settings.image, width: 1400, height: 874, sizes: 'calc(100vw - 40px)', priority: true %}
-          {% endif %}
-        </div>
-      {% else %}
-        {% assign desktopBlock = section.blocks | where: 'type', 'desktop' | first %}
-        {% assign mobileBlock = section.blocks | where: 'type', 'mobile' | first %}
+    {% if allBlock != blank %}
+      <div class="absolute top-0 left-0 w-full h-full">
+        {% if allBlock.settings.video != blank %}
+          {% render 'video'; video: allBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: allBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+    {% else %}
+      {% assign desktopBlock = section.blocks | where: 'type', 'desktop' | first %}
+      {% assign mobileBlock = section.blocks | where: 'type', 'mobile' | first %}
 
-        <div class="absolute top-0 left-0 w-full h-full hidden md:block">
-          {% if desktopBlock.settings.video != blank %}
-            {% render 'video'; video: desktopBlock.settings.video; loop: true %}
-          {% else %}
-            {% render 'image'; image: desktopBlock.settings.image, width: 1400, height: 874, sizes: 'calc(100vw - 40px)' %}
-          {% endif %}
-        </div>
-        <div class="absolute top-0 left-0 w-full h-full md:hidden">
-          {% if mobileBlock.settings.video != blank %}
-            {% render 'video'; video: mobileBlock.settings.video; loop: true %}
-          {% else %}
-            {% render 'image'; image: mobileBlock.settings.image, width: 375, height: 550, sizes: '100vw', priority: true %}
-          {% endif %}
-        </div>
-      {% endif %}
-    </div>
+      <div class="absolute top-0 left-0 w-full h-full hidden md:block">
+        {% if desktopBlock.settings.video != blank %}
+          {% render 'video'; video: desktopBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: desktopBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+      <div class="absolute top-0 left-0 w-full h-full md:hidden">
+        {% if mobileBlock.settings.video != blank %}
+          {% render 'video'; video: mobileBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 393, height: 672, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </div>
 

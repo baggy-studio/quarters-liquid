@@ -1,0 +1,49 @@
+
+
+<div class="flex flex-col gap-2 lg:gap-0 relative group">
+  <a
+    tabindex="-1"
+    href="{{ variant.url }}"
+    title="{{ variant.title }}"
+    class="w-full relative aspect-[176/221] lg:aspect-[201/252]"
+  >
+    {% if variant.featured_image %}
+      {% render 'image', width: 402, height: 504, image: variant.image, priority: priority %}
+    {% else %}
+      {% render 'image', width: 402, height: 504, image: product.featured_image, priority: priority %}
+    {% endif %}
+    {% if product.metafields.custom.hover_image %}
+      <div
+        class="absolute bg-citrus top-0 left-0 w-full h-full transition-opacity opacity-0 group-hover:opacity-100 duration-[--fade-in-duration] ease-[--fade-in-easing]"
+      >
+        {% if product.metafields.custom.hover_image or variant.metafields.custom.hover_image %}
+          {% if variant.metafields.custom.hover_image %}
+            {% render 'image', width: 402, height: 504, image: variant.metafields.custom.hover_image %}
+          {% elsif product.metafields.custom.hover_image %}
+            {% render 'image', width: 402, height: 504, image: product.metafields.custom.hover_image %}
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </a>
+  <div class="flex flex-col gap-[1px] lg:gap-0 relative lg:block lg:absolute lg:top-[calc(100%+8px)] lg:left-0 lg:w-full">
+    <h3 class="contents">
+      <a
+        title="{{ variant.title }}"
+        href="{{ variant.url }}"
+        class="after:absolute after:top-0 after:left-0 after:w-full after:h-full small-serif text-balance"
+      >
+        {{- product.title -}}
+      </a>
+    </h3>
+    {% if variant.available %}
+      <p class="small-accent">{{ variant.price | money }}</p>
+    {% elsif product.tags contains 'hold' %}
+      {% render 'product-status', type: 'on-hold' %}
+    {% elsif product.tags contains 'inquire' %}
+      {% render 'product-status', type: 'inquire' %}
+    {% elsif variant.available == false %}
+      {% render 'product-status', type: 'sold-out' %}
+    {% endif %}
+  </div>
+</div>

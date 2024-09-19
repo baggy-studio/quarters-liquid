@@ -7,11 +7,25 @@
 {% assign primary_links = section.settings.menu.links | first %}
 {% assign secondary_links = section.settings.menu.links | last %}
 
-{% assign parent_link = primary_links.links | where: 'title', collection.title | first %}
+{% assign combined_links = primary_links.links | concat: secondary_links.links %}
+{% assign parent_link = combined_links | where: 'title', collection.title | first %}
 {% assign parent_collection = parent_link.object %}
 
 {% if parent_link == null %}
   {% for link in primary_links.links %}
+    {% if link.links.size > 0 %}
+      {% assign sub_link = link.links | where: 'title', collection.title | first %}
+      {% if sub_link %}
+        {% assign parent_link = link %}
+        {% assign parent_collection = link.object %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if parent_link == null %}
+  {% for link in secondary_links.links %}
     {% if link.links.size > 0 %}
       {% assign sub_link = link.links | where: 'title', collection.title | first %}
       {% if sub_link %}

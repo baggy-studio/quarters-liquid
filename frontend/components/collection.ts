@@ -28,6 +28,8 @@ export default (collectionPathname) => ({
       this.hydrateProducts()
     }
 
+    this.hydrateProductVariants()
+
     if (this.scrollPosition) {
       setTimeout(() => {
         this.restoreScroll()
@@ -51,6 +53,28 @@ export default (collectionPathname) => ({
   },
   restoreScroll() {
     window.scroll(0, parseInt(this.scrollPosition))
+  },
+  hydrateProductVariants() {
+    const productGrid = document.querySelector('[data-product-grid]');
+    const productVariants = productGrid?.querySelectorAll('[data-product-variant]');
+    console.log("productVariants", productVariants)
+
+    if (!productVariants?.length || !productGrid) return;
+
+    const productVariantsArray = Array.from(productVariants);
+
+    // Remove '!hidden' from classList
+    productVariantsArray.forEach(variant => {
+      variant.classList.remove('!hidden');
+    });
+
+    // Fisher-Yates (Knuth) shuffle algorithm
+    for (let i = productVariantsArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [productVariantsArray[i], productVariantsArray[j]] = [productVariantsArray[j], productVariantsArray[i]];
+    }
+
+    productGrid.append(...productVariantsArray);
   },
   async loadProducts() {
     const nextPage = document.getElementById("load-more") as HTMLAnchorElement | null;

@@ -1,44 +1,16 @@
-{% assign selectedVariant = product.selected_or_first_available_variant %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
-<div class="flex flex-col gap-2 lg:gap-0 relative group">
-  <a tabindex="-1" href="{{ selectedVariant.url }}" title="{{ selectedVariant.title }}" class="w-full relative aspect-[176/221] lg:aspect-[201/252]">
-    {% if selectedVariant.featured_image %}
-      {% render 'image', width: 402, height: 504, image: selectedVariant.image, priority: priority %}
-    {% else %}
-      {% render 'image', width: 402, height: 504, image: product.featured_image, priority: priority %}
-    {% endif %}
-    {% if product.metafields.custom.hover_image %}
-      <div
-        class="absolute bg-citrus top-0 left-0 w-full h-full transition-opacity opacity-0 group-hover:opacity-100 duration-[--fade-in-duration] ease-[--fade-in-easing]"
-      >
-        {% if product.metafields.custom.hover_image or selectedVariant.metafields.custom.hover_image %}
-          {% if selectedVariant.metafields.custom.hover_image %}
-            {% render 'image', width: 402, height: 504, image: selectedVariant.metafields.custom.hover_image %}
-          {% elsif product.metafields.custom.hover_image %}
-            {% render 'image', width: 402, height: 504, image: product.metafields.custom.hover_image %}
-          {% endif %}
-        {% endif %}
-      </div>
-    {% endif %}
-  </a>
-  <div class="flex flex-col gap-[1px] lg:gap-0 relative lg:block lg:absolute lg:top-[calc(100%+8px)] lg:left-0 lg:w-full">
-    <h3 class="contents">
-      <a
-        title="{{ selectedVariant.title }}"
-        href="{{ selectedVariant.url }}"
-        class="after:absolute after:top-0 after:left-0 after:w-full after:h-full small-serif text-balance"
-      >
-        {{- product.title -}}
-      </a>
-    </h3>
-    {% if selectedVariant.available %}
-      <p class="small-accent">{{ selectedVariant.price | money }}</p>
-    {% elsif product.tags contains 'hold' %}
-      {% render 'product-status', type: 'on-hold' %}
-    {% elsif product.tags contains 'inquire' %}
-      {% render 'product-status', type: 'inquire' %}
-    {% elsif selectedVariant.available == false %}
-      {% render 'product-status', type: 'sold-out' %}
-    {% endif %}
+<li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
+  <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+    {% render 'product-variant-card', variant: selected_variant, product: product %}
   </div>
-</div>
+</li>
+{% for variant in product.variants %}
+  {% unless selected_variant.id == variant.id %}
+    <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3 !hidden" data-product-variant>
+      <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+        {% render 'product-variant-card', variant: variant, product: product %}
+      </div>
+    </li>
+  {% endunless %}
+{% endfor %}

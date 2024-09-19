@@ -93,7 +93,7 @@
     }
 
     .collection-link {
-        @apply hover:opacity-50 duration-200 ease-linear aria-[current=page]:underline;
+        @apply hover:opacity-50 duration-200 ease-linear aria-[current=page]:underline leading-[1.5] lg:leading-[11px];
     }
 }
 

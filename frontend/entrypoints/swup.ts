@@ -24,15 +24,16 @@ const rules: Array<FragmentRule> = [
   }
 ];
 
+export const fragmentPlugin = new SwupFragmentPlugin({ rules });
+
 export const swup = new Swup({
   animateHistoryBrowsing: true,
   containers: ["#main"],
   plugins: [
-    new SwupFragmentPlugin({
-      rules
-    }),
+    fragmentPlugin,
     new SwupPreloadPlugin({
       preloadHoveredLinks: true,
+    preloadVisibleLinks: true,
     }),
     new SwupA11yPlugin(),
     new SwupScrollPlugin({

@@ -1,7 +1,5 @@
-import { swup } from "@/entrypoints/swup";
+import { swup, fragmentPlugin } from "@/entrypoints/swup";
 import { updateHistoryRecord } from "swup";
-
-const scrollId = "collection-scroll-position"
 
 function fetchCollectionData() {
   if (window.location.pathname.includes("/collections/all")) return
@@ -24,9 +22,8 @@ function fetchCollectionData() {
 export default (collectionPathname) => ({
   ...fetchCollectionData(),
   activeUrl: collectionPathname,
-  scrollPosition: localStorage.getItem(scrollId) || 0,
+  scrollPosition: localStorage.getItem(collectionPathname) || 0,
   init() {
-    console.log("filters", this.filters, this.collectionUrl)
     if (window.history.state && window.history.state.productGrid) {
       this.hydrateProducts()
     }
@@ -38,11 +35,9 @@ export default (collectionPathname) => ({
     }
 
     swup.hooks.on("visit:start", (visit) => {
-      if (!visit.to.url.includes("/collections/")) {
-        this.saveScroll()
-      } else {
-        this.activeUrl = visit.to.url;
-      }
+      this.saveScroll()
+      this.activeUrl = visit.to.url;
+
     });
 
     window.addEventListener("unload", this.saveScroll);
@@ -52,7 +47,7 @@ export default (collectionPathname) => ({
     window.removeEventListener("unload", this.saveScroll);
   },
   saveScroll() {
-    localStorage.setItem(scrollId, window.scrollY.toString())
+    localStorage.setItem(this.activeUrl, window.scrollY.toString())
   },
   restoreScroll() {
     window.scroll(0, parseInt(this.scrollPosition))

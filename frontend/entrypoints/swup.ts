@@ -5,13 +5,11 @@ import SwupFragmentPlugin, { Rule as FragmentRule } from "@swup/fragment-plugin"
 import SwupScrollPlugin from "@swup/scroll-plugin";
 
 const rules: Array<FragmentRule> = [
-  // Rule 0: Navigating from All Items to a Collection
   {
     from: "/collections/all",
     to: "/collections/:handle?",
     containers: ["#collection"]
-  },
-  // Rule 1: Navigating from a Collection to All Items
+  }, 
   {
     from: "/collections/:handle?",
     to: "/collections/all",
@@ -20,7 +18,7 @@ const rules: Array<FragmentRule> = [
   {
     from: "/collections/:handle?",
     to: "/collections/:handle?",
-    containers: ["#product-grid"]
+    containers: ["#collection"]
   }
 ];
 
@@ -33,7 +31,7 @@ export const swup = new Swup({
     fragmentPlugin,
     new SwupPreloadPlugin({
       preloadHoveredLinks: true,
-    preloadVisibleLinks: true,
+    // preloadVisibleLinks: true,
     }),
     new SwupA11yPlugin(),
     new SwupScrollPlugin({

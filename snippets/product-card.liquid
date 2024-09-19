@@ -2,14 +2,14 @@
 
 <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3">
   <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
-    {% render 'product-variant-card', variant: selected_variant, product: product %}
+    {% render 'product-variant-card', variant: selected_variant, product: product, priority: priority %}
   </div>
 </li>
 {% for variant in product.variants %}
   {% unless selected_variant.id == variant.id %}
     <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3 !hidden" data-product-variant>
       <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
-        {% render 'product-variant-card', variant: variant, product: product %}
+        {% render 'product-variant-card', variant: variant, product: product, priority: priority %}
       </div>
     </li>
   {% endunless %}

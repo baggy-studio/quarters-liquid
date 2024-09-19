@@ -19,6 +19,7 @@ import productRecommendations from "@/components/product-recommendations";
 import newsletter from "@/components/newsletter";
 import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
+import productGrid from "@/components/product-grid";
 
 Alpine.directive("money", (el, { expression }, { evaluateLater, effect }) => {
   let setMoney = evaluateLater(expression);
@@ -37,7 +38,7 @@ Alpine.plugin(focus);
 Alpine.plugin(collapse);
 
 Alpine.store("cart", cart);
-
+Alpine.data("productGrid", productGrid);
 Alpine.data("app", app);
 Alpine.data("cookieConsent", cookieConsent);
 Alpine.data("cartLine", cartLine);

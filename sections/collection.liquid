@@ -14,7 +14,6 @@
             data-product-grid
             class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
           >
-            {% assign all_variants = '' %}
             {% for product in collection.products %}
               {% assign is_priority = false %}
 
@@ -22,13 +21,10 @@
                 {% assign is_priority = true %}
               {% endif %}
 
-              {% for variant in product.variants %}
-                {% assign variant_with_random = variant | append: ', ' | append: product.handle | append: ', ' | append: product.title | append: ', ' | append: product.featured_image | append: ', ' | append: product.url | append: ', ' | append: product.price | append: ', ' | append: product.compare_at_price | append: product.available | append: ', ' | append: product.options_with_values | append: ', ' | append: product.tags | append: ', ' | append: product.vendor | append: ', ' | append: product.type | append: ', ' | append: product.id | append: ', ' | append: product.template_suffix | append: ', ' | append: product.published_at | append: ', ' | append: product.created_at | append: product.updated_at | append: ', ' | append: product.published_scope | append: ', ' | append: product.admin_graphql_api_id | append: ', ' | append: product.body_html | append: ', ' | append: product.variants | append: ', ' | append: product.options | append: ', ' | append: product.images | append: ', ' | append: product.image | append: ', ' | append: product.metafields | append: product.metafields_global | append: ', ' | append: product.metafields_namespace | append: ', ' | append: product.metafields_key | append: ', ' | append: product.metafields_value | append: ', ' | append: product.metafields_description | append: ', ' | append: product.metafields_owner_resource | append: ', ' | append: product.metafields_owner_id | append: ', ' | append: product.metafields_created_at | append: ', ' | append: product.metafields_updated_at | append: ', ' | append: product.metafields_admin_graphql_api_id %}
-                {% assign all_variants = all_variants | append: variant_with_random | append: '|' %}
-              {% endfor %}
-
               {% render 'product-card', product: product, priority: is_priority %}
             {% endfor %}
+            <li class="contents" data-paginated-products></li>
+            <li class="contents" data-shuffled-variants></li>
           </ul>
           {% if paginate.next.url != blank %}
             <a

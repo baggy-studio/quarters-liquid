@@ -1,34 +1,47 @@
 import { swup, fragmentPlugin } from "@/entrypoints/swup";
 import { updateHistoryRecord } from "swup";
+import { Rule as FragmentRule } from "@swup/fragment-plugin";
 
-function fetchCollectionData() {
-  if (window.location.pathname.includes("/collections/all")) return
+function fetchCollectionNavigation() {
+  const script = document.querySelector('[data-collection-navigation]');
 
-  const script = document.querySelector('[data-collection-filters]');
+  if (!script) return [];
 
-  if (!script) return {
-    filters: [],
-    collectionUrl: null,
-  };
-
-  const data = JSON.parse(script?.innerHTML);
-
-  return {
-    filters: data.filters || [],
-    collectionUrl: data.collection_url || "",
-  };
+  const data = JSON.parse(script.innerHTML)
+  return data;
 }
 
 export default (collectionPathname) => ({
-  ...fetchCollectionData(),
+  navigation: fetchCollectionNavigation(),
   activeUrl: collectionPathname,
   scrollPosition: localStorage.getItem(collectionPathname) || 0,
+  loadTransitionRules(navigation) {
+    const rules: Array<FragmentRule> = []
+
+    navigation.forEach((filter) => {
+      Object.entries(filter).forEach(([collectionUrl, filters]) => {
+        if (Array.isArray(filters) && filters?.length) {
+          filters.forEach((filter) => {
+            rules.push({
+              from: [collectionUrl, filter.url],
+              to: [filter.url, collectionUrl],
+              containers: ["#product-grid"],
+              name: collectionUrl
+            })
+          })
+        }
+      });
+    })
+
+    rules.forEach((rule) => fragmentPlugin.prependRule(rule))
+    console.log(fragmentPlugin.getRules());
+  },
   init() {
+    this.loadTransitionRules(this.navigation)
+
     if (window.history.state && window.history.state.productGrid) {
       this.hydrateProducts()
     }
-
-    this.hydrateProductVariants()
 
     if (this.scrollPosition) {
       setTimeout(() => {
@@ -39,12 +52,10 @@ export default (collectionPathname) => ({
     swup.hooks.on("visit:start", (visit) => {
       this.saveScroll()
       this.activeUrl = visit.to.url;
-
     });
 
     window.addEventListener("unload", this.saveScroll);
   },
-
   destroy() {
     window.removeEventListener("unload", this.saveScroll);
   },
@@ -54,43 +65,18 @@ export default (collectionPathname) => ({
   restoreScroll() {
     window.scroll(0, parseInt(this.scrollPosition))
   },
-  hydrateProductVariants() {
-    const productGrid = document.querySelector('[data-product-grid]');
-    const productVariants = productGrid?.querySelectorAll('[data-product-variant]');
-    console.log("productVariants", productVariants)
-
-    if (!productVariants?.length || !productGrid) return;
-
-    const productVariantsArray = Array.from(productVariants);
-
-    // Remove '!hidden' from classList
-    productVariantsArray.forEach(variant => {
-      variant.classList.remove('!hidden');
-    });
-
-    // Fisher-Yates (Knuth) shuffle algorithm
-    for (let i = productVariantsArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [productVariantsArray[i], productVariantsArray[j]] = [productVariantsArray[j], productVariantsArray[i]];
-    }
-
-    productGrid.append(...productVariantsArray);
-  },
   async loadProducts() {
     const nextPage = document.getElementById("load-more") as HTMLAnchorElement | null;
 
     if (!nextPage) return;
 
     try {
-      const response = await fetch(nextPage.href);
-      const data = await response.text();
-
+      const data = await fetch(nextPage.href).then(r => r.text());
       let html = document.createElement("html");
       html.innerHTML = data;
 
       this.appendProducts({ html, url: nextPage.href });
     } catch (error) {
-      console.log("error", error)
       console.error(error);
     }
   },
@@ -116,7 +102,7 @@ export default (collectionPathname) => ({
       document.getElementById("load-more")?.remove();
     }
 
-    productGrid.append(...newProductGrid.children);
+    productGrid?.append(...newProductGrid.children);
 
     try {
       updateHistoryRecord(url, {

@@ -8,7 +8,7 @@
         --fade-in-duration: 200ms;
         --fade-in-easing: linear;
 
-        --fade-out-duration: 600ms;
+        --fade-out-duration: 800ms;
         --fade-out-easing: cubic-bezier(0.65, 0.05, 0.36, 1);
     }
 
@@ -85,7 +85,7 @@
 
 @layer components {
     .nav-link {
-        @apply font-serif text-base leading-[20px] text-current transition-opacity duration-200 ease-linear hover:opacity-50;
+        @apply font-serif text-base leading-[20px] text-current transition-opacity duration-300 ease-linear hover:opacity-50;
     }
 
     .menu-item {
@@ -93,7 +93,7 @@
     }
 
     .collection-link {
-        @apply hover:opacity-50 duration-200 ease-linear aria-[current=page]:underline leading-[1.5] lg:leading-[11px];
+        @apply hover:opacity-50 duration-300 ease-linear aria-[current=page]:underline leading-[1.5] lg:leading-[11px];
     }
 }
 
@@ -128,5 +128,9 @@ html.is-leaving #main,
 }  
 
 .richtext a {
-    @apply underline decoration-1 underline-offset-2 hover:opacity-50 duration-200 ease-linear;
+    @apply underline decoration-1 underline-offset-2 hover:opacity-50 duration-300 ease-linear;
+}
+
+.richtext-hover-only a {
+    @apply hover:opacity-50 duration-300 ease-linear;
 }

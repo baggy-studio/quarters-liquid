@@ -36,13 +36,13 @@
     {% render 'fonts' %}
     {{ content_for_header }}
   </head>
-  <body >
+  <body>
     {% render 'svg' %}
     {% if template == 'password' %}
       {% render 'password' %}
     {% else %}
       <a class="sr-only" href="#main">Skip to main content</a>
-      <div class="antialiased" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
+      <div class="antialiased relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
         {% sections 'header-group' %}
         {% section 'menu' %}
         <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
@@ -54,10 +54,9 @@
             {{ content_for_layout }}
           </main>
           {% sections 'footer-group' %}
-          {% sections 'aside-group' %}
         </div>
+        {% sections 'aside-group' %}
       </div>
     {% endif %}
-    {% section 'grid' %}
   </body>
 </html>

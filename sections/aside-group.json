@@ -16,9 +16,18 @@
         "freeShippingSuccess": "",
         "freeShippingThreshold": 100
       }
+    },
+    "cookie_consent_KaJewp": {
+      "type": "cookie-consent",
+      "settings": {
+        "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
+        "ctaText": "Learn more",
+        "ctaUrl": "shopify:\/\/policies\/privacy-policy"
+      }
     }
   },
   "order": [
-    "cart_Vtp9qk"
+    "cart_Vtp9qk",
+    "cookie_consent_KaJewp"
   ]
 }

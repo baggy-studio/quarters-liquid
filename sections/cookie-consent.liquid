@@ -1,0 +1,59 @@
+<aside
+  aria-modal
+  role="dialog"
+  x-data="cookieConsent"
+  class="absolute top-0 left-0 w-full bottom-0 flex items-end pointer-events-none select-none z-20"
+>
+  <div
+    :class="
+      {
+        'pointer-events-auto delay-1000 opacity-100': visible,
+        'opacity-0': !visible
+      }
+    "
+    class="bottom-4 sticky w-full lg:grid lg:grid-cols-20 px-4 gap-4 lg:gap-3 opacity-0 duration-[--fade-out-duration] ease-[--fade-out-easing]"
+  >
+    <div class="w-full flex flex-col items-start justify-start lg:flex-row lg:items-center lg:flex-wrap gap-4 leading-none lg:justify-between bg-chartreuse border-current border p-4 lg:py-[11px] col-start-11 col-span-10">
+      <div class="small-sans richtext">
+        {{ section.settings.content }}
+      </div>
+      <div class="flex items-center justify-center gap-4 small-sans">
+        <button @click="accept" title="Accept" class="underline hover:opacity-50 duration-200 ease-linear">Accept</button>
+        {% if section.settings.ctaText != blank %}
+          <a href="{{ section.settings.ctaUrl }}" class="hover:underline hover:opacity-50 duration-200 ease-linear">{{ section.settings.ctaText }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Cookie Consent",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Richtext"
+    },
+    {
+      "type": "text",
+      "id": "ctaText",
+      "label": "CTA Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "ctaUrl",
+      "label": "CTA URL"
+
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cookie Consent"
+    }
+  ]
+}
+{% endschema %}

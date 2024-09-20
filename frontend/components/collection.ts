@@ -34,7 +34,6 @@ export default (collectionPathname) => ({
     })
 
     rules.forEach((rule) => fragmentPlugin.prependRule(rule))
-    console.log(fragmentPlugin.getRules());
   },
   init() {
     this.loadTransitionRules(this.navigation)
@@ -49,12 +48,42 @@ export default (collectionPathname) => ({
       })
     }
 
+    this.loadVariants()
+
     swup.hooks.on("visit:start", (visit) => {
       this.saveScroll()
       this.activeUrl = visit.to.url;
     });
 
+    swup.hooks.on("content:replace", (visit) => {
+      if (visit.to.url.includes('/collections/')) {
+        this.loadVariants()
+      }
+    })
+
     window.addEventListener("unload", this.saveScroll);
+  },
+  loadVariants() {
+    const nextPage = document.getElementById("load-more")
+
+    if (nextPage) return;
+
+    const productGrid = document.querySelector('[data-product-grid]');
+    if (!productGrid) return;
+
+    const variants = Array.from(productGrid.querySelectorAll('[data-product-variant]'));
+    variants.forEach(variant => {
+      variant.classList.remove('!hidden');
+      variant.remove();
+    });
+
+    // Fisher-Yates shuffle algorithm
+    for (let i = variants.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [variants[i], variants[j]] = [variants[j], variants[i]];
+    }
+
+    productGrid.append(...variants);
   },
   destroy() {
     window.removeEventListener("unload", this.saveScroll);
@@ -67,8 +96,6 @@ export default (collectionPathname) => ({
   },
   async loadProducts() {
     const nextPage = document.getElementById("load-more") as HTMLAnchorElement | null;
-
-    if (!nextPage) return;
 
     try {
       const data = await fetch(nextPage.href).then(r => r.text());
@@ -96,13 +123,15 @@ export default (collectionPathname) => ({
 
     if (!productGrid || !newProductGrid) return;
 
+
+    productGrid?.append(...newProductGrid.children);
+
     if (nextLink) {
       document.getElementById("load-more")?.replaceWith(nextLink.cloneNode(true));
     } else {
       document.getElementById("load-more")?.remove();
+      this.loadVariants()
     }
-
-    productGrid?.append(...newProductGrid.children);
 
     try {
       updateHistoryRecord(url, {

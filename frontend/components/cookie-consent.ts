@@ -18,21 +18,22 @@ export default () => ({
 
         const hasConsent = checkVisitorConsent(window.Shopify.customerPrivacy.currentVisitorConsent());
 
+        console.log('hasConsent', hasConsent)
         if (!hasConsent) {
           i.visible = true
-          window.Shopify.customerPrivacy.setTrackingConsent(
-            {
-              "analytics": true,
-              "marketing": true,
-              "preferences": true
-            }
-          );
         }
       },
     );
   },
-  close() {
+  accept() {
     this.visible = false;
+    window.Shopify.customerPrivacy.setTrackingConsent(
+      {
+        "analytics": true,
+        "marketing": true,
+        "preferences": true
+      }
+    );
   }
 });
 

@@ -9,7 +9,7 @@
         id="product-grid"
         class="w-full pb-32 lg:pb-36 flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px]"
       >
-        {% paginate collection.products by 40 %}
+        {% paginate collection.products by 48 %}
           <ul
             data-product-grid
             class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
@@ -23,12 +23,10 @@
 
               {% render 'product-card', product: product, priority: is_priority %}
             {% endfor %}
-            <li class="contents" data-paginated-products></li>
-            <li class="contents" data-shuffled-variants></li>
           </ul>
           {% if paginate.next.url != blank %}
             <a
-              x-intersect:enter.margin.900px="loadProducts()"
+              x-intersect:enter.margin.1000px="loadProducts()"
               href="{{ paginate.next.url }}"
               class="w-max collection-link subheading"
               id="load-more"

@@ -24,10 +24,16 @@
         "ctaText": "Learn more",
         "ctaUrl": "shopify:\/\/policies\/privacy-policy"
       }
+    },
+    "grid_bpk4Lw": {
+      "type": "grid",
+      "settings": {
+      }
     }
   },
   "order": [
     "cart_Vtp9qk",
-    "cookie_consent_KaJewp"
+    "cookie_consent_KaJewp",
+    "grid_bpk4Lw"
   ]
 }

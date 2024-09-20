@@ -1,4 +1,7 @@
-<header class="fixed left-0 w-full top-0 h-max z-10 p-4 transition-colors ease-linear duration-200 group text-[var(--header-theme)]" :class="menu ? '!text-mahogany is-menu' : ''">
+<header class="fixed left-0 w-full top-0 h-max z-10 p-4 transition-colors ease-linear duration-200 group text-[var(--header-theme)]" :class="{
+  '!text-mahogany is-menu delay-300': menu,
+  'delay-[600ms]': !menu
+}">
   <nav aria-label="Main Navigation" class="w-full flex items-start justify-between relative">
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
@@ -16,7 +19,7 @@
               <a 
                 title="{{ link.title }}"
                 href="{{ link.url }}"
-                class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:hover:opacity-100"
+                class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100"
               >
                 {{- link.title -}}
               </a>

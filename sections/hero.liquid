@@ -36,7 +36,7 @@
         @click="openMenu"
         title="Menu"
         class="h-max w-max md:pointer-events-none transition-opacity duration-[600ms] ease-[--fade-out-easing]"
-        :class="menu && 'pointer-events-none md:opacity-0'"
+        :class="menu ? 'pointer-events-none md:opacity-0 delay-0' : 'delay-500'"
       >
         <svg class="fill-current h-9 w-[212px] lg:h-[66px] lg:w-[400px] aspect-auto shrink-0">
           <use xlink:href="#wordmark"></use>

@@ -85,7 +85,7 @@
 
 @layer components {
     .nav-link {
-        @apply font-serif text-base leading-[20px] text-current transition-opacity duration-300 ease-linear hover:opacity-50;
+        @apply font-serif text-base leading-[20px] text-current transition-opacity duration-300 ease-linear hover:opacity-50 hover:delay-0;
     }
 
     .menu-item {

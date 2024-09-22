@@ -81,6 +81,19 @@
     .spicy-body {
         @apply font-droulers text-[18px] leading-[24px];
     }
+
+    .hero-y-top {
+        @apply h-[240px] lg:h-[160px];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .hero-y-bottom {
+        @apply h-[240px] lg:h-[160px];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+        transform: rotate(-180deg);
+    }
 }
 
 @layer components {
@@ -94,6 +107,10 @@
 
     .collection-link {
         @apply hover:opacity-50 duration-300 ease-linear aria-[current=page]:underline leading-[1.5] lg:leading-[11px];
+    }
+
+    .hero-y-gradient {
+        @apply before:hero-y-top before:absolute before:left-0 before:top-0 before:w-full before:z-[1] before:block after:hero-y-bottom after:absolute after:left-0 after:bottom-0 after:w-full after:block;
     }
 }
 
@@ -112,7 +129,7 @@
 html.is-animating #main,
 #collection.is-animating,
 #product-grid.is-animating {
-   opacity: 0;
+    opacity: 0;
 }
 
 html.is-changing #main,
@@ -125,12 +142,36 @@ html.is-leaving #main,
 #collection.is-leaving,
 #product-grid.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
-}  
+}
 
 .richtext a {
-    @apply underline decoration-1 underline-offset-2 hover:opacity-50 duration-300 ease-linear;
+    @apply w-max underline decoration-1 underline-offset-2 hover:opacity-50 duration-300 ease-linear;
 }
 
 .richtext-hover-only a {
-    @apply hover:opacity-50 duration-300 ease-linear;
+    @apply hover:opacity-50 duration-300 ease-linear w-max;
+}
+
+.header-delay {
+    @apply delay-[600ms];
+}
+
+header {
+    color: var(--incoming-color), var(--header-theme);
+}
+
+html.is-changing header {
+    @apply text-mahogany delay-0;
+}
+
+html.is-changing.to-collection header {
+    @apply text-mahogany;
+}
+
+html.is-changing.to-collection header {
+    @apply text-bone-tint;
+}
+
+header.is-menu {
+    @apply text-mahogany delay-300;
 }

@@ -1,6 +1,5 @@
-<header class="fixed left-0 w-full top-0 h-max z-10 p-4 transition-colors ease-linear duration-200 group text-[var(--header-theme)]" :class="{
-  '!text-mahogany is-menu delay-300': menu,
-  'delay-[600ms]': !menu
+<header :style="`--incoming-color: ${headerColor}`" class="fixed left-0 w-full top-0 h-max z-10 p-4 transition-colors ease-linear duration-200 group" :class="{
+  'is-menu': menu,
 }">
   <nav aria-label="Main Navigation" class="w-full flex items-start justify-between relative">
     <ul class="hidden lg:flex items-center gap-16">
@@ -35,13 +34,13 @@
     >
       Menu
     </button>
-    <button title="Bag" @click="$store.cart.open" class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:hover:opacity-100">
+    <button title="Bag" @click="$store.cart.open" class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100">
       Bag (
       {{- cart.item_count -}}
       )
     </button>
     <h1 class="flex items-start absolute top-0 left-0 w-full h-full justify-center pointer-events-none">
-      <a href="/" title="Erly" class="pointer-events-auto">
+      <a href="/" title="Erly" class="pointer-events-auto" data-swup-animation="homepage">
         <svg class="fill-current h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] aspect-auto shrink-0">
           <use xlink:href="#wordmark"></use>
         </svg>

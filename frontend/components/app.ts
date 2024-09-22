@@ -3,15 +3,36 @@ import { animate } from "motion";
 import { expoInOut } from "@/easing";
 import { range } from "@/utils";
 
+function getHeaderColor(dom = document) {
+  const styleId = 'page-settings';
+  const styleElement = dom.getElementById(styleId);
+  if (!styleElement) {
+    return '#684C0D';
+  }
+
+  const cssText = styleElement.textContent;
+  const cssVariables = {};
+
+  // Regular expression to match CSS variables
+  const regex = /--([\w-]+):\s*([^;]+);/g;
+  let match;
+  while ((match = regex.exec(cssText)) !== null) {
+    cssVariables[match[1]] = match[2].trim();
+  }
+  return cssVariables['header-theme'];
+}
+
 export default () => ({
   menu: false,
   menuHeight: 0,
-
+  headerColor: getHeaderColor(),
   init() {
     this.trackMenuHeight();
 
     swup.hooks.before('content:replace', (visit) => {
-      console.log(visit);
+      if (visit.to.html) {
+        this.parseIncomingHTML(visit.to.html);
+      }
     });
 
     swup.hooks.on('animation:out:start', () => {
@@ -23,10 +44,10 @@ export default () => ({
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
-
-    return () => {
-      window.removeEventListener('resize', this.trackMenuHeight);
-    }
+  },
+  parseIncomingHTML(html: string) {
+    const document = new DOMParser().parseFromString(html, 'text/html');
+    this.headerColor = getHeaderColor(document);
   },
   hide() {
     this.visible = false;
@@ -42,15 +63,16 @@ export default () => ({
       this.updateMenuHeight(progress)
     }, { duration: 1.2, easing: expoInOut })
   },
-  closeMenu() {
+  async closeMenu() {
     if (!this.menu) {
       return
     };
-    this.menu = false;  
-
-    animate((progress) => {
+    
+    await animate((progress) => {
       this.updateMenuHeight(1 - progress)
     }, { duration: 1.2, easing: expoInOut })
+
+    this.menu = false;
   },
   toggleMenu() {
     if (this.menu) {

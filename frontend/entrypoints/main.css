@@ -157,19 +157,12 @@ html.is-leaving #main,
 }
 
 header {
-    color: var(--incoming-color), var(--header-theme);
+    color: var(--header-theme); 
+    @apply delay-[600ms]
 }
 
 html.is-changing header {
-    @apply text-mahogany delay-0;
-}
-
-html.is-changing.to-collection header {
-    @apply text-mahogany;
-}
-
-html.is-changing.to-collection header {
-    @apply text-bone-tint;
+    @apply delay-0;
 }
 
 header.is-menu {

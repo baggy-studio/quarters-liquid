@@ -22,6 +22,8 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
+const lightRoutes = ['/'];
+
 export default () => ({
   menu: false,
   menuHeight: 0,
@@ -30,14 +32,16 @@ export default () => ({
     this.trackMenuHeight();
 
     swup.hooks.before('content:replace', (visit) => {
-      if (visit.to.html) {
-        this.parseIncomingHTML(visit.to.html);
-      }
+      this.getTheme(visit.to.url);
     });
 
-    swup.hooks.on('animation:out:start', () => {
+    swup.hooks.on('animation:out:start', (visit) => {
       if (this.menu) {
         this.closeMenu();
+      }
+
+      if (!lightRoutes.includes(visit.to.url)) {
+        this.getTheme(visit.to.url);
       }
     });
 
@@ -45,9 +49,16 @@ export default () => ({
       this.trackMenuHeight();
     });
   },
-  parseIncomingHTML(html: string) {
-    const document = new DOMParser().parseFromString(html, 'text/html');
-    this.headerColor = getHeaderColor(document);
+  getTheme(toUrl: string) {
+
+    if (lightRoutes.includes(toUrl)) {
+      return this.setTheme('light');
+    }
+
+    return this.setTheme('dark');
+  },
+  setTheme(theme: 'light' | 'dark') {
+    this.headerColor = theme === 'light' ? '#FAF8EC' : '#684C0D';
   },
   hide() {
     this.visible = false;
@@ -67,7 +78,7 @@ export default () => ({
     if (!this.menu) {
       return
     };
-    
+
     await animate((progress) => {
       this.updateMenuHeight(1 - progress)
     }, { duration: 1.2, easing: expoInOut })
@@ -87,7 +98,7 @@ export default () => ({
 
     let progress = range(0, 1, 0, this.menuHeight, height);;
 
-    if (url.includes('collections/') && window.innerWidth >= 1024) {
+    if (url.includes('/collections/') && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
     } else {
       this.$root.style.setProperty('--transform-y', `${progress}px`);

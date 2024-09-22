@@ -52,7 +52,10 @@ export default (collectionPathname) => ({
 
     swup.hooks.on("visit:start", (visit) => {
       this.saveScroll()
-      this.activeUrl = visit.to.url;
+
+      if (visit.to.url.includes('/collections/') && !visit.to.url.includes('/collections/all')) {
+        this.activeUrl = visit.to.url;
+      }
     });
 
     swup.hooks.on("content:replace", (visit) => {

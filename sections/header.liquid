@@ -40,8 +40,24 @@
       )
     </button>
     <h1 class="flex items-start absolute top-0 left-0 w-full h-full justify-center pointer-events-none">
-      <a href="/" title="Erly" class="pointer-events-auto" data-swup-animation="homepage">
-        <svg class="fill-current h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] aspect-auto shrink-0">
+      <a href="/" title="Quarters" class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
+        {% if section.settings.hideHomepageHeader and template == 'index' %}
+          opacity-0 pointer-events-none
+        {% else %}
+          pointer-events-auto
+        {% endif %}
+        "
+        {% if section.settings.hideHomepageHeader %}
+        :class="{
+          'opacity-0': activeUrl == '/' && !menu,
+          'pointer-events-auto': activeUrl !== '/' || menu
+        }"
+        {% endif %}
+      >
+        <svg class="fill-current h-full text-bone-tint aspect-[185/31] shrink-0">
+          <use xlink:href="#wordmark"></use>
+        </svg>
+        <svg class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[185/31] shrink-0">
           <use xlink:href="#wordmark"></use>
         </svg>
       </a>
@@ -58,6 +74,12 @@
       "type": "link_list",
       "id": "menu",
       "label": "Navigation Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "hideHomepageHeader",
+      "label": "Hide Header on Homepage",
+      "default": true
     }
   ],
   "presets": [

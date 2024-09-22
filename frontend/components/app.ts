@@ -24,14 +24,16 @@ function getHeaderColor(dom = document) {
 
 const lightRoutes = ['/'];
 
-export default () => ({
+export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
   menuHeight: 0,
   headerColor: getHeaderColor(),
+  activeUrl: activeUrl,
   init() {
     this.trackMenuHeight();
 
     swup.hooks.before('content:replace', (visit) => {
+      this.activeUrl = visit.to.url;
       this.getTheme(visit.to.url);
     });
 
@@ -41,6 +43,7 @@ export default () => ({
       }
 
       if (!lightRoutes.includes(visit.to.url)) {
+        this.activeUrl = visit.to.url;
         this.getTheme(visit.to.url);
       }
     });

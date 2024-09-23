@@ -71,11 +71,12 @@
     aria-label="Main Navigation"
     :class="
       {
-        'is-menu': menu,
+        'is-menu': menu
       }
     "
     :style="`--header-theme: ${headerColor}`"
-    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group"
+    class="
+    absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group"
   >
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
@@ -113,6 +114,7 @@
     <button
       @click="closeMenu"
       title="Close Menu"
+      x-cloak
       x-show="menu"
       class="lg:hidden nav-link pointer-events-auto"
     >

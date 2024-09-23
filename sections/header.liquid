@@ -120,9 +120,9 @@
     </button>
     <button
       title="Bag"
-      x-show="!menu"
+      :class="menu && 'hidden'"
       @click="$store.cart.open"
-      class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
+      class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
       Bag (
       {{- cart.item_count -}}
@@ -150,12 +150,22 @@
     {
       "type": "text",
       "id": "contentHeading",
-      "label": "Content Heading"
+      "label": "DesktopContent Heading"
     },
     {
       "type": "richtext",
       "id": "content",
-      "label": "Content"
+      "label": "DesktopContent"
+    },
+    {
+      "type": "richtext",
+      "id": "address",
+      "label": "Mobile Address"
+    },
+    {
+      "type": "richtext",
+      "id": "contact",
+      "label": "Mobile Contact"
     }
   ]
 }

@@ -1,7 +1,13 @@
 <span
-  :style="{ '--rotate': open ? '90deg' : '0deg' }"
+  {% if hasSubMenu %}
+    :style="{ '--rotate': subMenu ? '90deg' : '0deg' }"
+  {% else %}
+    :style="{ '--rotate': open ? '90deg' : '0deg' }"
+  {% endif %}
   class="rotate-[--rotate] transition-transform duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)] w-2.5 relative h-2.5 flex items-center justify-center"
 >
-  <span class="w-full h-[1px] bg-current block rotate-[--rotate] transition-transform duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)]"></span>
+  <span
+    class="w-full h-[1px] bg-current block rotate-[--rotate] transition-transform duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)]"
+  ></span>
   <span class="h-full w-[1px] bg-current absolute block"></span>
 </span>

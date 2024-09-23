@@ -18,9 +18,11 @@ export default () => ({
 
         const hasConsent = checkVisitorConsent(window.Shopify.customerPrivacy.currentVisitorConsent());
 
-        console.log('hasConsent', hasConsent)
+
         if (!hasConsent) {
           i.visible = true
+        } else {
+          i.$dispatch('set-consent', true)
         }
       },
     );
@@ -34,6 +36,7 @@ export default () => ({
         "preferences": true
       }
     );
+    this.$dispatch('set-consent', true)
   }
 });
 

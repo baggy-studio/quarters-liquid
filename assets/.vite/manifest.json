@@ -1,0 +1,22 @@
+{
+  "frontend/entrypoints/main.css": {
+    "file": "main-N_zLOPHr.css",
+    "src": "frontend/entrypoints/main.css",
+    "isEntry": true
+  },
+  "frontend/entrypoints/main.js": {
+    "file": "main-BPyIXwT5.js",
+    "name": "main",
+    "src": "frontend/entrypoints/main.js",
+    "isEntry": true,
+    "imports": [
+      "frontend/entrypoints/swup.ts"
+    ]
+  },
+  "frontend/entrypoints/swup.ts": {
+    "file": "swup-Bgw8tTpT.js",
+    "name": "swup",
+    "src": "frontend/entrypoints/swup.ts",
+    "isEntry": true
+  }
+}

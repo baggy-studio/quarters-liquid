@@ -1,0 +1,44 @@
+<div class="contents" x-data="newsletter('{{ section.settings.listId }}')">
+  <div class="mb-2 w-full" x-show="error" x-transition.opacity>
+    <p x-text="error" class="text-error subheading"></p>
+  </div>
+  <form
+    style="--color-foreground: currentColor; --color-background: #d0d12c;"
+    novalidate
+    class="border-b border-current flex items-center select-none relative group "
+    :class="{ 'pointer-events-none': success }"
+    {% if section.settings.listId != blank %}
+      @submit.prevent="submit()"
+    {% else %}
+      disabled
+    {% endif %}
+  >
+    <input
+      x-model="email"
+      type="email"
+      name="email"
+      required
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      class="peer small-sans bg-chartreuse not-force-fill autofill:!transition-colors autofill:!duration-[5000000ms]"
+      placeholder="Email address"
+    >
+    <button
+      :disabled="success || error || loading"
+      aria-label="Submit form"
+      type="submit"
+      :class="
+        {
+            'disabled:cursor-wait': loading,
+            'disabled:cursor-not-allowed': error || success,
+            [`before:content-['Enter']`]: !success,
+            [`before:content-['Submitted']`]: success
+        }
+      "
+      type="submit"
+      class="subheading p-0.5 cursor-pointer shrink-0 group-invalid:cursor-not-allowed peer-[&:not(:placeholder-shown):not(:focus):invalid]:before:content-['Invalid']  before:block relative hover:opacity-50 duration-300 ease-in-linear transition-all"
+    
+    >
+      <span class="sr-only" x-text="success ? 'Submitted' : 'Enter'">Submitted</span>
+    </button>
+  </form>
+</div>

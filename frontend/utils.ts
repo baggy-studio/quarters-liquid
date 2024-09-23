@@ -18,3 +18,53 @@ export const range = (
   y2: number,
   a: number
 ) => lerp(x2, y2, invlerp(x1, y1, a));
+
+
+export async function subscribeToList(listId: string, email: string): Promise<any> {
+  const options: RequestInit = {
+    method: 'POST',
+    headers: {
+      revision: '2024-02-15',
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      data: {
+        type: 'subscription',
+        attributes: {
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: {
+                email,
+              },
+            },
+          },
+        },
+        relationships: {
+          list: {
+            data: {
+              type: 'list',
+              id: listId,
+            },
+          },
+        },
+      },
+    }),
+  }
+
+  try {
+    const response = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=T8uDxc`, options)
+
+    if (response.status == 202 || response.status == 200) {
+      return response
+    }
+
+    const { errors } = await response.json()
+
+    const error = errors[0]
+
+    return error
+  } catch {
+    throw Error('Something went wrong')
+  }
+}

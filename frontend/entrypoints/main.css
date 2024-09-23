@@ -157,7 +157,7 @@ nav {
     @apply delay-[600ms]
 }
 
-html.is-changing nav, 
+html.is-changing nav,
 html.is-changing header h1 a,
 html.is-changing header h1 a svg:last-child {
     @apply delay-0;
@@ -166,7 +166,7 @@ html.is-changing header h1 a svg:last-child {
 nav.is-menu {
     @apply text-mahogany delay-300;
 }
- 
+
 
 .nav-gradient::before {
     @apply sticky left-0 w-full top-0 block transition-opacity duration-300 ease-linear;
@@ -175,4 +175,8 @@ nav.is-menu {
     background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
     mix-blend-mode: normal;
     pointer-events: none;
+}
+
+input {
+    @apply focus:outline-none outline-none h-full w-full text-left placeholder:text-current text-current rounded-none bg-transparent focus:outline-none;
 }

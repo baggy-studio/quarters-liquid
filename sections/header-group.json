@@ -5,7 +5,10 @@
     "header_j7EMEV": {
       "type": "header",
       "settings": {
-        "menu": "main-menu"
+        "menu": "main-menu",
+        "hideHomepageHeader": true,
+        "contentHeading": "Visit The Store",
+        "content": "<p>383 Broadway, Floor 2\u2028<br\/>New York, N.Y. 10013<\/p><p>Monday through Saturday\u2028<br\/>11:00 A.M. – 6:00 P.M.<\/p>"
       }
     }
   },

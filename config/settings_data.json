@@ -1,10 +1,13 @@
 {
   "current": {
     "sections": {
-      "menu": {
-        "type": "menu",
+      "header": {
+        "type": "header",
         "settings": {
-          "menu": "main-menu"
+          "menu": "main-menu",
+          "hideHomepageHeader": true,
+          "contentHeading": "Visit the Store",
+          "content": "<p>383 Broadway, Floor 2 <br\/>New York, N.Y. 10013<\/p><p>Monday through Saturday<br\/>11:00 A.M. – 6:00 P.M.<\/p>"
         }
       }
     },

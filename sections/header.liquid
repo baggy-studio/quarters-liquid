@@ -1,7 +1,82 @@
-<header :style="`--header-theme: ${headerColor}`" class="fixed left-0 w-full top-0 h-max z-10 p-4 transition-colors ease-linear duration-200 group" :class="{
-  'is-menu': menu,
-}">
-  <nav aria-label="Main Navigation" class="w-full flex items-start justify-between relative">
+<header
+  class="fixed top-0 left-0 w-full h-screen z-50 pointer-events-none"
+>
+  <button
+    x-show="menu"
+    class="absolute top-0 left-0 h-full w-full hidden lg:block pointer-events-auto"
+    @click="closeMenu"
+  ></button>
+  {% render 'menu', menu: section.settings.menu %}
+  <h1 class="flex items-start absolute p-4 top-0 left-0 w-full h-full justify-center">
+    <a
+      href="/"
+      title="Quarters"
+      class="
+        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
+        {% if section.settings.hideHomepageHeader and template == 'index' %}
+          opacity-0
+        {% else %}
+          pointer-events-auto
+        {% endif %}
+      "
+      {% if section.settings.hideHomepageHeader %}
+        :class="
+          {
+            'opacity-0': activeUrl == '/' && !menu,
+            'pointer-events-auto': activeUrl !== '/' || menu
+          }
+        "
+      {% endif %}
+    >
+      <svg
+        {% unless section.settings.hideHomepageHeader %}
+          :class="
+            {
+              'opacity-0': menu
+            }
+          "
+        {% endunless %}
+
+        class="
+          {% unless section.settings.hideHomepageHeader %}
+          group-[.is-menu]:delay-300 delay-500
+           {% endunless %}
+          fill-current h-full text-bone-tint aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
+        "
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+      <svg
+        {% unless section.settings.hideHomepageHeader %}
+          :class="
+            {
+              'opacity-0 delay-500': activeUrl == '/' && !menu
+            }
+          "
+        {% endunless %}
+
+        class="
+             {% unless section.settings.hideHomepageHeader %}
+            opacity-0  group-[.is-menu]:delay-300
+          {% endunless %}
+
+            absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
+        "
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+    </a>
+  </h1>
+  <nav
+    aria-label="Main Navigation"
+    :class="
+      {
+        'is-menu': menu,
+      }
+    "
+    :style="`--header-theme: ${headerColor}`"
+    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group"
+  >
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}
@@ -10,15 +85,15 @@
               <button
                 @click="toggleMenu"
                 title="Shop"
-                class="nav-link group-[.is-menu]:opacity-100"
+                class="nav-link group-[.is-menu]:opacity-100 pointer-events-auto"
               >
                 {{ link.title }}
               </button>
             {% else %}
-              <a 
+              <a
                 title="{{ link.title }}"
                 href="{{ link.url }}"
-                class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100"
+                class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
               >
                 {{- link.title -}}
               </a>
@@ -30,38 +105,19 @@
     <button
       @click="toggleMenu"
       title="Toggle Menu"
-      class="lg:hidden nav-link"
+      class="lg:hidden nav-link pointer-events-auto"
     >
       Menu
     </button>
-    <button title="Bag" @click="$store.cart.open" class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100">
+    <button
+      title="Bag"
+      @click="$store.cart.open"
+      class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
+    >
       Bag (
       {{- cart.item_count -}}
       )
     </button>
-    <h1 class="flex items-start absolute top-0 left-0 w-full h-full justify-center pointer-events-none">
-      <a href="/" title="Quarters" class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
-        {% if section.settings.hideHomepageHeader and template == 'index' %}
-          opacity-0 pointer-events-none
-        {% else %}
-          pointer-events-auto
-        {% endif %}
-        "
-        {% if section.settings.hideHomepageHeader %}
-        :class="{
-          'opacity-0': activeUrl == '/' && !menu,
-          'pointer-events-auto': activeUrl !== '/' || menu
-        }"
-        {% endif %}
-      >
-        <svg class="fill-current h-full text-bone-tint aspect-[185/31] shrink-0">
-          <use xlink:href="#wordmark"></use>
-        </svg>
-        <svg class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[185/31] shrink-0">
-          <use xlink:href="#wordmark"></use>
-        </svg>
-      </a>
-    </h1>
   </nav>
 </header>
 
@@ -80,11 +136,16 @@
       "id": "hideHomepageHeader",
       "label": "Hide Header on Homepage",
       "default": true
-    }
-  ],
-  "presets": [
+    },
     {
-      "name": "Header"
+      "type": "text",
+      "id": "contentHeading",
+      "label": "Content Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
     }
   ]
 }

@@ -1,0 +1,124 @@
+<menu
+  @keyup.escape.window="closeMenu"
+  x-trap="menu"
+  aria-label="Main Menu"
+  :aria-hidden="!menu"
+  :class="{ 'pointer-events-auto': menu }"
+  x-ref="menu"
+  style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
+  x-effect="menu ? lockScroll() : unlockScroll()"
+  class="absolute text-mahogany top-0 left-0 w-full h-full lg:px-4 overflow-scroll lg:pt-20 lg:pb-8 lg:overflow-hidden lg:h-max bg-bone-tint pb-4 lg:grid lg:grid-cols-20 gap-x-3 after:absolute after:left-4 after:right-4 after:bottom-0 after:h-[1px] after:bg-current after:hidden lg:after:block"
+>
+  <ul class="flex flex-col gap-1.5 lg:gap-0 relative px-4 lg:px-0 w-full pt-[120px]  pb-[107px] lg:py-0 lg:col-span-5">
+    {% for navLink in menu.links %}
+      {% unless navLink.title == 'Mobile Only' %}
+        <li
+          {% if navLink.links != blank %}
+            x-data="{ open: false }"
+          {% endif %}
+          class="
+            first:border-t first:pt-4 border-current block
+            {% if navLink.links != blank %}
+              lg:contents
+            {% else %}
+             lg:hidden
+            {% endif %}
+          "
+        >
+          {% if navLink.links != blank %}
+            <button
+              @click="open = !open"
+              title="{{ navLink.title }}"
+              class="menu-item w-full flex items-center justify-between lg:hidden"
+            >
+              {{- navLink.title -}}
+              {% render 'accordion-icon' %}
+            </button>
+          {% else %}
+            <a
+              href="{{ navLink.url }}"
+              title="{{ navLink.title }}"
+              class="menu-item lg:hidden"
+            >
+              {{- navLink.title -}}
+            </a>
+          {% endif %}
+          {% if navLink.links != blank %}
+            <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
+              <ul class="grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents">
+                {% for link in navLink.links %}
+                  <li class="col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4">
+                    <a
+                      href="{{ link.url }}"
+                      title="{{ link.title }}"
+                      class="menu-item"
+                      @mouseover="activeCollection = 0"
+                    >
+                      {{- link.title -}}
+                    </a>
+                    {% if link.links != blank %}
+                      {% render 'submenu', link: link %}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
+  <ul class="px-4 flex flex-col gap-2 lg:hidden">
+    {% for navLink in menu.links %}
+      {% if navLink.title == 'Mobile Only' and navLink.links != blank %}
+        {% for link in navLink.links %}
+          <li class="first:border-t first:border-current first:pt-3">
+            <a title="{{ link.title }}" href="{{ link.url }}" class="text-[14px] leading-[18px] font-sans">
+              {{- link.title -}}
+            </a>
+          </li>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% assign parent_link = menu.links | first %}
+  {% assign parent_collection = parent_link.links | where: 'title', 'All Items' | first %}
+
+  {% if parent_collection.type == 'collection_link' %}
+    <ul class="col-span-4 hidden gap-x-3 lg:grid">
+      <li
+        class="transition-opacity duration-300 gap-3 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
+        :class="{ 'opacity-0 pointer-events-none': activeCollection != 0 }"
+      >
+        <a
+          title="{{ parent_collection.title }}"
+          href="{{ parent_collection.url }}"
+          class="col-span-2 aspect-[130/162] relative"
+        >
+          {% assign collection = parent_collection.object %}
+          {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+        </a>
+      </li>
+      {% for link in parent_collection.links %}
+        {% if link.type == 'collection_link' %}
+          <li
+            class="transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
+            :class="{ 'opacity-0 pointer-events-none': activeCollection != {{ forloop.index }} }"
+          >
+            <a
+              title="{{ link.title }}"
+              href="{{ link.url }}"
+              class="col-span-2 relative flex items-start flex-nowrap gap-x-3"
+            >
+              {% assign collection = link.object %}
+              <span class="aspect-[130/162] relative shrink-0 w-full">
+                {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+              </span>
+              <span class="whitespace-nowrap text-left medium-accent"> ({{ collection.all_products_count }}) </span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</menu>

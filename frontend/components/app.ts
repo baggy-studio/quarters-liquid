@@ -29,9 +29,11 @@ export default (activeUrl: string = window.location.pathname) => ({
   menuHeight: 0,
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
+  activeCollection: 0,
   init() {
     this.trackMenuHeight();
 
+ 
     swup.hooks.before('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
       this.getTheme(visit.to.url);
@@ -69,24 +71,26 @@ export default (activeUrl: string = window.location.pathname) => ({
   show() {
     this.visible = true;
   },
-  openMenu() {
+  async openMenu() {
     if (this.menu) return;
     this.menu = true;
 
-    animate((progress) => {
+    await animate((progress) => {
       this.updateMenuHeight(progress)
-    }, { duration: 1.2, easing: expoInOut })
+    }, { duration: 1.2, easing: expoInOut }).finished
   },
   async closeMenu() {
-    if (!this.menu) {
-      return
-    };
-
-    await animate((progress) => {
-      this.updateMenuHeight(1 - progress)
-    }, { duration: 1.2, easing: expoInOut })
+    if (!this.menu) return
 
     this.menu = false;
+
+    const url = this.activeUrl;
+
+    await animate((progress) => {
+      this.updateMenuHeight(1 - progress, url)
+    }, { duration: 1.2, easing: expoInOut }).finished
+
+    this.activeCollection = 0;
   },
   toggleMenu() {
     if (this.menu) {
@@ -95,19 +99,20 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.openMenu();
     }
   },
-  updateMenuHeight(height = 0) {
+  updateMenuHeight(height = 0, url = this.activeUrl) {
 
-    const url = swup.getCurrentUrl();
-
-    let progress = range(0, 1, 0, this.menuHeight, height);;
-
+    let progress = range(0, 1, 0, this.menuHeight, height);
     if (url.includes('/collections/') && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
-    } else {
+    }  else {
       this.$root.style.setProperty('--transform-y', `${progress}px`);
     }
 
-    this.$root.style.setProperty('--menu-height', `${progress}px`);
+    if (url == '/'  && window.innerWidth >= 1024) {
+      this.$root.style.setProperty('--menu-height', `${progress - 1}px`);
+    } else {
+      this.$root.style.setProperty('--menu-height', `${progress}px`);
+    }
   },
   trackMenuHeight() {
     this.menuHeight = this.$refs.menu.getBoundingClientRect().height;

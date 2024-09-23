@@ -3,6 +3,9 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,vue,svelte}", "./**/*.{liquid,json}"],
+  future: {
+    hoverOnlyWhenSupported: true
+  },
   theme: {
     extend: {
       fontFamily: {

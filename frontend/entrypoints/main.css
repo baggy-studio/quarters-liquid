@@ -152,19 +152,19 @@ html.is-leaving #main,
     @apply hover:opacity-50 duration-300 ease-linear w-max;
 }
 
-header {
+nav {
     color: var(--header-theme); 
     @apply delay-[600ms]
 }
 
-html.is-changing header {
+html.is-changing nav {
     @apply delay-0;
 }
 
-html.is-changing header h1 a {
+html.is-changing header h1 a, html.is-changing header h1 a svg:last-child {
     @apply delay-0;
 }
 
-header.is-menu {
+nav.is-menu {
     @apply text-mahogany delay-300;
 }

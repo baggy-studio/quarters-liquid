@@ -43,8 +43,7 @@
     {% else %}
       <a class="sr-only" href="#main">Skip to main content</a>
       <div class="antialiased relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
-        {% sections 'header-group' %}
-        {% section 'menu' %}
+        {% section 'header' %} 
         <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
           <main
             id="main"

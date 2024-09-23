@@ -105,12 +105,22 @@
     <button
       @click="toggleMenu"
       title="Toggle Menu"
-      class="lg:hidden nav-link pointer-events-auto"
+      class="lg:hidden nav-link"
+      :class="menu ? 'opacity-0' : 'pointer-events-auto'"
     >
       Menu
     </button>
     <button
+      @click="closeMenu"
+      title="Close Menu"
+      x-show="menu"
+      class="lg:hidden nav-link pointer-events-auto"
+    >
+      Close
+    </button>
+    <button
       title="Bag"
+      x-show="!menu"
       @click="$store.cart.open"
       class="nav-link group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >

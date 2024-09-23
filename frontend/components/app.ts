@@ -33,7 +33,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   init() {
     this.trackMenuHeight();
 
- 
+
     swup.hooks.before('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
       this.getTheme(visit.to.url);
@@ -53,6 +53,9 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
+
+
+
   },
   getTheme(toUrl: string) {
 
@@ -73,6 +76,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   async openMenu() {
     if (this.menu) return;
+    this.lockScroll();
     this.menu = true;
 
     await animate((progress) => {
@@ -90,6 +94,7 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.updateMenuHeight(1 - progress, url)
     }, { duration: 1.2, easing: expoInOut }).finished
 
+    this.unlockScroll();
     this.activeCollection = 0;
   },
   toggleMenu() {
@@ -104,11 +109,11 @@ export default (activeUrl: string = window.location.pathname) => ({
     let progress = range(0, 1, 0, this.menuHeight, height);
     if (url.includes('/collections/') && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
-    }  else {
+    } else {
       this.$root.style.setProperty('--transform-y', `${progress}px`);
     }
 
-    if (url == '/'  && window.innerWidth >= 1024) {
+    if (url == '/' && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--menu-height', `${progress - 1}px`);
     } else {
       this.$root.style.setProperty('--menu-height', `${progress}px`);
@@ -123,8 +128,21 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   lockScroll() {
     document.body.style.overflow = 'hidden';
+
+    if (window.innerWidth >= 1024) {
+      window.addEventListener('mousewheel', () => {
+        this.closeMenu();
+      }, { passive: false });
+    }
   },
   unlockScroll() {
     document.body.style.overflow = 'auto';
+    window.removeEventListener('mousewheel', () => {
+      this.closeMenu();
+    });
+  },
+  onWheel(e: WheelEvent) {
+    e.preventDefault();
+    this.closeMenu();
   }
 });

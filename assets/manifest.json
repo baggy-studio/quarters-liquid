@@ -1,20 +1,20 @@
 {
-  "frontend/entrypoints/main.css": {
+  "frontend\/entrypoints\/main.css": {
     "file": "main-92e207bb.css",
     "isEntry": true,
-    "src": "frontend/entrypoints/main.css"
+    "src": "frontend\/entrypoints\/main.css"
   },
-  "frontend/entrypoints/main.js": {
+  "frontend\/entrypoints\/main.js": {
     "file": "main-ca171d6c.js",
     "imports": [
-      "frontend/entrypoints/swup.js"
+      "frontend\/entrypoints\/swup.js"
     ],
     "isEntry": true,
-    "src": "frontend/entrypoints/main.js"
+    "src": "frontend\/entrypoints\/main.js"
   },
-  "frontend/entrypoints/swup.js": {
+  "frontend\/entrypoints\/swup.js": {
     "file": "swup-052451e2.js",
     "isEntry": true,
-    "src": "frontend/entrypoints/swup.js"
+    "src": "frontend\/entrypoints\/swup.js"
   }
 }

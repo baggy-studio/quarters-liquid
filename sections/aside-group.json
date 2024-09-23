@@ -17,6 +17,13 @@
         "freeShippingThreshold": 100
       }
     },
+    "newsletter_WETVt4": {
+      "type": "newsletter",
+      "settings": {
+        "content": "<p>Subscribe to our newsletter for<br\/>consectetur purus amet idetlorem fermentum lorem ipsum.<\/p>",
+        "listId": "VFb6cz"
+      }
+    },
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
       "settings": {
@@ -33,6 +40,7 @@
   },
   "order": [
     "cart_Vtp9qk",
+    "newsletter_WETVt4",
     "cookie_consent_KaJewp",
     "grid_bpk4Lw"
   ]

@@ -1,20 +1,74 @@
 import { swup, fragmentPlugin } from "@/entrypoints/swup";
-import { updateHistoryRecord } from "swup";
+import { updateHistoryRecord, Visit } from "swup";
 import { Rule as FragmentRule } from "@swup/fragment-plugin";
 
 function fetchCollectionNavigation() {
   const script = document.querySelector('[data-collection-navigation]');
-
   if (!script) return [];
-
   const data = JSON.parse(script.innerHTML)
   return data;
 }
 
-export default (collectionPathname) => ({
+export default () => ({
+  // State
   navigation: fetchCollectionNavigation(),
-  activeUrl: collectionPathname,
-  scrollPosition: localStorage.getItem(collectionPathname) || 0,
+  activeUrl: swup.getCurrentUrl(),
+  scrollPosition: localStorage.getItem(swup.getCurrentUrl()) || 0,
+  scrollDirection: 'down',
+  inTopZone: true,
+  visitStart: () => { },
+  contentReplace: () => { },
+  // Hooks
+  init() {
+    this.onScroll()
+    this.loadTransitionRules(this.navigation)
+
+    if (window.history.state && window.history.state.productGrid) {
+      this.hydrateProducts()
+    }
+
+    if (this.scrollPosition) {
+      setTimeout(() => {
+        this.restoreScroll()
+      })
+    }
+
+    this.loadVariants()
+
+    this.visitStart = (visit: Visit) => {
+      if (visit.from.url.includes('/collections/')) {
+        this.saveScroll()
+      }
+      if (visit.to.url.includes('/collections/') && !visit.to.url.includes('/collections/all')) {
+        this.activeUrl = visit.to.url;
+      }
+    }
+
+    this.contentReplace = (visit: Visit) => {
+      if (visit.to.url.includes('/collections/')) {
+        this.loadVariants()
+      }
+    }
+
+    swup.hooks.on("visit:start", this.visitStart);
+    swup.hooks.on("content:replace", this.contentReplace);
+
+    window.addEventListener("unload", this.saveScroll);
+    window.addEventListener("scroll", this.onScroll.bind(this));
+  },
+  destroy() {
+    window.removeEventListener("unload", this.saveScroll);
+    window.removeEventListener("scroll", this.onScroll.bind(this));
+
+    if (this.visitStart) {
+      swup.hooks.off("visit:start", this.visitStart);
+    }
+
+    if (this.contentReplace) {
+      swup.hooks.off("content:replace", this.contentReplace);
+    }
+  },
+  // Helpers
   loadTransitionRules(navigation) {
     const rules: Array<FragmentRule> = []
 
@@ -35,39 +89,6 @@ export default (collectionPathname) => ({
 
     rules.forEach((rule) => fragmentPlugin.prependRule(rule))
   },
-  init() {
-    this.loadTransitionRules(this.navigation)
-
-    if (window.history.state && window.history.state.productGrid) {
-      this.hydrateProducts()
-    }
-
-    if (this.scrollPosition) {
-      setTimeout(() => {
-        this.restoreScroll()
-      })
-    }
-
-    this.loadVariants()
-
-    swup.hooks.on("visit:start", (visit) => {
-      if (visit.from.url.includes('/collections/')) {
-        this.saveScroll()
-      }
-
-      if (visit.to.url.includes('/collections/') && !visit.to.url.includes('/collections/all')) {
-        this.activeUrl = visit.to.url;
-      }
-    });
-
-    swup.hooks.on("content:replace", (visit) => {
-      if (visit.to.url.includes('/collections/')) {
-        this.loadVariants()
-      }
-    })
-
-    window.addEventListener("unload", this.saveScroll);
-  },
   loadVariants() {
     const nextPage = document.getElementById("load-more")
 
@@ -82,7 +103,6 @@ export default (collectionPathname) => ({
       variant.remove();
     });
 
-    // Fisher-Yates shuffle algorithm
     for (let i = variants.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [variants[i], variants[j]] = [variants[j], variants[i]];
@@ -90,13 +110,12 @@ export default (collectionPathname) => ({
 
     productGrid.append(...variants);
   },
-  destroy() {
-    window.removeEventListener("unload", this.saveScroll);
-  },
   saveScroll() {
-    localStorage.setItem(this.activeUrl, window.scrollY.toString())
+    const url = swup.getCurrentUrl()
+    localStorage.setItem(url, window.scrollY.toString())
   },
   restoreScroll() {
+    console.log('restore scroll', this.activeUrl, this.scrollPosition)
     window.scroll(0, parseInt(this.scrollPosition))
   },
   async loadProducts() {
@@ -145,5 +164,20 @@ export default (collectionPathname) => ({
     } catch (error) {
       console.error('Failed to replace state', error);
     }
+  },
+  onScroll() {
+    if (window.scrollY <= 300) {
+      this.inTopZone = true;
+    } else {
+      this.inTopZone = false;
+    }
+
+
+    if (window.scrollY > this.scrollPosition) {
+      this.scrollDirection = 'down';
+    } else {
+      this.scrollDirection = 'up';
+    }
+    this.scrollPosition = window.scrollY;
   }
 });

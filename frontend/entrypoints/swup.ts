@@ -8,17 +8,17 @@ const rules: Array<FragmentRule> = [
   {
     from: "/collections/all",
     to: "/collections/:handle?",
-    containers: ["#collection"]
+    containers: ["#collection-nav", '#product-grid']
   }, 
   {
     from: "/collections/:handle?",
     to: "/collections/all",
-    containers: ["#collection"]
+    containers: ["#collection-nav", '#product-grid']
   },
   {
     from: "/collections/:handle?",
     to: "/collections/:handle?",
-    containers: ["#collection"]
+    containers: ["#collection-nav", '#product-grid']
   }
 ];
 

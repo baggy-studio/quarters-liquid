@@ -119,7 +119,7 @@
  * Here, we are animating the `.teaeser` elements individually
  */
 
-#collection,
+#collection-nav,
 #product-grid,
 #main {
     @apply transition-opacity;
@@ -127,19 +127,19 @@
 }
 
 html.is-animating #main,
-#collection.is-animating,
+#collection-nav.is-animating,
 #product-grid.is-animating {
     opacity: 0;
 }
 
 html.is-changing #main,
-#collection.is-changing,
+#collection-nav.is-changing,
 #product-grid.is-changing {
     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }
 
 html.is-leaving #main,
-#collection.is-leaving,
+#collection-nav.is-leaving,
 #product-grid.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }
@@ -171,7 +171,6 @@ nav.is-menu {
 .nav-gradient::before {
     @apply sticky left-0 w-full top-0 block transition-opacity duration-300 ease-linear;
     content: '';
-    z-index: 1;
     height: 120px;
     background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
     mix-blend-mode: normal;

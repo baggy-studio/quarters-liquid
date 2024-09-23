@@ -51,7 +51,9 @@ export default (collectionPathname) => ({
     this.loadVariants()
 
     swup.hooks.on("visit:start", (visit) => {
-      this.saveScroll()
+      if (visit.from.url.includes('/collections/')) {
+        this.saveScroll()
+      }
 
       if (visit.to.url.includes('/collections/') && !visit.to.url.includes('/collections/all')) {
         this.activeUrl = visit.to.url;

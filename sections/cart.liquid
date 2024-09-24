@@ -13,43 +13,6 @@
 </div>
 {% endcapture %}
 
-{% capture shipping %}
-<div class="w-full flex gap-1 flex-col items-center justify-center pb-3">
-  <p x-show="$store.cart.hasItems" class="uppercase font-futura text-[12px]">
-    <span class="contents" x-text="$store.cart.count">{{ cart.item_count }}</span
-    ><span class="contents" x-text="$store.cart.count == 1 ? ' Item' : ' Items'"></span>
-  </p>
-  <div
-    class="w-full h-[9px] border border-current rounded-full overflow-hidden after:w-full after:h-full after:block after:bg-current after:translate-x-[--x] after:transition-transform after:duration-300 after:ease-in-out"
-    :style="
-      {
-      '--x': $store.cart.freeShippingProgress
-      }
-    "
-  ></div>
-  <div class="w-full flex items-center justify-center">
-    <div
-      x-show="!$store.cart.hasItems"
-      class="text-center font-futura text-[12px]"
-    >
-      {{ section.settings.freeShippingInitial }}
-    </div>
-    <div
-      x-show="!$store.cart.hasFreeShipping && $store.cart.hasItems"
-      class="text-center font-futura text-[12px]"
-    >
-      {{
-        section.settings.freeShippingText
-        | replace_first: '%money%', '<span x-text="$store.cart.freeShippingLeft"></span>'
-      }}
-    </div>
-    <div x-show="$store.cart.hasFreeShipping" class="text-center  font-futura text-[12px] font-medium">
-      {{ section.settings.freeShippingSuccess }}
-    </div>
-  </div>
-</div>
-{% endcapture %}
-
 {% capture items %}
 <template x-for="(line, index) in $store.cart.cartLines" :key="line.key">
   {% render 'cart-line' %}
@@ -72,15 +35,6 @@
       ></span>
     </p>
   </div>
-  <!-- Route Code Edited 8/2/2024 -->
-  <div class="route-div" desktop-align="center"></div>
-  <style>
-    .pw-route-protection {
-      padding: 0 !important;
-      margin: -20px 0 -10px 0
-    }
-  </style>
-  <!-- End Route Code -->
   <a
     href="/checkout"
     aria-label="Checkout"
@@ -98,39 +52,34 @@
   {{ cart | json }}
 </script>
 <div
-  class="fixed top-0 left-0 w-full h-full z-10"
-  :class="!$store.cart.active && 'pointer-events-none'"
-  x-trap.inert.noscroll="$store.cart.active"
-  data-threshold="{{ section.settings.freeShippingThreshold }}"
-  data-max-upsells="{{ section.settings.maxUpsells }}"
-  x-data
+  class="fixed top-0 left-0 w-full h-full z-50 pointer-events-none"
+  :class="!$store.cart.visible && 'pointer-events-none'"
+  x-trap.inert.noscroll="$store.cart.visible"
 >
   <button
     aria-label="Close cart"
     @click="$store.cart.close()"
     class="absolute top-0 left-0 w-full h-full cursor-default"
     x-cloak
-    x-show="$store.cart.active"
+    x-show="$store.cart.visible"
   ></button>
   <div
     x-cloak
-    x-show="$store.cart.active"
+    x-show="$store.cart.visible"
     x-transition:enter="duration-500 transition-transform ease-in-out transform"
     x-transition:enter-start="translate-x-full"
     x-transition:enter-end=""
     x-transition:leave="duration-500 transition-transform ease-in-out transform"
     x-transition:leave-start=""
     x-transition:leave-end="translate-x-full"
-    style="--texture: url('{{ 'texture.png' | asset_url }}')"
     class="bg-cream bg-texture absolute right-0 top-0 h-full md:h-screen w-full md:w-[623px]"
   >
     <div class="w-full h-full flex flex-col justify-between">
       <div class="w-full shrink-0 h-max flex flex-col px-5 md:px-9">
         {{ header }}
-        {{ shipping }}
       </div>
       <div
-        id="cart-container"
+        ref="container"
         class="w-full h-full flex flex-col overflow-scroll no-scrollbar"
       >
         {{ items }}
@@ -140,7 +89,6 @@
         >
           {{ section.settings.emptyBody }}
         </div>
-        {% render 'cart-upsells' %}
       </div>
       <div
         class="sticky shrink-0 bottom-0 h-max w-full px-5 md:px-9 duration-300"
@@ -166,48 +114,18 @@
   </div>
 </div>
 
+<p x-data x-text="$store.cart.visible" id="cart-text">
+   
+</p>
+
 {% schema %}
 {
   "name": "Cart",
-  "blocks": [
-    {
-      "type": "cartUpsell",
-      "name": "Cart Upsell",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        }
-      ]
-    }
-  ],
+  "class": "contents",
   "settings": [
     {
       "type": "header",
-      "content": "Cart Upsells"
-    },
-    {
-      "type": "text",
-      "id": "upsellTitle",
-      "label": "Cart Upsells Title",
-      "default": "Complete your routine"
-    },
-    {
-      "type": "number",
-      "id": "maxUpsells",
-      "label": "The max amount of Cart Upsells to show",
-      "default": 2
-    },
-    {
-      "type": "header",
       "content": "Empty Cart"
-    },
-    {
-      "type": "text",
-      "id": "emptyUpsellTitle",
-      "label": "Cart Upsells Title",
-      "default": "Discover our routines"
     },
     {
       "type": "richtext",
@@ -218,41 +136,13 @@
       "type": "text",
       "id": "emptyCTAText",
       "label": "Empty Cart CTA Text",
-      "default": "Shop all our product"
+      "default": "Back to Shop"
     },
     {
       "type": "url",
       "id": "emptyCTALink",
-      "label": "Empty Cart CTA Link"
-    },
-    {
-      "type": "header",
-      "content": "Free Shipping Progress"
-    },
-    {
-      "type": "richtext",
-      "id": "freeShippingInitial",
-      "label": "Initial Text",
-      "info": "The initial text shown without any items in Cart"
-    },
-    {
-      "type": "richtext",
-      "id": "freeShippingText",
-      "label": "Progress Text",
-      "info": "The text shown indicating the amount of dollars left to add, must include `%money%`"
-    },
-    {
-      "type": "richtext",
-      "id": "freeShippingSuccess",
-      "label": "Success Text",
-      "info": "The text shown when Free Shipping is achieved"
-    },
-    {
-      "type": "number",
-      "id": "freeShippingThreshold",
-      "label": "Free Shipping Threshold",
-      "info": "A threshold amount in dollars that controls whether a Cart has Free Shipping",
-      "default": 100
+      "label": "Empty Cart CTA Link",
+      "default": "/collections/all"
     }
   ],
   "presets": [

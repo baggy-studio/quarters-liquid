@@ -1,6 +1,3 @@
-import InfiniteScroll from "infinite-scroll";
-
-
 import { swup, fragmentPlugin } from "@/entrypoints/swup";
 import { updateHistoryRecord, Visit } from "swup";
 import { Rule as FragmentRule } from "@swup/fragment-plugin";

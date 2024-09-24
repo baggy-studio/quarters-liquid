@@ -1,5 +1,4 @@
 import { swup } from "@/entrypoints/swup";
-import { clamp } from "@/utils";
 
 export const cartFetch = async function (endpoint, type = "POST", data) {
   try {
@@ -17,15 +16,10 @@ const initialData = JSON.parse(document.getElementById("cart-data").innerHTML);
 
 export default {
   data: initialData,
-  active: false,
+  visible: false,
   threshold: 0,
   loading: false,
-  container: null,
   init() {
-    this.threshold =
-      document.querySelectorAll("[data-threshold]")[0].dataset?.threshold || 0;
-    this.container = document.getElementById("cart-container");
-
     Shopify.designMode && this.customizer();
 
     swup.hooks.on(
@@ -38,8 +32,6 @@ export default {
 
     // Create a URL object
     const { searchParams } = new URL(window.location.href);
-
-    // Get the value of the 'cart' parameter
     const cartParam = searchParams.get("cart");
 
     if (cartParam) {
@@ -47,11 +39,13 @@ export default {
     }
   },
   open() {
-   // this.container.scroll({ top: 0 });
-    this.active = true;
+   
+    this.visible = true;
+
+    console.log(this.visible,"open");
   },
   close() {
-    this.active = false;
+    this.visible = false;
   },
   setShopify(cart) {
     this.data = cart;
@@ -66,7 +60,7 @@ export default {
       console.error(error);
     } finally {
       if (fromAdd) {
-        this.active = true;
+        this.visible = true;
       }
 
       this.loading = false;
@@ -103,7 +97,7 @@ export default {
     }
   },
   containerReset() {
-    this.container.scroll({ top: 0, behavior: "smooth" });
+    this.$refs.container.scroll({ top: 0, behavior: "smooth" });
   },
   get count() {
     return this.data?.item_count || 0;
@@ -120,39 +114,16 @@ export default {
   get cartLines() {
     return this.data?.items || [];
   },
-  get freeShippingProgress() {
-    let progress = (this.data?.total_price / (this.threshold * 100)) * 100;
-    let t = -100 + progress;
-
-    return clamp(t, -100, 0) + "%";
-  },
-  get hasFreeShipping() {
-    const left = this.threshold * 100 - this.data?.total_price;
-    return left <= 0;
-  },
-  get freeShippingLeft() {
-    const left = this.threshold * 100 - this.data?.total_price;
-    let money = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-
-    let totalLeft = money.format(Number(left / 100));
-
-    let firstPart = totalLeft.split(".")[0];
-
-    return totalLeft?.startsWith("$0.") ? totalLeft : firstPart;
-  },
   customizer() {
     document.addEventListener("shopify:section:select", ({ detail }) => {
       const { sectionId } = detail;
       if (sectionId == "cart") {
-        this.active = true;
+        this.visible = true;
       }
     });
 
     document.addEventListener("shopify:section:deselect", () => {
-      this.active = false;
+      this.visible = false;
     });
   },
 };

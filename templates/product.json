@@ -1,8 +1,23 @@
 {
   "sections": {
     "main": {
-      "type": "page-settings"
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "dark"
+      }
+    },
+    "related_products_9WD7xw": {
+      "type": "related-products",
+      "settings": {
+        "recommendationsAPI": true,
+        "recommendations": "related",
+        "slidesScrollDesktop": 1,
+        "title": "<p>Related Items<\/p>"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "related_products_9WD7xw"
+  ]
 }

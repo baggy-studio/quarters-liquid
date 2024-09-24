@@ -1,0 +1,77 @@
+<div class="w-full px-5 md:px-9">
+  <div
+    class="grid grid-cols-6 md:flex items-center gap-6 border-b border-current"
+    :class="index == 0 ? 'pt-3 pb-4 md:pb-8' : 'pb-4 pt-6 md:py-8'"
+    x-data="cartLine"
+  >
+    <a
+      :href="line.url"
+      :aria-label="line.title"
+      class="w-full aspect-[116/146] md:max-w-[116px] overflow-hidden block relative col-span-2"
+    >
+      <img
+        class="absolute w-full top-0 left-0 h-full object-contain"
+        :src="line.image"
+        :alt="line.title"
+        width="130"
+        height="162"
+      >
+    </a>
+    <div
+      class="flex flex-col gap-4 md:gap-3.5 w-full col-span-4"
+    >
+      <div class="flex flex-col gap-y-2.5 md:flex-row items-start justify-between">
+        <a
+          :href="line.url"
+          :aria-label="line.title"
+          class="w-full relative"
+        >
+          <h4 class="h7-jubilee md:max-w-[250px] text-balance" x-text="line.product_title"></h4>
+        </a>
+        <p class="flex gap-1 p1-futura">
+          <sup
+            class="line-through top-0.5 text-[65%] leading-none"
+            x-show="line?.original_line_price !== line?.final_line_price"
+            x-money="line?.original_line_price"
+          ></sup>
+          <span
+            x-money="line.final_line_price"
+            data-currency="{{ cart.currency.symbol }}"
+          ></span>
+        </p>
+      </div>
+      <div class="flex items-end w-full justify-between">
+        <div class="h-[46px] w-[111px] relative flex items-center justify-between px-4 overflow-hidden rounded-xl border-current border-2">
+          <button
+            class="h-[26px] w-[22px] bg-brown bg-opacity-0 transition-colors duration-300 hover:bg-opacity-10 focus:bg-opacity-10 p1-futura disabled:cursor-wait rounded shrink-0"
+            type="button"
+            :disabled="$store.cart.loading"
+            @click="decreaseQty(line.id, line.quantity)"
+          >
+            -
+          </button>
+          <span
+            class="flex pointer-events-none items-center justify-center p3-futura absolute top-0 left-0 w-full h-full text-center"
+            x-text="line.quantity"
+          ></span>
+          <button
+            class="h-[26px] w-[22px] bg-brown bg-opacity-0 transition-colors duration-300 hover:bg-opacity-10 focus:bg-opacity-10 p1-futura disabled:cursor-wait rounded shrink-0"
+            type="button"
+            :disabled="$store.cart.loading"
+            @click="increaseQty(line.id, line.quantity)"
+          >
+            +
+          </button>
+        </div>
+        <button
+          @click="remove(line.id)"
+          aria-label="Remove item"
+          :disabled="$store.cart.loading"
+          class="p3-souvenir disabled:cursor-wait !pb-0 border-line-show"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

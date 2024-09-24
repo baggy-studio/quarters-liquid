@@ -2,7 +2,7 @@
   <a
     tabindex="-1"
     href="{{ variant.url }}"
-    title="{{ variant.title }}"
+    title="{{ product.title }}"
     class="w-full relative aspect-[176/221] lg:aspect-[201/252]"
   >
     {% if variant.featured_image %}
@@ -32,7 +32,7 @@
   <div class="flex flex-col gap-[1px] lg:[.related_&]:opacity-0 [.related_&]:group-hover:opacity-100 [.related_&]:transition-opacity [.related_&]:duration-[--fade-in-duration] [.related_&]:ease-[--fade-in-easing] lg:gap-0 relative [.related_&]:relative [.related_&]:top-auto lg:absolute lg:top-[calc(100%+8px)] lg:left-0 lg:w-full">
     <h3 class="contents">
       <a
-        title="{{ variant.title }}"
+        title="{{ product.title }}"
         href="{{ variant.url }}"
         class="after:absolute after:top-0 after:left-0 after:w-full after:h-full small-serif text-balance"
       >

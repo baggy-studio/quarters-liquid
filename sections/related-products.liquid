@@ -1,0 +1,141 @@
+<div
+  x-data="
+    carousel({
+      align: 'center',
+      loop: true,
+      container: '.related-products',
+      breakpoints: {
+        '(min-width: 1024px)': {
+          slidesToScroll: {{ section.settings.slidesScrollDesktop }},
+        },
+      },
+    })
+  "
+  class="w-full overflow-hidden flex flex-col gap-y-8 lg:gap-y-16 py-12 lg:py-16 related select-none"
+>
+  <div class="contents lg:grid grid-cols-20 gap-3">
+    <div class="w-full flex items-center justify-between px-4 col-start-2 col-span-18">
+      <button
+        :disabled="!canScrollPrev"
+        aria-label="Prev slide"
+        class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity"
+        @click="prev"
+      >
+        ←
+      </button>
+      <h2 class="large-serif">{{ section.settings.title }}</h2>
+      <button
+        :disabled="!canScrollNext"
+        aria-label="Next slide"
+        class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity"
+        @click="next"
+      >
+        →
+      </button>
+    </div>
+  </div>
+  <div
+    class="w-full"
+    {% if section.settings.recommendationsAPI %}
+      x-data="productRecommendations('recommendations-{{ section.id }}', '{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent={{ section.settings.recommendations}}')"
+    {% endif %}
+  >
+    <div
+      class="w-full relative"
+    >
+      {% if section.settings.recommendationsAPI %}
+        <ul class="related-products grid auto-cols-[calc(45%-(0.5rem/3))] lg:auto-cols-[calc(25%-(1rem/4))] grid-flow-col gap-2 lg:gap-3 px-2 lg:px-3 recommendations-{{ section.id }}">
+          {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+            {%- for product in recommendations.products -%}
+              {% assign selected_variant = product.selected_or_first_available_variant %}
+              <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
+                <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                  {% render 'product-variant-card', variant: selected_variant, product: product %}
+                </div>
+              </li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+      {% else %}
+        <ul class="related-products grid auto-cols-[calc(45%-(0.5rem/3))] lg:auto-cols-[calc(25%-(1rem/4))] grid-flow-col gap-2 lg:gap-3 px-2 lg:px-3">
+          {% for block in section.blocks %}
+            {% assign product = block.settings.product %}
+            {% assign selected_variant = product.selected_or_first_available_variant %}
+
+            <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
+              <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                {% render 'product-variant-card', variant: selected_variant, product: product %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "class": "contents",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "recommendationsAPI",
+      "label": "Enable Product Recommendations API",
+      "info": "Auto-populate this section with Products using the Product Recommendations API",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "recommendations",
+      "label": "Recommendation intent",
+      "options": [
+        {
+          "value": "related",
+          "label": "Related"
+        },
+        {
+          "value": "complementary",
+          "label": "Complementary"
+        }
+      ],
+      "default": "related"
+    },
+    {
+      "type": "number",
+      "id": "slidesScrollDesktop",
+      "label": "Scroll by # Slides on Desktop",
+      "info": "Determines the amount of Slides to scroll by for Desktop",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Related Items"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Products"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

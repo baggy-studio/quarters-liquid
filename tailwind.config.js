@@ -35,6 +35,7 @@ export default {
       gridColumn: {
         'span-13': 'span 13 / span 13',
         'span-16': 'span 16 / span 16',
+        'span-18': 'span 18 / span 18',
       }
     },
   },

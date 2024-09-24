@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-2 lg:gap-0 relative group ">
+<div class="flex flex-col gap-2 [.related_&]:gap-2 lg:gap-0 relative group">
   <a
     tabindex="-1"
     href="{{ variant.url }}"
@@ -29,7 +29,7 @@
       </div>
     {% endif %}
   </a>
-  <div class="flex flex-col gap-[1px] lg:gap-0 relative lg:block lg:absolute lg:top-[calc(100%+8px)] lg:left-0 lg:w-full">
+  <div class="flex flex-col gap-[1px] lg:[.related_&]:opacity-0 [.related_&]:group-hover:opacity-100 [.related_&]:transition-opacity [.related_&]:duration-[--fade-in-duration] [.related_&]:ease-[--fade-in-easing] lg:gap-0 relative [.related_&]:relative [.related_&]:top-auto lg:absolute lg:top-[calc(100%+8px)] lg:left-0 lg:w-full">
     <h3 class="contents">
       <a
         title="{{ variant.title }}"

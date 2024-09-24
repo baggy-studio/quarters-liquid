@@ -9,6 +9,7 @@
     "shopify:pull": "shopify theme pull --store quartersnewyork.myshopify.com",
     "shopify:dev": "shopify theme dev --store quartersnewyork.myshopify.com",
     "shopify:push": "shopify theme push --store quartersnewyork.myshopify.com",
+    "shopify:new": "shopify theme push --unpublished --store quartersnewyork.myshopify.com",
     "upgrade": "pnpm update --interactive --latest"
   },
   "dependencies": {

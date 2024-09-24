@@ -16,7 +16,6 @@
   <div class="contents lg:grid grid-cols-20 gap-3">
     <div class="w-full flex items-center justify-between px-4 col-start-2 col-span-18">
       <button
-        :disabled="!canScrollPrev"
         aria-label="Prev slide"
         class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity"
         @click="prev"
@@ -25,7 +24,6 @@
       </button>
       <h2 class="large-serif">{{ section.settings.title }}</h2>
       <button
-        :disabled="!canScrollNext"
         aria-label="Next slide"
         class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity"
         @click="next"
@@ -42,6 +40,11 @@
   >
     <div
       class="w-full relative"
+      x-data="
+        {
+          hoverIndex: null
+        }
+      "
     >
       {% if section.settings.recommendationsAPI %}
         <ul class="related-products grid auto-cols-[calc(45%-(0.5rem/3))] lg:auto-cols-[calc(25%-(1rem/4))] grid-flow-col gap-2 lg:gap-3 px-2 lg:px-3 recommendations-{{ section.id }}">
@@ -49,7 +52,16 @@
             {%- for product in recommendations.products -%}
               {% assign selected_variant = product.selected_or_first_available_variant %}
               <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
-                <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                <div
+                  @mouseenter="hoverIndex = {{forloop.index0}}"
+                  @mouseleave="hoverIndex = null"
+                  :class="
+                    {
+                      'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}
+                    }
+                  "
+                  class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5 transition-opacity duration-300 ease-linear"
+                >
                   {% render 'product-variant-card', variant: selected_variant, product: product %}
                 </div>
               </li>
@@ -63,7 +75,14 @@
             {% assign selected_variant = product.selected_or_first_available_variant %}
 
             <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
-              <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+              <div
+                class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5 transition-opacity duration-300 ease-linear"
+                :class="
+                  {
+                    'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}
+                  }
+                "
+              >
                 {% render 'product-variant-card', variant: selected_variant, product: product %}
               </div>
             </li>

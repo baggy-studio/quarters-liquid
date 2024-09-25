@@ -60,7 +60,7 @@
                       'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}
                     }
                   "
-                  class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5 transition-opacity duration-300 ease-linear"
+                  class="lg:col-span-3 contents lg:block lg:col-start-2 transition-opacity duration-300 ease-linear"
                 >
                   {% render 'product-variant-card', variant: selected_variant, product: product %}
                 </div>
@@ -76,7 +76,7 @@
 
             <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
               <div
-                class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5 transition-opacity duration-300 ease-linear"
+                class="lg:col-span-3 contents lg:block lg:col-start-2 transition-opacity duration-300 ease-linear"
                 :class="
                   {
                     'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}

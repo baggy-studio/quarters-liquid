@@ -32,7 +32,6 @@ export default (activeUrl: string = window.location.pathname) => ({
   activeUrl: activeUrl,
   activeCollection: 0,
   init() {
-    this.cloneMobileMenuInfo();
     this.trackMenuHeight();
 
 
@@ -60,14 +59,6 @@ export default (activeUrl: string = window.location.pathname) => ({
    
 
 
-  },
-  cloneMobileMenuInfo() {
-    const heroContent = document.getElementById('hero-content');
-    const container = document.getElementById('hero-content-clone');
-    if (!heroContent || !container) return;
-    console.log(heroContent, container);
-    const clone = heroContent.cloneNode(true);
-    container.appendChild(clone);
   },
   getTheme(toUrl: string) {
 

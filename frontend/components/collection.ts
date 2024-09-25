@@ -1,186 +1,96 @@
-import InfiniteScroll from "infinite-scroll";
+import InfiniteScrollManager from "../infinte-scroll";
+import { swup } from "@/entrypoints/swup";
+import { updateHistoryRecord } from "swup";
 
-
-import { swup, fragmentPlugin } from "@/entrypoints/swup";
-import { updateHistoryRecord, Visit } from "swup";
-import { Rule as FragmentRule } from "@swup/fragment-plugin";
-
-function fetchCollectionNavigation() {
-  const script = document.querySelector('[data-collection-navigation]');
-  if (!script) return [];
-  const data = JSON.parse(script.innerHTML)
-  return data;
+const selectors = {
+  product: '[data-product]',
+  productVariant: '[data-product-variant]',
+  productGrid: '[data-product-grid]',
+  loadPrevious: '[data-load-previous]',
+  loadNext: '[data-load-next]',
 }
 
 export default () => ({
-  // State
-  navigation: fetchCollectionNavigation(),
-  activeUrl: swup.getCurrentUrl(),
-  scrollPosition: localStorage.getItem(swup.getCurrentUrl()) || 0,
-  scrollDirection: 'down',
-  inTopZone: true,
-  visitStart: () => { },
-  contentReplace: () => { },
-  // Hooks
+  hasLoadedVariants: false,
   init() {
-    this.onScroll()
-    this.loadTransitionRules(this.navigation)
-
-    if (window.history.state && window.history.state.productGrid) {
-      this.hydrateProducts()
-    }
-
-    if (this.scrollPosition) {
-      setTimeout(() => {
-        this.restoreScroll()
-      })
-    }
-
-    this.loadVariants()
-
-    this.visitStart = (visit: Visit) => {
-      if (visit.from.url.includes('/collections/')) {
-        this.saveScroll()
-      }
-      if (visit.to.url.includes('/collections/') && !visit.to.url.includes('/collections/all')) {
-        this.activeUrl = visit.to.url;
-      }
-    }
-
-    this.contentReplace = (visit: Visit) => {
-      if (visit.to.url.includes('/collections/')) {
-        this.loadVariants()
-      }
-    }
-
-    swup.hooks.on("visit:start", this.visitStart);
-    swup.hooks.on("content:replace", this.contentReplace);
-
-    window.addEventListener("unload", this.saveScroll);
-    window.addEventListener("scroll", this.onScroll.bind(this));
-  },
-  destroy() {
-    window.removeEventListener("unload", this.saveScroll);
-    window.removeEventListener("scroll", this.onScroll.bind(this));
-
-    if (this.visitStart) {
-      swup.hooks.off("visit:start", this.visitStart);
-    }
-
-    if (this.contentReplace) {
-      swup.hooks.off("content:replace", this.contentReplace);
+    if (!document.querySelector(selectors.loadNext)) {
+      this.loadVariants()
+    } else {
+      this.initInfiniteScroll()
     }
   },
-  // Helpers
-  loadTransitionRules(navigation) {
-    const rules: Array<FragmentRule> = []
-
-    navigation.forEach((filter) => {
-      Object.entries(filter).forEach(([collectionUrl, filters]) => {
-        if (Array.isArray(filters) && filters?.length) {
-          filters.forEach((filter) => {
-            rules.push({
-              from: [collectionUrl, filter.url],
-              to: [filter.url, collectionUrl],
-              containers: ["#product-grid"],
-              name: collectionUrl
-            })
-          })
-        }
-      });
-    })
-
-    rules.forEach((rule) => fragmentPlugin.prependRule(rule))
-  },
-  loadVariants() {
-    const nextPage = document.getElementById("load-more")
-
-    if (nextPage) return;
-
-    const productGrid = document.querySelector('[data-product-grid]');
-    if (!productGrid) return;
-
-    const variants = Array.from(productGrid.querySelectorAll('[data-product-variant]'));
-    variants.forEach(variant => {
-      variant.classList.remove('!hidden');
-      variant.remove();
+  initInfiniteScroll() {
+    const infiniteScroll = new InfiniteScrollManager({
+      container: selectors.productGrid,
+      paginationNext: selectors.loadNext,
+      enableHtml5History: true
     });
 
-    for (let i = variants.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [variants[i], variants[j]] = [variants[j], variants[i]];
-    }
+    infiniteScroll.addLoadEventListener(() => {
+      this.updateCache()
+    });
 
-    productGrid.append(...variants);
-  },
-  saveScroll() {
-    const url = swup.getCurrentUrl()
-    localStorage.setItem(url, window.scrollY.toString())
-  },
-  restoreScroll() {
-    console.log('restore scroll', this.activeUrl, this.scrollPosition)
-    window.scroll(0, parseInt(this.scrollPosition))
-  },
-  async loadProducts() {
-    const nextPage = document.getElementById("load-more") as HTMLAnchorElement | null;
-
-    try {
-      const data = await fetch(nextPage.href).then(r => r.text());
-      let html = document.createElement("html");
-      html.innerHTML = data;
-
-      this.appendProducts({ html, url: nextPage.href });
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  hydrateProducts() {
-    const productGrid = document.querySelector('[data-product-grid]');
-    const cachedProductGrid = JSON.parse(window.history.state.productGrid);
-
-    if (!productGrid || !cachedProductGrid) return;
-
-    productGrid.innerHTML = cachedProductGrid;
-  },
-  appendProducts({ html, url }) {
-    const newProductGrid = html.querySelector('[data-product-grid]');
-    const nextLink = html.querySelector("#load-more");
-
-    const productGrid = document.querySelector('[data-product-grid]');
-
-    if (!productGrid || !newProductGrid) return;
-
-
-    productGrid?.append(...newProductGrid.children);
-
-    if (nextLink) {
-      document.getElementById("load-more")?.replaceWith(nextLink.cloneNode(true));
-    } else {
-      document.getElementById("load-more")?.remove();
+    infiniteScroll.addNextPageScrollEndEventListener(() => {
       this.loadVariants()
-    }
-
-    try {
-      updateHistoryRecord(url, {
-        productGrid: JSON.stringify(productGrid.innerHTML)
-      });
-    } catch (error) {
-      console.error('Failed to replace state', error);
-    }
+      this.updateCache()
+    });
   },
-  onScroll() {
-    if (window.scrollY <= 300) {
-      this.inTopZone = true;
-    } else {
-      this.inTopZone = false;
+  updateCache() {
+    const url = swup.getCurrentUrl();
+    const cachedPage = swup.cache.get(url);
+
+    if (!cachedPage) {
+      swup.cache.set(url, { url, html: document.documentElement.outerHTML });
+      return
+    };
+
+    cachedPage.html = document.documentElement.outerHTML;
+    swup.cache.update(url, cachedPage);
+  },
+  loadVariants() {
+
+    const productGrid = document.querySelector(selectors.productGrid);
+
+    if (!productGrid) return;
+
+    function getVariants() {
+
+      const shuffledVariants = document.querySelector('[data-shuffled-variants]');
+
+      if (shuffledVariants) return []
+      if (!productGrid) return [];
+
+      const variants = Array.from(productGrid.querySelectorAll(selectors.productVariant));
+
+      if (variants.length === 0) {
+        return []
+      };
+
+      variants.forEach(variant => {
+        variant.remove();
+        variant.classList.remove('!hidden');
+      });
+
+      for (let i = variants.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [variants[i], variants[j]] = [variants[j], variants[i]];
+      }
+
+      return variants || []
     }
 
+    const variants = getVariants()
 
-    if (window.scrollY > this.scrollPosition) {
-      this.scrollDirection = 'down';
-    } else {
-      this.scrollDirection = 'up';
+    if (!variants.length) {
+      console.log('no variants found, skipping')
+      return
     }
-    this.scrollPosition = window.scrollY;
+
+    const ul = document.createElement('ul');
+    ul.classList.add('contents');
+    ul.dataset.shuffledVariants = '';
+    ul.append(...variants);
+    productGrid.append(ul); 
   }
 });
+

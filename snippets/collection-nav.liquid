@@ -56,7 +56,10 @@
     {% endfor %}
   ]
 </script>
-<nav aria-label="Collection Navigation" class="w-full grid grid-cols-2 lg:grid-cols-20 gap-2 lg:gap-3 subheading">
+<nav 
+  aria-label="Collection Navigation"
+  class="w-full grid grid-cols-2 lg:grid-cols-20 gap-2 lg:gap-3 subheading"
+>
   {% unless is_all_collection %}
     <a
       href="/collections/all"
@@ -94,7 +97,7 @@
     <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
       {% if is_all_collection %}
         {% if primary_links.links.size > 0 %}
-          <ul class="lg:col-span-13 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 pt-8 lg:pt-0">
+          <ul class="lg:col-span-13 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
             {% for link in primary_links.links -%}
               {% assign collection = link.object %}
               <li class="contents">
@@ -110,7 +113,7 @@
           </ul>
         {% endif %}
         {% if secondary_links.links.size > 0 %}
-          <ul class="col-span-5 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 pt-8 lg:pt-0">
+          <ul class="col-span-5 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
             {% for link in secondary_links.links -%}
               {% assign collection = link.object %}
               <li class="contents">

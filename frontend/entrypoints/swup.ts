@@ -30,7 +30,8 @@ export const swup = new Swup({
   plugins: [
     fragmentPlugin,
     new SwupPreloadPlugin({
-      preloadHoveredLinks: true,
+    preloadInitialPage: true,
+    preloadHoveredLinks: false,
     // preloadVisibleLinks: true,
     }),
     new SwupA11yPlugin(),

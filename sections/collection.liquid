@@ -1,51 +1,68 @@
-<div class="pt-[120px] lg:pt-[160px] w-full px-4" x-data="collection" x-effect="console.log(inTopZone)">
+<div
+  class="pt-[120px] lg:pt-[160px] w-full px-4"
+  x-data="collectionNav('{{ collection.url }}')"
+>
   <div
     id="collection-nav-wrapper"
     class="w-full border-t pt-3 border-current z-10 transition-transform ease-in-out"
-    :class="
-      {
-        'top-16 sticky': !inTopZone || scrollDirection == 'up',
-       'translate-y-0': scrollDirection == 'up',
-       'duration-700': !inTopZone,
-       'translate-y-[-120px]': scrollDirection == 'down' && !inTopZone
-      }
-    "
   >
     <div id="collection-nav" class="w-full h-max">
       {% render 'collection-nav', menu: section.settings.menu %}
     </div>
   </div>
   <div
+    x-data="collection"
     id="product-grid"
-    class="w-full pb-32 lg:pb-36 flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px] pt-12 lg:pt-[71px]"
+    class="w-full pb-32 lg:pb-36 relative flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px] pt-12 lg:pt-[71px]"
   >
-    {% paginate collection.products by 48 %}
-      <ul
+    {%- paginate collection.products by 48 -%}
+      {% if paginate.previous %}
+        <div
+          data-load-previous
+          class="absolute left-0 top-0 w-full h-64 invisible flex items-center justify-center"
+        >
+          <a
+            href="{{ paginate.previous.url }}"
+            class="w-max collection-link subheading"
+            title="Load previous"
+          >
+            Load previous
+          </a>
+        </div>
+      {% endif %}
+      <div
         data-product-grid
         class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
       >
-        {% for product in collection.products %}
-          {% assign is_priority = false %}
-
-          {% if forloop.index0 < 9 %}
-            {% assign is_priority = true %}
-          {% endif %}
-
-          {% render 'product-card', product: product, priority: is_priority %}
-        {% endfor %}
-      </ul>
-      {% if paginate.next.url != blank %}
-        <a
-          x-intersect:enter.margin.1000px="loadProducts()"
-          href="{{ paginate.next.url }}"
-          class="w-max collection-link subheading"
-          id="load-more"
-          title="Load more"
+        <ul
+          class="contents"
         >
-          Load more
-        </a>
+          {% for product in collection.products %}
+            {% assign is_priority = false %}
+
+            {% if forloop.index0 < 9 %}
+              {% assign is_priority = true %}
+            {% endif %}
+
+            {% render 'product-card', product: product, priority: is_priority %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% if paginate.next %}
+        <div
+          data-load-next
+          class="absolute left-0 bottom-0 w-full h-64 invisible flex items-center justify-center"
+        >
+          <a
+            href="{{ paginate.next.url }}"
+            class="w-max collection-link subheading"
+            title="Load more"
+          >
+            Load more
+          </a>
+        </div>
       {% endif %}
-    {% endpaginate %}
+    {%- endpaginate -%}
   </div>
 </div>
 {% render 'collection-gradient' %}

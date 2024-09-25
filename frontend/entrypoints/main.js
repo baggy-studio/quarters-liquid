@@ -17,16 +17,13 @@ import productRecommendations from "@/components/product-recommendations";
 import newsletter from "@/components/newsletter";
 import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
-
-
+import collectionNav from "@/components/collection-nav";
 
 
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
-
 Alpine.store("cart", cart);
-
 Alpine.data("app", app);
 Alpine.data("cookieConsent", cookieConsent);
 Alpine.data("cartLine", cartLine);
@@ -35,6 +32,6 @@ Alpine.data("cartForm", cartForm);
 Alpine.data("newsletter", newsletter);
 Alpine.data("marquee", marquee);
 Alpine.data("collection", collection);
+Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
-
 Alpine.start();

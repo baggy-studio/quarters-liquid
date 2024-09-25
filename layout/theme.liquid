@@ -39,9 +39,9 @@
   <body class="antialiased">
     {% render 'svg' %}
     <a class="sr-only" href="#main">Skip to main content</a>
-    <div class="relative" style="--menu-height: 0px; --transform-y: 0px;">
+    <div class="relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
       {% section 'header' %}
-      <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
+      <div  class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
         <main
           id="main"
           class="min-h-screen"

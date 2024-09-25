@@ -2,8 +2,9 @@ import EmblaCarousel from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 
 export default ({ speed }) => ({
+  carousel: null,
   init() {
-    EmblaCarousel(
+    this.carousel = EmblaCarousel(
       this.$root,
       {
         loop: true,
@@ -20,5 +21,8 @@ export default ({ speed }) => ({
         }),
       ]
     );
+  },
+  destroy() {
+    this.carousel.destroy();
   },
 });

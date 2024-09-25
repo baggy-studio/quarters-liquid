@@ -38,7 +38,6 @@ export default (listId: string) => ({
     }
   },
   close() {
-    console.log('close')
     this.visible = false;
     cookie.set("newsletter", "true", {
       path: "/",

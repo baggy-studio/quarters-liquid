@@ -39,7 +39,6 @@ export default {
     }
   },
   open() {
-   
     this.visible = true;
 
     console.log(this.visible,"open");

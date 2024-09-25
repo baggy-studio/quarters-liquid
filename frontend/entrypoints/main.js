@@ -19,7 +19,6 @@ import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
 import collectionNav from "@/components/collection-nav";
 
-
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);

@@ -82,7 +82,6 @@ export default () => ({
     const variants = getVariants()
 
     if (!variants.length) {
-      console.log('no variants found, skipping')
       return
     }
 

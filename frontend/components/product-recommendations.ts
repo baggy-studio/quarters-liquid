@@ -18,7 +18,6 @@ export default (id, url) => ({
         if (recommendations && recommendations.innerHTML.trim().length) {
           productRecommendationsSection.innerHTML = recommendations.innerHTML;
         } else {
-          // No products returned from Shopify
           this.hidden = true;
         }
       })

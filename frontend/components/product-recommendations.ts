@@ -1,28 +1,26 @@
+import { updateCache } from "../entrypoints/swup";
+
 export default (id, url) => ({
   hidden: false,
   init() {
     this.fetchProducts();
   },
   async fetchProducts() {
-    await fetch(url)
-      .then((response) => response.text())
-      .then((text) => {
-        const html = document.createElement("div");
-        html.innerHTML = text;
-        const recommendations = html.querySelector("." + id);
+    const sectionId = "." + id;
+    const data = await fetch(url).then((response) => response.text());
 
-        const productRecommendationsSection = this.$root.querySelector(
-          "." + id
-        ); 
+    const html = document.createElement("div");
+    html.innerHTML = data;
 
-        if (recommendations && recommendations.innerHTML.trim().length) {
-          productRecommendationsSection.innerHTML = recommendations.innerHTML;
-        } else {
-          this.hidden = true;
-        }
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  },
+    const recommendations = html.querySelector(sectionId);
+    const productRecommendationsSection = this.$root.querySelector(sectionId);
+
+    if (recommendations && recommendations.innerHTML.trim().length) {
+      productRecommendationsSection.innerHTML = recommendations.innerHTML;
+    } else {
+      this.hidden = true;
+    }
+
+    updateCache()
+  }
 });

@@ -1,6 +1,5 @@
 import InfiniteScrollManager from "../infinte-scroll";
-import { swup } from "@/entrypoints/swup";
-import { updateHistoryRecord } from "swup";
+import { updateCache } from "@/entrypoints/swup";
 
 const selectors = {
   product: '[data-product]',
@@ -27,25 +26,13 @@ export default () => ({
     });
 
     infiniteScroll.addLoadEventListener(() => {
-      this.updateCache()
+      updateCache()
     });
 
     infiniteScroll.addNextPageScrollEndEventListener(() => {
       this.loadVariants()
-      this.updateCache()
+      updateCache()
     });
-  },
-  updateCache() {
-    const url = swup.getCurrentUrl();
-    const cachedPage = swup.cache.get(url);
-
-    if (!cachedPage) {
-      swup.cache.set(url, { url, html: document.documentElement.outerHTML });
-      return
-    };
-
-    cachedPage.html = document.documentElement.outerHTML;
-    swup.cache.update(url, cachedPage);
   },
   loadVariants() {
 
@@ -89,7 +76,7 @@ export default () => ({
     ul.classList.add('contents');
     ul.dataset.shuffledVariants = '';
     ul.append(...variants);
-    productGrid.append(ul); 
+    productGrid.append(ul);
   }
 });
 

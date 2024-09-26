@@ -1,9 +1,5 @@
 <span
-  {% if hasSubMenu %}
-    :style="{ '--rotate': subMenu ? '90deg' : '0deg' }"
-  {% else %}
-    :style="{ '--rotate': open ? '90deg' : '0deg' }"
-  {% endif %}
+  :style="{ '--rotate': activeIndex == {{ index }} ? '90deg' : '0deg' }"
   class="rotate-[--rotate] transition-transform duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)] w-2 relative h-2 flex items-center justify-center"
 >
   <span

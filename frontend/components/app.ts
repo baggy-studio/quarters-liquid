@@ -56,7 +56,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
 
-   
+
 
 
   },
@@ -111,7 +111,8 @@ export default (activeUrl: string = window.location.pathname) => ({
   updateMenuHeight(height = 0, url = this.activeUrl) {
 
     let progress = range(0, 1, 0, this.menuHeight, height);
-    if (url.includes('/collections/') && window.innerWidth >= 1024) {
+
+    if ((url.includes('/collections/') || url.includes('/products/')) && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
     } else {
       this.$root.style.setProperty('--transform-y', `${progress}px`);

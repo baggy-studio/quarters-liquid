@@ -1,14 +1,35 @@
-
-<div class="flex gap-2 items-center 
-    {% unless type == 'inquire' %}
-        before:w-[9px] before:h-[9px] before:bg-current before:rounded-full before:block before:shrink-0
-    {% endunless %}
-    ">
+{% if large %}
+  <div
+    class="
+      flex gap-2 lg:gap-3 items-center
+      {% unless type == 'inquire' %}
+          before:w-[9px] before:h-[9px] lg:before:h-4 lg:before:w-4 before:bg-current before:rounded-full before:block before:shrink-0
+      {% endunless %}
+    "
+  >
     {% if type == 'sold-out' %}
-        <p class="small-accent uppercase">Sold Out</p>
+      <p class="large-accent uppercase">Sold</p>
     {% elsif type == 'on-hold' %}
-        <p class="small-accent uppercase">On Hold</p>
+      <p class="large-accent uppercase">On Hold</p>
     {% elsif type == 'inquire' %}
-        <p class="small-accent uppercase">Inquire</p>
+      <p class="large-accent uppercase">Inquire</p>
     {% endif %}
-</div>
+  </div>
+{% else %}
+  <div
+    class="
+      flex gap-2 items-center
+      {% unless type == 'inquire' %}
+          before:w-[9px] before:h-[9px] before:bg-current before:rounded-full before:block before:shrink-0
+      {% endunless %}
+    "
+  >
+    {% if type == 'sold-out' %}
+      <p class="small-accent uppercase">Sold Out</p>
+    {% elsif type == 'on-hold' %}
+      <p class="small-accent uppercase">On Hold</p>
+    {% elsif type == 'inquire' %}
+      <p class="small-accent uppercase">Inquire</p>
+    {% endif %}
+  </div>
+{% endif %}

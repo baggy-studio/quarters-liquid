@@ -1,9 +1,8 @@
 {
   "sections": {
-    "main": {
-      "type": "page-settings",
+    "product_Ehxw3T": {
+      "type": "product",
       "settings": {
-        "headerTheme": "dark"
       }
     },
     "related_products_9WD7xw": {
@@ -17,7 +16,7 @@
     }
   },
   "order": [
-    "main",
+    "product_Ehxw3T",
     "related_products_9WD7xw"
   ]
 }

@@ -5,16 +5,9 @@
     "cart_Vtp9qk": {
       "type": "cart",
       "settings": {
-        "upsellTitle": "Complete your routine",
-        "maxUpsells": 2,
-        "emptyUpsellTitle": "Discover our routines",
         "emptyBody": "",
         "emptyCTAText": "Shop all our product",
-        "emptyCTALink": "",
-        "freeShippingInitial": "",
-        "freeShippingText": "",
-        "freeShippingSuccess": "",
-        "freeShippingThreshold": 100
+        "emptyCTALink": ""
       }
     },
     "newsletter_WETVt4": {

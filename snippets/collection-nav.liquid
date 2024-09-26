@@ -4,8 +4,8 @@
   {% assign is_all_collection = true %}
 {% endif %}
 
-{% assign primary_links = menu.links | first %}
-{% assign secondary_links = menu.links | last %}
+{% assign primary_links = section.settings.menu.links | first %}
+{% assign secondary_links = section.settings.menu.links | last %}
 
 {% assign combined_links = primary_links.links | concat: secondary_links.links %}
 {% assign parent_link = combined_links | where: 'title', collection.title | first %}

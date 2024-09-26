@@ -61,7 +61,7 @@
           </button>
           <button
             @click="increaseQuantity"
-            :disabled="quantity >= 20"
+            :disabled="20 <= quantity"
             title="Increase quantity"
             class="w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
           >

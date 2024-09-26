@@ -1,21 +1,114 @@
-{% assign variant_media = selected_variant.metafields.custom.variant_media %}
+{% assign variant_featured_media_ids = '' %}
+{% assign filtered_product_media = '' %}
+
+{% assign selected_variant_media = selected_variant.featured_media %}
+
+{% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
+
+{% for variant in product.variants %}
+  {% if variant.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: variant.featured_media.id
+      | append: ','
+    %}
+  {% endif %}
+{% endfor %}
+
+{% for media in product.media %}
+  {% unless variant_featured_media_ids contains media.id %}
+    {% assign filtered_product_media = filtered_product_media | append: media.id | append: ',' %}
+  {% endunless %}
+{% endfor %}
+
+{% assign filtered_product_media_ids = filtered_product_media | split: ',' %}
 
 <div class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
-  <div class="w-full col-span-2 lg:flex items-end hidden">
-    <div class="w-full aspect-[130/162] bg-chartreuse relative overflow-hidden">
-      <ul class="flex">
-        {% for media in variant_media %}
-          <li class="w-full aspect-[130/162] relative overflow-hidden"></li>
-        {% endfor %}
-      </ul>
+  {% if variant_media.size > 0 or section.settings.share_product_media and filtered_product_media_ids.size > 0 %}
+    <div role="button" title="View image" class="w-full col-span-2 lg:flex items-end hidden">
+      <div x-data="carousel" class="w-full aspect-[130/162] relative overflow-hidden">
+        <ul class="flex w-full h-full">
+          {% if variant_media_metafields %}
+            {% for media in variant_media_metafields %}
+              <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+                {% render 'image',
+                  image: media,
+                  width: 130,
+                  height: 162,
+                  priority: true,
+                  sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
+                %}
+              </li>
+            {% endfor %}
+          {% endif %}
+          {% if section.settings.share_product_media %}
+            {% for media_id in filtered_product_media_ids %}
+              {% assign media_id_number = media_id | plus: 0 %}
+              {% assign media = product.media | where: 'id', media_id_number | first %}
+              <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+                {% render 'image',
+                  image: media,
+                  width: 130,
+                  height: 162,
+                  priority: true,
+                  sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
+                %}
+              </li>
+            {% endfor %}
+          {% endif %}
+        
+          <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+            <button title="View image" class="w-full h-full">
+              {% render 'image',
+                priority: true,
+                image: selected_variant_media,
+                width: 556,
+                height: 668,
+                sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
+              %}
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="w-full col-span-8 h-full lg:block contents">
-    <div class="w-full aspect-[361/460] lg:aspect-auto h-full bg-chartreuse relative overflow-hidden">
-      <ul class="flex">
-        {% for media in variant_media %}
-          <li class="w-full aspect-[130/162] relative overflow-hidden"></li>
-        {% endfor %}
+  {% endif %}
+  <div role="button" title="View image" class="w-full col-start-3 col-span-8 h-full lg:block contents">
+    <div x-data="carousel" class="w-full aspect-[361/460] lg:aspect-auto h-full relative overflow-hidden">
+      <ul class="flex w-full h-full">
+        <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+          {% render 'image',
+            priority: true,
+            image: selected_variant_media,
+            width: 556,
+            height: 668,
+            sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+          %}
+        </li>
+        {% if variant_media_metafields %}
+          {% for media in variant_media_metafields %}
+            <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+              {% render 'image',
+                image: media,
+                width: 556,
+                height: 668,
+                sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+              %}
+            </li>
+          {% endfor %}
+        {% endif %} 
+        {% if section.settings.share_product_media %}
+          {% for media_id in filtered_product_media_ids %}
+            {% assign media_id_number = media_id | plus: 0 %}
+            {% assign media = product.media | where: 'id', media_id_number | first %}
+            <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+              {% render 'image',
+                image: media,
+                width: 556,
+                height: 668,
+                sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+              %}
+            </li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
   </div>

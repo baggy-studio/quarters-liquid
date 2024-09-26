@@ -33,7 +33,7 @@
         {% render 'product-information' %}
       </div>
     </div>
-    {% render 'product-variant-media' %}
+    {% render 'product-variant-media', selected_variant: selected_variant %}
     <div class="pb-4 w-full lg:w-max lg:pb-0 lg:block lg:absolute top-0 left-0 lg:pt-2">
       {% render 'product-breadcrumbs' %}
     </div>
@@ -47,6 +47,15 @@
   "presets": [
     {
       "name": "Product Hero"
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "share_product_media",
+      "label": "Share Product Media",
+      "info": "If enabled, the product media will be shared across all variants.",
+      "default": true
     }
   ],
   "enabled_on": {

@@ -8,7 +8,7 @@
           {% assign selected_option = option.values | where: 'selected', true | first %}
           <li class="w-full relative flex flex-col border-b border-current">
             <button
-              title="View {{ option.name }} options"
+              :title="activeIndex !== {{ forloop.index0 }} ? 'View {{ option.name }} options' : 'Close {{ option.name }} options'"
               @click="activeIndex == {{ forloop.index0 }} ? activeIndex = null : activeIndex = {{ forloop.index0 }}"
               class="w-full text-left grid grid-cols-5 gap-3 items-center h-10 lg:h-8"
             >
@@ -28,15 +28,14 @@
                   {% assign variant = value.variant %}
                   <li
                     class="col-start-3 col-span-3 {% if value.selected %} hidden {% endif %}"
-                    
                   >
-                    <button
+                    <a
+                      href="{{ variant.url }}"
                       title="{{ value.name | escape }}"
-                      @click="setVariant({{ variant.id }})"
                       class="small-sans hover:opacity-50 flex items-start transition-opacity duration-300 ease-linear no-scroll h-8 lg:h-6 pt-[3px] lg:pt-0"
                     >
                       {{ value.name }}
-                    </button>
+                    </a>
                   </li>
                 {% endfor %}
               </ul>

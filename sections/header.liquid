@@ -2,11 +2,16 @@
   class="fixed top-0 left-0 w-full h-screen z-50 pointer-events-none"
 >
   <button
-    x-show="menu"
-    class="absolute top-0 left-0 h-full w-full hidden lg:block pointer-events-auto"
+    :class="
+      {
+        'opacity-0': !menu,
+        'pointer-events-auto': menu
+      }
+    "
+    class="absolute top-0 left-0 h-full w-full opacity-0 bg-black/10 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
     @click="closeMenu"
   ></button>
-  {% render 'menu', menu: section.settings.menu %}
+  {% render 'menu', menu: settings.menu %}
   <h1 class="flex items-start absolute p-4 top-0 left-0 w-full h-full justify-center">
     <a
       href="/"
@@ -76,10 +81,11 @@
     "
     :style="`--header-theme: ${headerColor}`"
     class="
-    absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group"
+          absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
+    "
   >
     <ul class="hidden lg:flex items-center gap-16">
-      {% for link in section.settings.menu.links %}
+      {% for link in settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}
           <li class="contents">
             {% if forloop.first %}
@@ -138,11 +144,6 @@
   "name": "Header",
   "class": "contents",
   "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Navigation Menu"
-    },
     {
       "type": "checkbox",
       "id": "hideHomepageHeader",

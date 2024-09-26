@@ -1,0 +1,22 @@
+{% assign variant_media = selected_variant.metafields.custom.variant_media %}
+
+<div class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
+  <div class="w-full col-span-2 lg:flex items-end hidden">
+    <div class="w-full aspect-[130/162] bg-chartreuse relative overflow-hidden">
+      <ul class="flex">
+        {% for media in variant_media %}
+          <li class="w-full aspect-[130/162] relative overflow-hidden"></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="w-full col-span-8 h-full lg:block contents">
+    <div class="w-full aspect-[361/460] lg:aspect-auto h-full bg-chartreuse relative overflow-hidden">
+      <ul class="flex">
+        {% for media in variant_media %}
+          <li class="w-full aspect-[130/162] relative overflow-hidden"></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

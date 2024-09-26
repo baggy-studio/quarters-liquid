@@ -8,6 +8,18 @@
     "theme_support_url": "https:\/\/help.odestry.com"
   },
   {
+    "name": "Navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Master Menu",
+        "info": "The Menu rendered in the Header, Collections, & Product Breadcrumbs",
+        "default": "main-menu"
+      }
+    ]
+  },
+  {
     "name": "Brand",
     "settings": [
       {

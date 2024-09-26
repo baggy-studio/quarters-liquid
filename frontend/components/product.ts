@@ -1,5 +1,6 @@
 import { Visit } from "swup";
 import { swup } from "../entrypoints/swup";
+import Alpine from "alpinejs";
 
 function fetchProductData() {
   const script = document.querySelector('[data-product-data]');
@@ -13,7 +14,10 @@ export default (selectedVariantId: number) => ({
   selectedVariantId,
   quantity: 1, 
   init() {
-    
+    console.log(this.product)
+    Alpine.effect(() => {
+      console.log(this.selectedVariant)
+    })
   },
   destroy() {
    

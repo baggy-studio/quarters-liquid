@@ -5,7 +5,8 @@
       {%- if product.collections.size > 1 %},{% endif %}
     </a>
   </li>
-  {% if product.collections.size > 0 %}
+  {% if product.collections.size > 0 %}  
+  
     {% for collection in product.collections %}
       {% unless collection.handle == 'all' %}
         <li class="contents">

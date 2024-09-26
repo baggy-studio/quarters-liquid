@@ -178,7 +178,7 @@ nav.is-menu {
 }
 
 input {
-    @apply focus:outline-none outline-none h-full w-full text-left placeholder:text-current text-current rounded-none bg-transparent focus:outline-none;
+    @apply outline-none h-full w-full text-left placeholder:text-current text-current rounded-none bg-transparent focus:outline-none;
 }
 
 .page-divider {

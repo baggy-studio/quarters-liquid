@@ -1,3 +1,4 @@
+import { Visit } from "swup";
 import { swup, fragmentPlugin } from "../entrypoints/swup";
 
 function fetchVariantSelectorData() {
@@ -10,11 +11,13 @@ function fetchVariantSelectorData() {
 export default (selectedVariantId: number) => ({
   productOptions: fetchVariantSelectorData(),
   selectedVariantId,
+  contentReplace(visit: Visit) {
+    this.productOptions = fetchVariantSelectorData()
+  },
   init() {
-    swup.hooks.on('content:replace', () => {
-      this.productOptions = fetchVariantSelectorData()
-    })
-
-    console.log(fragmentPlugin.getRules())
+    swup.hooks.on('content:replace', this.contentReplace)
+  },
+  destroy() {
+    swup.hooks.off('content:replace', this.contentReplace)
   }
 });

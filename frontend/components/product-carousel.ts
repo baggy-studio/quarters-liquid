@@ -31,15 +31,16 @@ export default (
 
     this.carousels.large.on("init", (carousel) => {
       this.update(carousel);
+      this.carousels.small.scrollTo(this.currentIndex);
     });
 
 
     this.carousels.large.on("select", (carousel) => {
       this.update(carousel);
       if (this.carousels.small) {
-        this.carousels.small.scrollTo(this.index);
+        this.carousels.small.scrollTo(this.currentIndex);
       }
-      this.$dispatch('onselect', this.index)
+      this.$dispatch('onselect', this.currentIndex)
     });
 
     this.carousels.large.on("resize", (carousel) => {

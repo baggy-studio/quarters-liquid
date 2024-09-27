@@ -10,7 +10,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: "/products/:handle?",
       to: "/products/:handle?",
-      containers: ["#product-price", "#product-variant-media", "#product-form", "#product-variant-selector-data"]
+      containers: ["#product-price", "#product-variant-media", "#product-form", "#product-variant-selector-data", "#product-quantity"]
     },
     {
       from: "/collections/all",

@@ -5,17 +5,20 @@
       {%- if product.collections.size > 1 %},{% endif %}
     </a>
   </li>
-  {% if product.collections.size > 0 %}  
-  
-    {% for collection in product.collections %}
-      {% unless collection.handle == 'all' %}
-        <li class="contents">
-          <a title="{{ collection.title }}" href="{{ collection.url }}" class="no-scroll leading-[1.5]"
-            ><span class="collection-link">{{ collection.title }}</span>
-            {%- unless forloop.last %},{% endunless %}
-          </a>
-        </li>
-      {% endunless %}
-    {% endfor %}
+  {% if product.collections.size > 0 %}
+    {% if section.settings.menu %}
+      
+    {% else %}
+      {% for collection in product.collections %}
+        {% unless collection.handle == 'all' %}
+          <li class="contents">
+            <a title="{{ collection.title }}" href="{{ collection.url }}" class="no-scroll leading-[1.5]"
+              ><span class="collection-link">{{ collection.title }}</span>
+              {%- unless forloop.last %},{% endunless %}
+            </a>
+          </li>
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
   {% endif %}
 </ul>

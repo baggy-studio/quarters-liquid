@@ -1,0 +1,62 @@
+{% schema %}
+    {
+      "name": "FAQ Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Page Title",
+          "default": "Frequently Asked Questions"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Page Description"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "faq_category",
+          "name": "FAQ Category",
+          "settings": [
+            {
+              "type": "text",
+              "id": "category_name",
+              "label": "Category Name",
+              "default": "General Questions"
+            }
+          ]
+        },
+        {
+          "type": "faq_item",
+          "name": "FAQ Item",
+          "settings": [
+            {
+              "type": "text",
+              "id": "question",
+              "label": "Question"
+            },
+            {
+              "type": "richtext",
+              "id": "answer",
+              "label": "Answer"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "FAQ Content",
+          "category": "Content",
+          "blocks": [
+            {
+              "type": "faq_category"
+            },
+            {
+              "type": "faq_item"
+            }
+          ]
+        }
+      ]
+    }
+    {% endschema %}

@@ -184,3 +184,27 @@ input {
 .page-divider {
     @apply absolute top-0 left-0 w-full h-full block;
 }
+
+.utilty_template {
+    @apply grid grid-cols-2 mx-4 mt-[160px] border-t border-mahogany max-h-[100dvh];
+}
+
+.utilty_template .utility-menu {
+    height: calc(100dvh - 200px);
+}
+
+.utilty_template .utility-content h3 {
+    @apply uppercase font-medium font-sans text-[11px] leading-[150%] tracking-[0.04em];
+}
+
+.utilty_template .utility-content h3:not(:first-child) {
+    @apply mt-16;
+}
+
+.utilty_template .utility-content h3 + p {
+    @apply mt-6;
+}
+
+.utilty_template .utility-content > *:first-child {
+    @apply mt-0;
+}

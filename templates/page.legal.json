@@ -1,0 +1,17 @@
+{
+    "wrapper": "div.utilty_template",
+    "sections": { 
+        "sidebar": {
+            "type": "utility-menu",
+            "settings": {}
+        },
+        "main": {
+            "type": "text-content",
+            "settings": {}
+        }
+    },
+    "order": [
+        "sidebar",
+        "main"
+    ]
+}

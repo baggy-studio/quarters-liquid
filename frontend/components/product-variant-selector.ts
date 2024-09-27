@@ -9,12 +9,13 @@ function fetchVariantSelectorData() {
 }
 
 export default (selectedVariantId: number) => ({
-  productOptions: fetchVariantSelectorData(),
+  productOptions: fetchVariantSelectorData() || [],
   selectedVariantId,
-  contentReplace(visit: Visit) {
-    this.productOptions = fetchVariantSelectorData()
-  },
+  contentReplace: () => { },
   init() {
+    this.contentReplace = () => {
+      this.productOptions = fetchVariantSelectorData()
+    }
     swup.hooks.on('content:replace', this.contentReplace)
   },
   destroy() {

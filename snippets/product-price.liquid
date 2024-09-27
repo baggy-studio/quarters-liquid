@@ -1,9 +1,12 @@
-<div id="product-price">
-  {% if selected_variant.available %}
-    <p class="large-accent">{{ selected_variant.price | money }}</p>
-  {% elsif product.tags contains 'hold' %}
-    {% render 'product-status', type: 'on-hold', large: true %}
-  {% elsif selected_variant.available == false %}
+<div id="product-price" class="flex flex-col">
+  {% if selected_variant.available == false %}
     {% render 'product-status', type: 'sold-out', large: true %}
+  {% elsif selected_variant.available and product.tags contains 'hold' %}
+    <p class="large-accent">{{ selected_variant.price | money }}</p>
+    {% if product.tags contains 'hold' %}
+      {% render 'product-status', type: 'on-hold', large: true %}
+    {% endif %}
+  {% elsif selected_variant.available %}
+    <p class="large-accent">{{ selected_variant.price | money }}</p>
   {% endif %}
 </div>

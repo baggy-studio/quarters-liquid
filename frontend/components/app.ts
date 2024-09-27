@@ -54,11 +54,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
-
-
-
-
-
   },
   getTheme(toUrl: string) {
 

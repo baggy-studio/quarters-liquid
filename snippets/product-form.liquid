@@ -1,7 +1,15 @@
-<div class="w-full flex flex-col gap-8" x-data="cartForm">
+<form
+  @submit.prevent="submit"
+  action="/cart/add"
+  method="post"
+  enctype="multipart/form-data"
+  id="product-form"
+  class="w-full flex flex-col gap-8"
+  x-data="cartForm"
+>
   <div id="product-quantity" class="contents">
     {% unless product.tags contains 'OOAK' %}
-      <div class="w-full grid grid-cols-5 gap-3 items-center border-b border-current h-10 lg:h-8">
+      <div class="w-full grid grid-cols-5 gap-3 items-center border-b border-current h-10 lg:h-8 shrink-0">
         <p class="small-sans col-span-2">Quantity</p>
         <div class="w-full col-span-3 flex items-center justify-between">
           <p class="small-sans" x-quantity="quantity">One</p>
@@ -32,7 +40,27 @@
       </div>
     {% endunless %}
   </div>
-  <div id="product-form" class="contents">
-    <input type="text" name="id" value="{{ selected_variant.id }}">
+  <div class="w-full">
+    <input type="hidden" readonly name="id" value="{{ selected_variant.id }}">
+
+    {% if product.tags contains 'hold' or product.tags contains 'inquire' or selected_variant.available == false %}
+      <a
+        href="mailto:info@shopquarters.com"
+        data-no-swup
+        title="Inquire"
+        class="w-full h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase"
+      >
+        <span class="block">Inquire</span>
+        <span class="block">→</span>
+      </a>
+    {% elsif selected_variant.available %}
+      <button
+        type="submit"
+        class="w-full h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase"
+      >
+        <span class="block">Add to bag</span>
+        <span class="block">→</span>
+      </button>
+    {% endif %}
   </div>
-</div>
+</form>

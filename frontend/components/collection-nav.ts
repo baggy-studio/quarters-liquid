@@ -18,7 +18,7 @@ export default (collectionUrl) => ({
     this.loadTransitionRules(this.navigation)
 
     this.visitStart = (visit: Visit) => {
-      if (visit.to.url.includes('collections/')) {
+      if (visit.to.url.includes('/collections/')) {
         this.activeUrl = visit.to.url
       }
     }

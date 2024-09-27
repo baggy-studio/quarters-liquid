@@ -39,14 +39,15 @@
         {{- product.title -}}
       </a>
     </h3>
-    {% if variant.available %}
-      <p class="small-accent">{{ variant.price | money }}</p>
+    {% if variant.available == false %}
+      {% render 'product-status', type: 'sold-out' %}
     {% elsif product.tags contains 'hold' %}
       {% render 'product-status', type: 'on-hold' %}
     {% elsif product.tags contains 'inquire' %}
       {% render 'product-status', type: 'inquire' %}
-    {% elsif variant.available == false %}
-      {% render 'product-status', type: 'sold-out' %}
+    
+    {% elsif variant.available %}
+      <p class="small-accent">{{ variant.price | money }}</p>
     {% endif %}
   </div>
 </div>

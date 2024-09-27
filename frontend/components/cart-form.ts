@@ -1,22 +1,28 @@
+import { swup } from "@/entrypoints/swup";
+
 export default () => ({
   quantity: 1,
-  maxQty: 20,
+  contentReplace: () => { },
   init() {
-    this.maxQty = this.$root.dataset.max;
+
+    this.contentReplace = () => {
+      this.quantity = 1;
+    }
+
+    swup.hooks.on('content:replace', this.contentReplace)
+  },
+  destroy() {
+    swup.hooks.off('content:replace', this.contentReplace)
   },
   decreaseQuantity() {
-    if (this.quantity == 1) return;
     this.quantity--;
   },
   increaseQuantity() {
-    if (this.maxQty <= this.quantity) {
-      return;
-    } else {
-      this.quantity++;
-    }
+    this.quantity++;
   },
-  async submit() {
-    const formData = new FormData(this.ref.form);
+  async submit(e) {
+    e.preventDefault();
+    const formData = new FormData(this.$root);
 
     const variant = formData.get("id");
 
@@ -26,9 +32,7 @@ export default () => ({
         quantity: Number(this.quantity) || 1
       },
     ];
-
     console.log(payload);
-
     //  await this.$store.cart.addLines(payload);
   },
 });

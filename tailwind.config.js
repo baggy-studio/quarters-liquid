@@ -19,10 +19,14 @@ export default {
         olive: '#828C1A',
         chartreuse: '#D0D12C',
         vanilla: '#F0D8AE',
-        mahogany: '#684C0D',
+        mahogany: {
+          DEFAULT: '#684C0D',
+          hover: '#462600'
+        },
         citrus: '#DFFF00',
         bone: {
           DEFAULT: '#E9E2C3',
+          hover: '#F9F7E7',
           tint: '#FAF8EC'
         },
         charcoal: '#000000',

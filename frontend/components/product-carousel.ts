@@ -31,7 +31,6 @@ export default (
 
     this.carousels.large.on("init", (carousel) => {
       this.update(carousel);
-      this.carousels.small.scrollTo(this.currentIndex);
     });
 
 

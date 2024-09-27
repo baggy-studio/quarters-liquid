@@ -5,50 +5,73 @@ export default (
     loop: true,
   }
 ) => ({
+  carousels: {
+    large: null,
+    small: null,
+  },
+
+  largeCarousel: null,
+  smallCarousel: null,
+
+
   carousel: null,
-  syncCarousel: null,
   canScrollNext: true,
   canScrollPrev: false,
-  scrollSnaps: 0,
-  index: 0,
+  currentIndex: 0,
   init() {
-    this.carousel = EmblaCarousel(this.$root, options);
+    if (!this.$refs.large) return;
+    this.carousels.large = EmblaCarousel(this.$refs.large, options);
 
-    this.carousel.on("init", (carousel) => {
+    if (this.$refs.small) {
+      this.carousels.small = EmblaCarousel(this.$refs.small, {
+        loop: true,
+        watchDrag: false,
+      });
+    }
+
+    this.carousels.large.on("init", (carousel) => {
       this.update(carousel);
     });
 
-    this.carousel.on("select", (carousel) => {
+
+    this.carousels.large.on("select", (carousel) => {
       this.update(carousel);
+      if (this.carousels.small) {
+        this.carousels.small.scrollTo(this.index);
+      }
       this.$dispatch('onselect', this.index)
     });
 
-    this.carousel.on("resize", (carousel) => {
+    this.carousels.large.on("resize", (carousel) => {
       this.update(carousel);
     });
-
-  
   },
   next() {
-    this.carousel.scrollNext();
+    this.carousels.large.scrollNext();
   },
   prev() {
-    this.carousel.scrollPrev();
+    this.carousels.large.scrollPrev();
   },
   scrollTo(t) {
-    this.carousel.scrollTo(t);
+    this.carousels.large.scrollTo(t);
   },
   update(carousel) {
     if (!carousel) return;
 
-    this.index = carousel.selectedScrollSnap();
+    this.currentIndex = carousel.selectedScrollSnap();
     this.canScrollNext = carousel.canScrollNext();
-    this.canScrollPrev = carousel.canScrollPrev();
-    this.scrollSnaps = carousel.scrollSnapList();
   },
   destroy() {
-    if (this.carousel) {
-      this.carousel.destroy();
+    if (this.carousels.large) {
+      this.carousels.large.destroy();
     }
+
+    if (this.carousels.small) {
+      this.carousels.small.destroy();
+    }
+  },
+  get index() {
+    const index = this.currentIndex + 1
+    return index < 10 ? `0${index}` : index;
   },
 });

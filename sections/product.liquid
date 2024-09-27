@@ -6,7 +6,7 @@
     "variants": {{ product.variants | json }}
   }
 </script>
-<section x-data="product({{ selected_variant.id }})" class="lg:h-[calc(100vh+1px)] pt-[120px] lg:pt-[160px] px-4">
+<section x-data="product({{ selected_variant.id }})" class="lg:h-[calc(100vh+1px)] pt-[120px] lg:pt-[160px] px-4 select-none">
   <div class="w-full flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-3 border-y h-full border-current pt-2 lg:py-4 pb-12 relative">
     <div class="lg:pt-[152px]">
       <div class="w-full grid lg:grid-cols-2 gap-y-8 lg:gap-y-0 gap-3 lg:h-full">

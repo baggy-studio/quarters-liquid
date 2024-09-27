@@ -13,20 +13,20 @@ function fetchCollectionNavigation() {
 export default (collectionUrl) => ({
   navigation: fetchCollectionNavigation(),
   activeUrl: collectionUrl,
-  contentReplace: () => { },
+  visitStart: (visit: Visit) => { },
   init() {
     this.loadTransitionRules(this.navigation)
 
-    this.contentReplace = (visit: Visit) => {
+    this.visitStart = (visit: Visit) => {
       if (visit.to.url.includes('collections/')) {
         this.activeUrl = visit.to.url
       }
     }
 
-    swup.hooks.on('visit:start', this.contentReplace)
+    swup.hooks.on('visit:start', this.visitStart)
   },
   destroy() {
-    swup.hooks.off('visit:start', this.contentReplace)
+    swup.hooks.off('visit:start', this.visitStart)
   },
   loadTransitionRules(navigation) {
     const rules: Array<FragmentRule> = []

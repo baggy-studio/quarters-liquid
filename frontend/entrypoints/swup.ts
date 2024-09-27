@@ -1,7 +1,7 @@
 import SwupPreloadPlugin from "@swup/preload-plugin";
 import SwupA11yPlugin from "@swup/a11y-plugin";
 import Swup from "swup";
-import SwupFragmentPlugin from "@swup/fragment-plugin";
+import SwupFragmentPlugin from "../plugins/fragmentPlugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 
 
@@ -10,11 +10,38 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: "/products/:handle?",
       to: "/products/:handle?",
-      containers: ["#product-price"]
+      containers: ["#product-price", "#product-variant-media"]
+    },
+    {
+      from: "/collections/all",
+      to: "/collections/:handle?",
+      containers: ["#collection-nav", '#product-grid']
+    },
+    {
+      from: "/collections/:handle?",
+      to: "/collections/all",
+      containers: ["#collection-nav", '#product-grid']
+    },
+    {
+      from: "/collections/:handle?",
+      to: "/collections/:handle?",
+      containers: ["#collection-nav", '#product-grid']
     }
-  ],
-  debug: true
+  ]
 });
+
+document.querySelectorAll('a[href]').forEach((el) => {
+  el.addEventListener('mouseenter', () => {
+    const fragmentVisit = fragmentPlugin.getFragmentVisit({
+      from: window.location.href, // the current URL
+      to: (el as HTMLAnchorElement).href // the URL of the link
+    });
+    console.log(`will replace ${fragmentVisit?.containers || swup.options.containers}`);
+  });
+});
+
+
+console.log(fragmentPlugin)
 
 export const swup = new Swup({
   animateHistoryBrowsing: true,

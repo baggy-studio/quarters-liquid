@@ -1,0 +1,34 @@
+<div class="w-full flex flex-col gap-8" x-data="cartForm">
+  <div class="w-full grid grid-cols-5 gap-3 items-center border-b border-current h-10 lg:h-8">
+    <p class="small-sans col-span-2">Quantity</p>
+    <div class="w-full col-span-3 flex items-center justify-between">
+      <p class="small-sans" x-quantity="quantity">One</p>
+      <div class="flex items-center gap-8 lg:gap-4 pr-4 lg:pr-0">
+        <button
+          @click="decreaseQuantity"
+          :disabled="quantity <= 1"
+          title="Decrease quantity"
+          class="w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+        >
+          <span
+            class="w-full h-[1px] bg-current block"
+          ></span>
+        </button>
+        <button
+          @click="increaseQuantity"
+          :disabled="20 <= quantity"
+          title="Increase quantity"
+          class="w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+        >
+          <span
+            class="w-full h-[1px] bg-current block"
+          ></span>
+          <span class="h-full w-[1px] bg-current absolute block"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="product-form">
+    <input type="text" name="id" value="{{ selected_variant.id }}">
+  </div>
+</div>

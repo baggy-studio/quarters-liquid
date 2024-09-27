@@ -27,6 +27,7 @@ export default (collectionUrl) => ({
   },
   destroy() {
     swup.hooks.off('visit:start', this.visitStart)
+    fragmentPlugin.setRules(fragmentPlugin.getRules().filter((rule) => !rule.name?.includes('/collections/')));
   },
   loadTransitionRules(navigation) {
     const rules: Array<FragmentRule> = []

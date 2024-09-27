@@ -111,9 +111,18 @@ export default class ParsedRule {
 		const toLocation = Location.fromUrl(route.to);
 
 		// support changes in search params
-		if (fromLocation.search !== toLocation.search && fromLocation.pathname === toLocation.pathname) {
-			return true;
+
+		if (fromLocation.pathname.includes('/products/') && toLocation.pathname.includes('/products/')) {
+			if (fromLocation.search !== toLocation.search && fromLocation.pathname === toLocation.pathname) {
+				return true;
+			} else {
+				return false;
+			}
 		}
+
+
+
+		console.log(fromLocation.pathname, toLocation.pathname)
 
 		const { url: fromUrl } = fromLocation;
 		const { url: toUrl } = toLocation;

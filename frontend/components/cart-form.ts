@@ -1,43 +1,34 @@
 export default () => ({
   quantity: 1,
-  maxQty: null,
+  maxQty: 20,
   init() {
     this.maxQty = this.$root.dataset.max;
   },
-  decreaseQty() {
+  decreaseQuantity() {
     if (this.quantity == 1) return;
     this.quantity--;
   },
-  increaseQty() {
+  increaseQuantity() {
     if (this.maxQty <= this.quantity) {
       return;
     } else {
       this.quantity++;
     }
   },
-  async add() {
-    const formData = new FormData(this.$root);
+  async submit() {
+    const formData = new FormData(this.ref.form);
 
     const variant = formData.get("id");
-
-    const hazmat = formData.get("properties[hazmat]");
-    const cartImage = formData.get("properties[_image]");
 
     const payload = [
       {
         id: Number(variant),
-        quantity: Number(this.quantity) || 1,
-        properties: {
-          ...(hazmat && {
-            Hazmat: hazmat,
-          }),
-          ...(cartImage && {
-            _image: cartImage,
-          }),
-        },
+        quantity: Number(this.quantity) || 1
       },
     ];
 
-    await this.$store.cart.addLines(payload);
+    console.log(payload);
+
+    //  await this.$store.cart.addLines(payload);
   },
 });

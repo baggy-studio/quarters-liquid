@@ -6,7 +6,6 @@ import Alpine from "alpinejs";
 import collapse from "@/plugins/collapse";
 import focus from "@alpinejs/focus";
 import intersect from "@alpinejs/intersect";
-
 import cart from "@/stores/cart";
 import collection from "@/components/collection";
 import marquee from "@/components/marquee";
@@ -18,10 +17,9 @@ import productRecommendations from "@/components/product-recommendations";
 import newsletter from "@/components/newsletter";
 import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
-import collectionNav from "@/components/collection-nav";
-import product from "@/components/product";
-import { getQuantity } from "../utils";
-
+import collectionNav from "@/components/collection-nav"; 
+import productVariantSelector from "@/components/product-variant-selector";
+import { getQuantity } from "@/utils";
 
 Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => {
     let setQuantity = evaluateLater(expression);
@@ -49,5 +47,5 @@ Alpine.data("marquee", marquee);
 Alpine.data("collection", collection);
 Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
-Alpine.data("product", product);
+Alpine.data("productVariantSelector", productVariantSelector); 
 Alpine.start();

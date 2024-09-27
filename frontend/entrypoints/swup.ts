@@ -10,7 +10,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: "/products/:handle?",
       to: "/products/:handle?",
-      containers: ["#product-price", "#product-variant-media"]
+      containers: ["#product-price", "#product-variant-media", "#product-form", "#product-variant-selector-data"]
     },
     {
       from: "/collections/all",
@@ -39,9 +39,6 @@ document.querySelectorAll('a[href]').forEach((el) => {
     console.log(`will replace ${fragmentVisit?.containers || swup.options.containers}`);
   });
 });
-
-
-console.log(fragmentPlugin)
 
 export const swup = new Swup({
   animateHistoryBrowsing: true,

@@ -149,6 +149,8 @@ export default class SwupFragmentPlugin extends PluginBase {
 			visit || this.swup.createVisit(route)
 		);
 
+		console.log('rule', rule)
+
 		// Bail early if no rule matched
 		if (!rule) return;
 

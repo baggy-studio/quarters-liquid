@@ -4,6 +4,7 @@
 {% assign selected_variant_media = selected_variant.featured_media %}
 
 {% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
+{% assign total_media_count = 1 %}
 
 {% for variant in product.variants %}
   {% if variant.featured_media %}
@@ -21,6 +22,17 @@
 {% endfor %}
 
 {% assign filtered_product_media_ids = filtered_product_media | split: ',' %}
+
+{% if variant_media_metafields %}
+  {% for media in variant_media_metafields %}
+    {% assign total_media_count = total_media_count | plus: 1 %}
+  {% endfor %}
+{% endif %}
+
+{% if section.settings.share_product_media %}
+  {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
+{% endif %}
+
 
 <div class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
   {% if variant_media.size > 0 or section.settings.share_product_media and filtered_product_media_ids.size > 0 %}
@@ -55,7 +67,6 @@
               </li>
             {% endfor %}
           {% endif %}
-        
           <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
             <button title="View image" class="w-full h-full">
               {% render 'image',
@@ -94,7 +105,7 @@
               %}
             </li>
           {% endfor %}
-        {% endif %} 
+        {% endif %}
         {% if section.settings.share_product_media %}
           {% for media_id in filtered_product_media_ids %}
             {% assign media_id_number = media_id | plus: 0 %}

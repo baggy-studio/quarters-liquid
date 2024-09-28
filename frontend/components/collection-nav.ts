@@ -27,22 +27,26 @@ export default (collectionUrl) => ({
   },
   destroy() {
     swup.hooks.off('visit:start', this.visitStart)
-    fragmentPlugin.setRules(fragmentPlugin.getRules().filter((rule) => !rule.name?.includes('/collections/')));
+    fragmentPlugin.setRules(fragmentPlugin.getRules().filter((rule) => !rule.name?.includes('collections')));
   },
   loadTransitionRules(navigation) {
     const rules: Array<FragmentRule> = []
     navigation.forEach((filter) => {
       Object.entries(filter).forEach(([collectionUrl, filters]) => {
-        if (Array.isArray(filters) && filters?.length) {
+        const filterUrls = []
+        if (Array.isArray(filters)) {
           filters.forEach((filter) => {
-            rules.push({
-              from: [collectionUrl, filter.url],
-              to: [filter.url, collectionUrl],
-              containers: ["#product-grid"],
-              name: collectionUrl
-            })
+            if (filter?.url) filterUrls.push(filter.url)
           })
         }
+        const fromRules = [collectionUrl, ...filterUrls]
+        const toRules = [...filterUrls, collectionUrl]
+        rules.push({
+          from: fromRules,
+          to: toRules,
+          containers: ["#product-grid"],
+          name: collectionUrl
+        })
       });
     })
     rules.forEach((rule) => fragmentPlugin.prependRule(rule))

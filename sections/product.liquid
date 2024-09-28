@@ -16,7 +16,7 @@
           </div>
           {% render 'product-variant-selector', selected_variant: selected_variant %}
         </div>
-        {% render 'product-information' %}
+        {% render 'product-information', product: product, selected_variant: selected_variant %}
       </div>
     </div>
     {% render 'product-variant-media', selected_variant: selected_variant %}

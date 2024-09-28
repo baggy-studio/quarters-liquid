@@ -5,15 +5,14 @@ export default (
     loop: true,
   }
 ) => ({
-  carousel: null,
-  syncCarousel: null,
+  carousel: null, 
   canScrollNext: true,
-  canScrollPrev: false,
+  canScrollPrev: true,
   scrollSnaps: 0,
   index: 0,
   init() {
     this.carousel = EmblaCarousel(this.$root, options);
-
+    this.update(this.carousel);
     this.carousel.on("init", (carousel) => {
       this.update(carousel);
     });
@@ -26,8 +25,6 @@ export default (
     this.carousel.on("resize", (carousel) => {
       this.update(carousel);
     });
-
-  
   },
   next() {
     this.carousel.scrollNext();

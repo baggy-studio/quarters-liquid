@@ -48,7 +48,11 @@
               {% assign has_only_default_variant = false %}
             {% endif %}
 
-            {% render 'product-card', product: product, priority: is_priority, renderVariants: has_only_default_variant %}
+            {% render 'product-card',
+              product: product,
+              priority: is_priority,
+              renderVariants: has_only_default_variant
+            %}
           {% endfor %}
 
           {% if paginate.pages == 1 %}
@@ -78,6 +82,8 @@
               {% assign shuffled_variant_ids = shuffled_variant_ids | append: all_variant_ids[i] | append: ',' %}
             {% endfor %}
             {% assign all_variant_ids = shuffled_variant_ids | split: ',' %}
+            {% assign all_variant_ids = all_variant_ids | uniq | join: ', ' %}
+            {% assign all_variant_ids = all_variant_ids | split: ',' %}
 
             {% for variant_product_id in all_variant_ids %}
               {% assign variant_id = variant_product_id | split: ':' | first | plus: 0 %}
@@ -89,7 +95,6 @@
               {% if variant %}
                 <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product>
                   <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
-                    {{ variant_product_id }}
                     {% render 'product-variant-card', variant: variant, product: product, priority: false %}
                   </div>
                 </li>

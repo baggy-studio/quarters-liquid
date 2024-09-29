@@ -13,7 +13,7 @@
     }
 
     body {
-        @apply bg-bone-tint text-mahogany font-serif;
+        @apply bg-bone-tint text-mahogany font-serif select-none;
     }
 
     a,

@@ -1,7 +1,7 @@
 import { updateCache } from "../entrypoints/swup";
 
 export default (id, url) => ({
-  hidden: false,
+  hidden: false, 
   init() {
     this.fetchProducts();
   },

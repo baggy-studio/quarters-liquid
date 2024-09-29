@@ -42,10 +42,9 @@
   </div>
   <div class="w-full">
     <input type="hidden" readonly name="id" value="{{ selected_variant.id }}">
-
     {% if product.tags contains 'hold' or product.tags contains 'inquire' or selected_variant.available == false %}
       <a
-        href="mailto:info@shopquarters.com"
+        href="mailto:hello@shopquarters.com"
         data-no-swup
         title="Inquire"
         class="w-full h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase"

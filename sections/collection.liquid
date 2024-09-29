@@ -6,9 +6,7 @@
     id="collection-nav-wrapper"
     class="w-full border-t pt-3 border-current z-10 transition-transform ease-in-out"
   >
-    <div id="collection-nav" class="w-full h-max">
-      {% render 'collection-nav', menu: section.settings.menu %}
-    </div>
+    {% render 'collection-nav', menu: section.settings.menu %}
   </div>
   <div
     x-data="collection"
@@ -72,11 +70,11 @@
   "name": "Collection with Filtering",
   "class": "contents",
   "settings": [
-  {
-    "type": "link_list",
-    "id": "menu",
-    "label": "Collection Menu"
-  }
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Collection Menu"
+    }
   ],
   "presets": [
     {

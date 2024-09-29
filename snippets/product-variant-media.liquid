@@ -47,8 +47,8 @@
               <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
                 {% render 'image',
                   image: media,
-                  width: 130,
-                  height: 162,
+                  width: 260,
+                  height: 324,
                   priority: true,
                   sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
                 %}
@@ -62,8 +62,8 @@
               <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
                 {% render 'image',
                   image: media,
-                  width: 130,
-                  height: 162,
+                  width: 260,
+                  height: 324,
                   sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
                 %}
               </li>
@@ -73,8 +73,8 @@
             <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
               {% render 'image',
                 image: selected_variant_media,
-                width: 130,
-                height: 162,
+                width: 260,
+                height: 324,
                 sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
               %}
             </li>
@@ -100,8 +100,8 @@
           <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
             {% render 'image',
               image: selected_variant_media,
-              width: 556,
-              height: 668,
+              width: 1112,
+              height: 1336,
               priority: true,
               sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
             %}
@@ -112,8 +112,8 @@
             <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
               {% render 'image',
                 image: media,
-                width: 556,
-                height: 668,
+                width: 1112,
+                height: 1336,
                 sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
               %}
             </li>
@@ -124,12 +124,22 @@
             {% assign media_id_number = media_id | plus: 0 %}
             {% assign media = product.media | where: 'id', media_id_number | first %}
             <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
-              {% render 'image',
-                image: media,
-                width: 556,
-                height: 668,
-                sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-              %}
+              {% if forloop.first and selected_variant_media == blank %}
+                {% render 'image',
+                  image: media,
+                  width: 1112,
+                  height: 1336,
+                  priority: true,
+                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                %}
+              {% else %}
+                {% render 'image',
+                  image: media,
+                  width: 1112,
+                  height: 1336,
+                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                %}
+              {% endif %}
             </li>
           {% endfor %}
         {% endif %}

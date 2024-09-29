@@ -14,6 +14,7 @@ export default () => ({
   init() {
     if (!document.querySelector(selectors.loadNext)) {
       this.loadVariants()
+      updateCache()
     } else {
       this.initInfiniteScroll()
     }
@@ -22,16 +23,19 @@ export default () => ({
     const infiniteScroll = new InfiniteScrollManager({
       container: selectors.productGrid,
       paginationNext: selectors.loadNext,
-      enableHtml5History: true
+      enableHtml5History: false
     });
 
     infiniteScroll.addLoadEventListener(() => {
-      updateCache()
+     // updateCache()
     });
 
     infiniteScroll.addNextPageScrollEndEventListener(() => {
       this.loadVariants()
+     setTimeout(() => {
       updateCache()
+      console.log('updateCache')
+     }, 4000)
     });
   },
   loadVariants() {

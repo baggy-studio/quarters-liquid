@@ -1,65 +1,72 @@
+{% assign primary_links = section.settings.menu.links | first %}
+{% assign secondary_links = section.settings.menu.links | last %}
+
+{% assign collection_level_one = blank %}
+{% assign collection_level_two = blank %}
+{% assign collection_level_two_title = blank %}
+{% assign collection_level_one_title = blank %}
+
+{% assign combined_links = primary_links.links | concat: secondary_links.links %}
+{% for collection in product.collections %}
+  {% unless collection.handle == 'all' %}
+    {% for link in combined_links %}
+      {% if link.object.id == collection.id %}
+        {% assign collection_level_one = link.object %}
+        {% assign collection_level_one_title = link.title %}
+        {% break %}
+      {% elsif link.links.size > 0 %}
+        {% for child_link in link.links %}
+          {% if child_link.object.id == collection.id %}
+            {% assign collection_level_two = child_link.object %}
+            {% assign collection_level_two_title = child_link.title %}
+
+            {% assign collection_level_one = link.object %}
+            {% assign collection_level_one_title = link.title %}
+
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+{% endfor %}
+
 <ul class="w-full flex items-center gap-2 subheading">
   <li class="contents">
     <a title="All Items" href="/collections/all" class="no-scroll leading-[1.5]">
       <span class="collection-link">All Items</span>
-      {%- if product.collections.size > 1 %},{% endif %}
+      {%- if product.collections.size > 1 -%}
+        {%- if section.settings.menu -%}
+          {%- if collection_level_one != blank or collection_level_two != blank %},{% endif -%}
+        {%- else -%}
+          ,
+        {%- endif %}
+      {% endif %}
     </a>
   </li>
   {% if product.collections.size > 0 %}
     {% if section.settings.menu %}
-      {% assign primary_links = section.settings.menu.links | first %}
-      {% assign secondary_links = section.settings.menu.links | last %}
-
-      {% assign collection_level_one = blank %}
-      {% assign collection_level_two = blank %}
-
-
-      {% assign combined_links = primary_links.links | concat: secondary_links.links %}
-      {% assign parent_link = null %}
-      {% assign parent_collection = null %}
-
-      {% for link in combined_links %}
-        {% if link.object.id == collection.id %}
-          {% assign parent_link = link %}
-          {% assign parent_collection = link.object %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
-
-      {% if parent_link == null %}
-        {% for link in primary_links.links %}
-          {% if link.links.size > 0 %}
-            {% for sub_link in link.links %}
-              {% if sub_link.object.id == collection.id %}
-                {% assign parent_link = link %}
-                {% assign parent_collection = link.object %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-            {% if parent_link %}
-              {% break %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
+      {% if collection_level_one != blank %}
+        <li class="contents">
+          <a
+            title="{{ collection_level_one_title }}"
+            href="{{ collection_level_one.url }}"
+            class="no-scroll leading-[1.5]"
+            ><span class="collection-link">{{ collection_level_one_title }}</span>{% if collection_level_two != blank %},{% endif %}
+          </a>
+        </li>
       {% endif %}
 
-      {% if parent_link == null %}
-        {% for link in secondary_links.links %}
-          {% if link.links.size > 0 %}
-            {% for sub_link in link.links %}
-              {% if sub_link.object.id == collection.id %}
-                {% assign parent_link = link %}
-                {% assign parent_collection = link.object %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-            {% if parent_link %}
-              {% break %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
+      {% if collection_level_two != blank %}
+        <li class="contents">
+          <a
+            title="{{ collection_level_two_title }}"
+            href="{{ collection_level_two.url }}"
+            class="no-scroll leading-[1.5]"
+            ><span class="collection-link">{{ collection_level_two_title }}</span>
+          </a>
+        </li>
       {% endif %}
-
     {% else %}
       {% for collection in product.collections %}
         {% unless collection.handle == 'all' %}

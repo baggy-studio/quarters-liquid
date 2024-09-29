@@ -12,10 +12,7 @@ const selectors = {
 export default () => ({
   hasLoadedVariants: false,
   init() {
-    if (!document.querySelector(selectors.loadNext)) {
-      this.loadVariants()
-      updateCache()
-    } else {
+    if (document.querySelector(selectors.loadNext)) {
       this.initInfiniteScroll()
     }
   },
@@ -27,15 +24,12 @@ export default () => ({
     });
 
     infiniteScroll.addLoadEventListener(() => {
-     // updateCache()
+      updateCache()
     });
 
     infiniteScroll.addNextPageScrollEndEventListener(() => {
       this.loadVariants()
-     setTimeout(() => {
       updateCache()
-      console.log('updateCache')
-     }, 4000)
     });
   },
   loadVariants() {

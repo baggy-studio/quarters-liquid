@@ -1,19 +1,26 @@
+{% assign selected_variant = product.selected_or_first_available_variant %}
+
 {% assign variant_featured_media_ids = '' %}
 {% assign filtered_product_media = '' %}
-
 {% assign selected_variant_media = selected_variant.featured_media %}
-
 {% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
-{% assign total_media_count = 0 %}
+{% assign total_media_count = 1 %}
 
 {% if selected_variant_media %}
   {% assign total_media_count = total_media_count | plus: 1 %}
+{% else %}
+  {% assign selected_variant_media = product.featured_image %}
 {% endif %}
 
 {% for variant in product.variants %}
   {% if variant.featured_media %}
     {% assign variant_featured_media_ids = variant_featured_media_ids
       | append: variant.featured_media.id
+      | append: ','
+    %}
+  {% elsif product.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: product.featured_media.id
       | append: ','
     %}
   {% endif %}
@@ -37,26 +44,44 @@
   {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
 {% endif %}
 
+{% assign rendered_small_count = 0 %}
+
 <div x-data="productCarousel" class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
-  {% if selected_variant_media and variant_media.size > 0 or filtered_product_media_ids.size > 0 %}
+  {% if total_media_count > 1 %}
     <div x-ref="small-image" role="button" title="View Fullscreen" class="w-full col-span-2 lg:flex items-end hidden">
       <div x-ref="small" class="w-full aspect-[130/162] relative overflow-hidden pointer-events-none">
         <ul class="flex w-full h-full">
           {% if variant_media_metafields %}
             {% for media in variant_media_metafields %}
+              {% assign is_priority = false %}
+
+              {% if forloop.first %}
+                {% assign is_priority = true %}
+              {% endif %}
+
+              {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
               <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
                 {% render 'image',
                   image: media,
                   width: 260,
                   height: 324,
-                  priority: true,
-                  sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
+                  priority: is_priority,
+                  sizes: 'calc(10vw - 3.5px)'
                 %}
               </li>
             {% endfor %}
           {% endif %}
           {% if section.settings.share_product_media %}
             {% for media_id in filtered_product_media_ids %}
+              {% assign is_priority = false %}
+
+              {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
+              {% if forloop.first and rendered_small_count == 1 %}
+                {% assign is_priority = true %}
+              {% endif %}
+
               {% assign media_id_number = media_id | plus: 0 %}
               {% assign media = product.media | where: 'id', media_id_number | first %}
               <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
@@ -64,19 +89,15 @@
                   image: media,
                   width: 260,
                   height: 324,
-                  sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
+                  sizes: 'calc(10vw - 3.5px)',
+                  priority: is_priority
                 %}
               </li>
             {% endfor %}
           {% endif %}
           {% if selected_variant_media %}
             <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
-              {% render 'image',
-                image: selected_variant_media,
-                width: 260,
-                height: 324,
-                sizes: '@media (min-width: 1024px) calc(10vw - 3.5px)'
-              %}
+              {% render 'image', image: selected_variant_media, width: 260, height: 324, sizes: 'calc(10vw - 3.5px)' %}
             </li>
           {% endif %}
         </ul>
@@ -123,24 +144,26 @@
           {% for media_id in filtered_product_media_ids %}
             {% assign media_id_number = media_id | plus: 0 %}
             {% assign media = product.media | where: 'id', media_id_number | first %}
-            <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
-              {% if forloop.first and selected_variant_media == blank %}
-                {% render 'image',
-                  image: media,
-                  width: 1112,
-                  height: 1336,
-                  priority: true,
-                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-                %}
-              {% else %}
-                {% render 'image',
-                  image: media,
-                  width: 1112,
-                  height: 1336,
-                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-                %}
-              {% endif %}
-            </li>
+            {% if media != blank %}
+              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+                {% if forloop.first and selected_variant_media == blank %}
+                  {% render 'image',
+                    image: media,
+                    width: 1112,
+                    height: 1336,
+                    priority: true,
+                    sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                  %}
+                {% else %}
+                  {% render 'image',
+                    image: media,
+                    width: 1112,
+                    height: 1336,
+                    sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                  %}
+                {% endif %}
+              </li>
+            {% endif %}
           {% endfor %}
         {% endif %}
       </ul>
@@ -163,7 +186,8 @@
               <p class="text-left small-accent w-full" x-text="index">01</p>
               <p>/</p>
               <p class="text-right small-accent w-full pr-4">
-                {% assign padded_total_media_count = total_media_count | prepend: '0' %}
+                {% assign current_count = total_media_count | minus: 1 %}
+                {% assign padded_total_media_count = current_count | prepend: '0' %}
                 {{ padded_total_media_count | slice: -2, 2 }}
               </p>
             </div>

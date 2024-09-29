@@ -53,7 +53,7 @@
   {% endfor %}
 {% endif %}
 
-<div class="w-full grid grid-cols-2 lg:grid-cols-20 gap-2 lg:gap-3 h-max subheading">
+<div class="w-full grid lg:grid-cols-20 gap-2 lg:gap-3 h-max subheading">
   <script data-collection-navigation type="application/json">
     [
       {% for parent_link in combined_links %}
@@ -80,14 +80,17 @@
     {% endif %}
     x-data="{ active: activeUrl === '/collections/all' }"
     x-effect="active = activeUrl === '/collections/all'"
-    class="hover:underline leading-none whitespace-nowrap lg:col-span-2 lg:block hidden aria-[current=page]:underline"
+    class="
+            hover:underline
+
+      leading-none whitespace-nowrap hidden lg:block lg:col-span-2 aria-[current=page]:underline
+    "
   >
     All Items
   </a>
-
   <nav
     aria-label="Collection Navigation"
-    class="w-full grid grid-cols-18 col-span-18 gap-3 delay-0"
+    class="w-full grid grid-cols-2 lg:grid-cols-18 lg:col-span-18 gap-2 lg:gap-3 delay-0"
     id="collection-nav"
   >
     {% unless is_all_collection %}
@@ -98,6 +101,24 @@
           {{ collection.title }}
         {% endif %}
       </h2>
+    {% else %}
+      <a
+        href="/collections/all"
+        title="All Items"
+        :aria-current="active ? 'page' : undefined"
+        {% if is_all_collection %}
+          aria-current="page"
+        {% endif %}
+        x-data="{ active: activeUrl === '/collections/all' }"
+        x-effect="active = activeUrl === '/collections/all'"
+        class="
+                hover:underline
+
+          leading-none whitespace-nowrap lg:hidden lg:col-span-2 aria-[current=page]:underline
+        "
+      >
+        All Items
+      </a>
     {% endunless %}
     <div class="w-full lg:contents" x-data="{ open: false }">
       {% if is_all_collection or parent_link.links.size > 0 %}

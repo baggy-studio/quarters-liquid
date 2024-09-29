@@ -42,8 +42,60 @@
               {% assign is_priority = true %}
             {% endif %}
 
-            {% render 'product-card', product: product, priority: is_priority %}
+            {% assign has_only_default_variant = true %}
+
+            {% if product.has_only_default_variant %}
+              {% assign has_only_default_variant = false %}
+            {% endif %}
+
+            {% render 'product-card', product: product, priority: is_priority, renderVariants: has_only_default_variant %}
           {% endfor %}
+
+          {% if paginate.pages == 1 %}
+            {% assign all_variant_ids = '' %}
+            {% for product in collection.products %}
+              {% for variant in product.variants %}
+                {% unless variant.id == product.selected_or_first_available_variant.id
+                  or product.has_only_default_variant
+                %}
+                  {% assign variant_product_id = variant.id | append: ':' | append: variant.product.id %}
+                  {% assign all_variant_ids = all_variant_ids | append: variant_product_id | append: ',' %}
+                {% endunless %}
+              {% endfor %}
+            {% endfor %}
+
+            {% assign all_variant_ids = all_variant_ids | split: ',' %}
+
+            {% comment %} Shuffle the all_variant_ids array {% endcomment %}
+            {% assign loops = all_variant_ids.size | times: 10 %}
+            {% capture indexes %}
+              {% for i in (1..loops) %}{{ "now" | date: "%N" | modulo: all_variant_ids.size }},{% endfor %}
+            {% endcapture %}
+            {% assign indexes = indexes | split: ',' | uniq %}
+            {% assign shuffled_variant_ids = '' %}
+            {% for index in indexes %}
+              {% assign i = index | plus: 0 %}
+              {% assign shuffled_variant_ids = shuffled_variant_ids | append: all_variant_ids[i] | append: ',' %}
+            {% endfor %}
+            {% assign all_variant_ids = shuffled_variant_ids | split: ',' %}
+
+            {% for variant_product_id in all_variant_ids %}
+              {% assign variant_id = variant_product_id | split: ':' | first | plus: 0 %}
+              {% assign product_id = variant_product_id | split: ':' | last | plus: 0 %}
+
+              {% assign product = collection.products | where: 'id', product_id | first %}
+              {% assign variant = product.variants | where: 'id', variant_id | first %}
+
+              {% if variant %}
+                <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product>
+                  <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                    {{ variant_product_id }}
+                    {% render 'product-variant-card', variant: variant, product: product, priority: false %}
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </ul>
       </div>
       {% if paginate.next %}

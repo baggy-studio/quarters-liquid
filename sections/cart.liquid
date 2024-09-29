@@ -1,6 +1,6 @@
 {% capture header %}
 <div class="px-4 w-full">
-  <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start  w-full relative h-[160px] bg-bone-tint border-b border-current">
+  <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start  w-full relative h-[120px] lg:h-[160px] bg-bone-tint border-b border-current">
     <p class="medium-serif pt-[68px]" x-show="hasItems">
       Bag (<span class="contents" x-text="count">{{ cart.item_count }}</span>)
     </p>
@@ -89,9 +89,9 @@
         >
           {{ section.settings.emptyBody }}
         </div>
-        <div class="w-full grid grid-cols-6 gap-x-3 pr-4 pt-2 pb-16 shrink-0">
-          <p class="small-accent uppercase pl-4 col-span-4">Subtotal</p>
-          <p class="flex flex-col small-accent col-span-2">
+        <div class="w-full grid grid-cols-10 lg:grid-cols-6 gap-x-2 lg:gap-x-3 px-4 lg:pl-0 pt-2 pb-16 shrink-0" x-show="hasItems">
+          <p class="small-accent uppercase lg:pl-4 col-span-7 lg:col-span-4">Subtotal</p>
+          <p class="flex flex-col small-accent col-span-3 lg:col-span-2">
             <span
               class="line-through opacity-50"
               x-show="totalPrice !== subtotalPrice"
@@ -104,24 +104,23 @@
         </div>
       </div>
       <div
-        class="sticky shrink-0 bottom-0 h-max w-full p-4 pt-0"
+        class="sticky shrink-0 bottom-0 h-max w-full p-4 pt-0 cart-gradient"
         x-show="hasItems"
       >
         {{ cartCheckout }}
       </div>
-      <div class="hidden md:contents">
-        <div
-          class="sticky shrink-0 bottom-0 h-max w-full p-4"
-          x-show="!hasItems"
+      <div
+        class="sticky shrink-0 bottom-0 h-max w-full p-4"
+        x-show="!hasItems"
+      >
+        <a
+          href="{{ section.settings.emptyCTALink }}"
+          aria-label="{{ section.settings.emptyCTAText }}"
+          class="button"
         >
-          <a
-            href="{{ section.settings.emptyCTALink }}"
-            aria-label="{{ section.settings.emptyCTAText }}"
-            class="button"
-          >
-            {{ section.settings.emptyCTAText }}
-          </a>
-        </div>
+          <span class="block">{{ section.settings.emptyCTAText }}</span>
+          <span class="block">→</span>
+        </a>
       </div>
     </div>
   </div>

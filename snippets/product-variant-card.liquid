@@ -45,9 +45,15 @@
       {% render 'product-status', type: 'on-hold' %}
     {% elsif product.tags contains 'inquire' %}
       {% render 'product-status', type: 'inquire' %}
-    
     {% elsif variant.available %}
-      <p class="small-accent">{{ variant.price | money }}</p>
+      {% if variant.compare_at_price > 0 %}
+        <div class="flex flex-col">
+          <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
+          <p class="small-accent">{{ variant.price | money }}</p>
+        </div>
+      {% else %}
+        <p class="small-accent">{{ variant.price | money }}</p>
+      {% endif %}
     {% endif %}
   </div>
 </div>

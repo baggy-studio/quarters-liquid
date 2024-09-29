@@ -3,6 +3,7 @@
   action="/cart/add"
   method="post"
   enctype="multipart/form-data"
+  @cart:complete.window="loading = false"
   id="product-form"
   class="w-full flex flex-col gap-8"
   x-data="cartForm"
@@ -47,7 +48,7 @@
         href="mailto:hello@shopquarters.com"
         data-no-swup
         title="Inquire"
-        class="w-full h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase"
+        class="button"
       >
         <span class="block">Inquire</span>
         <span class="block">→</span>
@@ -55,7 +56,8 @@
     {% elsif selected_variant.available %}
       <button
         type="submit"
-        class="w-full h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase"
+        class="button"
+        :disabled="loading"
       >
         <span class="block">Add to bag</span>
         <span class="block">→</span>

@@ -129,7 +129,7 @@
     <button
       title="Bag"
       :class="menu && 'hidden'"
-      @click="$store.cart.open"
+      @click="$dispatch('cart:toggle')"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
       Bag (

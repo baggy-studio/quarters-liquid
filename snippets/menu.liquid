@@ -1,6 +1,6 @@
 <menu
   @keyup.escape.window="closeMenu"
-  x-trap="menu"
+  x-trap.inert="menu"
   aria-label="Main Menu"
   :aria-hidden="!menu"
   :class="{ 'pointer-events-auto': menu }"

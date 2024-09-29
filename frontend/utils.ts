@@ -4,7 +4,7 @@ export const money = (amount) => {
     currency: "USD",
   });
 
-  return money.format(Number(amount / 100)).replace("$", "");
+  return money.format(Number(amount / 100));
 };
 
 

@@ -2,6 +2,7 @@ import { swup } from "@/entrypoints/swup";
 
 export default () => ({
   quantity: 1,
+  loading: false,
   contentReplace: () => { },
   init() {
 
@@ -32,7 +33,9 @@ export default () => ({
         quantity: Number(this.quantity) || 1
       },
     ];
-    console.log(payload);
-    //  await this.$store.cart.addLines(payload);
+
+    this.loading = true;
+
+    this.$dispatch("cart:add", payload);
   },
 });

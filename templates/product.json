@@ -3,6 +3,8 @@
     "product_Ehxw3T": {
       "type": "product",
       "settings": {
+        "menu": "collection-menu",
+        "share_product_media": true
       }
     },
     "related_products_9WD7xw": {

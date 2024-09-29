@@ -5,9 +5,9 @@
     "cart_Vtp9qk": {
       "type": "cart",
       "settings": {
-        "emptyBody": "",
-        "emptyCTAText": "Shop all our product",
-        "emptyCTALink": ""
+        "emptyBody": "<p>Your bag is empty.<\/p>",
+        "emptyCTAText": "Back to Shop",
+        "emptyCTALink": "shopify:\/\/collections\/all"
       }
     },
     "newsletter_WETVt4": {
@@ -19,6 +19,7 @@
     },
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
+      "disabled": true,
       "settings": {
         "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
         "ctaText": "Learn more",

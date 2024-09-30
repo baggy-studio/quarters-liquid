@@ -25,7 +25,11 @@
       >
     {% endif %}
 
-    <title>{{ page_title }}</title>
+    {% if template == 'index' %}
+      <title>{{ page_title }}</title>
+    {% else %}
+      <title>{{ page_title }} | {{ shop.name }}</title>
+    {% endif %}
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
@@ -41,7 +45,7 @@
     <a class="sr-only" href="#main">Skip to main content</a>
     <div class="relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
       {% section 'header' %}
-      <div  class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
+      <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
         <main
           id="main"
           class="min-h-screen"

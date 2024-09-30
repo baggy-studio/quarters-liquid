@@ -31,6 +31,10 @@ export default () => ({
             { before: true }
         );
 
+        swup.hooks.on("visit:start", () => {
+            this.close();
+        });
+
         // Create a URL object
         const { searchParams } = new URL(window.location.href);
         const cartParam = searchParams.get("cart");

@@ -19,6 +19,7 @@ import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
 import collectionNav from "@/components/collection-nav";
 import productVariantSelector from "@/components/product-variant-selector";
+import productFullscreen from "@/components/product-fullscreen";
 import { getQuantity, money } from "@/utils";
 
 Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => {
@@ -59,4 +60,5 @@ Alpine.data("collection", collection);
 Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
 Alpine.data("productVariantSelector", productVariantSelector);
+Alpine.data("productFullscreen", productFullscreen);
 Alpine.start();

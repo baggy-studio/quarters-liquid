@@ -1,54 +1,65 @@
-<form
-  @submit.prevent="submit"
-  action="/cart/add"
-  method="post"
-  enctype="multipart/form-data"
+<div
   @cart:complete.window="loading = false"
-  id="product-form"
-  class="w-full flex flex-col gap-8"
+  id="product-form" 
   x-data="cartForm"
+  class="w-full flex flex-col gap-8 pointer-events-auto"
 >
-  <div id="product-quantity" class="contents">
-    {% unless product.tags contains 'OOAK' %}
-      <div class="w-full grid grid-cols-5 gap-3 items-center border-b border-current h-10 lg:h-8 shrink-0">
-        <p class="small-sans col-span-2">Quantity</p>
-        <div class="w-full col-span-3 flex items-center justify-between">
-          <p class="small-sans" x-quantity="quantity">One</p>
-          <div class="flex items-center gap-8 lg:gap-4 pr-4 lg:pr-0">
-            <button
-              @click="decreaseQuantity"
-              :disabled="quantity <= 1"
-              title="Decrease quantity"
-              class="w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
-            >
-              <span
-                class="w-full h-[1px] bg-current block"
-              ></span>
-            </button>
-            <button
-              @click="increaseQuantity"
-              :disabled="{{ selected_variant.inventory_quantity }} <= quantity"
-              title="Increase quantity"
-              class="w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
-            >
-              <span
-                class="w-full h-[1px] bg-current block"
-              ></span>
-              <span class="h-full w-[1px] bg-current absolute block"></span>
-            </button>
+  {% unless is_full_screen %}
+    <div id="product-quantity" class="contents">
+      {% unless product.tags contains 'OOAK' %}
+        <div class="w-full grid grid-cols-5 gap-3 items-center border-b border-current h-10 lg:h-8 shrink-0">
+          <p class="small-sans col-span-2">Quantity</p>
+          <div class="w-full col-span-3 flex items-center justify-between">
+            <p class="small-sans" x-quantity="quantity">One</p>
+            <div class="flex items-center gap-8 lg:gap-4 pr-4 lg:pr-0">
+              <button
+                @click="decreaseQuantity"
+                :disabled="quantity <= 1"
+                title="Decrease quantity"
+                class="w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+              >
+                <span
+                  class="w-full h-[1px] bg-current block"
+                ></span>
+              </button>
+              <button
+                @click="increaseQuantity"
+                :disabled="{{ selected_variant.inventory_quantity }} <= quantity"
+                title="Increase quantity"
+                class="w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+              >
+                <span
+                  class="w-full h-[1px] bg-current block"
+                ></span>
+                <span class="h-full w-[1px] bg-current absolute block"></span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    {% endunless %}
-  </div>
-  <div class="w-full">
+      {% endunless %}
+    </div>
+  {% endunless %}
+  <form
+    @submit.prevent="submit"
+    action="/cart/add"
+    method="post"
+    enctype="multipart/form-data"
+    class="contents"
+    x-ref="form"
+  >
+    <input type="hidden" name="quantity" x-model="quantity" value="1">
     <input type="hidden" readonly name="id" value="{{ selected_variant.id }}">
     {% if product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
       <a
         href="mailto:hello@shopquarters.com"
         data-no-swup
         title="Inquire"
-        class="button"
+        class="
+          button
+          {% if is_full_screen %}
+            is-alt
+          {% endif %}
+        "
       >
         <span class="block">Inquire</span>
         <span class="block">→</span>
@@ -56,12 +67,17 @@
     {% elsif selected_variant.available %}
       <button
         type="submit"
-        class="button"
+        class="
+          button
+          {% if is_full_screen %}
+            is-alt
+          {% endif %}
+        "
         :disabled="loading"
       >
         <span class="block">Add to bag</span>
         <span class="block">→</span>
       </button>
     {% endif %}
-  </div>
-</form>
+  </form>
+</div>

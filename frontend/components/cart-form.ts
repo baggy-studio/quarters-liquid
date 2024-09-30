@@ -23,14 +23,15 @@ export default () => ({
   },
   async submit(e) {
     e.preventDefault();
-    const formData = new FormData(this.$root);
+    const formData = new FormData(this.$refs.form);
 
     const variant = formData.get("id");
+    const quantity = formData.get("quantity");
 
     const payload = [
       {
         id: Number(variant),
-        quantity: Number(this.quantity) || 1
+        quantity: Number(quantity) || 1
       },
     ];
 

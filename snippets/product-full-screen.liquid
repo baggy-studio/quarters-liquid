@@ -1,0 +1,146 @@
+{% assign selected_variant = product.selected_or_first_available_variant %}
+
+{% assign variant_featured_media_ids = '' %}
+{% assign filtered_product_media = '' %}
+{% assign selected_variant_media = selected_variant.featured_media %}
+{% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
+{% assign total_media_count = 1 %}
+
+{% if selected_variant_media %}
+  {% assign total_media_count = total_media_count | plus: 1 %}
+{% else %}
+  {% assign selected_variant_media = product.featured_image %}
+{% endif %}
+
+{% for variant in product.variants %}
+  {% if variant.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: variant.featured_media.id
+      | append: ','
+    %}
+  {% elsif product.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: product.featured_media.id
+      | append: ','
+    %}
+  {% endif %}
+{% endfor %}
+
+{% for media in product.media %}
+  {% unless variant_featured_media_ids contains media.id %}
+    {% assign filtered_product_media = filtered_product_media | append: media.id | append: ',' %}
+  {% endunless %}
+{% endfor %}
+
+{% assign filtered_product_media_ids = filtered_product_media | split: ',' %}
+
+{% if variant_media_metafields %}
+  {% for media in variant_media_metafields %}
+    {% assign total_media_count = total_media_count | plus: 1 %}
+  {% endfor %}
+{% endif %}
+
+{% if section.settings.share_product_media %}
+  {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
+{% endif %}
+
+{% assign rendered_small_count = 0 %}
+
+<template x-teleport="body">
+  <div class="fixed top-0 left-0 h-screen overflow-scroll w-full bg-charcoal text-bone z-[100]" x-show="visible">
+    <div class="w-full relative sm:h-auto h-full">
+      <div class="contents" id="product-full-screen">
+        <ul class="contents" x-data="{ index: 0 }">
+          {% if selected_variant_media %}
+            <li class="contents" :class="index === 0 ? 'contents' : 'hidden'">
+              <div class="hidden lg:contents">
+                {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw', natural: true %}
+              </div>
+              <div class="hidden sm:contents lg:hidden">
+                {% render 'image', image: selected_variant_media, width: 1024, sizes: '100vw', natural: true %}
+              </div>
+
+              <div class="contents sm:hidden">
+                {% render 'image', image: selected_variant_media, width: 640, sizes: '100vw' %}
+              </div>
+            </li>
+          {% endif %}
+          {% if variant_media_metafields %}
+            {% for media in variant_media_metafields %}
+              {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
+              <li class="hidden" :class="index === {{rendered_small_count}} ? 'contents' : 'hidden'">
+                <div class="hidden lg:contents">
+                  {% render 'image', image: media, width: 2000, sizes: '100vw', natural: true %}
+                </div>
+
+                <div class="hidden sm:contents lg:hidden">
+                  {% render 'image', image: media, width: 1024, sizes: '100vw', natural: true %}
+                </div>
+                <div class="contents sm:hidden">
+                  {% render 'image', image: media, width: 640, sizes: '100vw' %}
+                </div>
+              </li>
+            {% endfor %}
+          {% endif %}
+          {% if section.settings.share_product_media %}
+            {% for media_id in filtered_product_media_ids %}
+              {% assign media_id_number = media_id | plus: 0 %}
+              {% assign media = product.media | where: 'id', media_id_number | first %}
+              {% if media != blank %}
+                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
+                <li class="hidden" :class="index === {{rendered_small_count}} ? 'contents' : 'hidden'">
+                  <div class="hidden lg:contents">
+                    {% render 'image', image: media, width: 2000, sizes: '100vw', natural: true %}
+                  </div>
+                  <div class="contents sm:hidden">
+                    {% render 'image', image: media, width: 640, sizes: '100vw', natural: true %}
+                  </div>
+                  <div class="hidden sm:contents lg:hidden">
+                    {% render 'image', image: media, width: 1024, sizes: '100vw' %}
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+        <div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none">
+          <div class="top-0 px-4 sticky h-screen w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
+            <div class="w-full col-span-5 pb-4 pt-[120px]  lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-between h-full">
+              <div class="w-full relative flex flex-col gap-4">
+                <div class="w-full relative flex flex-col">
+                  <h1 class="large-serif">{{ product.title }}</h1>
+                  {% if product.metafields.custom.product_subtitle != blank %}
+                    <p class="large-italic font-droulers">{{ product.metafields.custom.product_subtitle }}</p>
+                  {% endif %}
+                </div>
+                {% render 'product-price', product: product, selected_variant: selected_variant %}
+              </div>
+              <div class="w-full bottom-0 sticky">
+                {% render 'product-form', selected_variant: selected_variant, is_full_screen: true %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-0 left-0 bottom-0 w-full pointer-events-none">
+        <div class="w-full top-0 sticky pt-[15px]">
+          <h1 class="flex items-start w-full justify-center group">
+            <a
+              href="/"
+              title="Quarters"
+              class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] pointer-events-auto"
+            >
+              <svg
+                class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
+              >
+                <use xlink:href="#wordmark"></use>
+              </svg>
+            </a>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -177,10 +177,11 @@ html.is-changing header h1 a svg:last-child {
 nav.is-menu {
     @apply text-mahogany delay-300;
 }
-
-nav.is-cart {
-    @apply text-mahogany delay-300;
-}
+@media (max-width: 1023px) {
+    nav.is-cart {
+        @apply text-mahogany delay-300;
+    }
+} 
 
 .nav-gradient::before {
     @apply sticky left-0 w-full top-0 block transition-opacity duration-300 ease-linear;

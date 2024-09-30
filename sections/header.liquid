@@ -27,7 +27,8 @@
       {% if section.settings.hideHomepageHeader %}
         :class="
           {
-            'opacity-0': activeUrl == '/' && !menu && !cartOpen,
+            'opacity-0': activeUrl == '/' && !menu,
+            'opacity-100 lg:opacity-0': cartOpen && window.innerWidth < 1024,
             'pointer-events-auto': activeUrl !== '/' || menu
           }
         "

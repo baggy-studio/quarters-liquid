@@ -1,16 +1,21 @@
 {% capture header %}
-<div class="px-4 w-full">
-  <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start  w-full relative h-[120px] lg:h-[160px] bg-bone-tint border-b border-current">
-    <p class="medium-serif pt-[68px]" x-show="hasItems">
+<div class="px-4 w-full bg-bone-tint">
+  <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start  w-full relative h-[120px] lg:h-[160px]  lg:border-b lg:border-current">
+    <p class="medium-serif pt-[68px] hidden lg:block" x-show="hasItems">
       Bag (<span class="contents" x-text="count">{{ cart.item_count }}</span>)
     </p>
     <button
       @click="close()"
       aria-label="Close bag"
-      class="medium-serif leading-none"
+      class="medium-serif leading-none hidden lg:block"
     >
       (Close)
     </button>
+  </div>
+  <div :class="hasItems ? 'flex' : 'hidden'" class="pt-4 lg:hidden items-start w-full relative h-[120px] border-y border-current">
+    <p class="large-serif" x-show="hasItems">
+      Bag (<span class="contents" x-text="count">{{ cart.item_count }}</span>)
+    </p>
   </div>
 </div>
 {% endcapture %}
@@ -58,7 +63,7 @@
         'pointer-events-auto': visible,
       }
     "
-    class="absolute top-0 left-0 w-full h-full lg:block hidden cursor-default bg-bone-tint/30 opacity-0 duration-300 ease-linear"
+    class="absolute top-0 left-0 w-full h-full delay-[400ms] lg:delay-0 cursor-default bg-black/10 lg:bg-bone-tint/30 opacity-0 duration-300 ease-linear"
   ></button>
   <div
     :class="
@@ -67,7 +72,7 @@
       }
     "
     x-ref="container"
-    class="bg-bone-tint translate-x-full h-full md:h-screen w-full lg:w-[calc(100%+1rem)] shrink-0 lg:col-span-6 lg:col-start-[15] border-l border-current relative"
+    class="bg-bone-tint translate-x-full h-full md:h-screen w-full lg:w-[calc(100%+1rem)] shrink-0 lg:col-span-6 lg:col-start-[15] lg:border-l border-current relative"
   >
     <div class="w-full h-full flex flex-col justify-between">
       {{ header }}
@@ -79,9 +84,11 @@
 
         <div
           x-show="!hasItems"
-          class="px-4 pt-4 flex items-start large-serif lg:medium-serif"
+          class="px-4 w-full flex items-start large-serif lg:medium-serif"
         >
-          {{ section.settings.emptyBody }}
+          <div class="pt-4 border-t border-current w-full lg:border-t-0">
+            {{ section.settings.emptyBody }}
+          </div>
         </div>
         <div
           class="w-full grid grid-cols-10 lg:grid-cols-6 gap-x-2 lg:gap-x-3 px-4 lg:pl-0 pt-2 pb-16 shrink-0"

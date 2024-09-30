@@ -41,9 +41,9 @@
 
     <style> 
     :root {
-      --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }};
-      --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }};
-      --header-theme: {{ page.metafields.custom.text_color | default: 'inherit' }};
+      --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }} !important;
+      --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }} !important;
+      --header-theme: {{ page.metafields.custom.text_color | default: 'inherit' }} !important;
     }
     </style>
 </head>

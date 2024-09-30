@@ -119,30 +119,47 @@
  * Here, we are animating the `.teaeser` elements individually
  */
 
-#collection-nav,
-#product-grid,
-#main {
-    @apply transition-opacity;
-    will-change: opacity;
-}
-
-html.is-animating #main,
-#collection-nav.is-animating,
-#product-grid.is-animating {
-    opacity: 0;
-}
-
-html.is-changing #main,
-#collection-nav.is-changing,
-#product-grid.is-changing {
-    @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
-}
-
-html.is-leaving #main,
-#collection-nav.is-leaving,
-#product-grid.is-leaving {
-    @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
-}
+ #collection-nav,
+ #product-grid,
+ #main,
+ #utility-content {
+   @apply transition-opacity;
+   will-change: opacity;
+ }
+ 
+ html.is-animating #main,
+ #collection-nav.is-animating,
+ #product-grid.is-animating,
+ html.is-animating #utility-content {
+   opacity: 0;
+ }
+ 
+ html.is-changing #main,
+ #collection-nav.is-changing,
+ #product-grid.is-changing,
+ html.is-changing #utility-content {
+   @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+ }
+ 
+ html.is-leaving #main,
+ #collection-nav.is-leaving,
+ #product-grid.is-leaving,
+ html.is-leaving #utility-content {
+   @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+ }
+ 
+ /* Specific rules for utility pages */
+ html.is-animating.utility-pages #utility-content {
+   opacity: 0;
+ }
+ 
+ html.is-changing.utility-pages #utility-content {
+   @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+ }
+ 
+ html.is-leaving.utility-pages #utility-content {
+   @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+ }
 
 .richtext a {
     @apply w-max underline decoration-1 underline-offset-2 hover:opacity-50 duration-300 ease-linear;

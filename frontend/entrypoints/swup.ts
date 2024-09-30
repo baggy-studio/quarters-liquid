@@ -3,7 +3,14 @@ import SwupA11yPlugin from "@swup/a11y-plugin";
 import Swup from "swup";
 import SwupFragmentPlugin from "@swup/fragment-plugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
-import SwupHeadPlugin from '@swup/head-plugin';
+import SwupHeadPlugin from "@swup/head-plugin";
+
+const utilityPages = ['frequently-asked-questions', 'shipping-returns', 'terms-and-conditions', 'privacy-policy'];
+
+const isUtilityPage = (url) => {
+  const currentPage = url.split('/').pop()?.split('?')[0] || '';
+  return utilityPages.includes(currentPage);
+};
 
 export const fragmentPlugin = new SwupFragmentPlugin({
   rules: [
@@ -11,6 +18,13 @@ export const fragmentPlugin = new SwupFragmentPlugin({
       from: "/products/:handle?",
       to: "/products/:handle?",
       containers: ["#product-price"]
+    },
+    {
+      from: '/pages/:utilityPage',
+      to: '/pages/:utilityPage',
+      containers: ['#utility-content'],
+      name: 'utility-pages',
+      if: (visit) => isUtilityPage(visit.to.url)
     }
   ],
   debug: true
@@ -39,9 +53,55 @@ export const swup = new Swup({
       awaitAssets: true
     }),
   ],
+  // hooks: {
+  //   'visit:start': (visit) => {
+  //     console.log('Visit started:', visit);
+  //     const currentPage = visit.to.url.split('/').pop()?.split('?')[0] || '';
+  //     const isUtilityPage = utilityPages.includes(currentPage);
+  //     if (isUtilityPage) {
+  //       console.log('Utility page detected, updating only #utility-content');
+  //     } else {
+  //       console.log('Non-utility page, updating #main');
+  //     }
+  //   },
+  //   'content:replace': (visit) => {
+  //     console.log('Will replace content:', visit);
+  //   },
+  //   'animation:out:start': () => {
+  //     console.log('Animation out started');
+  //     document.body.classList.add('is-animating');
+  //   },
+  //   'animation:out:end': () => {
+  //     console.log('Animation out ended');
+  //   },
+  //   'animation:in:start': () => {
+  //     console.log('Animation in started');
+  //   },
+  //   'animation:in:end': () => {
+  //     console.log('Animation in ended');
+  //     document.body.classList.remove('is-animating');
+  //   },
+  //   'page:view': () => {
+  //     console.log('New page view');
+  //   }
+  // }
 });
 
-// Add event listeners after Swup initialization
+swup.hooks.on('visit:start', (visit) => {
+  console.log('Visit started:', visit);
+  const currentPage = visit.to.url.split('/').pop()?.split('?')[0] || '';
+  const isUtilityPage = utilityPages.includes(currentPage);
+  if (isUtilityPage) {
+    visit.containers = ['#utility-content'];
+    console.log('Utility page detected, updating only #utility-content');
+  } else {
+    visit.containers = ['#main'];
+    console.log('Non-utility page, updating #main');
+  }
+});
+
+
+
 document.addEventListener('swup:page:view', updatePageColors);
 
 export function updateCache(propUrl?: string) {
@@ -79,8 +139,10 @@ function updatePageColors(event: Event) {
     headerNav.style.color = textColor;
   }
 
+  if (main instanceof HTMLElement) {
+    main.style.maxHeight = `100%`;
+  }
 
-  // Update gradient
   let gradientElement = document.getElementById('top-gradient');
   if (!gradientElement) {
     gradientElement = document.createElement('div');
@@ -101,5 +163,7 @@ function updatePageColors(event: Event) {
   console.log('Page colors updated', { textColor, bgColor });
 }
 
-// Optionally, update colors on initial page load
-document.addEventListener('DOMContentLoaded', updatePageColors);
+document.addEventListener('DOMContentLoaded', () => {
+  updatePageColors(new Event('DOMContentLoaded'));
+  // console.log('Initial page structure:', document.body.innerHTML);
+});

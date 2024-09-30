@@ -81,7 +81,7 @@
     "
     :style="`--header-theme: ${headerColor}`"
     class="
-                      absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
+                                                    absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
     "
   >
     <ul class="hidden lg:flex items-center gap-16">
@@ -130,11 +130,10 @@
       title="Bag"
       :class="menu && 'hidden'"
       @click="$dispatch('cart:toggle')"
+      @cart:count.window="cartCount = $event.detail"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
-      Bag (
-      {{- cart.item_count -}}
-      )
+      Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)
     </button>
   </nav>
 </header>

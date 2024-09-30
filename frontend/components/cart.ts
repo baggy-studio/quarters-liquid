@@ -44,6 +44,12 @@ export default () => ({
                 this.$dispatch("cart:complete");
             }
         });
+
+        Alpine.effect(() => {
+            if (typeof this.count == "number") {
+                this.$dispatch("cart:count", this.count);
+            }
+        });
     },
     async close() {
         this.visible = false;

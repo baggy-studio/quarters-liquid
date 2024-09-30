@@ -31,6 +31,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
   activeCollection: 0,
+  cartCount: 0,
   init() {
     this.trackMenuHeight();
 
@@ -73,8 +74,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.visible = true;
   },
   async openMenu() {
-    if (this.menu) return;
-    this.lockScroll();
+    if (this.menu) return; 
     this.menu = true;
 
     await animate((progress) => {
@@ -91,8 +91,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     await animate((progress) => {
       this.updateMenuHeight(1 - progress, url)
     }, { duration: 1.2, easing: expoInOut }).finished
-
-    this.unlockScroll();
+ 
     this.activeCollection = 0;
     this.subMenu = null;
   },

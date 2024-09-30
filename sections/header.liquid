@@ -45,7 +45,7 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0': menu || cartOpen
+              'opacity-0': menu 
             }
           "
         {% endunless %}
@@ -64,7 +64,7 @@
           :class="
             {
               'opacity-0 delay-500': activeUrl == '/' && !menu,
-              'opacity-100 lg:opacity-0': cartOpen && window.innerWidth < 1024
+              'opacity-100': cartOpen && window.innerWidth < 1024
             }
           "
         {% endunless %}

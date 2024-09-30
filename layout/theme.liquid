@@ -16,6 +16,7 @@
         window.location.href = '/?cart=true';
       </script>
     {% endif %}
+
     {% if settings.favicon != blank %}
       <link
         fetchpriority="low"
@@ -35,6 +36,31 @@
     -%}
     {% render 'fonts' %}
     {{ content_for_header }}
+
+    <style>
+      :root {
+        --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }};
+        --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }};
+      }
+      {% if template == 'page.legal' or template == 'page.faq' %}
+        body {
+          background-color: var(--background-color);
+          color: var(--text-color);
+        }
+        body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to bottom, var(--background-color) 0%, transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+      {% endif %}
+    </style>
   </head>
   <body class="antialiased">
     {% render 'svg' %}

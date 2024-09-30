@@ -1,17 +1,21 @@
 {
-    "wrapper": "div.utilty_template",
-    "sections": { 
-        "sidebar": {
-            "type": "utility-menu",
-            "settings": {}
-        },
-        "main": {
-            "type": "text-content",
-            "settings": {}
-        }
+  "wrapper": "div.utilty_template",
+  "sections": {
+    "sidebar": {
+      "type": "utility-menu",
+      "settings": {
+        "menu": "utility-nav",
+        "secondary_text": ""
+      }
     },
-    "order": [
-        "sidebar",
-        "main"
-    ]
+    "main": {
+      "type": "text-content",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "sidebar",
+    "main"
+  ]
 }

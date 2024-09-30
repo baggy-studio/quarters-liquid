@@ -1,17 +1,58 @@
 {
-    "wrapper": "div.utilty_template",
-    "sections": { 
-        "sidebar": {
-            "type": "utility-menu",
-            "settings": {}
-        },
-        "main": {
-            "type": "faq-content",
-            "settings": {}
-        }
+  "wrapper": "div.utilty_template",
+  "sections": {
+    "sidebar": {
+      "type": "utility-menu",
+      "settings": {
+        "menu": "utility-nav",
+        "secondary_text": "<p>Tktk FAQ secondary text<\/p>"
+      }
     },
-    "order": [
-        "sidebar",
-        "main"
-    ]
+    "main": {
+      "type": "faq-content",
+      "blocks": {
+        "faq_category_c9nM9P": {
+          "type": "faq_category",
+          "settings": {
+            "category_name": "ORDERS + SHIPPING"
+          }
+        },
+        "faq_item_6r86Le": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_VzpAC9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_XqdEYY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_category_c9nM9P",
+        "faq_item_6r86Le",
+        "faq_item_VzpAC9",
+        "faq_item_XqdEYY"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "description": ""
+      }
+    }
+  },
+  "order": [
+    "sidebar",
+    "main"
+  ]
 }

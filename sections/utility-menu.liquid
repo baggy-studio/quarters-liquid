@@ -1,13 +1,16 @@
-<div class="utility-menu w-full flex flex-col justify-between border-r border-mahogany mt-4 pt-[48px] sticky top-0 max-h-[calc(100vh-160px)] overflow-y-auto">
+{% if page.metafields.custom.secondary_text == blank %}
+  {% assign page.metafields.custom.secondary_text = "This is a great place to add a tagline." %}
+{% endif %}
+
+<div class="utility-menu w-full flex flex-col justify-between border-r border-[var(--text-color)] mt-4 pt-[48px] overflow-y-auto">
   {% if section.settings.menu != blank %}
     {% render 'utility-menu', menu: section.settings.menu %}
   {% endif %}
-  {% if section.settings.secondary_text != blank %}
-  <div class="grid grid-cols-10 gap-x-3">
-    <div class="text-sm font-sans mb-4 col-span-5">{{ section.settings.secondary_text }}</div>
-  </div>
-
-  {% endif %}
+    <div class="grid grid-cols-10 gap-x-3">
+      <div class="text-sm font-sans mb-4 col-span-5">
+          {{ page.metafields.custom.secondary_text }}
+      </div>
+    </div>
 </div>
 
 {% schema %}
@@ -18,10 +21,6 @@
         "type": "link_list",
         "id": "menu",
         "label": "Select Menu"
-      }, {
-        "type": "richtext",
-        "id": "secondary_text",
-        "label": "Secondary Text"
       }
     ],
     "presets": [

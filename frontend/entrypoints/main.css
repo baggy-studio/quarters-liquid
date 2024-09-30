@@ -185,12 +185,25 @@ input {
     @apply absolute top-0 left-0 w-full h-full block;
 }
 
+
+/* Utility Template */
+
 .utilty_template {
-    @apply grid grid-cols-2 mx-4 mt-[160px] border-t border-mahogany max-h-[100dvh];
+    @apply grid grid-cols-2 mx-4 mt-[160px] border-t border-[var(--text-color)];
+    height: calc(100vh - 160px);
+    position: relative;
+}
+
+.utility_template > div:last-child {
+    overflow-y: auto; /* Allow scrolling within this div */
+    height: 100%; /* Take full height of parent */
 }
 
 .utilty_template .utility-menu {
-    height: calc(100dvh - 200px);
+    position: sticky;
+    top: 176px;
+    height: calc(100vh - 176px);
+
 }
 
 .utilty_template .utility-content h3 {

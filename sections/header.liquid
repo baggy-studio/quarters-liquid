@@ -1,5 +1,5 @@
 <header
-  class="fixed top-0 left-0 w-full h-screen z-50 pointer-events-none"
+  class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none"
 >
   <button
     :class="
@@ -17,7 +17,7 @@
       href="/"
       title="Quarters"
       class="
-        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
+        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-cart]:delay-300 group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
         {% if section.settings.hideHomepageHeader and template == 'index' %}
           opacity-0
         {% else %}
@@ -27,7 +27,7 @@
       {% if section.settings.hideHomepageHeader %}
         :class="
           {
-            'opacity-0': activeUrl == '/' && !menu,
+            'opacity-0': activeUrl == '/' && !menu && !cartOpen,
             'pointer-events-auto': activeUrl !== '/' || menu
           }
         "
@@ -44,7 +44,7 @@
 
         class="
           {% unless section.settings.hideHomepageHeader %}
-          group-[.is-menu]:delay-300 delay-500
+          group-[.is-cart]:delay-300 group-[.is-menu]:delay-300 delay-500
            {% endunless %}
           fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
         "
@@ -62,7 +62,7 @@
 
         class="
              {% unless section.settings.hideHomepageHeader %}
-            opacity-0  group-[.is-menu]:delay-300
+            opacity-0 group-[.is-menu]:delay-300 group-[.is-cart]:delay-300
           {% endunless %}
 
             absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
@@ -76,7 +76,8 @@
     aria-label="Main Navigation"
     :class="
       {
-        'is-menu': menu
+        'is-menu': menu,
+        'is-cart': cartOpen
       }
     "
     :style="`--header-theme: ${headerColor}`"
@@ -111,7 +112,7 @@
       @click="toggleMenu"
       title="Toggle Menu"
       class="lg:hidden nav-link"
-      :class="menu ? 'opacity-0' : 'pointer-events-auto'"
+      :class="menu || cartOpen ? 'opacity-0' : 'pointer-events-auto'"
     >
       Menu
     </button>
@@ -127,11 +128,30 @@
     <button
       title="Bag"
       :class="menu && 'hidden'"
-      @click="$dispatch('cart:toggle')"
+      @click="toggleCartMenu"
       @cart:count.window="cartCount = $event.detail"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
-      Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)
+      <span
+        :class="
+          {
+            'hidden': cartOpen,
+            'contents': !cartOpen
+          }
+        "
+        class="contents lg:contents"
+        >Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)</span
+      >
+      <span
+        :class="
+          {
+            'contents': cartOpen,
+            'hidden': !cartOpen
+          }
+        "
+        class="hidden lg:hidden"
+        >(Close)</span
+      >
     </button>
   </nav>
 </header>

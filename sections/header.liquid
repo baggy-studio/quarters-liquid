@@ -12,12 +12,19 @@
     @click="closeMenu"
   ></button>
   {% render 'menu', menu: section.settings.menu %}
-  <h1 class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full lg:h-full justify-center">
+  <h1
+    :class="
+      {
+        'is-menu': menu
+      }
+    "
+    class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full lg:h-full justify-center group"
+  >
     <a
       href="/"
       title="Quarters"
       class="
-        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-cart]:delay-300 group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
+        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
         {% if section.settings.hideHomepageHeader and template == 'index' %}
           opacity-0
         {% else %}
@@ -38,7 +45,7 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0': menu
+              'opacity-0': menu || cartOpen
             }
           "
         {% endunless %}
@@ -56,7 +63,8 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0 delay-500': activeUrl == '/' && !menu
+              'opacity-0 delay-500': activeUrl == '/' && !menu,
+              'opacity-100 lg:opacity-0': cartOpen && window.innerWidth < 1024
             }
           "
         {% endunless %}

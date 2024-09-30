@@ -120,10 +120,6 @@ export default class ParsedRule {
 			}
 		}
 
-
-
-		console.log(fromLocation.pathname, toLocation.pathname)
-
 		const { url: fromUrl } = fromLocation;
 		const { url: toUrl } = toLocation;
 

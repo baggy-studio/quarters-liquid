@@ -8,7 +8,7 @@
         'pointer-events-auto': menu
       }
     "
-    class="absolute top-0 left-0 h-full w-full opacity-0 bg-black/10 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
+    class="absolute top-0 left-0 h-full w-full opacity-0 delay-[400ms] bg-black/10 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
     @click="closeMenu"
   ></button>
   {% render 'menu', menu: section.settings.menu %}
@@ -81,7 +81,7 @@
     "
     :style="`--header-theme: ${headerColor}`"
     class="
-          absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
+                      absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
     "
   >
     <ul class="hidden lg:flex items-center gap-16">

@@ -35,6 +35,7 @@
         <ul
           class="contents"
         >
+          {% assign rendered_products = 0 %}
           {% for product in collection.products %}
             {% assign is_priority = false %}
 
@@ -47,6 +48,8 @@
             {% if product.has_only_default_variant %}
               {% assign has_only_default_variant = false %}
             {% endif %}
+
+            {% assign rendered_products = rendered_products | plus: 1 %}
 
             {% render 'product-card',
               product: product,
@@ -92,10 +95,18 @@
               {% assign product = collection.products | where: 'id', product_id | first %}
               {% assign variant = product.variants | where: 'id', variant_id | first %}
 
+              {% assign is_priority = false %}
+
+              {% assign rendered_products = rendered_products | plus: 1 %}
+
+              {% if rendered_products <> 9 %}
+                {% assign is_priority = true %}
+              {% endif %}
+
               {% if variant %}
                 <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product>
                   <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
-                    {% render 'product-variant-card', variant: variant, product: product, priority: false %}
+                    {% render 'product-variant-card', variant: variant, product: product, priority: is_priority %}
                   </div>
                 </li>
               {% endif %}

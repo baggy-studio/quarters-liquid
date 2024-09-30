@@ -48,7 +48,14 @@
 
 <div x-data="productCarousel" class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
   {% if total_media_count > 1 %}
-    <div x-ref="small-image" role="button" title="View Fullscreen" class="w-full col-span-2 lg:flex items-end hidden">
+    <div
+      x-ref="small-image"
+      {% if section.settings.disable_fullscreen == false %}
+        role="button"
+        title="View Fullscreen"
+      {% endif %}
+      class="w-full col-span-2 lg:flex items-end hidden"
+    >
       <div x-ref="small" class="w-full aspect-[130/162] relative overflow-hidden pointer-events-none">
         <ul class="flex w-full h-full">
           {% if variant_media_metafields %}
@@ -106,8 +113,10 @@
   {% endif %}
   <div
     x-ref="large-image"
-    role="button"
-    title="View Fullscreen"
+    {% if section.settings.disable_fullscreen == false %}
+      role="button"
+      title="View Fullscreen"
+    {% endif %}
     class="w-full col-start-3 col-span-8 h-full lg:block contents group"
   >
     <div
@@ -169,16 +178,18 @@
       </ul>
       <div class="absolute top-0 left-0 w-full h-full py-3 flex justify-between flex-col items-end">
         <div class="flex w-full justify-between items-start px-4">
-          <p class="small-sans leading-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-linear">
-            View Fullscreen
-          </p>
-          <div class="pt-1 w-max h-max">
-            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
-              <rect x="0.5" y="0.5" width="15" height="15" stroke="#643600"/>
-              <line x1="7.96875" y1="4.26672" x2="7.96875" y2="11.7334" stroke="#643600"/>
-              <line x1="11.7344" y1="7.96667" x2="4.26771" y2="7.96667" stroke="#643600"/>
-            </svg>
-          </div>
+          {% if section.settings.disable_fullscreen == false %}
+            <p class="small-sans leading-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-linear">
+              View Fullscreen
+            </p>
+            <div class="pt-1 w-max h-max">
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                <rect x="0.5" y="0.5" width="15" height="15" stroke="#643600"/>
+                <line x1="7.96875" y1="4.26672" x2="7.96875" y2="11.7334" stroke="#643600"/>
+                <line x1="11.7344" y1="7.96667" x2="4.26771" y2="7.96667" stroke="#643600"/>
+              </svg>
+            </div>
+          {% endif %}
         </div>
         {% if total_media_count > 1 %}
           <div class="w-full grid grid-cols-8 gap-3">

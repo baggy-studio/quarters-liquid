@@ -39,6 +39,7 @@
 
 <div
   x-data="cart"
+  @keyup.escape.window="close"
   @cart:toggle.window="toggle"
   @cart:add.window="addLines"
   @cart:update.window="updateLines"

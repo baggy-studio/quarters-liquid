@@ -45,6 +45,8 @@ export default (listId: string) => ({
     });
   },
   shouldOpen() {
-    this.visible = !cookie.get("newsletter");
+    setTimeout(() => {
+      this.visible = !cookie.get("newsletter");
+    }, 5000)
   }
 });

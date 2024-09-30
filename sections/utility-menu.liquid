@@ -1,13 +1,13 @@
 {% if page.metafields.custom.secondary_text == blank %}
-  {% assign page.metafields.custom.secondary_text = "This is a great place to add a tagline." %}
+  {% assign page.metafields.custom.secondary_text = "Secondary Text" %}
 {% endif %}
 
-<div class="utility-menu w-full flex flex-col justify-between border-r border-[var(--text-color)] mt-4 pt-[48px] overflow-y-auto">
+<div class="utility-menu">
   {% if section.settings.menu != blank %}
     {% render 'utility-menu', menu: section.settings.menu %}
   {% endif %}
     <div class="grid grid-cols-10 gap-x-3">
-      <div class="text-sm font-sans mb-4 col-span-5">
+      <div class="text-sm font-sans col-span-10 md:col-span-5 text-underline">
           {{ page.metafields.custom.secondary_text }}
       </div>
     </div>

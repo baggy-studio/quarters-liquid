@@ -18,6 +18,7 @@
     "@alpinejs/intersect": "^3.14.1",
     "@swup/a11y-plugin": "^5.0.0",
     "@swup/fragment-plugin": "^1.1.1",
+    "@swup/head-plugin": "^2.2.1",
     "@swup/preload-plugin": "^3.2.10",
     "@swup/scroll-plugin": "^3.3.2",
     "@types/js-cookie": "^3.0.6",

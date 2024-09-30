@@ -22,14 +22,16 @@
         fetchpriority="low"
         rel="icon"
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
-        sizes="32x32"
-      >
+        sizes="32x32">
     {% endif %}
 
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link
+      rel="preconnect"
+      href="https://cdn.shopify.com"
+      crossorigin>
     {%- liquid
       render 'vite-tag' with 'main.css'
       render 'vite-tag' with 'main.js'
@@ -37,46 +39,28 @@
     {% render 'fonts' %}
     {{ content_for_header }}
 
-    <style>
-      :root {
-        --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }};
-        --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }};
-      }
-      {% if template == 'page.legal' or template == 'page.faq' %}
-        body {
-          background-color: var(--background-color);
-          color: var(--text-color);
-        }
-        body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 120px;
-        background: linear-gradient(to bottom, var(--background-color) 0%, transparent 100%);
-        pointer-events: none;
-        z-index: 1;
+    <style> 
+    :root {
+      --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }};
+      --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }};
+      --header-theme: {{ page.metafields.custom.text_color | default: 'inherit' }};
     }
-
-      {% endif %}
     </style>
-  </head>
-  <body class="antialiased">
-    {% render 'svg' %}
-    <a class="sr-only" href="#main">Skip to main content</a>
-    <div class="relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
-      {% section 'header' %}
-      <div  class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
-        <main
-          id="main"
-          class="min-h-screen"
-        >
-          {{ content_for_layout }}
-        </main>
-        {% sections 'footer-group' %}
-      </div>
-      {% sections 'aside-group' %}
+</head>
+<body data-template="{{ template }}" class="antialiased">
+  {% render 'svg' %}
+  <a class="sr-only" href="#main">Skip to main content</a>
+  <div
+    class="relative"
+    x-data="app"
+    style="--menu-height: 0px; --transform-y: 0px;">
+    {% section 'header' %}
+    <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
+      <main id="main" class="min-h-screen">
+        {{ content_for_layout }}
+      </main>
+      {% sections 'footer-group' %}
     </div>
-  </body>
-</html>
+    {% sections 'aside-group' %}
+  </div>
+</body></html>

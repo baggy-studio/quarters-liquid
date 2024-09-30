@@ -6,7 +6,7 @@
         "type": "header",
         "settings": {
           "menu": "main-menu",
-          "hideHomepageHeader": true,
+          "hideHomepageHeader": false,
           "contentHeading": "Visit the Store",
           "content": "<p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2<\/a>\u2028<br\/><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">New York, N.Y. 10013<\/a><\/p><p>Monday through Saturday<br\/>11:00 A.M. – 6:00 P.M.<\/p>",
           "address": "<p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2<\/a>\u2028<\/p><p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">New York, N.Y. 10013<\/a><\/p>",

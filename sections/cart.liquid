@@ -61,20 +61,13 @@
     class="absolute top-0 left-0 w-full h-full lg:block hidden cursor-default bg-bone-tint/30 opacity-0 duration-300 ease-linear"
   ></button>
   <div
-    x-cloak
-    x-show="visible"
-    x-transition:enter="duration-500 transition-transform ease-in-out transform"
-    x-transition:enter-start="translate-x-full"
-    x-transition:enter-end=""
-    x-transition:leave="duration-500 transition-transform ease-in-out transform"
-    x-transition:leave-start=""
-    x-transition:leave-end="translate-x-full"
     :class="
       {
         'pointer-events-auto': visible,
       }
     "
-    class="bg-bone-tint h-full md:h-screen w-full lg:w-[calc(100%+1rem)] shrink-0 lg:col-span-6 lg:col-start-[15] border-l border-current relative"
+    x-ref="container"
+    class="bg-bone-tint translate-x-full h-full md:h-screen w-full lg:w-[calc(100%+1rem)] shrink-0 lg:col-span-6 lg:col-start-[15] border-l border-current relative"
   >
     <div class="w-full h-full flex flex-col justify-between">
       {{ header }}
@@ -90,7 +83,10 @@
         >
           {{ section.settings.emptyBody }}
         </div>
-        <div class="w-full grid grid-cols-10 lg:grid-cols-6 gap-x-2 lg:gap-x-3 px-4 lg:pl-0 pt-2 pb-16 shrink-0" x-show="hasItems">
+        <div
+          class="w-full grid grid-cols-10 lg:grid-cols-6 gap-x-2 lg:gap-x-3 px-4 lg:pl-0 pt-2 pb-16 shrink-0"
+          x-show="hasItems"
+        >
           <p class="small-accent uppercase lg:pl-4 col-span-7 lg:col-span-4">Subtotal</p>
           <p class="flex flex-col small-accent col-span-3 lg:col-span-2">
             <span

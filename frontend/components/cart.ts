@@ -1,5 +1,7 @@
 import Alpine from "alpinejs";
 import { swup } from "../entrypoints/swup";
+import { animate } from "motion";
+import { expoInOut } from "@/easing";
 
 export const cartFetch = async function (endpoint, type = "POST", data) {
     try {
@@ -43,14 +45,28 @@ export default () => ({
             }
         });
     },
-    close() {
+    async close() {
         this.visible = false;
+
+        await animate(this.$refs.container, {
+            transform: "translateX(100%)",
+        }, { duration: 1.2, easing: expoInOut }).finished
+
     },
     toggle() {
-        this.visible = !this.visible;
+        if (this.visible) {
+            this.close();
+        } else {
+            this.open();
+        }
     },
-    open() {
+    async open() {
         this.visible = true;
+
+        await animate(this.$refs.container, {
+            transform: "translateX(0)",
+        }, { duration: 1.2, easing: expoInOut }).finished
+
     },
     async load(fromAdd) {
         this.loading = true;
@@ -61,7 +77,7 @@ export default () => ({
             console.error(error);
         } finally {
             if (fromAdd) {
-                this.visible = true;
+                this.open();
             }
             this.loading = false;
         }

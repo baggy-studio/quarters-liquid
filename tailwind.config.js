@@ -20,7 +20,7 @@ export default {
         chartreuse: '#D0D12C',
         vanilla: '#F0D8AE',
         mahogany: {
-          DEFAULT: '#684C0D',
+          DEFAULT: '#643600',
           hover: '#462600'
         },
         citrus: '#DFFF00',

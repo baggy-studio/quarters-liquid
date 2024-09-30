@@ -19,7 +19,6 @@
     },
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
-      "disabled": true,
       "settings": {
         "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
         "ctaText": "Learn more",
@@ -28,6 +27,7 @@
     },
     "grid_bpk4Lw": {
       "type": "grid",
+      "disabled": true,
       "settings": {
       }
     }

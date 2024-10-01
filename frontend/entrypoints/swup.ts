@@ -15,17 +15,17 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: "/collections/all",
       to: "/collections/:handle?",
-      containers: ["#collection-nav", '#product-grid']
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
     },
     {
       from: "/collections/:handle?",
       to: "/collections/all",
-      containers: ["#collection-nav", '#product-grid']
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
     },
     {
       from: "/collections/:handle?",
       to: "/collections/:handle?",
-      containers: ["#collection-nav", '#product-grid']
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
     }
   ]
 });

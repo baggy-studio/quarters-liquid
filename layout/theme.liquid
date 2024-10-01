@@ -28,7 +28,7 @@
     {% if template == 'index' %}
       <title>{{ page_title }}</title>
     {% else %}
-      <title>{{ page_title }} | {{ shop.name }}</title>
+      <title>{{ shop.name }} | {{ page_title }}</title>
     {% endif %}
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}

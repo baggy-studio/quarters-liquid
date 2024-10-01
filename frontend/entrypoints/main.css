@@ -147,6 +147,7 @@
  */
 
 #collection-nav,
+#collection-nav-clone,
 #product-grid,
 #main {
     @apply transition-opacity;
@@ -155,19 +156,23 @@
 
 html.is-animating #main,
 #collection-nav.is-animating,
-#product-grid.is-animating {
+#product-grid.is-animating,
+#collection-nav-clone.is-animating {
     opacity: 0;
-}
+} 
+
 
 html.is-changing #main,
 #collection-nav.is-changing,
-#product-grid.is-changing {
+#product-grid.is-changing,
+#collection-nav-clone.is-changing {
     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }
 
 html.is-leaving #main,
 #collection-nav.is-leaving,
-#product-grid.is-leaving {
+#product-grid.is-leaving,
+#collection-nav-clone.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }
 

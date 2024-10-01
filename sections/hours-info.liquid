@@ -1,0 +1,140 @@
+{% schema %}
+    {
+      "name": "Hours And Info",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Location"
+        },
+        {
+          "type": "richtext",
+          "id": "store_address",
+          "label": "Address"
+        },
+        {
+          "type": "richtext",
+          "id": "store_contact",
+          "label": "Contact"
+        },
+        {
+          "type": "richtext",
+          "id": "store_social",
+          "label": "Social Links"
+        },
+        {
+          "type": "header",
+          "content": "The Store"
+        },
+        {
+          "type": "richtext",
+          "id": "store_info",
+          "label": "Store Info"
+        },
+        {
+          "type": "header",
+          "content": "The Bar"
+        },
+        {
+          "type": "richtext",
+          "id": "bar_info",
+          "label": "Bar Info"
+        },
+        {
+          "type": "header",
+          "content": "Paragraph"
+        },
+        {
+          "type": "richtext",
+          "id": "additional_info",
+          "label": "Paragraph"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "image",
+          "name": "Gallery Image",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "gallery_image",
+              "label": "Image"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Hours And Info",
+          "category": "Store Content"
+        }
+      ]
+    }
+  {% endschema %}
+  
+  <div class="pt-[120px] lg:pt-[160px] w-full px-4">
+    <div class="flex flex-col lg:grid grid-cols-20 gap-x-3">
+      <div class="w-full lg:col-span-7 lg:col-start-3 flex flex-col gap-y-16">
+        <div class="flex flex-col gap-y-4 large-info">
+          <div>{{ section.settings.store_address }}</div>
+          <div>{{ section.settings.store_contact }}</div>
+          <div>{{ section.settings.store_social }}</div>
+        </div>
+        {% if section.settings.store_info  %}
+        <div>
+          <h2 class="subheading mb-4">the store</h2>
+          <div class="large-info richtext-info-links">{{ section.settings.store_info }}</div>
+        </div>
+        {% endif %}
+        {% if section.settings.bar_info %}
+        <div>
+          <h2 class="subheading mb-4">the bar</h2>
+          <div class="large-info richtext-info-links">{{ section.settings.bar_info }}</div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="w-full lg:col-span-9 lg:col-start-10 flex flex-col-reverse gap-y-16">
+        <div>
+          <div class="large-info space-y-4">{{ section.settings.additional_info }}</div>
+        </div>
+        <div>
+          <div class="flex gap-4">
+            {% for block in section.blocks %}
+              {% if block.type == 'image' %}
+                <div class="aspect-w-1 aspect-h-1">
+                  {% if block.settings.gallery_image != blank %}
+                    {{ block.settings.gallery_image | img_url: '3000x3000', crop: 'center' | img_tag: 'Gallery Image', 'w-full h-full object-cover' }}
+                  {% else %}
+                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <span class="text-gray-500">No image</span>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% stylesheet %}
+    .richtext-info-links > a {
+        border-bottom: 1px solid currentColor;
+        font-size: 14px;
+        line-height: 18px;
+        color: currentColor;
+        transition: opacity 300ms linear;
+    }
+
+    .richtext-info-links > a:hover {
+        opacity: 0.5;
+        transition-delay: 0s;
+    }
+
+    @media (min-width: 1024px) {
+        .richtext-info-links > a {
+            font-size: 13px;
+            line-height: 17px;
+        }
+    }
+  {% endstylesheet %}

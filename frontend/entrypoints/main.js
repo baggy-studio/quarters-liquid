@@ -13,6 +13,7 @@ import cartForm from "@/components/cart-form";
 import cartLine from "@/components/cart-line";
 import carousel from "@/components/carousel";
 import productCarousel from "@/components/product-carousel";
+import hoursCarousel from "@/components/hours-info-carousel";
 import productRecommendations from "@/components/product-recommendations";
 import newsletter from "@/components/newsletter";
 import cookieConsent from "@/components/cookie-consent";

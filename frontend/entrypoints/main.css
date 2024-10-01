@@ -167,8 +167,26 @@ html.is-leaving #main,
     @apply hover:opacity-50 duration-300 ease-linear w-max;
 }
 
-.richtext-info-links > a {
+
+.richtext-info-links a {
     @apply font-sans text-[14px] leading-[18px] lg:text-[13px] lg:leading-[17px] text-current transition-opacity duration-300 ease-linear hover:opacity-50 hover:delay-0;
+    position: relative;
+    padding-left: 1.5em;
+}
+
+
+.richtext-info-links a::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+
+.richtext-info-links a:hover::before {
+    opacity: 0.5;
 }
 
 

@@ -68,7 +68,7 @@
 
               {% assign rendered_small_count = rendered_small_count | plus: 1 %}
 
-              <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+              <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
                 {% render 'image',
                   image: media,
                   width: 260,
@@ -91,7 +91,7 @@
 
               {% assign media_id_number = media_id | plus: 0 %}
               {% assign media = product.media | where: 'id', media_id_number | first %}
-              <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+              <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
                 {% render 'image',
                   image: media,
                   width: 260,
@@ -123,11 +123,11 @@
       {% if total_media_count > 1 %}
         x-ref="large"
       {% endif %}
-      class="w-full aspect-[361/460] lg:aspect-auto h-full relative overflow-hidden"
+      class="w-full aspect-[361/460] lg:aspect-auto h-full relative overflow-visible lg:overflow-hidden"
     >
       <ul class="flex w-full h-full">
         {% if selected_variant_media %}
-          <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+          <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3">
             {% render 'image',
               image: selected_variant_media,
               width: 1112,
@@ -139,7 +139,7 @@
         {% endif %}
         {% if variant_media_metafields %}
           {% for media in variant_media_metafields %}
-            <li class="w-full h-full basis-full shrink-0 mr-5 relative overflow-hidden">
+            <li class="w-full h-full basis-full shrink-0 mr-4 lg:mr-3 relative overflow-hidden">
               {% render 'image',
                 image: media,
                 width: 1112,
@@ -154,7 +154,7 @@
             {% assign media_id_number = media_id | plus: 0 %}
             {% assign media = product.media | where: 'id', media_id_number | first %}
             {% if media != blank %}
-              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
+              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3">
                 {% if forloop.first and selected_variant_media == blank %}
                   {% render 'image',
                     image: media,

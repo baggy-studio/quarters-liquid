@@ -44,22 +44,24 @@
   {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
 {% endif %}
 
-{% assign rendered_small_count = 0 %}
-
 <template x-teleport="body">
-  <div class="fixed top-0 left-0 h-screen overflow-scroll w-full bg-charcoal text-bone z-[100]" x-show="visible">
+  <div
+    class="fixed top-0 left-0 h-screen overflow-scroll w-full bg-charcoal text-bone z-[100]"
+
+    x-show="visible"
+    x-cloak
+  >
     <div class="w-full relative sm:h-auto h-full">
       <div class="contents" id="product-full-screen">
-        <ul class="contents" x-data="{ index: 0 }">
+        <ul class="contents">
           {% if selected_variant_media %}
-            <li class="contents" :class="index === 0 ? 'contents' : 'hidden'">
+            <li :class="activeMedia === '{{ selected_variant_media.id }}' ? 'contents' : 'hidden'">
               <div class="hidden lg:contents">
                 {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw', natural: true %}
               </div>
               <div class="hidden sm:contents lg:hidden">
                 {% render 'image', image: selected_variant_media, width: 1024, sizes: '100vw', natural: true %}
               </div>
-
               <div class="contents sm:hidden">
                 {% render 'image', image: selected_variant_media, width: 640, sizes: '100vw' %}
               </div>
@@ -67,9 +69,7 @@
           {% endif %}
           {% if variant_media_metafields %}
             {% for media in variant_media_metafields %}
-              {% assign rendered_small_count = rendered_small_count | plus: 1 %}
-
-              <li class="hidden" :class="index === {{rendered_small_count}} ? 'contents' : 'hidden'">
+              <li :class="activeMedia === '{{ media.id }}' ? 'contents' : 'hidden'">
                 <div class="hidden lg:contents">
                   {% render 'image', image: media, width: 2000, sizes: '100vw', natural: true %}
                 </div>
@@ -88,17 +88,15 @@
               {% assign media_id_number = media_id | plus: 0 %}
               {% assign media = product.media | where: 'id', media_id_number | first %}
               {% if media != blank %}
-                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
-
-                <li class="hidden" :class="index === {{rendered_small_count}} ? 'contents' : 'hidden'">
+                <li :class="activeMedia === '{{ media.id }}' ? 'contents' : 'hidden'">
                   <div class="hidden lg:contents">
                     {% render 'image', image: media, width: 2000, sizes: '100vw', natural: true %}
                   </div>
-                  <div class="contents sm:hidden">
-                    {% render 'image', image: media, width: 640, sizes: '100vw', natural: true %}
-                  </div>
                   <div class="hidden sm:contents lg:hidden">
-                    {% render 'image', image: media, width: 1024, sizes: '100vw' %}
+                    {% render 'image', image: media, width: 1024, sizes: '100vw', natural: true %}
+                  </div>
+                  <div class="contents sm:hidden">
+                    {% render 'image', image: media, width: 640, sizes: '100vw' %}
                   </div>
                 </li>
               {% endif %}
@@ -139,6 +137,12 @@
               </svg>
             </a>
           </h1>
+          <div
+            :style="`--x: ${pointer.last.x}px; --y: ${pointer.last.y}px;`"
+            class="absolute top-0 left-0 will-change-transform pointer-events-auto translate-x-[--x] translate-y-[--y] italic font-corfe text-[24px] leading-none"
+          >
+            <span class="block pl-6">(Close)</span>
+          </div>
         </div>
       </div>
     </div>

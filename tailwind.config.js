@@ -25,7 +25,7 @@ export default {
         },
         citrus: '#DFFF00',
         bone: {
-          DEFAULT: '#E9E2C3',
+          DEFAULT: '#F4EED0',
           hover: '#F9F7E7',
           tint: '#FAF8EC'
         },

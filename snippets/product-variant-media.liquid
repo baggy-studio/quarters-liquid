@@ -53,15 +53,11 @@
     >
       <div
         x-ref="small-image"
-        {% if section.settings.disable_fullscreen == false %}
-          role="button"
-          title="View Fullscreen"
-        {% endif %}
         class="w-full"
       >
         <div
           x-ref="small"
-          class="w-full aspect-[130/162] relative overflow-hidden pointer-events-none"
+          class="w-full aspect-[130/162] relative overflow-hidden"
         >
           <ul class="flex w-full h-full">
             {% if variant_media_metafields %}
@@ -75,13 +71,29 @@
                 {% assign rendered_small_count = rendered_small_count | plus: 1 %}
 
                 <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
-                  {% render 'image',
-                    image: media,
-                    width: 260,
-                    height: 324,
-                    priority: is_priority,
-                    sizes: 'calc(10vw - 3.5px)'
-                  %}
+                  {% if section.settings.disable_fullscreen == false %}
+                    <button
+                      class="w-full h-max block"
+                      title="View Fullscreen"
+                      @click="openFullscreen('{{ media.id }}')"
+                    >
+                      {% render 'image',
+                        image: media,
+                        width: 260,
+                        height: 324,
+                        priority: is_priority,
+                        sizes: 'calc(10vw - 3.5px)'
+                      %}
+                    </button>
+                  {% else %}
+                    {% render 'image',
+                      image: media,
+                      width: 260,
+                      height: 324,
+                      priority: is_priority,
+                      sizes: 'calc(10vw - 3.5px)'
+                    %}
+                  {% endif %}
                 </li>
               {% endfor %}
             {% endif %}
@@ -98,24 +110,55 @@
                 {% assign media_id_number = media_id | plus: 0 %}
                 {% assign media = product.media | where: 'id', media_id_number | first %}
                 <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
-                  {% render 'image',
-                    image: media,
-                    width: 260,
-                    height: 324,
-                    sizes: 'calc(10vw - 3.5px)',
-                    priority: is_priority
-                  %}
+                  {% if section.settings.disable_fullscreen == false %}
+                    <button
+                      class="w-full h-max block"
+                      title="View Fullscreen"
+                      @click="openFullscreen('{{ media.id }}')"
+                    >
+                      {% render 'image',
+                        image: media,
+                        width: 260,
+                        height: 324,
+                        sizes: 'calc(10vw - 3.5px)',
+                        priority: is_priority
+                      %}
+                    </button>
+                  {% else %}
+                    {% render 'image',
+                      image: media,
+                      width: 260,
+                      height: 324,
+                      sizes: 'calc(10vw - 3.5px)',
+                      priority: is_priority
+                    %}
+                  {% endif %}
                 </li>
               {% endfor %}
             {% endif %}
             {% if selected_variant_media %}
               <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3">
-                {% render 'image',
-                  image: selected_variant_media,
-                  width: 260,
-                  height: 324,
-                  sizes: 'calc(10vw - 3.5px)'
-                %}
+                {% if section.settings.disable_fullscreen == false %}
+                  <button
+                    class="w-full h-max block"
+                    title="View Fullscreen"
+                    @click="openFullscreen('{{ selected_variant_media.id }}')"
+                  >
+                    {% render 'image',
+                      image: selected_variant_media,
+                      width: 260,
+                      height: 324,
+                      sizes: 'calc(10vw - 3.5px)'
+                    %}
+                  </button>
+                {% else %}
+                  {% render 'image',
+                    image: selected_variant_media,
+                    width: 260,
+                    height: 324,
+                    sizes: 'calc(10vw - 3.5px)'
+                  %}
+                {% endif %}
               </li>
             {% endif %}
           </ul>
@@ -125,10 +168,7 @@
   {% endif %}
   <div
     x-ref="large-image"
-    {% if section.settings.disable_fullscreen == false %}
-      role="button"
-      title="View Fullscreen"
-    {% endif %}
+
     class="w-full col-start-3 col-span-8 h-full lg:block contents group"
   >
     <div
@@ -140,24 +180,55 @@
       <ul class="flex w-full h-full">
         {% if selected_variant_media %}
           <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3">
-            {% render 'image',
-              image: selected_variant_media,
-              width: 1112,
-              height: 1336,
-              priority: true,
-              sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-            %}
+            {% if section.settings.disable_fullscreen == false %}
+              <button
+                class="w-full h-full block"
+                title="View Fullscreen"
+                @click="openFullscreen('{{ selected_variant_media.id }}')"
+              >
+                {% render 'image',
+                  image: selected_variant_media,
+                  width: 1112,
+                  height: 1336,
+                  priority: true,
+                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                %}
+              </button>
+            {% else %}
+              {% render 'image',
+                image: selected_variant_media,
+                width: 1112,
+                height: 1336,
+                priority: true,
+                sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+              %}
+            {% endif %}
           </li>
         {% endif %}
         {% if variant_media_metafields %}
           {% for media in variant_media_metafields %}
             <li class="w-full h-full basis-full shrink-0 mr-4 lg:mr-3 relative overflow-hidden">
-              {% render 'image',
-                image: media,
-                width: 1112,
-                height: 1336,
-                sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-              %}
+              {% if section.settings.disable_fullscreen == false %}
+                <button
+                  class="w-full h-full block"
+                  title="View Fullscreen"
+                  @click="openFullscreen('{{ media.id }}')"
+                >
+                  {% render 'image',
+                    image: media,
+                    width: 1112,
+                    height: 1336,
+                    sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                  %}
+                </button>
+              {% else %}
+                {% render 'image',
+                  image: media,
+                  width: 1112,
+                  height: 1336,
+                  sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                %}
+              {% endif %}
             </li>
           {% endfor %}
         {% endif %}
@@ -167,19 +238,32 @@
             {% assign media = product.media | where: 'id', media_id_number | first %}
             {% if media != blank %}
               <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3">
+                {% assign is_priority = false %}
+
                 {% if forloop.first and selected_variant_media == blank %}
-                  {% render 'image',
-                    image: media,
-                    width: 1112,
-                    height: 1336,
-                    priority: true,
-                    sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
-                  %}
+                  {% assign is_priority = true %}
+                {% endif %}
+
+                {% if section.settings.disable_fullscreen == false %}
+                  <button
+                    class="w-full h-full block"
+                    title="View Fullscreen"
+                    @click="openFullscreen('{{ media.id }}')"
+                  >
+                    {% render 'image',
+                      image: media,
+                      width: 1112,
+                      height: 1336,
+                      priority: is_priority,
+                      sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
+                    %}
+                  </button>
                 {% else %}
                   {% render 'image',
                     image: media,
                     width: 1112,
                     height: 1336,
+                    priority: is_priority,
                     sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                   %}
                 {% endif %}
@@ -188,7 +272,7 @@
           {% endfor %}
         {% endif %}
       </ul>
-      <div class="absolute top-0 left-0 w-full h-full py-3 flex justify-between flex-col items-end">
+      <div class="absolute top-0 left-0 w-full h-full py-3 flex justify-between flex-col items-end pointer-events-none">
         <div class="flex w-full justify-between items-start px-4">
           {% if section.settings.disable_fullscreen == false %}
             <p class="small-sans leading-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-linear">

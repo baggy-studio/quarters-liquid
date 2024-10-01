@@ -113,6 +113,13 @@
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
     }
+
+    .nav-gradient::before {
+        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        content: '';
+        background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
+        pointer-events: none;
+    }
 }
 
 @layer components {
@@ -159,7 +166,7 @@ html.is-animating #main,
 #product-grid.is-animating,
 #collection-nav-clone.is-animating {
     opacity: 0;
-} 
+}
 
 
 html.is-changing #main,
@@ -203,15 +210,6 @@ nav.is-menu {
     nav.is-cart {
         @apply text-mahogany delay-300;
     }
-}
-
-.nav-gradient::before {
-    @apply sticky left-0 w-full top-0 block transition-opacity duration-300 ease-linear;
-    content: '';
-    height: 120px;
-    background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
-    mix-blend-mode: normal;
-    pointer-events: none;
 }
 
 input {

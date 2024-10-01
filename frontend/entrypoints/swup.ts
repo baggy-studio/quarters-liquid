@@ -22,9 +22,9 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: '/pages/:utilityPage',
       to: '/pages/:utilityPage',
-      containers: ['#utility-content'],
-      name: 'utility-pages',
-      if: (visit) => isUtilityPage(visit.to.url)
+      containers: ['#utility'],
+      // name: 'utility-pages',
+      // if: (visit) => isUtilityPage(visit.to.url)
     }
   ],
   debug: true
@@ -87,17 +87,14 @@ export const swup = new Swup({
   // }
 });
 
-swup.hooks.on('visit:start', (visit) => {
-  console.log('Visit started:', visit);
-  const currentPage = visit.to.url.split('/').pop()?.split('?')[0] || '';
-  const isUtilityPage = utilityPages.includes(currentPage);
-  if (isUtilityPage) {
-    visit.containers = ['#utility-content'];
-    console.log('Utility page detected, updating only #utility-content');
-  } else {
-    visit.containers = ['#main'];
-    console.log('Non-utility page, updating #main');
-  }
+document.querySelectorAll('a[href]').forEach((el) => {
+  el.addEventListener('mouseenter', () => {
+    const fragmentVisit = fragmentPlugin.getFragmentVisit({
+      from: window.location.href, // the current URL
+      to: el.href // the URL of the link
+    });
+    console.log(`will replace ${fragmentVisit?.containers || swup.options.containers}`);
+  });
 });
 
 

@@ -6,7 +6,7 @@
           {% assign number = forloop.index | prepend: '0' | slice: -2, 2 %}
           {{ number }}
         </span>
-        <a href="{{ link.url }}?view=legal" 
+        <a href="{{ link.url }}" 
            class="col-span-9 flex items-center {% if link.current or link.active %}underline opacity-100{% else %}opacity-50{% endif %} hover:opacity-100 transition-opacity duration-300">
           <span class="flex items-center lg:text-2xl">
             {{ link.title }}

@@ -119,46 +119,38 @@
  * Here, we are animating the `.teaeser` elements individually
  */
 
+/*
+ * The transition when filtering the characters.
+ * Here, we are animating the `.teaeser` elements individually
+ */
+
  #collection-nav,
  #product-grid,
- #main,
- #utility-content {
-   @apply transition-opacity;
-   will-change: opacity;
+ #main, 
+ #utility {
+     @apply transition-opacity;
+     will-change: opacity;
  }
  
  html.is-animating #main,
  #collection-nav.is-animating,
  #product-grid.is-animating,
- html.is-animating #utility-content {
-   opacity: 0;
+ #utility.is-animating {
+     opacity: 0;
  }
  
  html.is-changing #main,
  #collection-nav.is-changing,
  #product-grid.is-changing,
- html.is-changing #utility-content {
-   @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+ #utility.is-changing {
+     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
  }
  
  html.is-leaving #main,
  #collection-nav.is-leaving,
  #product-grid.is-leaving,
- html.is-leaving #utility-content {
-   @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
- }
- 
- /* Specific rules for utility pages */
- html.is-animating.utility-pages #utility-content {
-   opacity: 0;
- }
- 
- html.is-changing.utility-pages #utility-content {
-   @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
- }
- 
- html.is-leaving.utility-pages #utility-content {
-   @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+ #utility.is-leaving {
+     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
  }
 
 .richtext a {

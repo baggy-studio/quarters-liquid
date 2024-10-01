@@ -1,12 +1,15 @@
-<style id="page-settings">
-  :root {
-    {% if section.settings.headerTheme == 'light' %}
-    --header-theme: #FAF8EC;
-    {% else %}
-    --header-theme: #684C0D;
-    {% endif %}
-  }
-</style>
+<div id="page-settings" class="contents">
+    <style>
+      :root {
+        {% if section.settings.headerTheme == 'light' %}
+        --header-theme: #FAF8EC;
+        {% else %}
+        --header-theme: #684C0D;
+        {% endif %}
+      }
+  </style>
+</div>
+
 
 {% schema %}
 {
@@ -22,6 +25,9 @@
         { "label": "Dark", "value": "dark" }
       ],
       "default": "dark"
+    },
+    {
+      
     }
   ],
   "presets": [

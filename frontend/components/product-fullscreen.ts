@@ -164,8 +164,9 @@ export default () => ({
     this.resize()
   },
   resize() {
-    this.transformWidth = window.innerWidth
-    this.transformHeight = window.innerWidth / this.activeMedia.aspectRatio
+    this.transformWidth = window.innerWidth;
+    const heightBasedOnAspectRatio = this.transformWidth / this.activeMedia.aspectRatio;
+    this.transformHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
   },
   getLargeImageDimensions() {
     const largeImage = document.querySelector('[data-large-image]')
@@ -188,10 +189,11 @@ export default () => ({
   async onAnimateOpen() {
     this.animating = true;
 
-    return await animate((progress) => {
-      const targetWidth = window.innerWidth;
-      const targetHeight = targetWidth / this.activeMedia.aspectRatio;
+    const targetWidth = window.innerWidth;
+    const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+    const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
 
+    return await animate((progress) => {
       this.transformX = range(0, 1, this.fromPosition.left, 0, progress);
       this.transformY = range(0, 1, this.fromPosition.top, 0, progress);
       this.transformWidth = range(0, 1, this.fromPosition.width, targetWidth, progress);
@@ -204,7 +206,8 @@ export default () => ({
 
     const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen-fixed]')?.getBoundingClientRect().top ?? 0);
     const startWidth = window.innerWidth;
-    const startHeight = startWidth / this.activeMedia.aspectRatio;
+    const heightBasedOnAspectRatio = startWidth / this.activeMedia.aspectRatio;
+    const startHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
 
     return await animate((progress) => {
       this.transformX = range(0, 1, 0, this.fromPosition.left, progress)

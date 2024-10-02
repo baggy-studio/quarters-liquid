@@ -41,13 +41,19 @@ export default (
     });
   },
   next() {
-    this.carousels.large.scrollNext();
+    if (this.carousels.large) { 
+      this.carousels.large.scrollNext();
+    }
   },
   prev() {
-    this.carousels.large.scrollPrev();
+    if (this.carousels.large) {
+      this.carousels.large.scrollPrev();
+    }
   },
   scrollTo(t) {
-    this.carousels.large.scrollTo(t);
+    if (this.carousels.large) {
+      this.carousels.large.scrollTo(t);
+    }
   },
   update(carousel) {
     if (!carousel) return;

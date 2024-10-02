@@ -146,6 +146,14 @@
     .button.is-alt {
         @apply bg-bone hover:bg-bone-tint text-mahogany;
     }
+
+    .rez-button {
+        @apply hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
+    }
+
+    .rez-button.is-alt {
+        @apply bg-transparent border-bone border hover:bg-bone hover:text-mahogany;
+    }
 }
 
 /*

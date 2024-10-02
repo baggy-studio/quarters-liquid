@@ -1,17 +1,16 @@
 <div id="page-settings" class="contents">
-  {% style %}  
-    :root {
-      --header-theme: {{ section.settings.textColor }};
-      --text-color: {{ section.settings.textColor }};
-      --background-color: {{ section.settings.backgroundColor }};
-    }
-    
-    html, body {
-      color: var(--text-color) !important;
-      background-color: var(--background-color) !important;
-    }
-
-{% endstyle %}
+  <style>
+      :root {
+        --header-theme: {{ section.settings.textColor }};
+        --text-color: {{ section.settings.textColor }};
+        --background-color: {{ section.settings.backgroundColor }};
+      }
+      
+      body {
+        color: var(--text-color);
+        background-color: var(--background-color);
+      }
+  </style>
 </div>
 
 {% schema %}
@@ -19,16 +18,6 @@
   "name": "Page Settings",
   "class": "contents",
   "settings": [
-    {
-      "type": "select",
-      "id": "headerTheme",
-      "label": "Initial Navigation Theme",
-      "options": [
-        { "label": "Light", "value": "light" },
-        { "label": "Dark", "value": "dark" }
-      ],
-      "default": "dark"
-    },
     {
       "type": "color",
       "id": "textColor",

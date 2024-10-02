@@ -4,7 +4,6 @@
     "colors": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "dark",
         "textColor": "#643600",
         "backgroundColor": "#d8d012"
       }
@@ -12,7 +11,8 @@
     "sidebar": {
       "type": "utility-menu",
       "settings": {
-        "menu": "utility-nav"
+        "menu": "utility-nav",
+        "secondary_text": "Thank you for visiting us. We encourage you to read our Privacy Policy before using our site. If you have any questions, please email hello@shopquarters.com."
       }
     },
     "main": {

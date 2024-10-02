@@ -4,7 +4,6 @@
     "page_settings_gVjcqU": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "light",
         "textColor": "#643600",
         "backgroundColor": "#f0da8f"
       }
@@ -12,7 +11,8 @@
     "sidebar": {
       "type": "utility-menu",
       "settings": {
-        "menu": "utility-nav"
+        "menu": "utility-nav",
+        "secondary_text": "Tktk FAQ secondary text"
       }
     },
     "faq_content_gJjAaz": {
@@ -21,59 +21,37 @@
         "faq_item_pV93nM": {
           "type": "faq_item",
           "settings": {
-            "question": "",
-            "answer": ""
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_pV93nM"
-      ],
-      "settings": {
-        "title": "ORDERS + SHIPPING",
-        "description": ""
-      }
-    },
-    "faq_content_jqBkFQ": {
-      "type": "faq-content",
-      "blocks": {
-        "faq_item_VNgfEd": {
-          "type": "faq_item",
-          "settings": {
-            "question": "",
-            "answer": ""
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
           }
         },
-        "faq_item_UFHTPx": {
+        "faq_item_tPdP4J": {
           "type": "faq_item",
           "settings": {
-            "question": "",
-            "answer": ""
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_eAciLK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_HXB4xX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
           }
         }
       },
       "block_order": [
-        "faq_item_VNgfEd",
-        "faq_item_UFHTPx"
-      ],
-      "settings": {
-        "title": "ORDERS + SHIPPING",
-        "description": ""
-      }
-    },
-    "faq_content_AVzrgA": {
-      "type": "faq-content",
-      "blocks": {
-        "faq_item_9McXHX": {
-          "type": "faq_item",
-          "settings": {
-            "question": "",
-            "answer": ""
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_9McXHX"
+        "faq_item_pV93nM",
+        "faq_item_tPdP4J",
+        "faq_item_eAciLK",
+        "faq_item_HXB4xX"
       ],
       "settings": {
         "title": "ORDERS + SHIPPING",
@@ -84,8 +62,6 @@
   "order": [
     "page_settings_gVjcqU",
     "sidebar",
-    "faq_content_gJjAaz",
-    "faq_content_jqBkFQ",
-    "faq_content_AVzrgA"
+    "faq_content_gJjAaz"
   ]
 }

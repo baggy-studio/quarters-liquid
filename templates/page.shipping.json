@@ -4,7 +4,6 @@
     "colors": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "dark",
         "textColor": "#f4eed0",
         "backgroundColor": "#022b26"
       }
@@ -12,7 +11,8 @@
     "sidebar": {
       "type": "utility-menu",
       "settings": {
-        "menu": "utility-nav"
+        "menu": "utility-nav",
+        "secondary_text": "Tktk Shipping and Returns secondary text. If you have any questions, please email hello@shopquarters.com."
       }
     },
     "main": {

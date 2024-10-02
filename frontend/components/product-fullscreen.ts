@@ -6,11 +6,14 @@ import { swup } from "../entrypoints/swup";
 
 export default () => ({
   abortController: new AbortController(),
+  abortControllerResize: new AbortController(),
   raf: null,
   aspectRatio: window.innerWidth / window.innerHeight,
   transformX: 0,
   transformY: 0,
   transformScale: 1,
+  transformWidth: window.innerWidth,
+  transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
   selectedIndex: 0,
   visible: false,
   animating: false,
@@ -25,10 +28,15 @@ export default () => ({
   fromPosition: {},
   fromLarge: false,
   mediaCount: 0,
+  media: [],
   contentReplace: () => { },
   init() {
     window.addEventListener('pointermove', this.move.bind(this), {
       signal: this.abortController.signal
+    })
+
+    window.addEventListener('resize', this.resize.bind(this), {
+      signal: this.abortControllerResize.signal
     })
 
     this.draw()
@@ -36,6 +44,16 @@ export default () => ({
     this.contentReplace = () => {
       setTimeout(() => {
         this.mediaCount = document.querySelector('[data-fullscreen]').dataset.count
+        this.media = Array.from(document.querySelectorAll('[data-fullscreen-image]')).map((el) => {
+          const width = parseFloat(el.dataset.width);
+          const height = parseFloat(el.dataset.height);
+          const aspectRatio = parseFloat(el.dataset.aspectRatio);
+          return {
+            width,
+            height,
+            aspectRatio
+          }
+        })
       }, 100)
     }
 
@@ -70,6 +88,7 @@ export default () => ({
   },
   destroy() {
     this.abortController.abort()
+    this.abortControllerResize.abort()
     swup.hooks.off('content:replace', this.contentReplace)
 
     if (this.raf) {
@@ -140,6 +159,13 @@ export default () => ({
   },
   advanceImage(index: number) {
     this.selectedIndex = index
+    document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 })
+
+    this.resize()
+  },
+  resize() {
+    this.transformWidth = window.innerWidth
+    this.transformHeight = range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1)
   },
   getLargeImageDimensions() {
     const largeImage = document.querySelector('[data-large-image]')
@@ -162,40 +188,34 @@ export default () => ({
   async onAnimateOpen() {
     this.animating = true
 
-    const fromScale = (this.fromPosition.width / window.innerWidth);
-
     return await animate((progress) => {
       this.transformX = range(0, 1, this.fromPosition.left, 0, progress)
       this.transformY = range(0, 1, this.fromPosition.top, 0, progress)
-      this.transformScale = range(0, 1, fromScale, 1, progress)
+      this.transformWidth = range(0, 1, this.fromPosition.width, window.innerWidth, progress)
+      this.transformHeight = range(0, 1, this.fromPosition.height, range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1), progress)
+
     }, { duration: 1.2, easing: expoInOut }).finished
   },
   async onAnimateClose() {
     this.animating = true
 
-    const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen]')?.getBoundingClientRect().top ?? 0);
-    const fromScale = (this.fromPosition.width / window.innerWidth);
+    const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen-fixed]')?.getBoundingClientRect().top ?? 0);
 
     return await animate((progress) => {
       this.transformX = range(0, 1, 0, this.fromPosition.left, progress)
       this.transformY = range(0, 1, 0, fromTop, progress)
-      this.transformScale = range(0, 1, 1, fromScale, progress)
-    }, { duration: 1.4, easing: expoInOut }).finished
+      this.transformWidth = range(0, 1, window.innerWidth, this.fromPosition.width, progress)
+      this.transformHeight = range(0, 1, range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1), this.fromPosition.height, progress)
 
+    }, { duration: 1.4, easing: expoInOut }).finished
   },
   get clipPath() {
     if (!this.visible) return 'none';
 
-    const fullscreenDimensions = this.getFullscreenDimensions();
-    if (!fullscreenDimensions) return 'none';
-
     const left = this.transformX;
     const top = this.transformY;
-    const width = fullscreenDimensions.width * this.transformScale;
-    const height = fullscreenDimensions.height * this.transformScale;
-
-    const right = fullscreenDimensions.width - (left + width);
-    const bottom = fullscreenDimensions.height - (top + height);
+    const right = window.innerWidth - (this.transformX + this.transformWidth);
+    const bottom = window.innerHeight - (this.transformY + this.transformHeight);
 
     return `inset(${top}px ${right}px ${bottom}px ${left}px)`;
   },
@@ -206,4 +226,7 @@ export default () => ({
     const index = this.selectedIndex + 1
     return index < 10 ? `0${index}` : index;
   },
+  get activeMedia() {
+    return this.media[this.selectedIndex]
+  }
 });

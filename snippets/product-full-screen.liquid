@@ -46,220 +46,230 @@
 
 <template x-teleport="#contents">
   <div
-    @fullscreen:close.window="closeFullscreen"
-    @keyup.escape.window="visible && closeFullscreen"
-    data-fullscreen-fixed
-    class="
-      fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
-      pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
-    "
-    :class="
+    x-data="
       {
-        'pointer-events-none opacity-0': !visible,
-        'overflow-hidden': animating,
-        'overflow-scroll': !animating
+        showCursor: true
       }
     "
+    class="contents"
+    :style="`--x: ${transformX}px; --y: ${transformY}px; --clip-path: ${clipPath}; --width: ${transformWidth}px; --height: ${transformHeight}px;`"
   >
     <div
-      :style="`--x: ${transformX}px; --y: ${transformY}px; --scale: ${transformScale}; --aspectRatio: ${aspectRatio}; --clip-path: ${clipPath}`"
-      class="lg:[will-change:clip-path] lg:[clip-path:--clip-path] relative"
-      x-data="
+      @fullscreen:close.window="closeFullscreen"
+      @keyup.escape.window="visible && closeFullscreen"
+      data-fullscreen-fixed
+      class="
+        fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
+        pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
+      "
+      :class="
         {
-          showCursor: true
+          'pointer-events-none opacity-0': !visible,
+          'overflow-hidden': animating,
+          'overflow-scroll': !animating
         }
       "
     >
-      <div
-        class="w-full h-auto"
-      >
-        <div class="contents">
-          {% assign rendered_count = 0 %}
-          <ul
-            data-fullscreen
-            data-count="{{ total_media_count }}"
-            class="w-full lg:origin-top-left relative lg:h-auto min-h-screen h-full lg:will-change-transform lg:translate-x-[--x] lg:translate-y-[--y] lg:scale-[--scale] lg:aspect-[--aspectRatio]"
-          >
-            {% if selected_variant_media %}
-              <li :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'">
-                {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw' %}
+      <div class="relative lg:h-auto w-full h-full">
+        {% assign rendered_count = 0 %}
+        <ul
+          data-fullscreen
+          data-count="{{ total_media_count }}"
+          class="w-full lg:origin-top-left relative h-full lg:will-change-[transform,width,height] lg:translate-x-[--x] lg:translate-y-[--y] lg:w-[--width] lg:h-[--height]"
+        >
+          {% if selected_variant_media %}
+            <li
+              data-fullscreen-image
+              data-aspect-ratio="{{ selected_variant_media.aspect_ratio }}"
+              data-width="{{ selected_variant_media.width }}"
+              data-height="{{ selected_variant_media.height }}"
+              :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
+            >
+              {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw' %}
+            </li>
+          {% endif %}
+          {% if variant_media_metafields %}
+            {% for media in variant_media_metafields %}
+              {% assign rendered_count = rendered_count | plus: 1 %}
+              <li
+                data-fullscreen-image
+                data-aspect-ratio="{{ media.aspect_ratio }}"
+                data-width="{{ media.width }}"
+                data-height="{{ media.height }}"
+                :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
+              >
+                {% render 'image', image: media, width: 2000, sizes: '100vw' %}
               </li>
-            {% endif %}
-            {% if variant_media_metafields %}
-              {% for media in variant_media_metafields %}
-                {% assign rendered_count = rendered_count | plus: 1 %}
-                <li :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'">
+            {% endfor %}
+          {% endif %}
+          {% if section.settings.share_product_media %}
+            {% for media_id in filtered_product_media_ids %}
+              {% assign media_id_number = media_id | plus: 0 %}
+              {% assign media = product.media | where: 'id', media_id_number | first %}
+
+              {% assign rendered_count = rendered_count | plus: 1 %}
+
+              {% if media != blank %}
+                <li
+                  data-fullscreen-image
+                  data-aspect-ratio="{{ media.aspect_ratio }}"
+                  data-width="{{ media.width }}"
+                  data-height="{{ media.height }}"
+                  :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
+                >
                   {% render 'image', image: media, width: 2000, sizes: '100vw' %}
                 </li>
-              {% endfor %}
-            {% endif %}
-            {% if section.settings.share_product_media %}
-              {% for media_id in filtered_product_media_ids %}
-                {% assign media_id_number = media_id | plus: 0 %}
-                {% assign media = product.media | where: 'id', media_id_number | first %}
-
-                {% assign rendered_count = rendered_count | plus: 1 %}
-
-                {% if media != blank %}
-                  <li :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'">
-                    {% render 'image', image: media, width: 2000, sizes: '100vw' %}
-                  </li>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-          </ul>
-          <button class="absolute left-0 inset-y-0 w-full lg:block hidden cursor-default" @click="closeFullscreen">
-            <span class="sr-only">Close</span>
-          </button>
-          <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
-            <span class="sr-only">Next image</span>
-          </button>
-          <div
-            class="absolute top-0 left-0 w-full bottom-0 pointer-events-none"
-          >
-            <div class="top-0 px-4 sticky h-screen w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
-              <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-between h-full">
-                <div class="w-full relative flex flex-col gap-4">
-                  <div class="w-full relative flex flex-col">
-                    <h1 class="large-serif">{{ product.title }}</h1>
-                    {% if product.metafields.custom.product_subtitle != blank %}
-                      <p class="large-italic font-droulers">{{ product.metafields.custom.product_subtitle }}</p>
-                    {% endif %}
-                  </div>
-                  {% render 'product-price', product: product, selected_variant: selected_variant %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+        <button class="absolute left-0 inset-y-0 w-full lg:block hidden cursor-default" @click="closeFullscreen">
+          <span class="sr-only">Close</span>
+        </button>
+        <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
+          <span class="sr-only">Next image</span>
+        </button>
+      </div>
+      <div class="fixed top-0 left-0 h-screen w-full bottom-0 lg:[will-change:clip-path] lg:[clip-path:--clip-path] pointer-events-none">
+        <div
+          class="absolute top-0 left-0 w-full bottom-0"
+        >
+          <div class="h-full px-4 w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
+            <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-between h-full">
+              <div class="w-full relative flex flex-col gap-4">
+                <div class="w-full relative flex flex-col">
+                  <h1 class="large-serif">{{ product.title }}</h1>
+                  {% if product.metafields.custom.product_subtitle != blank %}
+                    <p class="large-italic font-droulers">{{ product.metafields.custom.product_subtitle }}</p>
+                  {% endif %}
                 </div>
-                <div
+                {% render 'product-price', product: product, selected_variant: selected_variant %}
+              </div>
+              <div
+                :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+                class="w-full bottom-0 sticky"
+                @mouseenter="showCursor = false"
+                @mouseleave="showCursor = true"
+              >
+                {% render 'product-form', selected_variant: selected_variant, is_full_screen: true %}
+              </div>
+            </div>
+            <div
+              class="w-full h-full col-span-2 hidden lg:flex items-end col-start-[19] text-bone pb-4"
+            >
+              <div
+                class="w-full flex flex-col gap-2 duration-500 ease-in-out transition-opacity opacity-0"
+                :class="
+                  {
+                    'opacity-0': !visible
+                  }
+                "
+              >
+                <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
+                  <p x-text="index">1</p>
+                  <p>/</p>
+                  {% assign padded_total_media_count = total_media_count | prepend: '0' %}
+
+                  <p>{{ padded_total_media_count | slice: -2, 2 }}</p>
+                </div>
+                <ul
+                  class="grid w-full aspect-[130/164] relative overflow-hidden"
                   :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-                  class="w-full bottom-0 sticky"
                   @mouseenter="showCursor = false"
                   @mouseleave="showCursor = true"
                 >
-                  {% render 'product-form', selected_variant: selected_variant, is_full_screen: true %}
-                </div>
-              </div>
-              <div
-                class="w-full h-full col-span-2 hidden lg:flex items-end col-start-[19] text-bone pb-4"
-              >
-                <div
-                  class="w-full flex flex-col gap-2 duration-500 ease-in-out transition-opacity opacity-0"
-                  :class="
-                    {
-                      'opacity-0': visible && animating || !visible
-                    }
-                  "
-                >
-                  <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
-                    <p x-text="index">1</p>
-                    <p>/</p>
-                    {% assign padded_total_media_count = total_media_count | prepend: '0' %}
-
-                    <p>{{ padded_total_media_count | slice: -2, 2 }}</p>
-                  </div>
-                  <ul
-                    class="grid w-full aspect-[130/164] relative overflow-hidden"
-                    :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-                    @mouseenter="showCursor = false"
-                    @mouseleave="showCursor = true"
-                  >
-                    {% assign rendered_small_count = 0 %}
-                    {% if selected_variant_media %}
+                  {% assign rendered_small_count = 0 %}
+                  {% if selected_variant_media %}
+                    <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
+                      <button class="w-full h-full" @click="advanceImage(0)">
+                        {% render 'image',
+                          image: selected_variant_media,
+                          width: 260,
+                          sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
+                        %}
+                      </button>
+                    </li>
+                  {% endif %}
+                  {% if variant_media_metafields %}
+                    {% for media in variant_media_metafields %}
+                      {% assign rendered_small_count = rendered_small_count | plus: 1 %}
                       <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
-                        <button class="w-full h-full" @click="advanceImage(0)">
-                          {% render 'image',
-                            image: selected_variant_media,
-                            width: 260,
-                            sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
-                          %}
+                        <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
+                          {% render 'image', image: media, width: 260, sizes: 'calc(((100vw - 89px) / 10) - 1.5px)' %}
                         </button>
                       </li>
-                    {% endif %}
-                    {% if variant_media_metafields %}
-                      {% for media in variant_media_metafields %}
-                        {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+                    {% endfor %}
+                  {% endif %}
+                  {% if section.settings.share_product_media %}
+                    {% for media_id in filtered_product_media_ids %}
+                      {% assign media_id_number = media_id | plus: 0 %}
+                      {% assign media = product.media | where: 'id', media_id_number | first %}
+
+                      {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
+                      {% if media != blank %}
                         <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
                           <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
                             {% render 'image', image: media, width: 260, sizes: 'calc(((100vw - 89px) / 10) - 1.5px)' %}
                           </button>
                         </li>
-                      {% endfor %}
-                    {% endif %}
-                    {% if section.settings.share_product_media %}
-                      {% for media_id in filtered_product_media_ids %}
-                        {% assign media_id_number = media_id | plus: 0 %}
-                        {% assign media = product.media | where: 'id', media_id_number | first %}
-
-                        {% assign rendered_small_count = rendered_small_count | plus: 1 %}
-
-                        {% if media != blank %}
-                          <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
-                            <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
-                              {% render 'image',
-                                image: media,
-                                width: 260,
-                                sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
-                              %}
-                            </button>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    {% endif %}
-                  </ul>
-                </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="absolute top-0 left-0 bottom-0 w-full pointer-events-none">
-        <div class="w-full top-0 sticky pt-3">
-          <div class="flex items-center justify-end w-full px-4">
-            <h1 class="pt-[15px] absolute top-0 flex items-start justify-center left-0 w-full">
-              <a
-                href="/"
-                title="Quarters"
-                class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+          <div class="w-full top-0 absolute left-0 pt-3">
+            <div class="flex items-center justify-end w-full px-4">
+              <h1 class="pt-[15px] absolute top-0 flex items-start justify-center left-0 w-full">
+                <a
+                  href="/"
+                  title="Quarters"
+                  class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+                  :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+                >
+                  <svg
+                    class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
+                  >
+                    <use xlink:href="#wordmark"></use>
+                  </svg>
+                </a>
+              </h1>
+              <button
+                class="medium-serif lg:hidden"
+                title="Close"
+                @click="closeFullscreen"
                 :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
               >
-                <svg
-                  class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
-                >
-                  <use xlink:href="#wordmark"></use>
-                </svg>
-              </a>
-            </h1>
-            <button
-              class="medium-serif lg:hidden"
-              title="Close"
-              @click="closeFullscreen"
-              :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-            >
-              (Close)
-            </button>
+                (Close)
+              </button>
+            </div>
           </div>
-          <div
-            :style="`--x: ${pointer.last.x}px; --y: ${pointer.last.y}px;`"
-            class="absolute top-0 left-0 will-change-transform translate-x-[--x] translate-y-[--y] italic font-corfe text-[24px] leading-none touch:hidden"
+        </div>
+        <div
+          :style="`--x: ${pointer.last.x}px; --y: ${pointer.last.y}px;`"
+          class="absolute lg:block hidden top-0 left-0 will-change-transform translate-x-[--x] translate-y-[--y] italic font-corfe text-[24px] leading-none touch:hidden"
+        >
+          <span
+            class="block h-max w-max pointer-events-none duration-500 ease-in-out transition-opacity"
+            :class="
+              {
+                'opacity-0': !showCursor
+              }
+            "
           >
             <span
-              class="block h-max w-max pointer-events-none duration-500 ease-in-out transition-opacity"
+              class="block pl-6 duration-500 ease-in-out transition-opacity opacity-0"
               :class="
                 {
-                  'opacity-0': !showCursor
+                  'opacity-0': visible && animating || !visible
+
                 }
               "
+              >(Close)</span
             >
-              <span
-                class="block pl-6 duration-500 ease-in-out transition-opacity opacity-0"
-                :class="
-                  {
-                    'opacity-0': visible && animating || !visible
-
-                  }
-                "
-                >(Close)</span
-              >
-            </span>
-          </div>
+          </span>
         </div>
       </div>
     </div>

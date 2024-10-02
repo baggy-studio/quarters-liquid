@@ -44,15 +44,18 @@
   {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
 {% endif %}
 
-{% assign rendered_small_count = 0 %}
+{% assign rendered_small_count = 1 %}
+{% assign rendered_large_count = 0 %}
 
-<div x-data="productCarousel" class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
+<div x-data="productCarousel" 
+  @fullscreen:index.window="scrollTo($event.detail)"
+  class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
   {% if total_media_count > 1 %}
     <div
       class="w-full col-span-2 lg:flex items-end hidden"
     >
       <div
-        x-ref="small-image"
+        data-small-image
         class="w-full"
       >
         <div
@@ -68,14 +71,17 @@
                   {% assign is_priority = true %}
                 {% endif %}
 
-                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
-
                 <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
                   {% if section.settings.disable_fullscreen == false %}
                     <button
                       class="w-full h-max block"
                       title="View Fullscreen"
-                      @click="openFullscreen('{{ media.id }}')"
+                      @click="
+                        openFullscreen($event, {
+                          index: {{ rendered_small_count }},
+                          large: false
+                        })
+                      "
                     >
                       {% render 'image',
                         image: media,
@@ -95,13 +101,12 @@
                     %}
                   {% endif %}
                 </li>
+                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
               {% endfor %}
             {% endif %}
             {% if section.settings.share_product_media %}
               {% for media_id in filtered_product_media_ids %}
                 {% assign is_priority = false %}
-
-                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
 
                 {% if forloop.first and rendered_small_count == 1 %}
                   {% assign is_priority = true %}
@@ -109,12 +114,18 @@
 
                 {% assign media_id_number = media_id | plus: 0 %}
                 {% assign media = product.media | where: 'id', media_id_number | first %}
+                
                 <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden">
                   {% if section.settings.disable_fullscreen == false %}
                     <button
                       class="w-full h-max block"
                       title="View Fullscreen"
-                      @click="openFullscreen('{{ media.id }}')"
+                      @click="
+                        openFullscreen($event, {
+                          index: {{ rendered_small_count }},
+                          large: false
+                        })
+                      "
                     >
                       {% render 'image',
                         image: media,
@@ -134,6 +145,8 @@
                     %}
                   {% endif %}
                 </li>
+
+                {% assign rendered_small_count = rendered_small_count | plus: 1 %}
               {% endfor %}
             {% endif %}
             {% if selected_variant_media %}
@@ -142,7 +155,12 @@
                   <button
                     class="w-full h-max block"
                     title="View Fullscreen"
-                    @click="openFullscreen('{{ selected_variant_media.id }}')"
+                    @click="
+                      openFullscreen($event, {
+                        index: 0,
+                        large: false
+                      })
+                    "
                   >
                     {% render 'image',
                       image: selected_variant_media,
@@ -167,11 +185,10 @@
     </div>
   {% endif %}
   <div
-    x-ref="large-image"
-
     class="w-full col-start-3 col-span-8 h-full lg:block contents group"
   >
     <div
+      data-large-image
       {% if total_media_count > 1 %}
         x-ref="large"
       {% endif %}
@@ -184,7 +201,12 @@
               <button
                 class="w-full h-full block"
                 title="View Fullscreen"
-                @click="openFullscreen('{{ selected_variant_media.id }}')"
+                @click="
+                  openFullscreen($event, {
+                    index: {{ rendered_large_count }},
+                    large: true
+                  })
+                "
               >
                 {% render 'image',
                   image: selected_variant_media,
@@ -203,6 +225,8 @@
                 sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
               %}
             {% endif %}
+
+            {% assign rendered_large_count = rendered_large_count | plus: 1 %}
           </li>
         {% endif %}
         {% if variant_media_metafields %}
@@ -212,7 +236,12 @@
                 <button
                   class="w-full h-full block"
                   title="View Fullscreen"
-                  @click="openFullscreen('{{ media.id }}')"
+                  @click="
+                    openFullscreen($event, {
+                      index: {{ rendered_large_count }},
+                      large: true
+                    })
+                  "
                 >
                   {% render 'image',
                     image: media,
@@ -230,6 +259,7 @@
                 %}
               {% endif %}
             </li>
+            {% assign rendered_large_count = rendered_large_count | plus: 1 %}
           {% endfor %}
         {% endif %}
         {% if section.settings.share_product_media %}
@@ -248,7 +278,12 @@
                   <button
                     class="w-full h-full block"
                     title="View Fullscreen"
-                    @click="openFullscreen('{{ media.id }}')"
+                    @click="
+                      openFullscreen($event, {
+                        index: {{ rendered_large_count }},
+                        large: true
+                      })
+                    "
                   >
                     {% render 'image',
                       image: media,
@@ -269,6 +304,8 @@
                 {% endif %}
               </li>
             {% endif %}
+
+            {% assign rendered_large_count = rendered_large_count | plus: 1 %}
           {% endfor %}
         {% endif %}
       </ul>

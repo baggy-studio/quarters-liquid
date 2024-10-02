@@ -8,6 +8,9 @@ export default {
   },
   theme: {
     extend: {
+      screens: {
+        touch: { raw: '(pointer: coarse)' },
+      },
       fontFamily: {
         serif: ["ABC Marist", ...fontFamily.serif],
         sans: ["ABC Monument Grotesk", ...fontFamily.sans],

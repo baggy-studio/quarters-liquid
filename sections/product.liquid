@@ -26,9 +26,11 @@
       {% render 'product-variant-media', selected_variant: selected_variant %}
     </div>
   </section>
-  {% unless section.settings.disable_fullscreen %}
-    {% render 'product-full-screen', product: product, selected_variant: selected_variant %}
-  {% endunless %}
+  <div class="contents" id="product-fullscreen">
+    {% unless section.settings.disable_fullscreen %}
+      {% render 'product-full-screen', product: product, selected_variant: selected_variant %}
+    {% endunless %}
+  </div>
 </div>
 
 {% render 'product-breadcrumbs' %}

@@ -9,12 +9,6 @@ export default (
     large: null,
     small: null,
   },
-
-  largeCarousel: null,
-  smallCarousel: null,
-
-
-  carousel: null,
   canScrollNext: true,
   canScrollPrev: false,
   currentIndex: 0,

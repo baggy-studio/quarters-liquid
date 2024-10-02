@@ -28,7 +28,11 @@
     {% if template == 'index' %}
       <title>{{ page_title }}</title>
     {% else %}
-      <title>{{ shop.name }} | {{ page_title }}</title>
+      <title>
+        {{ shop.name }}
+        |
+        {{ page_title }}
+      </title>
     {% endif %}
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}
@@ -44,15 +48,17 @@
     {% render 'svg' %}
     <a class="sr-only" href="#main">Skip to main content</a>
     <div class="relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
-      {% section 'header' %}
-      <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
-        <main
-          id="main"
-          class="min-h-screen"
-        >
-          {{ content_for_layout }}
-        </main>
-        {% sections 'footer-group' %}
+      <div class="contents" id="contents">
+        {% section 'header' %}
+        <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
+          <main
+            id="main"
+            class="min-h-screen"
+          >
+            {{ content_for_layout }}
+          </main>
+          {% sections 'footer-group' %}
+        </div>
       </div>
       {% sections 'aside-group' %}
     </div>

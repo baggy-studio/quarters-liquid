@@ -1,9 +1,12 @@
 {% if template != 'index' %}
   <footer class="h-[--height] overflow-hidden z-[0]" x-data="footer" :style="`--height: ${height}px;`">
     <div class="w-full absolute top-0 bottom-0 left-0 flex items-end">
-      <div class="w-full bottom-0 sticky h-max" x-ref="footer">
-        <div class="w-full h-full flex justify-between pt-[120px] lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany text-bone flex-col gap-y-24">
-          <div class="px-4 w-full grid grid-cols-10 lg:grid-cols-20 gap-2 lg:gap-3">
+      <div class="w-full bottom-0 sticky h-screen lg:h-max">
+        <div
+          x-ref="footer"
+          class="w-full h-full flex flex-col justify-between footer-top-padding lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany text-bone gap-y-12 lg:gap-y-24"
+        >
+          <div class="px-4 w-full flex flex-col lg:grid lg:grid-cols-20 gap-2 lg:gap-3">
             <ul class="hidden lg:grid grid-cols-3 gap-3 col-span-9">
               {% for parentLink in section.settings.menu.links %}
                 <li class="contents">
@@ -30,27 +33,27 @@
                 </li>
               {% endfor %}
             </ul>
-            <ul class="flex flex-col lg:grid lg:grid-cols-3 lg:gap-3 lg:col-span-9 lg:col-start-12 gap-y-12">
+            <ul class="flex flex-col sm:grid grid-cols-2 lg:grid-cols-3 sm:gap-x-2 lg:gap-3 lg:col-span-9 lg:col-start-12 gap-y-12 xs:gap-y-6 sm:gap-y-12">
               {% if section.settings.location != blank %}
-                <li class="flex flex-col gap-4">
-                  <h4 class="subheading">Location</h4>
-                  <div class="flex flex-col gap-4 small-sans richtext-hover-only">
+                <li class="lg:flex lg:flex-col lg:gap-4 grid grid-cols-10 gap-2 pt-2 border-t border-t-current lg:pt-0 lg:border-t-0 ">
+                  <h4 class="subheading col-span-4">Location</h4>
+                  <div class="flex flex-col gap-4 small-sans richtext-hover-only col-span-6">
                     {{ section.settings.location }}
                   </div>
                 </li>
               {% endif %}
               {% if section.settings.store != blank %}
-                <li class="flex flex-col gap-4">
-                  <h4 class="subheading">The Store</h4>
-                  <div class="flex flex-col gap-4 small-sans richtext">
+                <li class="lg:flex lg:flex-col lg:gap-4 grid grid-cols-10 gap-2 pt-2 border-t border-t-current lg:pt-0 lg:border-t-0">
+                  <h4 class="subheading col-span-4">The Store</h4>
+                  <div class="flex flex-col gap-4 small-sans richtext col-span-6">
                     {{ section.settings.store }}
                   </div>
                 </li>
               {% endif %}
               {% if section.settings.bar != blank %}
-                <li class="flex flex-col gap-4">
-                  <h4 class="subheading">The Bar</h4>
-                  <div class="flex flex-col gap-4 small-sans richtext">
+                <li class="lg:flex lg:flex-col lg:gap-4 grid grid-cols-10 gap-2 pt-2 border-t border-t-current lg:pt-0 lg:border-t-0">
+                  <h4 class="subheading col-span-4">The Bar</h4>
+                  <div class="flex flex-col gap-4 small-sans richtext col-span-6">
                     {{ section.settings.bar }}
                   </div>
                 </li>
@@ -58,7 +61,7 @@
             </ul>
           </div>
           <div class="px-4 w-full flex flex-col-reverse gap-12 items-end lg:grid lg:grid-cols-20 lg:gap-3">
-            <div class="flex items-end col-span-9 pl-[30px]">
+            <div class="flex lg:items-end lg:col-span-9 lg:pl-[30px] w-full">
               <a
                 href="/"
                 title="Quarters"
@@ -71,7 +74,7 @@
                 </svg>
               </a>
             </div>
-            <div class="flex flex-col gap-4 col-span-8 col-start-12">
+            <div class="flex flex-col gap-4 lg:col-span-8 lg:col-start-12 w-full">
               {% render 'newsletter' %}
               <div class="flex items-center gap-4 subheading">
                 <p class="p4-souvenir">© Quarters {{ 'now' | date: '%Y' }}</p>
@@ -90,8 +93,17 @@
           </div>
         </div>
         <div class="overflow-hidden" x-collapse.duration.1200ms x-show="siteCredits">
-          <div class="w-full h-10 bg-chartreuse px-4 flex items-center richtext medium-accent">
-            {{ section.settings.credits }}
+          <div class="w-full h-[108px] lg:h-10 bg-chartreuse px-4 flex flex-col justify-between lg:justify-start py-4 lg:py-0 lg:flex-row lg:items-center richtext medium-accent">
+            <div class="contents">
+              {{ section.settings.credits }}
+            </div>
+            <button
+              title="Close"
+              @click="toggleCredits"
+              class="medium-accent lg:hidden w-max text-left block"
+            >
+              (Close)
+            </button>
           </div>
         </div>
       </div>

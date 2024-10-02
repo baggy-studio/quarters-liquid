@@ -9,6 +9,8 @@ export default {
   theme: {
     extend: {
       screens: {
+        'xs': '425px',
+        'sm': '640px',
         touch: { raw: '(pointer: coarse)' },
       },
       fontFamily: {

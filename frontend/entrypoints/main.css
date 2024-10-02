@@ -219,3 +219,7 @@ input {
 .page-divider {
     @apply absolute top-0 left-0 w-full h-full block;
 }
+
+.footer-top-padding {
+    @apply pt-[120px] sm:pt-[120px] xs:pt-[60px];
+}

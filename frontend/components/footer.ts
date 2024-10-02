@@ -4,23 +4,27 @@ import { range } from "@/utils";
 
 export default () => ({
     siteCredits: false,
-    footerHeight: 0,
     height: 0,
     animating: false,
     abortController: new AbortController(),
+    heights: {
+        desktop: 392,
+        mobile: window.innerHeight
+    },
     init() {
         this.resize()
-        window.addEventListener('resize', this.resize, { signal: this.abortController.signal })
+        window.addEventListener('resize', this.resize.bind(this), { signal: this.abortController.signal })
     },
     destroy() {
         this.abortController.abort()
     },
     resize() {
+        this.heights.mobile = window.innerHeight
+
         if (window.innerWidth < 1024) {
-            // mobile
+            this.height = !this.siteCredits ? this.heights.mobile : this.heights.mobile + 108
         } else {
-            this.height = !this.siteCredits ? 392 : 392 + 40
-            console.log(this.height)
+            this.height = !this.siteCredits ? this.heights.desktop : this.heights.desktop + 40
         }
     },
     toggleCredits() {
@@ -28,6 +32,20 @@ export default () => ({
             this.closeCredits()
         } else {
             this.openCredits()
+        }
+    },
+    getFooterHeight() {
+        if (window.innerWidth < 1024) {
+            return this.heights.mobile
+        } else {
+            return this.heights.desktop
+        }
+    },
+    getCreditsHeight() {
+        if (window.innerWidth < 1024) {
+            return 108
+        } else {
+            return 40
         }
     },
     async openCredits() {
@@ -39,18 +57,15 @@ export default () => ({
         const scrollLeft = document.documentElement.scrollHeight - window.scrollY
 
         await animate((progress) => {
-            this.height = range(0, 1, 392, 392 + 40, progress)
+            this.height = range(0, 1, this.getFooterHeight(), this.getFooterHeight() + this.getCreditsHeight(), progress)
 
-            const y = range(0, 1, scrollY, scrollY + 40 + scrollLeft, progress)
+            const y = range(0, 1, scrollY, scrollY + this.getCreditsHeight() + scrollLeft, progress)
 
             window.scrollTo({
                 top: y
             })
 
         }, { duration: 1.2, easing: expoInOut }).finished
-
-
-
         this.animating = false
     },
     async closeCredits() {
@@ -59,7 +74,7 @@ export default () => ({
         this.animating = true
 
         await animate((progress) => {
-            this.height = range(0, 1, 392 + 40, 392, progress)
+            this.height = range(0, 1, this.getFooterHeight() + this.getCreditsHeight(), this.getFooterHeight(), progress)
         }, { duration: 1.2, easing: expoInOut }).finished
 
         this.animating = false

@@ -141,7 +141,12 @@
                 class="w-full h-full col-span-2 hidden lg:flex items-end col-start-[19] text-bone pb-4"
               >
                 <div
-                  class="w-full flex flex-col gap-2"
+                  class="w-full flex flex-col gap-2 duration-500 ease-in-out transition-opacity opacity-0"
+                  :class="
+                    {
+                      'opacity-0': visible && animating || !visible
+                    }
+                  "
                 >
                   <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
                     <p x-text="index">1</p>
@@ -236,14 +241,24 @@
             class="absolute top-0 left-0 will-change-transform translate-x-[--x] translate-y-[--y] italic font-corfe text-[24px] leading-none touch:hidden"
           >
             <span
-              class="block pl-6 duration-500 ease-in-out transition-opacity"
+              class="block h-max w-max pointer-events-none duration-500 ease-in-out transition-opacity"
               :class="
                 {
-
+                  'opacity-0': !showCursor
                 }
               "
-              >(Close)</span
             >
+              <span
+                class="block pl-6 duration-500 ease-in-out transition-opacity opacity-0"
+                :class="
+                  {
+                    'opacity-0': visible && animating || !visible
+
+                  }
+                "
+                >(Close)</span
+              >
+            </span>
           </div>
         </div>
       </div>

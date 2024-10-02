@@ -1,5 +1,13 @@
 {
   "sections": {
+    "colors": {
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "light",
+        "textColor": "#f4eed0",
+        "backgroundColor": "#022b26"
+      }
+    },
     "main": {
       "type": "hours-info",
       "blocks": {
@@ -59,6 +67,7 @@
     }
   },
   "order": [
+    "colors",
     "main"
   ]
 }

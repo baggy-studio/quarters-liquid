@@ -31,7 +31,7 @@
       </div>
       <div class="w-full lg:col-span-13 col-start-9 flex flex-col-reverse lg:flex-col gap-y-16">
         <div class="lg:grid lg:grid-cols-12 gap-x-3">
-          <div class="large-info space-y-4 col-span-9 col-start-3 richtext">{{ section.settings.additional_info }}</div>
+          <div class="large-info space-y-4 col-span-9 col-start-3 richtext pb-[64px] lg:pb-0">{{ section.settings.additional_info }}</div>
         </div>
         <div>
           <div
@@ -47,14 +47,14 @@
             {% for block in section.blocks %}
               {% if block.type == 'image' %}
               <div class="embla__slide flex-[0_0_calc(78%-8px)] lg:flex-[0_0_calc(33.3%-12px)] mr-2 lg:mr-4">
-                  <div class="aspect-w-1 aspect-h-1">
-                    {% if block.settings.gallery_image != blank %}
-                      {{ block.settings.gallery_image | img_url: '1000x1000', crop: 'center' | img_tag: 'Gallery Image', 'w-full h-full object-cover' }}
-                    {% else %}
-                      <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                        <span class="text-gray-500">No image</span>
-                      </div>
+                  <div class="w-full aspect-[140/175] relative overflow-hidden">
+                      {% if block.settings.gallery_image != blank %}
+                        {% render 'image', image: block.settings.gallery_image , width: 402, height: 504, sizes: 'calc(10vw - 3.5px)', %}
                     {% endif %}
+                  </div>
+                  <div class="text-left mt-2 lg:hidden">
+                    {% assign image_number = forloop.index %}
+                    <span class="small-accent">{% if image_number < 10 %}0{% endif %}{{ image_number }}</span>
                   </div>
                 </div>
               {% endif %}

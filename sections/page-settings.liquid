@@ -1,12 +1,36 @@
-<style id="page-settings">
-  :root {
-    {% if section.settings.headerTheme == 'light' %}
-    --header-theme: #F4EED0;
-    {% else %}
-    --header-theme: #643600;
-    {% endif %}
-  }
-</style>
+<div id="page-settings" class="contents">
+  <style>
+      :root {
+        --text-color: {{ section.settings.textColor }};
+        --background-color: {{ section.settings.backgroundColor }};
+
+        {% if section.settings.headerTheme == 'light' %}
+          --header-theme: #F4EED0;
+        {% else %}
+          --header-theme: #643600;
+        {% endif %}
+      }
+      
+      body {
+        color: var(--text-color);
+        background-color: var(--background-color);
+      }
+{{ template  }}
+      {% if template == page.hours-info or page.faq or page.shipping or page.legal or page.privacy %}
+        body::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 120px;
+          background: linear-gradient(to bottom, var(--background-color) 0%, transparent 100%);
+          pointer-events: none;
+          z-index: 1;
+        }
+      {% endif %}
+  </style>
+</div>
 
 {% schema %}
 {
@@ -22,6 +46,18 @@
         { "label": "Dark", "value": "dark" }
       ],
       "default": "dark"
+    },
+    {
+      "type": "color",
+      "id": "textColor",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "backgroundColor",
+      "label": "Background Color",
+      "default": "#FFFFFF"
     }
   ],
   "presets": [

@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "dark"
+      }
+    },
+    "bar_menu_8XgrmG": {
+      "type": "bar-menu",
+      "blocks": {
+        "section_nepPTi": {
+          "type": "section",
+          "settings": {
+            "title": "Hours"
+          }
+        },
+        "section_CwiJBx": {
+          "type": "section",
+          "settings": {
+            "title": "Menu"
+          }
+        },
+        "section_ndnNxQ": {
+          "type": "section",
+          "settings": {
+            "title": "Events"
+          }
+        }
+      },
+      "block_order": [
+        "section_nepPTi",
+        "section_CwiJBx",
+        "section_ndnNxQ"
+      ],
+      "settings": {
+        "link": "https:\/\/resy.com\/cities\/new-york-ny",
+        "sticky_reservation_text": "Make a Reservation",
+        "initial_reservation_text": "Book a Table"
+      }
+    },
+    "bar_hero_kdrLGg": {
+      "type": "bar-hero",
+      "blocks": {
+        "desktop_nyL4iw": {
+          "type": "desktop",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bar-hero.png"
+          }
+        },
+        "mobile_UgpmAx": {
+          "type": "mobile",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bar-mobile.png"
+          }
+        }
+      },
+      "block_order": [
+        "desktop_nyL4iw",
+        "mobile_UgpmAx"
+      ],
+      "settings": {
+      }
+    },
+    "hero_WetHW4": {
+      "type": "hero",
+      "settings": {
+        "wordmark": true,
+        "content": "",
+        "address": "",
+        "contact": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "bar_menu_8XgrmG",
+    "bar_hero_kdrLGg",
+    "hero_WetHW4"
+  ]
+}

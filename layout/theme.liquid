@@ -55,9 +55,9 @@
             id="main"
             class="min-h-screen"
           >
-            {{ content_for_layout }}
+            {{ content_for_layout }} 
+            {% sections 'footer-group' %}
           </main>
-          {% sections 'footer-group' %}
         </div>
       </div>
       {% sections 'aside-group' %}

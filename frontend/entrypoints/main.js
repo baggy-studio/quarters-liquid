@@ -20,6 +20,8 @@ import app from "@/components/app";
 import collectionNav from "@/components/collection-nav";
 import productVariantSelector from "@/components/product-variant-selector";
 import productFullscreen from "@/components/product-fullscreen";
+import footer from "@/components/footer";
+
 import { getQuantity, money } from "@/utils";
 
 Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => {
@@ -47,6 +49,7 @@ Alpine.directive("money", (el, { expression }, { evaluateLater, effect }) => {
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
+Alpine.data("footer", footer);
 Alpine.data("cart", cart);
 Alpine.data("app", app);
 Alpine.data("cookieConsent", cookieConsent);

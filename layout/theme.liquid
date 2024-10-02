@@ -51,11 +51,10 @@
       <div class="contents" id="contents">
         {% section 'header' %}
         <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
-          <main
-            id="main"
-            class="min-h-screen"
-          >
-            {{ content_for_layout }} 
+          <main id="main">
+            <div class="min-h-screen z-[1] relative bg-bone-tint">
+              {{ content_for_layout }}
+            </div>
             {% sections 'footer-group' %}
           </main>
         </div>

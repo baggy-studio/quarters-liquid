@@ -46,10 +46,11 @@
 
 <template x-teleport="#contents">
   <div
+    @fullscreen:close.window="closeFullscreen"
     @keyup.escape.window="visible && closeFullscreen"
     data-fullscreen-fixed
     class="
-      fixed top-0 left-0 h-screen  w-full text-bone z-50
+      fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
       pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
     "
     :class="
@@ -205,21 +206,31 @@
         </div>
       </div>
       <div class="absolute top-0 left-0 bottom-0 w-full pointer-events-none">
-        <div class="w-full top-0 sticky pt-[15px]">
-          <h1 class="flex items-start w-full justify-center group">
-            <a
-              href="/"
-              title="Quarters"
-              class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+        <div class="w-full top-0 sticky pt-3">
+          <div class="flex items-center justify-end w-full px-4">
+            <h1 class="pt-[15px] absolute top-0 flex items-start justify-center left-0 w-full">
+              <a
+                href="/"
+                title="Quarters"
+                class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+                :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+              >
+                <svg
+                  class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
+                >
+                  <use xlink:href="#wordmark"></use>
+                </svg>
+              </a>
+            </h1>
+            <button
+              class="medium-serif lg:hidden"
+              title="Close"
+              @click="closeFullscreen"
               :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
             >
-              <svg
-                class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
-              >
-                <use xlink:href="#wordmark"></use>
-              </svg>
-            </a>
-          </h1>
+              (Close)
+            </button>
+          </div>
           <div
             :style="`--x: ${pointer.last.x}px; --y: ${pointer.last.y}px;`"
             class="absolute top-0 left-0 will-change-transform translate-x-[--x] translate-y-[--y] italic font-corfe text-[24px] leading-none touch:hidden"

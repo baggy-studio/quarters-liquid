@@ -154,71 +154,78 @@
                 {% render 'product-form', selected_variant: selected_variant, is_full_screen: true %}
               </div>
             </div>
-            <div
-              class="w-full h-full col-span-2 hidden lg:flex items-end col-start-[19] text-bone pb-4"
-            >
+            {% if total_media_count > 1 %}
               <div
-                class="w-full flex flex-col gap-2 duration-500 ease-in-out transition-opacity opacity-0"
-                :class="
-                  {
-                    'opacity-0': !visible || visible && animating
-                  }
-                "
+                class="w-full h-full col-span-2 hidden lg:flex items-end col-start-[19] text-bone pb-4"
               >
-                <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
-                  <p x-text="index">1</p>
-                  <p>/</p>
-                  {% assign padded_total_media_count = total_media_count | prepend: '0' %}
-
-                  <p>{{ padded_total_media_count | slice: -2, 2 }}</p>
-                </div>
-                <ul
-                  class="grid w-full aspect-[130/164] relative overflow-hidden"
-                  :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-                  @mouseenter="showCursor = false"
-                  @mouseleave="showCursor = true"
+                <div
+                  class="w-full flex flex-col gap-2 duration-500 ease-in-out transition-opacity opacity-0"
+                  :class="
+                    {
+                      'opacity-0': !visible || visible && animating
+                    }
+                  "
                 >
-                  {% assign rendered_small_count = 0 %}
-                  {% if selected_variant_media %}
-                    <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
-                      <button class="w-full h-full" @click="advanceImage(0)">
-                        {% render 'image',
-                          image: selected_variant_media,
-                          width: 260,
-                          sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
-                        %}
-                      </button>
-                    </li>
-                  {% endif %}
-                  {% if variant_media_metafields %}
-                    {% for media in variant_media_metafields %}
-                      {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+                  <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
+                    <p x-text="index">1</p>
+                    <p>/</p>
+                    {% assign padded_total_media_count = total_media_count | prepend: '0' %}
+
+                    <p>{{ padded_total_media_count | slice: -2, 2 }}</p>
+                  </div>
+
+                  <ul
+                    class="grid w-full aspect-[130/164] relative overflow-hidden"
+                    :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+                    @mouseenter="showCursor = false"
+                    @mouseleave="showCursor = true"
+                  >
+                    {% assign rendered_small_count = 0 %}
+                    {% if selected_variant_media %}
                       <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
-                        <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
-                          {% render 'image', image: media, width: 260, sizes: 'calc(((100vw - 89px) / 10) - 1.5px)' %}
+                        <button class="w-full h-full" @click="advanceImage(0)">
+                          {% render 'image',
+                            image: selected_variant_media,
+                            width: 260,
+                            sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
+                          %}
                         </button>
                       </li>
-                    {% endfor %}
-                  {% endif %}
-                  {% if section.settings.share_product_media %}
-                    {% for media_id in filtered_product_media_ids %}
-                      {% assign media_id_number = media_id | plus: 0 %}
-                      {% assign media = product.media | where: 'id', media_id_number | first %}
-
-                      {% assign rendered_small_count = rendered_small_count | plus: 1 %}
-
-                      {% if media != blank %}
+                    {% endif %}
+                    {% if variant_media_metafields %}
+                      {% for media in variant_media_metafields %}
+                        {% assign rendered_small_count = rendered_small_count | plus: 1 %}
                         <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
                           <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
                             {% render 'image', image: media, width: 260, sizes: 'calc(((100vw - 89px) / 10) - 1.5px)' %}
                           </button>
                         </li>
-                      {% endif %}
-                    {% endfor %}
-                  {% endif %}
-                </ul>
+                      {% endfor %}
+                    {% endif %}
+                    {% if section.settings.share_product_media %}
+                      {% for media_id in filtered_product_media_ids %}
+                        {% assign media_id_number = media_id | plus: 0 %}
+                        {% assign media = product.media | where: 'id', media_id_number | first %}
+
+                        {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+
+                        {% if media != blank %}
+                          <li :class="nextIndex === {{ rendered_small_count }} ? 'contents' : 'hidden'">
+                            <button class="w-full h-full" @click="advanceImage({{ rendered_small_count }})">
+                              {% render 'image',
+                                image: media,
+                                width: 260,
+                                sizes: 'calc(((100vw - 89px) / 10) - 1.5px)'
+                              %}
+                            </button>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+                </div>
               </div>
-            </div>
+            {% endif %}
           </div>
           <div class="w-full top-0 absolute left-0 pt-3">
             <div class="flex items-center justify-end w-full px-4">

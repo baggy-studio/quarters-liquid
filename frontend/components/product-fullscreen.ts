@@ -165,7 +165,7 @@ export default () => ({
   },
   resize() {
     this.transformWidth = window.innerWidth
-    this.transformHeight = range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1)
+    this.transformHeight = window.innerWidth / this.activeMedia.aspectRatio
   },
   getLargeImageDimensions() {
     const largeImage = document.querySelector('[data-large-image]')
@@ -186,26 +186,31 @@ export default () => ({
     return dimensions
   },
   async onAnimateOpen() {
-    this.animating = true
+    this.animating = true;
 
     return await animate((progress) => {
-      this.transformX = range(0, 1, this.fromPosition.left, 0, progress)
-      this.transformY = range(0, 1, this.fromPosition.top, 0, progress)
-      this.transformWidth = range(0, 1, this.fromPosition.width, window.innerWidth, progress)
-      this.transformHeight = range(0, 1, this.fromPosition.height, range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1), progress)
+      const targetWidth = window.innerWidth;
+      const targetHeight = targetWidth / this.activeMedia.aspectRatio;
 
-    }, { duration: 1.2, easing: expoInOut }).finished
+      this.transformX = range(0, 1, this.fromPosition.left, 0, progress);
+      this.transformY = range(0, 1, this.fromPosition.top, 0, progress);
+      this.transformWidth = range(0, 1, this.fromPosition.width, targetWidth, progress);
+      this.transformHeight = range(0, 1, this.fromPosition.height, targetHeight, progress);
+
+    }, { duration: 1.2, easing: expoInOut }).finished;
   },
   async onAnimateClose() {
     this.animating = true
 
     const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen-fixed]')?.getBoundingClientRect().top ?? 0);
+    const startWidth = window.innerWidth;
+    const startHeight = startWidth / this.activeMedia.aspectRatio;
 
     return await animate((progress) => {
       this.transformX = range(0, 1, 0, this.fromPosition.left, progress)
       this.transformY = range(0, 1, 0, fromTop, progress)
-      this.transformWidth = range(0, 1, window.innerWidth, this.fromPosition.width, progress)
-      this.transformHeight = range(0, 1, range(0, 1, this.activeMedia.height, this.activeMedia.width * this.activeMedia.aspectRatio, 1), this.fromPosition.height, progress)
+      this.transformWidth = range(0, 1, startWidth, this.fromPosition.width, progress)
+      this.transformHeight = range(0, 1, startHeight, this.fromPosition.height, progress)
 
     }, { duration: 1.4, easing: expoInOut }).finished
   },

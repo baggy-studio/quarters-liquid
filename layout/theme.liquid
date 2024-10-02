@@ -38,16 +38,8 @@
     -%}
     {% render 'fonts' %}
     {{ content_for_header }}
-
-    <style> 
-    :root {
-      --text-color: {{ page.metafields.custom.text_color | default: 'inherit' }} !important;
-      --background-color: {{ page.metafields.custom.background_color | default: 'inherit' }} !important;
-      --header-theme: {{ page.metafields.custom.text_color | default: 'inherit' }} !important;
-    }
-    </style>
 </head>
-<body data-template="{{ template }}" class="antialiased">
+<body data-template="{{ template }}" class="antialiased {{ template }}">
   {% render 'svg' %}
   <a class="sr-only" href="#main">Skip to main content</a>
   <div

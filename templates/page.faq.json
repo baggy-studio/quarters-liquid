@@ -1,58 +1,91 @@
 {
   "wrapper": "div.utilty_template",
   "sections": {
+    "page_settings_gVjcqU": {
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "light",
+        "textColor": "#643600",
+        "backgroundColor": "#f0da8f"
+      }
+    },
     "sidebar": {
       "type": "utility-menu",
       "settings": {
-        "menu": "utility-nav",
-        "secondary_text": "<p>Tktk FAQ secondary text<\/p>"
+        "menu": "utility-nav"
       }
     },
-    "main": {
+    "faq_content_gJjAaz": {
       "type": "faq-content",
       "blocks": {
-        "faq_category_c9nM9P": {
-          "type": "faq_category",
-          "settings": {
-            "category_name": "ORDERS + SHIPPING"
-          }
-        },
-        "faq_item_6r86Le": {
+        "faq_item_pV93nM": {
           "type": "faq_item",
           "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
-          }
-        },
-        "faq_item_VzpAC9": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
-          }
-        },
-        "faq_item_XqdEYY": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+            "question": "",
+            "answer": ""
           }
         }
       },
       "block_order": [
-        "faq_category_c9nM9P",
-        "faq_item_6r86Le",
-        "faq_item_VzpAC9",
-        "faq_item_XqdEYY"
+        "faq_item_pV93nM"
       ],
       "settings": {
-        "title": "Frequently Asked Questions",
+        "title": "ORDERS + SHIPPING",
+        "description": ""
+      }
+    },
+    "faq_content_jqBkFQ": {
+      "type": "faq-content",
+      "blocks": {
+        "faq_item_VNgfEd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        },
+        "faq_item_UFHTPx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_VNgfEd",
+        "faq_item_UFHTPx"
+      ],
+      "settings": {
+        "title": "ORDERS + SHIPPING",
+        "description": ""
+      }
+    },
+    "faq_content_AVzrgA": {
+      "type": "faq-content",
+      "blocks": {
+        "faq_item_9McXHX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_9McXHX"
+      ],
+      "settings": {
+        "title": "ORDERS + SHIPPING",
         "description": ""
       }
     }
   },
   "order": [
+    "page_settings_gVjcqU",
     "sidebar",
-    "main"
+    "faq_content_gJjAaz",
+    "faq_content_jqBkFQ",
+    "faq_content_AVzrgA"
   ]
 }

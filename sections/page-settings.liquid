@@ -1,15 +1,18 @@
 <div id="page-settings" class="contents">
-    <style>
-      :root {
-        {% if section.settings.headerTheme == 'light' %}
-        --header-theme: #FAF8EC;
-        {% else %}
-        --header-theme: #684C0D;
-        {% endif %}
-      }
-  </style>
-</div>
+  {% style %}  
+    :root {
+      --header-theme: {{ section.settings.textColor }};
+      --text-color: {{ section.settings.textColor }};
+      --background-color: {{ section.settings.backgroundColor }};
+    }
+    
+    html, body {
+      color: var(--text-color) !important;
+      background-color: var(--background-color) !important;
+    }
 
+{% endstyle %}
+</div>
 
 {% schema %}
 {
@@ -27,7 +30,16 @@
       "default": "dark"
     },
     {
-      
+      "type": "color",
+      "id": "textColor",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "backgroundColor",
+      "label": "Background Color",
+      "default": "#FFFFFF"
     }
   ],
   "presets": [

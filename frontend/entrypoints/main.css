@@ -218,7 +218,7 @@ input {
     }  
 }
 
-.utilty_template .utility-content h3 {
+.utilty_template .utility-content h3, .faq-category {
     @apply uppercase font-medium font-sans text-[11px] leading-[150%] tracking-[0.04em];
 }
 

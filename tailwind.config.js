@@ -8,6 +8,11 @@ export default {
   },
   theme: {
     extend: {
+      screens: {
+        'xs': '425px',
+        'sm': '640px',
+        touch: { raw: '(pointer: coarse)' },
+      },
       fontFamily: {
         serif: ["ABC Marist", ...fontFamily.serif],
         sans: ["ABC Monument Grotesk", ...fontFamily.sans],
@@ -18,14 +23,14 @@ export default {
         'midnight-green': "#022B26",
         olive: '#828C1A',
         chartreuse: '#D0D12C',
-        vanilla: '#F0D8AE',
+        vanilla: '#F0DA8F',
         mahogany: {
           DEFAULT: '#643600',
           hover: '#462600'
         },
         citrus: '#DFFF00',
         bone: {
-          DEFAULT: '#E9E2C3',
+          DEFAULT: '#F4EED0',
           hover: '#F9F7E7',
           tint: '#FAF8EC'
         },

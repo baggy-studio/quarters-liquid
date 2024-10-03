@@ -1,9 +1,14 @@
 {% assign selected_variant = product.selected_or_first_available_variant %}
 
-<section class="lg:h-[calc(100vh+1px)] pt-[120px] lg:pt-[160px] px-4 select-none">
-  <div class="w-full flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-3 border-y h-full border-current pt-2 lg:py-4 pb-12 relative">
-    <div class="lg:pt-[152px]">
-      <div class="w-full grid lg:grid-cols-2 gap-y-8 lg:gap-y-0 gap-3 lg:h-full">
+<div
+  class="contents"
+  {% unless section.settings.disable_fullscreen %}
+    x-data="productFullscreen"
+  {% endunless %}
+>
+  <section class="lg:h-[calc(100vh+1px)] pt-[120px] lg:pt-[160px] px-4 select-none overflow-hidden">
+    <div class="w-full flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-3 border-b h-full border-current pt-[73px] lg:py-4 pb-12 relative">
+      <div class="w-full grid lg:grid-cols-2 gap-y-8 lg:gap-y-0 gap-3 lg:h-full lg:pt-[152px]">
         <div class="w-full relative flex flex-col gap-8 lg:gap-0 lg:h-full justify-between">
           <div class="w-full relative flex flex-col gap-4">
             <div class="w-full relative flex flex-col">
@@ -18,13 +23,17 @@
         </div>
         {% render 'product-information', product: product, selected_variant: selected_variant %}
       </div>
+      {% render 'product-variant-media', selected_variant: selected_variant %}
     </div>
-    {% render 'product-variant-media', selected_variant: selected_variant %}
-    <div class="pb-4 w-full lg:w-max lg:pb-0 lg:block lg:absolute top-0 left-0 lg:pt-2">
-      {% render 'product-breadcrumbs' %}
-    </div>
+  </section>
+  <div class="contents" id="product-fullscreen">
+    {% unless section.settings.disable_fullscreen %}
+      {% render 'product-full-screen', product: product, selected_variant: selected_variant %}
+    {% endunless %}
   </div>
-</section>
+</div>
+
+{% render 'product-breadcrumbs' %}
 
 {% schema %}
 {
@@ -48,13 +57,6 @@
       "label": "Share Product Media",
       "info": "If enabled, the product media will be shared across all variants.",
       "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "remove_empty_metafields",
-      "label": "Remove Empty Metafields",
-      "info": "If enabled, the product metafields will be removed if they are empty.",
-      "default": false
     },
     {
       "type": "checkbox",

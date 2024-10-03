@@ -41,13 +41,13 @@
     </h3>
     {% if variant.available == false %}
       {% render 'product-status', type: 'sold-out' %}
-    {% elsif product.tags contains 'hold' %}
+    {% elsif product.tags contains 'Hold' %}
       {% render 'product-status', type: 'on-hold' %}
-    {% elsif product.tags contains 'inquire' %}
+    {% elsif product.tags contains 'Inquire' %}
       {% render 'product-status', type: 'inquire' %}
     {% elsif variant.available %}
       {% if variant.compare_at_price > 0 %}
-        <div class="flex flex-col">
+        <div class="flex gap-1">
           <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
           <p class="small-accent">{{ variant.price | money }}</p>
         </div>

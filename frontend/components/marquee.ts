@@ -1,7 +1,7 @@
 import EmblaCarousel from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 
-export default ({ speed }) => ({
+export default () => ({
   carousel: null,
   init() {
     this.carousel = EmblaCarousel(
@@ -13,7 +13,7 @@ export default ({ speed }) => ({
       [
         AutoScroll({
           startDelay: 0,
-          speed,
+          speed: 1,
           playOnInit: true,
           stopOnInteraction: false,
           stopOnFocusIn: false,

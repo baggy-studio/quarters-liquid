@@ -18,7 +18,7 @@
       </div>
     {% endif %}
     <ul class="w-full flex flex-col col-span-5">
-      {% if designer != blank or section.settings.remove_empty_metafields == false %}
+      {% if designer != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Designer</p>
           {% if designer %}
@@ -28,7 +28,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if producer != blank or section.settings.remove_empty_metafields == false %}
+      {% if producer != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Producer</p>
           {% if producer %}
@@ -38,7 +38,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if origin != blank or section.settings.remove_empty_metafields == false %}
+      {% if origin != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Origin</p>
           {% if origin %}
@@ -48,7 +48,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if period != blank or section.settings.remove_empty_metafields == false %}
+      {% if period != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Period</p>
           {% if period %}
@@ -58,7 +58,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if material != blank or section.settings.remove_empty_metafields == false %}
+      {% if material != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Material</p>
           {% if material %}
@@ -68,7 +68,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if finish != blank or section.settings.remove_empty_metafields == false %}
+      {% if finish != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Finish</p>
           {% if finish %}
@@ -78,7 +78,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if dimensions != blank or section.settings.remove_empty_metafields == false %}
+      {% if dimensions != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Dimensions</p>
           {% if dimensions %}
@@ -88,7 +88,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if weight != blank or section.settings.remove_empty_metafields == false %}
+      {% if weight != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Weight</p>
           {% if weight %}
@@ -98,7 +98,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if lead_time != blank or section.settings.remove_empty_metafields == false %}
+      {% if lead_time != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Lead Time</p>
           {% if lead_time %}
@@ -108,7 +108,7 @@
           {% endif %}
         </li>
       {% endif %}
-      {% if notes != blank or section.settings.remove_empty_metafields == false %}
+      {% if notes != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Notes</p>
           {% if notes %}

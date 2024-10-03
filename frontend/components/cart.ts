@@ -31,6 +31,10 @@ export default () => ({
             { before: true }
         );
 
+        swup.hooks.on("visit:start", () => {
+            this.close();
+        });
+
         // Create a URL object
         const { searchParams } = new URL(window.location.href);
         const cartParam = searchParams.get("cart");
@@ -42,6 +46,7 @@ export default () => ({
         Alpine.effect(() => {
             if (!this.loading) {
                 this.$dispatch("cart:complete");
+
             }
         });
 
@@ -84,6 +89,10 @@ export default () => ({
         } finally {
             if (fromAdd) {
                 this.open();
+
+                if (window.innerWidth < 1024) { 
+                    this.$dispatch("fullscreen:close");
+                }
             }
             this.loading = false;
         }

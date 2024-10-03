@@ -31,9 +31,10 @@
   {% endunless %}
 {% endfor %}
 
+{% capture breadcrumbs %}
 <ul class="w-full flex items-center gap-2 subheading">
   <li class="contents">
-    <a title="All Items" href="/collections/all" class="no-scroll leading-[1.5]">
+    <a title="All Items" href="/collections/all#shop" class="no-scroll leading-[1.5] pointer-events-auto">
       <span class="collection-link">All Items</span>
       {%- if product.collections.size > 1 -%}
         {%- if section.settings.menu -%}
@@ -50,8 +51,8 @@
         <li class="contents">
           <a
             title="{{ collection_level_one_title }}"
-            href="{{ collection_level_one.url }}"
-            class="no-scroll leading-[1.5]"
+            href="{{ collection_level_one.url }}#shop"
+            class="no-scroll leading-[1.5] pointer-events-auto"
             ><span class="collection-link">{{ collection_level_one_title }}</span>{% if collection_level_two != blank %},{% endif %}
           </a>
         </li>
@@ -60,8 +61,8 @@
         <li class="contents">
           <a
             title="{{ collection_level_two_title }}"
-            href="{{ collection_level_two.url }}"
-            class="no-scroll leading-[1.5]"
+            href="{{ collection_level_two.url }}#shop"
+            class="no-scroll leading-[1.5] pointer-events-auto"
             ><span class="collection-link">{{ collection_level_two_title }}</span>
           </a>
         </li>
@@ -70,7 +71,7 @@
       {% for collection in product.collections %}
         {% unless collection.handle == 'all' %}
           <li class="contents">
-            <a title="{{ collection.title }}" href="{{ collection.url }}" class="no-scroll leading-[1.5]"
+            <a title="{{ collection.title }}" href="{{ collection.url }}#shop" class="no-scroll leading-[1.5] pointer-events-auto"
               ><span class="collection-link">{{ collection.title }}</span>
               {%- unless forloop.last %},{% endunless %}
             </a>
@@ -79,4 +80,11 @@
       {% endfor %}
     {% endif %}
   {% endif %}
-</ul>
+  </ul>
+{% endcapture %}
+
+<div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none z-[1] px-4 nav-gradient">
+  <div class="w-full pt-2 border-t border-current sticky top-16">
+    {{ breadcrumbs }}
+  </div>
+</div>

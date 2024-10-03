@@ -1,5 +1,5 @@
 <header
-  class="fixed top-0 left-0 w-full h-screen z-50 pointer-events-none"
+  class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none"
 >
   <button
     :class="
@@ -12,7 +12,14 @@
     @click="closeMenu"
   ></button>
   {% render 'menu', menu: section.settings.menu %}
-  <h1 class="flex items-start absolute p-4 top-0 left-0 w-full h-full justify-center">
+  <h1
+    :class="
+      {
+        'is-menu': menu
+      }
+    "
+    class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
+  >
     <a
       href="/"
       title="Quarters"
@@ -28,6 +35,7 @@
         :class="
           {
             'opacity-0': activeUrl == '/' && !menu,
+            'opacity-100 lg:opacity-0': cartOpen && window.innerWidth < 1024,
             'pointer-events-auto': activeUrl !== '/' || menu
           }
         "
@@ -37,14 +45,14 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0': menu
+              'opacity-0': menu 
             }
           "
         {% endunless %}
 
         class="
           {% unless section.settings.hideHomepageHeader %}
-          group-[.is-menu]:delay-300 delay-500
+          group-[.is-cart]:delay-300 group-[.is-menu]:delay-300 delay-500
            {% endunless %}
           fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
         "
@@ -55,14 +63,15 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0 delay-500': activeUrl == '/' && !menu
+              'opacity-0 delay-500': activeUrl == '/' && !menu,
+              'opacity-100': cartOpen && window.innerWidth < 1024
             }
           "
         {% endunless %}
 
         class="
              {% unless section.settings.hideHomepageHeader %}
-            opacity-0  group-[.is-menu]:delay-300
+            opacity-0 group-[.is-menu]:delay-300 group-[.is-cart]:delay-300
           {% endunless %}
 
             absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
@@ -76,13 +85,12 @@
     aria-label="Main Navigation"
     :class="
       {
-        'is-menu': menu
+        'is-menu': menu,
+        'is-cart': cartOpen
       }
     "
     :style="`--header-theme: ${headerColor}`"
-    class="
-                                                    absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 transition-colors ease-linear duration-200 group
-    "
+    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200 group"
   >
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
@@ -113,7 +121,7 @@
       @click="toggleMenu"
       title="Toggle Menu"
       class="lg:hidden nav-link"
-      :class="menu ? 'opacity-0' : 'pointer-events-auto'"
+      :class="menu || cartOpen ? 'opacity-0' : 'pointer-events-auto'"
     >
       Menu
     </button>
@@ -129,11 +137,30 @@
     <button
       title="Bag"
       :class="menu && 'hidden'"
-      @click="$dispatch('cart:toggle')"
+      @click="toggleCartMenu"
       @cart:count.window="cartCount = $event.detail"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
-      Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)
+      <span
+        :class="
+          {
+            'hidden': cartOpen,
+            'contents': !cartOpen
+          }
+        "
+        class="contents lg:contents"
+        >Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)</span
+      >
+      <span
+        :class="
+          {
+            'contents': cartOpen,
+            'hidden': !cartOpen
+          }
+        "
+        class="hidden lg:hidden"
+        >(Close)</span
+      >
     </button>
   </nav>
 </header>
@@ -151,18 +178,19 @@
     {
       "type": "checkbox",
       "id": "hideHomepageHeader",
-      "label": "Hide Header on Homepage",
+      "label": "Hide Wordmark",
+      "info": "This will hide the large wordmark at the center of the Header for the homepage.",
       "default": true
     },
     {
       "type": "text",
       "id": "contentHeading",
-      "label": "DesktopContent Heading"
+      "label": "Desktop Content Heading"
     },
     {
       "type": "richtext",
       "id": "content",
-      "label": "DesktopContent"
+      "label": "Desktop Content"
     },
     {
       "type": "richtext",

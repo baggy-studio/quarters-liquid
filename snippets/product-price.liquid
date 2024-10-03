@@ -1,7 +1,7 @@
 <div id="product-price" class="flex flex-col">
   {% if selected_variant.available == false %}
     {% render 'product-status', type: 'sold-out', large: true %}
-  {% elsif selected_variant.available and product.tags contains 'hold' %}
+  {% elsif selected_variant.available and product.tags contains 'Hold' %}
     {% if selected_variant.compare_at_price > 0 %}
       <div class="flex flex-col">
         <p class="large-accent line-through opacity-50">{{ selected_variant.compare_at_price | money }}</p>
@@ -10,7 +10,7 @@
     {% else %}
       <p class="large-accent">{{ selected_variant.price | money }}</p>
     {% endif %}
-    {% if product.tags contains 'hold' %}
+    {% if product.tags contains 'Hold' %}
       {% render 'product-status', type: 'on-hold', large: true %}
     {% endif %}
   {% elsif selected_variant.available %}

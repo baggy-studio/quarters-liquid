@@ -35,8 +35,8 @@
       ],
       "settings": {
         "link": "https:\/\/resy.com\/cities\/new-york-ny",
-        "sticky_reservation_text": "Make a Reservation",
-        "initial_reservation_text": "Book a Table"
+        "sticky_reservation_text": "Book a Table",
+        "initial_reservation_text": "Make a Reservation"
       }
     },
     "bar_hero_kdrLGg": {
@@ -62,13 +62,57 @@
       "settings": {
       }
     },
-    "hero_WetHW4": {
-      "type": "hero",
+    "bar_events_ydm99L": {
+      "type": "bar-events",
+      "blocks": {
+        "event_WqWqk6": {
+          "type": "event",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/demo-1.png",
+            "caption": "Optional caption lorem ipsum dolor sit amet"
+          }
+        },
+        "event_aUAWHb": {
+          "type": "event",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/rez-2.png",
+            "caption": "Optional caption lorem ipsum dolor sit amet"
+          }
+        },
+        "event_aDUbQe": {
+          "type": "event",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/demo-4.png",
+            "caption": "Optional caption lorem ipsum dolor sit amet"
+          }
+        },
+        "event_xtjYyV": {
+          "type": "event",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/demo-1_e68c3233-0321-43d5-be71-523f825da1e8.png",
+            "caption": "Optional caption lorem ipsum dolor sit amet"
+          }
+        },
+        "event_tpEA7L": {
+          "type": "event",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/rez-2_a1817c21-019e-4330-a387-2f664d277426.png",
+            "caption": "Optional caption lorem ipsum dolor sit amet"
+          }
+        }
+      },
+      "block_order": [
+        "event_WqWqk6",
+        "event_aUAWHb",
+        "event_aDUbQe",
+        "event_xtjYyV",
+        "event_tpEA7L"
+      ],
       "settings": {
-        "wordmark": true,
-        "content": "",
-        "address": "",
-        "contact": ""
+        "title": "<p>Private Events and <\/p><p>Professional photography<\/p>",
+        "body": "<p>Quarters is available to book for private events, from semi-private dinners for up to 16 guests to cocktail parties for 30 to 125 guests. Our third floor space with a large private dining room and commercial kitchen is scheduled to open in 2025. <\/p><p>On occasion, the space can also be rented for photo and video shoots.<\/p>",
+        "cta_link": "mailto:hello@shopquarters.com",
+        "cta_text": "Inquire"
       }
     }
   },
@@ -76,6 +120,6 @@
     "main",
     "bar_menu_8XgrmG",
     "bar_hero_kdrLGg",
-    "hero_WetHW4"
+    "bar_events_ydm99L"
   ]
 }

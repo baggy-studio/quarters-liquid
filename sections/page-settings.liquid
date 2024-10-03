@@ -3,6 +3,8 @@
       :root {
         --text-color: {{ section.settings.textColor }};
         --background-color: {{ section.settings.backgroundColor }};
+        --footer-text-color: {{ section.settings.footerTextColor }};
+        --footer-background-color: {{ section.settings.footerBackgroundColor }};
 
         {% if section.settings.headerTheme == 'light' %}
           --header-theme: #F4EED0;
@@ -11,12 +13,18 @@
         {% endif %}
       }
       
-      body {
-        color: var(--text-color);
-        background-color: var(--background-color);
+      body, body > *, .body-bg {
+        color: var(--text-color) !important;
+        background-color: var(--background-color) !important;
       }
-{{ template  }}
-      {% if template == page.hours-info or page.faq or page.shipping or page.legal or page.privacy %}
+
+      footer > *, footer div, footer .logo-bg {
+        color: var(--footer-text-color) !important;
+        background-color: var(--footer-background-color) !important;
+      }
+
+
+      {% if template == 'page.hours-info' or template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
         body::before {
           content: '';
           position: fixed;
@@ -51,13 +59,25 @@
       "type": "color",
       "id": "textColor",
       "label": "Text Color",
-      "default": "#000000"
+      "default": "#643600"
     },
     {
       "type": "color",
       "id": "backgroundColor",
       "label": "Background Color",
-      "default": "#FFFFFF"
+      "default": "#FAF8EC"
+    },
+    {
+      "type": "color",
+      "id": "footerTextColor",
+      "label": "Footer Text Color",
+      "default": "#FAF8EC"
+    },
+    {
+      "type": "color",
+      "id": "footerBackgroundColor",
+      "label": "Footer Background Color",
+      "default": "#643600"
     }
   ],
   "presets": [

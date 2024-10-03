@@ -1,69 +1,70 @@
-  <div class="pt-[120px] lg:pt-[160px] w-full px-4 overflow-x-clip">
-    <div class="flex flex-col lg:grid grid-cols-20 gap-x-3 gap-y-[64px]">
-      <div class="w-full lg:col-span-5 lg:col-start-3 flex flex-col gap-y-16">
-        <div class="flex flex-col gap-y-4 large-info richtext-hover-only">
-          <div>{{ section.settings.store_address }}</div>
-          <div>{{ section.settings.store_contact }}</div>
-          <div>{{ section.settings.store_social }}</div>
-        </div>
-        {% if section.settings.store_info  %}
-        <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
-          <h2 class="subheading py-2 lg:pb-0">the store</h2>
-          {% assign content = section.settings.store_info | split: "||" %}
-          {% for item in content %}
-            <div class="large-info richtext-info-links">
-              {{ item }}
-            </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if section.settings.bar_info %}
-        <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
-          <h2 class="subheading py-2 lg:pb-0">the bar</h2>
-          {% assign content = section.settings.bar_info | split: "||" %}
-          {% for item in content %}
-            <div class="large-info richtext-info-links">
-              {{ item }}
-            </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-      <div class="w-full lg:col-span-13 col-start-9 flex flex-col-reverse lg:flex-col gap-y-16">
-        <div class="lg:grid lg:grid-cols-12 gap-x-3">
-          <div class="large-info space-y-4 col-span-9 col-start-3 richtext pb-[64px] lg:pb-0">{{ section.settings.additional_info }}</div>
-        </div>
-        <div>
-          <div
-            x-data="carousel({
-              loop: false,
-              dragFree: true,
-              containScroll: 'trimSnaps',
-              slidesToScroll: 1
-            })"
-            class="embla relative lg:overflow-hidden"
-          >
-          <div class="embla__container flex">
-            {% for block in section.blocks %}
-              {% if block.type == 'image' %}
-              <div class="embla__slide flex-[0_0_calc(78%-8px)] lg:flex-[0_0_calc(33.3%-12px)] mr-2 lg:mr-4">
-                  <div class="w-full aspect-[140/175] relative overflow-hidden">
-                      {% if block.settings.gallery_image != blank %}
-                        {% render 'image', image: block.settings.gallery_image , width: 402, height: 504, sizes: 'calc(10vw - 3.5px)', %}
-                    {% endif %}
-                  </div>
-                  <div class="text-left mt-2 lg:hidden">
-                    {% assign image_number = forloop.index %}
-                    <span class="small-accent">{% if image_number < 10 %}0{% endif %}{{ image_number }}</span>
-                  </div>
-                </div>
-              {% endif %}
+  <div class="pt-[120px] lg:pt-[160px] w-full px-4 overflow-x-clip z-10 relative pb-0 lg:pb-[64px]">
+      <div class="flex flex-col lg:grid grid-cols-20 gap-x-3 gap-y-[64px]">
+        <div class="w-full lg:col-span-5 lg:col-start-3 flex flex-col gap-y-16">
+          <div class="flex flex-col gap-y-4 large-info richtext-hover-only">
+            <div>{{ section.settings.store_address }}</div>
+            <div>{{ section.settings.store_contact }}</div>
+            <div>{{ section.settings.store_social }}</div>
+          </div>
+          {% if section.settings.store_info  %}
+          <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
+            <h2 class="subheading py-2 lg:pb-0">the store</h2>
+            {% assign content = section.settings.store_info | split: "||" %}
+            {% for item in content %}
+              <div class="large-info richtext-info-links">
+                {{ item }}
+              </div>
             {% endfor %}
           </div>
+          {% endif %}
+          {% if section.settings.bar_info %}
+          <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
+            <h2 class="subheading py-2 lg:pb-0">the bar</h2>
+            {% assign content = section.settings.bar_info | split: "||" %}
+            {% for item in content %}
+              <div class="large-info richtext-info-links">
+                {{ item }}
+              </div>
+            {% endfor %}
           </div>
+          {% endif %}
+        </div>
+        <div class="w-full lg:col-span-13 col-start-9 flex flex-col-reverse lg:flex-col gap-y-16">
+          <div class="lg:grid lg:grid-cols-12 gap-x-3">
+            <div class="large-info space-y-4 col-span-9 col-start-3 richtext pb-[64px] lg:pb-0">{{ section.settings.additional_info }}</div>
+          </div>
+          <div>
+            <div
+              x-data="carousel({
+                loop: false,
+                dragFree: true,
+                containScroll: 'trimSnaps',
+                slidesToScroll: 1
+              })"
+              class="embla relative lg:overflow-hidden"
+            >
+            <div class="embla__container flex">
+              {% for block in section.blocks %}
+                {% if block.type == 'image' %}
+                <div class="embla__slide flex-[0_0_calc(78%-8px)] lg:flex-[0_0_calc(33.3%-12px)] mr-2 lg:mr-4">
+                    <div class="w-full aspect-[140/175] relative overflow-hidden">
+                        {% if block.settings.gallery_image != blank %}
+                          {% render 'image', image: block.settings.gallery_image , width: 402, height: 504, sizes: 'calc(10vw - 3.5px)', %}
+                      {% endif %}
+                    </div>
+                    <div class="text-left mt-2 lg:hidden">
+                      {% assign image_number = forloop.index %}
+                      <span class="small-accent">{% if image_number < 10 %}0{% endif %}{{ image_number }}</span>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            </div>
+        </div>
+        </div>
       </div>
-    </div>
-  </div>
+</div>
 
   {% schema %}
     {

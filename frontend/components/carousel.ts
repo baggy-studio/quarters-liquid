@@ -12,7 +12,15 @@ export default (
   scrollSnaps: 0,
   index: 0,
   init() {
-    this.carousel = EmblaCarousel(this.$root, options);
+
+    if (this.$refs.container) {
+      this.carousel = EmblaCarousel(this.$refs.container, {
+        ...options,
+        container: this.$refs.container,
+      });
+    } else {
+      this.carousel = EmblaCarousel(this.$root, options);
+    }
 
     this.update(this.carousel);
 

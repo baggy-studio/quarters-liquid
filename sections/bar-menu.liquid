@@ -1,9 +1,9 @@
-<div class="absolute inset-0 z-10 pointer-events-none">
+<div class="absolute inset-0 z-10 pointer-events-none" style="--bottom: 0;">
   <div class="absolute inset-0 text-mahogany clip-after-100vh">
-    {% render 'sticky-bar-content' %}
+    {% render 'sticky-bar-content', mode: 'sticky' %}
   </div>
   <div class="absolute inset-0 text-bone clip-within-100vh">
-    {% render 'sticky-bar-content' %}
+    {% render 'sticky-bar-content', mode: 'initial' %}
   </div>
 </div>
 

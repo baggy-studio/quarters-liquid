@@ -120,6 +120,41 @@
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
+
+    .clip-after-100vh {
+        clip-path: inset(100vh 0 0 0);
+    }
+
+    .clip-within-100vh {
+        clip-path: inset(0 0 calc(100% - 100vh) 0);
+    }
+
+    .hero-bar-left-gradient {
+        /* 1/4 Gradient Fade */
+        @apply w-[50vw] h-full absolute left-0 bottom-0 top-0 block pointer-events-none;
+        background: linear-gradient(90deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply; 
+
+    }
+
+    .hero-bar-top-gradient {
+        @apply h-[160px] absolute left-0 top-0 w-full block pointer-events-none;
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .hero-bar-y-top {
+        @apply h-[120px] lg:h-[160px] absolute left-0 top-0 w-full block pointer-events-none z-[1];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .hero-bar-bottom {
+        @apply h-[120px] lg:h-[160px] absolute left-0 bottom-0 w-full block pointer-events-none z-[1];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+        transform: rotate(-180deg);
+    }
 }
 
 @layer components {
@@ -148,7 +183,7 @@
     }
 
     .rez-button {
-        @apply hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
+        @apply uppercase hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
     }
 
     .rez-button.is-alt {

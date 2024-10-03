@@ -1,5 +1,5 @@
-<div class="h-svh overflow-hidden w-full relative hero-y-gradient">
-  <div class="absolute top-0 left-0 w-full h-full">
+<div class="h-svh overflow-hidden w-full relative before:hero-bar-y-top after:hero-bar-bottom bg-vanilla">
+  <div class="absolute top-0 left-0 w-full h-full after:hero-bar-top-gradient lg:after:hero-bar-left-gradient">
     {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
 
     {% if allBlock != blank %}

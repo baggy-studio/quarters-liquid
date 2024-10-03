@@ -1,0 +1,111 @@
+<div class="w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 bg-vanilla overflow-hidden">
+  <div class="w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4">
+    <div class="col-span-7 col-start-4 medium-accent uppercase">
+      {{ section.settings.title }}
+    </div>
+    <div class="col-span-7 flex flex-col lg:grid lg:grid-cols-7 gap-x-3 gap-y-8">
+      <div class="medium-sans col-span-7 flex flex-col gap-y-8">{{ section.settings.body }}</div>
+      {% if section.settings.cta_link %}
+        <div class="col-span-5">
+          <a href="{{ section.settings.cta_link }}" class="rez-button">{{ section.settings.cta_text }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="w-full flex flex-col gap-8" x-data="carousel">
+    <div class="w-full contents lg:grid grid-cols-20 gap-3 px-4">
+      <div class="w-full flex items-center justify-between col-span-8  lg:col-span-18 col-start-2 px-4 lg:px-0">
+        <button
+          :disabled="!canScrollPrev"
+          aria-label="Prev slide"
+          class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible"
+          @click="prev"
+        >
+          ←
+        </button>
+        <button
+          :disabled="!canScrollNext"
+          aria-label="Next slide"
+          class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible"
+          @click="next"
+        >
+          →
+        </button>
+      </div>
+    </div>
+    <div class="w-full px-4">
+      <ul x-ref="container" class="w-full auto-cols-[calc(213/393*100%)] lg:auto-cols-[calc(699/(1440-32px)*100%)] grid grid-flow-col">
+        {% for block in section.blocks %}
+          <li class="shrink-0 basis-full flex flex-col gap-2 mr-[calc(45/393*100%)] lg:mr-[calc(83/(1440-16px)*100%)]">
+            <div
+              style="--aspectRatio: {{ block.settings.image.width }} / {{ block.settings.image.height }}"
+              class="w-full aspect-[--aspectRatio] relative overflow-hidden"
+            >
+              {% render 'image', image: block.settings.image, width: 699 %}
+            </div>
+            <p class="w-full text-left small-sans">
+              {{ block.settings.caption }}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bar Events",
+  "class": "contents",
+  "blocks": [
+    {
+      "type": "event",
+      "name": "Event",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "info": "The caption of the event"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "info": "The title of the events section"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "info": "The body of the events section"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "info": "The link of the CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "info": "The text of the CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bar Events"
+    }
+  ]
+}
+{% endschema %}

@@ -1,10 +1,6 @@
 <div class="contents" x-data="newsletter('{{ section.settings.listId }}')">
-  <div class="mb-2 w-full" x-show="error" x-transition.opacity>
-    <p x-text="error" class="text-error subheading"></p>
-  </div>
   <form
-    style="--color-foreground: currentColor; --color-background: #d0d12c;"
-    novalidate
+    style="--color-foreground: currentColor; --color-background: #d0d12c;" 
     class="border-b border-current flex items-center select-none relative group "
     :class="{ 'pointer-events-none': success }"
     {% if section.settings.listId != blank %}
@@ -13,6 +9,9 @@
       disabled
     {% endif %}
   >
+    <div class="mb-2 w-full absolute -top-4 left-0" x-show="error" x-transition.opacity>
+      <p x-text="error" class="text-error subheading"></p>
+    </div>
     <input
       x-model="email"
       type="email"
@@ -36,7 +35,6 @@
       "
       type="submit"
       class="small-sans p-0.5 cursor-pointer shrink-0 group-invalid:cursor-not-allowed peer-[&:not(:placeholder-shown):not(:focus):invalid]:before:content-['Invalid']  before:block relative hover:opacity-50 duration-300 ease-in-linear transition-all"
-    
     >
       <span class="sr-only" x-text="success ? 'Submitted' : 'Enter'">Submitted</span>
     </button>

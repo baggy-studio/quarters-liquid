@@ -1,13 +1,41 @@
-<div
-  class="w-full grid grid-cols-2 bg-[--bg-color]"
-  style="--color: {{ section.settings.color }}; --bg-color: {{ section.settings.background_color }};"
->
-  <div class="w-full relative">
-    <div class="w-full top-0 sticky h-screen overflow-hidden">
-      {% render 'image', image: section.settings.image, width: 720, height: 860, sizes: '50vw' %}
+<div class="w-full relative row-span-1 col-span-1">
+  <div
+    class="w-full grid grid-cols-2 bg-[--bg-color]"
+    style="--color: {{ section.settings.color }}; --bg-color: {{ section.settings.background_color }};"
+  >
+    <div class="w-full relative">
+      <div class="w-full top-0 sticky h-screen overflow-hidden flex items-end p-4 text-bone">
+        <div class="after:bar-left-gradient absolute inset-0 pointer-events-none">
+          {% render 'image', image: section.settings.image, width: 720, height: 860, sizes: '50vw' %}
+        </div>
+        <div class="w-full grid grid-cols-10 gap-3 relative">
+          <div class="col-span-5">
+            <div class="small-sans">
+              {{ section.settings.details }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <ul class="w-full text-[--color] py-32 grid grid-cols-10 gap-3 gap-y-16 pr-4 pl-1.5">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          <li class="col-span-8 flex flex-col gap-y-6 col-start-2">
+            <h5 class="subheading">{{ block.settings.heading }}</h5>
+            <div class="flex flex-col gap-y-6">
+              {% for block in section.blocks offset: forloop.index %}
+                {% if block.type == 'category' %}
+                  {% break %}
+                {% elsif block.type == 'item' %}
+                  {% render 'bar-item', item: block %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
   </div>
-  <div class="w-full  text-[--color]"></div>
 </div>
 
 {% schema %}
@@ -32,7 +60,7 @@
       "name": "Item",
       "settings": [
         {
-          "type": "text",
+          "type": "textarea",
           "id": "title",
           "label": "Title"
         },
@@ -45,7 +73,8 @@
           "type": "number",
           "id": "price",
           "label": "Price",
-          "info": "The price of the item without the currency symbol"
+          "info": "The price of the item without the currency symbol",
+          "default": 0
         }
       ]
     }

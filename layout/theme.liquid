@@ -54,13 +54,14 @@
           <main id="main">
             <div class="min-h-screen z-[1] relative bg-bone-tint">
               {{ content_for_layout }}
-
               {% if template.suffix == 'bar' %}
-                <div id="menus">
-                  <div class="w-full grid grid-cols-1 grid-rows-1">
+                {% if request.design_mode %}
+                  {% sections 'menus-group' %}
+                {% else %}
+                  <template x-teleport="#menu">
                     {% sections 'menus-group' %}
-                  </div>
-                </div>
+                  </template>
+                {% endif %}
               {% endif %}
             </div>
             {% sections 'footer-group' %}

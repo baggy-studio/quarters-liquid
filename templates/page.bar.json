@@ -3,25 +3,25 @@
     "main": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "light"
+        "headerTheme": "dark"
       }
     },
-    "sticky_bar_menu_wdkdfy": {
-      "type": "sticky-bar-menu",
+    "bar_menu_8XgrmG": {
+      "type": "bar-menu",
       "blocks": {
-        "section_qxUU4H": {
+        "section_nepPTi": {
           "type": "section",
           "settings": {
             "title": "Hours"
           }
         },
-        "section_QbJxEr": {
+        "section_CwiJBx": {
           "type": "section",
           "settings": {
             "title": "Menu"
           }
         },
-        "section_dERWXe": {
+        "section_ndnNxQ": {
           "type": "section",
           "settings": {
             "title": "Events"
@@ -29,14 +29,14 @@
         }
       },
       "block_order": [
-        "section_qxUU4H",
-        "section_QbJxEr",
-        "section_dERWXe"
+        "section_nepPTi",
+        "section_CwiJBx",
+        "section_ndnNxQ"
       ],
       "settings": {
         "link": "https:\/\/resy.com\/cities\/new-york-ny",
-        "sticky_reservation_text": "MAKE A RESERVATION",
-        "initial_reservation_text": "BOOK A TABLE"
+        "sticky_reservation_text": "Book a Table",
+        "initial_reservation_text": "Make a Reservation"
       }
     },
     "bar_hero_kdrLGg": {
@@ -161,17 +161,17 @@
         "body": "<p>Quarters is available to book for private events, from semi-private dinners for up to 16 guests to cocktail parties for 30 to 125 guests. Our third floor space with a large private dining room and commercial kitchen is scheduled to open in 2025. <\/p><p>On occasion, the space can also be rented for photo and video shoots.<\/p>",
         "cta_link": "mailto:hello@shopquarters.com",
         "cta_text": "Inquire"
-      }
-    },
-    "bar_menus_zQHJdc": {
+      },
+      "bar_menus_zQHJdc": {
       "type": "bar-menus",
       "settings": {
       }
     }
+    }
   },
   "order": [
     "main",
-    "sticky_bar_menu_wdkdfy",
+    "bar_menu_8XgrmG",
     "bar_hero_kdrLGg",
     "bar_details_DAFdQ3",
     "bar_menus_zQHJdc",

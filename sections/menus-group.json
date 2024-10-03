@@ -1,19 +1,41 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "name": "Menus",
   "type": "aside",
   "sections": {
-    
+    "bar_menu_6NgUfy": {
+      "type": "bar-menu",
+      "settings": {
+        "title": "Drinks",
+        "image": "shopify:\/\/shop_images\/bar-menu-1.png",
+        "details": "<p>Full wine list available upon request. Our cocktail program will launch in 2025.<\/p>",
+        "color": "#643600",
+        "background_color": "#d8d012"
+      }
+    },
+    "bar_menu_gKTkwY": {
+      "type": "bar-menu",
+      "settings": {
+        "title": "Daytime",
+        "image": "shopify:\/\/shop_images\/bar-2.png",
+        "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies or dietary restrictions.<\/p>",
+        "color": "#f4eed0",
+        "background_color": "#826c1a"
+      }
+    },
+    "bar_menu_iQxB8A": {
+      "type": "bar-menu",
+      "settings": {
+        "title": "Evening",
+        "image": "shopify:\/\/shop_images\/bar-3.png",
+        "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies or dietary restrictions.<\/p>",
+        "color": "#f4eed0",
+        "background_color": "#022b26"
+      }
+    }
   },
   "order": [
-    
+    "bar_menu_6NgUfy",
+    "bar_menu_gKTkwY",
+    "bar_menu_iQxB8A"
   ]
 }

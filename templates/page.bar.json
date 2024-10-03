@@ -3,25 +3,25 @@
     "main": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "dark"
+        "headerTheme": "light"
       }
     },
-    "bar_menu_8XgrmG": {
-      "type": "bar-menu",
+    "sticky_bar_menu_wdkdfy": {
+      "type": "sticky-bar-menu",
       "blocks": {
-        "section_nepPTi": {
+        "section_qxUU4H": {
           "type": "section",
           "settings": {
             "title": "Hours"
           }
         },
-        "section_CwiJBx": {
+        "section_QbJxEr": {
           "type": "section",
           "settings": {
             "title": "Menu"
           }
         },
-        "section_ndnNxQ": {
+        "section_dERWXe": {
           "type": "section",
           "settings": {
             "title": "Events"
@@ -29,14 +29,14 @@
         }
       },
       "block_order": [
-        "section_nepPTi",
-        "section_CwiJBx",
-        "section_ndnNxQ"
+        "section_qxUU4H",
+        "section_QbJxEr",
+        "section_dERWXe"
       ],
       "settings": {
         "link": "https:\/\/resy.com\/cities\/new-york-ny",
-        "sticky_reservation_text": "Book a Table",
-        "initial_reservation_text": "Make a Reservation"
+        "sticky_reservation_text": "MAKE A RESERVATION",
+        "initial_reservation_text": "BOOK A TABLE"
       }
     },
     "bar_hero_kdrLGg": {
@@ -166,7 +166,7 @@
   },
   "order": [
     "main",
-    "bar_menu_8XgrmG",
+    "sticky_bar_menu_wdkdfy",
     "bar_hero_kdrLGg",
     "bar_details_DAFdQ3",
     "bar_events_ydm99L"

@@ -12,6 +12,7 @@
     },
     "newsletter_WETVt4": {
       "type": "newsletter",
+      "disabled": true,
       "settings": {
         "content": "<p>Subscribe to our newsletter for<br\/>consectetur purus amet idetlorem fermentum lorem ipsum.<\/p>",
         "listId": "VFb6cz"
@@ -19,6 +20,7 @@
     },
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
+      "disabled": true,
       "settings": {
         "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
         "ctaText": "Learn more",
@@ -27,7 +29,6 @@
     },
     "grid_bpk4Lw": {
       "type": "grid",
-      "disabled": true,
       "settings": {
       }
     }

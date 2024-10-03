@@ -2,9 +2,12 @@
   <div class="w-full flex items-center justify-center h-screen lg:top-0 lg:sticky">
     <h1 class="w-[259px] h-[34px]">
       <svg
-        class="w-full h-full fill-current"
+        class="w-full h-full fill-current hidden lg:block"
       >
         <use xlink:href="#the-bar"></use>
+      </svg>
+      <svg class="w-full h-full fill-current lg:hidden">
+        <use xlink:href="#the-bar-mobile"></use>
       </svg>
     </h1>
     <div class="absolute inset-0 hidden lg:flex lg:items-end">
@@ -12,7 +15,7 @@
         <ul class="flex flex-col justify-end col-span-5">
           {% for block in section.blocks %}
             <li class="contents">
-              <a class="medium-serif text-current pointer-events-auto" href="#{{ block.settings.title | handleize }}">
+              <a class="medium-serif text-current pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity" href="#{{ block.settings.title | handleize }}">
                 {{ block.settings.title }}
               </a>
             </li>

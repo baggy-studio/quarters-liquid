@@ -23,7 +23,7 @@ export default {
         'midnight-green': "#022B26",
         olive: '#828C1A',
         chartreuse: '#D0D12C',
-        vanilla: '#F0D8AE',
+        vanilla: '#F0DA8F',
         mahogany: {
           DEFAULT: '#643600',
           hover: '#462600'

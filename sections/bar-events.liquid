@@ -1,4 +1,4 @@
-<div class="w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 bg-vanilla overflow-hidden">
+<div class="w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 bg-vanilla overflow-hidden" id="events">
   <div class="w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4">
     <div class="col-span-7 col-start-4 medium-accent uppercase">
       {{ section.settings.title }}
@@ -14,7 +14,7 @@
   </div>
   <div class="w-full flex flex-col gap-8" x-data="carousel">
     <div class="w-full contents lg:grid grid-cols-20 gap-3 px-4">
-      <div class="w-full flex items-center justify-between col-span-8  lg:col-span-18 col-start-2 px-4 lg:px-0">
+      <div class="w-full flex items-center justify-between col-span-8 lg:col-end-[20] col-start-2 px-4 lg:px-0">
         <button
           :disabled="!canScrollPrev"
           aria-label="Prev slide"

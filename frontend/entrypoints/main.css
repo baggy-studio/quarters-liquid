@@ -155,6 +155,10 @@
         mix-blend-mode: multiply;
         transform: rotate(-180deg);
     }
+
+    .has-arrow {
+        @apply before:content-['→'] before:block flex items-center gap-x-2.5;
+    }
 }
 
 @layer components {

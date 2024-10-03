@@ -22,7 +22,9 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/'];
+const lightRoutes = ['/']; 
+const initialLightRoutes = ['/pages/the-bar'];
+const inlineRoutes = ['/collections/', '/products/'];
 
 export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
@@ -63,10 +65,14 @@ export default (activeUrl: string = window.location.pathname) => ({
       return this.setTheme('light');
     }
 
+    if (initialLightRoutes.includes(toUrl)) {
+      return this.setTheme('light');
+    }
+
     return this.setTheme('dark');
   },
   setTheme(theme: 'light' | 'dark') {
-    this.headerColor = theme === 'light' ? '#FAF8EC' : '#684C0D';
+    this.headerColor = theme === 'light' ? '#F4EED0' : '#684C0D';
   },
   hide() {
     this.visible = false;
@@ -107,6 +113,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   updateMenuHeight(height = 0, url = this.activeUrl) {
 
+
     let progress = range(0, 1, 0, this.menuHeight, height);
 
     if ((url.includes('/collections/') || url.includes('/products/')) && window.innerWidth >= 1024) {
@@ -120,6 +127,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     } else {
       this.$root.style.setProperty('--menu-height', `${progress}px`);
     }
+
   },
   trackMenuHeight() {
     this.menuHeight = this.$refs.menu.getBoundingClientRect().height;
@@ -146,9 +154,5 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.removeEventListener('mousewheel', () => {
       this.closeMenu();
     });
-  },
-  onWheel(e: WheelEvent) {
-    e.preventDefault();
-    this.closeMenu();
   }
 });

@@ -25,7 +25,7 @@
       title="Quarters"
       class="
         relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
-        {% if section.settings.hideHomepageHeader and template == 'index' %}
+        {% if section.settings.hideHomepageHeader and template == 'index' or template.suffix == 'bar' %}
           opacity-0
         {% else %}
           pointer-events-auto
@@ -34,9 +34,9 @@
       {% if section.settings.hideHomepageHeader %}
         :class="
           {
-            'opacity-0': activeUrl == '/' && !menu,
+            'opacity-0': (activeUrl == '/' || activeUrl == '/pages/the-bar') && !menu,
             'opacity-100 lg:opacity-0': cartOpen && window.innerWidth < 1024,
-            'pointer-events-auto': activeUrl !== '/' || menu
+            'pointer-events-auto': (activeUrl !== '/' && activeUrl !== '/pages/the-bar') || menu
           }
         "
       {% endif %}
@@ -63,7 +63,7 @@
         {% unless section.settings.hideHomepageHeader %}
           :class="
             {
-              'opacity-0 delay-500': activeUrl == '/' && !menu,
+              'opacity-0 delay-500': (activeUrl == '/' || activeUrl == '/pages/the-bar') && !menu,
               'opacity-100': cartOpen && window.innerWidth < 1024
             }
           "

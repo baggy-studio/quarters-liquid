@@ -183,7 +183,7 @@
         mix-blend-mode: multiply;
         border: 1px solid #FF0000;
         transform: rotate(-90deg);
-    }
+    } 
 }
 
 @layer components {

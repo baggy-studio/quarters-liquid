@@ -4,6 +4,155 @@
   "sections": {
     "bar_menu_6NgUfy": {
       "type": "bar-menu",
+      "blocks": {
+        "category_Yycy4X": {
+          "type": "category",
+          "settings": {
+            "heading": "Sparkling"
+          }
+        },
+        "item_M9igxg": {
+          "type": "item",
+          "settings": {
+            "title": "Penedés Brut Nature Tinc Set Sparkling Wine (2022)",
+            "description": "<p>Xarel-lo, Parellada · Catalonia, Spain<\/p>",
+            "price": 0
+          }
+        },
+        "item_paEfaz": {
+          "type": "item",
+          "settings": {
+            "title": "Emilia Visio Rosato Spumante (2022)",
+            "description": "<p>Sorbara, Lambrusco Maestri · Emilia-Romagna, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "item_WAycEp": {
+          "type": "item",
+          "settings": {
+            "title": "Provincia di Mantova Lambrusco (2021)",
+            "description": "<p>Lambrusco · Lombardy, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "category_KfbFhq": {
+          "type": "category",
+          "settings": {
+            "heading": "White + Skin Contact"
+          }
+        },
+        "item_m3KNBF": {
+          "type": "item",
+          "settings": {
+            "title": "Vereinter Schatz White (2022)",
+            "description": "<p>Grüner Veltliner, Riesling · Niederösterreich, Austria<\/p>",
+            "price": 0
+          }
+        },
+        "item_V7FrbE": {
+          "type": "item",
+          "settings": {
+            "title": "Venezia Giulia Piantagrane Bianco (2022)",
+            "description": "<p>Pinot Grigio · Friuli-Venezia Giulia, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "item_pekXfz": {
+          "type": "item",
+          "settings": {
+            "title": "Terra Alta Les Alifares Vernatxa Gris (2021)",
+            "description": "<p>Grenache Gris · Catalonia, Spain<\/p>",
+            "price": 0
+          }
+        },
+        "category_ARJMyX": {
+          "type": "category",
+          "settings": {
+            "heading": "Red + Rose"
+          }
+        },
+        "item_VdPMNd": {
+          "type": "item",
+          "settings": {
+            "title": "Jeudi 15 Vino Rosato (2022)",
+            "description": "<p>Nerello Mascalese, Grenache · Sicily, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "item_RkLHpc": {
+          "type": "item",
+          "settings": {
+            "title": "Vendredi 13 (2021)",
+            "description": "<p>Nerello Mascalese, Nerello Cappuccio, Grenache, Minnella, Carricante · Sicily, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "item_hXfRjw": {
+          "type": "item",
+          "settings": {
+            "title": "Tktk Tktktk (20##)",
+            "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy<\/p>",
+            "price": 0
+          }
+        },
+        "category_GHcRNF": {
+          "type": "category",
+          "settings": {
+            "heading": "Zero-proof Cocktails"
+          }
+        },
+        "item_egqijV": {
+          "type": "item",
+          "settings": {
+            "title": "Margarita",
+            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave<\/p>",
+            "price": 0
+          }
+        },
+        "item_Pf69AF": {
+          "type": "item",
+          "settings": {
+            "title": "Spritz",
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>",
+            "price": 0
+          }
+        },
+        "item_rrxBJj": {
+          "type": "item",
+          "settings": {
+            "title": "Tiki",
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>",
+            "price": 0
+          }
+        },
+        "item_ac9grz": {
+          "type": "item",
+          "settings": {
+            "title": "Negroni",
+            "description": "<p>Tktk NA gin, Lyre’s Aperitif Rosso, Italian orange<\/p>",
+            "price": 0
+          }
+        }
+      },
+      "block_order": [
+        "category_Yycy4X",
+        "item_M9igxg",
+        "item_paEfaz",
+        "item_WAycEp",
+        "category_KfbFhq",
+        "item_m3KNBF",
+        "item_V7FrbE",
+        "item_pekXfz",
+        "category_ARJMyX",
+        "item_VdPMNd",
+        "item_RkLHpc",
+        "item_hXfRjw",
+        "category_GHcRNF",
+        "item_egqijV",
+        "item_Pf69AF",
+        "item_rrxBJj",
+        "item_ac9grz"
+      ],
       "settings": {
         "title": "Drinks",
         "image": "shopify:\/\/shop_images\/bar-menu-1.png",

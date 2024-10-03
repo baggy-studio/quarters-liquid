@@ -62,6 +62,54 @@
       "settings": {
       }
     },
+    "bar_details_DAFdQ3": {
+      "type": "bar-details",
+      "blocks": {
+        "media_k4T4RB": {
+          "type": "media",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_2.png",
+            "caption": "Daytime"
+          }
+        },
+        "media_naQ3bb": {
+          "type": "media",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_1.png",
+            "caption": "Apéro"
+          }
+        },
+        "media_Mn7Rix": {
+          "type": "media",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_3.png",
+            "caption": "Evening"
+          }
+        },
+        "media_6gHXye": {
+          "type": "media",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_4.png",
+            "caption": "Events"
+          }
+        }
+      },
+      "block_order": [
+        "media_k4T4RB",
+        "media_naQ3bb",
+        "media_Mn7Rix",
+        "media_6gHXye"
+      ],
+      "settings": {
+        "paragraph": "<p>Tktk A marriage of warmth and grandeur, whimsy and irreverence, Quarters is a multifaceted space that occupies 7,000 square feet over two floors of a historic 19th-century Tribeca loft. Tktk A marriage of warmth and grandeur.<\/p>",
+        "address": "<p>383 BROADWAY, FLOOR 2<br\/>NEW YORK, N.Y. 10013 <\/p>",
+        "phone": "<p>212-587-4040<\/p><p>(get directions)<\/p>",
+        "daytime": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.<\/p><p>Tuesday – Saturday<br\/>11:00 a.m. to 4:00 p.m.<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\" target=\"_blank\" title=\"https:\/\/resy.com\/cities\/new-york-ny\">Book a Table<\/a><\/p>",
+        "apero": "<p>Consectetur adipiscing elit. Donec lectus neque lorem ipsum dolor sit amet.<\/p><p>Thursday – Saturday<br\/>4:00pm to 5:00pm<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\" target=\"_blank\" title=\"https:\/\/resy.com\/cities\/new-york-ny\">Book a Table<\/a><\/p>",
+        "evening": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.<\/p><p>Thursday – Saturday<br\/>5:00pm to Midnight<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\" target=\"_blank\" title=\"https:\/\/resy.com\/cities\/new-york-ny\">Book a Table<\/a><\/p>",
+        "eyebrow": "See you soon!"
+      }
+    },
     "bar_events_ydm99L": {
       "type": "bar-events",
       "blocks": {
@@ -120,6 +168,7 @@
     "main",
     "bar_menu_8XgrmG",
     "bar_hero_kdrLGg",
+    "bar_details_DAFdQ3",
     "bar_events_ydm99L"
   ]
 }

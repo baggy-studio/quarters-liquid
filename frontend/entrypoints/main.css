@@ -163,7 +163,26 @@
     .bar-left-gradient {
         @apply absolute left-0 top-0 w-[50%] h-full block pointer-events-none;
         background: linear-gradient(90deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
-        mix-blend-mode: multiply; 
+        mix-blend-mode: multiply;
+    }
+
+    .bar-menu-top-gradient {
+        @apply absolute top-0 left-0 w-full h-16 block pointer-events-none;
+        background: linear-gradient(180deg, #F0DA8F 0%, rgba(240, 218, 143, 0) 100%);
+    }
+
+    .bar-menu-bottom-gradient {
+        @apply absolute bottom-0 left-0 w-full h-16 block pointer-events-none;
+        background: linear-gradient(180deg, rgba(240, 218, 143, 0) 0%, #F0DA8F 100%);
+    }
+
+    .bar-menu-mobile-gradient {
+        @apply absolute top-0 left-0 w-full h-full block pointer-events-none;
+
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+        border: 1px solid #FF0000;
+        transform: rotate(-90deg);
     }
 }
 

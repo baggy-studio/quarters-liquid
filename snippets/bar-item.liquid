@@ -1,9 +1,9 @@
-<div class="grid grid-cols-8 gap-3">
-  <div class="col-span-7">
+<div class="flex flex-col lg:grid lg:grid-cols-8 gap-2 lg:gap-3">
+  <div class="lg:col-span-7">
     <h6 class="medium-serif">{{ item.settings.title }}</h6>
     <div class="medium-sans">{{ item.settings.description }}</div>
   </div>
-  <div class="col-span-1">
+  <div class="lg:col-span-1">
     <p class="medium-accent whitespace-nowrap">
       {{ item.settings.price | money }}
     </p>

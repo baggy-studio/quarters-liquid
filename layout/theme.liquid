@@ -58,8 +58,10 @@
                 {% if request.design_mode %}
                   {% sections 'menus-group' %}
                 {% else %}
-                  <template x-teleport="#menu">
-                    {% sections 'menus-group' %}
+                  <template x-teleport="#menu-container">
+                    <div class="contents" x-data="{ menu: 'drinks' }" @set-menu.window="menu = $event.detail">
+                      {% sections 'menus-group' %}
+                    </div>
                   </template>
                 {% endif %}
               {% endif %}

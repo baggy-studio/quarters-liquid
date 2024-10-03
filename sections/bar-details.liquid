@@ -64,7 +64,7 @@
               <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
                 {{ block.settings.caption }}
               </p>
-              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+              <div class="h-auto lg:h-[calc(25vh-4px)] w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
                 {% if block.settings.video != blank %}
                   {% render 'video'; video: block.settings.video; loop: true %}
                 {% else %}
@@ -105,6 +105,7 @@
     </div>
   </div>
 </div>
+<div id="menus-container" class="content"></div>
 
 {% schema %}
 {

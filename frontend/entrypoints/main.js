@@ -21,6 +21,7 @@ import collectionNav from "@/components/collection-nav";
 import productVariantSelector from "@/components/product-variant-selector";
 import productFullscreen from "@/components/product-fullscreen";
 import footer from "@/components/footer";
+import barMenu from "@/components/bar-menu";
 
 import { getQuantity, money } from "@/utils";
 
@@ -64,4 +65,5 @@ Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
 Alpine.data("productVariantSelector", productVariantSelector);
 Alpine.data("productFullscreen", productFullscreen);
+Alpine.data("barMenu", barMenu);
 Alpine.start();

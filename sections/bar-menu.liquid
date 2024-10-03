@@ -1,62 +1,85 @@
-<div class="absolute inset-0 z-10 pointer-events-none" style="--bottom: 0;">
-  <div class="absolute inset-0 text-mahogany clip-after-100vh">
-    {% render 'sticky-bar-content', mode: 'sticky' %}
+<div
+  class="w-full grid grid-cols-2 bg-[--bg-color]"
+  style="--color: {{ section.settings.color }}; --bg-color: {{ section.settings.background_color }};"
+>
+  <div class="w-full relative">
+    <div class="w-full top-0 sticky h-screen overflow-hidden">
+      {% render 'image', image: section.settings.image, width: 720, height: 860, sizes: '50vw' %}
+    </div>
   </div>
-  <div class="absolute inset-0 text-bone clip-within-100vh">
-    {% render 'sticky-bar-content', mode: 'initial' %}
-  </div>
+  <div class="w-full  text-[--color]"></div>
 </div>
-
-<style>
-  .clip-after-100vh {
-    clip-path: inset(100vh 0 0 0);
-  }
-  .clip-within-100vh {
-    clip-path: inset(0 0 calc(100% - 100vh) 0);
-  }
-</style>
 
 {% schema %}
 {
-  "name": "Sticky Bar Menu",
+  "name": "Bar Menu",
   "class": "contents",
   "blocks": [
     {
-      "type": "section",
-      "name": "Section",
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Category"
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "name": "Item",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Title",
-          "info": "A title for the respective section on the Bar page"
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "number",
+          "id": "price",
+          "label": "Price",
+          "info": "The price of the item without the currency symbol"
         }
       ]
     }
   ],
   "settings": [
     {
-      "type": "url",
-      "id": "link",
-      "label": "Reservation Link",
-      "info": "The link for the reservation page"
+      "type": "text",
+      "id": "title",
+      "label": "Title"
     },
     {
-      "type": "text",
-      "id": "sticky_reservation_text",
-      "label": "Sticky Reservation Text",
-      "info": "The text for the sticky reservation CTA"
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
     },
     {
-      "type": "text",
-      "id": "initial_reservation_text",
-      "label": "Initial Reservation Text",
-      "info": "The text for the initial reservation CTA"
+      "type": "richtext",
+      "id": "details",
+      "label": "Details"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
     }
   ],
   "presets": [
     {
-      "name": "Sticky Bar Menu"
+      "name": "Bar Menu"
     }
   ]
 }

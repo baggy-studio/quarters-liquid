@@ -1,7 +1,9 @@
 <div
   class="w-full relative row-start-1 row-end-1 col-start-1 col-end-1"
+  {% unless request.design_mode %}
   x-show="'{{ section.settings.title | handleize }}' == menu"
   x-transition.opacity.duration.400ms
+  {% endunless %}
 >
   <div
     class="w-full grid lg:grid-cols-2 bg-[--bg-color]"

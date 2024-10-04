@@ -17,6 +17,7 @@ export default () => ({
   transformWidth: window.innerWidth,
   transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
   selectedIndex: 0,
+  showCursor: true, // Show cursor on desktop
   animating: false,
   pointer: {
     x: 0,
@@ -233,10 +234,6 @@ export default () => ({
     return index < 10 ? `0${index}` : index;
   },
 
-  // get activeMedia() {
-  //   return this.media[this.selectedIndex];
-  // },
-
   get activeMedia() {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.media.length) {
       console.warn(`Invalid selectedIndex: ${this.selectedIndex}. Media length: ${this.media.length}`);
@@ -251,5 +248,13 @@ export default () => ({
 
   unlockScroll() {
     document.body.style.overflow = '';
-  }
+  },
+  
+  handleMouseEnter() {
+    this.showCursor = false;
+  },
+
+  handleMouseLeave() {
+    this.showCursor = true;
+  },
 });

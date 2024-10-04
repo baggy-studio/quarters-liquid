@@ -1,3 +1,7 @@
+{% comment %}
+  snippets/hours-and-info-fullscreen-overlay.liquid
+{% endcomment %}
+
 <div
   x-show="visible"
   @fullscreen:close.window="closeFullscreen"
@@ -35,7 +39,7 @@
     </button>
   </div>
   <div class="fixed inset-0 w-full h-full lg:[will-change:clip-path] lg:[clip-path:var(--clip-path)] pointer-events-none" :style="`--clip-path: ${clipPath}`">
-    <div class="absolute inset-0 min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
+    <div class="absolute inset-0min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
       <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-end min-h-screen">
         <div class="w-full relative flex flex-col gap-4">
           <div class="w-full relative flex flex-row items-baseline gap-4">

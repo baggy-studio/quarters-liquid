@@ -4,8 +4,18 @@ import { expoInOut } from "@/easing";
 import { lerp, range } from "@/utils";
 import Alpine from "alpinejs";
 
-export default () => ({
+export default (
+  options = {
+    loop: true,
+  }
+) => ({
   carousel: null,
+  canScrollNext: true,
+  canScrollPrev: true,
+  canLoop: true,
+  scrollSnaps: 0,
+  index: 0,
+  initialized: false,
   abortController: new AbortController(),
   abortControllerResize: new AbortController(),
   raf: null,
@@ -17,7 +27,7 @@ export default () => ({
   transformWidth: window.innerWidth,
   transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
   selectedIndex: 0,
-  showCursor: true, // Show cursor on desktop
+  showCursor: true,
   animating: false,
   pointer: {
     x: 0,
@@ -33,25 +43,53 @@ export default () => ({
   media: [],
 
   init() {
-    this.carousel = EmblaCarousel(this.$refs.viewport, {
-      loop: false,
-      dragFree: true,
-      containScroll: 'trimSnaps',
-      slidesToScroll: 1
+    if (this.initialized) return;
+
+    this.$nextTick(() => {
+      if (this.$refs.viewport) {
+        console.log('Container found:', this.$refs.viewport);
+        this.initializeCarousel();
+      } else {
+        console.error("Container element not found");
+        console.log('$refs:', this.$refs);
+        console.log('$el:', this.$el);
+      }
+    });
+  },
+
+  initializeCarousel() {
+    if (this.carousel) return;
+
+    if (this.$refs.viewport) {
+      this.carousel = EmblaCarousel(this.$refs.viewport, {
+        ...options,
+        container: this.$refs.viewport,
+      });
+    } else {
+      this.carousel = EmblaCarousel(this.$root, options);
+    }
+
+    this.update(this.carousel);
+
+    this.carousel.on("init", (carousel) => {
+      this.update(carousel);
     });
 
-    window.addEventListener('pointermove', this.move.bind(this), {
-      signal: this.abortController.signal
+    this.carousel.on('slidesInView', (carousel) => {
+      this.update(carousel);
     });
 
-    window.addEventListener('resize', this.resize.bind(this), {
-      signal: this.abortControllerResize.signal
+    this.carousel.on("select", (carousel) => {
+      this.update(carousel);
+      this.$dispatch('onselect', this.index);
     });
 
-    this.draw();
+    this.carousel.on("resize", (carousel) => {
+      this.update(carousel);
+    });
 
-    this.mediaCount = this.$refs.viewport.querySelectorAll('[data-fullscreen-image]').length;
-    this.media = Array.from(this.$refs.viewport.querySelectorAll('[data-fullscreen-image]')).map((el) => {
+    this.mediaCount = this.$refs.viewport.querySelectorAll("[data-fullscreen-image]").length;
+    this.media = Array.from(this.$refs.viewport.querySelectorAll("[data-fullscreen-image]")).map((el) => {
       const width = parseFloat(el.dataset.width);
       const height = parseFloat(el.dataset.height);
       const aspectRatio = parseFloat(el.dataset.aspectRatio);
@@ -67,11 +105,48 @@ export default () => ({
       };
     });
 
+    window.addEventListener("pointermove", this.move.bind(this), {
+      signal: this.abortController.signal
+    });
+    window.addEventListener("resize", this.resize.bind(this), {
+      signal: this.abortControllerResize.signal
+    });
+
+    this.draw();
+
     Alpine.effect(() => {
-      if (typeof this.selectedIndex === 'number' && this.visible && !this.animating) {
-        this.$dispatch('fullscreen:index', this.selectedIndex);
+      if (typeof this.selectedIndex === "number" && this.visible && !this.animating) {
+        this.$dispatch("fullscreen:index", this.selectedIndex);
       }
     });
+
+    this.initialized = true;
+  },
+
+  update(carousel) {
+    if (!carousel) return;
+
+    this.canScrollNext = carousel.canScrollNext();
+    this.canScrollPrev = carousel.canScrollPrev();
+    this.scrollSnaps = carousel.scrollSnapList();
+
+    if (carousel.slideNodes().length < 5) {
+      this.canLoop = false;
+    }
+
+    this.selectedIndex = this.index;
+  },
+
+  next() {
+    this.carousel.scrollNext();
+  },
+
+  prev() {
+    this.carousel.scrollPrev();
+  },
+
+  scrollTo(t) {
+    this.carousel.scrollTo(t);
   },
 
   move(e) {
@@ -107,7 +182,6 @@ export default () => ({
       console.error(`Invalid index: ${index}. Media length: ${this.media.length}`);
       return;
     }
-  
 
     this.lockScroll();
     this.draw();
@@ -136,15 +210,10 @@ export default () => ({
     const fullscreenElement = this.$refs.fullscreenFixed;
     if (fullscreenElement) {
       const rect = fullscreenElement.getBoundingClientRect();
-      // console.log('Fullscreen element rect:', rect);
-    } else {
-      // console.error('Fullscreen element not found.');
     }
   
     if (this.$refs.fullscreenImage) {
       this.fromPosition = this.$refs.fullscreenImage.getBoundingClientRect();
-    } else {
-      // console.error('Fullscreen image element not found.');
     }
   
     if (window.innerWidth >= 1024) {
@@ -160,14 +229,13 @@ export default () => ({
   
     this.unlockScroll();
   },
-  
 
   nextImage() {
-    this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    this.next();
   },
 
   prevImage() {
-    this.selectedIndex = (this.selectedIndex - 1 + this.mediaCount) % this.mediaCount;
+    this.prev();
   },
 
   resize() {
@@ -184,7 +252,6 @@ export default () => ({
       this.animating = false;
       return;
     }
-  
 
     const targetWidth = window.innerWidth;
     const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;

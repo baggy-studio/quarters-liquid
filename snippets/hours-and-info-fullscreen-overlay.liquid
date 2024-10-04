@@ -44,7 +44,7 @@
         <div class="w-full relative flex flex-col gap-4">
           <div class="w-full relative flex flex-row items-baseline gap-4">
             <span class="large-accent" x-text="String(selectedIndex + 1).padStart(2, '0')"></span>
-            <h2 class="large-serif" x-text="media[selectedIndex].caption"></h2>
+            <h2 class="large-serif" x-text="media[selectedIndex]?.caption"></h2>
           </div>
         </div>
       </div>

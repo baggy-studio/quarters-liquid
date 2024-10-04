@@ -30,7 +30,7 @@
       "type": "cookie-consent",
       "settings": {
         "content": "<p>We use cookies to remember your preferences and personalize your experience.</p>",
-        "ctaText": "Learn more",
+        "ctaText": "View Privacy Policy",
         "ctaUrl": "shopify://policies/privacy-policy"
       }
     },

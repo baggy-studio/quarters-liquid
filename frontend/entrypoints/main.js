@@ -65,4 +65,5 @@ Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
 Alpine.data("productVariantSelector", productVariantSelector);
 Alpine.data("productFullscreen", productFullscreen);
+Alpine.data("hoursCarousel", hoursCarousel);
 Alpine.start();

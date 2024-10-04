@@ -1,0 +1,51 @@
+<div
+  x-show="visible"
+  @fullscreen:close.window="closeFullscreen"
+  @keyup.escape.window="visible && closeFullscreen"
+  x-ref="fullscreenFixed"
+  class="fixed top-0 left-0 w-full h-screen text-bone z-[100] lg:z-50 pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none overflow-y-auto"
+  :class="{
+    'pointer-events-none opacity-0': !visible,
+    'overflow-hidden': animating,
+    'overflow-y-auto': !animating && visible
+  }"
+>
+  <div class="relative min-h-screen w-full">
+    <ul
+      x-ref="fullscreen"
+      class="w-full lg:origin-top-left relative min-h-screen lg:will-change-[transform,width,height] lg:translate-x-[--x] lg:translate-y-[--y] lg:w-[--width] lg:h-[--height]"
+      :style="`--x: ${transformX}px; --y: ${transformY}px; --width: ${transformWidth}px; --height: ${transformHeight}px;`"
+    >
+      <template x-for="(item, index) in media" :key="index">
+        <li x-show="selectedIndex === index" class="contents">
+          <img
+            :src="item.src"
+            :alt="item.alt"
+            class="w-full h-full object-cover"
+            sizes="100vw"
+          >
+        </li>
+      </template>
+    </ul>
+    <button class="absolute left-0 inset-y-0 w-full lg:block hidden cursor-default" @click="closeFullscreen">
+      <span class="sr-only">Close</span>
+    </button>
+    <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
+      <span class="sr-only">Next image</span>
+    </button>
+  </div>
+  <div class="fixed top-0 left-0 min-h-screen w-full lg:[will-change:clip-path] lg:[clip-path:var(--clip-path)] pointer-events-none" :style="`--clip-path: ${clipPath}`">
+    <div class="min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20 before:fullscreen-top-gradient lg:before:fullscreen-left-gradient">
+      <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-between min-h-screen">
+        <div class="w-full relative flex flex-col gap-4">
+          <div class="w-full relative flex flex-row items-baseline gap-4">
+            <span class="large-accent" x-text="String(selectedIndex + 1).padStart(2, '0')"></span>
+            <h2 class="large-serif" x-text="media[selectedIndex].caption"></h2>
+          </div>
+        </div>
+      </div>
+      {% render 'hours-and-info-fullscreen-cursor' %}
+      {% render 'hours-and-info-fullscreen-thumbnail' %}
+    </div>
+  </div>
+</div>

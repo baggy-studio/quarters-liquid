@@ -5,37 +5,27 @@
       "settings": {
         "headerTheme": "light",
         "textColor": "#f4eed0",
-        "backgroundColor": "#022b26"
+        "backgroundColor": "#022b26",
+        "footerTextColor": "#643600",
+        "footerBackgroundColor": "#f4eed0"
       }
     },
     "main": {
       "type": "hours-info",
       "blocks": {
-        "image_YxdLVM": {
-          "type": "image",
-          "settings": {
-            "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_2.png"
-          }
-        },
-        "image_aP3QXC": {
-          "type": "image",
-          "settings": {
-            "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_4.png"
-          }
-        },
         "image_8Xfmi9": {
           "type": "image",
           "settings": {
             "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_5.png"
           }
         },
-        "image_b66jb3": {
+        "image_7qbKfa": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_2.png"
+            "gallery_image": "shopify:\/\/shop_images\/b1bb18d40637fcf817576ae6e9629e3f.jpg"
           }
         },
-        "image_pWqeLC": {
+        "image_aP3QXC": {
           "type": "image",
           "settings": {
             "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_4.png"
@@ -46,15 +36,27 @@
           "settings": {
             "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_5.png"
           }
+        },
+        "image_YxdLVM": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify:\/\/shop_images\/b1bb18d40637fcf817576ae6e9629e3f.jpg"
+          }
+        },
+        "image_pWqeLC": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_10_4.png"
+          }
         }
       },
       "block_order": [
-        "image_YxdLVM",
-        "image_aP3QXC",
         "image_8Xfmi9",
-        "image_b66jb3",
-        "image_pWqeLC",
-        "image_8JycpK"
+        "image_7qbKfa",
+        "image_aP3QXC",
+        "image_8JycpK",
+        "image_YxdLVM",
+        "image_pWqeLC"
       ],
       "settings": {
         "store_address": "<p>383 Broadway, Floor 2<\/p><p>New York, N.Y. 10013<\/p>",

@@ -258,7 +258,7 @@
       "settings": {
         "title": "Drinks",
         "image": "shopify://shop_images/bar-menu-1.png",
-        "details": "<p>Menu is subject to change based on availability.<br/>Full bottle list available upon request. </p>",
+        "details": "<p>Menu is subject to change.<br/>Full bottle list available upon request. </p>",
         "color": "#643600",
         "background_color": "#d8d012"
       }

@@ -154,6 +154,14 @@
             "price": 1900
           }
         },
+        "item_tnUJxk": {
+          "type": "item",
+          "settings": {
+            "title": "Adonis",
+            "description": "<p>Vermouth di Torino, Olorosso sherry, Pedro Ximénez, Provençal fig</p>",
+            "price": 1900
+          }
+        },
         "category_GHcRNF": {
           "type": "category",
           "settings": {
@@ -213,6 +221,7 @@
         "category_CMfHpD",
         "item_V78Tjn",
         "item_e87PgU",
+        "item_tnUJxk",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",

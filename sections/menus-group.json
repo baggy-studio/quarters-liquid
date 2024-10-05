@@ -146,6 +146,14 @@
             "price": 1900
           }
         },
+        "item_e87PgU": {
+          "type": "item",
+          "settings": {
+            "title": "Negroni",
+            "description": "<p>Orchard Hill pommeau, Quinquina aperitif, blanc cermouth, aged cider vinegar</p>",
+            "price": 1900
+          }
+        },
         "category_GHcRNF": {
           "type": "category",
           "settings": {
@@ -204,6 +212,7 @@
         "item_gJ7BVg",
         "category_CMfHpD",
         "item_V78Tjn",
+        "item_e87PgU",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",

@@ -53,17 +53,17 @@
         "item_m3KNBF": {
           "type": "item",
           "settings": {
-            "title": "Vereinter Schatz White (2022)",
-            "description": "<p>Grüner Veltliner, Riesling · Niederösterreich, Austria</p>",
-            "price": 0
+            "title": "Piantagrane (2022)",
+            "description": "<p>Villa Job · Friuli, Italy</p>",
+            "price": 2200
           }
         },
         "item_V7FrbE": {
           "type": "item",
           "settings": {
-            "title": "Venezia Giulia Piantagrane Bianco (2022)",
-            "description": "<p>Pinot Grigio · Friuli-Venezia Giulia, Italy</p>",
-            "price": 0
+            "title": "Schatz White (2023)",
+            "description": "<p>Arndorfer Vereinter · Kamptal, Austria</p>",
+            "price": 1600
           }
         },
         "item_pekXfz": {

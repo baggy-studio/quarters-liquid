@@ -129,7 +129,15 @@
           "settings": {
             "title": "Saison",
             "description": "<p>Cyclic · Catalonia, Spain</p>",
-            "price": 800
+            "price": 1000
+          }
+        },
+        "item_iyPHcM": {
+          "type": "item",
+          "settings": {
+            "title": "",
+            "description": "",
+            "price": 0
           }
         },
         "category_CMfHpD": {
@@ -242,6 +250,7 @@
         "item_RkLHpc",
         "category_UrGbTN",
         "item_gJ7BVg",
+        "item_iyPHcM",
         "category_CMfHpD",
         "item_V78Tjn",
         "item_e87PgU",

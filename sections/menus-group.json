@@ -140,6 +140,14 @@
             "price": 1500
           }
         },
+        "item_eQkA7P": {
+          "type": "item",
+          "settings": {
+            "title": "L'Ippa",
+            "description": "<p>Birra Baladin · Piedmont, Italy</p>",
+            "price": 1500
+          }
+        },
         "category_CMfHpD": {
           "type": "category",
           "settings": {
@@ -251,6 +259,7 @@
         "category_UrGbTN",
         "item_gJ7BVg",
         "item_iyPHcM",
+        "item_eQkA7P",
         "category_CMfHpD",
         "item_V78Tjn",
         "item_e87PgU",

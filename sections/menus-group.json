@@ -129,7 +129,7 @@
           "settings": {
             "title": "Saison",
             "description": "<p>Cyclic · Catalonia, Spain</p>",
-            "price": 1000
+            "price": 1500
           }
         },
         "item_iyPHcM": {
@@ -144,6 +144,14 @@
           "type": "item",
           "settings": {
             "title": "L'Ippa",
+            "description": "<p>Birra Baladin · Piedmont, Italy</p>",
+            "price": 1500
+          }
+        },
+        "item_9nTrAn": {
+          "type": "item",
+          "settings": {
+            "title": "Nora",
             "description": "<p>Birra Baladin · Piedmont, Italy</p>",
             "price": 1500
           }
@@ -260,6 +268,7 @@
         "item_gJ7BVg",
         "item_iyPHcM",
         "item_eQkA7P",
+        "item_9nTrAn",
         "category_CMfHpD",
         "item_V78Tjn",
         "item_e87PgU",

@@ -88,6 +88,14 @@
             "heading": "Rose"
           }
         },
+        "item_tc6qM3": {
+          "type": "item",
+          "settings": {
+            "title": "Jeudi 15 (2022)",
+            "description": "<p>Vino di Anna · Sicily, Italy</p>",
+            "price": 2500
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -168,6 +176,7 @@
         "item_pekXfz",
         "item_heE8rJ",
         "category_hX8CnD",
+        "item_tc6qM3",
         "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",

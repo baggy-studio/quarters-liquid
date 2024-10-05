@@ -31,23 +31,23 @@
         "item_paEfaz": {
           "type": "item",
           "settings": {
-            "title": "Emilia Visio Rosato Spumante (2022)",
-            "description": "<p>Sorbara, Lambrusco Maestri · Emilia-Romagna, Italy</p>",
-            "price": 0
+            "title": "Lambrusco (2021)",
+            "description": "<p>Villa Picta · Lombardy, Italy</p>",
+            "price": 1600
           }
         },
         "item_WAycEp": {
           "type": "item",
           "settings": {
-            "title": "Provincia di Mantova Lambrusco (2021)",
-            "description": "<p>Lambrusco · Lombardy, Italy</p>",
-            "price": 0
+            "title": "Visio (2021)",
+            "description": "<p>Koi Emilia · Emilia Romagna, Italy</p>",
+            "price": 2400
           }
         },
         "category_KfbFhq": {
           "type": "category",
           "settings": {
-            "heading": "White + Skin Contact"
+            "heading": "White"
           }
         },
         "item_m3KNBF": {

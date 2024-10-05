@@ -74,6 +74,14 @@
             "price": 0
           }
         },
+        "item_heE8rJ": {
+          "type": "item",
+          "settings": {
+            "title": "Empordà Connexió Còsmica",
+            "description": "<p>Cosmic Vinyaters · Catalonia Spain</p>",
+            "price": 0
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -152,6 +160,7 @@
         "item_m3KNBF",
         "item_V7FrbE",
         "item_pekXfz",
+        "item_heE8rJ",
         "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",

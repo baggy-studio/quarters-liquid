@@ -118,6 +118,34 @@
             "price": 2000
           }
         },
+        "category_UrGbTN": {
+          "type": "category",
+          "settings": {
+            "heading": "Beer"
+          }
+        },
+        "item_gJ7BVg": {
+          "type": "item",
+          "settings": {
+            "title": "",
+            "description": "",
+            "price": 0
+          }
+        },
+        "category_CMfHpD": {
+          "type": "category",
+          "settings": {
+            "heading": "Low ABV Cocktails"
+          }
+        },
+        "item_V78Tjn": {
+          "type": "item",
+          "settings": {
+            "title": "Spritz",
+            "description": "<p>Bordiga Aperitivo, Cap Corse Blanc, Spiced Clementine, Sparkling Wine, Club Soda</p>",
+            "price": 1900
+          }
+        },
         "category_GHcRNF": {
           "type": "category",
           "settings": {
@@ -172,6 +200,10 @@
         "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",
+        "category_UrGbTN",
+        "item_gJ7BVg",
+        "category_CMfHpD",
+        "item_V78Tjn",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",
@@ -179,7 +211,7 @@
         "item_ac9grz"
       ],
       "settings": {
-        "title": "Wine",
+        "title": "Drinks",
         "image": "shopify://shop_images/bar-menu-1.png",
         "details": "<p>Full bottle list available upon request. </p>",
         "color": "#643600",

@@ -181,7 +181,7 @@
       "settings": {
         "title": "Drinks",
         "image": "shopify://shop_images/bar-menu-1.png",
-        "details": "<p>Full wine list available upon request. </p><p>Our cocktail program will launch in 2025.</p>",
+        "details": "<p>Full bottle list available upon request. </p>",
         "color": "#643600",
         "background_color": "#d8d012"
       }

@@ -195,7 +195,7 @@
         "item_egqijV": {
           "type": "item",
           "settings": {
-            "title": "Spicy Margarita (NA)",
+            "title": "Spicy Margarita (Zero-proof)",
             "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
             "price": 0
           }
@@ -203,7 +203,7 @@
         "item_Pf69AF": {
           "type": "item",
           "settings": {
-            "title": "Spritz (NA)",
+            "title": "Spritz (Zero-proof)",
             "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
             "price": 0
           }
@@ -211,7 +211,7 @@
         "item_rrxBJj": {
           "type": "item",
           "settings": {
-            "title": "Tiki (NA)",
+            "title": "Tiki (Zero-proof)",
             "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
             "price": 0
           }

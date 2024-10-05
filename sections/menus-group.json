@@ -149,7 +149,7 @@
         "item_e87PgU": {
           "type": "item",
           "settings": {
-            "title": "Negroni",
+            "title": "Normandy Negroni",
             "description": "<p>Orchard Hill pommeau, Quinquina aperitif, blanc cermouth, aged cider vinegar</p>",
             "price": 1900
           }
@@ -157,7 +157,7 @@
         "item_tnUJxk": {
           "type": "item",
           "settings": {
-            "title": "Adonis",
+            "title": "Fig Adonis",
             "description": "<p>Vermouth di Torino, Olorosso sherry, Pedro Ximénez, Provençal fig</p>",
             "price": 1900
           }

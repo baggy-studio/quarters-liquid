@@ -71,7 +71,7 @@
           "settings": {
             "title": "Cal Ros (2023)",
             "description": "<p>Amor Per La Terra · Catalonia, Spain</p>",
-            "price": 0
+            "price": 1800
           }
         },
         "item_heE8rJ": {
@@ -115,14 +115,6 @@
           "settings": {
             "title": "Vendredi 13 (2021)",
             "description": "<p>Vino di Anna · Sicily, Italy</p>",
-            "price": 0
-          }
-        },
-        "item_hXfRjw": {
-          "type": "item",
-          "settings": {
-            "title": "Tktk Tktktk (20##)",
-            "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy</p>",
             "price": 0
           }
         },
@@ -180,7 +172,6 @@
         "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",
-        "item_hXfRjw",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",

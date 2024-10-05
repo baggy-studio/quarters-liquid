@@ -162,6 +162,14 @@
             "price": 1900
           }
         },
+        "item_Jc97fh": {
+          "type": "item",
+          "settings": {
+            "title": "Sherry Cobbler",
+            "description": "<p>Manzanilla sherry, Pedro Ximénez, lemon, blackberry and bay leaf jam</p>",
+            "price": 1900
+          }
+        },
         "category_GHcRNF": {
           "type": "category",
           "settings": {
@@ -222,6 +230,7 @@
         "item_V78Tjn",
         "item_e87PgU",
         "item_tnUJxk",
+        "item_Jc97fh",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",

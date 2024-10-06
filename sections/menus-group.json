@@ -623,6 +623,14 @@
             "description": "<p>with Brown Liquor</p>",
             "price": 2600
           }
+        },
+        "item_Uh3Q9T": {
+          "type": "item",
+          "settings": {
+            "title": "Chocolate Cherries",
+            "description": "<p>with Port</p>",
+            "price": 0
+          }
         }
       },
       "block_order": [
@@ -647,7 +655,8 @@
         "item_khEkKU",
         "category_eraxDf",
         "item_Djn39Y",
-        "item_mADcj6"
+        "item_mADcj6",
+        "item_Uh3Q9T"
       ],
       "settings": {
         "title": "Evening",

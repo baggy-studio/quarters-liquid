@@ -607,6 +607,14 @@
           "settings": {
             "heading": "Sweet"
           }
+        },
+        "item_Djn39Y": {
+          "type": "item",
+          "settings": {
+            "title": "House Hazelnut and Apricot Cantucci",
+            "description": "<p>with Vin Santo</p>",
+            "price": 0
+          }
         }
       },
       "block_order": [
@@ -629,7 +637,8 @@
         "item_k4e4Gm",
         "item_mRPyXJ",
         "item_khEkKU",
-        "category_eraxDf"
+        "category_eraxDf",
+        "item_Djn39Y"
       ],
       "settings": {
         "title": "Evening",

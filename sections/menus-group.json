@@ -474,14 +474,6 @@
             "price": 1200
           }
         },
-        "item_WAycEp": {
-          "type": "item",
-          "settings": {
-            "title": "Caviar Service",
-            "description": "<p>Siberian select caviar, crème fraîche, chives, potato chips</p>",
-            "price": 13500
-          }
-        },
         "item_m3KNBF": {
           "type": "item",
           "settings": {
@@ -493,17 +485,25 @@
         "item_V7FrbE": {
           "type": "item",
           "settings": {
-            "title": "Venezia Giulia Piantagrane Bianco (2022)",
-            "description": "<p>Pinot Grigio · Friuli-Venezia Giulia, Italy</p>",
+            "title": "Gilda Pintxo (Vegetarian)",
+            "description": "<p>Piquillo peppers</p>",
             "price": 0
+          }
+        },
+        "item_WAycEp": {
+          "type": "item",
+          "settings": {
+            "title": "Caviar Service",
+            "description": "<p>Siberian select caviar, crème fraîche, chives, potato chips</p>",
+            "price": 13500
           }
         },
         "item_pekXfz": {
           "type": "item",
           "settings": {
-            "title": "Terra Alta Les Alifares Vernatxa Gris (2021)",
-            "description": "<p>Grenache Gris · Catalonia, Spain</p>",
-            "price": 0
+            "title": "Boquerones",
+            "description": "<p>Vinager, shallots, herbs, olive oil</p>",
+            "price": 2400
           }
         },
         "category_ARJMyX": {
@@ -579,9 +579,9 @@
         "category_Yycy4X",
         "item_M9igxg",
         "item_paEfaz",
-        "item_WAycEp",
         "item_m3KNBF",
         "item_V7FrbE",
+        "item_WAycEp",
         "item_pekXfz",
         "category_ARJMyX",
         "item_VdPMNd",

@@ -586,17 +586,11 @@
             "price": 2400
           }
         },
-        "category_6jWf33": {
-          "type": "category",
-          "settings": {
-            "heading": ""
-          }
-        },
         "item_mRPyXJ": {
           "type": "item",
           "settings": {
             "title": "Sicilian Tuna Crudo",
-            "description": "",
+            "description": "<p>Capers, peperoncini, citrus, olive oil</p>",
             "price": 0
           }
         }
@@ -619,7 +613,6 @@
         "item_wiC4w3",
         "item_C3CTDr",
         "item_k4e4Gm",
-        "category_6jWf33",
         "item_mRPyXJ"
       ],
       "settings": {

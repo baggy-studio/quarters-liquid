@@ -136,7 +136,7 @@
           "type": "item",
           "settings": {
             "title": "Nazionale",
-            "description": "<p>Birra Baladin · Piedmont, Italy</p>",
+            "description": "<p>Baladin · Piedmont, Italy</p>",
             "price": 1500
           }
         },
@@ -144,7 +144,7 @@
           "type": "item",
           "settings": {
             "title": "L'Ippa",
-            "description": "<p>Birra Baladin · Piedmont, Italy</p>",
+            "description": "<p>Baladin · Piedmont, Italy</p>",
             "price": 1500
           }
         },

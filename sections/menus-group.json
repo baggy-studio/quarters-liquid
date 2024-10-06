@@ -615,6 +615,14 @@
             "description": "<p>with Vin Santo</p>",
             "price": 2600
           }
+        },
+        "item_mADcj6": {
+          "type": "item",
+          "settings": {
+            "title": "Camari's Cookies",
+            "description": "<p>with Brown Liquor</p>",
+            "price": 2600
+          }
         }
       },
       "block_order": [
@@ -638,7 +646,8 @@
         "item_mRPyXJ",
         "item_khEkKU",
         "category_eraxDf",
-        "item_Djn39Y"
+        "item_Djn39Y",
+        "item_mADcj6"
       ],
       "settings": {
         "title": "Evening",

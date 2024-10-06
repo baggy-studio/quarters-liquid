@@ -506,18 +506,12 @@
             "price": 2400
           }
         },
-        "category_ARJMyX": {
-          "type": "category",
-          "settings": {
-            "heading": "Red + Rose"
-          }
-        },
         "item_VdPMNd": {
           "type": "item",
           "settings": {
-            "title": "Jeudi 15 Vino Rosato (2022)",
-            "description": "<p>Nerello Mascalese, Grenache · Sicily, Italy</p>",
-            "price": 0
+            "title": "Mussel Toast",
+            "description": "<p>Tinned mussels, shallots, tomato rouille, chervil</p>",
+            "price": 2400
           }
         },
         "item_RkLHpc": {
@@ -583,7 +577,6 @@
         "item_V7FrbE",
         "item_WAycEp",
         "item_pekXfz",
-        "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",
         "item_hXfRjw",

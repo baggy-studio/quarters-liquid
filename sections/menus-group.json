@@ -569,6 +569,22 @@
             "description": "<p>Balsamic vinegar, mixed antipasto</p>",
             "price": 2600
           }
+        },
+        "item_C3CTDr": {
+          "type": "item",
+          "settings": {
+            "title": "Iberico Chorizo",
+            "description": "<p>Cilantro, pickled peppers</p>",
+            "price": 2600
+          }
+        },
+        "item_k4e4Gm": {
+          "type": "item",
+          "settings": {
+            "title": "Bresaola",
+            "description": "<p>Arugula, olive oil, lemon</p>",
+            "price": 2400
+          }
         }
       },
       "block_order": [
@@ -586,7 +602,9 @@
         "item_Pf69AF",
         "item_rrxBJj",
         "item_ac9grz",
-        "item_wiC4w3"
+        "item_wiC4w3",
+        "item_C3CTDr",
+        "item_k4e4Gm"
       ],
       "settings": {
         "title": "Evening",

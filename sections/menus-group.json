@@ -647,6 +647,14 @@
             "description": "<p>with Sherry</p>",
             "price": 2100
           }
+        },
+        "item_76FYD3": {
+          "type": "item",
+          "settings": {
+            "title": "Dark Chocolate Mousse",
+            "description": "<p>Gianduja noir, chantilly</p>",
+            "price": 1900
+          }
         }
       },
       "block_order": [
@@ -674,7 +682,8 @@
         "item_mADcj6",
         "item_Uh3Q9T",
         "item_DUXAz6",
-        "item_iBgtwr"
+        "item_iBgtwr",
+        "item_76FYD3"
       ],
       "settings": {
         "title": "Evening",

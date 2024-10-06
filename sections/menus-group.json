@@ -601,6 +601,12 @@
             "description": "<p>Castelvetrano salsa verde, fish sauce</p>",
             "price": 0
           }
+        },
+        "category_eraxDf": {
+          "type": "category",
+          "settings": {
+            "heading": "Sweet"
+          }
         }
       },
       "block_order": [
@@ -622,7 +628,8 @@
         "item_C3CTDr",
         "item_k4e4Gm",
         "item_mRPyXJ",
-        "item_khEkKU"
+        "item_khEkKU",
+        "category_eraxDf"
       ],
       "settings": {
         "title": "Evening",

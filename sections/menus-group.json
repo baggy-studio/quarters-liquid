@@ -631,6 +631,14 @@
             "description": "<p>with Port</p>",
             "price": 0
           }
+        },
+        "item_DUXAz6": {
+          "type": "item",
+          "settings": {
+            "title": "Amaretti",
+            "description": "<p>with Vin Santo</p>",
+            "price": 2400
+          }
         }
       },
       "block_order": [
@@ -656,7 +664,8 @@
         "category_eraxDf",
         "item_Djn39Y",
         "item_mADcj6",
-        "item_Uh3Q9T"
+        "item_Uh3Q9T",
+        "item_DUXAz6"
       ],
       "settings": {
         "title": "Evening",

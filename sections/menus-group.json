@@ -620,7 +620,7 @@
           "type": "item",
           "settings": {
             "title": "Camari‘s Cookies",
-            "description": "<p>with Brown Liquor</p>",
+            "description": "<p>with brown liquor</p>",
             "price": 2600
           }
         },
@@ -628,7 +628,7 @@
           "type": "item",
           "settings": {
             "title": "Chocolate Cherries",
-            "description": "<p>with Port</p>",
+            "description": "<p>with port</p>",
             "price": 2600
           }
         },

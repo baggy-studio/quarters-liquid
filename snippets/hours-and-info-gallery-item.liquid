@@ -1,5 +1,13 @@
+{% comment %}
+  snippets/hours-and-info-gallery-item.liquid
+{% endcomment %}
+
 <div class="embla__slide flex-[0_0_calc(78%-8px)] lg:flex-[0_0_calc(33.3%-12px)] mr-2 lg:mr-4">
-  <div class="w-full aspect-[140/175] relative overflow-hidden cursor-pointer group" @click="openFullscreen($event, { index: {{ forloop.index0 }} })">
+  <div
+    class="w-full aspect-[140/175] relative overflow-hidden cursor-pointer group"
+    @click="openFullscreen($event, { large: false, index: {{ forloop.index0 }} })"
+    data-small-image
+  >
     {% if block.settings.gallery_image != blank %}
       <div class="flex w-full justify-between items-start px-4 z-10 relative pt-2">
         <p class="small-sans leading-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-linear">
@@ -11,18 +19,16 @@
             <line x1="9" y1="4.75012" x2="-4.76852e-08" y2="4.75012" stroke="#F4EED0" />
           </svg>
         </div>
-
       </div>
-      <div
-      class="absolute inset-0 h-full w-full bg-[var(--background-color)] opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-linear z-[1]"
-    ></div>
       <div
         data-fullscreen-image
         data-aspect-ratio="{{ block.settings.gallery_image.aspect_ratio }}"
         data-width="{{ block.settings.gallery_image.width }}"
         data-height="{{ block.settings.gallery_image.height }}"
-        data-src="{{ block.settings.gallery_image | image_url }}"
+        data-src="{{ block.settings.gallery_image | image_url: width: 2000 }}"
+        data-alt="{{ block.settings.gallery_image.alt }}"
         data-caption="{{ block.settings.caption }}"
+        class="group-hover:opacity-70 transition-opacity duration-300 ease-linear"
       >
         {% render 'image', image: block.settings.gallery_image, width: 402, height: 504, sizes: 'calc(10vw - 3.5px)' %}
       </div>

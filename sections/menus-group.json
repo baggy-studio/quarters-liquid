@@ -639,6 +639,14 @@
             "description": "<p>with Vin Santo</p>",
             "price": 2400
           }
+        },
+        "item_iBgtwr": {
+          "type": "item",
+          "settings": {
+            "title": "Piedras de Chocolate Almonds",
+            "description": "<p>with Sherry</p>",
+            "price": 2100
+          }
         }
       },
       "block_order": [
@@ -665,7 +673,8 @@
         "item_Djn39Y",
         "item_mADcj6",
         "item_Uh3Q9T",
-        "item_DUXAz6"
+        "item_DUXAz6",
+        "item_iBgtwr"
       ],
       "settings": {
         "title": "Evening",

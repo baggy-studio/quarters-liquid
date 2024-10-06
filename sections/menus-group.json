@@ -477,22 +477,16 @@
         "item_WAycEp": {
           "type": "item",
           "settings": {
-            "title": "Provincia di Mantova Lambrusco (2021)",
-            "description": "<p>Lambrusco · Lombardy, Italy</p>",
-            "price": 0
-          }
-        },
-        "category_KfbFhq": {
-          "type": "category",
-          "settings": {
-            "heading": "White + Skin Contact"
+            "title": "Caviar Service",
+            "description": "<p>Siberian select caviar, crème fraîche, chives, potato chips</p>",
+            "price": 13500
           }
         },
         "item_m3KNBF": {
           "type": "item",
           "settings": {
-            "title": "Vereinter Schatz White (2022)",
-            "description": "<p>Grüner Veltliner, Riesling · Niederösterreich, Austria</p>",
+            "title": "Gilda Pintxo",
+            "description": "<p>Boquerones, coppa</p>",
             "price": 0
           }
         },
@@ -586,7 +580,6 @@
         "item_M9igxg",
         "item_paEfaz",
         "item_WAycEp",
-        "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",
         "item_pekXfz",

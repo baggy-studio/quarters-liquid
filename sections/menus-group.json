@@ -593,6 +593,14 @@
             "description": "<p>Capers, peperoncini, citrus, olive oil</p>",
             "price": 0
           }
+        },
+        "item_khEkKU": {
+          "type": "item",
+          "settings": {
+            "title": "Steak Tartar",
+            "description": "<p>Castelvetrano salsa verde, fish sauce</p>",
+            "price": 0
+          }
         }
       },
       "block_order": [
@@ -613,7 +621,8 @@
         "item_wiC4w3",
         "item_C3CTDr",
         "item_k4e4Gm",
-        "item_mRPyXJ"
+        "item_mRPyXJ",
+        "item_khEkKU"
       ],
       "settings": {
         "title": "Evening",

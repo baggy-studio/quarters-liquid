@@ -525,31 +525,25 @@
         "item_hXfRjw": {
           "type": "item",
           "settings": {
-            "title": "3-year Comté",
+            "title": "3-year Comté (France)",
             "description": "<p>Cherry confit, hazelnuts</p>",
             "price": 4200
-          }
-        },
-        "category_GHcRNF": {
-          "type": "category",
-          "settings": {
-            "heading": "Zero-proof Cocktails"
           }
         },
         "item_egqijV": {
           "type": "item",
           "settings": {
-            "title": "Margarita",
-            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
-            "price": 0
+            "title": "Humboldt Fog (USA)",
+            "description": "<p>Seeded honey</p>",
+            "price": 3200
           }
         },
         "item_Pf69AF": {
           "type": "item",
           "settings": {
-            "title": "Spritz",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
-            "price": 0
+            "title": "Robiola Tre Latti (Italy)",
+            "description": "<p>Raspberry and hibiscus jam</p>",
+            "price": 3000
           }
         },
         "item_rrxBJj": {
@@ -580,7 +574,6 @@
         "item_VdPMNd",
         "item_RkLHpc",
         "item_hXfRjw",
-        "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",
         "item_rrxBJj",

@@ -585,6 +585,20 @@
             "description": "<p>Arugula, olive oil, lemon</p>",
             "price": 2400
           }
+        },
+        "category_6jWf33": {
+          "type": "category",
+          "settings": {
+            "heading": ""
+          }
+        },
+        "item_mRPyXJ": {
+          "type": "item",
+          "settings": {
+            "title": "Sicilian Tuna Crudo",
+            "description": "",
+            "price": 0
+          }
         }
       },
       "block_order": [
@@ -604,7 +618,9 @@
         "item_ac9grz",
         "item_wiC4w3",
         "item_C3CTDr",
-        "item_k4e4Gm"
+        "item_k4e4Gm",
+        "category_6jWf33",
+        "item_mRPyXJ"
       ],
       "settings": {
         "title": "Evening",

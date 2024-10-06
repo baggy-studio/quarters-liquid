@@ -550,16 +550,16 @@
           "type": "item",
           "settings": {
             "title": "Tomme de Savoie (France)",
-            "description": "<p>Fig and earl grey jam</p>",
+            "description": "<p>Fig and Earl Grey jam</p>",
             "price": 2600
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
-            "title": "Negroni",
-            "description": "<p>Tktk NA gin, Lyre’s Aperitif Rosso, Italian orange</p>",
-            "price": 0
+            "title": "Pâté de Campagne",
+            "description": "<p>Grainy mustard, cornichons</p>",
+            "price": 1900
           }
         }
       },

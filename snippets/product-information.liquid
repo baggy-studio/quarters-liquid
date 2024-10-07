@@ -10,6 +10,50 @@
 {% assign notes = product.metafields.custom.notes %}
 {% assign tear_sheet = product.metafields.custom.product_tearsheet %}
 
+{% if selected_variant.metafields.custom.designer %}
+  {% assign designer = selected_variant.metafields.custom.designer %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.producer %}
+  {% assign producer = selected_variant.metafields.custom.producer %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.origin %}
+  {% assign origin = selected_variant.metafields.custom.origin %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.period %}
+  {% assign period = selected_variant.metafields.custom.period %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.material %}
+  {% assign material = selected_variant.metafields.custom.material %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.finish %}
+  {% assign finish = selected_variant.metafields.custom.finish %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.dimensions %}
+  {% assign dimensions = selected_variant.metafields.custom.dimensions %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.weight %}
+  {% assign weight = selected_variant.metafields.custom.weight %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.lead_time %}
+  {% assign lead_time = selected_variant.metafields.custom.lead_time %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.notes %}
+  {% assign notes = selected_variant.metafields.custom.notes %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.product_tearsheet %}
+  {% assign tear_sheet = selected_variant.metafields.custom.product_tearsheet %}
+{% endif %}
+
 <div class="w-full flex flex-col-reverse lg:flex-col small-sans gap-y-12 lg:gap-0 lg:h-full lg:justify-between lg:items-end">
   <div class="w-full grid grid-cols-5 gap-x-3 gap-y-8 lg:pt-2.5">
     {% if product.description != blank %}
@@ -17,14 +61,14 @@
         {{ product.description }}
       </div>
     {% endif %}
-    <ul class="w-full flex flex-col col-span-5">
+    <ul class="w-full flex flex-col col-span-5" id="product-information">
       {% if designer != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Designer</p>
           {% if designer %}
-            <p class="col-span-6">{{ designer }}</p>
+            <div class="col-span-6 richtext small-sans">{{ designer | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -32,9 +76,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Producer</p>
           {% if producer %}
-            <p class="col-span-6">{{ producer }}</p>
+            <div class="col-span-6 richtext small-sans">{{ producer | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -42,9 +86,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Origin</p>
           {% if origin %}
-            <p class="col-span-6">{{ origin }}</p>
+            <div class="col-span-6 richtext small-sans">{{ origin | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -52,9 +96,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Period</p>
           {% if period %}
-            <p class="col-span-6">{{ period }}</p>
+            <div class="col-span-6 richtext small-sans">{{ period | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -62,9 +106,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Material</p>
           {% if material %}
-            <p class="col-span-6">{{ material }}</p>
+            <div class="col-span-6 richtext small-sans">{{ material | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -72,9 +116,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Finish</p>
           {% if finish %}
-            <p class="col-span-6">{{ finish }}</p>
+            <div class="col-span-6 richtext small-sans">{{ finish | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -82,9 +126,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Dimensions</p>
           {% if dimensions %}
-            <p class="col-span-6">{{ dimensions }}</p>
+            <div class="col-span-6 richtext small-sans">{{ dimensions | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -92,9 +136,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Weight</p>
           {% if weight %}
-            <p class="col-span-6">{{ weight }}</p>
+            <div class="col-span-6 richtext small-sans">{{ weight | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -102,9 +146,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Lead Time</p>
           {% if lead_time %}
-            <p class="col-span-6">{{ lead_time }}</p>
+            <div class="col-span-6 richtext small-sans">{{ lead_time | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}
@@ -112,9 +156,9 @@
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Notes</p>
           {% if notes %}
-            <div class="col-span-6 richtext">{{ notes | metafield_tag }}</div>
+            <div class="col-span-6 richtext small-sans">{{ notes | metafield_tag }}</div>
           {% else %}
-            <p class="col-span-6">--</p>
+            <p class="col-span-6 small-sans">--</p>
           {% endif %}
         </li>
       {% endif %}

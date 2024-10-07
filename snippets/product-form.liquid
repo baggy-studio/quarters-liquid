@@ -1,6 +1,6 @@
 <div
   @cart:complete.window="loading = false"
-  id="product-form" 
+  id="product-form"
   x-data="cartForm"
   class="w-full flex flex-col gap-8"
 >
@@ -14,9 +14,14 @@
             <div class="flex items-center gap-8 lg:gap-4 pr-4 lg:pr-0">
               <button
                 @click="decreaseQuantity"
-                :disabled="quantity <= 1"
+                :disabled="{{ selected_variant.inventory_quantity }} <= 1"
                 title="Decrease quantity"
-                class="w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+                class="
+                {% if selected_variant.inventory_quantity <= 1 %}
+                  opacity-50
+                 {% endif %}
+                                 w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear
+                "
               >
                 <span
                   class="w-full h-[1px] bg-current block"
@@ -26,7 +31,11 @@
                 @click="increaseQuantity"
                 :disabled="{{ selected_variant.inventory_quantity }} <= quantity"
                 title="Increase quantity"
-                class="w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+                class="
+                {% if selected_variant.inventory_quantity <= 1 %}
+                  opacity-50
+                 {% endif %}
+                w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
               >
                 <span
                   class="w-full h-[1px] bg-current block"

@@ -4,7 +4,7 @@
   {% elsif selected_variant.available and product.tags contains 'Hold' %}
     {% if selected_variant.compare_at_price > 0 %}
       <div class="flex flex-col">
-        <p class="large-accent line-through opacity-50">{{ selected_variant.compare_at_price | money }}</p>
+        <p class="large-accent strike-through relative opacity-50">{{ selected_variant.compare_at_price | money }}</p>
         <p class="large-accent">{{ selected_variant.price | money }}</p>
       </div>
     {% else %}
@@ -16,7 +16,7 @@
   {% elsif selected_variant.available %}
     {% if selected_variant.compare_at_price > 0 %}
       <div class="flex flex-col">
-        <p class="large-accent line-through opacity-50">{{ selected_variant.compare_at_price | money }}</p>
+        <p class="large-accent strike-through relative opacity-50">{{ selected_variant.compare_at_price | money }}</p>
         <p class="large-accent">{{ selected_variant.price | money }}</p>
       </div>
     {% else %}

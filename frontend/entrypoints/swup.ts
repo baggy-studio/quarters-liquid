@@ -34,8 +34,8 @@ export const fragmentPlugin = new SwupFragmentPlugin({
       containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
     },
     {
-      from: '/pages/:utilityPage',
-      to: '/pages/:utilityPage',
+      from: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
+      to: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
       containers: ['#utility', '#page-settings', "#utility-nav"],
     }
   ]

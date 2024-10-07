@@ -1,11 +1,11 @@
 {
   "frontend/entrypoints/main.css": {
-    "file": "main-B0SiwfUG.css",
+    "file": "main-BzhVGM1S.css",
     "src": "frontend/entrypoints/main.css",
     "isEntry": true
   },
   "frontend/entrypoints/main.js": {
-    "file": "main-7CQmy-7y.js",
+    "file": "main-BJgj65ql.js",
     "name": "main",
     "src": "frontend/entrypoints/main.js",
     "isEntry": true,
@@ -14,7 +14,7 @@
     ]
   },
   "frontend/entrypoints/swup.ts": {
-    "file": "swup-jfwBT4mz.js",
+    "file": "swup-Cg-E27Gk.js",
     "name": "swup",
     "src": "frontend/entrypoints/swup.ts",
     "isEntry": true

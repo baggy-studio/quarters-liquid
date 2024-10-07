@@ -1,5 +1,5 @@
 <div id="utility-nav" class="w-full">
-  <ul class="flex flex-col gap-y-3 lg:gap-y-6">
+  <ul class="flex flex-col gap-y-2">
     {% for link in linklists[menu].links %}
       <li class="grid grid-cols-10 gap-x-3 items-center ">
         <span class="col-span-1 font-droulers text-[20px] lg:text-[22px] {% if link.current or link.active %}opacity-100{% else %}opacity-50{% endif %} transition-opacity duration-300">

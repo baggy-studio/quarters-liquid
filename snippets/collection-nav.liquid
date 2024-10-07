@@ -81,18 +81,14 @@
     {% endif %}
     x-data="{ active: activeUrl === '/collections/all' }"
     x-effect="active = activeUrl === '/collections/all'"
-    class="
-            hover:underline
-
-      leading-none whitespace-nowrap hidden lg:block lg:col-span-2 aria-[current=page]:underline
-    "
+    class="collection-link whitespace-nowrap hidden lg:block lg:col-span-2"
   >
     All Items
   </a>
   <nav
     aria-label="Collection Navigation"
     class="w-full grid grid-cols-2 lg:grid-cols-18 lg:col-span-18 gap-2 lg:gap-3 delay-0"
-    {% if clone %} 
+    {% if clone %}
       id="collection-nav-clone"
     {% else %}
       id="collection-nav"
@@ -101,7 +97,54 @@
     {% unless is_all_collection %}
       <h2 class="whitespace-nowrap leading-[1.5] lg:leading-none lg:col-span-2">
         {% if parent_collection %}
-          {{ parent_collection.title }}
+          {% if parent_link.links.size > 0 %}
+            <span
+              x-data="{ active: false }"
+              x-effect="active = activeUrl === '{{ parent_collection.url }}'"
+              :class="
+                {
+                  'hidden': !active,
+                  'contents': active
+                }
+              "
+              class="
+                {% if collection.url == parent_collection.url %}
+                contents
+                {% else %}
+                hidden
+                {% endif %}
+                lg:contents
+              "
+            >
+              {{- parent_collection.title -}}
+            </span>
+            <span class="lg:hidden">
+              {% for filter in parent_link.links -%}
+                {% assign collection_filter = filter.object %}
+                <span
+                  x-data="{ active: false }"
+                  x-effect="active = activeUrl === '{{ filter.url }}'"
+                  class="
+                       {% if collection.url == filter.url %}
+                    contents
+                    {% else %}
+                    hidden
+                    {% endif %}
+                  "
+                  :class="
+                    {
+                      'hidden': !active,
+                      'contents': active
+                    }
+                  "
+                >
+                  {{ filter.title }}
+                </span>
+              {%- endfor %}
+            </span>
+          {% else %}
+            {{ parent_collection.title }}
+          {% endif %}
         {% else %}
           {{ collection.title }}
         {% endif %}
@@ -117,7 +160,7 @@
         {% endif %}
         x-data="{ active: activeUrl === '/collections/all' }"
         x-effect="active = activeUrl === '/collections/all'"
-        class="hover:underline leading-none whitespace-nowrap lg:hidden lg:col-span-2 aria-[current=page]:underline"
+        class="collection-link whitespace-nowrap lg:hidden lg:col-span-2"
       >
         All Items
       </a>
@@ -234,16 +277,6 @@
         {% endunless %}
       </div>
       {% unless is_all_collection %}
-        {% if parent_link.links.size == 0 %}
-          <a
-            href="/collections/all"
-            :href="getCollectionLink('/collections/all')"
-            title="Back to All Items"
-            class="collection-link lg:hidden block w-max"
-          >
-            Back to All Items
-          </a>
-        {% endif %}
       {% endunless %}
     </div>
   </nav>

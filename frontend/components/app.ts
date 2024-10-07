@@ -7,7 +7,7 @@ function getHeaderColor(dom = document) {
   const styleId = 'page-settings';
   const styleElement = dom.getElementById(styleId);
   if (!styleElement) {
-    return '#684C0D';
+    return '#643600';
   }
 
   const cssText = styleElement.textContent;
@@ -66,7 +66,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     return this.setTheme('dark');
   },
   setTheme(theme: 'light' | 'dark') {
-    this.headerColor = theme === 'light' ? '#FAF8EC' : '#684C0D';
+    this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
   },
   hide() {
     this.visible = false;

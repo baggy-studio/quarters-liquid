@@ -25,14 +25,14 @@
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 768, height: 1024, sizes: '100vw' %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 1440, height: 860, sizes: '100vw' %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full md:hidden">
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 393, height: 672, sizes: '100vw', priority: true %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 786, height: 1344, sizes: '100vw', priority: true %}
         {% endif %}
       </div>
     {% endif %}

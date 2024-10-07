@@ -229,6 +229,39 @@
  * Here, we are animating the `.teaeser` elements individually
  */
 
+/*
+ * The transition when filtering the characters.
+ * Here, we are animating the `.teaeser` elements individually
+ */
+
+ #collection-nav,
+ #product-grid,
+ #main, 
+ #utility {
+     @apply transition-opacity;
+     will-change: opacity;
+ }
+ 
+ html.is-animating #main,
+ #collection-nav.is-animating,
+ #product-grid.is-animating,
+ #utility.is-animating {
+     opacity: 0;
+ }
+ 
+ html.is-changing #main,
+ #collection-nav.is-changing,
+ #product-grid.is-changing,
+ #utility.is-changing {
+     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+ }
+ 
+ html.is-leaving #main,
+ #collection-nav.is-leaving,
+ #product-grid.is-leaving,
+ #utility.is-leaving {
+     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+ }
 #collection-nav,
 #collection-nav-clone,
 #product-grid,
@@ -319,6 +352,52 @@ input {
     @apply absolute top-0 left-0 w-full h-full block;
 }
 
+
+/* Utility Template */
+
+.utilty_template {
+    @apply lg:grid lg:grid-cols-2 mx-4 mb-0 mt-[120px] lg:mt-[160px] border-t border-[var(--text-color)] z-20;
+    position: relative;
+}
+
+.utility_template > div:last-child {
+    overflow-y: auto; 
+    height: 100%; 
+}
+
+.utilty_template .utility-menu {
+    @apply w-full flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[var(--text-color)] lg:mt-4 lg:pt-[48px] overflow-y-auto h-[400px] py-6 lg:pb-4 lg:sticky lg:top-[176px];
+}
+
+@media (min-width: 1024px) {
+    .utilty_template .utility-menu {
+        height: calc(100vh - 176px);
+    }  
+}
+
+.utilty_template .utility-content h3, .faq-category {
+    @apply uppercase font-medium font-sans text-[11px] leading-[150%] tracking-[0.04em];
+}
+
+.utilty_template .utility-content h3:not(:first-child) {
+    @apply mt-16;
+}
+
+.utilty_template .utility-content h3 + p {
+    @apply mt-6;
+}
+
+.utilty_template .utility-content > *:first-child {
+    @apply mt-0;
+}
+
+.utilty_template .utility-content a {
+    @apply underline;
+}
+
+.text-underline > a{
+    @apply underline;
+}   
 .footer-top-padding {
     @apply pt-[120px] sm:pt-[120px] xs:pt-[60px];
 }

@@ -1,0 +1,67 @@
+{
+  "wrapper": "div.utilty_template",
+  "sections": {
+    "page_settings_gVjcqU": {
+      "type": "page-settings",
+      "settings": {
+        "textColor": "#643600",
+        "backgroundColor": "#f0da8f"
+      }
+    },
+    "sidebar": {
+      "type": "utility-menu",
+      "settings": {
+        "menu": "utility-nav",
+        "secondary_text": "Tktk FAQ secondary text"
+      }
+    },
+    "faq_content_gJjAaz": {
+      "type": "faq-content",
+      "blocks": {
+        "faq_item_pV93nM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_tPdP4J": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_eAciLK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        },
+        "faq_item_HXB4xX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What shipping methods do you use?",
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_pV93nM",
+        "faq_item_tPdP4J",
+        "faq_item_eAciLK",
+        "faq_item_HXB4xX"
+      ],
+      "settings": {
+        "title": "ORDERS + SHIPPING",
+        "description": ""
+      }
+    }
+  },
+  "order": [
+    "page_settings_gVjcqU",
+    "sidebar",
+    "faq_content_gJjAaz"
+  ]
+}

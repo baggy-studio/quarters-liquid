@@ -4,6 +4,12 @@ import Swup from "swup";
 import SwupFragmentPlugin from "../plugins/fragmentPlugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 
+const utilityPages = ['frequently-asked-questions', 'shipping-returns', 'terms-and-conditions', 'privacy-policy'];
+
+const isUtilityPage = (url) => {
+  const currentPage = url.split('/').pop()?.split('?')[0] || '';
+  return utilityPages.includes(currentPage);
+};
 
 export const fragmentPlugin = new SwupFragmentPlugin({
   rules: [
@@ -26,6 +32,11 @@ export const fragmentPlugin = new SwupFragmentPlugin({
       from: "/collections/:handle?",
       to: "/collections/:handle?",
       containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
+    },
+    {
+      from: '/pages/:utilityPage',
+      to: '/pages/:utilityPage',
+      containers: ['#utility', '#page-settings', "#utility-nav"],
     }
   ]
 });
@@ -51,14 +62,25 @@ export const swup = new Swup({
   ],
 });
 
+document.querySelectorAll('a[href]').forEach((el) => {
+  el.addEventListener('mouseenter', () => {
+    const fragmentVisit = fragmentPlugin.getFragmentVisit({
+      from: window.location.href, // the current URL
+      to: el.href // the URL of the link
+    });
+    console.log(`will replace ${fragmentVisit?.containers || swup.options.containers}`);
+  });
+});
+
+
 export function updateCache(propUrl?: string) {
   const url = propUrl || swup.getCurrentUrl();
   const cachedPage = swup.cache.get(url);
 
   if (!cachedPage) {
     swup.cache.set(url, { url, html: document.documentElement.outerHTML });
-    return
-  };
+    return;
+  }
 
   cachedPage.html = document.documentElement.outerHTML;
   swup.cache.update(url, cachedPage);

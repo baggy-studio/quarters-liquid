@@ -53,6 +53,7 @@
         <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
           <main id="main">
             <div class="min-h-screen z-[1] relative bg-bone-tint body-bg">
+
               {{ content_for_layout }}
               {% if template.suffix == 'bar' %}
                 {% if request.design_mode %}

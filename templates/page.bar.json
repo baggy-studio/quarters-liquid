@@ -1,12 +1,3 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "sections": {
     "main": {
@@ -43,7 +34,7 @@
         "section_nFCHzw"
       ],
       "settings": {
-        "link": "https://resy.com/cities/new-york-ny/venues/quarters",
+        "link": "https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters",
         "sticky_reservation_text": "Make a reservation",
         "initial_reservation_text": "Book a table"
       }
@@ -54,13 +45,13 @@
         "desktop_nyL4iw": {
           "type": "desktop",
           "settings": {
-            "image": "shopify://shop_images/bar-hero.png"
+            "image": "shopify:\/\/shop_images\/bar-hero.png"
           }
         },
         "mobile_UgpmAx": {
           "type": "mobile",
           "settings": {
-            "image": "shopify://shop_images/bar-mobile.png"
+            "image": "shopify:\/\/shop_images\/bar-mobile.png"
           }
         }
       },
@@ -77,28 +68,28 @@
         "media_k4T4RB": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2024-09-12_at_1.43.59_PM_2.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_2.png",
             "caption": "Daytime"
           }
         },
         "media_naQ3bb": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2024-09-12_at_1.43.59_PM_1.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_1.png",
             "caption": "Apéro"
           }
         },
         "media_Mn7Rix": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2024-09-12_at_1.43.59_PM_3.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_3.png",
             "caption": "Evening"
           }
         },
         "media_6gHXye": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2024-09-12_at_1.43.59_PM_4.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2024-09-12_at_1.43.59_PM_4.png",
             "caption": "Events"
           }
         }
@@ -110,12 +101,12 @@
         "media_6gHXye"
       ],
       "settings": {
-        "paragraph": "<p>Tktk A marriage of warmth and grandeur, whimsy and irreverence, Quarters is a multifaceted space that occupies 7,000 square feet over two floors of a historic 19th-century Tribeca loft. Tktk A marriage of warmth and grandeur.</p>",
-        "address": "<p>383 BROADWAY, FLOOR 2<br/>NEW YORK, N.Y. 10013 </p>",
-        "phone": "<p>212-587-4040</p><p>(get directions)</p>",
-        "daytime": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.</p><p>Tuesday – Saturday<br/>11:00 a.m. to 4:00 p.m.</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
-        "apero": "<p>Consectetur adipiscing elit. Donec lectus neque lorem ipsum dolor sit amet.</p><p>Thursday – Saturday<br/>4:00pm to 5:00pm</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
-        "evening": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.</p><p>Thursday – Saturday<br/>5:00pm to Midnight</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
+        "paragraph": "<p>Tktk A marriage of warmth and grandeur, whimsy and irreverence, Quarters is a multifaceted space that occupies 7,000 square feet over two floors of a historic 19th-century Tribeca loft. Tktk A marriage of warmth and grandeur.<\/p>",
+        "address": "<p>383 BROADWAY, FLOOR 2<br\/>NEW YORK, N.Y. 10013 <\/p>",
+        "phone": "<p>212-587-4040<\/p><p>(get directions)<\/p>",
+        "daytime": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.<\/p><p>Tuesday – Saturday<br\/>11:00 a.m. to 4:00 p.m.<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
+        "apero": "<p>Consectetur adipiscing elit. Donec lectus neque lorem ipsum dolor sit amet.<\/p><p>Thursday – Saturday<br\/>4:00pm to 5:00pm<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
+        "evening": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus neque.<\/p><p>Thursday – Saturday<br\/>5:00pm to Midnight<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
         "eyebrow": "See you soon!"
       }
     },
@@ -130,35 +121,35 @@
         "event_WqWqk6": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-1.png",
+            "image": "shopify:\/\/shop_images\/demo-1.png",
             "caption": "Optional caption lorem ipsum dolor sit amet"
           }
         },
         "event_aUAWHb": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/rez-2.png",
+            "image": "shopify:\/\/shop_images\/rez-2.png",
             "caption": "Optional caption lorem ipsum dolor sit amet"
           }
         },
         "event_aDUbQe": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-4.png",
+            "image": "shopify:\/\/shop_images\/demo-4.png",
             "caption": "Optional caption lorem ipsum dolor sit amet"
           }
         },
         "event_xtjYyV": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-1_e68c3233-0321-43d5-be71-523f825da1e8.png",
+            "image": "shopify:\/\/shop_images\/demo-1_e68c3233-0321-43d5-be71-523f825da1e8.png",
             "caption": "Optional caption lorem ipsum dolor sit amet"
           }
         },
         "event_tpEA7L": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/rez-2_a1817c21-019e-4330-a387-2f664d277426.png",
+            "image": "shopify:\/\/shop_images\/rez-2_a1817c21-019e-4330-a387-2f664d277426.png",
             "caption": "Optional caption lorem ipsum dolor sit amet"
           }
         }

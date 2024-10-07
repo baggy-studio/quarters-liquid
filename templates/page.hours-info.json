@@ -74,8 +74,8 @@
         "image_pWqeLC"
       ],
       "settings": {
-        "store_address": "<p>383 Broadway, Floor 2</p><p>New York, N.Y. 10013</p>",
-        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p>+1 (212) 487-4040</p>",
+        "store_address": "<p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br/>New York, N.Y. 10013</a></p>",
+        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"tel:12124874040\" target=\"_blank\" title=\"Call Us\">+1 (212) 487-4040</a></p>",
         "store_social": "<p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"https://www.instagram.com/shopquarters/\">@shopquarters</a></p>",
         "store_info": "<p>Tuesday – Saturday</p><p>11:00am to 6:00pm</p><p>||</p><p><a href=\"/pages/rsvp\" title=\"RSVP\">Get Directions</a></p><p><a href=\"/collections/all\" title=\"All Items\">Shop Online</a></p>",
         "bar_info": "<p>Tuesday – Wednesday </p><p>11:00am to 4:00pm</p><p>||</p><p>Thursday – Saturday </p><p>11:00am to Midnight</p><p>||</p><p><a href=\"/\" target=\"_blank\" title=\"/\">Learn More</a></p><p><a href=\"/pages/rsvp\" target=\"_blank\" title=\"RSVP\">Make a Reservation</a></p>",

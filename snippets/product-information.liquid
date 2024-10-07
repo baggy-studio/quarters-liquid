@@ -6,6 +6,7 @@
 {% assign finish = product.metafields.custom.finish %}
 {% assign dimensions = product.metafields.custom.dimensions %}
 {% assign weight = product.metafields.custom.weight %}
+{% assign volume = product.metafields.custom.volume %}
 {% assign lead_time = product.metafields.custom.lead_time %}
 {% assign notes = product.metafields.custom.notes %}
 {% assign tear_sheet = product.metafields.custom.product_tearsheet %}
@@ -40,6 +41,10 @@
 
 {% if selected_variant.metafields.custom.weight %}
   {% assign weight = selected_variant.metafields.custom.weight %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.volume %}
+  {% assign volume = selected_variant.metafields.custom.volume %}
 {% endif %}
 
 {% if selected_variant.metafields.custom.lead_time %}
@@ -137,6 +142,16 @@
           <p class="small-sans col-span-4">Weight</p>
           {% if weight %}
             <div class="col-span-6 richtext small-sans">{{ weight | metafield_tag }}</div>
+          {% else %}
+            <p class="col-span-6 small-sans">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if volume != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Volume</p>
+          {% if volume %}
+            <div class="col-span-6 richtext small-sans">{{ volume | metafield_tag }}</div>
           {% else %}
             <p class="col-span-6 small-sans">--</p>
           {% endif %}

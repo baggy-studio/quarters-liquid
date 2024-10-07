@@ -7,7 +7,7 @@
     <button
       @click="close()"
       aria-label="Close bag"
-      class="medium-serif leading-none hidden lg:block"
+      class="medium-serif leading-none hidden lg:block transition-opacity duration-300 ease-linear hover:opacity-50"
     >
       (Close)
     </button>
@@ -58,7 +58,7 @@
         'pointer-events-auto': visible,
       }
     "
-    class="absolute top-0 left-0 w-full h-full delay-[400ms] lg:delay-0 bg-black/10 lg:bg-bone-tint/30 opacity-0 duration-300 ease-linear"
+    class="absolute top-0 left-0 w-full h-full delay-[400ms] lg:delay-0 bg-bone-tint/30 opacity-0 duration-300 ease-linear"
   ></button>
   <div
     :class="

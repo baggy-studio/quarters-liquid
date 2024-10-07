@@ -48,12 +48,12 @@
             </li>
           </template>
         </ul>
-        <button class="absolute left-0 inset-y-0 w-full lg:block hidden cursor-default" @click="closeFullscreen">
+        <button class="absolute left-0 inset-y-0 w-full cursor-default" @click="closeFullscreen">
           <span class="sr-only">Close</span>
         </button>
-        <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
+        {% comment %} <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
           <span class="sr-only">Next image</span>
-        </button>
+        </button> {% endcomment %}
       </div>
       <div class="fixed inset-0 w-full h-full lg:[will-change:clip-path] lg:[clip-path:var(--clip-path)] pointer-events-none" :style="`--clip-path: ${clipPath}`">
         <div class="absolute inset-0 min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20">

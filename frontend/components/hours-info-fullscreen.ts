@@ -39,6 +39,10 @@ export default () => ({
       signal: this.abortControllerResize.signal
     })
 
+    window.addEventListener('fullscreen:close', this.closeFullscreen.bind(this), {
+      signal: this.abortController.signal
+    });
+
     this.draw()
 
     this.contentReplace = () => {
@@ -151,10 +155,17 @@ export default () => ({
     }
 
     this.animating = false;
+    console.log('Fullscreen opened');
   },
   async closeFullscreen() {
+    console.log('Attempting to close fullscreen');
+    if (this.animating) {
+      console.log('Cannot close: currently animating');
+      return;
+    }
+
     console.log('Closing fullscreen');
-    if (this.animating) return
+    this.animating = true;
 
     if (this.fromLarge) {
       this.fromPosition = this.getLargeImageDimensions()
@@ -164,7 +175,11 @@ export default () => ({
 
     if (window.innerWidth >= 1024) {
       await this.onAnimateClose()
+    }else {
+      // For mobile, add a small delay to ensure the animation completes
+      await new Promise(resolve => setTimeout(resolve, 300));
     }
+
 
     this.animating = false
     this.visible = false

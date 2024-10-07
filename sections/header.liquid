@@ -132,7 +132,7 @@
       x-show="menu"
       class="lg:hidden nav-link pointer-events-auto"
     >
-      Close
+      (Close)
     </button>
     <button
       title="Bag"
@@ -149,7 +149,7 @@
           }
         "
         class="contents lg:contents"
-        >Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)</span
+        >Bag (<span class="contents" x-number="cartCount">{% render 'prefix-number', number: cart.item_count %}</span>)</span
       >
       <span
         :class="

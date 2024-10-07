@@ -105,7 +105,7 @@
 
     .cart-bottom-gradient {
         content: ''; ; 
-        @apply h-[120px] lg:h-[160px] absolute left-0 bottom-0 w-full block pointer-events-none;
+        @apply h-[120px] absolute left-0 bottom-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
         transform: rotate(-180deg);
     }

@@ -48,7 +48,15 @@ Alpine.directive("money", (el, { expression }, { evaluateLater, effect }) => {
     });
 });
 
+Alpine.directive("number", (el, { expression }, { evaluateLater, effect }) => {
+    let setNumber = evaluateLater(expression);
 
+    effect(() => {
+        setNumber((no) => {
+            el.innerHTML = no < 10 ? `0${no}` : no;
+        });
+    });
+});
 
 Alpine.plugin(intersect);
 Alpine.plugin(focus);

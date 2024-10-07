@@ -2,7 +2,7 @@
 <div class="px-4 w-full absolute top-0 left-0 z-[1] h-[120px] lg:h-[160px] before:cart-top-gradient">
   <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start w-full relative">
     <p class="medium-serif pt-[68px] hidden lg:block" x-show="hasItems">
-      Bag (<span class="contents" x-text="count">{{ cart.item_count }}</span>)
+      Bag (<span class="contents" x-number="count">{{ cart.item_count }}</span>)
     </p>
     <button
       @click="close()"

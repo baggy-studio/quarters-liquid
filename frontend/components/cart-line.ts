@@ -26,9 +26,6 @@ export default () => ({
 
     this.$dispatch("cart:update", updates);
   },
-  get qty() {
-    return this.line.quantity < 10 ? `0${this.line.quantity}` : this.line.quantity;
-  },
   get variantLine() {
     return this.line.variant_title?.replace(" /", ", ");
   },

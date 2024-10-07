@@ -2,7 +2,7 @@
   snippets/hours-and-info-gallery.liquid
 {% endcomment %}
 
-<div x-data="carousel()" class="embla relative lg:overflow-hidden">
+<div x-data="carousel({ align: 'start' })"  class="embla relative lg:overflow-hidden">
   <div class="embla__container flex" x-ref="viewport">
     {% for block in section.blocks %}
       {% if block.type == 'image' %}

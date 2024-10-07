@@ -4,7 +4,7 @@
 {% assign filtered_product_media = '' %}
 {% assign selected_variant_media = selected_variant.featured_media %}
 {% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
-{% assign total_media_count = 1 %}
+{% assign total_media_count = 0 %}
 
 {% if selected_variant_media %}
   {% assign total_media_count = total_media_count | plus: 1 %}

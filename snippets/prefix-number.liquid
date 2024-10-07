@@ -1,1 +1,1 @@
-{% if number < 10 %}{% assign padded_number = number | prepend: '0' %}{{ padded_number }}{% else %}{{ number }}{% endif %}
+{% if number < 10 and number > 0 %}{% assign padded_number = number | prepend: '0' %}{{ padded_number }}{% else %}{{ number }}{% endif %}

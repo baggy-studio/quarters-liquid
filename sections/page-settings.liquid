@@ -13,14 +13,18 @@
         {% endif %}
       }
       
-      body, body > *, .body-bg, #utility-nav  {
+      body, body > *, .body-bg, #utility-nav {
         color: var(--text-color) !important;
-        background: var(--background-color) !important;
+        background-color: var(--background-color) !important;
+      }
+
+      footer > *, footer div, footer div li , footer .logo-bg {
+        color: var(--footer-text-color) !important;
+        background-color: var(--footer-background-color) !important;
       }
 
 
-
-      {% if template == 'page.hours-info' %}
+      {% if template == 'page.hours-info' or template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
         .nav-gradient::before {
           background: linear-gradient(180deg, var(--background-color) 0%, rgba(2, 43, 38, 0) 100%);
         }
@@ -29,6 +33,9 @@
   {% if template == 'page.hours-info' %}
       <div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
   {% endif %}
+  {% if template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
+  <div class="absolute top-[-120px] lg:top-[-160px] left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
+{% endif %}
 </div>
 
 {% schema %}

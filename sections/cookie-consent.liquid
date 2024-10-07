@@ -26,7 +26,7 @@
       <div class="flex items-center justify-center gap-4 small-sans">
         <button @click="accept" title="Accept" class="underline hover:opacity-50 duration-200 ease-linear">Accept</button>
         {% if section.settings.ctaText != blank %}
-          <a href="{{ section.settings.ctaUrl }}" class="hover:underline hover:opacity-50 duration-200 ease-linear">{{ section.settings.ctaText }}</a>
+          <a href="{{ section.settings.ctaUrl }}" class="hover:opacity-50 duration-200 ease-linear">{{ section.settings.ctaText }}</a>
         {% endif %}
       </div>
     </div>

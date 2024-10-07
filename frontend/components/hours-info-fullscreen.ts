@@ -46,27 +46,17 @@ export default () => ({
     this.draw()
 
     this.contentReplace = () => {
-      console.log('contentReplace called');
       setTimeout(() => {
         const fullscreenElement = document.querySelector('[data-fullscreen]');
-        console.log('Fullscreen element:', fullscreenElement);
-        
         this.mediaCount = fullscreenElement ? parseInt(fullscreenElement.dataset.count, 10) : 0;
-        console.log('Media count from dataset:', this.mediaCount);
-        
         const fullscreenImages = document.querySelectorAll('[data-fullscreen-image]');
-        console.log('Fullscreen images found:', fullscreenImages.length);
-        
         this.media = Array.from(fullscreenImages).map((el) => {
-          console.log('Processing element:', el);
           const width = parseFloat(el.dataset.width);
           const height = parseFloat(el.dataset.height);
           const aspectRatio = parseFloat(el.dataset.aspectRatio);
           const src = el.dataset.src || el.querySelector('img')?.src;
           const alt = el.dataset.alt || el.querySelector('img')?.alt;
           const caption = el.dataset.caption;
-          
-          console.log('Extracted data:', { width, height, aspectRatio, src, alt, caption });
           
           return {
             width,
@@ -77,9 +67,6 @@ export default () => ({
             caption
           };
         });
-        
-        console.log('Final media array:', this.media);
-        console.log('Final media count:', this.mediaCount);
       }, 100)
     }
 
@@ -90,10 +77,8 @@ export default () => ({
     Alpine.effect(() => {
       if (typeof this.selectedIndex === 'number' && this.visible && !this.animating) {
         if (this.fromLarge) {
-
           this.$dispatch('fullscreen:index', this.selectedIndex)
         } else {
-
           this.$dispatch('fullscreen:index', this.selectedIndex - 1)
         }
       }
@@ -124,7 +109,6 @@ export default () => ({
 
   async openFullscreen(e, { large = false, index = 0 }) {
     if (this.animating || this.media.length === 0) {
-      console.warn('Cannot open fullscreen: animating or no media available');
       return;
     }
 
@@ -144,7 +128,6 @@ export default () => ({
     this.fromPosition = this.getSmallImageDimensions();
 
     if (!this.fromPosition) {
-      console.warn('Cannot get small image dimensions');
       return;
     }
 
@@ -155,16 +138,12 @@ export default () => ({
     }
 
     this.animating = false;
-    console.log('Fullscreen opened');
   },
   async closeFullscreen() {
-    console.log('Attempting to close fullscreen');
     if (this.animating) {
-      console.log('Cannot close: currently animating');
       return;
     }
 
-    console.log('Closing fullscreen');
     this.animating = true;
 
     if (this.fromLarge) {
@@ -175,15 +154,12 @@ export default () => ({
 
     if (window.innerWidth >= 1024) {
       await this.onAnimateClose()
-    }else {
-      // For mobile, add a small delay to ensure the animation completes
+    } else {
       await new Promise(resolve => setTimeout(resolve, 300));
     }
 
-
     this.animating = false
     this.visible = false
-
 
     if (this.raf) {
       cancelAnimationFrame(this.raf)
@@ -229,7 +205,6 @@ export default () => ({
   },
   async onAnimateOpen() {
     if (!this.activeMedia) {
-      console.warn('No active media for animation');
       return;
     }
 

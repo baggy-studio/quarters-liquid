@@ -16,13 +16,13 @@
         window.location.href = '/?cart=true';
       </script>
     {% endif %}
-
     {% if settings.favicon != blank %}
       <link
         fetchpriority="low"
         rel="icon"
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
-        sizes="32x32">
+        sizes="32x32"
+      >
     {% endif %}
 
     {% if template == 'index' %}
@@ -36,31 +36,41 @@
     {% endif %}
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}
-    <link
-      rel="preconnect"
-      href="https://cdn.shopify.com"
-      crossorigin>
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {%- liquid
       render 'vite-tag' with 'main.css'
       render 'vite-tag' with 'main.js'
     -%}
     {% render 'fonts' %}
     {{ content_for_header }}
-</head>
-<body data-template="{{ template }}" class="antialiased {{ template }}">
-  {% render 'svg' %}
-  <a class="sr-only" href="#main">Skip to main content</a>
-  <div
-    class="relative"
-    x-data="app"
-    style="--menu-height: 0px; --transform-y: 0px;">
-    {% section 'header' %}
-    <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
-      <main id="main" class="min-h-screen body-bg">
-        {{ content_for_layout }}
-      </main>
-      {% sections 'footer-group' %}
+  </head>
+  <body class="antialiased">
+    {% render 'svg' %}
+    <a class="sr-only" href="#main">Skip to main content</a>
+    <div class="relative" x-data="app" style="--menu-height: 0px; --transform-y: 0px;">
+      <div class="contents" id="contents">
+        {% section 'header' %}
+        <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
+          <main id="main">
+            <div class="min-h-screen z-[1] relative body-bg">
+              {{ content_for_layout }}
+              {% if template.suffix == 'bar' %}
+                {% if request.design_mode %}
+                  {% sections 'menus-group' %}
+                {% else %}
+                  <template x-teleport="#menu-container">
+                    <div class="contents" x-data="{ menu: 'drinks' }" @set-menu.window="menu = $event.detail">
+                      {% sections 'menus-group' %}
+                    </div>
+                  </template>
+                {% endif %}
+              {% endif %}
+            </div>
+            {% sections 'footer-group' %}
+          </main>
+        </div>
+      </div>
+      {% sections 'aside-group' %}
     </div>
-    {% sections 'aside-group' %}
-  </div>
-</body></html>
+  </body>
+</html>

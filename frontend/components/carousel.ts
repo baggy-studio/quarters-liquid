@@ -1,8 +1,10 @@
 import EmblaCarousel from "embla-carousel";
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 
 export default (
   options = {
     loop: true,
+    skipSnaps: true
   }
 ) => ({
   carousel: null,
@@ -12,14 +14,13 @@ export default (
   scrollSnaps: 0,
   index: 0,
   init() {
-
     if (this.$refs.container) {
       this.carousel = EmblaCarousel(this.$refs.container, {
         ...options,
         container: this.$refs.container,
-      });
+      }, [WheelGesturesPlugin()]);
     } else {
-      this.carousel = EmblaCarousel(this.$root, options);
+      this.carousel = EmblaCarousel(this.$root, options, [WheelGesturesPlugin()]);
     }
 
     this.update(this.carousel);

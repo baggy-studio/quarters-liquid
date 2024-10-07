@@ -3,6 +3,7 @@
     carousel({
       align: 'center',
       loop: true,
+      skipSnaps: true,
       container: '.related-products',
       breakpoints: {
         '(min-width: 1024px)': {
@@ -11,9 +12,10 @@
       },
     })
   "
+  data-wheel-gestures
   class="w-full overflow-hidden flex flex-col gap-y-8 lg:gap-y-16 py-12 lg:py-16 related"
 >
-  <div class="contents lg:grid grid-cols-20 gap-3 px-4">
+  <div class="block lg:grid grid-cols-20 gap-3 px-4">
     <div class="w-full flex items-center justify-between  col-start-2 col-span-18">
       <button
         :disabled="!canScrollPrev"
@@ -53,20 +55,22 @@
           {%- if recommendations.performed? and recommendations.products_count > 0 -%}
             {%- for product in recommendations.products -%}
               {% assign selected_variant = product.selected_or_first_available_variant %}
-              <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
-                <div
-                  @mouseenter="hoverIndex = {{forloop.index0}}"
-                  @mouseleave="hoverIndex = null"
-                  :class="
-                    {
-                      'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}
-                    }
-                  "
-                  class="lg:col-span-3 contents lg:block lg:col-start-2 transition-opacity duration-300 ease-linear"
-                >
-                  {% render 'product-variant-card', variant: selected_variant, product: product %}
-                </div>
-              </li>
+              {% if product.featured_image or selected_variant.featured_image %}
+                <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
+                  <div
+                    @mouseenter="hoverIndex = {{forloop.index0}}"
+                    @mouseleave="hoverIndex = null"
+                    :class="
+                      {
+                        'lg:opacity-50': typeof hoverIndex == 'number' && hoverIndex !== {{forloop.index0}}
+                      }
+                    "
+                    class="lg:col-span-3 contents lg:block lg:col-start-2 transition-opacity duration-300 ease-linear"
+                  >
+                    {% render 'product-variant-card', variant: selected_variant, product: product %}
+                  </div>
+                </li>
+              {% endif %}
             {% endfor %}
           {% endif %}
         </ul>

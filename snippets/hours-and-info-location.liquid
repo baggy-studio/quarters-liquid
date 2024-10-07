@@ -1,0 +1,29 @@
+<div class="w-full lg:col-span-5 lg:col-start-3 flex flex-col gap-y-16">
+  <div class="flex flex-col gap-y-4 large-info richtext-hover-only">
+    <div>{{ section.settings.store_address }}</div>
+    <div>{{ section.settings.store_contact }}</div>
+    <div>{{ section.settings.store_social }}</div>
+  </div>
+  {% if section.settings.store_info %}
+    <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
+      <h2 class="subheading py-2 lg:pb-0">the store</h2>
+      {% assign content = section.settings.store_info | split: "||" %}
+      {% for item in content %}
+        <div class="large-info richtext-info-links">
+          {{ item }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if section.settings.bar_info %}
+    <div class="space-y-4 lg:pt-0 border-t border-current lg:border-t-0">
+      <h2 class="subheading py-2 lg:pb-0">the bar</h2>
+      {% assign content = section.settings.bar_info | split: "||" %}
+      {% for item in content %}
+        <div class="large-info richtext-info-links">
+          {{ item }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

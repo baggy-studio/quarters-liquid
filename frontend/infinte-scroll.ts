@@ -1,5 +1,3 @@
-import { updateHistoryRecord } from "swup";
-
 function debounce(func, delay = 300) {
     let timer;
 

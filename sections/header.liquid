@@ -137,25 +137,25 @@
     <button
       title="Bag"
       :class="menu && 'hidden'"
-      @click="toggleCartMenu"
+      @click="$store.cart.open()"
       @cart:count.window="cartCount = $event.detail"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
       <span
         :class="
           {
-            'hidden': cartOpen,
-            'contents': !cartOpen
+            'hidden': $store.cart.visible,
+            'contents': !$store.cart.visible
           }
         "
         class="contents lg:contents"
-        >Bag (<span class="contents" x-text="cartCount">{{- cart.item_count -}}</span>)</span
+        >Bag (<span class="contents" x-text="$store.cart.count">{{- cart.item_count -}}</span>)</span
       >
       <span
         :class="
           {
-            'contents': cartOpen,
-            'hidden': !cartOpen
+            'contents': $store.cart.visible,
+            'hidden': !$store.cart.visible
           }
         "
         class="hidden lg:hidden"

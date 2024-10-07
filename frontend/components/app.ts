@@ -22,11 +22,18 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/']; 
-const initialLightRoutes = ['/pages/the-bar'];
-const inlineRoutes = ['/collections/', '/products/'];
+const instantLightRoutes = ['/'];
+
+const lightPathnames = ['/', '/pages/the-bar'];
+const noWordmarkPathnames = ['/', '/pages/the-bar'];
+
+const inlineMenuRoutes = ['/collections/', '/products/'];
 
 export default (activeUrl: string = window.location.pathname) => ({
+
+  cartVisible: false,
+
+
   menu: false,
   subMenu: null,
   menuHeight: 0,
@@ -38,8 +45,11 @@ export default (activeUrl: string = window.location.pathname) => ({
   init() {
     this.trackMenuHeight();
 
-
     swup.hooks.before('content:replace', (visit) => {
+      this.activeUrl = visit.to.url;
+    });
+
+    swup.hooks.on('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
       this.getTheme(visit.to.url);
     });
@@ -49,9 +59,9 @@ export default (activeUrl: string = window.location.pathname) => ({
         this.closeMenu();
       }
 
-      if (!lightRoutes.includes(visit.to.url)) {
+      if (instantLightRoutes.includes(visit.to.url)) {
         this.activeUrl = visit.to.url;
-        this.getTheme(visit.to.url);
+      } else {
       }
     });
 
@@ -61,11 +71,11 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   getTheme(toUrl: string) {
 
-    if (lightRoutes.includes(toUrl)) {
+    if (instantLightRoutes.includes(toUrl)) {
       return this.setTheme('light');
     }
 
-    if (initialLightRoutes.includes(toUrl)) {
+    if (lightRoutes.includes(toUrl)) {
       return this.setTheme('light');
     }
 

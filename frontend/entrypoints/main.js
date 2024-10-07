@@ -51,6 +51,20 @@ Alpine.directive("money", (el, { expression }, { evaluateLater, effect }) => {
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
+
+Alpine.store("cart", {
+    visible: false,
+    count: 0,
+    open() {
+        this.visible = true;
+    },
+    close() {
+        this.visible = false;
+    }
+});
+
+
+
 Alpine.data("footer", footer);
 Alpine.data("cart", cart);
 Alpine.data("app", app);

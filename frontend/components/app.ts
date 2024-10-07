@@ -142,7 +142,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     }
   },
   unlockScroll() {
-    console.log('Unlocking scroll');
     document.body.style.overflow = 'auto';
     window.removeEventListener('mousewheel', () => {
       this.closeMenu();

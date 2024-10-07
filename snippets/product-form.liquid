@@ -51,7 +51,7 @@
     <input type="hidden" readonly name="id" value="{{ selected_variant.id }}">
     {% if product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
       <a
-        href="mailto:hello@shopquarters.com"
+        href="mailto:hello@shopquarters.com?subject=Product%20Inquiry%3A%20{{ product.title | replace: ' ', '%20' }}"
         data-no-swup
         title="Inquire"
         class="

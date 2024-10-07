@@ -173,7 +173,7 @@
       "settings": {
         "title": "<p>Private Events and </p><p>Professional photography</p>",
         "body": "<p>Quarters is available to book for private events, from semi-private dinners for up to 16 guests to cocktail parties for 30 to 125 guests. Our third floor space with a large private dining room and commercial kitchen is scheduled to open in 2025. </p><p>On occasion, the space can also be rented for photo and video shoots.</p>",
-        "cta_link": "mailto:hello@shopquarters.com",
+        "cta_link": "mailto:hello@shopquarters.com?subject=Quarters%3A%20Event%20Inquiry",
         "cta_text": "Inquire"
       }
     }

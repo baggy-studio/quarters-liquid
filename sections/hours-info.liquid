@@ -1,0 +1,83 @@
+<div  x-data="hoursfullScreen()" class="relative">
+  <div class="pt-[120px] lg:pt-[160px] w-full px-4 overflow-x-clip z-10 relative pb-0 lg:pb-[64px]">
+    <div class="flex flex-col lg:grid grid-cols-20 gap-x-3 gap-y-[64px]">
+      {% render 'hours-and-info-location', section: section %}
+      {% render 'hours-and-info-content', section: section %}
+    </div>
+  </div>
+
+  <template x-teleport="body">
+    {% render 'hours-and-info-fullscreen-overlay' %}
+  </template>
+</div>
+
+{% schema %}
+  {
+    "name": "Hours And Info",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Location"
+      },
+      {
+        "type": "richtext",
+        "id": "store_address",
+        "label": "Address"
+      },
+      {
+        "type": "richtext",
+        "id": "store_contact",
+        "label": "Contact"
+      },
+      {
+        "type": "richtext",
+        "id": "store_social",
+        "label": "Social Links"
+      }, {
+        "type": "header",
+        "content": "The Store"
+      }, {
+        "type": "richtext",
+        "id": "store_info",
+        "label": "Store Info"
+      }, {
+        "type": "header",
+        "content": "The Bar"
+      }, {
+        "type": "richtext",
+        "id": "bar_info",
+        "label": "Bar Info"
+      }, {
+        "type": "header",
+        "content": "Paragraph"
+      }, {
+        "type": "richtext",
+        "id": "additional_info",
+        "label": "Paragraph"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Gallery Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "gallery_image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "caption",
+            "label": "Caption"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hours And Info",
+        "category": "Store Content"
+      }
+    ]
+  }
+{% endschema %}

@@ -36,7 +36,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: '/pages/:utilityPage',
       to: '/pages/:utilityPage',
-      containers: ['#utility', '#page-settings'],
+      containers: ['#utility', '#page-settings', "#utility-nav"],
     }
   ]
 });

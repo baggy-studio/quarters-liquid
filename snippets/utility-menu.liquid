@@ -1,4 +1,4 @@
-<nav id="utility-nav" class="w-full">
+<div id="utility-nav" class="w-full">
   <ul class="flex flex-col gap-1">
     {% for link in linklists[menu].links %}
       <li class="grid grid-cols-10 gap-x-3 items-center">
@@ -7,6 +7,7 @@
           {{ number }}
         </span>
         <a href="{{ link.url }}" 
+           
            class="col-span-9 flex items-center {% if link.current or link.active %}underline opacity-100{% else %}opacity-50{% endif %} hover:opacity-100 transition-opacity duration-300">
           <span class="flex items-center lg:text-2xl">
             {{ link.title }}
@@ -15,4 +16,4 @@
       </li>
     {% endfor %}
   </ul>
-</nav>
+</div>

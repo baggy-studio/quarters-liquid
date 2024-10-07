@@ -329,8 +329,7 @@ input {
 /* Utility Template */
 
 .utilty_template {
-    @apply lg:grid lg:grid-cols-2 mx-4 mb-0 mt-[120px] lg:mt-[160px] border-t border-[var(--text-color)];
-    height: calc(100vh - 160px);
+    @apply lg:grid lg:grid-cols-2 mx-4 mb-0 mt-[120px] lg:mt-[160px] border-t border-[var(--text-color)] z-20;
     position: relative;
 }
 

@@ -1,16 +1,34 @@
 <div id="page-settings" class="contents">
   <style>
       :root {
-        --header-theme: {{ section.settings.textColor }};
         --text-color: {{ section.settings.textColor }};
         --background-color: {{ section.settings.backgroundColor }};
+        --footer-text-color: {{ section.settings.footerTextColor }};
+        --footer-background-color: {{ section.settings.footerBackgroundColor }};
+
+        {% if section.settings.headerTheme == 'light' %}
+          --header-theme: #F4EED0;
+        {% else %}
+          --header-theme: #643600;
+        {% endif %}
       }
       
-      body {
-        color: var(--text-color);
-        background-color: var(--background-color);
+      body, body > *, .body-bg, #utility-nav  {
+        color: var(--text-color) !important;
+        background: var(--background-color) !important;
       }
+
+
+
+      {% if template == 'page.hours-info' %}
+        .nav-gradient::before {
+          background: linear-gradient(180deg, var(--background-color) 0%, rgba(2, 43, 38, 0) 100%);
+        }
+      {% endif %}
   </style>
+  {% if template == 'page.hours-info' %}
+      <div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -19,16 +37,38 @@
   "class": "contents",
   "settings": [
     {
+      "type": "select",
+      "id": "headerTheme",
+      "label": "Initial Navigation Theme",
+      "options": [
+        { "label": "Light", "value": "light" },
+        { "label": "Dark", "value": "dark" }
+      ],
+      "default": "dark"
+    },
+    {
       "type": "color",
       "id": "textColor",
       "label": "Text Color",
-      "default": "#000000"
+      "default": "#643600"
     },
     {
       "type": "color",
       "id": "backgroundColor",
       "label": "Background Color",
-      "default": "#FFFFFF"
+      "default": "#FAF8EC"
+    },
+    {
+      "type": "color",
+      "id": "footerTextColor",
+      "label": "Footer Text Color",
+      "default": "#FAF8EC"
+    },
+    {
+      "type": "color",
+      "id": "footerBackgroundColor",
+      "label": "Footer Background Color",
+      "default": "#643600"
     }
   ],
   "presets": [

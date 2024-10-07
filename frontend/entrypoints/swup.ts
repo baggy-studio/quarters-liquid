@@ -32,7 +32,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
 
 export const swup = new Swup({
   animateHistoryBrowsing: true,
-  containers: ["#main", "#page-settings"],
+  containers: ["#main"],
   plugins: [
     fragmentPlugin,
     new SwupPreloadPlugin(),

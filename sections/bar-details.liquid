@@ -15,11 +15,48 @@
         </div>
       </div>
       <div
-        class="relative lg:absolute top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
+        class="relative lg:hidden top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
         x-data="marquee"
       >
         <ul
-          class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:p-0.5 lg:top-0.5 lg:sticky h-max lg:h-[calc(100vh-0.5rem)] -ml-4 lg:m-0"
+          class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:px-0.5 lg:top-0 lg:sticky h-max lg:h-screen -ml-4 lg:m-0"
+          style="--height-desktop: calc(100% / {{ section.blocks.size }})"
+        >
+          {% for block in section.blocks %}
+            <li class="relative basis-[32.5%] lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 lg:mr-0">
+              <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
+                {{ block.settings.caption }}
+              </p>
+              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+                {% if block.settings.video != blank %}
+                  {% render 'video'; video: block.settings.video; loop: true %}
+                {% else %}
+                  {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+          {% for block in section.blocks %}
+            <li class="relative basis-[32.5%] lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 lg:mr-0">
+              <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
+                {{ block.settings.caption }}
+              </p>
+              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+                {% if block.settings.video != blank %}
+                  {% render 'video'; video: block.settings.video; loop: true %}
+                {% else %}
+                  {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div
+        class="hidden lg:block absolute top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
+      >
+        <ul
+          class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:p-0.5 lg:top-0 lg:sticky h-max lg:h-screen -ml-4 lg:m-0"
           style="--height-desktop: calc(100% / {{ section.blocks.size }})"
         >
           {% for block in section.blocks %}
@@ -27,7 +64,7 @@
               <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
                 {{ block.settings.caption }}
               </p>
-              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+              <div class="h-auto lg:h-[calc(25vh-4px)] w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
                 {% if block.settings.video != blank %}
                   {% render 'video'; video: block.settings.video; loop: true %}
                 {% else %}
@@ -67,7 +104,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 {% schema %}
 {

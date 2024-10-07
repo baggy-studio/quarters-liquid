@@ -6,19 +6,19 @@
     class="w-full relative aspect-[176/221] lg:aspect-[201/252]"
   >
     {% if variant.featured_image %}
-      {% render 'image', width: 402, height: 504, image: variant.image, priority: priority %}
+      {% render 'image', width: 804, height: 1008, image: variant.image, priority: priority %}
     {% else %}
-      {% render 'image', width: 402, height: 504, image: product.featured_image, priority: priority %}
+      {% render 'image', width: 804, height: 1008, image: product.featured_image, priority: priority %}
     {% endif %}
     {% if product.metafields.custom.hover_image %}
       <div
-        class="absolute bg-citrus top-0 left-0 w-full h-full transition-opacity opacity-0 group-hover:opacity-100 duration-[--fade-in-duration] ease-[--fade-in-easing]"
+        class="absolute top-0 left-0 w-full h-full transition-opacity opacity-0 group-hover:opacity-100 duration-700 ease-in-out"
       >
         {% if product.metafields.custom.hover_image or variant.metafields.custom.hover_image %}
           {% if variant.metafields.custom.hover_image %}
-            {% render 'image', width: 402, height: 504, image: variant.metafields.custom.hover_image %}
+            {% render 'image', width: 804, height: 1008, image: variant.metafields.custom.hover_image %}
           {% elsif product.metafields.custom.hover_image %}
-            {% render 'image', width: 402, height: 504, image: product.metafields.custom.hover_image %}
+            {% render 'image', width: 804, height: 1008, image: product.metafields.custom.hover_image %}
           {% endif %}
         {% endif %}
       </div>
@@ -48,8 +48,8 @@
     {% elsif variant.available %}
       {% if variant.compare_at_price > 0 %}
         <div class="flex gap-1">
-          <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
           <p class="small-accent">{{ variant.price | money }}</p>
+          <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
         </div>
       {% else %}
         <p class="small-accent">{{ variant.price | money }}</p>

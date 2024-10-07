@@ -18,7 +18,7 @@
     "@alpinejs/intersect": "^3.14.1",
     "@swup/a11y-plugin": "^5.0.0",
     "@swup/fragment-plugin": "^1.1.1",
-    "@swup/head-plugin": "^2.2.1",
+    "@swup/plugin": "^4.0.0",
     "@swup/preload-plugin": "^3.2.10",
     "@swup/scroll-plugin": "^3.3.2",
     "@types/js-cookie": "^3.0.6",
@@ -28,14 +28,14 @@
     "infinite-scroll": "^4.0.1",
     "js-cookie": "^3.0.5",
     "motion": "^10.18.0",
-    "swup": "^4.7.0"
+    "swup": "^4.8.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "vite": "^5.4.7",
+    "vite": "^5.4.8",
     "vite-plugin-shopify": "^3.0.1"
   }
 }

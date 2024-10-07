@@ -13,7 +13,7 @@
     }
 
     body {
-        @apply bg-bone-tint text-mahogany font-serif;
+        @apply bg-bone-tint text-mahogany font-serif select-none;
     }
 
     a,
@@ -94,6 +94,96 @@
         mix-blend-mode: multiply;
         transform: rotate(-180deg);
     }
+
+    .cart-gradient {
+        content: '';
+        @apply h-[120px] lg:h-[160px] absolute left-0 bottom-0 w-full block pointer-events-none;
+        background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
+        transform: rotate(-180deg);
+    }
+
+    .fullscreen-left-gradient {
+        @apply w-[50vw] h-full absolute left-0 bottom-0 top-0 block pointer-events-none;
+        background: linear-gradient(90deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .fullscreen-top-gradient {
+        @apply h-[50%] absolute left-0 top-0 w-full block pointer-events-none;
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .nav-gradient::before {
+        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        content: '';
+        background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
+        pointer-events: none;
+    }
+
+    .clip-after-100vh {
+        clip-path: inset(100vh 0 0 0);
+    }
+
+    .clip-within-100vh {
+        clip-path: inset(0 0 calc(100% - 100vh) 0);
+    }
+
+    .hero-bar-left-gradient {
+        /* 1/4 Gradient Fade */
+        @apply w-[50vw] h-full absolute left-0 bottom-0 top-0 block pointer-events-none;
+        background: linear-gradient(90deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+
+    }
+
+    .hero-bar-top-gradient {
+        @apply h-[160px] absolute left-0 top-0 w-full block pointer-events-none;
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .hero-bar-y-top {
+        @apply h-[120px] lg:h-[160px] absolute left-0 top-0 w-full block pointer-events-none z-[1];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .hero-bar-bottom {
+        @apply h-[120px] lg:h-[160px] absolute left-0 bottom-0 w-full block pointer-events-none z-[1];
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+        transform: rotate(-180deg);
+    }
+
+    .has-arrow {
+        @apply before:content-['→'] before:block flex items-center gap-x-2.5;
+    }
+
+    .bar-left-gradient {
+        @apply absolute left-0 top-0 w-[50%] h-full block pointer-events-none;
+        background: linear-gradient(90deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+    }
+
+    .bar-menu-top-gradient {
+        @apply absolute top-0 left-0 w-full h-16 block pointer-events-none;
+        background: linear-gradient(180deg, #F0DA8F 0%, rgba(240, 218, 143, 0) 100%);
+    }
+
+    .bar-menu-bottom-gradient {
+        @apply absolute bottom-0 left-0 w-full h-16 block pointer-events-none;
+        background: linear-gradient(180deg, rgba(240, 218, 143, 0) 0%, #F0DA8F 100%);
+    }
+
+    .bar-menu-mobile-gradient {
+        @apply absolute top-0 left-0 w-full h-full block pointer-events-none;
+
+        background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
+        mix-blend-mode: multiply;
+        border: 1px solid #FF0000;
+        transform: rotate(-90deg);
+    }
 }
 
 @layer components {
@@ -111,6 +201,22 @@
 
     .hero-y-gradient {
         @apply before:pointer-events-none after:pointer-events-none before:hero-y-top before:absolute before:left-0 before:top-0 before:w-full before:z-[1] before:block after:hero-y-bottom after:absolute after:left-0 after:bottom-0 after:w-full after:block;
+    }
+
+    .button {
+        @apply disabled:cursor-wait w-full h-10 lg:h-8 flex leading-none items-center justify-between px-4 bg-mahogany hover:bg-mahogany-hover duration-300 ease-linear transition-colors text-bone-tint subheading uppercase
+    }
+
+    .button.is-alt {
+        @apply bg-bone hover:bg-bone-tint text-mahogany;
+    }
+
+    .rez-button {
+        @apply uppercase hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
+    }
+
+    .rez-button.is-alt {
+        @apply bg-transparent border-bone border hover:bg-bone hover:text-mahogany;
     }
 }
 
@@ -152,6 +258,35 @@
  #utility.is-leaving {
      @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
  }
+#collection-nav,
+#collection-nav-clone,
+#product-grid,
+#main {
+    @apply transition-opacity;
+    will-change: opacity;
+}
+
+html.is-animating #main,
+#collection-nav.is-animating,
+#product-grid.is-animating,
+#collection-nav-clone.is-animating {
+    opacity: 0;
+}
+
+
+html.is-changing #main,
+#collection-nav.is-changing,
+#product-grid.is-changing,
+#collection-nav-clone.is-changing {
+    @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
+}
+
+html.is-leaving #main,
+#collection-nav.is-leaving,
+#product-grid.is-leaving,
+#collection-nav-clone.is-leaving {
+    @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
+}
 
 .richtext a {
     @apply w-max underline decoration-1 underline-offset-2 hover:opacity-50 duration-300 ease-linear;
@@ -176,14 +311,10 @@ nav.is-menu {
     @apply text-mahogany delay-300;
 }
 
-
-.nav-gradient::before {
-    @apply sticky left-0 w-full top-0 block transition-opacity duration-300 ease-linear;
-    content: '';
-    height: 120px;
-    background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
-    mix-blend-mode: normal;
-    pointer-events: none;
+@media (max-width: 1023px) {
+    nav.is-cart {
+        @apply text-mahogany delay-300;
+    }
 }
 
 input {
@@ -241,3 +372,6 @@ input {
 .text-underline > a{
     @apply underline;
 }   
+.footer-top-padding {
+    @apply pt-[120px] sm:pt-[120px] xs:pt-[60px];
+}

@@ -1,0 +1,183 @@
+<div class="w-full relative overflow-hidden lg:overflow-clip" id="hours">
+  <div class="w-full py-12 lg:pt-[147px] lg:pb-[160px] bg-vanilla">
+    <div class="w-full flex flex-col lg:grid lg:grid-cols-20 lg:gap-3 gap-y-12 lg:gap-y-[127px] px-4">
+      <div class="col-span-8 spicy-body col-start-2 lg:rotate-[-2.5deg] richtext-hover-only">
+        {{ section.settings.paragraph }}
+      </div>
+      <div class="col-span-4 lg:gap-3 grid grid-cols-10 gap-2 lg:flex flex-col lg:mt-[119px] col-start-[13] mt-4">
+        <div class="flex flex-col gap-3 w-full col-span-8 col-start-2 px-1.5 lg:px-0">
+          <div class="subheading rotate-[5deg] richtext-hover-only">
+            {{ section.settings.address }}
+          </div>
+          <div class="medium-italic ml-auto rotate-[-2.5deg] w-full max-w-[161px] [&>p:last-child]:ml-auto prose-p:w-max richtext-hover-only">
+            {{ section.settings.phone }}
+          </div>
+        </div>
+      </div>
+      <div
+        class="relative lg:hidden top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
+        x-data="marquee"
+      >
+        <ul
+          class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:px-0.5 lg:top-0 lg:sticky h-max lg:h-screen -ml-4 lg:m-0"
+          style="--height-desktop: calc(100% / {{ section.blocks.size }})"
+        >
+          {% for block in section.blocks %}
+            <li class="relative basis-[32.5%] lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 lg:mr-0">
+              <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
+                {{ block.settings.caption }}
+              </p>
+              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+                {% if block.settings.video != blank %}
+                  {% render 'video'; video: block.settings.video; loop: true %}
+                {% else %}
+                  {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+          {% for block in section.blocks %}
+            <li class="relative basis-[32.5%] lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 lg:mr-0">
+              <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
+                {{ block.settings.caption }}
+              </p>
+              <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+                {% if block.settings.video != blank %}
+                  {% render 'video'; video: block.settings.video; loop: true %}
+                {% else %}
+                  {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div
+        class="hidden lg:block absolute top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
+      >
+        <ul
+          class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:p-0.5 lg:top-0 lg:sticky h-max lg:h-screen -ml-4 lg:m-0"
+          style="--height-desktop: calc(100% / {{ section.blocks.size }})"
+        >
+          {% for block in section.blocks %}
+            <li class="relative basis-[32.5%] lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 last:mr-0 lg:mr-0">
+              <p class="subheading uppercase lg:pl-2.5 lg:translate-x-full lg:origin-top-left lg:rotate-90">
+                {{ block.settings.caption }}
+              </p>
+              <div class="h-auto lg:h-[calc(25vh-4px)] w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
+                {% if block.settings.video != blank %}
+                  {% render 'video'; video: block.settings.video; loop: true %}
+                {% else %}
+                  {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="w-full contents lg:grid grid-cols-12 gap-3 col-span-12 gap-y-10 col-start-4">
+        <ul class="col-span-7 flex flex-col gap-y-12">
+          <li class="grid grid-cols-7 gap-3 pt-2 border-t border-current">
+            <h4 class="medium-accent col-span-2">Daytime</h4>
+            <div class="flex flex-col col-span-4 gap-y-4 small-sans prose-a:has-arrow richtext-hover-only">
+              {{ section.settings.daytime }}
+            </div>
+          </li>
+          <li class="grid grid-cols-7 gap-3 pt-2 border-t border-current">
+            <h4 class="medium-accent col-span-2">APÉRO HOUR</h4>
+            <div class="flex flex-col col-span-4 gap-y-4 small-sans prose-a:has-arrow richtext-hover-only">
+              {{ section.settings.apero }}
+            </div>
+          </li>
+          <li class="grid grid-cols-7 gap-3 pt-2 border-t border-current">
+            <h4 class="medium-accent col-span-2">EVENING</h4>
+            <div class="flex flex-col col-span-4 gap-y-4 small-sans prose-a:has-arrow richtext-hover-only">
+              {{ section.settings.evening }}
+            </div>
+          </li>
+        </ul>
+        <div class="col-span-5 flex items-center justify-center lg:justify-end lg:items-end lg:translate-y-14">
+          <p class="rotate-[5deg] text-right medium-accent uppercase">
+            {{ section.settings.eyebrow }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+{% schema %}
+{
+  "name": "Bar Details",
+  "class": "contents",
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Media",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "info": "The paragraph of the details section"
+    },
+    {
+      "type": "richtext",
+      "id": "address",
+      "label": "Address",
+      "info": "The address of the details section"
+    },
+    {
+      "type": "richtext",
+      "id": "phone",
+      "label": "Phone",
+      "info": "The phone number of the details section"
+    },
+    {
+      "type": "richtext",
+      "id": "daytime",
+      "label": "Daytime Hours & Content"
+    },
+    {
+      "type": "richtext",
+      "id": "apero",
+      "label": "Apéro Hours & Content"
+    },
+    {
+      "type": "richtext",
+      "id": "evening",
+      "label": "Evening Hours & Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "See you soon!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bar Details"
+    }
+  ]
+}
+{% endschema %}

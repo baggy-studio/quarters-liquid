@@ -1,0 +1,57 @@
+<div x-data="barMenu" class="absolute inset-0 z-10 pointer-events-none">
+  <div
+    class="absolute inset-0 text-mahogany clip-after-100vh"
+    :style="`--infoHeight: ${infoHeight}px; --barHeight: ${menuHeight}px;`"
+  >
+    {% render 'sticky-bar-content', mode: 'sticky' %}
+  </div>
+  <div class="absolute inset-0 text-bone clip-within-100vh" style="--infoHeight: 200vh; --barHeight: 200vh;">
+    {% render 'sticky-bar-content', mode: 'initial' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky Bar Menu",
+  "class": "contents",
+  "blocks": [
+    {
+      "type": "section",
+      "name": "Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "A title for the respective section on the Bar page"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Reservation Link",
+      "info": "The link for the reservation page"
+    },
+    {
+      "type": "text",
+      "id": "sticky_reservation_text",
+      "label": "Sticky Reservation Text",
+      "info": "The text for the sticky reservation CTA"
+    },
+    {
+      "type": "text",
+      "id": "initial_reservation_text",
+      "label": "Initial Reservation Text",
+      "info": "The text for the initial reservation CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Bar Menu"
+    }
+  ]
+}
+{% endschema %}

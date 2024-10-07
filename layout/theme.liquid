@@ -25,7 +25,15 @@
         sizes="32x32">
     {% endif %}
 
-    <title>{{ page_title }}</title>
+    {% if template == 'index' %}
+      <title>{{ page_title }}</title>
+    {% else %}
+      <title>
+        {{ shop.name }}
+        |
+        {{ page_title }}
+      </title>
+    {% endif %}
     <meta name="description" content="{{ page_description | default: shop.name | escape }}">
     {% render 'meta-tags' %}
     <link

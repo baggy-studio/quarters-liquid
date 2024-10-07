@@ -2,34 +2,35 @@ import { money as shopifyMoney } from "@/utils";
 
 export default () => ({
   async remove(lineId) {
-    const cart = this.$store.cart;
 
     const updates = {
       [lineId]: 0,
     };
 
-    await cart.updateLines(updates);
+    this.$dispatch("cart:update", updates);
   },
   async decreaseQty(lineId, lineQty) {
-    let qty = lineQty - 1;
-
-    const cart = this.$store.cart;
-
+    let quantity = lineQty - 1;
     const updates = {
-      [lineId]: qty,
+      [lineId]: quantity,
     };
-    await cart.updateLines(updates);
+    this.$dispatch("cart:update", updates);
+
   },
   async increaseQty(lineId, lineQty) {
-    let qty = lineQty + 1;
-
-    const cart = this.$store.cart;
+    let quantity = lineQty + 1;
 
     const updates = {
-      [lineId]: qty,
+      [lineId]: quantity,
     };
 
-    await cart.updateLines(updates);
+    this.$dispatch("cart:update", updates);
+  },
+  get qty() {
+    return this.line.quantity < 10 ? `0${this.line.quantity}` : this.line.quantity;
+  },
+  get variantLine() {
+    return this.line.variant_title?.replace(" /", ", ");
   },
   money(price) {
     return shopifyMoney(price);

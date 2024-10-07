@@ -1,0 +1,101 @@
+<div class="h-svh overflow-hidden w-full relative before:hero-bar-y-top lg:after:hero-bar-bottom bg-vanilla">
+  <div class="absolute top-0 left-0 w-full h-full after:hero-bar-top-gradient lg:after:hero-bar-left-gradient">
+    {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
+
+    {% if allBlock != blank %}
+      <div class="absolute top-0 left-0 w-full h-full">
+        {% if allBlock.settings.video != blank %}
+          {% render 'video'; video: allBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: allBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+    {% else %}
+      {% assign desktopBlock = section.blocks | where: 'type', 'desktop' | first %}
+      {% assign mobileBlock = section.blocks | where: 'type', 'mobile' | first %}
+
+      <div class="absolute top-0 left-0 w-full h-full hidden md:block">
+        {% if desktopBlock.settings.video != blank %}
+          {% render 'video'; video: desktopBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: desktopBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+      <div class="absolute top-0 left-0 w-full h-full hidden md:block lg:hidden">
+        {% if mobileBlock.settings.video != blank %}
+          {% render 'video'; video: mobileBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 768, height: 1024, sizes: '100vw' %}
+        {% endif %}
+      </div>
+      <div class="absolute top-0 left-0 w-full h-full md:hidden">
+        {% if mobileBlock.settings.video != blank %}
+          {% render 'video'; video: mobileBlock.settings.video; loop: true %}
+        {% else %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 393, height: 672, sizes: '100vw', priority: true %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bar Hero",
+  "blocks": [
+    {
+      "type": "desktop",
+      "name": "Desktop",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        }
+      ]
+    },
+    {
+      "type": "mobile",
+      "name": "Mobile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        }
+      ]
+    },
+    {
+      "type": "all",
+      "name": "Desktop & Mobile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bar Hero"
+    }
+  ]
+}
+{% endschema %}

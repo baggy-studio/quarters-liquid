@@ -31,6 +31,8 @@ export default (activeUrl: string = window.location.pathname) => ({
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
   activeCollection: 0,
+  cartCount: 0,
+  cartOpen: false,
   init() {
     this.trackMenuHeight();
 
@@ -54,11 +56,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
-
-
-
-
-
   },
   getTheme(toUrl: string) {
 
@@ -130,6 +127,10 @@ export default (activeUrl: string = window.location.pathname) => ({
     if (this.menu) {
       this.updateMenuHeight(1);
     }
+  },
+  toggleCartMenu() {
+    this.cartOpen = !this.cartOpen;
+    this.$dispatch('cart:toggle')
   },
   lockScroll() {
     document.body.style.overflow = 'hidden';

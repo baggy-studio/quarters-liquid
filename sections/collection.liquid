@@ -1,72 +1,162 @@
-<div
-  class="pt-[120px] lg:pt-[160px] w-full px-4"
-  x-data="collectionNav('{{ collection.url }}')"
->
+<div class="contents" x-data="collectionNav('{{ collection.url }}')">
   <div
-    id="collection-nav-wrapper"
-    class="w-full border-t pt-3 border-current z-10 transition-transform ease-in-out"
+    class="pt-[120px] lg:pt-16 lg:mt-24 w-full px-4"
+    id="shop"
   >
-    <div id="collection-nav" class="w-full h-max">
+    <div
+      class="w-full border-t pt-2 border-current relative z-10"
+      :class="
+        {
+          'opacity-0': isSticky
+        }
+      "
+    >
       {% render 'collection-nav', menu: section.settings.menu %}
     </div>
-  </div>
-  <div
-    x-data="collection"
-    id="product-grid"
-    class="w-full pb-32 lg:pb-36 relative flex flex-col items-center justify-center gap-y-8 lg:gap-y-[66px] pt-12 lg:pt-[71px]"
-  >
-    {%- paginate collection.products by 48 -%}
-      {% if paginate.previous %}
-        <div
-          data-load-previous
-          class="absolute left-0 top-0 w-full h-64 invisible flex items-center justify-center"
-        >
-          <a
-            href="{{ paginate.previous.url }}"
-            class="w-max collection-link subheading"
-            title="Load previous"
+    <div
+      x-data="collection"
+      id="product-grid"
+      class="w-full pb-32 lg:pb-36 relative flex flex-col items-center justify-start gap-y-8 lg:gap-y-[66px] pt-12 lg:pt-[71px] min-h-screen"
+    >
+      {%- paginate collection.products by 48 -%}
+        {% if paginate.previous %}
+          <div
+            data-load-previous
+            class="absolute left-0 top-0 w-full h-64 invisible flex items-center justify-center"
           >
-            Load previous
-          </a>
-        </div>
-      {% endif %}
-      <div
-        data-product-grid
-        class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
-      >
-        <ul
-          class="contents"
+            <a
+              href="{{ paginate.previous.url }}"
+              class="w-max collection-link subheading"
+              title="Load previous"
+            >
+              Load previous
+            </a>
+          </div>
+        {% endif %}
+        <div
+          data-product-grid
+          class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
         >
-          {% for product in collection.products %}
-            {% assign is_priority = false %}
+          <ul
+            class="contents"
+          >
+            {% assign rendered_products = 0 %}
+            {% for product in collection.products %}
+              {% assign is_priority = false %}
 
-            {% if forloop.index0 < 9 %}
-              {% assign is_priority = true %}
+              {% if forloop.index0 < 9 %}
+                {% assign is_priority = true %}
+              {% endif %}
+
+              {% assign has_only_default_variant = true %}
+
+              {% if product.has_only_default_variant %}
+                {% assign has_only_default_variant = false %}
+              {% endif %}
+
+              {% assign rendered_products = rendered_products | plus: 1 %}
+
+              {% render 'product-card',
+                product: product,
+                priority: is_priority,
+                renderVariants: has_only_default_variant
+              %}
+            {% endfor %}
+
+            {% if paginate.pages == 1 %}
+              {% assign all_variant_ids = '' %}
+              {% for product in collection.products %}
+                {% for variant in product.variants %}
+                  {% unless variant.id == product.selected_or_first_available_variant.id
+                    or product.has_only_default_variant
+                  %}
+                    {% assign variant_product_id = variant.id | append: ':' | append: variant.product.id %}
+                    {% assign all_variant_ids = all_variant_ids | append: variant_product_id | append: ',' %}
+                  {% endunless %}
+                {% endfor %}
+              {% endfor %}
+
+              {% assign all_variant_ids = all_variant_ids | split: ',' %}
+
+              {% comment %} Shuffle the all_variant_ids array {% endcomment %}
+              {% assign loops = all_variant_ids.size | times: 10 %}
+              {% capture indexes %}
+              {% for i in (1..loops) %}{{ "now" | date: "%N" | modulo: all_variant_ids.size }},{% endfor %}
+            {% endcapture %}
+              {% assign indexes = indexes | split: ',' | uniq %}
+              {% assign shuffled_variant_ids = '' %}
+              {% for index in indexes %}
+                {% assign i = index | plus: 0 %}
+                {% assign shuffled_variant_ids = shuffled_variant_ids | append: all_variant_ids[i] | append: ',' %}
+              {% endfor %}
+              {% assign all_variant_ids = shuffled_variant_ids | split: ',' %}
+              {% assign all_variant_ids = all_variant_ids | uniq | join: ', ' %}
+              {% assign all_variant_ids = all_variant_ids | split: ',' %}
+
+              {% for variant_product_id in all_variant_ids %}
+                {% assign variant_id = variant_product_id | split: ':' | first | plus: 0 %}
+                {% assign product_id = variant_product_id | split: ':' | last | plus: 0 %}
+
+                {% assign product = collection.products | where: 'id', product_id | first %}
+                {% assign variant = product.variants | where: 'id', variant_id | first %}
+
+                {% assign is_priority = false %}
+
+                {% assign rendered_products = rendered_products | plus: 1 %}
+
+                {% if rendered_products <> 9 %}
+                  {% assign is_priority = true %}
+                {% endif %}
+
+                {% if variant %}
+                  <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product>
+                    <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                      {% render 'product-variant-card', variant: variant, product: product, priority: is_priority %}
+                    </div>
+                  </li>
+                {% endif %}
+              {% endfor %}
             {% endif %}
-
-            {% render 'product-card', product: product, priority: is_priority %}
-          {% endfor %}
-        </ul>
-      </div>
-      {% if paginate.next %}
-        <div
-          data-load-next
-          class="absolute left-0 bottom-0 w-full h-64 invisible flex items-center justify-center"
-        >
-          <a
-            href="{{ paginate.next.url }}"
-            class="w-max collection-link subheading"
-            title="Load more"
-          >
-            Load more
-          </a>
+          </ul>
         </div>
-      {% endif %}
-    {%- endpaginate -%}
+        {% if paginate.next %}
+          <div
+            data-load-next
+            class="absolute left-0 bottom-0 w-full h-64 invisible flex items-center justify-center"
+          >
+            <a
+              href="{{ paginate.next.url }}"
+              class="w-max collection-link subheading"
+              title="Load more"
+            >
+              Load more
+            </a>
+          </div>
+        {% endif %}
+      {%- endpaginate -%}
+    </div>
+  </div>
+  {% render 'nav-gradient' %}
+  <div class="absolute z-10 top-0 left-0 bottom-0 w-full pointer-events-none px-4 lg:pt-16 lg:block hidden">
+    <div
+      :class="
+        {
+        'pointer-events-auto': isSticky,
+        'opacity-0 delay-0': !isSticky,
+         'delay-700': scrollDirection == 'down'
+        }
+      "
+      class="w-full top-16 sticky opacity-0 delay-0"
+    >
+      <div
+        class="w-full h-max transition-transform ease-in-out duration-700 pt-2 border-t border-current"
+        :class="{ '-translate-y-[calc(100%+74px)]':  scrollDirection == 'down' }"
+      >
+        {% render 'collection-nav', menu: section.settings.menu, clone: true %}
+      </div>
+    </div>
   </div>
 </div>
-{% render 'collection-gradient' %}
-
 {% schema %}
 {
   "name": "Collection with Filtering",

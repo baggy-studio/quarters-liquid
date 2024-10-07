@@ -12,9 +12,7 @@ const selectors = {
 export default () => ({
   hasLoadedVariants: false,
   init() {
-    if (!document.querySelector(selectors.loadNext)) {
-      this.loadVariants()
-    } else {
+    if (document.querySelector(selectors.loadNext)) {
       this.initInfiniteScroll()
     }
   },
@@ -22,7 +20,7 @@ export default () => ({
     const infiniteScroll = new InfiniteScrollManager({
       container: selectors.productGrid,
       paginationNext: selectors.loadNext,
-      enableHtml5History: true
+      enableHtml5History: false
     });
 
     infiniteScroll.addLoadEventListener(() => {

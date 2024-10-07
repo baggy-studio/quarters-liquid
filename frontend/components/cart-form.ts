@@ -1,43 +1,42 @@
+import { swup } from "@/entrypoints/swup";
+
 export default () => ({
   quantity: 1,
-  maxQty: null,
+  loading: false,
+  contentReplace: () => { },
   init() {
-    this.maxQty = this.$root.dataset.max;
+
+    this.contentReplace = () => {
+      this.quantity = 1;
+    }
+
+    swup.hooks.on('content:replace', this.contentReplace)
   },
-  decreaseQty() {
-    if (this.quantity == 1) return;
+  destroy() {
+    swup.hooks.off('content:replace', this.contentReplace)
+  },
+  decreaseQuantity() {
     this.quantity--;
   },
-  increaseQty() {
-    if (this.maxQty <= this.quantity) {
-      return;
-    } else {
-      this.quantity++;
-    }
+  increaseQuantity() {
+    this.quantity++;
   },
-  async add() {
-    const formData = new FormData(this.$root);
+  async submit(e) {
+    e.preventDefault();
+    const formData = new FormData(this.$refs.form);
 
     const variant = formData.get("id");
-
-    const hazmat = formData.get("properties[hazmat]");
-    const cartImage = formData.get("properties[_image]");
+    const quantity = formData.get("quantity");
 
     const payload = [
       {
         id: Number(variant),
-        quantity: Number(this.quantity) || 1,
-        properties: {
-          ...(hazmat && {
-            Hazmat: hazmat,
-          }),
-          ...(cartImage && {
-            _image: cartImage,
-          }),
-        },
+        quantity: Number(quantity) || 1
       },
     ];
 
-    await this.$store.cart.addLines(payload);
+    this.loading = true;
+
+    this.$dispatch("cart:add", payload);
   },
 });

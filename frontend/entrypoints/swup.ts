@@ -1,7 +1,7 @@
 import SwupPreloadPlugin from "@swup/preload-plugin";
 import SwupA11yPlugin from "@swup/a11y-plugin";
 import Swup from "swup";
-import SwupFragmentPlugin from "@swup/fragment-plugin";
+import SwupFragmentPlugin from "../plugins/fragmentPlugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 
 const utilityPages = ['frequently-asked-questions', 'shipping-returns', 'terms-and-conditions', 'privacy-policy'];
@@ -16,15 +16,29 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: "/products/:handle?",
       to: "/products/:handle?",
-      containers: ["#product-price"]
+      containers: ["#product-price", "#product-variant-media", "#product-variant-media-mobile", "#product-form", "#product-variant-selector-data", "#product-quantity", "#product-fullscreen"]
+    },
+    {
+      from: "/collections/all",
+      to: "/collections/:handle?",
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
+    },
+    {
+      from: "/collections/:handle?",
+      to: "/collections/all",
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
+    },
+    {
+      from: "/collections/:handle?",
+      to: "/collections/:handle?",
+      containers: ["#collection-nav", "#collection-nav-clone", '#product-grid']
     },
     {
       from: '/pages/:utilityPage',
       to: '/pages/:utilityPage',
       containers: ['#utility', '#page-settings'],
     }
-  ],
-  debug: true
+  ]
 });
 
 export const swup = new Swup({

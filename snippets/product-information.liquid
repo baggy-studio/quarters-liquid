@@ -18,90 +18,110 @@
       </div>
     {% endif %}
     <ul class="w-full flex flex-col col-span-5">
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Designer</p>
-        {% if designer %}
-          <p class="col-span-6">{{ designer }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Producer</p>
-        {% if producer %}
-          <p class="col-span-6">{{ producer }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Origin</p>
-        {% if origin %}
-          <p class="col-span-6">{{ origin }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Period</p>
-        {% if period %}
-          <p class="col-span-6">{{ period }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Material</p>
-        {% if material %}
-          <p class="col-span-6">{{ material }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Finish</p>
-        {% if finish %}
-          <p class="col-span-6">{{ finish }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Dimensions</p>
-        {% if dimensions %}
-          <p class="col-span-6">{{ dimensions }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Weight</p>
-        {% if weight %}
-          <p class="col-span-6">{{ weight }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Lead Time</p>
-        {% if lead_time %}
-          <p class="col-span-6">{{ lead_time }}</p>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
-      <li class="w-full grid grid-cols-10 gap-3">
-        <p class="small-sans col-span-4">Notes</p>
-        {% if notes %}
-          <div class="col-span-6 richtext">{{ notes | metafield_tag }}</div>
-        {% else %}
-          <p class="col-span-6">--</p>
-        {% endif %}
-      </li>
+      {% if designer != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Designer</p>
+          {% if designer %}
+            <p class="col-span-6">{{ designer }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if producer != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Producer</p>
+          {% if producer %}
+            <p class="col-span-6">{{ producer }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if origin != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Origin</p>
+          {% if origin %}
+            <p class="col-span-6">{{ origin }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if period != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Period</p>
+          {% if period %}
+            <p class="col-span-6">{{ period }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if material != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Material</p>
+          {% if material %}
+            <p class="col-span-6">{{ material }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if finish != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Finish</p>
+          {% if finish %}
+            <p class="col-span-6">{{ finish }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if dimensions != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Dimensions</p>
+          {% if dimensions %}
+            <p class="col-span-6">{{ dimensions }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if weight != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Weight</p>
+          {% if weight %}
+            <p class="col-span-6">{{ weight }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if lead_time != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Lead Time</p>
+          {% if lead_time %}
+            <p class="col-span-6">{{ lead_time }}</p>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
+      {% if notes != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Notes</p>
+          {% if notes %}
+            <div class="col-span-6 richtext">{{ notes | metafield_tag }}</div>
+          {% else %}
+            <p class="col-span-6">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
     </ul>
   </div>
   <div class="contents lg:hidden">
-    {% render 'product-variant-media-mobile' %}
+    {% render 'product-variant-media-mobile', selected_variant: selected_variant %}
   </div>
   {% if tear_sheet %}
     <div class="w-full grid grid-cols-5 gap-x-3">

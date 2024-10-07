@@ -1,12 +1,12 @@
 <menu
   @keyup.escape.window="closeMenu"
-  x-trap="menu"
+  x-trap.inert="menu"
   aria-label="Main Menu"
   :aria-hidden="!menu"
   :class="{ 'pointer-events-auto': menu }"
   x-ref="menu"
   style="clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)"
-  class="absolute flex flex-col top-0 left-0 w-full h-svh lg:px-4 overflow-scroll lg:pt-20 lg:pb-8 lg:overflow-hidden lg:h-max pb-4 lg:grid lg:grid-cols-20 gap-x-3 after:absolute after:left-4 after:right-4 after:bottom-0 after:h-[1px] after:bg-current after:hidden lg:after:block"
+  class="absolute text-mahogany flex flex-col top-0 left-0 w-full h-svh lg:px-4 overflow-scroll lg:pt-20 lg:pb-8 lg:overflow-hidden lg:h-auto bg-bone-tint pb-4 lg:grid lg:grid-cols-20 gap-x-3 after:absolute after:left-4 after:right-4 after:bottom-0 after:h-[1px] after:bg-current after:hidden lg:after:block"
 >
   <ul class="flex flex-col gap-1.5 lg:gap-0 relative px-4 lg:px-0 w-full pt-[120px]  pb-[107px] lg:py-0 lg:col-span-5">
     {% for navLink in menu.links %}
@@ -84,43 +84,41 @@
   {% assign parent_link = menu.links | first %}
   {% assign parent_collection = parent_link.links | where: 'title', 'All Items' | first %}
 
-  {% if parent_collection.type == 'collection_link' %}
-    <ul class="col-span-4 hidden gap-x-3 lg:grid">
-      <li
-        class="transition-opacity duration-300 gap-3 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
-        :class="{ 'opacity-0 pointer-events-none': activeCollection != 0 }"
+  <ul class="col-span-4 hidden gap-x-3 lg:grid">
+    <li
+      class="transition-opacity duration-300 gap-3 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
+      :class="{ 'opacity-0 pointer-events-none': activeCollection != 0 }"
+    >
+      <a
+        title="{{ parent_collection.title }}"
+        href="{{ parent_collection.url }}"
+        class="col-span-2 aspect-[130/162] relative"
       >
-        <a
-          title="{{ parent_collection.title }}"
-          href="{{ parent_collection.url }}"
-          class="col-span-2 aspect-[130/162] relative"
+        {% assign collection = parent_collection.object %}
+        {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+      </a>
+    </li>
+    {% for link in parent_collection.links %}
+      {% if link.type == 'collection_link' %}
+        <li
+          class="transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
+          :class="{ 'opacity-0 pointer-events-none': activeCollection != {{ forloop.index }} }"
         >
-          {% assign collection = parent_collection.object %}
-          {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
-        </a>
-      </li>
-      {% for link in parent_collection.links %}
-        {% if link.type == 'collection_link' %}
-          <li
-            class="transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
-            :class="{ 'opacity-0 pointer-events-none': activeCollection != {{ forloop.index }} }"
+          <a
+            title="{{ link.title }}"
+            href="{{ link.url }}"
+            class="col-span-2 relative flex items-start flex-nowrap gap-x-3"
           >
-            <a
-              title="{{ link.title }}"
-              href="{{ link.url }}"
-              class="col-span-2 relative flex items-start flex-nowrap gap-x-3"
-            >
-              {% assign collection = link.object %}
-              <span class="aspect-[130/162] relative shrink-0 w-full">
-                {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
-              </span>
-              <span class="whitespace-nowrap text-left medium-accent"> ({{ collection.all_products_count }}) </span>
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% endif %}
+            {% assign collection = link.object %}
+            <span class="aspect-[130/162] relative shrink-0 w-full">
+              {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+            </span>
+            <span class="whitespace-nowrap text-left medium-accent"> ({{ collection.all_products_count }}) </span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
   <div class="lg:hidden px-4 mt-auto pt-16">
     <div class="w-full relative flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-3">
       <div class="subheading prose-a:hover:opacity-50 prose-a:duration-300 prose-a:ease-linear prose-a:w-max prose-a:pointer-events-auto">
@@ -134,7 +132,9 @@
   <div class="lg:flex hidden col-span-5 items-end col-start-[16]">
     <div class="w-full flex flex-col gap-4">
       <h4 class="subheading">{{ section.settings.contentHeading }}</h4>
-      <div class="flex flex-col w-full gap-[18px] small-sans hover:prose-a:opacity-50 prose-a:duration-300 prose-a:ease-linear prose-a:transition-opacity">{{ section.settings.content }}</div>
+      <div class="flex flex-col w-full gap-[18px] small-sans hover:prose-a:opacity-50 prose-a:duration-300 prose-a:ease-linear prose-a:transition-opacity">
+        {{ section.settings.content }}
+      </div>
     </div>
   </div>
 </menu>

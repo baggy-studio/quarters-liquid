@@ -37,7 +37,7 @@
       </div>
     {% endif %}
   </div>
-  <div class="pointer-events-none absolute top-0 p-4 left-0 w-full h-full text-bone-tint flex items-end lg:translate-y-[calc(var(--transform-y)*-1)] z-[2]">
+  <div class="pointer-events-none absolute top-0 p-4 left-0 w-full h-full text-bone flex items-end lg:translate-y-[calc(var(--transform-y)*-1)] z-[2]">
     <div class="w-full gap-3 grid-cols-2 contents lg:grid items-end">
       <div class="w-full relative lg:block hidden">
         <div class="medium-serif text-balance max-w-[455px] richtext prose-a:pointer-events-auto">{{ section.settings.content }}</div>
@@ -53,7 +53,7 @@
     </div>
   </div>
   {% if section.settings.wordmark %}
-    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-bone-tint pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-bone pointer-events-none">
       <button
         @click="openMenu"
         title="Menu"

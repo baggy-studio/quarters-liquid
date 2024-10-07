@@ -1,2 +1,120 @@
-{% assign variant_media = selected_variant.metafields.custom.variant_media %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
+{% assign variant_featured_media_ids = '' %}
+{% assign filtered_product_media = '' %}
+{% assign selected_variant_media = selected_variant.featured_media %}
+{% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
+{% assign total_media_count = 1 %}
+
+{% if selected_variant_media %}
+  {% assign total_media_count = total_media_count | plus: 1 %}
+{% else %}
+  {% assign selected_variant_media = product.featured_image %}
+{% endif %}
+
+{% for variant in product.variants %}
+  {% if variant.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: variant.featured_media.id
+      | append: ','
+    %}
+  {% elsif product.featured_media %}
+    {% assign variant_featured_media_ids = variant_featured_media_ids
+      | append: product.featured_media.id
+      | append: ','
+    %}
+  {% endif %}
+{% endfor %}
+
+{% for media in product.media %}
+  {% unless variant_featured_media_ids contains media.id %}
+    {% assign filtered_product_media = filtered_product_media | append: media.id | append: ',' %}
+  {% endunless %}
+{% endfor %}
+
+{% assign filtered_product_media_ids = filtered_product_media | split: ',' %}
+
+{% if variant_media_metafields %}
+  {% for media in variant_media_metafields %}
+    {% assign total_media_count = total_media_count | plus: 1 %}
+  {% endfor %}
+{% endif %}
+
+{% if section.settings.share_product_media %}
+  {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
+{% endif %}
+
+{% assign rendered_small_count = 1 %}
+
+<div id="product-variant-media-mobile" class="contents">
+  {% if total_media_count > 1 %}
+    <div
+      x-data="
+        carousel({
+        align: 'start',
+        loop: false
+        })
+      "
+      class="w-[calc(100%+32px)] -ml-4 overflow-hidden"
+    >
+      <ul class="w-full grid auto-cols-[calc(40%-10px)] grid-flow-col gap-2 pl-4">
+        <li class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2">
+          <div class="w-full aspect-[140/175] relative overflow-hidden">
+            {% if selected_variant.featured_media %}
+              {% render 'image',
+                image: selected_variant.featured_media,
+                width: 280,
+                height: 350,
+                sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
+              %}
+            {% else %}
+              {% render 'image',
+                image: product.featured_image,
+                width: 280,
+                height: 350,
+                sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
+              %}
+            {% endif %}
+          </div>
+          <p class="small-accent">01</p>
+        </li>
+        {% if variant_media_metafields %}
+          {% for media in variant_media_metafields %}
+            {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+            <li class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2">
+              <div class="w-full aspect-[140/175] relative overflow-hidden">
+                {% render 'image',
+                  image: media,
+                  width: 280,
+                  height: 350,
+                  sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
+                %}
+              </div>
+              {% assign padded_rendered_small_count = rendered_small_count | prepend: '0' %}
+              <p class="small-accent">{{ padded_rendered_small_count | slice: -2, 2 }}</p>
+            </li>
+          {% endfor %}
+        {% endif %}
+        {% if section.settings.share_product_media %}
+          {% for media_id in filtered_product_media_ids %}
+            {% assign media_id_number = media_id | plus: 0 %}
+            {% assign media = product.media | where: 'id', media_id_number | first %}
+            {% assign rendered_small_count = rendered_small_count | plus: 1 %}
+            <li class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 last:mr-4">
+              <div class="w-full aspect-[140/175] relative overflow-hidden">
+                {% render 'image',
+                  image: media,
+                  width: 280,
+                  height: 350,
+                  sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
+                %}
+              </div>
+              {% assign padded_rendered_small_count = rendered_small_count | prepend: '0' %}
+              <p class="small-accent">{{ padded_rendered_small_count | slice: -2, 2 }}</p>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+</div>

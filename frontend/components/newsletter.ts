@@ -12,7 +12,11 @@ export default (listId: string) => ({
   success: false,
   error: null,
   loading: false,
-  async submit() {
+  async submit() { 
+    if (!this.email) {
+      return
+    }
+
     if (!listId) {
       this.error = "Missing List ID";
       return;
@@ -45,6 +49,8 @@ export default (listId: string) => ({
     });
   },
   shouldOpen() {
-    this.visible = !cookie.get("newsletter");
+    setTimeout(() => {
+      this.visible = !cookie.get("newsletter");
+    }, 5000)
   }
 });

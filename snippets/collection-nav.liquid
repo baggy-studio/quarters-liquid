@@ -8,16 +8,28 @@
 {% assign secondary_links = section.settings.menu.links | last %}
 
 {% assign combined_links = primary_links.links | concat: secondary_links.links %}
-{% assign parent_link = combined_links | where: 'title', collection.title | first %}
-{% assign parent_collection = parent_link.object %}
+{% assign parent_link = null %}
+{% assign parent_collection = null %}
+
+{% for link in combined_links %}
+  {% if link.object.id == collection.id %}
+    {% assign parent_link = link %}
+    {% assign parent_collection = link.object %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
 {% if parent_link == null %}
   {% for link in primary_links.links %}
     {% if link.links.size > 0 %}
-      {% assign sub_link = link.links | where: 'title', collection.title | first %}
-      {% if sub_link %}
-        {% assign parent_link = link %}
-        {% assign parent_collection = link.object %}
+      {% for sub_link in link.links %}
+        {% if sub_link.object.id == collection.id %}
+          {% assign parent_link = link %}
+          {% assign parent_collection = link.object %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if parent_link %}
         {% break %}
       {% endif %}
     {% endif %}
@@ -27,135 +39,165 @@
 {% if parent_link == null %}
   {% for link in secondary_links.links %}
     {% if link.links.size > 0 %}
-      {% assign sub_link = link.links | where: 'title', collection.title | first %}
-      {% if sub_link %}
-        {% assign parent_link = link %}
-        {% assign parent_collection = link.object %}
+      {% for sub_link in link.links %}
+        {% if sub_link.object.id == collection.id %}
+          {% assign parent_link = link %}
+          {% assign parent_collection = link.object %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if parent_link %}
         {% break %}
       {% endif %}
     {% endif %}
   {% endfor %}
 {% endif %}
 
-<script data-collection-navigation type="application/json">
-  [
-    {% for parent_link in combined_links %}
-      {
-        {{ parent_link.url | json }}: [
-          {% for filter in parent_link.links -%}
-            {% if filter.type == 'collection_link' %}
+<div class="w-full grid lg:grid-cols-20 gap-2 lg:gap-3 h-max subheading">
+  <script data-collection-navigation type="application/json">
+    [
+      {% for parent_link in combined_links %}
+        {% assign parent_last = forloop.last %}
+        {
+          {{ parent_link.url | json }}: [
+            {% for filter in parent_link.links -%}
               {
                 "title": {{ filter.title | json }},
                 "url": {{ filter.url | json }}
-                {% unless forloop.last %},{% endunless %}
-              }
-            {% endif %}
-          {%- endfor %}
-        ]
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ]
-</script>
-<nav 
-  aria-label="Collection Navigation"
-  class="w-full grid grid-cols-2 lg:grid-cols-20 gap-2 lg:gap-3 subheading"
->
-  {% unless is_all_collection %}
-    <a
-      href="/collections/all"
-      title="All Items"
-      class="hover:underline leading-none whitespace-nowrap lg:col-span-2 lg:block hidden"
-    >
-      All Items
-    </a>
-    <h2 class="whitespace-nowrap leading-[1.5] lg:leading-none lg:col-span-2">
-      {{ parent_collection.title }}
-    </h2>
-  {% else %}
-    <h2 class="whitespace-nowrap leading-[1.5] lg:leading-none lg:col-span-2 lg:underline">
+              }{% unless forloop.last %},{% endunless %}
+            {%- endfor %}
+          ]
+        }{% unless parent_last %},{% endunless %}
+      {% endfor %}
+    ]
+  </script>
+  <a
+    href="/collections/all"
+    :href="getCollectionLink('/collections/all')"
+    title="All Items"
+    :aria-current="active ? 'page' : undefined"
+    {% if is_all_collection %}
+      aria-current="page"
+    {% endif %}
+    x-data="{ active: activeUrl === '/collections/all' }"
+    x-effect="active = activeUrl === '/collections/all'"
+    class="
+            hover:underline
+
+      leading-none whitespace-nowrap hidden lg:block lg:col-span-2 aria-[current=page]:underline
+    "
+  >
+    All Items
+  </a>
+  <nav
+    aria-label="Collection Navigation"
+    class="w-full grid grid-cols-2 lg:grid-cols-18 lg:col-span-18 gap-2 lg:gap-3 delay-0"
+    {% if clone %} 
+      id="collection-nav-clone"
+    {% else %}
+      id="collection-nav"
+    {% endif %}
+  >
+    {% unless is_all_collection %}
+      <h2 class="whitespace-nowrap leading-[1.5] lg:leading-none lg:col-span-2">
+        {% if parent_collection %}
+          {{ parent_collection.title }}
+        {% else %}
+          {{ collection.title }}
+        {% endif %}
+      </h2>
+    {% else %}
       <a
         href="/collections/all"
+        :href="getCollectionLink('/collections/all')"
         title="All Items"
-        class="contents"
+        :aria-current="active ? 'page' : undefined"
+        {% if is_all_collection %}
+          aria-current="page"
+        {% endif %}
+        x-data="{ active: activeUrl === '/collections/all' }"
+        x-effect="active = activeUrl === '/collections/all'"
+        class="hover:underline leading-none whitespace-nowrap lg:hidden lg:col-span-2 aria-[current=page]:underline"
       >
         All Items
       </a>
-    </h2>
-  {% endunless %}
-
-  <div class="w-full lg:contents" x-data="{ open: false }">
-    {% if is_all_collection or parent_link.links.size > 0 %}
-      <button
-        @click="open = !open"
-        title="Categories"
-        class="subheading w-full flex items-center justify-between lg:hidden"
-      >
-        <span class="leading-[1.5]" x-text="open ? 'Hide Categories' : 'Show Categories'">Show Categories</span>
-        {% render 'accordion-icon' %}
-      </button>
-    {% endif %}
-    <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
-      {% if is_all_collection %}
-        {% if primary_links.links.size > 0 %}
-          <ul class="lg:col-span-13 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
-            {% for link in primary_links.links -%}
-              {% assign collection = link.object %}
-              <li class="contents">
-                <a
-                  title="{{ collection.title }}"
-                  class="collection-link"
-                  href="{{ collection.url }}"
-                >
-                  {{ collection.title }}
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        {% endif %}
-        {% if secondary_links.links.size > 0 %}
-          <ul class="col-span-5 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
-            {% for link in secondary_links.links -%}
-              {% assign collection = link.object %}
-              <li class="contents">
-                <a
-                  title="{{ collection.title }}"
-                  class="collection-link whitespace-nowrap"
-                  href="{{ collection.url }}"
-                >
-                  {{ collection.title }}
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        {% endif %}
+    {% endunless %}
+    <div class="w-full lg:contents" x-data="{ open: false }">
+      {% if is_all_collection or parent_link.links.size > 0 %}
+        <button
+          @click="open = !open"
+          title="Categories"
+          class="subheading w-full flex items-center justify-between lg:hidden"
+        >
+          <span class="leading-[1.5]" x-text="open ? 'Hide Categories' : 'Show Categories'">Show Categories</span>
+          {% render 'accordion-icon' %}
+        </button>
       {% endif %}
+      <div class="h-0 overflow-hidden lg:!contents" x-show="open" x-collapse.duration.800ms>
+        {% if is_all_collection %}
+          {% if primary_links.links.size > 0 %}
+            <ul class="lg:col-span-13 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
+              {% for link in primary_links.links -%}
+                {% assign collection = link.object %}
+                <li class="contents">
+                  <a
+                    title="{{ collection.title }}"
+                    class="collection-link"
+                    :href="getCollectionLink('{{ collection.url }}')"
+                    href="{{ collection.url }}"
+                  >
+                    {{ collection.title }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {% endif %}
+          {% if secondary_links.links.size > 0 %}
+            <ul class="col-span-5 flex flex-col lg:flex-row gap-2 flex-wrap lg:gap-x-4 pt-8 lg:pt-0">
+              {% for link in secondary_links.links -%}
+                {% assign collection = link.object %}
+                <li class="contents">
+                  <a
+                    title="{{ collection.title }}"
+                    class="collection-link whitespace-nowrap"
+                    href="{{ collection.url }}"
+                    :href="getCollectionLink('{{ collection.url }}')"
+                  >
+                    {{ collection.title }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {% endif %}
+        {% endif %}
 
-      {% unless is_all_collection %}
-        {% if parent_link.links.size > 0 %}
-          <ul
-            class="lg:col-span-16 flex flex-col lg:flex-row lg:items-center lg:flex-wrap gap-x-4 gap-y-2 pt-8 lg:pt-0"
-          >
-            {% unless parent_link.links.size == 0 %}
-              <li
-                class="contents"
-                x-data="{ active: false }"
-                x-effect="active = activeUrl === '{{ parent_collection.url }}'"
-              >
-                <a
-                  title="All {{ parent_collection.title }}"
-                  class="collection-link"
-                  href="{{ parent_collection.url }}"
-                  :aria-current="active ? 'page' : undefined"
-                  {% if collection.url == parent_collection.url %}
-                    aria-current="page"
-                  {% endif %}
+        {% unless is_all_collection %}
+          {% if parent_link.links.size > 0 %}
+            <ul
+              class="lg:col-span-16 flex flex-col lg:flex-row lg:items-center lg:flex-wrap gap-x-4 gap-y-2 pt-8 lg:pt-0"
+            >
+              {% unless parent_link.links.size == 0 %}
+                <li
+                  class="contents"
+                  x-data="{ active: false }"
+                  x-effect="active = activeUrl === '{{ parent_collection.url }}'"
                 >
-                  All {{ parent_collection.title }}
-                </a>
-              </li>
-            {% endunless %}
-            {% for filter in parent_link.links -%}
-              {% if filter.type == 'collection_link' %}
+                  <a
+                    title="All {{ parent_collection.title }}"
+                    class="collection-link"
+                    href="{{ parent_collection.url }}"
+                    :href="getCollectionLink('{{ parent_collection.url }}')"
+                    @click="open = false"
+                    :aria-current="active ? 'page' : undefined"
+                    {% if collection.url == parent_collection.url %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    All {{ parent_collection.title }}
+                  </a>
+                </li>
+              {% endunless %}
+              {% for filter in parent_link.links -%}
                 <li
                   class="contents"
                   x-data="{ active: false }"
@@ -164,9 +206,10 @@
                   {% assign collection_filter = filter.object %}
                   <a
                     title="{{ filter.title }}"
+                    @click="open = false"
                     class="collection-link"
                     :aria-current="active ? 'page' : undefined"
-                    :href="active ? '{{ parent_collection.url }}' : '{{ filter.url }}'"
+                    :href="active ? getCollectionLink('{{ parent_collection.url }}') : getCollectionLink('{{ filter.url }}')"
                     {% if collection.url == collection_filter.url %}
                       aria-current="page"
                       href="{{ parent_collection.url }}"
@@ -177,29 +220,31 @@
                     {{ filter.title }}
                   </a>
                 </li>
-              {% endif %}
-            {%- endfor %}
-          </ul>
+              {%- endfor %}
+            </ul>
+          {% endif %}
+          <a
+            href="/collections/all"
+            :href="getCollectionLink('/collections/all')"
+            title="Back to All Items"
+            class="collection-link w-max mt-8 lg:hidden block"
+          >
+            Back to All Items
+          </a>
+        {% endunless %}
+      </div>
+      {% unless is_all_collection %}
+        {% if parent_link.links.size == 0 %}
+          <a
+            href="/collections/all"
+            :href="getCollectionLink('/collections/all')"
+            title="Back to All Items"
+            class="collection-link lg:hidden block w-max"
+          >
+            Back to All Items
+          </a>
         {% endif %}
-        <a
-          href="/collections/all"
-          title="Back to All Items"
-          class="collection-link w-max mt-8 lg:hidden block"
-        >
-          Back to All Items
-        </a>
       {% endunless %}
     </div>
-    {% unless is_all_collection %}
-      {% if parent_link.links.size == 0 %}
-        <a
-          href="/collections/all"
-          title="Back to All Items"
-          class="collection-link lg:hidden block w-max"
-        >
-          Back to All Items
-        </a>
-      {% endif %}
-    {% endunless %}
-  </div>
-</nav>
+  </nav>
+</div>

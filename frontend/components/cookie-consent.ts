@@ -3,6 +3,10 @@ export default () => ({
   init() {
     let i = this;
 
+    if (window.ShopifyDesignMode) {
+      return
+    }
+
     window.Shopify.loadFeatures(
       [
         {

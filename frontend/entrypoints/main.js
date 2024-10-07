@@ -6,8 +6,7 @@ import Alpine from "alpinejs";
 import collapse from "@/plugins/collapse";
 import focus from "@alpinejs/focus";
 import intersect from "@alpinejs/intersect";
-
-import cart from "@/stores/cart";
+import cart from "@/components/cart";
 import collection from "@/components/collection";
 import marquee from "@/components/marquee";
 import cartForm from "@/components/cart-form";
@@ -19,9 +18,13 @@ import newsletter from "@/components/newsletter";
 import cookieConsent from "@/components/cookie-consent";
 import app from "@/components/app";
 import collectionNav from "@/components/collection-nav";
-import product from "@/components/product";
-import { getQuantity } from "../utils";
+import productVariantSelector from "@/components/product-variant-selector";
+import productFullscreen from "@/components/product-fullscreen";
+import footer from "@/components/footer";
+import barMenu from "@/components/bar-menu";
+import barMenus from "@/components/bar-menus";
 
+import { getQuantity, money } from "@/utils";
 
 Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => {
     let setQuantity = evaluateLater(expression);
@@ -33,11 +36,23 @@ Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => 
     });
 });
 
+Alpine.directive("money", (el, { expression }, { evaluateLater, effect }) => {
+    let setMoney = evaluateLater(expression);
+
+    effect(() => {
+        setMoney((price) => {
+            el.innerHTML = money(price)
+        });
+    });
+});
+
+
 
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
-Alpine.store("cart", cart);
+Alpine.data("footer", footer);
+Alpine.data("cart", cart);
 Alpine.data("app", app);
 Alpine.data("cookieConsent", cookieConsent);
 Alpine.data("cartLine", cartLine);
@@ -49,5 +64,8 @@ Alpine.data("marquee", marquee);
 Alpine.data("collection", collection);
 Alpine.data("collectionNav", collectionNav);
 Alpine.data("productRecommendations", productRecommendations);
-Alpine.data("product", product);
+Alpine.data("productVariantSelector", productVariantSelector);
+Alpine.data("productFullscreen", productFullscreen);
+Alpine.data("barMenu", barMenu);
+Alpine.data("barMenus", barMenus);
 Alpine.start();

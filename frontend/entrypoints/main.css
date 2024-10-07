@@ -16,6 +16,10 @@
         @apply bg-bone-tint text-mahogany font-serif;
     }
 
+    html {
+        @apply !pb-0;
+    }
+
     a,
     button {
         @apply outline-none focus:outline-none;

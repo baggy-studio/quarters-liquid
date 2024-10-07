@@ -15,39 +15,59 @@
 {% endcomment %}
 
 {% liquid
-    assign image_alt = alt | default: image.alt | escape
-    assign classes = 'absolute top-0 left-0 w-full h-full object-cover ' | append: class
-  
-    if priority == true
-      assign preload = true
-      assign lazyload = 'eager'
-    else
-      assign lazyload = 'lazy'
-      assign preload = false
-    endif
-  
-    if natural
-      assign classes = 'w-full h-auto object-contain max-h-full' | append: class
-    endif
-  
-    assign half_width = width | times: 2
-    assign width_set = half_width | append: ', ' | append: width
-  %}
-  
-  {% if image != blank %}
-    {% if priority %}
+  assign image_alt = alt | default: image.alt | escape
+  assign classes = 'absolute top-0 left-0 w-full h-full object-cover ' | append: class
+  assign hasNoPin = blank
+
+  if priority == true
+    assign preload = true
+    assign lazyload = 'eager'
+  else
+    assign lazyload = 'lazy'
+    assign preload = false
+  endif
+
+  if nopin == true
+    assign hasNoPin = 'nopin'
+  endif
+
+  if natural
+    assign classes = 'w-full h-auto object-contain max-h-full' | append: class
+  endif
+
+  assign half_width = width | times: 2
+  assign width_set = half_width | append: ', ' | append: width
+%}
+
+{% if image != blank %}
+  {% if priority %}
     {{
       image
       | image_url: width: width, height: height
-      | image_tag: sizes: sizes, alt: image_alt, class: classes, loading: lazyload, preload: preload, widths: width_set, fetchPriority: 'high'
+      | image_tag:
+        sizes: sizes,
+        alt: image_alt,
+        class: classes,
+        loading: lazyload,
+        preload: preload,
+        widths: width_set,
+        nopin: hasNoPin,
+        fetchPriority: 'high'
     }}
-    {% else %}
-    {{
-      image
-      | image_url: width: width, height: height
-      | image_tag: sizes: sizes, alt: image_alt, class: classes, loading: lazyload, preload: preload, widths: width_set
-    }}
-    {% endif %}
   {% else %}
-    <div class="absolute top-0 left-0 w-full h-full bg-chartreuse/20"></div>
+    {{
+      image
+      | image_url: width: width, height: height
+      | image_tag:
+        sizes: sizes,
+        alt: image_alt,
+        class: classes,
+        loading: lazyload,
+        preload: preload,
+        widths: width_set,
+        nopin: hasNoPin
+    }}
   {% endif %}
+{% else %}
+  <div class="absolute top-0 left-0 w-full h-full bg-chartreuse/20"></div>
+{% endif %}

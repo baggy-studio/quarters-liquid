@@ -24,6 +24,7 @@ import productFullscreen from "@/components/product-fullscreen";
 import footer from "@/components/footer";
 import barMenu from "@/components/bar-menu";
 import barMenus from "@/components/bar-menus";
+import video from "@/components/video";
 
 import { getQuantity, money } from "@/utils";
 
@@ -70,4 +71,5 @@ Alpine.data("productFullscreen", productFullscreen);
 Alpine.data("hoursfullScreen", hoursfullScreen);
 Alpine.data("barMenu", barMenu);
 Alpine.data("barMenus", barMenus);
+Alpine.data('video', video)
 Alpine.start();

@@ -1,0 +1,96 @@
+{% comment %}
+  Renders a specific video or external video (iframe).
+
+  Accepts:
+    - video: {object} Video or external_video object.
+    - loop: {boolean} Enable video looping (optional)
+
+  Usage:
+  {% render 'video' with product.media.first %}
+{% endcomment %}
+
+{% liquid
+  assign classes = 'absolute top-0 left-0 w-full h-full object-cover' | append: class
+
+  if natural
+    assign classes = 'w-full h-auto object-contain'
+  endif
+%}
+
+{% assign hasAutoplay = true %}
+{% assign muted = true %}
+
+{% if controls %}
+  {% assign hasAutoplay = false %}
+{% endif %}
+
+{% unless hasAutoplay %}
+  {% assign muted = false %}
+{% endunless %}
+
+{% if video and video != blank %}
+  <div
+    {% unless hasAutoplay %}
+      x-data="video"
+      x-intersect:enter="play"
+      x-intersect:leave="pause"
+    {% endunless %}
+    data-video-id="{{ video.id }}"
+  >
+    {% case video.media_type %}
+      {% when 'video' %}
+        {{
+          video
+          | video_tag:
+            image_size: '1440x',
+            autoplay: hasAutoplay,
+            loop: loop,
+            controls: false,
+            muted: muted,
+            preload: 'none',
+            class: classes
+        }}
+      {% when 'external_video' %}
+        {{ video | external_video_url: autoplay: true, loop: loop | external_video_tag: loading: 'lazy' }}
+    {% endcase %}
+
+    {% unless hasAutoplay %}
+      <div
+        class="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none duration-300 ease-linear transition-opacity hover:opacity-100"
+        :class="playing && 'opacity-0'"
+      >
+        <button
+          aria-label="Toggle playback"
+          @click="toggle"
+          class="w-[160px] h-[160px] bg-cream/60 rounded-full flex items-center justify-center pointer-events-auto"
+        >
+          <svg
+            :class="
+              {
+                'block': !playing,
+                'hidden': playing
+              }
+            "
+            class="w-[74px] block h-[86px] translate-x-2.5"
+            viewBox="0 0 74 86"
+            fill="none"
+          >
+            <path d="M74 43L0.500004 85.4353L0.500007 0.564751L74 43Z" fill="#F4F1E1"/>
+          </svg>
+          <span
+            :class="
+              {
+                'grid': playing,
+                'hidden': !playing
+              }
+            "
+            class="hidden grid-cols-2 gap-6 w-16 h-[86px]"
+          >
+            <span class="bg-cream w-full h-full"></span>
+            <span class="bg-cream w-full h-full"></span>
+          </span>
+        </button>
+      </div>
+    {% endunless %}
+  </div>
+{% endif %}

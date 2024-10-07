@@ -71,7 +71,7 @@
     }
 
     .small-accent {
-        @apply font-droulers text-[12px] leading-[18px] lg:text-[13px] lg:leading-[17px];
+        @apply font-droulers text-[14px] leading-[18px] lg:text-[13px] lg:leading-[17px];
     }
 
     .spicy-header {

@@ -1,5 +1,5 @@
 <div class="h-svh overflow-hidden w-full relative hero-y-gradient">
-  <div class="absolute top-0 left-0 w-full h-full">
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-none select-none">
     {% assign allBlock = section.blocks | where: 'type', 'all' | first %}
 
     {% if allBlock != blank %}
@@ -7,7 +7,7 @@
         {% if allBlock.settings.video != blank %}
           {% render 'video'; video: allBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: allBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+          {% render 'image'; image: allBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% else %}
@@ -18,26 +18,26 @@
         {% if desktopBlock.settings.video != blank %}
           {% render 'video'; video: desktopBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: desktopBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true %}
+          {% render 'image'; image: desktopBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full hidden md:block lg:hidden">
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 1440, height: 860, sizes: '100vw' %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 1440, height: 860, sizes: '100vw', nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full md:hidden">
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 786, height: 1344, sizes: '100vw', priority: true %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 786, height: 1344, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% endif %}
   </div>
-  <div class="pointer-events-none absolute top-0 p-4 left-0 w-full h-full text-bone flex items-end lg:translate-y-[calc(var(--transform-y)*-1)] z-[2]">
+  <div class="pointer-events-none absolute top-0 p-4 left-0 w-full h-full text-[--header-theme] flex items-end lg:translate-y-[calc(var(--transform-y)*-1)] z-[2]">
     <div class="w-full gap-3 grid-cols-2 contents lg:grid items-end">
       <div class="w-full relative lg:block hidden">
         <div class="medium-serif text-balance max-w-[455px] richtext prose-a:pointer-events-auto">{{ section.settings.content }}</div>
@@ -58,7 +58,7 @@
         @click="openMenu"
         title="Menu"
         class="h-max w-max transition-opacity duration-[600ms] ease-[--fade-out-easing]"
-        :class="menu ? 'md:opacity-0 delay-0' : 'delay-500 pointer-events-auto md:pointer-events-none'"
+        :class="menu ? 'md:opacity-0 delay-0' : 'delay-500 pointer-events-auto'"
       >
         <svg class="fill-current h-9 w-[212px] lg:h-[66px] lg:w-[400px] aspect-auto shrink-0">
           <use xlink:href="#wordmark"></use>

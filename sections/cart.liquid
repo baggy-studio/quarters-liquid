@@ -1,6 +1,9 @@
 {% capture header %}
 <div class="px-4 w-full absolute top-0 left-0 z-[1] h-[120px] lg:h-[160px] before:cart-top-gradient">
-  <div   class="pt-3 flex items-start w-full relative justify-end"> 
+  <div :class="$store.cart.hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start w-full relative">
+    <p class="medium-serif pt-[68px] hidden lg:block" x-show="$store.cart.hasItems">
+      Bag (<span class="contents" x-number="$store.cart.count">{{ cart.item_count }}</span>)
+    </p>
     <button
       @click="$store.cart.close()"
       aria-label="Close bag"
@@ -73,7 +76,7 @@
           <div
             class="items-start w-full relative pt-4 lg:pt-3 h-[120px] lg:h-[160px] border-y border-current flex lg:hidden"
           >
-            <p class="large-serif lg:medium-serif lg:pt-[68px] ">
+            <p class="large-serif lg:medium-serif lg:pt-[68px]">
               Bag (<span class="contents" x-text="$store.cart.count"></span>)
             </p>
           </div>

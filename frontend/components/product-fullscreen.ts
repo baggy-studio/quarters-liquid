@@ -43,8 +43,14 @@ export default () => ({
 
     this.contentReplace = () => {
       setTimeout(() => {
-        this.mediaCount = document.querySelector('[data-fullscreen]').dataset.count
-        this.media = Array.from(document.querySelectorAll('[data-fullscreen-image]')).map((el) => {
+        const fullscreenElement = document.querySelector('[data-fullscreen]');
+        if (!fullscreenElement) {
+          console.error('Fullscreen element not found');
+          return;
+        }
+  
+        const fullscreenImages = document.querySelectorAll('[data-fullscreen-image]');
+        this.media = Array.from(fullscreenImages).map((el) => {
           const width = parseFloat(el.dataset.width);
           const height = parseFloat(el.dataset.height);
           const aspectRatio = parseFloat(el.dataset.aspectRatio);
@@ -53,8 +59,18 @@ export default () => ({
             height,
             aspectRatio
           }
-        })
-      }, 100)
+        });
+  
+        this.mediaCount = this.media.length;
+        fullscreenElement.dataset.count = this.mediaCount.toString();
+
+        if (this.media.length > 0) {
+          this.selectedIndex = Math.min(this.selectedIndex, this.media.length - 1);
+          this.resize();
+        } else {
+          console.error('No media items found');
+        }
+      }, 100);
     }
 
     this.contentReplace()
@@ -155,7 +171,18 @@ export default () => ({
     document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 })
   },
   nextImage() {
+    if (this.mediaCount === 0) {
+      console.warn('No media items available');
+      return;
+    }
+  
     this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    
+    this.$nextTick(() => {
+      this.resize();
+      this.$dispatch('fullscreen:index', this.selectedIndex);
+      document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
+    });
   },
   advanceImage(index: number) {
     this.selectedIndex = index
@@ -235,6 +262,10 @@ export default () => ({
     return index < 10 ? `0${index}` : index;
   },
   get activeMedia() {
-    return this.media[this.selectedIndex]
+    if (!this.media || this.media.length === 0) {
+      console.warn('No media items available');
+      return null;
+    }
+    return this.media[this.selectedIndex] || null;
   }
 });

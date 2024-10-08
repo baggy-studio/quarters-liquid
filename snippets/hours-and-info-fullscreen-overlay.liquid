@@ -86,12 +86,13 @@
               </a>
             </h1>
             <button
-              class="medium-serif lg:hidden"
+              class="medium-serif lg:hidden relative px-4 pb-4 -mr-4"
               title="Close"
               @click="closeFullscreen"
               :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
             >
-              (Close)
+              <span class="absolute inset-0"></span>
+              <span class="relative z-10">(Close)</span>
             </button>
           </div>
         </div>

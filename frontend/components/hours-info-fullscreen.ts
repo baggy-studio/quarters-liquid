@@ -1,6 +1,6 @@
 import { lerp, range } from "@/utils";
 import { animate } from "motion";
-import { expoInOut } from "@/easing";
+import { expoInOut, easeOutQuad } from "@/easing";
 import Alpine from "alpinejs";
 import { swup } from "../entrypoints/swup";
 
@@ -157,7 +157,7 @@ export default () => ({
     // if (window.innerWidth >= 1024) {
     //   await this.onAnimateOpen();
     // }
-    this.onAnimateOpen();
+    await this.onAnimateOpen();
 
     this.animating = false;
   },
@@ -179,13 +179,13 @@ export default () => ({
         height: currentRect.height
       };
     } else {
-      // Fallback to previous behavior if no original element is stored
       if (this.fromLarge) {
         this.fromPosition = this.getLargeImageDimensions()
       } else {
         this.fromPosition = this.getSmallImageDimensions()
       }
     }
+
 
     if (window.innerWidth >= 1024) {
       await this.onAnimateClose()
@@ -265,6 +265,8 @@ export default () => ({
     const heightBasedOnAspectRatio = targetWidth / (this.activeMedia.aspectRatio || this.aspectRatio);
     const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
 
+    console.log('Animation start:', { from: this.fromPosition, to: { width: targetWidth, height: targetHeight } });
+
     return await animate((progress) => {
       this.transformX = range(0, 1, this.fromPosition.left, 0, progress);
       this.transformY = range(0, 1, this.fromPosition.top, 0, progress);
@@ -284,12 +286,16 @@ export default () => ({
     const startWidth = this.transformWidth;
     const startHeight = this.transformHeight;
   
+
     return await animate((progress) => {
-      this.transformX = range(0, 1, startX, this.fromPosition.left, progress)
-      this.transformY = range(0, 1, startY, fromTop, progress)
-      this.transformWidth = range(0, 1, startWidth, this.fromPosition.width, progress)
-      this.transformHeight = range(0, 1, startHeight, this.fromPosition.height, progress)
-    }, { duration: 1.4, easing: expoInOut }).finished
+      this.transformX = lerp(startX, this.fromPosition.left, progress);
+      this.transformY = lerp(startY, fromTop, progress);
+      this.transformWidth = lerp(startWidth, this.fromPosition.width, progress);
+      this.transformHeight = lerp(startHeight, this.fromPosition.height, progress);
+    }, { 
+      duration: 0.5, 
+      easing: easeOutQuad 
+    }).finished;
   },
   get clipPath() {
     if (!this.visible) return 'none';

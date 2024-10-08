@@ -51,9 +51,9 @@
         <button class="absolute left-0 inset-y-0 w-full cursor-default" @click="closeFullscreen">
           <span class="sr-only">Close</span>
         </button>
-        {% comment %} <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
+       <button class="absolute left-0 inset-y-0 w-full lg:hidden block cursor-default" @click="nextImage">
           <span class="sr-only">Next image</span>
-        </button> {% endcomment %}
+        </button> 
       </div>
       <div class="fixed inset-0 w-full h-full lg:[will-change:clip-path] lg:[clip-path:var(--clip-path)] pointer-events-none" :style="`--clip-path: ${clipPath}`">
         <div class="absolute inset-0 min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20">
@@ -67,6 +67,32 @@
           </div>
           {% render 'hours-and-info-fullscreen-cursor' %}
           {% render 'hours-and-info-fullscreen-thumbnail' %}
+        </div>
+        <div class="w-full top-0 absolute left-0 pt-3">
+          <div class="flex items-center justify-end w-full px-4">
+            <h1 class="pt-[15px] absolute top-0 flex items-start justify-center left-0 w-full">
+              <a
+                href="/"
+                title="Quarters"
+                class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+                :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+              >
+                <svg
+                  class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
+                >
+                  <use xlink:href="#wordmark"></use>
+                </svg>
+              </a>
+            </h1>
+            <button
+              class="medium-serif lg:hidden"
+              title="Close"
+              @click="closeFullscreen"
+              :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
+            >
+              (Close)
+            </button>
+          </div>
         </div>
       </div>
     </div>

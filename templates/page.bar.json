@@ -12,10 +12,10 @@
     "main": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "dark",
+        "headerTheme": "light",
         "textColor": "#643600",
-        "backgroundColor": "#FAF8EC",
-        "footerTextColor": "#FAF8EC",
+        "backgroundColor": "#faf8ec",
+        "footerTextColor": "#faf8ec",
         "footerBackgroundColor": "#643600"
       }
     },

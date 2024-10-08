@@ -154,10 +154,10 @@ export default () => ({
 
     this.aspectRatio = this.fromPosition.width / this.fromPosition.height;
 
-    // if (window.innerWidth >= 1024) {
-    //   await this.onAnimateOpen();
-    // }
-    await this.onAnimateOpen();
+    if (window.innerWidth >= 1024) {
+      await this.onAnimateOpen();
+    }
+
 
     this.animating = false;
   },

@@ -9,12 +9,14 @@
     :style="`--x: ${transformX}px; --y: ${transformY}px; --clip-path: ${clipPath}; --width: ${transformWidth}px; --height: ${transformHeight}px;`"
   >
     <div
-      x-show="visible"
       @fullscreen:close.window="closeFullscreen"
       @keyup.escape.window="visible && closeFullscreen"
       x-ref="fullscreenFixed"
       data-fullscreen-fixed
-      class="fixed inset-0 w-full h-full text-bone z-[9999] pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none overflow-y-auto"
+      class="
+        fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
+        pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
+      "
       :class="{
         'pointer-events-auto opacity-100': visible,
         'overflow-hidden': animating,
@@ -57,8 +59,8 @@
         </button> 
       </div>
       <div class="fixed inset-0 w-full h-full lg:[will-change:clip-path] lg:[clip-path:var(--clip-path)] pointer-events-none" :style="`--clip-path: ${clipPath}`">
-        <div class="absolute inset-0 min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20">
-          <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-end min-h-screen">
+        <div class="absolute inset-0 h-[100dvh] px-4 w-full gap-3 lg:grid lg:grid-cols-20">
+          <div class="w-full col-span-5 pb-4 flex flex-col gap-8 lg:gap-0 justify-end h-[100dvh]">
             <div class="w-full relative flex flex-col gap-4">
               <div class="w-full relative flex flex-row items-baseline gap-10">
                 <span class="large-accent" x-text="String(selectedIndex + 1).padStart(2, '0')"></span>

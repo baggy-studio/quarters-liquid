@@ -12,7 +12,7 @@
     "main": {
       "type": "page-settings",
       "settings": {
-        "headerTheme": "light",
+        "headerTheme": "dark",
         "textColor": "#643600",
         "backgroundColor": "#FAF8EC",
         "footerTextColor": "#FAF8EC",

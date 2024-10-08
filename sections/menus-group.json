@@ -220,28 +220,32 @@
           "type": "item",
           "settings": {
             "title": "Spicy Margarita (NA)",
-            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>"
+            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
+            "price": ""
           }
         },
         "item_Pf69AF": {
           "type": "item",
           "settings": {
             "title": "Spritz (NA)",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>"
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
+            "price": ""
           }
         },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
             "title": "Tiki (NA)",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>"
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
+            "price": ""
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
             "title": "Negroni (NA)",
-            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange</p>"
+            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
+            "price": ""
           }
         }
       },
@@ -282,6 +286,7 @@
         "title": "Drinks",
         "image": "shopify://shop_images/bar-menu-1.png",
         "details": "<p>Menu is subject to change.<br/>Full bottle list available upon request. </p>",
+        "color_scheme": "dark",
         "background_color": "#d8d012"
       }
     },
@@ -366,14 +371,16 @@
           "type": "item",
           "settings": {
             "title": "Vendredi 13 (2021)",
-            "description": "<p>Nerello Mascalese, Nerello Cappuccio, Grenache, Minnella, Carricante · Sicily, Italy</p>"
+            "description": "<p>Nerello Mascalese, Nerello Cappuccio, Grenache, Minnella, Carricante · Sicily, Italy</p>",
+            "price": ""
           }
         },
         "item_hXfRjw": {
           "type": "item",
           "settings": {
             "title": "Tktk Tktktk (20##)",
-            "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy</p>"
+            "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy</p>",
+            "price": ""
           }
         },
         "category_GHcRNF": {
@@ -394,21 +401,24 @@
           "type": "item",
           "settings": {
             "title": "Spritz",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>"
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
+            "price": ""
           }
         },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
             "title": "Tiki",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>"
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
+            "price": ""
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
             "title": "Negroni",
-            "description": "<p>Tktk NA gin, Lyre's Aperitif Rosso, Italian orange</p>"
+            "description": "<p>Tktk NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
+            "price": ""
           }
         }
       },
@@ -435,6 +445,7 @@
         "title": "Daytime",
         "image": "shopify://shop_images/bar-2.png",
         "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies or dietary restrictions.</p>",
+        "color_scheme": "light",
         "background_color": "#826c1a"
       }
     },
@@ -467,14 +478,16 @@
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo",
-            "description": "<p>Boquerones, coppa</p>"
+            "description": "<p>Boquerones, coppa</p>",
+            "price": ""
           }
         },
         "item_V7FrbE": {
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo (Vegetarian)",
-            "description": "<p>Piquillo peppers</p>"
+            "description": "<p>Piquillo peppers</p>",
+            "price": ""
           }
         },
         "item_WAycEp": {
@@ -577,14 +590,16 @@
           "type": "item",
           "settings": {
             "title": "Sicilian Tuna Crudo",
-            "description": "<p>Capers, peperoncino a cornetto, citrus, olive oil</p>"
+            "description": "<p>Capers, peperoncino a cornetto, citrus, olive oil</p>",
+            "price": ""
           }
         },
         "item_khEkKU": {
           "type": "item",
           "settings": {
             "title": "Steak Tartar",
-            "description": "<p>Castelvetrano salsa verde, fish sauce</p>"
+            "description": "<p>Castelvetrano salsa verde, fish sauce</p>",
+            "price": ""
           }
         },
         "category_eraxDf": {
@@ -674,6 +689,7 @@
         "title": "Evening",
         "image": "shopify://shop_images/bar-3.png",
         "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies.</p>",
+        "color_scheme": "light",
         "background_color": "#022b26"
       }
     }

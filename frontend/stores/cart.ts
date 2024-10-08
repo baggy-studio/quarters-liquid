@@ -54,12 +54,12 @@ export const store = {
         document.addEventListener("shopify:section:select", (event) => {
             const { sectionId } = event.detail;
             if (sectionId.includes("cart")) {
-                this.visible = true;
+                this.open();
             }
         });
 
         document.addEventListener("shopify:section:deselect", () => {
-            this.visible = false;
+            this.close();
         });
     },
     async request(url, method = "GET", body) {

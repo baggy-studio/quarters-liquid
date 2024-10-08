@@ -7,14 +7,39 @@ interface Response {
 }
 
 export default (listId: string) => ({
-  visible: false,
+  visible: true,
   email: "",
   success: false,
   error: null,
   loading: false,
-  async submit() { 
+  init() {
+    window.Shopify.designMode && this.customizer();
+  },
+  customizer() {
+    document.addEventListener("shopify:section:select", (event) => {
+      const { sectionId } = event.detail;
+      if (sectionId.includes("newsletter")) {
+        this.visible = true;
+      }
+    });
+
+    document.addEventListener("shopify:section:deselect", () => {
+      this.visible = false;
+    });
+  },
+  validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  },
+
+  async submit() {
     if (!this.email) {
-      return
+      return;
+    }
+
+    if (!this.validateEmail(this.email)) {
+      this.error = "Invalid email address";
+      return;
     }
 
     if (!listId) {
@@ -23,6 +48,8 @@ export default (listId: string) => ({
     }
 
     this.loading = true;
+
+    let close = this.close.bind(this)
     try {
       const response: Response = await subscribeToList(listId, this.email);
 
@@ -36,19 +63,27 @@ export default (listId: string) => ({
       throw error;
     } finally {
       this.loading = false;
+
       setTimeout(() => {
-        this.close()
+        close()
       }, 1500)
     }
   },
   close() {
     this.visible = false;
+
+    // Alpine is broken
+    document.querySelector('[data-newsletter]')?.classList.remove('opacity-100')
+    document.querySelector('[data-newsletter]')?.classList.add('opacity-0')
+    document.querySelector('[data-newsletter-content]')?.classList.remove('pointer-events-auto')
+
     cookie.set("newsletter", "true", {
       path: "/",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3), // Set to 3 days
     });
   },
   shouldOpen() {
+    console.log('shouldOpen')
     setTimeout(() => {
       this.visible = !cookie.get("newsletter");
     }, 5000)

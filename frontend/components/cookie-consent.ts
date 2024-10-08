@@ -3,8 +3,9 @@ export default () => ({
   init() {
     let i = this;
 
-    if (window.ShopifyDesignMode) {
-      return
+    if (window.Shopify.designMode) {
+      this.customizer();
+      return 
     }
 
     window.Shopify.loadFeatures(
@@ -30,6 +31,18 @@ export default () => ({
         }
       },
     );
+  },
+  customizer() {
+    document.addEventListener("shopify:section:select", (event) => {
+      const { sectionId } = event.detail;
+      if (sectionId.includes("cookie_consent")) {
+        this.visible = true;
+      }
+    });
+
+    document.addEventListener("shopify:section:deselect", () => {
+      this.visible = false;
+    });
   },
   accept() {
     this.visible = false;

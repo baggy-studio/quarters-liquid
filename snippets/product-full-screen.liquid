@@ -85,7 +85,7 @@
               data-height="{{ selected_variant_media.height }}"
               :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
             >
-              {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw' %}
+              {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw', priority: true  %}
             </li>
           {% endif %}
           {% if variant_media_metafields %}
@@ -98,7 +98,7 @@
                 data-height="{{ media.height }}"
                 :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
               >
-                {% render 'image', image: media, width: 2000, sizes: '100vw' %}
+                {% render 'image', image: media, width: 2000, sizes: '100vw', priority: true  %}
               </li>
             {% endfor %}
           {% endif %}
@@ -117,7 +117,7 @@
                   data-height="{{ media.height }}"
                   :class="selectedIndex === {{ rendered_count }} ? 'contents' : 'hidden'"
                 >
-                  {% render 'image', image: media, width: 2000, sizes: '100vw' %}
+                  {% render 'image', image: media, width: 2000, sizes: '100vw', priority: true %}
                 </li>
               {% endif %}
             {% endfor %}
@@ -126,9 +126,11 @@
         <button class="absolute left-0 inset-y-0 w-full lg:block hidden" @click="closeFullscreen">
           <span class="sr-only">Close</span>
         </button>
-        <button class="absolute left-0 inset-y-0 w-full lg:hidden block" @click="nextImage">
-          <span class="sr-only">Next image</span>
-        </button>
+        {% if total_media_count > 1 %}
+          <button class="absolute left-0 inset-y-0 w-full lg:hidden block" @click="nextImage">
+            <span class="sr-only">Next image</span>
+          </button>
+        {% endif %}
       </div>
       <div class="fixed top-0 left-0 h-screen w-full bottom-0 lg:[will-change:clip-path] lg:[clip-path:--clip-path] pointer-events-none">
         <div

@@ -2,7 +2,7 @@
   class="w-full relative row-start-1 row-end-1 col-start-1 col-end-1"
   {% unless request.design_mode %}
   x-show="'{{ section.settings.title | handleize }}' == menu"
-  x-transition.opacity.duration.400ms
+  x-transition.opacity.duration.800ms
   {% endunless %}
 >
   <div
@@ -76,11 +76,10 @@
           "label": "Description"
         },
         {
-          "type": "number",
+          "type": "text",
           "id": "price",
           "label": "Price",
-          "info": "The price of the item without the currency symbol",
-          "default": 0
+          "info": "The price of the item without the currency symbol"
         }
       ]
     }

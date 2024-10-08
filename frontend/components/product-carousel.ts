@@ -14,12 +14,26 @@ export default (
   currentIndex: 0,
   init() {
     if (!this.$refs.large) return;
-    this.carousels.large = EmblaCarousel(this.$refs.large, options);
+    this.carousels.large = EmblaCarousel(this.$refs.large, {
+      ...options,
+      active: false,
+      breakpoints: {
+        '(min-width: 1024px)': {
+          active: true,
+        }
+      }
+    });
 
     if (this.$refs.small) {
       this.carousels.small = EmblaCarousel(this.$refs.small, {
         loop: true,
         watchDrag: false,
+        active: false,
+        breakpoints: {
+          '(min-width: 1024px)': {
+            active: true,
+          }
+        }
       });
     }
 
@@ -41,7 +55,7 @@ export default (
     });
   },
   next() {
-    if (this.carousels.large) { 
+    if (this.carousels.large) {
       this.carousels.large.scrollNext();
     }
   },
@@ -69,9 +83,5 @@ export default (
     if (this.carousels.small) {
       this.carousels.small.destroy();
     }
-  },
-  get index() {
-    const index = this.currentIndex + 1
-    return index < 10 ? `0${index}` : index;
-  },
+  }
 });

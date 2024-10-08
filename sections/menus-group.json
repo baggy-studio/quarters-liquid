@@ -16,7 +16,7 @@
           "settings": {
             "title": "Tinc Set Metode Ancestral (2023)",
             "description": "<p>Ramon Jané · Penedes, Spain<\/p>",
-            "price": 1700
+            "price": "1700"
           }
         },
         "item_paEfaz": {
@@ -24,7 +24,7 @@
           "settings": {
             "title": "Lambrusco (2021)",
             "description": "<p>Villa Picta · Lombardy, Italy<\/p>",
-            "price": 1600
+            "price": "1600"
           }
         },
         "item_WAycEp": {
@@ -32,7 +32,7 @@
           "settings": {
             "title": "Visio (2021)",
             "description": "<p>Koi Emilia · Emilia Romagna, Italy<\/p>",
-            "price": 2400
+            "price": "2400"
           }
         },
         "category_KfbFhq": {
@@ -46,7 +46,7 @@
           "settings": {
             "title": "Piantagrane (2022)",
             "description": "<p>Villa Job · Friuli, Italy<\/p>",
-            "price": 2200
+            "price": "2200"
           }
         },
         "item_V7FrbE": {
@@ -54,7 +54,7 @@
           "settings": {
             "title": "Schatz White (2023)",
             "description": "<p>Arndorfer Vereinter · Kamptal, Austria<\/p>",
-            "price": 1600
+            "price": "1600"
           }
         },
         "item_pekXfz": {
@@ -62,7 +62,7 @@
           "settings": {
             "title": "Cal Ros (2023)",
             "description": "<p>Amor Per La Terra · Catalonia, Spain<\/p>",
-            "price": 1800
+            "price": "1800"
           }
         },
         "item_heE8rJ": {
@@ -70,7 +70,7 @@
           "settings": {
             "title": "Empordà Connexió Còsmica (2023)",
             "description": "<p>Cosmic Vinyaters · Catalonia Spain<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "category_hX8CnD": {
@@ -84,7 +84,7 @@
           "settings": {
             "title": "Jeudi 15 (2022)",
             "description": "<p>Vino di Anna · Sicily, Italy<\/p>",
-            "price": 2500
+            "price": "2500"
           }
         },
         "category_ARJMyX": {
@@ -98,7 +98,7 @@
           "settings": {
             "title": "Palmentino Rosso (2022)",
             "description": "<p>Vino di Anna · Sicily, Italy<\/p>",
-            "price": 2000
+            "price": "2000"
           }
         },
         "item_RkLHpc": {
@@ -106,7 +106,7 @@
           "settings": {
             "title": "Vendredi 13 (2021)",
             "description": "<p>Vino di Anna · Sicily, Italy<\/p>",
-            "price": 2000
+            "price": "2000"
           }
         },
         "category_UrGbTN": {
@@ -120,7 +120,7 @@
           "settings": {
             "title": "Saison",
             "description": "<p>Cyclic · Catalonia, Spain<\/p>",
-            "price": 1500
+            "price": "1500"
           }
         },
         "item_iyPHcM": {
@@ -128,7 +128,7 @@
           "settings": {
             "title": "Nazionale",
             "description": "<p>Baladin · Piedmont, Italy<\/p>",
-            "price": 1500
+            "price": "1500"
           }
         },
         "item_eQkA7P": {
@@ -136,7 +136,7 @@
           "settings": {
             "title": "L'Ippa",
             "description": "<p>Baladin · Piedmont, Italy<\/p>",
-            "price": 1500
+            "price": "1500"
           }
         },
         "item_9nTrAn": {
@@ -144,7 +144,7 @@
           "settings": {
             "title": "Nora",
             "description": "<p>Baladin · Piedmont, Italy<\/p>",
-            "price": 1500
+            "price": "1500"
           }
         },
         "category_CMfHpD": {
@@ -158,7 +158,7 @@
           "settings": {
             "title": "Seasonal Spritz",
             "description": "<p>Bordiga aperitivo, Cap Corse blanc, spiced clementine, sparkling wine, club soda<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_e87PgU": {
@@ -166,7 +166,7 @@
           "settings": {
             "title": "Normandy Negroni",
             "description": "<p>Orchard Hill pommeau, Quinquina aperitif, blanc cermouth, aged cider vinegar<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_tnUJxk": {
@@ -174,7 +174,7 @@
           "settings": {
             "title": "Fig Adonis",
             "description": "<p>Vermouth di Torino, Olorosso sherry, Pedro Ximénez, Provençal fig<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_Jc97fh": {
@@ -182,7 +182,7 @@
           "settings": {
             "title": "Sherry Cobbler",
             "description": "<p>Manzanilla sherry, Pedro Ximénez, lemon, blackberry and bay leaf jam<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_HPwETy": {
@@ -190,7 +190,7 @@
           "settings": {
             "title": "Martini",
             "description": "<p>Cocchi americano, blanc verjus, manzanilla sherry, citrus oleo, orange bitters<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_HQ3jiq": {
@@ -198,7 +198,7 @@
           "settings": {
             "title": "Fall Pimm's Cup",
             "description": "<p>Amaro Pasubio, ginger beer, lemon, rainwater Madeira, vin cotto<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "category_GHcRNF": {
@@ -211,32 +211,28 @@
           "type": "item",
           "settings": {
             "title": "Spicy Margarita (NA)",
-            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave<\/p>",
-            "price": 0
+            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave<\/p>"
           }
         },
         "item_Pf69AF": {
           "type": "item",
           "settings": {
             "title": "Spritz (NA)",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>",
-            "price": 0
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>"
           }
         },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
             "title": "Tiki (NA)",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>",
-            "price": 0
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>"
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
             "title": "Negroni (NA)",
-            "description": "<p>NA gin, Lyre’s Aperitif Rosso, Italian orange<\/p>",
-            "price": 0
+            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange<\/p>"
           }
         }
       },
@@ -295,7 +291,7 @@
           "settings": {
             "title": "Penedés Brut Nature Tinc Set Sparkling Wine (2022)",
             "description": "<p>Xarel-lo, Parellada · Catalonia, Spain<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "item_paEfaz": {
@@ -303,7 +299,7 @@
           "settings": {
             "title": "Emilia Visio Rosato Spumante (2022)",
             "description": "<p>Sorbara, Lambrusco Maestri · Emilia-Romagna, Italy<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "item_WAycEp": {
@@ -311,7 +307,7 @@
           "settings": {
             "title": "Provincia di Mantova Lambrusco (2021)",
             "description": "<p>Lambrusco · Lombardy, Italy<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "category_KfbFhq": {
@@ -325,7 +321,7 @@
           "settings": {
             "title": "Vereinter Schatz White (2022)",
             "description": "<p>Grüner Veltliner, Riesling · Niederösterreich, Austria<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "item_V7FrbE": {
@@ -333,7 +329,7 @@
           "settings": {
             "title": "Venezia Giulia Piantagrane Bianco (2022)",
             "description": "<p>Pinot Grigio · Friuli-Venezia Giulia, Italy<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "item_pekXfz": {
@@ -341,7 +337,7 @@
           "settings": {
             "title": "Terra Alta Les Alifares Vernatxa Gris (2021)",
             "description": "<p>Grenache Gris · Catalonia, Spain<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "category_ARJMyX": {
@@ -355,7 +351,7 @@
           "settings": {
             "title": "Jeudi 15 Vino Rosato (2022)",
             "description": "<p>Nerello Mascalese, Grenache · Sicily, Italy<\/p>",
-            "price": 0
+            "price": "0"
           }
         },
         "item_RkLHpc": {
@@ -363,7 +359,7 @@
           "settings": {
             "title": "Vendredi 13 (2021)",
             "description": "<p>Nerello Mascalese, Nerello Cappuccio, Grenache, Minnella, Carricante · Sicily, Italy<\/p>",
-            "price": 0
+           
           }
         },
         "item_hXfRjw": {
@@ -371,7 +367,7 @@
           "settings": {
             "title": "Tktk Tktktk (20##)",
             "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy<\/p>",
-            "price": 0
+             
           }
         },
         "category_GHcRNF": {
@@ -385,31 +381,28 @@
           "settings": {
             "title": "Margarita",
             "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave<\/p>",
-            "price": 20
+            "price": "20"
           }
         },
         "item_Pf69AF": {
           "type": "item",
           "settings": {
             "title": "Spritz",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>",
-            "price": 0
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>"
           }
         },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
             "title": "Tiki",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>",
-            "price": 0
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>"
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
             "title": "Negroni",
-            "description": "<p>Tktk NA gin, Lyre’s Aperitif Rosso, Italian orange<\/p>",
-            "price": 0
+            "description": "<p>Tktk NA gin, Lyre's Aperitif Rosso, Italian orange<\/p>"
           }
         }
       },
@@ -454,7 +447,7 @@
           "settings": {
             "title": "Snack Trio",
             "description": "<p>Nuts, fennel taralli, potato chips<\/p>",
-            "price": 1600
+            "price": "1600"
           }
         },
         "item_paEfaz": {
@@ -462,23 +455,21 @@
           "settings": {
             "title": "Marinated Olives",
             "description": "<p>Fennel, citrus<\/p>",
-            "price": 1200
+            "price": "1200"
           }
         },
         "item_m3KNBF": {
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo",
-            "description": "<p>Boquerones, coppa<\/p>",
-            "price": 0
+            "description": "<p>Boquerones, coppa<\/p>"
           }
         },
         "item_V7FrbE": {
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo (Vegetarian)",
-            "description": "<p>Piquillo peppers<\/p>",
-            "price": 0
+            "description": "<p>Piquillo peppers<\/p>"
           }
         },
         "item_WAycEp": {
@@ -486,7 +477,7 @@
           "settings": {
             "title": "Caviar Service",
             "description": "<p>Siberian select caviar, crème fraîche, chives, potato chips<\/p>",
-            "price": 13500
+            "price": "13500"
           }
         },
         "item_pekXfz": {
@@ -494,7 +485,7 @@
           "settings": {
             "title": "Boquerones",
             "description": "<p>Vinager, shallots, herbs, olive oil<\/p>",
-            "price": 2400
+            "price": "2400"
           }
         },
         "item_VdPMNd": {
@@ -502,7 +493,7 @@
           "settings": {
             "title": "Mussel Toast",
             "description": "<p>Tinned mussels, shallots, tomato rouille, chervil<\/p>",
-            "price": 2400
+            "price": "2400"
           }
         },
         "item_RkLHpc": {
@@ -510,7 +501,7 @@
           "settings": {
             "title": "Mushroom Toast",
             "description": "<p>Mushrooms, garlic, sherry, parsley<\/p>",
-            "price": 1800
+            "price": "1800"
           }
         },
         "item_hXfRjw": {
@@ -518,7 +509,7 @@
           "settings": {
             "title": "3-year Comté (France)",
             "description": "<p>Cherry confit, hazelnuts<\/p>",
-            "price": 4200
+            "price": "4200"
           }
         },
         "item_egqijV": {
@@ -526,7 +517,7 @@
           "settings": {
             "title": "Humboldt Fog (USA)",
             "description": "<p>Seeded honey<\/p>",
-            "price": 3200
+            "price": "3200"
           }
         },
         "item_Pf69AF": {
@@ -534,7 +525,7 @@
           "settings": {
             "title": "Robiola Tre Latti (Italy)",
             "description": "<p>Raspberry and hibiscus jam<\/p>",
-            "price": 3000
+            "price": "3000"
           }
         },
         "item_rrxBJj": {
@@ -542,7 +533,7 @@
           "settings": {
             "title": "Tomme de Savoie (France)",
             "description": "<p>Fig and Earl Grey jam<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_ac9grz": {
@@ -550,7 +541,7 @@
           "settings": {
             "title": "Pâté de Campagne",
             "description": "<p>Grainy mustard, cornichons<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         },
         "item_wiC4w3": {
@@ -558,7 +549,7 @@
           "settings": {
             "title": "Culatello",
             "description": "<p>Balsamic vinegar, mixed antipasto<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_C3CTDr": {
@@ -566,7 +557,7 @@
           "settings": {
             "title": "Iberico Chorizo",
             "description": "<p>Cilantro, pickled peppers<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_k4e4Gm": {
@@ -574,23 +565,21 @@
           "settings": {
             "title": "Bresaola",
             "description": "<p>Arugula, olive oil, lemon<\/p>",
-            "price": 2400
+            "price": "2400"
           }
         },
         "item_mRPyXJ": {
           "type": "item",
           "settings": {
             "title": "Sicilian Tuna Crudo",
-            "description": "<p>Capers, peperoncino a cornetto, citrus, olive oil<\/p>",
-            "price": 0
+            "description": "<p>Capers, peperoncino a cornetto, citrus, olive oil<\/p>"
           }
         },
         "item_khEkKU": {
           "type": "item",
           "settings": {
             "title": "Steak Tartar",
-            "description": "<p>Castelvetrano salsa verde, fish sauce<\/p>",
-            "price": 0
+            "description": "<p>Castelvetrano salsa verde, fish sauce<\/p>"
           }
         },
         "category_eraxDf": {
@@ -604,7 +593,7 @@
           "settings": {
             "title": "House Hazelnut and Apricot Cantucci",
             "description": "<p>with vin santo<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_mADcj6": {
@@ -612,7 +601,7 @@
           "settings": {
             "title": "Camari's Cookies",
             "description": "<p>with brown liquor<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_Uh3Q9T": {
@@ -620,7 +609,7 @@
           "settings": {
             "title": "Chocolate Cherries",
             "description": "<p>with port<\/p>",
-            "price": 2600
+            "price": "2600"
           }
         },
         "item_DUXAz6": {
@@ -628,7 +617,7 @@
           "settings": {
             "title": "Amaretti",
             "description": "<p>with vin santo<\/p>",
-            "price": 2400
+            "price": "2400"
           }
         },
         "item_iBgtwr": {
@@ -636,7 +625,7 @@
           "settings": {
             "title": "Piedras de Chocolate Almonds",
             "description": "<p>with sherry<\/p>",
-            "price": 2100
+            "price": "2100"
           }
         },
         "item_76FYD3": {
@@ -644,7 +633,7 @@
           "settings": {
             "title": "Dark Chocolate Mousse",
             "description": "<p>Gianduja noir, chantilly<\/p>",
-            "price": 1900
+            "price": "1900"
           }
         }
       },

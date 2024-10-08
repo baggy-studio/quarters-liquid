@@ -14,7 +14,12 @@
                 @click="setMenu('{{ handle }}')"
                 :disabled="menu === '{{ handle }}'"
                 title="{{ menu }}"
-                class="w-full text-[24px] leading-[1.2] font-serif grid grid-cols-10 gap-3 text-left pointer-events-auto hover:opacity-50 duration-300 ease-linear disabled:opacity-100"
+                :class="
+                  { 
+                    'opacity-50': menu !== '{{ handle }}'
+                  }
+                "
+                class="w-full text-[24px] leading-[1.2] font-serif gap-x-4 flex items-center lg:grid lg:grid-cols-10 gap-3 text-left pointer-events-auto hover:opacity-100 duration-300 ease-linear disabled:opacity-100"
               >
                 <p class="col-span-1 font-droulers text-[22px] leading-[30px]">0{{ forloop.index }}</p>
                 <p

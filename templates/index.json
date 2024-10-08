@@ -14,8 +14,8 @@
       "settings": {
         "headerTheme": "light",
         "textColor": "#643600",
-        "backgroundColor": "#FAF8EC",
-        "footerTextColor": "#FAF8EC",
+        "backgroundColor": "#faf8ec",
+        "footerTextColor": "#faf8ec",
         "footerBackgroundColor": "#643600"
       }
     },
@@ -36,6 +36,7 @@
         },
         "all_EJFPjz": {
           "type": "all",
+          "disabled": true,
           "settings": {
             "video": "shopify://files/videos/42b666f014454d3686f5a7c5c591d32d.mp4"
           }

@@ -121,7 +121,7 @@ export default () => ({
       cancelAnimationFrame(this.raf)
     }
   },
-  async openFullscreen(e, { large = false, index = 0 }) {
+  async openFullscreen(e, { large = false, index = 0, clickedElement }) {
     if (this.animating || this.media.length === 0) {
       return;
     }
@@ -139,17 +139,25 @@ export default () => ({
     this.pointer.last.x = e.clientX;
     this.pointer.last.y = e.clientY;
 
-    this.fromPosition = this.getSmallImageDimensions();
+    
+    this.fromPosition = this.getClickedImageDimensions(clickedElement);
 
     if (!this.fromPosition) {
       return;
     }
 
+    this.originalImage = {
+      element: clickedElement,
+      rect: this.fromPosition,
+      scrollY: window.scrollY
+    };
+
     this.aspectRatio = this.fromPosition.width / this.fromPosition.height;
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateOpen();
-    }
+    // if (window.innerWidth >= 1024) {
+    //   await this.onAnimateOpen();
+    // }
+    this.onAnimateOpen();
 
     this.animating = false;
   },
@@ -160,10 +168,23 @@ export default () => ({
 
     this.animating = true;
 
-    if (this.fromLarge) {
-      this.fromPosition = this.getLargeImageDimensions()
+    if (this.originalImage && this.originalImage.element) {
+      const currentRect = this.originalImage.element.getBoundingClientRect();
+      const scrollDiff = window.scrollY - this.originalImage.scrollY;
+  
+      this.fromPosition = {
+        left: currentRect.left,
+        top: currentRect.top - scrollDiff,
+        width: currentRect.width,
+        height: currentRect.height
+      };
     } else {
-      this.fromPosition = this.getSmallImageDimensions()
+      // Fallback to previous behavior if no original element is stored
+      if (this.fromLarge) {
+        this.fromPosition = this.getLargeImageDimensions()
+      } else {
+        this.fromPosition = this.getSmallImageDimensions()
+      }
     }
 
     if (window.innerWidth >= 1024) {
@@ -217,6 +238,10 @@ export default () => ({
     const dimensions = largeImage.getBoundingClientRect()
     return dimensions
   },
+  getClickedImageDimensions(clickedElement) {
+    if (!clickedElement) return null;
+    return clickedElement.getBoundingClientRect();
+  },
   getSmallImageDimensions() {
     const smallImage = document.querySelector('[data-small-image]')
     if (!smallImage) return
@@ -249,18 +274,21 @@ export default () => ({
   },
   async onAnimateClose() {
     this.animating = true
-
-    const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen-fixed]')?.getBoundingClientRect().top ?? 0);
-    const startWidth = window.innerWidth;
-    const heightBasedOnAspectRatio = startWidth / this.activeMedia.aspectRatio;
-    const startHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
-
+  
+    const fullscreenFixed = document.querySelector('[data-fullscreen-fixed]');
+    const fullscreenFixedRect = fullscreenFixed?.getBoundingClientRect();
+    const fromTop = this.fromPosition.top - (fullscreenFixedRect?.top ?? 0);
+  
+    const startX = this.transformX;  // Use current transform X
+    const startY = this.transformY;  // Use current transform Y
+    const startWidth = this.transformWidth;
+    const startHeight = this.transformHeight;
+  
     return await animate((progress) => {
-      this.transformX = range(0, 1, 0, this.fromPosition.left, progress)
-      this.transformY = range(0, 1, 0, fromTop, progress)
+      this.transformX = range(0, 1, startX, this.fromPosition.left, progress)
+      this.transformY = range(0, 1, startY, fromTop, progress)
       this.transformWidth = range(0, 1, startWidth, this.fromPosition.width, progress)
       this.transformHeight = range(0, 1, startHeight, this.fromPosition.height, progress)
-
     }, { duration: 1.4, easing: expoInOut }).finished
   },
   get clipPath() {

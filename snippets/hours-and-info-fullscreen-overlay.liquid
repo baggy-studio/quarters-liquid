@@ -20,7 +20,6 @@
         'overflow-hidden': animating,
         'overflow-y-auto': !animating && visible
       }"
-      style="min-height: 100vh; min-height: -webkit-fill-available;"
     >
       <div class="relative lg:h-auto w-full h-full">
         <ul
@@ -39,11 +38,13 @@
               :data-width="item.width"
               :data-height="item.height"
             >
-              <img
+                <img
                 :src="item.src"
+                :sizes="'(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'"
                 :alt="item.alt"
                 class="w-full h-full object-cover"
-                sizes="100vw"
+                loading="lazy"
+                decoding="async"
               >
             </li>
           </template>
@@ -59,7 +60,7 @@
         <div class="absolute inset-0 min-h-screen px-4 w-full gap-3 lg:grid lg:grid-cols-20">
           <div class="w-full col-span-5 pb-4 pt-[120px] lg:pt-[calc(160px+152px+16px)] flex flex-col gap-8 lg:gap-0 justify-end min-h-screen">
             <div class="w-full relative flex flex-col gap-4">
-              <div class="w-full relative flex flex-row items-baseline gap-4">
+              <div class="w-full relative flex flex-row items-baseline gap-10">
                 <span class="large-accent" x-text="String(selectedIndex + 1).padStart(2, '0')"></span>
                 <h2 class="large-serif" x-text="media[selectedIndex]?.caption"></h2>
               </div>

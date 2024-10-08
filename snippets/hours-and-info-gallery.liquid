@@ -2,7 +2,22 @@
   snippets/hours-and-info-gallery.liquid
 {% endcomment %}
 
-<div x-data="carousel({ align: 'start' })"  class="embla relative lg:overflow-hidden">
+
+<div class="relative">
+    <!-- Desktop view: first 3 items -->
+    <div class="hidden lg:flex">
+      {% for block in section.blocks limit:3 %}
+        {% if block.type == 'image' %}
+          <div class="w-full">
+            {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% render 'hours-and-info-fullscreen-overlay' %}
+</div>
+
+<div x-data="carousel({ align: 'start' })"  class="embla relative lg:overflow-hidden lg:hidden">
   <div class="embla__container flex" x-ref="viewport">
     {% for block in section.blocks %}
       {% if block.type == 'image' %}

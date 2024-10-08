@@ -5,10 +5,10 @@
 
 <div class="relative">
     <!-- Desktop view-->
-    <div class="hidden lg:flex">
+    <div class="hidden lg:grid grid-cols-12 gap-x-3">
       {% for block in section.blocks limit:3 %}
         {% if block.type == 'image' %}
-          <div class="w-full">
+          <div class="col-span-4">
             {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
           </div>
         {% endif %}

@@ -1,4 +1,14 @@
-<div x-data="barMenu" class="absolute inset-0 z-10 pointer-events-none">
+<div
+  x-data="barMenu"
+
+  @set-theme.window="theme = $event.detail"
+  @set-menu.window="
+    setTimeout(() => {
+        resize()
+    }, 1000)
+  "
+  class="absolute inset-0 z-10 pointer-events-none"
+>
   <div
     class="absolute inset-0 text-mahogany clip-after-100vh"
     :style="`--infoHeight: ${infoHeight}px; --barHeight: ${menuHeight}px;`"

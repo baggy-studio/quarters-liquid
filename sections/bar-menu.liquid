@@ -4,10 +4,20 @@
   x-show="'{{ section.settings.title | handleize }}' == menu"
   x-transition.opacity.duration.800ms
   {% endunless %}
+  data-bar-menu="{{ section.settings.title | handleize }}"
+  data-bar-bg="{{ section.settings.background_color }}"
+  data-bar-theme="{{ section.settings.color_scheme }}"
+  x-intersect:enter.threshold.20="$dispatch('set-theme',
+  {% if section.settings.color_scheme == 'light' %}
+  'light'
+  {% else %}
+  'dark'
+  {% endif %}
+  )"
 >
   <div
     class="w-full grid lg:grid-cols-2 bg-[--bg-color]"
-    style="--color: {{ section.settings.color }}; --bg-color: {{ section.settings.background_color }};"
+    style="--bg-color: {{ section.settings.background_color }};"
   >
     <div class="w-full relative">
       <div class="w-full lg:top-0 lg:sticky h-auto aspect-[393/487] lg:aspect-auto lg:h-screen overflow-hidden flex items-end p-4 text-bone">
@@ -23,7 +33,15 @@
         </div>
       </div>
     </div>
-    <ul class="w-full text-[--color] pt-10 pb-[160px] lg:py-32  grid grid-cols-10 gap-x-2 lg:gap-x-3 gap-y-16 px-4 lg:pl-1.5">
+    <ul class="w-full 
+      {% if section.settings.color_scheme == 'light' %}
+        text-bone
+      {% else %}
+        text-mahogany
+      {% endif %}
+      
+      
+      pt-10 pb-[160px] lg:py-32  grid grid-cols-10 gap-x-2 lg:gap-x-3 gap-y-16 px-4 lg:pl-1.5">
       {% for block in section.blocks %}
         {% if block.type == 'category' %}
           <li class="col-span-10 lg:col-span-8 flex flex-col gap-y-6 lg:col-start-2">
@@ -99,11 +117,16 @@
       "type": "richtext",
       "id": "details",
       "label": "Details"
-    },
+    }, 
     {
-      "type": "color",
-      "id": "color",
-      "label": "Text Color"
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Text Color",
+      "options": [
+        { "label": "Light", "value": "light" },
+        { "label": "Dark", "value": "dark" }
+      ],
+      "default": "dark"
     },
     {
       "type": "color",

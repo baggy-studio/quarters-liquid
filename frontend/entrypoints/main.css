@@ -229,7 +229,7 @@
     }
 
     .rez-button {
-        @apply uppercase hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-10 lg:h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
+        @apply uppercase hover:bg-mahogany-hover hover:text-bone spicy-body bg-mahogany border border-mahogany hover:border-mahogany-hover text-bone px-4 h-10 lg:h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
     }
 
     .rez-button.is-alt {

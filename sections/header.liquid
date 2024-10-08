@@ -1,10 +1,12 @@
 <header
+ 
   :class="
     {
       'is-animating': animating
     }
   "
   class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none group"
+  @set-theme.window="isForcedTheme = $event.detail"
 >
   <button
     :class="
@@ -64,7 +66,7 @@
       <svg
         :class="
           {
-            'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+            'opacity-100':  headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
             'opacity-0': headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
           }
         "
@@ -84,7 +86,7 @@
         'delay-0': isScrolling
       }
     "
-    :style="`--header-theme: ${headerColor}`"
+    :style="`--header-theme: ${forcedHeaderColor || headerColor}`"
     class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
   > 
     <ul class="hidden lg:flex items-center gap-16">

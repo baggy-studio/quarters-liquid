@@ -21,7 +21,7 @@ import collectionNav from "@/components/collection-nav";
 import productVariantSelector from "@/components/product-variant-selector";
 import productFullscreen from "@/components/product-fullscreen";
 import footer from "@/components/footer";
-import barMenu from "@/components/bar-menu";
+import barMenu from "@/components/sticky-bar-menu";
 import barMenus from "@/components/bar-menus";
 import video from "@/components/video";
 import { store as cartStore } from "@/stores/cart";

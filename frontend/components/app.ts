@@ -38,6 +38,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   isScrolling: false,
   scrollTimeout: null,
   scrollY: 0,
+  isForcedTheme: null,
   init() {
     this.trackMenuHeight();
 
@@ -77,6 +78,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   setTheme(theme: 'light' | 'dark') {
     this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
   },
+
   hide() {
     this.visible = false;
   },
@@ -191,5 +193,9 @@ export default (activeUrl: string = window.location.pathname) => ({
     }
 
     return !hideHeaderRoutes.includes(this.activeUrl);
+  },
+  get forcedHeaderColor() {
+    if (!this.isForcedTheme) return null;
+    return this.isForcedTheme === 'light' ? '#F4EED0' : '#643600';
   }
 });

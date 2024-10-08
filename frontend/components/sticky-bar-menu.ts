@@ -7,6 +7,7 @@ export default () => ({
     infoHeight: 0,
     scrollY: 0,
     windowHeight: window.innerHeight,
+    theme: 'dark',
     init() { 
         this.resize()
         setTimeout(() => {
@@ -17,7 +18,6 @@ export default () => ({
 
         window.addEventListener('scroll', () => {
             this.scrollY = window.scrollY
-            console.log(this.scrollY)
         }, { signal: this.scrollAbortController.signal })
     },
     resize() {
@@ -36,9 +36,5 @@ export default () => ({
     destroy() {
         this.abortController.abort()
         this.scrollAbortController.abort()
-    },
-    scroll() {
-        this.scrollY = window.scrollY
-        console.log(this.scrollY)
     }
 });

@@ -1,13 +1,23 @@
 <div class="absolute top-0 left-0 h-[--infoHeight] w-full">
   <div class="w-full flex items-center justify-center h-screen lg:top-0 lg:sticky">
-    <div 
-      
-      {% if mode == 'sticky' %}
-        :class="scrollY <= windowHeight / 2 ? 'opacity-0' : ''"
-     {% else %}
-        :class="scrollY > windowHeight / 2 ? 'opacity-0' : ''"
-     {% endif %}
-      class="flex w-max items-start gap-x-[9px] relative  duration-500 ease-in-out transition-opacity">
+    <div
+      :class="
+        {
+          {% if mode == 'sticky' %}
+            'opacity-0': scrollY <= windowHeight / 2
+          {% else %}
+            'opacity-0': scrollY > windowHeight / 2
+          {% endif %}
+        }
+      "
+      class="
+        flex w-max
+         {% if mode == 'sticky' %}
+          opacity-0
+         {% endif %}
+        items-start gap-x-[9px] relative  duration-500 ease-in-out transition-opacity
+      "
+    >
       <svg class="w-[29px] h-[19px] fill-current absolute left-[calc(-31px-13px)]" viewBox="0 0 29 19" fill="none">
         <path d="M4.17194 16.368L2.58794 17.904C2.46794 18 2.32394 17.904 2.34794 17.76C3.06794 15.408 3.73994 9.384 4.14794 7.176C4.45994 5.52 4.98794 4.056 6.09194 3.048H0.883938C0.763938 3.048 0.691938 2.904 0.787938 2.808L2.39594 1.272C2.41994 1.248 2.46794 1.224 2.51594 1.224H11.3479C12.2839 1.224 12.8359 1.032 13.0279 0.935999C13.1479 0.887999 13.2679 0.959999 13.2439 1.08C12.7879 3.552 11.6359 9.192 11.4439 10.2C12.3319 8.568 14.3959 5.544 16.4599 5.544C17.6599 5.544 18.2839 6.936 18.2839 8.76C18.2839 12.336 16.1479 14.736 14.6839 16.128H16.5799C16.7239 16.128 16.7959 16.296 16.6999 16.392L15.3079 17.76C15.2839 17.784 15.2359 17.808 15.2119 17.808H12.4519C12.3079 17.808 12.2359 17.616 12.4039 17.52C13.4839 16.968 16.6039 14.256 16.6039 10.128C16.6039 7.968 15.7879 7.2 15.0679 7.2C14.7079 7.2 14.3479 7.32 13.9879 7.56C11.7559 10.56 10.2919 16.392 10.2679 16.488C10.2439 16.56 10.2199 16.608 10.1719 16.656L8.82794 17.976C8.75594 18.072 8.53994 18.024 8.56394 17.832C9.21194 14.52 11.1559 4.368 11.4439 2.832C11.1559 2.952 10.5799 3.048 9.71594 3.048H6.81194C5.68394 4.872 5.63594 10.704 4.21994 16.32C4.21994 16.344 4.19594 16.368 4.17194 16.368ZM21.739 10.632C22.195 10.728 22.771 10.776 23.395 10.776C24.451 10.776 25.771 10.56 26.755 10.032C26.923 9.696 26.995 9.312 26.995 8.88C26.995 8.064 26.491 7.2 25.099 7.2C24.355 7.2 23.635 7.464 22.987 7.896C22.411 8.664 21.979 9.576 21.739 10.632ZM21.499 12.432C21.499 15.048 22.723 16.32 24.283 16.32C25.123 16.32 26.323 15.984 27.403 14.328C27.499 14.184 27.739 14.304 27.643 14.472C27.235 15.312 25.699 18 22.891 18C21.043 18 19.819 16.416 19.819 13.896C19.819 9.36 23.587 5.544 26.467 5.544C28.099 5.544 28.675 6.624 28.675 7.536C28.675 10.104 26.035 12.456 21.955 12.456C21.811 12.456 21.667 12.456 21.499 12.432Z" />
       </svg>
@@ -47,23 +57,37 @@
 <div class="absolute top-0 left-0 h-[--barHeight] lg:h-[calc(var(--barHeight)+1rem)] w-full flex items-end">
   <div class="px-4 bottom-0 sticky pb-4 w-full lg:grid lg:grid-cols-20 lg:gap-3">
     <div
-      {% if mode == 'sticky' %}
-         :class="scrollY <= 16 ? 'opacity-0' : ''"
-      {% else %}
-         :class="scrollY > 16 ? 'opacity-0' : ''"
-      {% endif %}
-      class="
-        col-span-5 w-full lg:col-start-[16] contents lg:flex lg:items-end
+      :class="
+        {
+          {% if mode == 'sticky' %}
+            'opacity-0': scrollY <= 16,
+            'pointer-events-auto': scrollY > 16
+          {% else %}
+            'opacity-0': scrollY > 16,
+            'pointer-events-auto': scrollY <= 16
+          {% endif %}
+        }
+      "
 
-        duration-500 ease-in-out transition-opacity
+      class="
+               col-span-5 w-full lg:col-start-[16] contents lg:flex lg:items-end
+        {% if mode == 'sticky' %}
+               opacity-0 pointer-events-none
+              {% endif %}
+                duration-500 ease-in-out transition-opacity
       "
     >
       {% if mode == 'sticky' %}
         <a
           title="{{ section.settings.cta_text }}"
-          class="rez-button pointer-events-auto w-full "
+          class="rez-button w-full"
+          :class="
+            {
+              'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
+            }
+          "
           href="{{ section.settings.link }}"
-         
+
           target="_blank"
         >
           <span class="block whitespace-nowrap">{{ section.settings.cta_text }}</span>
@@ -71,8 +95,8 @@
         </a>
       {% else %}
         <a
-          title="{{ section.settings.cta_text }}" 
-          class="rez-button is-alt pointer-events-auto w-full"
+          title="{{ section.settings.cta_text }}"
+          class="rez-button is-alt w-full"
           href="{{ section.settings.link }}"
           target="_blank"
         >

@@ -1,5 +1,10 @@
 <header
-  class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none"
+  :class="
+    {
+      'is-animating': animating
+    }
+  "
+  class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none group"
 >
   <button
     :class="
@@ -24,8 +29,10 @@
       href="/"
       title="Quarters"
       class="
-        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 delay-500 transition-opacity duration-300 ease-linear
+        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300  transition-opacity duration-300 ease-linear
         {% if section.settings.hideHomepageHeader and template == 'index' %}
+          opacity-0
+        {% elsif template.suffix == 'bar' %}
           opacity-0
         {% else %}
           pointer-events-auto
@@ -34,50 +41,38 @@
       {% if section.settings.hideHomepageHeader %}
         :class="
           {
-            'opacity-0': activeUrl == '/' && !menu,
+            'opacity-0': !hasHeader && !menu,
             'opacity-100 lg:opacity-0': $store.cart.visible && window.innerWidth < 1024,
             'pointer-events-auto': activeUrl !== '/' || menu
           }
         "
       {% endif %}
     >
-    <svg
-    :class="{
-      'opacity-100': headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
-      'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
-    }"
-    class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
-    :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
-    {% unless section.settings.hideHomepageHeader %}
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0"
-    x-transition:enter-end="opacity-100"
-    x-transition:leave="transition ease-in duration-300"
-    x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0"
-    {% endunless %}
-  >
-    <use xlink:href="#wordmark"></use>
-  </svg>
-  
-  <svg
-    :class="{
-      'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
-      'opacity-0': headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
-    }"
-    class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
-    :class="{ 'delay-300': $store.cart.visible && window.innerWidth < 1024 }"
-    {% unless section.settings.hideHomepageHeader %}
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0"
-    x-transition:enter-end="opacity-100"
-    x-transition:leave="transition ease-in duration-300"
-    x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0"
-    {% endunless %}
-  >
-    <use xlink:href="#wordmark"></use>
-  </svg>
+      <svg
+        :class="
+          {
+            'opacity-100': headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+            'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
+          }
+        "
+        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+        :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+
+      <svg
+        :class="
+          {
+            'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+            'opacity-0': headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
+          }
+        "
+        class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+        :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
     </a>
   </h1>
   <nav
@@ -85,12 +80,13 @@
     :class="
       {
         'is-menu': menu,
-        'is-cart': $store.cart.visible
+        'is-cart': $store.cart.visible,
+        'delay-0': isScrolling
       }
     "
     :style="`--header-theme: ${headerColor}`"
-    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200 group"
-  >
+    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
+  > 
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}
@@ -133,10 +129,10 @@
     >
       (Close)
     </button>
-    <button 
+    <button
       :title="$store.cart.visible ? 'Close Bag' : 'View Bag'"
       :class="menu && 'hidden'"
-      @click="$store.cart.toggle()" 
+      @click="$store.cart.toggle()"
       class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
       <span
@@ -147,7 +143,9 @@
           }
         "
         class="contents lg:contents"
-        >Bag (<span class="contents" x-number="$store.cart.count">{% render 'prefix-number', number: cart.item_count %}</span>)</span
+        >Bag (<span class="contents" x-number="$store.cart.count">
+          {%- render 'prefix-number', number: cart.item_count -%}</span
+        >)</span
       >
       <span
         :class="

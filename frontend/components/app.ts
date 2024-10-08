@@ -22,20 +22,24 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/', '/pages/hours-info', '/pages/shipping-returns'];
+const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns'];
+const hideHeaderRoutes = ['/', '/pages/the-bar'];
+const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 
 export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
+  animating: false,
   subMenu: null,
   menuHeight: 0,
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
   activeCollection: 0,
-  cartCount: 0,
-  cartOpen: false,
+  aboveTheFold: true,
+  isScrolling: false,
+  scrollTimeout: null,
+
   init() {
     this.trackMenuHeight();
-
 
     swup.hooks.before('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
@@ -47,9 +51,9 @@ export default (activeUrl: string = window.location.pathname) => ({
         this.closeMenu();
       }
 
-      if (!lightRoutes.includes(visit.to.url)) {
+      if (!lightRoutes.includes(visit.to.url) || (lightRoutes.includes(visit.from.url) && !lightRoutes.includes(visit.to.url))) {
         this.activeUrl = visit.to.url;
-        this.getTheme(visit.to.url);
+        this.setTheme('dark');
       }
     });
 
@@ -60,6 +64,8 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
+
+    window.addEventListener('scroll', this.onScroll.bind(this));
   },
   getTheme(toUrl: string) {
     if (lightRoutes.includes(toUrl)) {
@@ -78,24 +84,28 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.visible = true;
   },
   async openMenu() {
-    if (this.menu) return;
+    if (this.menu || this.animating) return;
     this.lockScroll();
     this.menu = true;
 
+    this.animating = true;
     await animate((progress) => {
       this.updateMenuHeight(progress)
     }, { duration: 1.2, easing: expoInOut }).finished
+    this.animating = false;
   },
   async closeMenu() {
-    if (!this.menu) return
+    if (!this.menu || this.animating) return
 
     this.menu = false;
 
     const url = this.activeUrl;
+    this.animating = true;
 
     await animate((progress) => {
       this.updateMenuHeight(1 - progress, url)
     }, { duration: 1.2, easing: expoInOut }).finished
+    this.animating = false;
 
     this.unlockScroll();
     this.activeCollection = 0;
@@ -131,10 +141,6 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.updateMenuHeight(1);
     }
   },
-  toggleCartMenu() {
-    this.cartOpen = !this.cartOpen;
-    this.$dispatch('cart:toggle')
-  },
   lockScroll() {
     document.body.style.overflow = 'hidden';
 
@@ -145,7 +151,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     }
   },
   unlockScroll() {
-    console.log('Unlocking scroll');
     document.body.style.overflow = 'auto';
     window.removeEventListener('mousewheel', () => {
       this.closeMenu();
@@ -154,5 +159,36 @@ export default (activeUrl: string = window.location.pathname) => ({
   onWheel(e: WheelEvent) {
     e.preventDefault();
     this.closeMenu();
+  },
+  onScroll() {
+    this.isScrolling = true;
+    this.aboveTheFold = window.scrollY < window.innerHeight;
+
+    const watchScroll = darkHeaderOnScrollRoutes.includes(this.activeUrl);
+
+    if (!this.aboveTheFold && watchScroll) {
+      this.setTheme('dark');
+    } else if (this.aboveTheFold && watchScroll) {
+      this.setTheme('light');
+    }
+
+    // Clear the existing timeout (if any)
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
+    }
+
+    // Set a new timeout
+    this.scrollTimeout = setTimeout(() => {
+      this.isScrolling = false;
+    }, 150); // Adjust this value to change how quickly "not scrolling" is detected
+  },
+  get hasHeader() {
+    const watchScroll = darkHeaderOnScrollRoutes.includes(this.activeUrl);
+
+    if (!this.aboveTheFold && watchScroll) {
+      return true
+    }
+
+    return !hideHeaderRoutes.includes(this.activeUrl);
   }
 });

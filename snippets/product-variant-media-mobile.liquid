@@ -59,29 +59,27 @@
       "
       class="w-[calc(100%+32px)] -ml-4 overflow-hidden"
     >
-      <ul class="w-full grid auto-cols-[calc(40%-10px)] grid-flow-col gap-2 pl-4">
-        <li
+      <ul class="w-full grid auto-cols-[calc(40%-10px)] grid-flow-col gap-2 pl-4 ">
+        <li  role="button"
           @click="
             openFullscreen($event, {
               index: 0,
               large: false
             })
           "
-          class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2"
+          class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
         >
-          <div class="w-full aspect-[140/175] relative overflow-hidden">
+          <div class="w-full aspect-[140/175] relative overflow-hidden group-hover:opacity-70 duration-700 ease-in-out">
             {% if selected_variant.featured_media %}
               {% render 'image',
                 image: selected_variant.featured_media,
-                width: 280,
-                height: 350,
+                width: 560,
                 sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
               %}
             {% else %}
               {% render 'image',
                 image: product.featured_image,
-                width: 280,
-                height: 350,
+                width: 560,
                 sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
               %}
             {% endif %}
@@ -90,24 +88,18 @@
         </li>
         {% if variant_media_metafields %}
           {% for media in variant_media_metafields %}
-            <li
+            <li role="button"
               @click="
                 openFullscreen($event, {
                   index: {{  rendered_small_count }},
                   large: false
                 })
               "
-              class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2"
+              class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
             >
-              <div class="w-full aspect-[140/175] relative overflow-hidden">
-                {% render 'image',
-                  image: media,
-                  width: 280,
-                  height: 350,
-                  sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
-                %}
+              <div class="w-full aspect-[140/175] relative overflow-hidden group-hover:opacity-70 duration-700 ease-in-out">
+                {% render 'image', image: media, width: 560, sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)' %}
               </div>
-
               {% assign rendered_small_count = rendered_small_count | plus: 1 %}
               <p class="small-accent">
                 {% render 'prefix-number', number: rendered_small_count %}
@@ -120,21 +112,17 @@
             {% assign media_id_number = media_id | plus: 0 %}
             {% assign media = product.media | where: 'id', media_id_number | first %}
             <li
+              role="button"
               @click="
                 openFullscreen($event, {
                   index: {{  rendered_small_count }},
                   large: false
                 })
               "
-              class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 last:mr-4"
+              class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 last:mr-4 group "
             >
-              <div class="w-full aspect-[140/175] relative overflow-hidden">
-                {% render 'image',
-                  image: media,
-                  width: 280,
-                  height: 350,
-                  sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)'
-                %}
+              <div class="w-full aspect-[140/175] relative overflow-hidden group-hover:opacity-70 duration-700 ease-in-out">
+                {% render 'image', image: media, width: 560, sizes: 'calc((40vw - 24px - 3 * 9) / 10 * 4)' %}
               </div>
 
               {% assign rendered_small_count = rendered_small_count | plus: 1 %}

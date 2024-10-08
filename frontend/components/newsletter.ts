@@ -7,7 +7,7 @@ interface Response {
 }
 
 export default (listId: string) => ({
-  visible: true,
+  visible: false,
   email: "",
   success: false,
   error: null,

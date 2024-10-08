@@ -48,8 +48,13 @@ export default () => ({
     this.contentReplace = () => {
       setTimeout(() => {
         const fullscreenElement = document.querySelector('[data-fullscreen]');
-        this.mediaCount = fullscreenElement ? parseInt(fullscreenElement.dataset.count, 10) : 0;
+        if (!fullscreenElement) {
+          console.error('Fullscreen element not found');
+          return;
+        }
+        
         const fullscreenImages = document.querySelectorAll('[data-fullscreen-image]');
+  
         this.media = Array.from(fullscreenImages).map((el) => {
           const width = parseFloat(el.dataset.width);
           const height = parseFloat(el.dataset.height);
@@ -67,8 +72,18 @@ export default () => ({
             caption
           };
         });
-      }, 100)
-    }
+  
+        this.mediaCount = this.media.length;
+        fullscreenElement.dataset.count = this.mediaCount.toString();
+  
+        if (this.media.length > 0) {
+          this.selectedIndex = 0;
+          this.resize();
+        } else {
+          console.error('No media items found');
+        }
+      }, 100);
+    };
 
     this.contentReplace()
 
@@ -106,7 +121,6 @@ export default () => ({
       cancelAnimationFrame(this.raf)
     }
   },
-
   async openFullscreen(e, { large = false, index = 0 }) {
     if (this.animating || this.media.length === 0) {
       return;
@@ -173,6 +187,14 @@ export default () => ({
   },
   nextImage() {
     this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    
+    this.$nextTick(() => {
+      this.resize();
+      this.$dispatch('fullscreen:index', this.selectedIndex);
+      if (this.$refs.fullscreenFixed) {
+        this.$refs.fullscreenFixed.scrollTop = 0;
+      }
+    });
   },
   advanceImage(index: number) {
     this.selectedIndex = index
@@ -182,8 +204,12 @@ export default () => ({
   },
   resize() {
     this.transformWidth = window.innerWidth;
-    const heightBasedOnAspectRatio = this.transformWidth / this.activeMedia.aspectRatio;
-    this.transformHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
+    if (this.activeMedia && this.activeMedia.aspectRatio) {
+      const heightBasedOnAspectRatio = this.transformWidth / this.activeMedia.aspectRatio;
+      this.transformHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight);
+    } else {
+      this.transformHeight = window.innerHeight;
+    }
   },
   getLargeImageDimensions() {
     const largeImage = document.querySelector('[data-large-image]')
@@ -255,6 +281,10 @@ export default () => ({
     return index < 10 ? `0${index}` : index;
   },
   get activeMedia() {
+    if (!this.media || this.media.length === 0) {
+      console.warn('No media items available');
+      return null;
+    }
     return this.media[this.selectedIndex] || null;
   }
 });

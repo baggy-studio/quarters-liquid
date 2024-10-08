@@ -22,7 +22,7 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/'];
+const lightRoutes = ['/', '/pages/hours-info', '/pages/shipping-returns'];
 
 export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
@@ -58,7 +58,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
   },
   getTheme(toUrl: string) {
-
     if (lightRoutes.includes(toUrl)) {
       return this.setTheme('light');
     }
@@ -67,6 +66,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   setTheme(theme: 'light' | 'dark') {
     this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
+    console.log('Set header color to:', this.headerColor);
   },
   hide() {
     this.visible = false;

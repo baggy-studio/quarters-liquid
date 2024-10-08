@@ -41,44 +41,43 @@
         "
       {% endif %}
     >
-      <svg
-        {% unless section.settings.hideHomepageHeader %}
-          :class="
-            {
-              'opacity-0': menu 
-            }
-          "
-        {% endunless %}
-
-        class="
-          {% unless section.settings.hideHomepageHeader %}
-          group-[.is-cart]:delay-300 group-[.is-menu]:delay-300 delay-500
-           {% endunless %}
-          fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
-        "
-      >
-        <use xlink:href="#wordmark"></use>
-      </svg>
-      <svg
-        {% unless section.settings.hideHomepageHeader %}
-          :class="
-            {
-              'opacity-0 delay-500': activeUrl == '/' && !menu,
-              'opacity-100': cartOpen && window.innerWidth < 1024
-            }
-          "
-        {% endunless %}
-
-        class="
-             {% unless section.settings.hideHomepageHeader %}
-            opacity-0 group-[.is-menu]:delay-300 group-[.is-cart]:delay-300
-          {% endunless %}
-
-            absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear
-        "
-      >
-        <use xlink:href="#wordmark"></use>
-      </svg>
+    <svg
+    :class="{
+      'opacity-100': headerColor === '#F4EED0' && !menu && (!cartOpen || window.innerWidth >= 1024),
+      'opacity-0': headerColor !== '#F4EED0' || menu || (cartOpen && window.innerWidth < 1024)
+    }"
+    class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+    :class="{ 'delay-500': cartOpen && window.innerWidth < 1024 }"
+    {% unless section.settings.hideHomepageHeader %}
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    {% endunless %}
+  >
+    <use xlink:href="#wordmark"></use>
+  </svg>
+  
+  <svg
+    :class="{
+      'opacity-100': headerColor === '#643600' || menu || (cartOpen && window.innerWidth < 1024),
+      'opacity-0': headerColor !== '#643600' && !menu && (!cartOpen || window.innerWidth >= 1024)
+    }"
+    class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+    :class="{ 'delay-300': cartOpen && window.innerWidth < 1024 }"
+    {% unless section.settings.hideHomepageHeader %}
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    {% endunless %}
+  >
+    <use xlink:href="#wordmark"></use>
+  </svg>
     </a>
   </h1>
   <nav

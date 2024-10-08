@@ -1,20 +1,14 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "wrapper": "div.utilty_template",
   "sections": {
     "colors": {
       "type": "page-settings",
       "settings": {
+        "headerTheme": "light",
         "textColor": "#f4eed0",
-        "backgroundColor": "#826c1a"
+        "backgroundColor": "#826c1a",
+        "footerTextColor": "#FAF8EC",
+        "footerBackgroundColor": "#643600"
       }
     },
     "sidebar": {

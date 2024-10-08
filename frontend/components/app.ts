@@ -37,7 +37,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   aboveTheFold: true,
   isScrolling: false,
   scrollTimeout: null,
-
+  scrollY: 0,
   init() {
     this.trackMenuHeight();
 
@@ -161,8 +161,9 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.closeMenu();
   },
   onScroll() {
+    this.scrollY = window.scrollY;
     this.isScrolling = true;
-    this.aboveTheFold = window.scrollY < window.innerHeight;
+    this.aboveTheFold = this.scrollY < window.innerHeight;
 
     const watchScroll = darkHeaderOnScrollRoutes.includes(this.activeUrl);
 

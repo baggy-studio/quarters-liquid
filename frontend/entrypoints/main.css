@@ -134,13 +134,10 @@
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
-
-    .clip-after-100vh {
-        clip-path: inset(100vh 0 0 0);
-    }
+ 
 
     .clip-within-100vh {
-        clip-path: inset(0 0 calc(100% - 100vh) 0);
+        clip-path: inset(0 0 calc(100% - 200vh) 0);
     }
 
     .hero-bar-left-gradient {

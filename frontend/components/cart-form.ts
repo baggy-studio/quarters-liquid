@@ -2,7 +2,6 @@ import { swup } from "@/entrypoints/swup";
 
 export default () => ({
   quantity: 1,
-  loading: false,
   contentReplace: () => { },
   init() {
 
@@ -27,16 +26,16 @@ export default () => ({
 
     const variant = formData.get("id");
     const quantity = formData.get("quantity");
+    const compareAtPrice = formData.get("properties[_compareAtPrice]");
 
     const payload = [
       {
         id: Number(variant),
-        quantity: Number(quantity) || 1
+        quantity: Number(quantity) || 1,
+        ...(compareAtPrice ? { properties: { _compareAtPrice: compareAtPrice } } : {})
       },
     ];
 
-    this.loading = true;
-
-    this.$dispatch("cart:add", payload);
+    await this.$store.cart.addLines(payload);
   },
 });

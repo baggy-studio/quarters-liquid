@@ -53,6 +53,10 @@ export default (activeUrl: string = window.location.pathname) => ({
       }
     });
 
+    swup.hooks.on('link:self', (visit) => {
+      console.log('link:self', visit);
+    });
+
     window.addEventListener('resize', () => {
       this.trackMenuHeight();
     });
@@ -66,7 +70,6 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   setTheme(theme: 'light' | 'dark') {
     this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
-    console.log('Set header color to:', this.headerColor);
   },
   hide() {
     this.visible = false;
@@ -109,7 +112,7 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     let progress = range(0, 1, 0, this.menuHeight, height);
 
-    if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy'))   && window.innerWidth >= 1024) {
+    if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
     } else {
       this.$root.style.setProperty('--transform-y', `${progress}px`);

@@ -62,17 +62,6 @@ export const swup = new Swup({
   ],
 });
 
-document.querySelectorAll('a[href]').forEach((el) => {
-  el.addEventListener('mouseenter', () => {
-    const fragmentVisit = fragmentPlugin.getFragmentVisit({
-      from: window.location.href, // the current URL
-      to: el.href // the URL of the link
-    });
-    console.log(`will replace ${fragmentVisit?.containers || swup.options.containers}`);
-  });
-});
-
-
 export function updateCache(propUrl?: string) {
   const url = propUrl || swup.getCurrentUrl();
   const cachedPage = swup.cache.get(url);

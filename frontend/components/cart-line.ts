@@ -6,15 +6,15 @@ export default () => ({
     const updates = {
       [lineId]: 0,
     };
+    await this.$store.cart.updateLines(updates);
 
-    this.$dispatch("cart:update", updates);
   },
   async decreaseQty(lineId, lineQty) {
     let quantity = lineQty - 1;
     const updates = {
       [lineId]: quantity,
-    };
-    this.$dispatch("cart:update", updates);
+    }; await this.$store.cart.updateLines(updates);
+
 
   },
   async increaseQty(lineId, lineQty) {
@@ -23,8 +23,8 @@ export default () => ({
     const updates = {
       [lineId]: quantity,
     };
+    await this.$store.cart.updateLines(updates);
 
-    this.$dispatch("cart:update", updates);
   },
   get variantLine() {
     return this.line.variant_title?.replace(" /", ", ");

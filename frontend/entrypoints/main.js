@@ -53,7 +53,7 @@ Alpine.directive("number", (el, { expression }, { evaluateLater, effect }) => {
 
     effect(() => {
         setNumber((no) => {
-            el.innerHTML = no < 10 ? `0${no}` : no;
+            el.innerHTML = no < 10 && no > 0 ? `0${no}` : no;
         });
     });
 });

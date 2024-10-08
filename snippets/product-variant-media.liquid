@@ -75,7 +75,7 @@
                   {% if section.settings.disable_fullscreen == false %}
                     <button
                       class="w-full h-max block"
-                      title="View Fullscreen"
+                      title="View Gallery"
                       @click="
                         openFullscreen($event, {
                           index: {{ rendered_small_count }},
@@ -117,7 +117,7 @@
                   {% if section.settings.disable_fullscreen == false %}
                     <button
                       class="w-full h-max block"
-                      title="View Fullscreen"
+                      title="View Gallery"
                       @click="
                         openFullscreen($event, {
                           index: {{ rendered_small_count }},
@@ -150,7 +150,7 @@
                 {% if section.settings.disable_fullscreen == false %}
                   <button
                     class="w-full h-max block"
-                    title="View Fullscreen"
+                    title="View Gallery"
                     @click="
                       openFullscreen($event, {
                         index: 0,
@@ -194,7 +194,7 @@
             {% if section.settings.disable_fullscreen == false %}
               <button
                 class="w-full h-full block"
-                title="View Fullscreen"
+                title="View Gallery"
                 @click="
                   openFullscreen($event, {
                     index: {{ rendered_large_count }},
@@ -227,7 +227,7 @@
               {% if section.settings.disable_fullscreen == false %}
                 <button
                   class="w-full h-full block"
-                  title="View Fullscreen"
+                  title="View Gallery"
                   @click="
                     openFullscreen($event, {
                       index: {{ rendered_large_count }},
@@ -269,7 +269,7 @@
                 {% if section.settings.disable_fullscreen == false %}
                   <button
                     class="w-full h-full block"
-                    title="View Fullscreen"
+                    title="View Gallery"
                     @click="
                       openFullscreen($event, {
                         index: {{ rendered_large_count }},
@@ -303,7 +303,7 @@
         <div class="flex w-full justify-between items-start px-4">
           {% if section.settings.disable_fullscreen == false %}
             <p class="small-sans leading-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-linear">
-              View Fullscreen
+              View Gallery
             </p>
             <div class="pt-1 w-max h-max">
               <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">

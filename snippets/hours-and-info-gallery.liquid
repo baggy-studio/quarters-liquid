@@ -2,7 +2,13 @@
   snippets/hours-and-info-gallery.liquid
 {% endcomment %}
 
-<div x-data="carousel({ align: 'start' })"  class="embla relative lg:overflow-hidden">
+<div
+  x-data="
+    carousel({ align: 'start', skipSnaps: true,
+    trimSnaps: true })
+  "
+  class="embla relative lg:overflow-hidden"
+>
   <div class="embla__container flex" x-ref="viewport">
     {% for block in section.blocks %}
       {% if block.type == 'image' %}
@@ -10,6 +16,6 @@
       {% endif %}
     {% endfor %}
   </div>
-  
+
   {% render 'hours-and-info-fullscreen-overlay' %}
 </div>

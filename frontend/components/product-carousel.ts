@@ -3,6 +3,8 @@ import EmblaCarousel from "embla-carousel";
 export default (
   options = {
     loop: true,
+    skipSnaps: true,
+    containScroll: 'trimSnaps',
   }
 ) => ({
   carousels: {
@@ -17,6 +19,7 @@ export default (
     this.carousels.large = EmblaCarousel(this.$refs.large, {
       ...options,
       active: false,
+      skipSnaps: true,
       breakpoints: {
         '(min-width: 1024px)': {
           active: true,
@@ -29,6 +32,7 @@ export default (
         loop: true,
         watchDrag: false,
         active: false,
+        skipSnaps: true, 
         breakpoints: {
           '(min-width: 1024px)': {
             active: true,

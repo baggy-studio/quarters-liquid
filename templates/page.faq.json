@@ -1,11 +1,23 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "wrapper": "div.utilty_template",
   "sections": {
     "page_settings_gVjcqU": {
       "type": "page-settings",
       "settings": {
+        "headerTheme": "dark",
         "textColor": "#643600",
-        "backgroundColor": "#f0da8f"
+        "backgroundColor": "#f0da8f",
+        "footerTextColor": "#FAF8EC",
+        "footerBackgroundColor": "#643600"
       }
     },
     "sidebar": {
@@ -22,28 +34,28 @@
           "type": "faq_item",
           "settings": {
             "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
           }
         },
         "faq_item_tPdP4J": {
           "type": "faq_item",
           "settings": {
             "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
           }
         },
         "faq_item_eAciLK": {
           "type": "faq_item",
           "settings": {
             "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
           }
         },
         "faq_item_HXB4xX": {
           "type": "faq_item",
           "settings": {
             "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?<\/p>"
+            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
           }
         }
       },
@@ -55,7 +67,7 @@
       ],
       "settings": {
         "title": "ORDERS + SHIPPING",
-        "description": ""
+        "description": "What's a description?"
       }
     }
   },

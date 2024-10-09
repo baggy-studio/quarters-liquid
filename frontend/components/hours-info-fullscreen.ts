@@ -154,11 +154,11 @@ export default () => ({
 
     this.aspectRatio = this.fromPosition.width / this.fromPosition.height;
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateOpen();
-    }
+    // if (window.innerWidth >= 1024) {
+    //   await this.onAnimateOpen();
+    // }
 
-
+    await this.onAnimateOpen();
     this.animating = false;
   },
   async closeFullscreen() {
@@ -187,11 +187,13 @@ export default () => ({
     }
 
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateClose()
-    } else {
-      await new Promise(resolve => setTimeout(resolve, 300));
-    }
+    // if (window.innerWidth >= 1024) {
+    //   await this.onAnimateClose()
+    // } else {
+    //   await new Promise(resolve => setTimeout(resolve, 300));
+    // }
+
+    await this.onAnimateClose();
 
     this.animating = false
     this.visible = false

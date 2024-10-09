@@ -7,7 +7,8 @@
             'opacity-0': scrollY <= windowHeight / 2
           {% else %}
             'opacity-0': scrollY > windowHeight / 2
-          {% endif %}
+          {% endif %}, 
+              'text-bone': theme === 'light'
         }
       "
       class="
@@ -15,7 +16,7 @@
          {% if mode == 'sticky' %}
           opacity-0
          {% endif %}
-        items-start gap-x-[9px] relative  duration-500 ease-in-out transition-opacity
+        items-start gap-x-[9px] relative  duration-200 ease-linear transition-all
       "
     >
       <svg class="w-[29px] h-[19px] fill-current absolute left-[calc(-31px-13px)]" viewBox="0 0 29 19" fill="none">

@@ -1,14 +1,15 @@
 <div
-  x-data="{ bg: null, text: null }"
+  x-data="{ bg: null, text: null, theme: null }"
   @set-colors.window="
     bg = $event.detail.bg;
     text = $event.detail.text;
   "
+  @set-theme.window="theme = $event.detail"
   :style="`--bg: ${bg}; --text: ${text};`"
-  :class="{ 'bg-vanilla text-mahogany': !bg && !text, 'bg-[--bg] text-[--text]': bg && text }"
+  :class="{ '!bg-[--bg] !text-[--text]': bg && text }"
   class="
     w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden transition-colors duration-200 ease-linear
-    
+
     bg-vanilla
     text-mahogany
   "
@@ -22,7 +23,17 @@
       <div class="medium-sans col-span-7 flex flex-col gap-y-8">{{ section.settings.body }}</div>
       {% if section.settings.cta_link %}
         <div class="col-span-5">
-          <a href="{{ section.settings.cta_link }}" class="rez-button">{{ section.settings.cta_text }}</a>
+          <a
+            :class="
+              {
+                'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
+              }
+            "
+            href="{{ section.settings.cta_link }}"
+            class="rez-button"
+          >
+            {{- section.settings.cta_text -}}
+          </a>
         </div>
       {% endif %}
     </div>

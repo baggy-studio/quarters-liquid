@@ -42,12 +42,12 @@
         <ul class="flex flex-col justify-end col-span-5">
           {% for block in section.blocks %}
             <li class="contents">
-              <a
+              <button
                 class="medium-serif text-current pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity"
-                href="#{{ block.settings.title | handleize }}"
+                @click="jumpTo('{{ block.settings.title | handleize }}')"
               >
                 {{ block.settings.title }}
-              </a>
+              </button>
             </li>
           {% endfor %}
         </ul>

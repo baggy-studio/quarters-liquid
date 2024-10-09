@@ -50,5 +50,6 @@ export default () => ({
         this.$root.scrollIntoView({ behavior: 'smooth' })
 
         this.dispatchMenuData()
-    }
+    },
+   
 });

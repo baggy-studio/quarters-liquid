@@ -53,7 +53,7 @@
       <svg
         :class="
           {
-            'opacity-100': headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+            'opacity-100': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
             'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
           }
         "
@@ -66,8 +66,9 @@
       <svg
         :class="
           {
-            'opacity-100':  headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
-            'opacity-0': headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
+            'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+            'opacity-0':  headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+            '!opacity-0': isForcedTheme == 'light' && !menu
           }
         "
         class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"

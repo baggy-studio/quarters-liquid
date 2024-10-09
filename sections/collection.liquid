@@ -50,61 +50,105 @@
                 {% assign is_archive = true %}
               {% endif %}
 
-              {% unless product.tags contains 'Hide' %}
-                {% unless is_archive %}
-                  {% assign is_priority = false %}
+              {% unless product.tags contains 'Hide' or is_archive %}
+                {% assign is_priority = false %}
 
-                  {% if forloop.index0 < 9 %}
-                    {% assign is_priority = true %}
-                  {% endif %}
+                {% if forloop.index0 < 9 %}
+                  {% assign is_priority = true %}
+                {% endif %}
 
-                  {% assign has_only_default_variant = true %}
+                {% assign render_variants = true %}
 
-                  {% if product.has_only_default_variant %}
-                    {% assign has_only_default_variant = false %}
-                  {% endif %}
+                {% if product.has_only_default_variant or paginate.pages == 1 %}
+                  {% assign render_variants = false %}
+                {% endif %}
 
-                  {% assign rendered_products = rendered_products | plus: 1 %}
-                  {% render 'product-card',
-                    product: product,
-                    priority: is_priority,
-                    renderVariants: has_only_default_variant
-                  %}
-                {% endunless %}
+                {% assign rendered_products = rendered_products | plus: 1 %}
+                {% render 'product-card', product: product, priority: is_priority, renderVariants: render_variants %}
               {% endunless %}
             {% endfor %}
 
             {% if paginate.pages == 1 %}
-              {% assign all_variant_ids = '' %}
+              {% assign in_stock_variant_ids = '' %}
+              {% assign out_of_stock_variant_ids = '' %}
               {% for product in collection.products %}
-                {% for variant in product.variants %}
-                  {% unless variant.id == product.selected_or_first_available_variant.id
-                    or product.has_only_default_variant
-                  %}
-                    {% assign variant_product_id = variant.id | append: ':' | append: variant.product.id %}
-                    {% assign all_variant_ids = all_variant_ids | append: variant_product_id | append: ',' %}
-                  {% endunless %}
-                {% endfor %}
+                {% assign is_archive = false %}
+
+                {% if collection.url contains 'archive' %}
+                  {% assign is_archive = false %}
+                {% elsif product.tags contains 'Archive' %}
+                  {% assign is_archive = true %}
+                {% endif %}
+
+                {% unless product.tags contains 'Hide' or is_archive %}
+                  {% for variant in product.variants %}
+                    {% unless variant.id == product.selected_or_first_available_variant.id
+                      or product.has_only_default_variant
+                    %}
+                      {% assign variant_product_id = variant.id | append: ':' | append: variant.product.id %}
+
+                      {% if variant.available %}
+                        {% assign in_stock_variant_ids = in_stock_variant_ids
+                          | append: variant_product_id
+                          | append: ','
+                        %}
+                      {% else %}
+                        {% assign out_of_stock_variant_ids = out_of_stock_variant_ids
+                          | append: variant_product_id
+                          | append: ','
+                        %}
+                      {% endif %}
+                    {% endunless %}
+                  {% endfor %}
+                {% endunless %}
               {% endfor %}
 
-              {% assign all_variant_ids = all_variant_ids | split: ',' %}
+              {% assign in_stock_variant_ids = in_stock_variant_ids | split: ',' %}
+              {% assign out_of_stock_variant_ids = out_of_stock_variant_ids | split: ',' %}
 
-              {% comment %} Shuffle the all_variant_ids array {% endcomment %}
-              {% assign loops = all_variant_ids.size | times: 10 %}
-              {% capture indexes %}
-              {% for i in (1..loops) %}{{ "now" | date: "%N" | modulo: all_variant_ids.size }},{% endfor %}
-            {% endcapture %}
-              {% assign indexes = indexes | split: ',' | uniq %}
-              {% assign shuffled_variant_ids = '' %}
-              {% for index in indexes %}
+              {% comment %} Shuffle the in_stock_variant_ids array {% endcomment %}
+              {% assign in_stock_loops = in_stock_variant_ids.size | times: 10 %}
+              {% assign out_of_stock_loops = out_of_stock_variant_ids.size | times: 10 %}
+
+              {% capture in_stock_indexes %}
+              {% for i in (1..in_stock_loops) %}{{ "now" | date: "%N" | modulo: in_stock_variant_ids.size }},{% endfor %}
+              {% endcapture %}
+
+              {% capture out_of_stock_indexes %}
+              {% for i in (1..out_of_stock_loops) %}{{ "now" | date: "%N" | modulo: out_of_stock_variant_ids.size }},{% endfor %}
+              {% endcapture %}
+
+              {% assign in_stock_indexes = in_stock_indexes | split: ',' | uniq %}
+              {% assign out_of_stock_indexes = out_of_stock_indexes | split: ',' | uniq %}
+
+              {% assign shuffled_in_stock_variant_ids = '' %}
+              {% assign shuffled_out_of_stock_variant_ids = '' %}
+
+              {% for index in in_stock_indexes %}
                 {% assign i = index | plus: 0 %}
-                {% assign shuffled_variant_ids = shuffled_variant_ids | append: all_variant_ids[i] | append: ',' %}
+                {% assign shuffled_in_stock_variant_ids = shuffled_in_stock_variant_ids
+                  | append: in_stock_variant_ids[i]
+                  | append: ','
+                %}
               {% endfor %}
-              {% assign all_variant_ids = shuffled_variant_ids | split: ',' %}
-              {% assign all_variant_ids = all_variant_ids | uniq | join: ', ' %}
-              {% assign all_variant_ids = all_variant_ids | split: ',' %}
 
-              {% for variant_product_id in all_variant_ids %}
+              {% for index in out_of_stock_indexes %}
+                {% assign i = index | plus: 0 %}
+                {% assign shuffled_out_of_stock_variant_ids = shuffled_out_of_stock_variant_ids
+                  | append: out_of_stock_variant_ids[i]
+                  | append: ','
+                %}
+              {% endfor %}
+
+              {% assign in_stock_variant_ids = shuffled_in_stock_variant_ids | split: ',' %}
+              {% assign in_stock_variant_ids = in_stock_variant_ids | uniq | join: ', ' %}
+              {% assign in_stock_variant_ids = in_stock_variant_ids | split: ',' %}
+
+              {% assign out_of_stock_variant_ids = shuffled_out_of_stock_variant_ids | split: ',' %}
+              {% assign out_of_stock_variant_ids = out_of_stock_variant_ids | uniq | join: ', ' %}
+              {% assign out_of_stock_variant_ids = out_of_stock_variant_ids | split: ',' %}
+
+              {% for variant_product_id in in_stock_variant_ids %}
                 {% assign variant_id = variant_product_id | split: ':' | first | plus: 0 %}
                 {% assign product_id = variant_product_id | split: ':' | last | plus: 0 %}
 
@@ -120,7 +164,31 @@
                 {% endif %}
 
                 {% if variant %}
-                  <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product>
+                  <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product data-ssr-variant>
+                    <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
+                      {% render 'product-variant-card', variant: variant, product: product, priority: is_priority %}
+                    </div>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% for variant_product_id in out_of_stock_variant_ids %}
+                {% assign variant_id = variant_product_id | split: ':' | first | plus: 0 %}
+                {% assign product_id = variant_product_id | split: ':' | last | plus: 0 %}
+
+                {% assign product = collection.products | where: 'id', product_id | first %}
+                {% assign variant = product.variants | where: 'id', variant_id | first %}
+
+                {% assign is_priority = false %}
+
+                {% assign rendered_products = rendered_products | plus: 1 %}
+
+                {% if rendered_products <> 9 %}
+                  {% assign is_priority = true %}
+                {% endif %}
+
+                {% if variant %}
+                  <li class="col-span-2 lg:col-span-5 lg:grid lg:grid-cols-5 lg:gap-x-3" data-product data-ssr-variant>
                     <div class="lg:col-span-3 contents lg:block lg:col-start-2 lg:col-end-5">
                       {% render 'product-variant-card', variant: variant, product: product, priority: is_priority %}
                     </div>

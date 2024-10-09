@@ -46,7 +46,7 @@
   }
   {% endschema %}
   
-  <div id="utility" class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[80px] grid grid-cols-10 gap-x-3">
+  <div id="utility" class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[80px] grid grid-cols-10 gap-x-3 lg:pl-1.5">
       <div class="md:col-start-2 md:col-span-9 col-span-10">
           <div class="faq-categories mb-6">
               <span class="faq-category underline-none">{{ section.settings.title }}</span>
@@ -62,7 +62,18 @@
                   class="faq-question body-sans w-full text-left flex items-center justify-between py-3 border-b border-current"
                 >
                   <span class="medium-serif">{{ block.settings.question }}</span>
-                  {% render 'accordion-icon', hasSubMenu: true %}
+                  <span
+                  :class="{ 'rotate-180': openSection === '{{ block.id }}' }"
+                  class="transition-transform duration-800 ease-in-out w-2 relative h-2 flex items-center justify-center"
+                >
+                  <span
+                    class="w-full h-[1px] bg-current block"
+                  ></span>
+                  <span
+                    :class="{ 'opacity-0': openSection === '{{ block.id }}' }"
+                    class="h-full w-[1px] bg-current absolute block transition-opacity duration-800 ease-in-out"
+                  ></span>
+                </span>
                 </button>
                 <div
                   class="h-0 overflow-hidden transition-all duration-800 ease-in-out"
@@ -70,7 +81,7 @@
                   x-show="openSection === '{{ block.id }}'"
                   x-collapse.duration.800ms
                 >
-                  <div class="faq-answer medium-serif py-3 border-b border-current">
+                  <div class="faq-answer medium-sans py-3 border-b border-current">
                     {{ block.settings.answer }}
                   </div>
                 </div>
@@ -92,12 +103,3 @@
     });
   </script>
 
-  <style>
-    .faq-answer {
-      font-family: "ABC Marist";
-    }
-    .faq-answer strong,
-    .faq-answer b {
-      font-family: "ABC Monument Grotesk";
-    }
-  </style>

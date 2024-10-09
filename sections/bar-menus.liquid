@@ -1,49 +1,62 @@
-<div
-  class="w-full relative grid grid-cols-1 grid-rows-1"
-  id="menu"
-  x-data="barMenus"
-  :style="`--bg: ${bg || '#F0DA8F'};`"
->
-  
-  <div class="contents" id="menu-container"></div>
-  <div class="absolute top-0 left-0 w-full h-full lg:grid lg:grid-cols-2 pointer-events-none text-bone">
-    <div class="w-full h-auto aspect-[393/487] lg:aspect-auto lg:h-screen lg:pt-[160px] p-4 lg:pr-0 flex items-center lg:items-start lg:top-0 lg:sticky">
-      <div class="w-full flex flex-col gap-y-8">
-        <h2 class="text-[24px] leading-[1.2] font-serif">Menu</h2>
-        {% assign menus = 'Drinks,Daytime,Evening' | split: ',' %}
-        <ul class="flex flex-col">
-          {% for menu in menus %}
-            <li class="contents">
-              {% assign handle = menu | handleize %}
-              <button
-                @click="setMenu('{{ handle }}')"
-                :disabled="menu === '{{ handle }}'"
-                title="{{ menu }}"
-                :class="
-                  {
-                    'opacity-50': menu !== '{{ handle }}'
-                  }
-                "
-                class="w-full text-[24px] leading-[1.2] font-serif gap-x-4 flex items-center lg:grid lg:grid-cols-10 gap-3 text-left pointer-events-auto hover:opacity-100 duration-300 ease-linear disabled:opacity-100"
-              >
-                <p class="col-span-1 font-droulers text-[22px] leading-[30px]">0{{ forloop.index }}</p>
-                <p
-                  class="col-span-9"
+<div class="contents" x-data="barMenus">
+  <div
+    class="w-full relative grid grid-cols-1 grid-rows-1 bg-[--bg] text-[--text] transition-colors duration-200 ease-linear"
+    :style="`--text: ${text || 'currentColor'}; --bg: ${bg || lastBg || '#F0DA8F'};`"
+    id="menu"
+  >
+    <div class="contents" id="menu-container"></div>
+    <div class="absolute top-0 left-0 w-full h-full lg:grid lg:grid-cols-2 pointer-events-none text-bone">
+      <div class="w-full h-auto aspect-[393/487] lg:aspect-auto lg:h-screen lg:pt-[160px] p-4 lg:pr-0 flex items-center lg:items-start lg:top-0 lg:sticky">
+        <div class="w-full flex flex-col gap-y-8">
+          <h2 class="text-[24px] leading-[1.2] font-serif">Menu</h2>
+          {% assign menus = 'Drinks,Daytime,Evening' | split: ',' %}
+          <ul class="flex flex-col">
+            {% for menu in menus %}
+              <li class="contents">
+                {% assign handle = menu | handleize %}
+                <button
+                  @click="setMenu('{{ handle }}')"
+                  :disabled="menu === '{{ handle }}'"
+                  title="{{ menu }}"
                   :class="
                     {
-                      'underline decoration-1 underline-offset-[3px]': menu === '{{ handle }}'
+                      'opacity-50': menu !== '{{ handle }}'
                     }
                   "
+                  class="w-full text-[24px] leading-[1.2] font-serif gap-x-4 flex items-center lg:grid lg:grid-cols-10 gap-3 text-left pointer-events-auto hover:opacity-100 duration-300 ease-linear disabled:opacity-100"
                 >
-                  {{ menu }}
-                </p>
-              </button>
-            </li>
-          {% endfor %}
-        </ul>
+                  <p class="col-span-1 font-droulers text-[22px] leading-[30px]">0{{ forloop.index }}</p>
+                  <p
+                    class="col-span-9"
+                    :class="
+                      {
+                        'underline decoration-1 underline-offset-[3px]': menu === '{{ handle }}'
+                      }
+                    "
+                  >
+                    {{ menu }}
+                  </p>
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
-  </div> 
+  </div>
+  <div
+    :class="bg && 'opacity-0'"
+    class="absolute top-[100vh] left-0 w-full bottom-0 pointer-events-none bar-gradient-vanilla z-[1] transition-opacity duration-200 ease-linear"
+  ></div>
+  <div
+    :class="
+      {
+        'opacity-0': !bg
+      }
+    "
+    :style="`--bg: ${lastBg};`"
+    class="absolute top-[100vh] left-0 w-full bottom-0 pointer-events-none bar-gradient z-[1] opacity-0 transition-opacity duration-200 ease-linear"
+  ></div>
 </div>
 
 {% schema %}

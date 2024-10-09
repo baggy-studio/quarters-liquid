@@ -3,13 +3,16 @@
   {% unless request.design_mode %}
     x-show="'{{ section.settings.title | handleize }}' == menu"
     x-transition.opacity.duration.800ms
-  {% endunless %} 
+  {% endunless %}
   data-bar-menu="{{ section.settings.title | handleize }}"
   data-bar-bg="{{ section.settings.background_color }}"
   data-bar-theme="{{ section.settings.color_scheme }}"
 >
   <div
-    class="w-full grid lg:grid-cols-2 bg-[--bg-color]"
+    class="w-full grid lg:grid-cols-2  
+    {% if request.design_mode %}
+      bg-[--bg-color]"
+        {% endif %} 
     style="--bg-color: {{ section.settings.background_color }};"
   >
     <div class="w-full relative">
@@ -27,15 +30,15 @@
       </div>
     </div>
     <ul
-      class="
-        w-full
-        {% if section.settings.color_scheme == 'light' %}
-          text-bone
+      class="w-full {% if request.design_mode %}
+                {% if section.settings.color_scheme == 'light' %}
+                  text-bone
+                {% else %}
+                  text-mahogany
+                {% endif %}
         {% else %}
-          text-mahogany
+          text-current
         {% endif %}
-
-
         pt-10 pb-[160px] lg:py-32  grid grid-cols-10 gap-x-2 lg:gap-x-3 gap-y-16 px-4 lg:pl-1.5
       "
     >

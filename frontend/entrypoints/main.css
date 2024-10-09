@@ -134,6 +134,20 @@
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
+
+    .bar-gradient::before {
+        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        content: '';
+        background: linear-gradient(180deg, var(--bg) 0%, rgba(250, 248, 236, 0) 100%);
+        pointer-events: none;
+    }
+
+    .bar-gradient-vanilla::before {
+        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        content: '';
+        background: linear-gradient(180deg, #F0DA8F 0%, rgba(250, 248, 236, 0) 100%);
+        pointer-events: none;
+    }
  
 
     .clip-within-100vh {

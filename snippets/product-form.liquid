@@ -17,10 +17,10 @@
                 :disabled="{{ selected_variant.inventory_quantity }} <= 1"
                 title="Decrease quantity"
                 class="
-                {% if selected_variant.inventory_quantity <= 1 %}
-                  opacity-50
-                 {% endif %}
-                                 w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear
+                                  {% if selected_variant.inventory_quantity <= 1 %}
+                   opacity-50
+                  {% endif %}
+                                  w-2 relative h-2 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear
                 "
               >
                 <span
@@ -32,10 +32,11 @@
                 :disabled="{{ selected_variant.inventory_quantity }} <= quantity"
                 title="Increase quantity"
                 class="
-                {% if selected_variant.inventory_quantity <= 1 %}
-                  opacity-50
-                 {% endif %}
-                w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"
+                  {% if selected_variant.inventory_quantity <= 1 %}
+                    opacity-50
+                   {% endif %}
+                  w-2 relative h-2 disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear
+                "
               >
                 <span
                   class="w-full h-[1px] bg-current block"
@@ -58,6 +59,9 @@
   >
     <input type="hidden" name="quantity" x-model="quantity" value="1">
     <input type="hidden" readonly name="id" value="{{ selected_variant.id }}">
+    {% if selected_variant.compare_at_price > 0 %}
+      <input type="hidden" name="properties[_compareAtPrice]" value="{{ selected_variant.compare_at_price | money }}">
+    {% endif %}
     {% if product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
       <a
         href="mailto:hello@shopquarters.com?subject=Product%20Inquiry%3A%20{{ product.title | replace: ' ', '%20' }}"
@@ -82,7 +86,7 @@
             is-alt
           {% endif %}
         "
-        :disabled="loading"
+        :disabled="$store.cart.loading"
       >
         <span class="block">Add to bag</span>
         <span class="block text-[15px] font-sans font-normal">→</span>

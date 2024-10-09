@@ -5,8 +5,7 @@ import { swup } from "./swup";
 import Alpine from "alpinejs";
 import collapse from "@/plugins/collapse";
 import focus from "@alpinejs/focus";
-import intersect from "@alpinejs/intersect";
-import cart from "@/components/cart";
+import intersect from "@alpinejs/intersect"; 
 import collection from "@/components/collection";
 import marquee from "@/components/marquee";
 import cartForm from "@/components/cart-form";
@@ -22,10 +21,10 @@ import collectionNav from "@/components/collection-nav";
 import productVariantSelector from "@/components/product-variant-selector";
 import productFullscreen from "@/components/product-fullscreen";
 import footer from "@/components/footer";
-import barMenu from "@/components/bar-menu";
+import barMenu from "@/components/sticky-bar-menu";
 import barMenus from "@/components/bar-menus";
 import video from "@/components/video";
-
+import { store as cartStore } from "@/stores/cart";
 import { getQuantity, money } from "@/utils";
 
 Alpine.directive("quantity", (el, { expression }, { evaluateLater, effect }) => {
@@ -53,7 +52,7 @@ Alpine.directive("number", (el, { expression }, { evaluateLater, effect }) => {
 
     effect(() => {
         setNumber((no) => {
-            el.innerHTML = no < 10 ? `0${no}` : no;
+            el.innerHTML = no < 10 && no > 0 ? `0${no}` : no;
         });
     });
 });
@@ -61,8 +60,8 @@ Alpine.directive("number", (el, { expression }, { evaluateLater, effect }) => {
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
-Alpine.data("footer", footer);
-Alpine.data("cart", cart);
+Alpine.store('cart', cartStore)
+Alpine.data("footer", footer); 
 Alpine.data("app", app);
 Alpine.data("cookieConsent", cookieConsent);
 Alpine.data("cartLine", cartLine);

@@ -1,4 +1,4 @@
-import { lerp, range } from "@/utils";
+import { range } from "@/utils";
 import { animate } from "motion";
 import { expoInOut } from "@/easing";
 import Alpine from "alpinejs";
@@ -6,8 +6,7 @@ import { swup } from "../entrypoints/swup";
 
 export default () => ({
   abortController: new AbortController(),
-  abortControllerResize: new AbortController(),
-  raf: null,
+  abortControllerResize: new AbortController(), 
   aspectRatio: window.innerWidth / window.innerHeight,
   transformX: 0,
   transformY: 0,
@@ -19,11 +18,7 @@ export default () => ({
   animating: false,
   pointer: {
     x: 0,
-    y: 0,
-    last: {
-      x: 0,
-      y: 0,
-    }
+    y: 0
   },
   fromPosition: {},
   fromLarge: false,
@@ -37,9 +32,7 @@ export default () => ({
 
     window.addEventListener('resize', this.resize.bind(this), {
       signal: this.abortControllerResize.signal
-    })
-
-    this.draw()
+    }) 
 
     this.contentReplace = () => {
       setTimeout(() => {
@@ -92,24 +85,11 @@ export default () => ({
   move(e: MouseEvent) {
     this.pointer.x = e.clientX
     this.pointer.y = e.clientY
-  },
-  draw() {
-    const x = this.pointer.x
-    const y = this.pointer.y
-
-    this.pointer.last.x = lerp(this.pointer.last.x, x, 0.05)
-    this.pointer.last.y = lerp(this.pointer.last.y, y, 0.05)
-
-    this.raf = requestAnimationFrame(this.draw.bind(this))
-  },
+  }, 
   destroy() {
     this.abortController.abort()
     this.abortControllerResize.abort()
     swup.hooks.off('content:replace', this.contentReplace)
-
-    if (this.raf) {
-      cancelAnimationFrame(this.raf)
-    }
   },
   async openFullscreen(e: MouseEvent, {
     large = true,
@@ -117,8 +97,7 @@ export default () => ({
   }) {
     if (this.animating) return
 
-    this.lockScroll()
-    this.draw()
+    this.lockScroll() 
 
     this.fromLarge = large
     this.selectedIndex = index
@@ -126,9 +105,7 @@ export default () => ({
     this.visible = true
 
     this.pointer.x = e.clientX
-    this.pointer.y = e.clientY
-    this.pointer.last.x = e.clientX
-    this.pointer.last.y = e.clientY
+    this.pointer.y = e.clientY 
 
     if (this.fromLarge) {
       this.fromPosition = this.getLargeImageDimensions()
@@ -160,12 +137,7 @@ export default () => ({
 
     this.animating = false
     this.visible = false
-
-
-    if (this.raf) {
-      cancelAnimationFrame(this.raf)
-    }
-
+ 
     this.unlockScroll()
 
     document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 })

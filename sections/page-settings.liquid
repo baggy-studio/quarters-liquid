@@ -1,43 +1,48 @@
 <div id="page-settings" class="contents">
   <style>
-      :root {
-        --text-color: {{ section.settings.textColor }};
-        --background-color: {{ section.settings.backgroundColor }};
-        --footer-text-color: {{ section.settings.footerTextColor }};
-        --footer-background-color: {{ section.settings.footerBackgroundColor }};
+     :root {
+       --text-color: {{ section.settings.textColor }};
+       --background-color: {{ section.settings.backgroundColor }};
+       --footer-text-color: {{ section.settings.footerTextColor }};
+       --footer-background-color: {{ section.settings.footerBackgroundColor }};
 
-        {% if section.settings.headerTheme == 'light' %}
-          --header-theme: #F4EED0;
-        {% else %}
-          --header-theme: #643600;
-        {% endif %}
-      }
-      
+       {% if section.settings.headerTheme == 'light' %}
+         --header-theme: #F4EED0;
+       {% else %}
+         --header-theme: #643600;
+       {% endif %}
+     }
 
-      body, .body-bg, #utility-nav {
-        color: var(--text-color) !important;
-        background-color: var(--background-color) !important;
-      }
 
-     footer .logo-bg, .footer-bg {
-        color: var(--footer-text-color) !important;
-        background-color: var(--footer-background-color) !important;
-      }     
+     body, .body-bg, #utility-nav {
+       color: var(--text-color) !important;
+       background-color: var(--background-color) !important;
+     }
 
-      {% if template == 'page.hours-info' or template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
-        .nav-gradient::before {
-          background: linear-gradient(180deg, var(--background-color) 0%, rgba(2, 43, 38, 0) 100%);
-        }
-      {% endif %}
+    footer .logo-bg, .footer-bg {
+       color: var(--footer-text-color) !important;
+       background-color: var(--footer-background-color) !important;
+     }
+
+     {% if template == 'page.hours-info' or template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
+       .nav-gradient::before {
+         background: linear-gradient(180deg, var(--background-color) 0%, rgba(2, 43, 38, 0) 100%);
+       }
+     {% endif %}
   </style>
 
   {% if template == 'page.hours-info' %}
-      <div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
+    <div class="absolute top-0 left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
   {% endif %}
-  {% if template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
-  <div class="absolute top-[-120px] lg:top-[-160px] left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"></div>
-{% endif %}
-
+  {% if template == 'page.faq'
+    or template == 'page.shipping'
+    or template == 'page.legal'
+    or template == 'page.privacy'
+  %}
+    <div
+      class="absolute top-[-120px] lg:top-[-160px] left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"
+    ></div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -48,7 +53,7 @@
     {
       "type": "select",
       "id": "headerTheme",
-      "label": "Initial Page Theme",
+      "label": "Header Theme",
       "options": [
         { "label": "Light", "value": "light" },
         { "label": "Dark", "value": "dark" }

@@ -1,11 +1,21 @@
-<div x-data="barMenu" class="absolute inset-0 z-10 pointer-events-none">
+<div
+  x-data="barMenu"
+
+  @set-theme.window="theme = $event.detail"
+  @set-menu.window="
+    setTimeout(() => {
+        resize()
+    }, 1000)
+  "
+  class="absolute inset-0 z-10 pointer-events-none"
+>
   <div
     class="absolute inset-0 text-mahogany clip-after-100vh"
     :style="`--infoHeight: ${infoHeight}px; --barHeight: ${menuHeight}px;`"
   >
     {% render 'sticky-bar-content', mode: 'sticky' %}
   </div>
-  <div class="absolute inset-0 text-bone clip-within-100vh" style="--infoHeight: 200vh; --barHeight: 200vh;">
+  <div class="absolute inset-0 text-bone clip-within-100vh" style="--infoHeight: 600vh; --barHeight: 600vh;">
     {% render 'sticky-bar-content', mode: 'initial' %}
   </div>
 </div>
@@ -37,15 +47,10 @@
     },
     {
       "type": "text",
-      "id": "sticky_reservation_text",
-      "label": "Sticky Reservation Text",
-      "info": "The text for the sticky reservation CTA"
-    },
-    {
-      "type": "text",
-      "id": "initial_reservation_text",
-      "label": "Initial Reservation Text",
-      "info": "The text for the initial reservation CTA"
+      "id": "cta_text",
+      "label": "CTA Text",
+      "info": "The text for the sticky reservation CTA",
+      "default": "Make a Reservation"
     }
   ],
   "presets": [

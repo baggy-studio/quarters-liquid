@@ -1,11 +1,11 @@
 {% capture header %}
 <div class="px-4 w-full absolute top-0 left-0 z-[1] h-[120px] lg:h-[160px] before:cart-top-gradient">
-  <div :class="hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start w-full relative">
-    <p class="medium-serif pt-[68px] hidden lg:block" x-show="hasItems">
-      Bag (<span class="contents" x-number="count">{{ cart.item_count }}</span>)
+  <div :class="$store.cart.hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start w-full relative">
+    <p class="medium-serif pt-[68px] hidden lg:block" x-show="$store.cart.hasItems">
+      Bag (<span class="contents" x-number="$store.cart.count">{{ cart.item_count }}</span>)
     </p>
     <button
-      @click="close()"
+      @click="$store.cart.close()"
       aria-label="Close bag"
       class="medium-serif leading-none hidden lg:block transition-opacity duration-300 ease-linear hover:opacity-50"
     >
@@ -16,7 +16,7 @@
 {% endcapture %}
 
 {% capture items %}
-<template x-for="(line, index) in cartLines" :key="line.key">
+<template x-for="(line, index) in $store.cart.items" :key="line.key">
   {% render 'cart-line' %}
 </template>
 {% endcapture %}
@@ -38,24 +38,20 @@
 {% endcapture %}
 
 <div
-  x-data="cart"
-  @keyup.escape.window="close"
-  @cart:toggle.window="toggle"
-  @cart:add.window="addLines"
-  @cart:update.window="updateLines"
+  x-data
+  @keyup.escape.window="$store.cart.close"
   class="fixed top-0 left-0 w-full h-full z-50 lg:grid lg:grid-cols-20 lg:gap-3 lg:px-4 pointer-events-none"
-  x-trap.inert.noscroll="visible"
 >
   <script id="cart-data" type="application/json">
     {{ cart | json }}
   </script>
   <button
     aria-label="Close cart"
-    @click="close()"
+    @click="$store.cart.close()"
     :class="
       {
-        'opacity-0': !visible,
-        'pointer-events-auto': visible,
+        'opacity-0': !$store.cart.visible,
+        'pointer-events-auto': $store.cart.visible,
       }
     "
     class="absolute top-0 left-0 w-full h-full delay-[400ms] lg:delay-0 bg-bone-tint/30 opacity-0 duration-300 ease-linear"
@@ -63,10 +59,10 @@
   <div
     :class="
       {
-        'pointer-events-auto': visible,
+        'pointer-events-auto': $store.cart.visible,
       }
     "
-    x-ref="container"
+    id="cart-container"
     class="bg-bone-tint text-mahogany translate-x-full h-full md:h-screen w-full lg:w-[calc(100%+1rem)] shrink-0 lg:col-span-6 lg:col-start-[15] lg:border-l border-current relative"
   >
     <div class="w-full h-full flex flex-col justify-between">
@@ -75,49 +71,51 @@
         ref="container"
         class="w-full h-full flex flex-col overflow-scroll no-scrollbar pt-[120px] lg:pt-[160px]"
       >
-        <div class="px-4 w-full">
+        <div class="px-4 w-full" x-show="$store.cart.hasItems">
           <div class="w-full h-[1px] bg-current lg:block hidden"></div>
           <div
             class="items-start w-full relative pt-4 lg:pt-3 h-[120px] lg:h-[160px] border-y border-current flex lg:hidden"
           >
-            <p class="large-serif lg:medium-serif lg:pt-[68px] ">Bag (<span class="contents" x-text="count"></span>)</p>
+            <p class="large-serif lg:medium-serif lg:pt-[68px]">
+              Bag (<span class="contents" x-text="$store.cart.count"></span>)
+            </p>
           </div>
         </div>
         {{ items }}
         <div
-          x-show="!hasItems"
+          x-show="!$store.cart.hasItems"
           class="px-4 w-full flex items-start large-serif lg:medium-serif"
         >
-          <div class="pt-4 border-t border-current w-full lg:border-t-0">
+          <div class="pt-4 border-t border-current w-full">
             {{ section.settings.emptyBody }}
           </div>
         </div>
         <div
           class="w-full grid grid-cols-10 lg:grid-cols-6 gap-x-2 lg:gap-x-3 px-4 lg:pl-0 pt-2 pb-16 shrink-0"
-          x-show="hasItems"
+          x-show="$store.cart.hasItems"
         >
           <p class="small-accent uppercase lg:pl-4 col-span-7 lg:col-span-4">Subtotal</p>
           <p class="flex flex-col small-accent col-span-3 lg:col-span-2">
             <span
               class="line-through opacity-50"
-              x-show="totalPrice !== subtotalPrice"
-              x-money="totalPrice"
+              x-show="$store.cart.totalPrice !== $store.cart.subtotalPrice"
+              x-money="$store.cart.totalPrice"
             ></span>
             <span
-              x-money="subtotalPrice"
+              x-money="$store.cart.subtotalPrice"
             ></span>
           </p>
         </div>
       </div>
       <div
         class="sticky shrink-0 bottom-0 h-max w-full p-4 pt-0 before:cart-bottom-gradient"
-        x-show="hasItems"
+        x-show="$store.cart.hasItems"
       >
         {{ cartCheckout }}
       </div>
       <div
         class="sticky shrink-0 bottom-0 h-max w-full p-4"
-        x-show="!hasItems"
+        x-show="!$store.cart.hasItems"
       >
         <a
           href="{{ section.settings.emptyCTALink }}"

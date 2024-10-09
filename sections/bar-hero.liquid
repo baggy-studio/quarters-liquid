@@ -7,7 +7,7 @@
         {% if allBlock.settings.video != blank %}
           {% render 'video'; video: allBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: allBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image'; image: allBlock.settings.image, width: 2400, height: 860, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% else %}
@@ -18,21 +18,21 @@
         {% if desktopBlock.settings.video != blank %}
           {% render 'video'; video: desktopBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: desktopBlock.settings.image, width: 1440, height: 860, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image'; image: desktopBlock.settings.image, width: 2400, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full hidden md:block lg:hidden">
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 768, height: 1024, sizes: '100vw', nopin: true %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 2400, sizes: '100vw', nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full md:hidden">
         {% if mobileBlock.settings.video != blank %}
           {% render 'video'; video: mobileBlock.settings.video; loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 393, height: 672, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image'; image: mobileBlock.settings.image, width: 1024, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% endif %}

@@ -134,13 +134,10 @@
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
-
-    .clip-after-100vh {
-        clip-path: inset(100vh 0 0 0);
-    }
+ 
 
     .clip-within-100vh {
-        clip-path: inset(0 0 calc(100% - 100vh) 0);
+        clip-path: inset(0 0 calc(100% - 200vh) 0);
     }
 
     .hero-bar-left-gradient {
@@ -232,7 +229,7 @@
     }
 
     .rez-button {
-        @apply uppercase hover:bg-transparent hover:text-mahogany spicy-body bg-mahogany border border-mahogany text-bone px-4 h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
+        @apply uppercase hover:bg-mahogany-hover hover:text-bone spicy-body bg-mahogany border border-mahogany hover:border-mahogany-hover text-bone px-4 h-10 lg:h-8 flex items-center justify-between transition-colors duration-200 ease-linear;
     }
 
     .rez-button.is-alt {

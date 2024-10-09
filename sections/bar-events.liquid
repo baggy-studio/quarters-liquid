@@ -1,4 +1,19 @@
-<div class="w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 bg-vanilla overflow-hidden" id="events">
+<div
+  x-data="{ bg: null, text: null }"
+  @set-colors.window="
+    bg = $event.detail.bg;
+    text = $event.detail.text;
+  "
+  :style="`--bg: ${bg}; --text: ${text};`"
+  :class="{ 'bg-vanilla text-mahogany': !bg && !text, 'bg-[--bg] text-[--text]': bg && text }"
+  class="
+    w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden transition-colors duration-200 ease-linear
+    
+    bg-vanilla
+    text-mahogany
+  "
+  id="events"
+>
   <div class="w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4">
     <div class="col-span-7 col-start-4 medium-accent uppercase">
       {{ section.settings.title }}
@@ -34,7 +49,10 @@
       </div>
     </div>
     <div class="w-full px-4">
-      <ul x-ref="container" class="w-full auto-cols-[calc(213/393*100%)] lg:auto-cols-[calc(699/(1440-32px)*100%)] grid grid-flow-col">
+      <ul
+        x-ref="container"
+        class="w-full auto-cols-[calc(213/393*100%)] lg:auto-cols-[calc(699/(1440-32px)*100%)] grid grid-flow-col"
+      >
         {% for block in section.blocks %}
           <li class="shrink-0 basis-full flex flex-col gap-2 mr-[calc(45/393*100%)] lg:mr-[calc(83/(1440-16px)*100%)]">
             <div

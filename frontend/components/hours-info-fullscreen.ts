@@ -15,6 +15,7 @@ export default () => ({
   transformWidth: window.innerWidth,
   transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
   selectedIndex: 0,
+  offsetY: 0,
   visible: false,
   animating: false,
   pointer: {
@@ -129,6 +130,9 @@ export default () => ({
     this.lockScroll();
     this.draw();
 
+    const container = document.querySelector('[data-fullscreen-fixed]')
+    const element = document.querySelector('[data-fullscreen]')
+
     this.fromLarge = large;
     this.selectedIndex = Math.min(index, this.media.length - 1);
 
@@ -145,6 +149,15 @@ export default () => ({
     if (!this.fromPosition) {
       return;
     }
+
+   // Calculate offsetY
+   const targetWidth = window.innerWidth;
+   const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+   const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+   this.offsetY = targetHeight / 2;
+
+    element.style.position = 'fixed';
+    element.style.top = -this.offsetY + 'px';
 
     this.originalImage = {
       element: clickedElement,

@@ -18,7 +18,7 @@
 </div>
 
 <!-- Mobile view-->
-<div x-data="carousel({ align: 'start', dragFree: true, , skipSnaps: true, trimSnaps: true })"  class="embla relative lg:overflow-hidden lg:hidden">
+<div x-data="carousel({ align: 'start', dragFree: true, skipSnaps: true, trimSnaps: true })"  class="embla relative lg:overflow-hidden lg:hidden">
   <div class="embla__container flex" x-ref="viewport">
     {% for block in section.blocks %}
       {% if block.type == 'image' %}

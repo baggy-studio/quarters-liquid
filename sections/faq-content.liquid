@@ -44,62 +44,61 @@
       }
     ]
   }
-  {% endschema %}
-  
-  <div id="utility" class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[80px] grid grid-cols-10 gap-x-3 lg:pl-1.5">
-      <div class="md:col-start-2 md:col-span-9 col-span-10">
-          <div class="faq-categories mb-6">
-              <span class="faq-category underline-none">{{ section.settings.title }}</span>
-          </div>
-      </div>
-      <div class="md:col-start-2 md:col-span-9 col-span-10">
-        <div class="faq-items" x-data="{ openSection: null }">
-          {% for block in section.blocks %}
-            {% if block.type == 'faq_item' %}
-              <div id="{{ block.id }}" class="faq-item">
-                <button 
-                  @click="openSection = openSection === '{{ block.id }}' ? null : '{{ block.id }}'" 
-                  class="faq-question body-sans w-full text-left flex items-center justify-between py-3 border-b border-current"
-                >
-                  <span class="medium-serif">{{ block.settings.question }}</span>
-                  <span
-                  :class="{ 'rotate-180': openSection === '{{ block.id }}' }"
-                  class="transition-transform duration-800 ease-in-out w-2 relative h-2 flex items-center justify-center"
-                >
-                  <span
-                    class="w-full h-[1px] bg-current block"
-                  ></span>
-                  <span
-                    :class="{ 'opacity-0': openSection === '{{ block.id }}' }"
-                    class="h-full w-[1px] bg-current absolute block transition-opacity duration-800 ease-in-out"
-                  ></span>
-                </span>
-                </button>
-                <div
-                  class="h-0 overflow-hidden transition-all duration-800 ease-in-out"
-                  x-ref="container-{{ block.id }}"
-                  x-show="openSection === '{{ block.id }}'"
-                  x-collapse.duration.800ms
-                >
-                  <div class="faq-answer medium-sans py-3 border-b border-current">
-                    {{ block.settings.answer }}
-                  </div>
+{% endschema %}
+
+<div id="utility" class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[80px] grid grid-cols-10 gap-x-3 lg:pl-1.5">
+    <div class="lg:col-start-2 lg:col-span-9 col-span-10">
+        <div class="faq-categories mb-6">
+            <span class="faq-category underline-none">{{ section.settings.title }}</span>
+        </div>
+    </div>
+    <div class="md:col-start-2 md:col-span-9 col-span-10">
+      <div class="faq-items" x-data="{ openSection: null }">
+        {% for block in section.blocks %}
+          {% if block.type == 'faq_item' %}
+            <div id="{{ block.id }}" class="faq-item border-b border-current">
+              <button 
+                @click="openSection = openSection === '{{ block.id }}' ? null : '{{ block.id }}'" 
+                class="faq-question body-sans w-full text-left flex items-center justify-between py-3"
+              >
+                <span class="medium-serif">{{ block.settings.question }}</span>
+                <span
+                :class="{ 'rotate-180': openSection === '{{ block.id }}' }"
+                class="transition-transform duration-800 ease-in-out w-2 relative h-2 flex items-center justify-center"
+              >
+                <span
+                  class="w-full h-[1px] bg-current block"
+                ></span>
+                <span
+                  :class="{ 'opacity-0': openSection === '{{ block.id }}' }"
+                  class="h-full w-[1px] bg-current absolute block transition-opacity duration-800 ease-in-out"
+                ></span>
+              </span>
+              </button>
+              <div
+                class="h-0 overflow-hidden transition-all duration-800 ease-in-out"
+                x-ref="container-{{ block.id }}"
+                x-show="openSection === '{{ block.id }}'"
+                x-collapse.duration.800ms
+              >
+                <div class="faq-answer medium-sans py-3">
+                  {{ block.settings.answer }}
                 </div>
               </div>
-            {% endif %}
-          {% endfor %}
-        </div>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
-  </div>
-  
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('faqAccordion', () => ({
-        openSection: null,
-        toggle(id) {
-          this.openSection = this.openSection === id ? null : id;
-        }
-      }));
-    });
-  </script>
+    </div>
+</div>
 
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('faqAccordion', () => ({
+      openSection: null,
+      toggle(id) {
+        this.openSection = this.openSection === id ? null : id;
+      }
+    }));
+  });
+</script>

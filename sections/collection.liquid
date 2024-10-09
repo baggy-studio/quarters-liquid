@@ -1,4 +1,3 @@
-
 <div class="contents" x-data="collectionNav('{{ collection.url }}')">
   <div
     class="pt-[120px] lg:pt-16 lg:mt-24 w-full px-4"
@@ -43,25 +42,36 @@
           >
             {% assign rendered_products = 0 %}
             {% for product in collection.products %}
-              {% assign is_priority = false %}
+              {% assign is_archive = false %}
 
-              {% if forloop.index0 < 9 %}
-                {% assign is_priority = true %}
+              {% if collection.url contains 'archive' %}
+                {% assign is_archive = false %}
+              {% elsif product.tags contains 'Archive' %}
+                {% assign is_archive = true %}
               {% endif %}
 
-              {% assign has_only_default_variant = true %}
+              {% unless product.tags contains 'Hide' %}
+                {% unless is_archive %}
+                  {% assign is_priority = false %}
 
-              {% if product.has_only_default_variant %}
-                {% assign has_only_default_variant = false %}
-              {% endif %}
+                  {% if forloop.index0 < 9 %}
+                    {% assign is_priority = true %}
+                  {% endif %}
 
-              {% assign rendered_products = rendered_products | plus: 1 %}
+                  {% assign has_only_default_variant = true %}
 
-              {% render 'product-card',
-                product: product,
-                priority: is_priority,
-                renderVariants: has_only_default_variant
-              %}
+                  {% if product.has_only_default_variant %}
+                    {% assign has_only_default_variant = false %}
+                  {% endif %}
+
+                  {% assign rendered_products = rendered_products | plus: 1 %}
+                  {% render 'product-card',
+                    product: product,
+                    priority: is_priority,
+                    renderVariants: has_only_default_variant
+                  %}
+                {% endunless %}
+              {% endunless %}
             {% endfor %}
 
             {% if paginate.pages == 1 %}

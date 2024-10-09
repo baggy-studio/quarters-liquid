@@ -62,6 +62,9 @@
     {% if selected_variant.compare_at_price > 0 %}
       <input type="hidden" name="properties[_compareAtPrice]" value="{{ selected_variant.compare_at_price | money }}">
     {% endif %}
+    {% if product.tags contains 'OOAK' %}
+      <input type="hidden" name="properties[_ooak]" value="true">
+    {% endif %}
     {% if product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
       <a
         href="mailto:hello@shopquarters.com?subject=Product%20Inquiry%3A%20{{ product.title | replace: ' ', '%20' }}"

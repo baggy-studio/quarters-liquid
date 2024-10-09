@@ -3,10 +3,12 @@ import { inView } from 'motion';
 export default () => ({
     menu: 'drinks',
     menus: [],
+    lastText: null,
     lastBg: null,
     text: null,
     bg: null,
     theme: null,
+    inView: false,
     init() {
         this.$dispatch('set-menu', this.menu)
 
@@ -24,13 +26,17 @@ export default () => ({
             }
         })
 
-        this.bg = this.menus[0].bg
+        this.bg = this.menus[0].bg 
+
+        console.log(this.bg)
 
         inView('#menu',
             () => {
+                this.inView = true
                 this.dispatchMenuData()
 
                 return () => {
+                    this.inView = false
                     this.bg = null
                     this.text = null
                     this.$dispatch('set-theme', null)
@@ -49,6 +55,7 @@ export default () => ({
         this.bg = this.activeMenu?.bg
         this.text = this.activeMenu?.theme == 'light' ? '#F4EED0' : '#643600'
         this.lastBg = this.bg
+        this.lastText = this.text
         this.$dispatch('set-colors', { bg: this.activeMenu?.bg, text: this.text }) 
         this.$dispatch('set-theme', this.activeMenu?.theme)
     },

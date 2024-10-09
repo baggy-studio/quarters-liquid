@@ -1,7 +1,7 @@
 <div class="contents" x-data="barMenus">
   <div
     class="w-full relative grid grid-cols-1 grid-rows-1 bg-[--bg] text-[--text] transition-colors duration-200 ease-linear"
-    :style="`--text: ${text || 'currentColor'}; --bg: ${bg || lastBg || '#F0DA8F'};`"
+    :style="`--text: ${text || lastText || 'currentColor'}; --bg: ${bg || lastBg || '#F0DA8F'};`"
     id="menu"
   >
     <div class="contents" id="menu-container"></div>
@@ -42,16 +42,21 @@
           </ul>
         </div>
       </div>
+      <div class="absolute bottom-0 top-0 lg:relative w-full transition-opacity duration-200 ease-linear"  :class="inView && 'opacity-0'">
+        <div
+          class="w-full absolute top-0 left-0 bottom-0 after:bar-menu-bottom-gradient lg:before:bar-menu-top-gradient"
+        ></div>
+      </div>
     </div>
   </div>
   <div
-    :class="bg && 'opacity-0'"
+    :class="inView && 'opacity-0'"
     class="absolute top-[100vh] left-0 w-full bottom-0 pointer-events-none bar-gradient-vanilla z-[1] transition-opacity duration-200 ease-linear"
   ></div>
   <div
     :class="
       {
-        'opacity-0': !bg
+        'opacity-0': !inView
       }
     "
     :style="`--bg: ${lastBg};`"

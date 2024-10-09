@@ -688,7 +688,7 @@
       "settings": {
         "title": "Evening",
         "image": "shopify://shop_images/bar-3.png",
-        "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies.</p>",
+        "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any allergies or dietary restrictions.</p>",
         "color_scheme": "light",
         "background_color": "#022b26"
       }

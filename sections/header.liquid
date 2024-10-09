@@ -83,7 +83,7 @@
       {
         'is-menu': menu,
         'is-cart': $store.cart.visible,
-        'delay-0': isScrolling
+        'delay-0': isScrolling || forcedHeaderColor
       }
     "
     :style="`--header-theme: ${forcedHeaderColor || headerColor}`"

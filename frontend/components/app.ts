@@ -44,6 +44,7 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     swup.hooks.before('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
+      this.isForcedTheme = null
       this.getTheme(visit.to.url);
     });
 

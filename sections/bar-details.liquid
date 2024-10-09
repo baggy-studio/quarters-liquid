@@ -1,5 +1,16 @@
-<div class="w-full relative overflow-hidden lg:overflow-clip" id="hours">
-  <div class="w-full py-12 lg:pt-[147px] lg:pb-[160px] bg-vanilla">
+<div
+  x-data="{ bg: null, text: null }"
+  @set-colors.window="
+    bg = $event.detail.bg;
+    text = $event.detail.text;
+  " 
+  :style="`--bg: ${bg}; --text: ${text};`"
+  :class="{ 'bg-vanilla text-mahogany': !bg && !text, 'bg-[--bg] text-[--text]': bg && text }"
+  class="w-full relative overflow-hidden lg:overflow-clip  bg-vanilla transition-colors duration-200 ease-linear
+    text-mahogany"
+  id="hours"
+>
+  <div class="w-full py-12 lg:pt-[147px] lg:pb-[160px]">
     <div class="w-full flex flex-col lg:grid lg:grid-cols-20 lg:gap-3 gap-y-12 lg:gap-y-[127px] px-4">
       <div class="col-span-8 spicy-body col-start-2 lg:rotate-[-2.5deg] richtext-hover-only">
         {{ section.settings.paragraph }}
@@ -60,11 +71,15 @@
           style="--height-desktop: calc(100% / {{ section.blocks.size }})"
         >
           {% for block in section.blocks %}
-            <li class="relative basis-[32.5%]
-              {% if forloop.first %}
-              lg:first:prose-p:pl-2.5
-              {% endif %}
-              lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 last:mr-0 lg:mr-0">
+            <li
+              class="
+                relative basis-[32.5%]
+                {% if forloop.first %}
+                lg:first:prose-p:pl-2.5
+                {% endif %}
+                lg:basis-auto shrink-0 lg:shrink flex flex-col lg:flex-row items-start lg:h-[--height-desktop] gap-1 mr-1 last:mr-0 lg:mr-0
+              "
+            >
               <p class="subheading uppercase lg:translate-x-full lg:origin-top-left lg:rotate-90">
                 {{ block.settings.caption }}
               </p>
@@ -108,7 +123,7 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 {% schema %}
 {

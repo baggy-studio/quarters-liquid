@@ -1,5 +1,3 @@
-
-
 export default () => ({
     abortController: new AbortController(),
     scrollAbortController: new AbortController(),
@@ -8,7 +6,7 @@ export default () => ({
     scrollY: 0,
     windowHeight: window.innerHeight,
     theme: 'dark',
-    init() { 
+    init() {
         this.resize()
         setTimeout(() => {
             this.resize()

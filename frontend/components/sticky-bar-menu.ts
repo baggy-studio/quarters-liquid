@@ -1,3 +1,7 @@
+import { animate } from "motion";
+
+import { expoInOut } from "@/easing";
+import { range } from "@/utils";
 export default () => ({
     abortController: new AbortController(),
     scrollAbortController: new AbortController(),
@@ -5,6 +9,7 @@ export default () => ({
     infoHeight: 0,
     scrollY: 0,
     windowHeight: window.innerHeight,
+    scrolling: false,
     theme: 'dark',
     init() {
         this.resize()
@@ -34,5 +39,25 @@ export default () => ({
     destroy() {
         this.abortController.abort()
         this.scrollAbortController.abort()
+    },
+    async jumpTo(id: string) {
+        if (this.scrolling) return
+        this.scrolling = true
+
+        const element = document.getElementById(id)
+        if (!element) {
+            this.scrolling = false
+            return
+        }
+
+        const elementTop = element.getBoundingClientRect().top
+        const start = window.scrollY
+        const target = start + elementTop
+
+        await animate((progress) => {
+            window.scrollTo(0, range(0, 1, start, target, progress))
+        }, { duration: 1.8, easing: expoInOut }).finished
+
+        this.scrolling = false
     }
 });

@@ -4,7 +4,8 @@ import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 export default (
   options = {
     loop: true,
-    skipSnaps: true
+    skipSnaps: true,
+    containScroll: 'trimSnaps',
   }
 ) => ({
   carousel: null,

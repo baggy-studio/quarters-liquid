@@ -178,13 +178,13 @@
     }
 
     .bar-menu-top-gradient {
-        @apply absolute top-0 left-0 w-full h-16 block pointer-events-none;
-        background: linear-gradient(180deg, #F0DA8F 0%, rgba(240, 218, 143, 0) 100%);
+        @apply absolute top-0 left-0 w-full h-16 block pointer-events-none transition-colors duration-200 ease-linear;
+        background: linear-gradient(180deg, var(--bg) 0%, rgba(240, 218, 143, 0) 100%);
     }
 
     .bar-menu-bottom-gradient {
-        @apply absolute bottom-0 left-0 w-full h-16 block pointer-events-none;
-        background: linear-gradient(180deg, rgba(240, 218, 143, 0) 0%, #F0DA8F 100%);
+        @apply absolute bottom-0 left-0 w-full h-16 block pointer-events-none transition-colors duration-200 ease-linear;
+        background: linear-gradient(0deg, var(--bg)  0%, rgba(240, 218, 143, 0) 100%)
     }
 
     .bar-menu-mobile-gradient {

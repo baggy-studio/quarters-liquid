@@ -1,28 +1,40 @@
 <div
-  x-data="{ bg: null, text: null }"
+  x-data="{ bg: null, text: null, theme: null }"
   @set-colors.window="
     bg = $event.detail.bg;
     text = $event.detail.text;
   "
+  @set-theme.window="theme = $event.detail"
   :style="`--bg: ${bg}; --text: ${text};`"
-  :class="{ 'bg-vanilla text-mahogany': !bg && !text, 'bg-[--bg] text-[--text]': bg && text }"
+  :class="{ '!bg-[--bg] !text-[--text]': bg && text }"
   class="
     w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden transition-colors duration-200 ease-linear
-    
+
     bg-vanilla
     text-mahogany
   "
   id="events"
 >
   <div class="w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4">
-    <div class="col-span-7 col-start-4 medium-accent uppercase">
+    <div class="col-span-7 col-start-4 spicy-body uppercase">
       {{ section.settings.title }}
     </div>
     <div class="col-span-7 flex flex-col lg:grid lg:grid-cols-7 gap-x-3 gap-y-8">
       <div class="medium-sans col-span-7 flex flex-col gap-y-8">{{ section.settings.body }}</div>
       {% if section.settings.cta_link %}
         <div class="col-span-5">
-          <a href="{{ section.settings.cta_link }}" class="rez-button">{{ section.settings.cta_text }}</a>
+          <a
+            :class="
+              {
+                'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
+              }
+            "
+            href="{{ section.settings.cta_link }}"
+            class="rez-button"
+          >
+            {{- section.settings.cta_text -}}
+            <span class="block text-[15px] font-sans font-normal">→</span>
+          </a>
         </div>
       {% endif %}
     </div>
@@ -51,15 +63,30 @@
     <div class="w-full px-4">
       <ul
         x-ref="container"
-        class="w-full auto-cols-[calc(213/393*100%)] lg:auto-cols-[calc(699/(1440-32px)*100%)] grid grid-flow-col"
+        class="w-full flex"
       >
         {% for block in section.blocks %}
-          <li class="shrink-0 basis-full flex flex-col gap-2 mr-[calc(45/393*100%)] lg:mr-[calc(83/(1440-16px)*100%)]">
+          {% assign image_width = block.settings.image.width | default: 0 %}
+          {% assign image_height = block.settings.image.height | default: 0 %}
+          {% assign aspect_ratio = image_width | divided_by: image_height | times: 1.0 %}
+          {% if aspect_ratio >= 1 %}
+            {% assign image_orientation = 'horizontal-image' %}
+          {% else %}
+            {% assign image_orientation = 'portrait-image' %}
+          {% endif %}
+
+          <li class="shrink-0 
+            {% if image_orientation == 'horizontal-image' %}
+           basis-[calc(100vw*(699/1440))]
+            {% else %}
+basis-[calc(100vw*(485/1440))]
+            {% endif %}
+            flex flex-col gap-2 mr-[calc(45/393*100vw)] lg:mr-[calc(100vw*(83/1440))]">
             <div
-              style="--aspectRatio: {{ block.settings.image.width }} / {{ block.settings.image.height }}"
+              style="--aspectRatio: {{ image_width }} / {{ image_height }}"
               class="w-full aspect-[--aspectRatio] relative overflow-hidden"
             >
-              {% render 'image', image: block.settings.image, width: 699 %}
+              {% render 'image', image: block.settings.image, width: 1440 %}
             </div>
             <p class="w-full text-left small-sans">
               {{ block.settings.caption }}

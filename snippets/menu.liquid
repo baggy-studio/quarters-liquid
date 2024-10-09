@@ -86,16 +86,19 @@
 
   <ul class="col-span-4 hidden gap-x-3 lg:grid">
     <li
-      class="transition-opacity duration-300 gap-3 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
+      class="transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid"
       :class="{ 'opacity-0 pointer-events-none': activeCollection != 0 }"
     >
       <a
         title="{{ parent_collection.title }}"
         href="{{ parent_collection.url }}"
-        class="col-span-2 aspect-[130/162] relative"
+        class="col-span-2 relative flex items-start flex-nowrap gap-x-3"
       >
         {% assign collection = parent_collection.object %}
-        {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+        <span class="aspect-[130/162] relative shrink-0 w-full">
+          {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+        </span>
+        <span class="whitespace-nowrap text-left medium-accent leading-none -mt-1"> ({{ collection.all_products_count }}) </span>
       </a>
     </li>
     {% for link in parent_collection.links %}
@@ -113,7 +116,7 @@
             <span class="aspect-[130/162] relative shrink-0 w-full">
               {% render 'image', image: collection.featured_image, width: 260, height: 324 %}
             </span>
-            <span class="whitespace-nowrap text-left medium-accent"> ({{ collection.all_products_count }}) </span>
+            <span class="whitespace-nowrap text-left medium-accent leading-none -mt-1"> ({{ collection.all_products_count }}) </span>
           </a>
         </li>
       {% endif %}

@@ -115,9 +115,9 @@ export default () => ({
     element.style.position = 'fixed';
     element.style.top = -this.offsetY + 'px';
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateOpen(this.offsetY)
-    }
+
+    await this.onAnimateOpen(this.offsetY)
+
 
     if (container) {
       element.style.position = 'relative';
@@ -147,9 +147,8 @@ export default () => ({
     element.style.position = 'fixed';
     element.style.top = -this.offsetY + 'px';
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateClose(this.offsetY)
-    }
+    await this.onAnimateClose(this.offsetY)
+
     this.offsetY = 0
     this.animating = false
     this.visible = false
@@ -239,11 +238,7 @@ export default () => ({
   },
   get nextIndex() {
     return (this.selectedIndex + 1) % this.mediaCount;
-  },
-  get index() {
-    const index = this.selectedIndex + 1
-    return index < 10 ? `0${index}` : index;
-  },
+  }, 
   get activeMedia() {
     return this.media[this.selectedIndex]
   }

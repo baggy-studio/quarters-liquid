@@ -56,7 +56,7 @@ export const swup = new Swup({
       animateScroll: {
         betweenPages: false,
         samePageWithHash: false,
-        samePage: false,
+        samePage: true,
       },
     }),
   ],

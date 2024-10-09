@@ -48,8 +48,11 @@
 {% assign rendered_small_count = 1 %}
 {% assign rendered_large_count = 0 %}
 
-<div x-data="productCarousel" 
-  class="w-full contents lg:grid grid-cols-10 gap-3" id="product-variant-media">
+<div
+  x-data="productCarousel"
+  class="w-full contents lg:grid grid-cols-10 gap-3"
+  id="product-variant-media"
+>
   {% if total_media_count > 1 %}
     <div
       class="w-full col-span-2 lg:flex items-end hidden"
@@ -71,10 +74,10 @@
                   {% assign is_priority = true %}
                 {% endif %}
 
-                <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden hover:opacity-70 duration-700 ease-in-out">
+                <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden group">
                   {% if section.settings.disable_fullscreen == false %}
                     <button
-                      class="w-full h-max block"
+                      class="w-full h-max block group-hover:opacity-70 duration-700 ease-in-out"
                       title="View Gallery"
                       @click="
                         openFullscreen($event, {
@@ -83,20 +86,10 @@
                         })
                       "
                     >
-                      {% render 'image',
-                        image: media,
-                        width: 260, 
-                        priority: is_priority,
-                        sizes: 'calc(10vw - 3.5px)'
-                      %}
+                      {% render 'image', image: media, width: 260, priority: is_priority, sizes: 'calc(10vw - 3.5px)' %}
                     </button>
                   {% else %}
-                    {% render 'image',
-                      image: media,
-                      width: 260, 
-                      priority: is_priority,
-                      sizes: 'calc(10vw - 3.5px)'
-                    %}
+                    {% render 'image', image: media, width: 260, priority: is_priority, sizes: 'calc(10vw - 3.5px)' %}
                   {% endif %}
                 </li>
                 {% assign rendered_small_count = rendered_small_count | plus: 1 %}
@@ -112,11 +105,11 @@
 
                 {% assign media_id_number = media_id | plus: 0 %}
                 {% assign media = product.media | where: 'id', media_id_number | first %}
-                
-                <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden hover:opacity-70 duration-700 ease-in-out">
+
+                <li class="w-full h-full basis-full shrink-0 mr-3 relative overflow-hidden group">
                   {% if section.settings.disable_fullscreen == false %}
                     <button
-                      class="w-full h-max block"
+                      class="w-full h-max block group-hover:opacity-70 duration-700 ease-in-out"
                       title="View Gallery"
                       @click="
                         openFullscreen($event, {
@@ -125,20 +118,10 @@
                         })
                       "
                     >
-                      {% render 'image',
-                        image: media,
-                        width: 260, 
-                        sizes: 'calc(10vw - 3.5px)',
-                        priority: is_priority
-                      %}
+                      {% render 'image', image: media, width: 260, sizes: 'calc(10vw - 3.5px)', priority: is_priority %}
                     </button>
                   {% else %}
-                    {% render 'image',
-                      image: media,
-                      width: 260, 
-                      sizes: 'calc(10vw - 3.5px)',
-                      priority: is_priority
-                    %}
+                    {% render 'image', image: media, width: 260, sizes: 'calc(10vw - 3.5px)', priority: is_priority %}
                   {% endif %}
                 </li>
 
@@ -146,10 +129,10 @@
               {% endfor %}
             {% endif %}
             {% if selected_variant_media %}
-              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3 hover:opacity-70 duration-700 ease-in-out">
+              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-3 group">
                 {% if section.settings.disable_fullscreen == false %}
                   <button
-                    class="w-full h-max block"
+                    class="w-full h-max block group-hover:opacity-70 duration-700 ease-in-out"
                     title="View Gallery"
                     @click="
                       openFullscreen($event, {
@@ -158,18 +141,10 @@
                       })
                     "
                   >
-                    {% render 'image',
-                      image: selected_variant_media,
-                      width: 260, 
-                      sizes: 'calc(10vw - 3.5px)'
-                    %}
+                    {% render 'image', image: selected_variant_media, width: 260, sizes: 'calc(10vw - 3.5px)' %}
                   </button>
                 {% else %}
-                  {% render 'image',
-                    image: selected_variant_media,
-                    width: 260, 
-                    sizes: 'calc(10vw - 3.5px)'
-                  %}
+                  {% render 'image', image: selected_variant_media, width: 260, sizes: 'calc(10vw - 3.5px)' %}
                 {% endif %}
               </li>
             {% endif %}
@@ -190,10 +165,10 @@
     >
       <ul class="flex w-full h-full">
         {% if selected_variant_media %}
-          <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3 hover:opacity-70 duration-700 ease-in-out">
+          <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3 group">
             {% if section.settings.disable_fullscreen == false %}
               <button
-                class="w-full h-full block"
+                class="w-full h-full block group-hover:opacity-70 duration-700 ease-in-out"
                 title="View Gallery"
                 @click="
                   openFullscreen($event, {
@@ -204,7 +179,7 @@
               >
                 {% render 'image',
                   image: selected_variant_media,
-                  width: 1112, 
+                  width: 1112,
                   priority: true,
                   sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                 %}
@@ -212,7 +187,7 @@
             {% else %}
               {% render 'image',
                 image: selected_variant_media,
-                width: 1112, 
+                width: 1112,
                 priority: true,
                 sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
               %}
@@ -223,10 +198,10 @@
         {% endif %}
         {% if variant_media_metafields %}
           {% for media in variant_media_metafields %}
-            <li class="w-full h-full basis-full shrink-0 mr-4 lg:mr-3 relative overflow-hidden hover:opacity-70 duration-700 ease-in-out">
+            <li class="w-full h-full basis-full shrink-0 mr-4 lg:mr-3 relative overflow-hidden group">
               {% if section.settings.disable_fullscreen == false %}
                 <button
-                  class="w-full h-full block"
+                  class="w-full h-full block group-hover:opacity-70 duration-700 ease-in-out"
                   title="View Gallery"
                   @click="
                     openFullscreen($event, {
@@ -238,7 +213,6 @@
                   {% render 'image',
                     image: media,
                     width: 1112,
-                  
                     sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                   %}
                 </button>
@@ -246,7 +220,6 @@
                 {% render 'image',
                   image: media,
                   width: 1112,
-                 
                   sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                 %}
               {% endif %}
@@ -259,7 +232,7 @@
             {% assign media_id_number = media_id | plus: 0 %}
             {% assign media = product.media | where: 'id', media_id_number | first %}
             {% if media != blank %}
-              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3 hover:opacity-70 duration-700 ease-in-out">
+              <li class="w-full h-full basis-full shrink-0 relative overflow-hidden mr-4 lg:mr-3 group">
                 {% assign is_priority = false %}
 
                 {% if forloop.first and selected_variant_media == blank %}
@@ -268,7 +241,7 @@
 
                 {% if section.settings.disable_fullscreen == false %}
                   <button
-                    class="w-full h-full block"
+                    class="w-full h-full block group-hover:opacity-70 duration-700 ease-in-out"
                     title="View Gallery"
                     @click="
                       openFullscreen($event, {
@@ -279,7 +252,7 @@
                   >
                     {% render 'image',
                       image: media,
-                      width: 1112, 
+                      width: 1112,
                       priority: is_priority,
                       sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                     %}
@@ -287,7 +260,7 @@
                 {% else %}
                   {% render 'image',
                     image: media,
-                    width: 1112, 
+                    width: 1112,
                     priority: is_priority,
                     sizes: '@media (min-width: 1024px) calc(40vw - 5px), calc(100vw - 24px)'
                   %}

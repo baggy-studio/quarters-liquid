@@ -10,6 +10,7 @@
   {% assign total_media_count = total_media_count | plus: 1 %}
 {% else %}
   {% assign selected_variant_media = product.featured_image %}
+  {% assign total_media_count = total_media_count | plus: 1 %}
 {% endif %}
 
 {% for variant in product.variants %}
@@ -59,8 +60,8 @@
       @keyup.escape.window="visible && closeFullscreen"
       data-fullscreen-fixed
       class="
-        fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
-        pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
+        fixed top-0 left-0 h-screen w-full text-bone z-[100] lg:z-50
+        pointer-events-none opacity-0
       "
       :class="
         {
@@ -75,10 +76,12 @@
         <ul
           data-fullscreen
           data-count="{{ total_media_count }}"
-          :class="{
-            'is-animating': animating
-          }"
-          class="w-full group lg:origin-top-left relative h-full lg:will-change-[transform,width,height] lg:translate-x-[--x] lg:translate-y-[--y] lg:w-[--width] lg:h-[--height]"
+          :class="
+            {
+              'is-animating': animating
+            }
+          "
+          class="group origin-top-left relative will-change-[transform,width,height] translate-x-[--x] translate-y-[--y] w-[--width] h-[--height]"
         >
           {% if selected_variant_media %}
             <li
@@ -86,13 +89,15 @@
               data-aspect-ratio="{{ selected_variant_media.aspect_ratio }}"
               data-width="{{ selected_variant_media.width }}"
               data-height="{{ selected_variant_media.height }}"
-              class="absolute top-0 left-0 w-full h-full duration-500 group-[.is-animating]:duration-0 ease-in-out transition-opacity"
-              :class="{ 
-                'opacity-0 delay-500': selectedIndex !== {{ rendered_count }},
-                 'z-[1]': selectedIndex === {{ rendered_count }}
-              }"
+              class="absolute top-0 left-0 w-full h-full duration-200 group-[.is-animating]:duration-0 ease-linear transition-opacity"
+              :class="
+                {
+                  'opacity-0 delay-200': selectedIndex !== {{ rendered_count }},
+                   'z-[1]': selectedIndex === {{ rendered_count }}
+                }
+              "
             >
-              {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw', priority: true  %}
+              {% render 'image', image: selected_variant_media, width: 2000, sizes: '100vw', priority: true %}
             </li>
           {% endif %}
           {% if variant_media_metafields %}
@@ -103,13 +108,15 @@
                 data-aspect-ratio="{{ media.aspect_ratio }}"
                 data-width="{{ media.width }}"
                 data-height="{{ media.height }}"
-                class="absolute top-0 left-0 w-full h-full duration-500 group-[.is-animating]:duration-0 ease-in-out transition-opacity"
-                :class="{ 
-                  'opacity-0 delay-500': selectedIndex !== {{ rendered_count }},
-                   'z-[1]': selectedIndex === {{ rendered_count }}
-                }"
+                class="absolute top-0 left-0 w-full h-full duration-200 group-[.is-animating]:duration-0 ease-linear transition-opacity"
+                :class="
+                  {
+                    'opacity-0 delay-200': selectedIndex !== {{ rendered_count }},
+                     'z-[1]': selectedIndex === {{ rendered_count }}
+                  }
+                "
               >
-                {% render 'image', image: media, width: 2000, sizes: '100vw', priority: true  %}
+                {% render 'image', image: media, width: 2000, sizes: '100vw', priority: true %}
               </li>
             {% endfor %}
           {% endif %}
@@ -126,11 +133,13 @@
                   data-aspect-ratio="{{ media.aspect_ratio }}"
                   data-width="{{ media.width }}"
                   data-height="{{ media.height }}"
-                  class="absolute top-0 left-0 w-full h-full duration-500 group-[.is-animating]:duration-0 ease-in-out transition-opacity"
-                  :class="{ 
-                    'opacity-0 delay-500': selectedIndex !== {{ rendered_count }},
-                     'z-[1]': selectedIndex === {{ rendered_count }}
-                  }"
+                  class="absolute top-0 left-0 w-full h-full duration-200 group-[.is-animating]:duration-0 ease-linear transition-opacity"
+                  :class="
+                    {
+                      'opacity-0 delay-200': selectedIndex !== {{ rendered_count }},
+                       'z-[1]': selectedIndex === {{ rendered_count }}
+                    }
+                  "
                 >
                   {% render 'image', image: media, width: 2000, sizes: '100vw', priority: true %}
                 </li>
@@ -147,7 +156,7 @@
           </button>
         {% endif %}
       </div>
-      <div class="fixed top-0 left-0 h-screen w-full bottom-0 lg:[will-change:clip-path] lg:[clip-path:--clip-path] pointer-events-none">
+      <div class="fixed top-0 left-0 h-[100dvh] lg:h-screen w-full bottom-0 [will-change:clip-path] [clip-path:--clip-path] pointer-events-none">
         <div
           class="absolute top-0 left-0 w-full bottom-0"
         >
@@ -164,7 +173,7 @@
               </div>
               <div
                 :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-                class="w-full bottom-0 sticky"
+                class="w-full bottom-0 sticky h-max"
                 @mouseenter="showCursor = false"
                 @mouseleave="showCursor = true"
               >
@@ -184,11 +193,9 @@
                   "
                 >
                   <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
-                    <p x-text="index">1</p>
+                    <p x-number="selectedIndex + 1">01</p>
                     <p>/</p>
-                    {% assign padded_total_media_count = total_media_count | prepend: '0' %}
-
-                    <p>{{ padded_total_media_count | slice: -2, 2 }}</p>
+                    <p>{% render 'prefix-number', number: total_media_count %}</p>
                   </div>
 
                   <ul

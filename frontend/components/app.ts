@@ -60,7 +60,14 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
     swup.hooks.on('link:self', (visit) => {
-      console.log('link:self', visit);
+      if (this.menu) {
+        this.closeMenu().then(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
+        });
+      }
     });
 
     window.addEventListener('resize', () => {

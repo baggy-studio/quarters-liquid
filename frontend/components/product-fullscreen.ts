@@ -6,8 +6,9 @@ import { swup } from "../entrypoints/swup";
 
 export default () => ({
   abortController: new AbortController(),
-  abortControllerResize: new AbortController(), 
+  abortControllerResize: new AbortController(),
   aspectRatio: window.innerWidth / window.innerHeight,
+
   transformX: 0,
   transformY: 0,
   transformScale: 1,
@@ -24,6 +25,8 @@ export default () => ({
   fromLarge: false,
   mediaCount: 0,
   media: [],
+  timeOut: null,
+  offsetY: 0,
   contentReplace: () => { },
   init() {
     window.addEventListener('pointermove', this.move.bind(this), {
@@ -32,18 +35,12 @@ export default () => ({
 
     window.addEventListener('resize', this.resize.bind(this), {
       signal: this.abortControllerResize.signal
-    }) 
+    })
 
     this.contentReplace = () => {
-      setTimeout(() => {
-        const fullscreenElement = document.querySelector('[data-fullscreen]');
-        if (!fullscreenElement) {
-          console.error('Fullscreen element not found');
-          return;
-        }
-  
-        const fullscreenImages = document.querySelectorAll('[data-fullscreen-image]');
-        this.media = Array.from(fullscreenImages).map((el) => {
+      this.timeOut = setTimeout(() => {
+        this.mediaCount = document.querySelector('[data-fullscreen]')?.dataset.count
+        this.media = Array.from(document.querySelectorAll('[data-fullscreen-image]'))?.map((el) => {
           const width = parseFloat(el.dataset.width);
           const height = parseFloat(el.dataset.height);
           const aspectRatio = parseFloat(el.dataset.aspectRatio);
@@ -85,11 +82,13 @@ export default () => ({
   move(e: MouseEvent) {
     this.pointer.x = e.clientX
     this.pointer.y = e.clientY
-  }, 
+  },
   destroy() {
     this.abortController.abort()
     this.abortControllerResize.abort()
     swup.hooks.off('content:replace', this.contentReplace)
+
+    clearTimeout(this.timeOut)
   },
   async openFullscreen(e: MouseEvent, {
     large = true,
@@ -97,7 +96,10 @@ export default () => ({
   }) {
     if (this.animating) return
 
-    this.lockScroll() 
+    const container = document.querySelector('[data-fullscreen-fixed]')
+    const element = document.querySelector('[data-fullscreen]')
+
+    this.lockScroll()
 
     this.fromLarge = large
     this.selectedIndex = index
@@ -105,7 +107,7 @@ export default () => ({
     this.visible = true
 
     this.pointer.x = e.clientX
-    this.pointer.y = e.clientY 
+    this.pointer.y = e.clientY
 
     if (this.fromLarge) {
       this.fromPosition = this.getLargeImageDimensions()
@@ -115,15 +117,34 @@ export default () => ({
 
     this.aspectRatio = this.fromPosition.width / this.fromPosition.height
 
-    if (window.innerWidth >= 1024) {
+    const targetWidth = window.innerWidth;
+    const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+    const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+    this.offsetY = targetHeight / 2
 
-      await this.onAnimateOpen()
+    element.style.position = 'fixed';
+    element.style.top = -this.offsetY + 'px';
+
+
+    await this.onAnimateOpen(this.offsetY)
+
+
+    if (container) {
+      element.style.position = 'relative';
+      element.style.top = 'auto';
+      container.scrollTop = this.offsetY
+      this.offsetY = 0
     }
 
+
     this.animating = false
+
   },
   async closeFullscreen() {
     if (this.animating) return
+
+    const container = document.querySelector('[data-fullscreen-fixed]')
+    const element = document.querySelector('[data-fullscreen]')
 
     if (this.fromLarge) {
       this.fromPosition = this.getLargeImageDimensions()
@@ -131,16 +152,20 @@ export default () => ({
       this.fromPosition = this.getSmallImageDimensions()
     }
 
-    if (window.innerWidth >= 1024) {
-      await this.onAnimateClose()
-    }
+    this.offsetY = container?.scrollTop ?? 0
 
+    element.style.position = 'fixed';
+    element.style.top = -this.offsetY + 'px';
+
+    await this.onAnimateClose(this.offsetY)
+
+    this.offsetY = 0
     this.animating = false
     this.visible = false
- 
+
     this.unlockScroll()
 
-    document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 })
+    container?.scrollTo({ top: 0 })
   },
   nextImage() {
     if (this.mediaCount === 0) {
@@ -158,9 +183,15 @@ export default () => ({
   },
   advanceImage(index: number) {
     this.selectedIndex = index
-    document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 })
-
     this.resize()
+
+    const container = document.querySelector('[data-fullscreen-fixed]')
+    const targetWidth = window.innerWidth;
+    const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+    const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+
+    container?.scrollTo({ top: targetHeight / 2 })
+
   },
   resize() {
     this.transformWidth = window.innerWidth;
@@ -185,7 +216,7 @@ export default () => ({
     const dimensions = fullscreen.getBoundingClientRect()
     return dimensions
   },
-  async onAnimateOpen() {
+  async onAnimateOpen(offsetY: number = 0) {
     this.animating = true;
 
     const targetWidth = window.innerWidth;
@@ -194,13 +225,13 @@ export default () => ({
 
     return await animate((progress) => {
       this.transformX = range(0, 1, this.fromPosition.left, 0, progress);
-      this.transformY = range(0, 1, this.fromPosition.top, 0, progress);
+      this.transformY = range(0, 1, this.fromPosition.top + offsetY, 0, progress);
       this.transformWidth = range(0, 1, this.fromPosition.width, targetWidth, progress);
       this.transformHeight = range(0, 1, this.fromPosition.height, targetHeight, progress);
 
     }, { duration: 1.2, easing: expoInOut }).finished;
   },
-  async onAnimateClose() {
+  async onAnimateClose(offsetY: number = 0) {
     this.animating = true
 
     const fromTop = this.fromPosition.top - (document.querySelector('[data-fullscreen-fixed]')?.getBoundingClientRect().top ?? 0);
@@ -210,7 +241,7 @@ export default () => ({
 
     return await animate((progress) => {
       this.transformX = range(0, 1, 0, this.fromPosition.left, progress)
-      this.transformY = range(0, 1, 0, fromTop, progress)
+      this.transformY = range(0, 1, 0, fromTop + offsetY, progress)
       this.transformWidth = range(0, 1, startWidth, this.fromPosition.width, progress)
       this.transformHeight = range(0, 1, startHeight, this.fromPosition.height, progress)
 
@@ -220,7 +251,7 @@ export default () => ({
     if (!this.visible) return 'none';
 
     const left = this.transformX;
-    const top = this.transformY;
+    const top = this.transformY - this.offsetY;
     const right = window.innerWidth - (this.transformX + this.transformWidth);
     const bottom = window.innerHeight - (this.transformY + this.transformHeight);
 
@@ -228,11 +259,7 @@ export default () => ({
   },
   get nextIndex() {
     return (this.selectedIndex + 1) % this.mediaCount;
-  },
-  get index() {
-    const index = this.selectedIndex + 1
-    return index < 10 ? `0${index}` : index;
-  },
+  }, 
   get activeMedia() {
     if (!this.media || this.media.length === 0) {
       console.warn('No media items available');

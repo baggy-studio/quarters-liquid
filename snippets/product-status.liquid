@@ -8,7 +8,11 @@
     "
   >
     {% if type == 'sold-out' %}
-      <p class="large-accent uppercase">Sold</p>
+      {% if product.tags contains 'OOAK' %}
+        <p class="large-accent uppercase">Sold</p>
+      {% else %}
+        <p class="large-accent uppercase">OUT OF STOCK</p>
+      {% endif %}
     {% elsif type == 'on-hold' %}
       <p class="large-accent uppercase">On Hold</p>
     {% elsif type == 'inquire' %}
@@ -25,7 +29,11 @@
     "
   >
     {% if type == 'sold-out' %}
-      <p class="small-accent uppercase">Sold</p>
+      {% if product.tags contains 'OOAK' %}
+        <p class="small-accent uppercase">Sold</p>
+      {% else %}
+        <p class="small-accent uppercase">OUT OF STOCK</p>
+      {% endif %}
     {% elsif type == 'on-hold' %}
       <p class="small-accent uppercase">On Hold</p>
     {% elsif type == 'inquire' %}

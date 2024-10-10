@@ -29,6 +29,7 @@ export default () => ({
 
     infiniteScroll.addNextPageScrollEndEventListener(() => {
       this.loadVariants()
+      console.log('load end')
       updateCache()
     });
   },
@@ -47,6 +48,8 @@ export default () => ({
 
       const variants = Array.from(productGrid.querySelectorAll(selectors.productVariant));
 
+
+
       if (variants.length === 0) {
         return []
       };
@@ -56,15 +59,27 @@ export default () => ({
         variant.classList.remove('!hidden');
       });
 
-      for (let i = variants.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [variants[i], variants[j]] = [variants[j], variants[i]];
+      const inStockVariants = variants.filter(variant => variant?.dataset?.available === 'true') || [];
+      const outOfStockVariants = variants.filter(variant => variant?.dataset?.available === 'false') || [];
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+
+        return array
       }
 
-      return variants || []
+      shuffle(inStockVariants);
+      shuffle(outOfStockVariants);
+
+      return [...inStockVariants, ...outOfStockVariants] || []
     }
 
     const variants = getVariants()
+
+    console.log(variants)
 
     if (!variants.length) {
       return

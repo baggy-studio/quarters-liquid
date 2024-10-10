@@ -27,14 +27,20 @@ export default () => ({
     const variant = formData.get("id");
     const quantity = formData.get("quantity");
     const compareAtPrice = formData.get("properties[_compareAtPrice]");
+    const ooak = formData.get("properties[_ooak]");
 
     const payload = [
       {
         id: Number(variant),
         quantity: Number(quantity) || 1,
-        ...(compareAtPrice ? { properties: { _compareAtPrice: compareAtPrice } } : {})
+        properties: {
+          ...(ooak && { _ooak: ooak }),
+          ...(compareAtPrice && { _compareAtPrice: compareAtPrice })
+        }
       },
     ];
+
+    console.log(payload);
 
     await this.$store.cart.addLines(payload);
   },

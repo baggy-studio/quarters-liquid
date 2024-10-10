@@ -40,20 +40,20 @@
       </a>
     </h3>
     {% if variant.available == false %}
-      {% render 'product-status', type: 'sold-out' %}
+      {% render 'product-status', type: 'sold-out', product: product %}
     {% elsif product.tags contains 'Hold' %}
-      {% render 'product-status', type: 'on-hold' %}
-    {% elsif product.tags contains 'Inquire' %}
-      {% render 'product-status', type: 'inquire' %}
+      {% render 'product-status', type: 'on-hold', product: product %}
     {% elsif variant.available %}
-      {% if variant.compare_at_price > 0 %}
-        <div class="flex gap-1">
+      {% unless product.tags contains 'HidePrice' %}
+        {% if variant.compare_at_price > 0 %}
+          <div class="flex gap-1">
+            <p class="small-accent">{{ variant.price | money }}</p>
+            <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
+          </div>
+        {% else %}
           <p class="small-accent">{{ variant.price | money }}</p>
-          <p class="small-accent line-through opacity-50">{{ variant.compare_at_price | money }}</p>
-        </div>
-      {% else %}
-        <p class="small-accent">{{ variant.price | money }}</p>
-      {% endif %}
+        {% endif %}
+      {% endunless %}
     {% endif %}
   </div>
 </div>

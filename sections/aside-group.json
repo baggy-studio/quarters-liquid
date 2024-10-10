@@ -14,9 +14,9 @@
     "cart_Vtp9qk": {
       "type": "cart",
       "settings": {
-        "emptyBody": "<p>Your bag is empty.<\/p>",
+        "emptyBody": "<p>Your bag is empty.</p>",
         "emptyCTAText": "Back to Shop",
-        "emptyCTALink": "shopify:\/\/collections\/all"
+        "emptyCTALink": "shopify://collections/all"
       }
     },
     "newsletter_WETVt4": {
@@ -29,14 +29,13 @@
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
       "settings": {
-        "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
+        "content": "<p>We use cookies to remember your preferences and personalize your experience.</p>",
         "ctaText": "View Privacy Policy",
-        "ctaUrl": "shopify:\/\/pages\/privacy-policy"
+        "ctaUrl": "shopify://pages/privacy-policy"
       }
     },
     "grid_bpk4Lw": {
       "type": "grid",
-      "disabled": true,
       "settings": {
       }
     }

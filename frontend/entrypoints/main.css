@@ -373,12 +373,12 @@ input {
 }
 
 .utilty_template .utility-menu {
-    @apply w-full flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[var(--text-color)] lg:my-4 lg:pt-[48px] overflow-y-auto h-[400px] py-6 lg:pb-0 lg:sticky lg:top-[160px];
+    @apply w-full flex flex-col gap-y-[64px] lg:justify-between border-b lg:border-b-0 lg:border-r border-[var(--text-color)] lg:my-4 lg:pt-[48px] overflow-y-auto py-6 lg:pb-0 lg:sticky lg:top-[96px];
 }
 
 @media (min-width: 1024px) {
     .utilty_template .utility-menu {
-        height: calc(100vh - 186px);
+        height: calc(100vh - 116px);
     }
 }
 

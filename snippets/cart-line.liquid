@@ -29,6 +29,9 @@
       >
         <p class="flex flex-col small-accent col-span-4 lg:col-span-2 lg:pl-4">
           <span
+            x-money="line.final_price"
+          ></span>
+          <span
             class="line-through opacity-50"
             x-show="line?.properties?._compareAtPrice && line?.original_line_price == line?.final_line_price"
             x-text="line?.properties?._compareAtPrice"
@@ -38,12 +41,9 @@
             x-show="line?.original_line_price !== line?.final_line_price"
             x-money="line?.original_line_price"
           ></span>
-          <span
-            x-money="line.final_price"
-          ></span>
         </p>
-        <div class="relative flex items-start overflow-hidden col-span-2"> 
-          <div class="flex items-center justify-center w-[60px] relative" x-show="!line?.properties?._ooak">
+        <div class="relative flex items-start overflow-hidden col-span-2">
+          <div class="flex items-center justify-center w-[60px] relative">
             <button
               type="button"
               :disabled="$store.cart.loading"
@@ -60,6 +60,7 @@
             <button
               type="button"
               :disabled="$store.cart.loading"
+              x-show="!line?.properties?._ooak"
               @click="increaseQty(line.id, line.quantity)"
               title="Increase quantity"
               class="w-2 absolute right-0 h-2 disabled:cursor-wait disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"

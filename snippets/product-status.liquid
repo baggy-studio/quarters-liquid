@@ -1,9 +1,18 @@
+{% assign has_dot = true %}
+
+{% if type == 'sold-out' and product.tags contains 'OOAK' %}
+{% elsif type == 'sold-out' %}
+  {% assign has_dot = false %}
+{% endif %}
+
 {% if large %}
   <div
     class="
       flex gap-2 lg:gap-3 items-center
       {% unless type == 'inquire' %}
+       {% if has_dot %}
           before:w-[9px] before:h-[9px] lg:before:h-4 lg:before:w-4 before:bg-current before:rounded-full before:block before:shrink-0
+       {% endif %}
       {% endunless %}
     "
   >
@@ -24,7 +33,10 @@
     class="
       flex gap-2 items-center
       {% unless type == 'inquire' %}
+        {% if has_dot %}
           before:w-[9px] before:h-[9px] before:bg-current before:rounded-full before:block before:shrink-0
+        {% endif %}
+
       {% endunless %}
     "
   >

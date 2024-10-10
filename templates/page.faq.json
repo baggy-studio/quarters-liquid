@@ -16,7 +16,7 @@
         "headerTheme": "dark",
         "textColor": "#643600",
         "backgroundColor": "#f0da8f",
-        "footerTextColor": "#FAF8EC",
+        "footerTextColor": "#faf8ec",
         "footerBackgroundColor": "#643600"
       }
     },
@@ -33,8 +33,8 @@
         "faq_item_pV93nM": {
           "type": "faq_item",
           "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
+            "question": "Question",
+            "answer": "<p>Answer</p>"
           }
         },
         "faq_item_tPdP4J": {

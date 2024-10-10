@@ -159,7 +159,7 @@
           "settings": {
             "title": "Seasonal Spritz",
             "description": "<p>Bordiga aperitivo, Cap Corse blanc, spiced clementine, sparkling wine, club soda</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_e87PgU": {
@@ -167,7 +167,7 @@
           "settings": {
             "title": "Normandy Negroni",
             "description": "<p>Orchard Hill pommeau, Quinquina aperitif, blanc cermouth, aged cider vinegar</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_tnUJxk": {
@@ -175,15 +175,7 @@
           "settings": {
             "title": "Fig Adonis",
             "description": "<p>Vermouth di Torino, Olorosso sherry, Pedro Ximénez, Provençal fig</p>",
-            "price": ""
-          }
-        },
-        "item_Jc97fh": {
-          "type": "item",
-          "settings": {
-            "title": "Sherry Cobbler",
-            "description": "<p>Manzanilla sherry, Pedro Ximénez, lemon, blackberry and bay leaf jam</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_HPwETy": {
@@ -191,7 +183,7 @@
           "settings": {
             "title": "Martini",
             "description": "<p>Cocchi americano, blanc verjus, manzanilla sherry, citrus oleo, orange bitters</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_HQ3jiq": {
@@ -199,7 +191,7 @@
           "settings": {
             "title": "Fall Pimm's Cup",
             "description": "<p>Amaro Pasubio, ginger beer, lemon, rainwater Madeira, vin cotto</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "category_GHcRNF": {
@@ -213,7 +205,7 @@
           "settings": {
             "title": "Spicy Margarita (NA)",
             "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_Pf69AF": {
@@ -221,15 +213,7 @@
           "settings": {
             "title": "Spritz (NA)",
             "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
-            "price": ""
-          }
-        },
-        "item_rrxBJj": {
-          "type": "item",
-          "settings": {
-            "title": "Tiki (NA)",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "item_ac9grz": {
@@ -237,7 +221,7 @@
           "settings": {
             "title": "Negroni (NA)",
             "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
-            "price": ""
+            "price": "18"
           }
         }
       },
@@ -264,13 +248,11 @@
         "item_V78Tjn",
         "item_e87PgU",
         "item_tnUJxk",
-        "item_Jc97fh",
         "item_HPwETy",
         "item_HQ3jiq",
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",
-        "item_rrxBJj",
         "item_ac9grz"
       ],
       "settings": {

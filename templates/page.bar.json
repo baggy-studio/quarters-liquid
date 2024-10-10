@@ -47,7 +47,7 @@
         "section_nFCHzw"
       ],
       "settings": {
-        "link": "https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters",
+        "link": "https://resy.com/cities/new-york-ny/venues/quarters",
         "cta_text": "Make a Reservation"
       }
     },
@@ -57,13 +57,13 @@
         "desktop_nyL4iw": {
           "type": "desktop",
           "settings": {
-            "image": "shopify:\/\/shop_images\/bar-hero.png"
+            "image": "shopify://shop_images/bar-hero.png"
           }
         },
         "mobile_UgpmAx": {
           "type": "mobile",
           "settings": {
-            "image": "shopify:\/\/shop_images\/bar-mobile.png"
+            "image": "shopify://shop_images/bar-mobile.png"
           }
         }
       },
@@ -174,8 +174,8 @@
         "event_tpEA7L"
       ],
       "settings": {
-        "title": "<p>Private Events and <\/p><p>Professional photography<\/p>",
-        "body": "<p>Quarters is available to book for private events, from semi-private dinners for up to 16 guests to cocktail parties for 30 to 125 guests. Our third floor space with a large private dining room and commercial kitchen is scheduled to open in 2025. <\/p><p>On occasion, the space can also be rented for photo and video shoots.<\/p>",
+        "title": "<p>Private Events and </p><p>Professional photography</p>",
+        "body": "<p>Quarters is available to book for private events and occasional photoshoots. Please inquire for more details.</p>",
         "cta_link": "mailto:hello@shopquarters.com?subject=Quarters%3A%20Event%20Inquiry",
         "cta_text": "Inquire"
       }

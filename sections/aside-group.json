@@ -36,6 +36,7 @@
     },
     "grid_bpk4Lw": {
       "type": "grid",
+      "disabled": true,
       "settings": {
       }
     }

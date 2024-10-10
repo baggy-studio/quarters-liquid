@@ -9,34 +9,16 @@
         "default": "ORDERS + SHIPPING"
       },
       {
-        "type": "richtext",
-        "id": "category_1_body",
-        "label": "Category 1 Description",
-        "default": "<p>Description for Category 1 FAQs.</p>"
-      },
-      {
         "type": "text",
         "id": "category_2_title",
         "label": "Category 2 Title",
         "default": "ORDERS + SHIPPING"
       },
       {
-        "type": "richtext",
-        "id": "category_2_body",
-        "label": "Category 2 Description",
-        "default": "<p>Description for Category 2 FAQs.</p>"
-      },
-      {
         "type": "text",
         "id": "category_3_title",
         "label": "Category 3 Title",
         "default": "ORDERS + SHIPPING"
-      },
-      {
-        "type": "richtext",
-        "id": "category_3_body",
-        "label": "Category 3 Description",
-        "default": "<p>Description for Category 3 FAQs.</p>"
       }
     ],
     "blocks": [
@@ -123,10 +105,10 @@
         <div class="faq-items" x-data="{ openSection: null }">
           {% for block in section.blocks %}
             {% if block.type == category_type %}
-              <div id="{{ block.id }}" class="faq-item border-b border-current">
+              <div id="{{ block.id }}" class="faq-item grid grid-cols-9 gap-x-3 border-b border-current">
                 <button 
                   @click="openSection = openSection === '{{ block.id }}' ? null : '{{ block.id }}'" 
-                  class="faq-question body-sans w-full text-left flex items-center justify-between py-3"
+                  class="faq-question col-span-9 body-sans w-full text-left flex items-center justify-between py-3"
                 >
                   <span class="medium-serif">{{ block.settings.question }}</span>
                   <span
@@ -141,12 +123,12 @@
                   </span>
                 </button>
                 <div
-                  class="h-0 overflow-hidden transition-all duration-800 ease-in-out"
+                  class="h-0 col-span-8 overflow-hidden transition-all duration-800 ease-in-out"
                   x-ref="container-{{ block.id }}"
                   x-show="openSection === '{{ block.id }}'"
                   x-collapse.duration.800ms
                 >
-                  <div class="faq-answer medium-sans py-3">
+                  <div class="faq-answer medium-sans pb-3">
                     {{ block.settings.answer }}
                   </div>
                 </div>

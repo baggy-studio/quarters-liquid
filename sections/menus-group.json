@@ -25,7 +25,7 @@
           "settings": {
             "title": "Tinc Set Metode Ancestral (2023)",
             "description": "<p>Ramon Jané · Penedes, Spain</p>",
-            "price": ""
+            "price": "17"
           }
         },
         "item_paEfaz": {
@@ -33,7 +33,7 @@
           "settings": {
             "title": "Lambrusco (2021)",
             "description": "<p>Villa Picta · Lombardy, Italy</p>",
-            "price": ""
+            "price": "17"
           }
         },
         "item_WAycEp": {
@@ -41,7 +41,7 @@
           "settings": {
             "title": "Visio (2021)",
             "description": "<p>Koi Emilia · Emilia Romagna, Italy</p>",
-            "price": ""
+            "price": "23"
           }
         },
         "category_KfbFhq": {
@@ -55,7 +55,7 @@
           "settings": {
             "title": "Piantagrane (2022)",
             "description": "<p>Villa Job · Friuli, Italy</p>",
-            "price": ""
+            "price": "21"
           }
         },
         "item_V7FrbE": {
@@ -63,15 +63,7 @@
           "settings": {
             "title": "Schatz White (2023)",
             "description": "<p>Arndorfer Vereinter · Kamptal, Austria</p>",
-            "price": ""
-          }
-        },
-        "item_pekXfz": {
-          "type": "item",
-          "settings": {
-            "title": "Cal Ros (2023)",
-            "description": "<p>Amor Per La Terra · Catalonia, Spain</p>",
-            "price": ""
+            "price": "17"
           }
         },
         "item_heE8rJ": {
@@ -79,7 +71,7 @@
           "settings": {
             "title": "Empordà Connexió Còsmica (2023)",
             "description": "<p>Cosmic Vinyaters · Catalonia Spain</p>",
-            "price": ""
+            "price": "19"
           }
         },
         "category_hX8CnD": {
@@ -93,7 +85,7 @@
           "settings": {
             "title": "Jeudi 15 (2022)",
             "description": "<p>Vino di Anna · Sicily, Italy</p>",
-            "price": ""
+            "price": "22"
           }
         },
         "category_ARJMyX": {
@@ -107,7 +99,7 @@
           "settings": {
             "title": "Palmentino Rosso (2022)",
             "description": "<p>Vino di Anna · Sicily, Italy</p>",
-            "price": ""
+            "price": "19"
           }
         },
         "item_RkLHpc": {
@@ -115,7 +107,7 @@
           "settings": {
             "title": "Vendredi 13 (2021)",
             "description": "<p>Vino di Anna · Sicily, Italy</p>",
-            "price": ""
+            "price": "18"
           }
         },
         "category_UrGbTN": {
@@ -220,7 +212,7 @@
           "type": "item",
           "settings": {
             "title": "Spicy Margarita (NA)",
-            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave<\/p>",
+            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
             "price": ""
           }
         },
@@ -228,7 +220,7 @@
           "type": "item",
           "settings": {
             "title": "Spritz (NA)",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary<\/p>",
+            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
             "price": ""
           }
         },
@@ -236,7 +228,7 @@
           "type": "item",
           "settings": {
             "title": "Tiki (NA)",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters<\/p>",
+            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
             "price": ""
           }
         },
@@ -244,7 +236,7 @@
           "type": "item",
           "settings": {
             "title": "Negroni (NA)",
-            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange<\/p>",
+            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
             "price": ""
           }
         }
@@ -257,7 +249,6 @@
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",
-        "item_pekXfz",
         "item_heE8rJ",
         "category_hX8CnD",
         "item_tc6qM3",

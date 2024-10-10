@@ -1,5 +1,5 @@
 <div class="absolute top-0 left-0 h-[--infoHeight] w-full">
-  <div class="w-full flex items-center justify-center h-screen lg:top-0 lg:sticky">
+  <div class="w-full flex items-center justify-center h-svh lg:top-0 lg:sticky">
     <div
       :class="
         {
@@ -7,7 +7,7 @@
             'opacity-0': scrollY <= windowHeight / 2
           {% else %}
             'opacity-0': scrollY > windowHeight / 2
-          {% endif %}, 
+          {% endif %},
               'text-bone': theme === 'light'
         }
       "
@@ -55,28 +55,28 @@
     </div>
   {% endif %}
 </div>
-<div class="absolute top-0 left-0 h-[--barHeight] lg:h-[calc(var(--barHeight)+1rem)] w-full flex items-end">
-  <div class="px-4 bottom-0 sticky pb-4 w-full lg:grid lg:grid-cols-20 lg:gap-3">
-    <div
-      :class="
-        {
-          {% if mode == 'sticky' %}
-            'opacity-0': scrollY <= 16,
-            'pointer-events-auto': scrollY > 16
-          {% else %}
-            'opacity-0': scrollY > 16,
-            'pointer-events-auto': scrollY <= 16
-          {% endif %}
-        }
-      "
+<div
+  :class="
+    {
+      {% if mode == 'sticky' %}
+        'opacity-0': scrollY <= 16
+      {% else %}
+        'opacity-0': scrollY > 16,
 
-      class="
-               col-span-5 w-full lg:col-start-[16] contents lg:flex lg:items-end
-        {% if mode == 'sticky' %}
-               opacity-0 pointer-events-none
-              {% endif %}
-                duration-500 ease-in-out transition-opacity
-      "
+      {% endif %}
+    }
+  "
+  class="
+    {% if mode == 'sticky' %}
+                 opacity-0
+                {% endif %}
+                  duration-500 ease-in-out transition-opacity
+    absolute top-0 left-0 h-[--barHeight] lg:h-[calc(var(--barHeight)+1rem)] w-full flex items-end
+  "
+>
+  <div class="px-4 bottom-0 sticky touch:pb-8 pb-4 w-full lg:grid lg:grid-cols-20 lg:gap-3">
+    <div
+      class="               col-span-5 w-full lg:col-start-[16] contents lg:flex lg:items-end"
     >
       {% if mode == 'sticky' %}
         <a
@@ -84,6 +84,7 @@
           class="rez-button w-full"
           :class="
             {
+              'pointer-events-auto': scrollY > 16,
               'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
             }
           "
@@ -98,6 +99,11 @@
         <a
           title="{{ section.settings.cta_text }}"
           class="rez-button is-alt w-full"
+          :class="
+            {
+              'pointer-events-auto': scrollY <= 16
+            }
+          "
           href="{{ section.settings.link }}"
           target="_blank"
         >

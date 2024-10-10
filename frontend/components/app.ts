@@ -215,8 +215,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   onScroll() {
     this.scrollY = window.scrollY;
     this.isScrolling = true;
-    this.aboveTheFold = this.scrollY < window.innerHeight;
-
+    this.aboveTheFold = this.scrollY < (window.innerHeight - (window.innerHeight - document.documentElement.clientHeight));
     const watchScroll = darkHeaderOnScrollRoutes.includes(this.activeUrl);
 
     if (!this.aboveTheFold && watchScroll) {

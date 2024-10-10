@@ -141,28 +141,28 @@
           "type": "event",
           "settings": {
             "image": "shopify://shop_images/rez-2.png",
-            "caption": "Optional caption lorem ipsum dolor sit amet"
+            "caption": ""
           }
         },
         "event_aDUbQe": {
           "type": "event",
           "settings": {
             "image": "shopify://shop_images/demo-4.png",
-            "caption": "Optional caption lorem ipsum dolor sit amet"
+            "caption": ""
           }
         },
         "event_xtjYyV": {
           "type": "event",
           "settings": {
             "image": "shopify://shop_images/demo-1_e68c3233-0321-43d5-be71-523f825da1e8.png",
-            "caption": "Optional caption lorem ipsum dolor sit amet"
+            "caption": ""
           }
         },
         "event_tpEA7L": {
           "type": "event",
           "settings": {
             "image": "shopify://shop_images/rez-2_a1817c21-019e-4330-a387-2f664d277426.png",
-            "caption": "Optional caption lorem ipsum dolor sit amet"
+            "caption": ""
           }
         }
       },

@@ -299,6 +299,14 @@
             "heading": "Pastries"
           }
         },
+        "item_WAycEp": {
+          "type": "item",
+          "settings": {
+            "title": "Cacio e Pepe Scone",
+            "description": "",
+            "price": "7"
+          }
+        },
         "item_M9igxg": {
           "type": "item",
           "settings": {
@@ -313,14 +321,6 @@
             "title": "Seasonal Croissant",
             "description": "",
             "price": "12"
-          }
-        },
-        "item_WAycEp": {
-          "type": "item",
-          "settings": {
-            "title": "Cacio e Pepe Scone",
-            "description": "",
-            "price": "7"
           }
         },
         "category_KfbFhq": {
@@ -432,9 +432,9 @@
       },
       "block_order": [
         "category_Yycy4X",
+        "item_WAycEp",
         "item_M9igxg",
         "item_paEfaz",
-        "item_WAycEp",
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",

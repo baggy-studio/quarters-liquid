@@ -42,8 +42,8 @@
             x-money="line.final_price"
           ></span>
         </p>
-        <div class="relative flex items-start overflow-hidden col-span-2"> 
-          <div class="flex items-center justify-center w-[60px] relative" x-show="!line?.properties?._ooak">
+        <div class="relative flex items-start overflow-hidden col-span-2">
+          <div class="flex items-center justify-center w-[60px] relative">
             <button
               type="button"
               :disabled="$store.cart.loading"
@@ -60,6 +60,7 @@
             <button
               type="button"
               :disabled="$store.cart.loading"
+              x-show="!line?.properties?._ooak"
               @click="increaseQty(line.id, line.quantity)"
               title="Increase quantity"
               class="w-2 absolute right-0 h-2 disabled:cursor-wait disabled:opacity-50 flex items-center justify-center after:block after:absolute after:-inset-2 hover:opacity-50 transition-opacity duration-300 ease-linear"

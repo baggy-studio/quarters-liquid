@@ -77,12 +77,6 @@
     "bar_details_DAFdQ3": {
       "type": "bar-details",
       "blocks": {
-        "media_hpEAMa": {
-          "type": "media",
-          "settings": {
-            "caption": ""
-          }
-        },
         "media_k4T4RB": {
           "type": "media",
           "settings": {
@@ -113,7 +107,6 @@
         }
       },
       "block_order": [
-        "media_hpEAMa",
         "media_k4T4RB",
         "media_naQ3bb",
         "media_Mn7Rix",

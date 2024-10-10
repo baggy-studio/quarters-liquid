@@ -154,6 +154,7 @@
         "event_dfQThT": {
           "type": "event",
           "settings": {
+            "image": "shopify://shop_images/051724_QUARTERS_EVENT_084.jpg",
             "caption": ""
           }
         },

@@ -176,7 +176,7 @@
       "settings": {
         "title": "<p>Private Events and </p><p>Professional photography</p>",
         "body": "<p>Quarters is available to book for private events and occasional photoshoots. Please inquire for more details.</p>",
-        "cta_link": "mailto:hello@shopquarters.com?subject=Quarters%3A%20Event%20Inquiry",
+        "cta_link": "mailto:events@shopquarters.com",
         "cta_text": "Inquire"
       }
     }

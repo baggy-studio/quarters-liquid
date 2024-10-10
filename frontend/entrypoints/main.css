@@ -267,7 +267,7 @@
 #main,
 #product-variant-media,
 #utility,
-#header {
+#page-settings {
     @apply transition-opacity;
     will-change: opacity;
 }
@@ -277,7 +277,7 @@ html.is-animating #main,
 #product-grid.is-animating,
 #product-variant-media.is-animating,
 #utility.is-animating,
-#header.is-animating {
+#page-settings.is-animating {
     opacity: 0;
 }
 
@@ -286,7 +286,7 @@ html.is-changing #main,
 #product-grid.is-changing,
 #product-variant-media.is-changing,
 #utility.is-changing,
-#header.is-changing {
+#page-settings.is-changing {
     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }
 
@@ -295,7 +295,7 @@ html.is-leaving #main,
 #product-grid.is-leaving,
 #product-variant-media.is-leaving,
 #utility.is-leaving,
-#header.is-leaving {
+#page-settings.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }
 

@@ -2,7 +2,7 @@
   snippets/hours-and-info-fullscreen-overlay.liquid
 {% endcomment %}
 
-<template x-teleport="#contents">
+<template x-teleport="body">
   <div
     x-data="{ showCursor: true }"
     class="contents"
@@ -29,7 +29,6 @@
           data-fullscreen
           :data-count="media.length"
           class="w-full lg:origin-top-left relative h-full lg:will-change-[transform,width,height] lg:translate-x-[--x] lg:translate-y-[--y] lg:w-[--width] lg:h-[--height]"
-          :style="`--x: ${transformX}px; --y: ${transformY}px; --width: ${transformWidth}px; --height: ${transformHeight}px;`"
         >
           <template x-for="(item, index) in media" :key="index">
             <li 

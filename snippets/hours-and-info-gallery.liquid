@@ -4,28 +4,28 @@
 
 
 <div class="relative">
-    <!-- Desktop view-->
-    <div class="hidden lg:grid grid-cols-12 gap-x-3">
-      {% for block in section.blocks limit:3 %}
-        {% if block.type == 'image' %}
-          <div class="col-span-4">
-            {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-    {% render 'hours-and-info-fullscreen-overlay' %}
-</div>
-
-<!-- Mobile view-->
-<div x-data="carousel({ align: 'start', dragFree: true, skipSnaps: true, trimSnaps: true })"  class="embla relative lg:overflow-hidden lg:hidden">
-  <div class="embla__container flex" x-ref="viewport">
-    {% for block in section.blocks %}
+  <!-- Desktop view -->
+  <div class="hidden lg:grid grid-cols-12 gap-x-3">
+    {% for block in section.blocks limit:3 %}
       {% if block.type == 'image' %}
-        {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
+        <div class="col-span-4">
+          {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
 
+  <!-- Mobile view -->
+  <div x-data="carousel({ align: 'start', dragFree: true, skipSnaps: true, trimSnaps: true })" class="embla relative lg:overflow-hidden lg:hidden">
+    <div class="embla__container flex" x-ref="viewport">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Fullscreen overlay (rendered once, outside of both views) -->
   {% render 'hours-and-info-fullscreen-overlay' %}
 </div>

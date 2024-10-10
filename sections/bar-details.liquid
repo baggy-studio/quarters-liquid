@@ -23,7 +23,7 @@
           <div class="subheading rotate-[5deg] richtext-hover-only">
             {{ section.settings.address }}
           </div>
-          <div class="medium-italic ml-auto rotate-[-2.5deg] w-full max-w-[161px] [&>p:first-child]:medium-accent  [&>p:last-child]:ml-auto prose-p:w-max richtext-hover-only">
+          <div class="medium-italic ml-auto rotate-[-2.5deg] w-full max-w-[161px] [&>p:first-child>a]:!not-italic [&>p:first-child]:medium-accent  [&>p:last-child]:ml-auto prose-p:w-max richtext-hover-only">
             {{ section.settings.phone }}
           </div>
         </div>
@@ -67,7 +67,7 @@
         </ul>
       </div>
       <div
-        class="hidden lg:block absolute top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none"
+        class="hidden lg:block absolute top-0 left-0 w-[calc(100%+2rem)] lg:w-full bottom-0 pointer-events-none z-[2]"
       >
         <ul
           class="flex lg:justify-end lg:items-end lg:flex-col gap-y-0.5 lg:p-0.5 lg:top-0 lg:sticky h-max lg:h-screen -ml-4 lg:m-0"

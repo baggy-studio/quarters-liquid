@@ -13,7 +13,7 @@ export default () => ({
       [
         AutoScroll({
           startDelay: 0,
-          speed: 1,
+          speed: 0.65,
           playOnInit: true,
           stopOnInteraction: false,
           stopOnFocusIn: false,

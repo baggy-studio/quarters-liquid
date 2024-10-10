@@ -31,6 +31,8 @@ export const store = {
     async open() {
         this.visible = true;
 
+        this.lockScroll();
+
         await animate(this.container, {
             transform: "translateX(0%)",
         }, { duration: 1.2, easing: expoInOut }).finished
@@ -42,6 +44,14 @@ export const store = {
             transform: "translateX(100%)",
         }, { duration: 1.2, easing: expoInOut }).finished
 
+        this.unlockScroll();
+
+    },
+    lockScroll() {
+        document.body.style.overflow = 'hidden';
+    },
+    unlockScroll() {
+        document.body.style.overflow = 'auto';
     },
     toggle() {
         if (this.visible) {

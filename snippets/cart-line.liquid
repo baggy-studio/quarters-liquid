@@ -29,6 +29,9 @@
       >
         <p class="flex flex-col small-accent col-span-4 lg:col-span-2 lg:pl-4">
           <span
+            x-money="line.final_price"
+          ></span>
+          <span
             class="line-through opacity-50"
             x-show="line?.properties?._compareAtPrice && line?.original_line_price == line?.final_line_price"
             x-text="line?.properties?._compareAtPrice"
@@ -37,9 +40,6 @@
             class="line-through opacity-50"
             x-show="line?.original_line_price !== line?.final_line_price"
             x-money="line?.original_line_price"
-          ></span>
-          <span
-            x-money="line.final_price"
           ></span>
         </p>
         <div class="relative flex items-start overflow-hidden col-span-2">

@@ -4,7 +4,7 @@
     :class="{ 'opacity-0': !visible || visible && animating }"
   >
     <div class="w-full flex items-center justify-between font-droulers text-[13px] leading-none">
-      <p x-text="selectedIndex + 1">1</p>
+      <p x-text="String(selectedIndex + 1).padStart(2, '0')">01</p>
       <p>/</p>
       <p x-text="String(media.length).padStart(2, '0')">01</p>
     </div>

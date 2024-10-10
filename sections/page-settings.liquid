@@ -1,4 +1,4 @@
-<div id="page-settings" class="contents">
+<div id="page-settings" class="contents" x-data>
   <style>
      :root {
        --text-color: {{ section.settings.textColor }};
@@ -12,7 +12,6 @@
          --header-theme: #643600;
        {% endif %}
      }
-
 
      body, .body-bg, #utility-nav {
        color: var(--text-color) !important;
@@ -43,6 +42,8 @@
       class="absolute top-[-120px] lg:top-[-160px] left-0 w-full bottom-0 pointer-events-none nav-gradient z-20"
     ></div>
   {% endif %}
+
+  <div class="contents" x-init="$nextTick(() => $dispatch('set-theme', '{{ section.settings.headerTheme }}'))"></div>
 </div>
 
 {% schema %}

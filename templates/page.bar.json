@@ -140,7 +140,7 @@
         "event_aUAWHb": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/rez-2.png",
+            "image": "shopify://shop_images/HFA_4863.jpg",
             "caption": ""
           }
         },
@@ -151,17 +151,23 @@
             "caption": ""
           }
         },
+        "event_dfQThT": {
+          "type": "event",
+          "settings": {
+            "caption": ""
+          }
+        },
         "event_xtjYyV": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-1_e68c3233-0321-43d5-be71-523f825da1e8.png",
+            "image": "shopify://shop_images/HFA_8440_2.jpg",
             "caption": ""
           }
         },
         "event_tpEA7L": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/rez-2_a1817c21-019e-4330-a387-2f664d277426.png",
+            "image": "shopify://shop_images/HFA_1110.jpg",
             "caption": ""
           }
         }
@@ -170,6 +176,7 @@
         "event_WqWqk6",
         "event_aUAWHb",
         "event_aDUbQe",
+        "event_dfQThT",
         "event_xtjYyV",
         "event_tpEA7L"
       ],

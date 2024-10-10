@@ -119,9 +119,9 @@
         "item_gJ7BVg": {
           "type": "item",
           "settings": {
-            "title": "Saison",
+            "title": "Saison (750ml)",
             "description": "<p>Cyclic · Catalonia, Spain</p>",
-            "price": ""
+            "price": "28"
           }
         },
         "item_iyPHcM": {
@@ -129,7 +129,7 @@
           "settings": {
             "title": "Nazionale",
             "description": "<p>Baladin · Piedmont, Italy</p>",
-            "price": ""
+            "price": "14"
           }
         },
         "item_eQkA7P": {
@@ -137,7 +137,7 @@
           "settings": {
             "title": "L'Ippa",
             "description": "<p>Baladin · Piedmont, Italy</p>",
-            "price": ""
+            "price": "14"
           }
         },
         "item_9nTrAn": {
@@ -145,7 +145,7 @@
           "settings": {
             "title": "Nora",
             "description": "<p>Baladin · Piedmont, Italy</p>",
-            "price": ""
+            "price": "14"
           }
         },
         "category_CMfHpD": {
@@ -340,14 +340,6 @@
             "heading": "Juice & Tonics"
           }
         },
-        "item_RkLHpc": {
-          "type": "item",
-          "settings": {
-            "title": "Arnold Palmer",
-            "description": "<p>Black tea, lemonade</p>",
-            "price": "7"
-          }
-        },
         "item_hXfRjw": {
           "type": "item",
           "settings": {
@@ -414,7 +406,6 @@
         "item_pekXfz",
         "item_VdPMNd",
         "category_ARJMyX",
-        "item_RkLHpc",
         "item_hXfRjw",
         "item_rrxBJj",
         "item_ac9grz",

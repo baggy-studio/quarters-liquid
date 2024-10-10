@@ -303,7 +303,7 @@
           "type": "item",
           "settings": {
             "title": "Plain Croissant",
-            "description": "<p>Seasonal Jam & Butter</p>",
+            "description": "",
             "price": "8"
           }
         },
@@ -364,61 +364,69 @@
         "category_ARJMyX": {
           "type": "category",
           "settings": {
-            "heading": "Red + Rose"
+            "heading": "Juice & Tonics"
           }
         },
         "item_RkLHpc": {
           "type": "item",
           "settings": {
-            "title": "Vendredi 13 (2021)",
-            "description": "<p>Nerello Mascalese, Nerello Cappuccio, Grenache, Minnella, Carricante · Sicily, Italy</p>",
-            "price": ""
+            "title": "Arnold Palmer",
+            "description": "<p>Black tea, lemonade</p>",
+            "price": "7"
           }
         },
         "item_hXfRjw": {
           "type": "item",
           "settings": {
-            "title": "Tktk Tktktk (20##)",
-            "description": "<p>Tktk Grenache, Minnella, Carricante · Sicily, Italy</p>",
-            "price": ""
-          }
-        },
-        "category_GHcRNF": {
-          "type": "category",
-          "settings": {
-            "heading": "Zero-proof Cocktails"
-          }
-        },
-        "item_egqijV": {
-          "type": "item",
-          "settings": {
-            "title": "Margarita",
-            "description": "<p>Amalve NA, lime juice, Seedlip Garden, spicy agave</p>",
-            "price": "20"
-          }
-        },
-        "item_Pf69AF": {
-          "type": "item",
-          "settings": {
-            "title": "Spritz",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
-            "price": ""
+            "title": "Fizz",
+            "description": "<p>Ginger, lemon, honey, sparkling water</p>",
+            "price": "8"
           }
         },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
-            "title": "Tiki",
-            "description": "<p>Aplós Arise, NA ginger liqueur, pistachio milk, lime juice, Polynesian bitters</p>",
-            "price": ""
+            "title": "Seasonal Shrub",
+            "description": "<p>Market fruit, sparkling water, salt</p>",
+            "price": "8"
           }
         },
         "item_ac9grz": {
           "type": "item",
           "settings": {
-            "title": "Negroni",
-            "description": "<p>Tktk NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
-            "price": ""
+            "title": "Turmeric Tonic",
+            "description": "<p>Turmeric, lemon, ginger, sparkling water</p>",
+            "price": "8"
+          }
+        },
+        "item_GmPmMX": {
+          "type": "item",
+          "settings": {
+            "title": "Green Juice",
+            "description": "<p>Kale, cucumber, celery, kiwi, ginger</p>",
+            "price": "12"
+          }
+        },
+        "category_GHcRNF": {
+          "type": "category",
+          "settings": {
+            "heading": "Sweets"
+          }
+        },
+        "item_egqijV": {
+          "type": "item",
+          "settings": {
+            "title": "Olive Oil Cake",
+            "description": "",
+            "price": "9"
+          }
+        },
+        "item_Pf69AF": {
+          "type": "item",
+          "settings": {
+            "title": "Seasonal Galette",
+            "description": "",
+            "price": "9"
           }
         }
       },
@@ -435,11 +443,12 @@
         "category_ARJMyX",
         "item_RkLHpc",
         "item_hXfRjw",
+        "item_rrxBJj",
+        "item_ac9grz",
+        "item_GmPmMX",
         "category_GHcRNF",
         "item_egqijV",
-        "item_Pf69AF",
-        "item_rrxBJj",
-        "item_ac9grz"
+        "item_Pf69AF"
       ],
       "settings": {
         "title": "Daytime",

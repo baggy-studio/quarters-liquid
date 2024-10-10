@@ -44,7 +44,7 @@
     >
       {% for block in section.blocks %}
         {% if block.type == 'category' %}
-          <li class="col-span-10 lg:col-span-8 flex flex-col gap-y-6 lg:col-start-2">
+          <li class="col-span-10 lg:col-span-9 flex flex-col gap-y-6 lg:col-start-2">
             <h5 class="subheading">{{ block.settings.heading }}</h5>
             <div class="flex flex-col gap-y-6">
               {% for block in section.blocks offset: forloop.index %}

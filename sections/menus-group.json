@@ -284,7 +284,7 @@
       ],
       "settings": {
         "title": "Drinks",
-        "image": "shopify://shop_images/bar-menu-1.png",
+        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
         "details": "<p>Menu is subject to change.<br/>Full bottle list available upon request. </p>",
         "color_scheme": "dark",
         "background_color": "#d8d012"
@@ -452,7 +452,7 @@
       ],
       "settings": {
         "title": "Daytime",
-        "image": "shopify://shop_images/bar-2.png",
+        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
         "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any food allergies or dietary restrictions.</p>",
         "color_scheme": "light",
         "background_color": "#826c1a"
@@ -660,7 +660,7 @@
       ],
       "settings": {
         "title": "Evening",
-        "image": "shopify://shop_images/bar-3.png",
+        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
         "details": "<p>Menu items may contain or come in contact with wheat, eggs, nuts, and dairy. Please notify your server of any allergies or dietary restrictions.</p>",
         "color_scheme": "light",
         "background_color": "#022b26"

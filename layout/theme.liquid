@@ -52,7 +52,16 @@
         {% section 'header' %}
         <div class="relative will-change-transform lg:translate-y-[--transform-y]" x-ref="main">
           <main id="main">
-            <div class="min-h-[100svh] z-[1] relative bg-bone-tint body-bg">
+            {% assign utility_pages = "page.legal,page.faq,page.shipping,page.privacy" | split: "," %}
+            {% assign is_utility_page = false %}
+
+            {% for page_type in utility_pages %}
+              {% if template == page_type %}
+                {% assign is_utility_page = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <div class="{% if is_utility_page == false %}min-h-[100svh]{% endif %} z-[1] relative bg-bone-tint body-bg">
 
               {{ content_for_layout }}
               {% if template.suffix == 'bar' %}

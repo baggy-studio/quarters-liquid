@@ -1,14 +1,13 @@
 <div id="utility-nav" class="w-full">
   <ul class="flex flex-col gap-y-2">
     {% for link in linklists[menu].links %}
-      <li class="grid grid-cols-10 gap-x-3 items-center ">
-        <span class="col-span-1 font-droulers text-[20px] lg:text-[22px] {% if link.current or link.active %}opacity-100{% else %}opacity-50{% endif %} transition-opacity duration-300">
+      <li class="grid grid-cols-10 gap-x-3 items-center group">
+        <span class="col-span-1 font-droulers text-[20px] lg:text-[22px] {% if link.current or link.active %}opacity-100{% else %}opacity-50 group-hover:opacity-100{% endif %} transition-opacity duration-300">
           {% assign number = forloop.index | prepend: '0' | slice: -2, 2 %}
           {{ number }}
         </span>
-        <a href="{{ link.url }}" 
-           
-           class="col-start-3 col-span-8 lg:col-span-9 flex items-center {% if link.current or link.active %}underline opacity-100{% else %}opacity-50{% endif %} hover:opacity-100 transition-opacity duration-300">
+        <a href="{{ link.url }}"
+           class="no-scroll col-start-3 col-span-8 lg:col-span-9 flex items-center {% if link.current or link.active %}underline opacity-100{% else %}opacity-50 group-hover:opacity-100{% endif %} transition-opacity duration-300">
           <span class="flex items-center text-[20px] lg:text-2xl">
             {{ link.title }}
           </span>

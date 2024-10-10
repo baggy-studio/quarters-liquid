@@ -22,7 +22,7 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns'];
+const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns', '/pages/terms-and-conditions'];
 const hideHeaderRoutes = ['/', '/pages/the-bar'];
 const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 
@@ -53,9 +53,11 @@ export default (activeUrl: string = window.location.pathname) => ({
         this.closeMenu();
       }
 
-      if (!lightRoutes.includes(visit.to.url) || (lightRoutes.includes(visit.from.url) && !lightRoutes.includes(visit.to.url))) {
-        this.activeUrl = visit.to.url;
-        this.setTheme('dark');
+      const fromTheme = this.getThemeForUrl(visit.from.url);
+      const toTheme = this.getThemeForUrl(visit.to.url);
+
+      if (fromTheme !== toTheme) {
+        this.startColorTransition(fromTheme, toTheme);
       }
     });
 
@@ -76,6 +78,46 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     window.addEventListener('scroll', this.onScroll.bind(this));
   },
+  getThemeForUrl(url: string): 'light' | 'dark' {
+    return lightRoutes.includes(url) ? 'light' : 'dark';
+  },
+  startColorTransition(fromTheme: 'light' | 'dark', toTheme: 'light' | 'dark') {
+    const fromColor = fromTheme === 'light' ? '#F4EED0' : '#643600';
+    const toColor = toTheme === 'light' ? '#F4EED0' : '#643600';
+
+    animate(
+      (progress) => {
+        const currentColor = this.interpolateColor(fromColor, toColor, progress);
+        this.updatePageColors(currentColor);
+      },
+      { duration: 0.3, easing: expoInOut }
+    );
+  },
+  interpolateColor(fromColor: string, toColor: string, progress: number): string {
+    const from = this.hexToRgb(fromColor);
+    const to = this.hexToRgb(toColor);
+
+    const r = Math.round(from.r + (to.r - from.r) * progress);
+    const g = Math.round(from.g + (to.g - from.g) * progress);
+    const b = Math.round(from.b + (to.b - from.b) * progress);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  },
+
+  hexToRgb(hex: string): { r: number, g: number, b: number } {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : { r: 0, g: 0, b: 0 };
+  },
+  updatePageColors(color: string) {
+    this.headerColor = color;
+    document.documentElement.style.setProperty('--header-theme', color);
+    // You may need to update other color-related properties here
+  },
+
   getTheme(toUrl: string) {
     if (lightRoutes.includes(toUrl)) {
       return this.setTheme('light');

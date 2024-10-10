@@ -50,7 +50,8 @@ export const swup = new Swup({
     new SwupA11yPlugin(),
     new SwupScrollPlugin({
       shouldResetScrollPosition: (link: Element) => {
-        return !link.matches('.no-scroll')
+        const href = link.getAttribute('href') || '';
+        return !link.matches('.no-scroll') && !isUtilityPage(href);
       },
       doScrollingRightAway: false,
       animateScroll: {

@@ -9,3 +9,5 @@ export function expoInOut(t) {
 export function cubicInOut(t) {
     return t < 0.5 ? 4.0 * t * t * t : 0.5 * Math.pow(2.0 * t - 2.0, 3.0) + 1.0;
 }
+
+export const easeOutQuad = t => 1 - (1 - t) * (1 - t);

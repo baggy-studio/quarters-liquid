@@ -4,7 +4,7 @@
       <div class="w-full bottom-0 sticky h-screen lg:h-max">
         <div
           x-ref="footer"
-          class="w-full h-full flex flex-col justify-between footer-top-padding lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany footer-bg text-bone gap-y-12 lg:gap-y-24"
+          class="w-full lg:h-full flex flex-col justify-between footer-top-padding lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany footer-bg text-bone gap-y-12 lg:gap-y-24"
         >
           <div class="px-4 w-full flex flex-col lg:grid lg:grid-cols-20 gap-2 lg:gap-3">
             <ul class="hidden lg:grid grid-cols-3 gap-3 col-span-9">
@@ -60,7 +60,7 @@
               {% endif %}
             </ul>
           </div>
-          <div class="px-4 w-full flex flex-col-reverse gap-12 items-end lg:grid lg:grid-cols-20 lg:gap-3 logo-bg">
+          <div class="px-4 w-full flex flex-col-reverse gap-12 items-end lg:grid lg:grid-cols-20 lg:gap-3 logo-bg h-full">
             <div class="flex lg:items-end lg:col-span-9 lg:pl-[30px] w-full">
               <a
                 href="/"
@@ -93,7 +93,7 @@
           </div>
         </div>
         <div class="overflow-hidden" x-collapse.duration.1200ms x-show="siteCredits">
-          <div class="w-full h-[108px] lg:h-10 text-mahogany bg-chartreuse px-4 flex flex-col justify-between py-4 lg:py-0 lg:flex-row lg:items-center richtext medium-accent">
+          <div class="w-full h-[108px] lg:h-10 text-mahogany bg-chartreuse px-4 gap-y-4 flex flex-col justify-between py-4 lg:py-0 lg:flex-row lg:items-center richtext medium-accent">
             <div class="contents">
               {{ section.settings.credits }}
             </div>

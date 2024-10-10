@@ -49,18 +49,8 @@ export default () => ({
             height,
             aspectRatio
           }
-        });
-  
-        this.mediaCount = this.media.length;
-        fullscreenElement.dataset.count = this.mediaCount.toString();
-
-        if (this.media.length > 0) {
-          this.selectedIndex = Math.min(this.selectedIndex, this.media.length - 1);
-          this.resize();
-        } else {
-          console.error('No media items found');
-        }
-      }, 100);
+        })
+      }, 100)
     }
 
     this.contentReplace()
@@ -168,18 +158,7 @@ export default () => ({
     container?.scrollTo({ top: 0 })
   },
   nextImage() {
-    if (this.mediaCount === 0) {
-      console.warn('No media items available');
-      return;
-    }
-  
     this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
-    
-    this.$nextTick(() => {
-      this.resize();
-      this.$dispatch('fullscreen:index', this.selectedIndex);
-      document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
-    });
   },
   advanceImage(index: number) {
     this.selectedIndex = index
@@ -261,10 +240,6 @@ export default () => ({
     return (this.selectedIndex + 1) % this.mediaCount;
   }, 
   get activeMedia() {
-    if (!this.media || this.media.length === 0) {
-      console.warn('No media items available');
-      return null;
-    }
-    return this.media[this.selectedIndex] || null;
+    return this.media[this.selectedIndex]
   }
 });

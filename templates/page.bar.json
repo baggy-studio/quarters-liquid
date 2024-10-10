@@ -134,7 +134,7 @@
           "type": "event",
           "settings": {
             "image": "shopify://shop_images/demo-1.png",
-            "caption": "Optional caption lorem ipsum dolor sit amet"
+            "caption": ""
           }
         },
         "event_aUAWHb": {

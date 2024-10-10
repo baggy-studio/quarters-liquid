@@ -41,10 +41,6 @@ export default () => ({
             bg: this.backgroundColor 
         });
         this.$dispatch('set-theme', this.getThemeFromColor(this.headerTheme));
-        this.$dispatch('set-footer-colors', { 
-            text: this.footerTextColor, 
-            bg: this.footerBackgroundColor 
-        });
         console.log('Color data dispatched', {
             textColor: this.textColor,
             backgroundColor: this.backgroundColor,
@@ -58,7 +54,6 @@ export default () => ({
         console.log('Resetting colors');
         this.$dispatch('set-colors', { text: null, bg: null });
         this.$dispatch('set-theme', null);
-        this.$dispatch('set-footer-colors', { text: null, bg: null });
         console.log('Colors reset');
     },
 

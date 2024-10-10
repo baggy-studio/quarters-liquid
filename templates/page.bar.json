@@ -77,6 +77,12 @@
     "bar_details_DAFdQ3": {
       "type": "bar-details",
       "blocks": {
+        "media_hpEAMa": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
         "media_k4T4RB": {
           "type": "media",
           "settings": {
@@ -87,7 +93,7 @@
         "media_naQ3bb": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2024-09-12_at_1.43.59_PM_1.png",
+            "image": "shopify://shop_images/Quarters_Bar_WJL_5.jpg",
             "caption": "Apéro"
           }
         },
@@ -107,6 +113,7 @@
         }
       },
       "block_order": [
+        "media_hpEAMa",
         "media_k4T4RB",
         "media_naQ3bb",
         "media_Mn7Rix",

@@ -42,36 +42,12 @@
             "gallery_image": "shopify://shop_images/57473c9422d3c5235b1bec9c47daf74b_7f3e057b-75aa-4b57-a08e-9909e1c28895.jpg",
             "caption": "The bar"
           }
-        },
-        "image_8JycpK": {
-          "type": "image",
-          "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Bar_WJL_10_5.png",
-            "caption": ""
-          }
-        },
-        "image_YxdLVM": {
-          "type": "image",
-          "settings": {
-            "gallery_image": "shopify://shop_images/b1bb18d40637fcf817576ae6e9629e3f.jpg",
-            "caption": "The Bedroom"
-          }
-        },
-        "image_pWqeLC": {
-          "type": "image",
-          "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Bar_WJL_10_4.png",
-            "caption": ""
-          }
         }
       },
       "block_order": [
         "image_8Xfmi9",
         "image_7qbKfa",
-        "image_aP3QXC",
-        "image_8JycpK",
-        "image_YxdLVM",
-        "image_pWqeLC"
+        "image_aP3QXC"
       ],
       "settings": {
         "store_address": "<p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br/>New York, N.Y. 10013</a></p>",

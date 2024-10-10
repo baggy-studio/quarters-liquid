@@ -28,7 +28,7 @@
           x-ref="fullscreen"
           data-fullscreen
           :data-count="media.length"
-          class="w-full lg:origin-top-left relative h-full lg:will-change-[transform,width,height] lg:translate-x-[--x] lg:translate-y-[--y] lg:w-[--width] lg:h-[--height]"
+          class="origin-top-left relative will-change-[transform,width,height] translate-x-[--x] translate-y-[--y] w-[--width] h-[--height]"
         >
           <template x-for="(item, index) in media" :key="index">
             <li 

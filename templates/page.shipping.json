@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "wrapper": "div.utilty_template",
   "sections": {
@@ -7,7 +16,7 @@
         "headerTheme": "light",
         "textColor": "#f4eed0",
         "backgroundColor": "#022b26",
-        "footerTextColor": "#FAF8EC",
+        "footerTextColor": "#faf8ec",
         "footerBackgroundColor": "#643600"
       }
     },
@@ -15,7 +24,7 @@
       "type": "utility-menu",
       "settings": {
         "menu": "utility-nav",
-        "secondary_text": "Tktk Shipping and Returns secondary text. If you have any questions, please email hello@shopquarters.com."
+        "secondary_text": "If you have any questions, please email hello@shopquarters.com."
       }
     },
     "main": {

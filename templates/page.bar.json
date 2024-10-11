@@ -137,13 +137,6 @@
             "caption": ""
           }
         },
-        "event_aUAWHb": {
-          "type": "event",
-          "settings": {
-            "image": "shopify://shop_images/HFA_4863.jpg",
-            "caption": ""
-          }
-        },
         "event_aDUbQe": {
           "type": "event",
           "settings": {
@@ -168,7 +161,6 @@
       },
       "block_order": [
         "event_WqWqk6",
-        "event_aUAWHb",
         "event_aDUbQe",
         "event_dfQThT",
         "event_xtjYyV"

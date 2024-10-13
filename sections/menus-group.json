@@ -198,7 +198,7 @@
           "type": "item",
           "settings": {
             "title": "Martini",
-            "description": "<p>Cocchi americano, blanc verjus, manzanilla sherry, citrus oleo, orange bitters</p>",
+            "description": "<p>Bianco aperitivo, blanc verjus, citrus oleo</p>",
             "price": "18"
           }
         },
@@ -206,7 +206,7 @@
           "type": "item",
           "settings": {
             "title": "Fall Pimm's Cup",
-            "description": "<p>Amaro Pasubio, ginger beer, lemon, rainwater Madeira, vin cotto</p>",
+            "description": "<p>Vino amaro, ginger beer, lemon, vin cotto</p>",
             "price": "18"
           }
         },

@@ -228,7 +228,7 @@
           "type": "item",
           "settings": {
             "title": "Spritz (NA)",
-            "description": "<p>Martini Vibrante, NA sparkling wine, NA elderflower liqueur, rosemary</p>",
+            "description": "<p>Martini Vibrante, NA sparkling wine, elderflower, rosemary</p>",
             "price": "18"
           }
         },
@@ -236,7 +236,7 @@
           "type": "item",
           "settings": {
             "title": "Negroni (NA)",
-            "description": "<p>NA gin, Lyre's Aperitif Rosso, Italian orange</p>",
+            "description": "<p>NA gin, Lyre’s Aperitif Rosso, Lyre’s Italian orange</p>",
             "price": "18"
           }
         }

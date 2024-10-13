@@ -136,7 +136,7 @@
           "type": "item",
           "settings": {
             "title": "Saison (750ml)",
-            "description": "<p>Cyclic · Catalonia, Spain</p>",
+            "description": "<p>Cyclic, Catalonia, Spain</p>",
             "price": "28"
           }
         },
@@ -144,7 +144,7 @@
           "type": "item",
           "settings": {
             "title": "Nazionale",
-            "description": "<p>Baladin · Piedmont, Italy</p>",
+            "description": "<p>Baladin, Piedmont, Italy</p>",
             "price": "14"
           }
         },

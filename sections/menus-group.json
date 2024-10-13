@@ -174,7 +174,7 @@
           "type": "item",
           "settings": {
             "title": "Seasonal Spritz",
-            "description": "<p>Bordiga aperitivo, Cap Corse blanc, spiced clementine, sparkling wine, club soda</p>",
+            "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
             "price": "18"
           }
         },
@@ -182,7 +182,7 @@
           "type": "item",
           "settings": {
             "title": "Normandy Negroni",
-            "description": "<p>Orchard Hill pommeau, Quinquina aperitif, blanc cermouth, aged cider vinegar</p>",
+            "description": "<p>Pommeau, blanc vermouth, gentiane</p>",
             "price": "18"
           }
         },

@@ -118,6 +118,14 @@
             "price": "20"
           }
         },
+        "item_MpJVbn": {
+          "type": "item",
+          "settings": {
+            "title": "Roero Renesio Riserva (2011)",
+            "description": "<p>Malvira, Piedmont, Italy</p>",
+            "price": "30"
+          }
+        },
         "category_UrGbTN": {
           "type": "category",
           "settings": {
@@ -248,6 +256,7 @@
         "category_ARJMyX",
         "item_VdPMNd",
         "item_RkLHpc",
+        "item_MpJVbn",
         "category_UrGbTN",
         "item_gJ7BVg",
         "item_iyPHcM",

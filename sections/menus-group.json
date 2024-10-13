@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Menus",
   "type": "aside",
@@ -26,6 +26,14 @@
             "title": "Tinc Set Metode Ancestral (2023)",
             "description": "<p>Ramon Jané · Penedes, Spain</p>",
             "price": "17"
+          }
+        },
+        "item_mCqE3h": {
+          "type": "item",
+          "settings": {
+            "title": "Champagne L’Esquisse",
+            "description": "<p>Mousse Fils, Champagne, France</p>",
+            "price": "34"
           }
         },
         "item_paEfaz": {
@@ -228,6 +236,7 @@
       "block_order": [
         "category_Yycy4X",
         "item_M9igxg",
+        "item_mCqE3h",
         "item_paEfaz",
         "item_WAycEp",
         "category_KfbFhq",

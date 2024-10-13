@@ -137,6 +137,13 @@
             "caption": ""
           }
         },
+        "event_dfQThT": {
+          "type": "event",
+          "settings": {
+            "image": "shopify://shop_images/051724_QUARTERS_EVENT_084.jpg",
+            "caption": ""
+          }
+        },
         "event_WqWqk6": {
           "type": "event",
           "settings": {
@@ -150,20 +157,13 @@
             "image": "shopify://shop_images/HFA_8440_2.jpg",
             "caption": ""
           }
-        },
-        "event_dfQThT": {
-          "type": "event",
-          "settings": {
-            "image": "shopify://shop_images/051724_QUARTERS_EVENT_084.jpg",
-            "caption": ""
-          }
         }
       },
       "block_order": [
         "event_aDUbQe",
+        "event_dfQThT",
         "event_WqWqk6",
-        "event_xtjYyV",
-        "event_dfQThT"
+        "event_xtjYyV"
       ],
       "settings": {
         "title": "<p>Private Events and </p><p>Professional photography</p>",

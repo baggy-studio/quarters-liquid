@@ -842,6 +842,14 @@
             "description": "<p>Cappelletti, Aldeno, Italy</p>",
             "price": "9"
           }
+        },
+        "item_hWnjMU": {
+          "type": "item",
+          "settings": {
+            "title": "Berbere",
+            "description": "<p>Enoliti Botanici, Marsala, Sicily, Italy</p>",
+            "price": "23"
+          }
         }
       },
       "block_order": [
@@ -851,7 +859,8 @@
         "item_by9V9j",
         "category_BhFjEc",
         "item_fgbmT7",
-        "item_wLebPj"
+        "item_wLebPj",
+        "item_hWnjMU"
       ],
       "settings": {
         "title": "Afters",

@@ -471,6 +471,14 @@
             "price": "6"
           }
         },
+        "item_tGVEDT": {
+          "type": "item",
+          "settings": {
+            "title": "Latte",
+            "description": "",
+            "price": "6"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -554,6 +562,7 @@
         "item_x8i7QD",
         "item_ikih3K",
         "item_3Xhyxz",
+        "item_tGVEDT",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

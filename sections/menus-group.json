@@ -787,11 +787,22 @@
         "color_scheme": "light",
         "background_color": "#022b26"
       }
+    },
+    "bar_menu_nt3DEH": {
+      "type": "bar-menu",
+      "settings": {
+        "title": "Afters",
+        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
+        "details": "<p>Menu is subject to change.<br/>Please notify your server of any food allergies or dietary restrictions.</p>",
+        "color_scheme": "light",
+        "background_color": "#643600"
+      }
     }
   },
   "order": [
     "bar_menu_6NgUfy",
     "bar_menu_gKTkwY",
-    "bar_menu_iQxB8A"
+    "bar_menu_iQxB8A",
+    "bar_menu_nt3DEH"
   ]
 }

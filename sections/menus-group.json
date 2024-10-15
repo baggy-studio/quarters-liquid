@@ -706,15 +706,15 @@
           "type": "item",
           "settings": {
             "title": "Speck",
-            "description": "<p>Balsamic vinegar, antipasti</p>",
+            "description": "<p>Balsamic saba, antipasti</p>",
             "price": "26"
           }
         },
         "item_C3CTDr": {
           "type": "item",
           "settings": {
-            "title": "Iberico Chorizo",
-            "description": "<p>Cilantro, pickled peppers</p>",
+            "title": "Chorizo Ibérico",
+            "description": "<p>Guindillas, cilantro</p>",
             "price": "26"
           }
         },

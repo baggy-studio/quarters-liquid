@@ -743,9 +743,9 @@
         "item_iBgtwr": {
           "type": "item",
           "settings": {
-            "title": "Piedras de Chocolate Almonds",
-            "description": "<p>with sherry</p>",
-            "price": "21"
+            "title": "Piedras de Chocolate",
+            "description": "<p>Almonds, chocolate</p>",
+            "price": "10"
           }
         },
         "item_76FYD3": {

@@ -355,6 +355,14 @@
             "price": "8"
           }
         },
+        "item_XebtKT": {
+          "type": "item",
+          "settings": {
+            "title": "Olive Oil Cake",
+            "description": "",
+            "price": "10"
+          }
+        },
         "category_KfbFhq": {
           "type": "category",
           "settings": {
@@ -461,6 +469,7 @@
         "item_xEeV6L",
         "item_paEfaz",
         "item_KKjeRB",
+        "item_XebtKT",
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",

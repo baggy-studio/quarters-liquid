@@ -872,6 +872,14 @@
             "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
             "price": "8"
           }
+        },
+        "item_UmPGTh": {
+          "type": "item",
+          "settings": {
+            "title": "Papirusa Manzanilla",
+            "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
+            "price": "8"
+          }
         }
       },
       "block_order": [
@@ -885,7 +893,8 @@
         "item_hWnjMU",
         "item_C88wLy",
         "category_CRfAV8",
-        "item_EdjjMw"
+        "item_EdjjMw",
+        "item_UmPGTh"
       ],
       "settings": {
         "title": "Afters",

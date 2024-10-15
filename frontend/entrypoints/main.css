@@ -112,7 +112,7 @@
 
     .cart-top-gradient {
         content: '';
-        @apply h-[120px] lg:h-[160px] absolute left-0 top-0 w-full block pointer-events-none;
+        @apply h-[120px] lg:h-[68px] absolute left-0 top-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
 

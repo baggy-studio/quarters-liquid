@@ -662,12 +662,12 @@
             "price": "18"
           }
         },
-        "item_hXfRjw": {
+        "item_Pf69AF": {
           "type": "item",
           "settings": {
-            "title": "3-year Comté (France)",
-            "description": "<p>Cherry confit, hazelnuts</p>",
-            "price": "42"
+            "title": "Robiola Tre Latti (Italy)",
+            "description": "<p>Apricot compote, breadsticks</p>",
+            "price": "32"
           }
         },
         "item_egqijV": {
@@ -678,20 +678,20 @@
             "price": "32"
           }
         },
-        "item_Pf69AF": {
-          "type": "item",
-          "settings": {
-            "title": "Robiola Tre Latti (Italy)",
-            "description": "<p>Raspberry and hibiscus jam</p>",
-            "price": "30"
-          }
-        },
         "item_rrxBJj": {
           "type": "item",
           "settings": {
             "title": "Tomme de Savoie (France)",
             "description": "<p>Fig and Earl Grey jam</p>",
             "price": "26"
+          }
+        },
+        "item_hXfRjw": {
+          "type": "item",
+          "settings": {
+            "title": "3-year Comté (France)",
+            "description": "<p>Cherry confit, hazelnuts</p>",
+            "price": "42"
           }
         },
         "item_ac9grz": {
@@ -775,10 +775,10 @@
         "item_pekXfz",
         "item_VdPMNd",
         "item_RkLHpc",
-        "item_hXfRjw",
-        "item_egqijV",
         "item_Pf69AF",
+        "item_egqijV",
         "item_rrxBJj",
+        "item_hXfRjw",
         "item_ac9grz",
         "item_wiC4w3",
         "item_C3CTDr",

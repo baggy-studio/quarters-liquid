@@ -796,10 +796,19 @@
           "settings": {
             "heading": "Desserts"
           }
+        },
+        "item_fiihT3": {
+          "type": "item",
+          "settings": {
+            "title": "Raf's Cookie Plate",
+            "description": "<p>Baci di dama, amaretti, cantucci</p>",
+            "price": "12"
+          }
         }
       },
       "block_order": [
-        "category_kngppF"
+        "category_kngppF",
+        "item_fiihT3"
       ],
       "settings": {
         "title": "Afters",

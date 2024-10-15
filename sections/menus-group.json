@@ -479,6 +479,28 @@
             "price": "6"
           }
         },
+        "category_adgbLb": {
+          "type": "category",
+          "settings": {
+            "heading": "Tea"
+          }
+        },
+        "item_EnxWDr": {
+          "type": "item",
+          "settings": {
+            "title": "Ikebana (Botanical)",
+            "description": "<p>Bergamot, rose, calendula, anise, verbena, lavender</p>",
+            "price": "6"
+          }
+        },
+        "item_4PJqBx": {
+          "type": "item",
+          "settings": {
+            "title": "Emperor’s Flower (Oolong)",
+            "description": "<p>Noyaux, jasmine, pine nut</p>",
+            "price": "6"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -516,28 +538,6 @@
             "description": "<p>Kale, cucumber, celery, kiwi, ginger</p>",
             "price": "12"
           }
-        },
-        "category_GHcRNF": {
-          "type": "category",
-          "settings": {
-            "heading": "Sweets"
-          }
-        },
-        "item_egqijV": {
-          "type": "item",
-          "settings": {
-            "title": "Olive Oil Cake",
-            "description": "",
-            "price": "9"
-          }
-        },
-        "item_Pf69AF": {
-          "type": "item",
-          "settings": {
-            "title": "Seasonal Galette",
-            "description": "",
-            "price": "9"
-          }
         }
       },
       "block_order": [
@@ -563,14 +563,14 @@
         "item_ikih3K",
         "item_3Xhyxz",
         "item_tGVEDT",
+        "category_adgbLb",
+        "item_EnxWDr",
+        "item_4PJqBx",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",
         "item_ac9grz",
-        "item_GmPmMX",
-        "category_GHcRNF",
-        "item_egqijV",
-        "item_Pf69AF"
+        "item_GmPmMX"
       ],
       "settings": {
         "title": "Daytime",

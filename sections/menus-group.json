@@ -455,6 +455,22 @@
             "price": "5"
           }
         },
+        "item_ikih3K": {
+          "type": "item",
+          "settings": {
+            "title": "Cortado",
+            "description": "",
+            "price": "5"
+          }
+        },
+        "item_3Xhyxz": {
+          "type": "item",
+          "settings": {
+            "title": "Cappuccino",
+            "description": "",
+            "price": "6"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -536,6 +552,8 @@
         "item_tUWRhT",
         "item_Q87yFK",
         "item_x8i7QD",
+        "item_ikih3K",
+        "item_3Xhyxz",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

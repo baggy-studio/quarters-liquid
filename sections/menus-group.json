@@ -331,6 +331,14 @@
             "price": "8"
           }
         },
+        "item_xEeV6L": {
+          "type": "item",
+          "settings": {
+            "title": "Croissant with Jam",
+            "description": "",
+            "price": "10"
+          }
+        },
         "item_paEfaz": {
           "type": "item",
           "settings": {
@@ -339,12 +347,12 @@
             "price": "12"
           }
         },
-        "item_xEeV6L": {
+        "item_KKjeRB": {
           "type": "item",
           "settings": {
-            "title": "Croissant with Jam",
+            "title": "Cantucci",
             "description": "",
-            "price": "10"
+            "price": "8"
           }
         },
         "category_KfbFhq": {
@@ -450,8 +458,9 @@
         "category_Yycy4X",
         "item_WAycEp",
         "item_M9igxg",
-        "item_paEfaz",
         "item_xEeV6L",
+        "item_paEfaz",
+        "item_KKjeRB",
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",

@@ -804,11 +804,20 @@
             "description": "<p>Baci di dama, amaretti, cantucci</p>",
             "price": "12"
           }
+        },
+        "item_tPCGC9": {
+          "type": "item",
+          "settings": {
+            "title": "Piedras de Chocolate",
+            "description": "<p>Almonds, chocolate</p>",
+            "price": "10"
+          }
         }
       },
       "block_order": [
         "category_kngppF",
-        "item_fiihT3"
+        "item_fiihT3",
+        "item_tPCGC9"
       ],
       "settings": {
         "title": "Afters",

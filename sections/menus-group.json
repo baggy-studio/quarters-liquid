@@ -409,6 +409,12 @@
             "price": "10"
           }
         },
+        "category_7hnrcd": {
+          "type": "category",
+          "settings": {
+            "heading": "Coffee"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -484,6 +490,7 @@
         "item_V7FrbE",
         "item_pekXfz",
         "item_VdPMNd",
+        "category_7hnrcd",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

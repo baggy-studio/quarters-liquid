@@ -1,5 +1,7 @@
 {% assign has_default_variant = product.options_with_values | where: 'name', 'Title' | first %}
+{% assign variant_size = product.variants | size %}
 
+{{  }}
 <div class="w-full relative flex flex-col" x-data="{ activeIndex: null }">
   <div class="w-full relative flex flex-col" x-data="productVariantSelector({{ selected_variant.id }})">
     <script id="product-variant-selector-data" type="application/json">
@@ -22,7 +24,7 @@
         {% endfor %}
       ]
     </script>
-    {% unless has_default_variant %}
+    {% unless has_default_variant or variant_size == 1 %}
       <ul class="w-full flex flex-col" data-swup-history="replace" data-swup-preload-all>
         {% for option in product.options_with_values %}
           {% assign selected_option = option.values | where: 'selected', true | first %}
@@ -34,11 +36,14 @@
               class="w-full text-left grid grid-cols-5 gap-3 items-center h-10 lg:h-8"
             >
               <p class="small-sans col-span-2">{{ option.name }}</p>
+
               <span class="small-sans w-full col-span-3 flex items-center justify-between pr-4 lg:pr-0">
                 <span class="contents" x-text="productOptions[{{ option_index }}].selected">
                   {{- selected_option.name -}}
                 </span>
-                {% render 'product-accordion-icon', index: option_index %}
+                {% if option.values.size > 1 %}
+                  {% render 'product-accordion-icon', index: option_index %}
+                {% endif %}
               </span>
             </button>
             <div

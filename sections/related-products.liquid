@@ -44,20 +44,22 @@
     {% endif %}
   >
     <div
-      class="w-full relative"
+      class="w-full relative px-4"
       x-data="
         {
           hoverIndex: null
         }
       "
     >
+      {% assign slide_width = 'basis-[calc((100%-72px)*(6/10)+40px)] lg:basis-[calc((100%-228px)*0.25+48px)]' %}
+      {% assign slide_margin = 'mr-2 lg:mr-3' %}
       {% if section.settings.recommendationsAPI %}
-        <ul class="related-products grid auto-cols-[calc(45%-(0.5rem/3))] lg:auto-cols-[calc(25%-(1rem/4))] grid-flow-col gap-2 lg:gap-3 px-2 lg:px-3 recommendations-{{ section.id }}">
+        <ul class="related-products flex recommendations-{{ section.id }}">
           {%- if recommendations.performed? and recommendations.products_count > 0 -%}
             {%- for product in recommendations.products -%}
               {% assign selected_variant = product.selected_or_first_available_variant %}
               {% if product.featured_image or selected_variant.featured_image %}
-                <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
+                <li class="shrink-0 {{ slide_width }} {{ slide_margin }} lg:grid lg:grid-cols-5 lg:gap-x-3">
                   <div
                     @mouseenter="hoverIndex = {{forloop.index0}}"
                     @mouseleave="hoverIndex = null"
@@ -76,12 +78,12 @@
           {% endif %}
         </ul>
       {% else %}
-        <ul class="related-products grid auto-cols-[calc(45%-(0.5rem/3))] lg:auto-cols-[calc(25%-(1rem/4))] grid-flow-col gap-2 lg:gap-3 px-2 lg:px-3">
+        <ul class="related-products flex">
           {% for block in section.blocks %}
             {% assign product = block.settings.product %}
             {% assign selected_variant = product.selected_or_first_available_variant %}
 
-            <li class="shrink-0 lg:grid lg:grid-cols-5 lg:gap-x-3">
+            <li class="shrink-0 {{ slide_width }} {{ slide_margin }} lg:grid lg:grid-cols-5 lg:gap-x-3">
               <div
                 class="lg:col-span-3 contents lg:block lg:col-start-2 transition-opacity duration-300 ease-linear"
                 :class="

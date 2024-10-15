@@ -239,6 +239,12 @@
             "description": "<p>NA gin, Lyre’s Aperitif Rosso, Lyre’s Italian orange</p>",
             "price": "18"
           }
+        },
+        "category_qCLcAn": {
+          "type": "category",
+          "settings": {
+            "heading": "Water"
+          }
         }
       },
       "block_order": [
@@ -271,7 +277,8 @@
         "category_GHcRNF",
         "item_egqijV",
         "item_Pf69AF",
-        "item_ac9grz"
+        "item_ac9grz",
+        "category_qCLcAn"
       ],
       "settings": {
         "title": "Drinks",

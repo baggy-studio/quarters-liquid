@@ -611,14 +611,14 @@
           "settings": {
             "title": "Marinated Olives",
             "description": "<p>Fennel, citrus</p>",
-            "price": "12"
+            "price": "10"
           }
         },
         "item_m3KNBF": {
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo",
-            "description": "<p>Boquerones, coppa</p>",
+            "description": "<p>Anchovies, guindillas, coppa, olives</p>",
             "price": "10"
           }
         },
@@ -626,7 +626,7 @@
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo (Vegetarian)",
-            "description": "<p>Piquillo peppers, manchego</p>",
+            "description": "<p>Piquillos, guindillas, manchego, olives</p>",
             "price": "10"
           }
         },
@@ -634,7 +634,7 @@
           "type": "item",
           "settings": {
             "title": "Caviar Service",
-            "description": "<p>Siberian select caviar, crème fraîche, chives, potato chips</p>",
+            "description": "<p>Ossetra, crème fraîche, chives, potato chips</p>",
             "price": "135"
           }
         },

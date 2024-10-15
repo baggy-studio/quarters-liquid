@@ -812,12 +812,28 @@
             "description": "<p>Almonds, chocolate</p>",
             "price": "10"
           }
+        },
+        "item_by9V9j": {
+          "type": "item",
+          "settings": {
+            "title": "Dark Chocolate Mousse",
+            "description": "<p>Gianduja noir, chantilly</p>",
+            "price": "19"
+          }
+        },
+        "category_BhFjEc": {
+          "type": "category",
+          "settings": {
+            "heading": "Digestifs"
+          }
         }
       },
       "block_order": [
         "category_kngppF",
         "item_fiihT3",
-        "item_tPCGC9"
+        "item_tPCGC9",
+        "item_by9V9j",
+        "category_BhFjEc"
       ],
       "settings": {
         "title": "Afters",

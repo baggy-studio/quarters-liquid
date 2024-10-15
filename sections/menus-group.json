@@ -926,6 +926,20 @@
             "description": "<p>Distillerie Capitoline, Toscana, Italy</p>",
             "price": "11"
           }
+        },
+        "category_zUWTnx": {
+          "type": "category",
+          "settings": {
+            "heading": "Port"
+          }
+        },
+        "item_yzMikT": {
+          "type": "item",
+          "settings": {
+            "title": "20 Year Tawny Port",
+            "description": "<p>C.N. Kopke, Douro, Portugal</p>",
+            "price": "10"
+          }
         }
       },
       "block_order": [
@@ -946,7 +960,9 @@
         "item_fcAzCQ",
         "category_AgrJMN",
         "item_BcFaEn",
-        "item_zyf74P"
+        "item_zyf74P",
+        "category_zUWTnx",
+        "item_yzMikT"
       ],
       "settings": {
         "title": "Afters",

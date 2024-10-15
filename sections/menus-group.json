@@ -826,6 +826,14 @@
           "settings": {
             "heading": "Digestifs"
           }
+        },
+        "item_fgbmT7": {
+          "type": "item",
+          "settings": {
+            "title": "Gentiane-Quina",
+            "description": "<p>Bonal, Rhône-Alpes, France</p>",
+            "price": "9"
+          }
         }
       },
       "block_order": [
@@ -833,7 +841,8 @@
         "item_fiihT3",
         "item_tPCGC9",
         "item_by9V9j",
-        "category_BhFjEc"
+        "category_BhFjEc",
+        "item_fgbmT7"
       ],
       "settings": {
         "title": "Afters",

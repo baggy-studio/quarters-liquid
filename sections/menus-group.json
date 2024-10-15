@@ -584,7 +584,7 @@
       "settings": {
         "title": "Daytime",
         "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
-        "details": "<p>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
+        "details": "<p>Menu is subject to change.<br/>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
         "color_scheme": "light",
         "background_color": "#826c1a"
       }
@@ -783,7 +783,7 @@
       "settings": {
         "title": "Evening",
         "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
-        "details": "<p>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
+        "details": "<p>Menu is subject to change.<br/>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
         "color_scheme": "light",
         "background_color": "#022b26"
       }

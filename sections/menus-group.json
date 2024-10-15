@@ -888,6 +888,12 @@
             "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
             "price": "8"
           }
+        },
+        "category_AgrJMN": {
+          "type": "category",
+          "settings": {
+            "heading": "Vermut"
+          }
         }
       },
       "block_order": [
@@ -903,7 +909,8 @@
         "category_CRfAV8",
         "item_EdjjMw",
         "item_UmPGTh",
-        "item_fcAzCQ"
+        "item_fcAzCQ",
+        "category_AgrJMN"
       ],
       "settings": {
         "title": "Afters",

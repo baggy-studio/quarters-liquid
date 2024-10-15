@@ -439,6 +439,14 @@
             "price": "5"
           }
         },
+        "item_Q87yFK": {
+          "type": "item",
+          "settings": {
+            "title": "Americano",
+            "description": "",
+            "price": "6"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -518,6 +526,7 @@
         "item_nMG6jK",
         "item_4qMiEF",
         "item_tUWRhT",
+        "item_Q87yFK",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

@@ -880,6 +880,14 @@
             "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
             "price": "8"
           }
+        },
+        "item_fcAzCQ": {
+          "type": "item",
+          "settings": {
+            "title": "Pedro Ximénez San Emilio",
+            "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
+            "price": "8"
+          }
         }
       },
       "block_order": [
@@ -894,7 +902,8 @@
         "item_C88wLy",
         "category_CRfAV8",
         "item_EdjjMw",
-        "item_UmPGTh"
+        "item_UmPGTh",
+        "item_fcAzCQ"
       ],
       "settings": {
         "title": "Afters",

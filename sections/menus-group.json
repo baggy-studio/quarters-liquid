@@ -339,6 +339,14 @@
             "price": "12"
           }
         },
+        "item_xEeV6L": {
+          "type": "item",
+          "settings": {
+            "title": "Croissant with Jam",
+            "description": "",
+            "price": "10"
+          }
+        },
         "category_KfbFhq": {
           "type": "category",
           "settings": {
@@ -443,6 +451,7 @@
         "item_WAycEp",
         "item_M9igxg",
         "item_paEfaz",
+        "item_xEeV6L",
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",

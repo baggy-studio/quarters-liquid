@@ -834,6 +834,14 @@
             "description": "<p>Bonal, Rhône-Alpes, France</p>",
             "price": "9"
           }
+        },
+        "item_wLebPj": {
+          "type": "item",
+          "settings": {
+            "title": "Pasubio",
+            "description": "<p>Cappelletti, Aldeno, Italy</p>",
+            "price": "9"
+          }
         }
       },
       "block_order": [
@@ -842,7 +850,8 @@
         "item_tPCGC9",
         "item_by9V9j",
         "category_BhFjEc",
-        "item_fgbmT7"
+        "item_fgbmT7",
+        "item_wLebPj"
       ],
       "settings": {
         "title": "Afters",

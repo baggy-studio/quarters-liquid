@@ -253,6 +253,14 @@
             "description": "",
             "price": "9"
           }
+        },
+        "item_TRbxnN": {
+          "type": "item",
+          "settings": {
+            "title": "S.Pellegrino (Sparkling)",
+            "description": "",
+            "price": "10"
+          }
         }
       },
       "block_order": [
@@ -287,7 +295,8 @@
         "item_Pf69AF",
         "item_ac9grz",
         "category_qCLcAn",
-        "item_A6HJgH"
+        "item_A6HJgH",
+        "item_TRbxnN"
       ],
       "settings": {
         "title": "Drinks",

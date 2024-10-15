@@ -415,6 +415,30 @@
             "heading": "Coffee"
           }
         },
+        "item_nMG6jK": {
+          "type": "item",
+          "settings": {
+            "title": "Drip Coffee",
+            "description": "",
+            "price": "5"
+          }
+        },
+        "item_4qMiEF": {
+          "type": "item",
+          "settings": {
+            "title": "Cold Brew",
+            "description": "",
+            "price": "6"
+          }
+        },
+        "item_tUWRhT": {
+          "type": "item",
+          "settings": {
+            "title": "Espresso",
+            "description": "",
+            "price": "5"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -491,6 +515,9 @@
         "item_pekXfz",
         "item_VdPMNd",
         "category_7hnrcd",
+        "item_nMG6jK",
+        "item_4qMiEF",
+        "item_tUWRhT",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

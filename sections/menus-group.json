@@ -726,14 +726,6 @@
             "price": "24"
           }
         },
-        "item_khEkKU": {
-          "type": "item",
-          "settings": {
-            "title": "Steak Tartar",
-            "description": "<p>Castelvetrano, colatura, crostini</p>",
-            "price": "32"
-          }
-        },
         "category_eraxDf": {
           "type": "category",
           "settings": {
@@ -744,8 +736,8 @@
           "type": "item",
           "settings": {
             "title": "Raf's Cookie Plate",
-            "description": "<p>cantucci, amaretti, boci de dama</p>",
-            "price": "18"
+            "description": "<p>Baci di dama, amaretti, cantucci</p>",
+            "price": "12"
           }
         },
         "item_iBgtwr": {
@@ -783,7 +775,6 @@
         "item_wiC4w3",
         "item_C3CTDr",
         "item_k4e4Gm",
-        "item_khEkKU",
         "category_eraxDf",
         "item_Djn39Y",
         "item_iBgtwr",

@@ -865,6 +865,14 @@
             "heading": "Sherry"
           }
         },
+        "item_kma7FJ": {
+          "type": "item",
+          "settings": {
+            "title": "Manzanilla Pasada Solear",
+            "description": "<p>Bodegas Barbadillo, Cádiz, Spain</p>",
+            "price": "12"
+          }
+        },
         "item_EdjjMw": {
           "type": "item",
           "settings": {
@@ -923,6 +931,7 @@
         "item_hWnjMU",
         "item_C88wLy",
         "category_CRfAV8",
+        "item_kma7FJ",
         "item_EdjjMw",
         "item_UmPGTh",
         "item_fcAzCQ",

@@ -902,6 +902,14 @@
             "description": "<p>Distillerie Capitoline, Toscana, Italy</p>",
             "price": "11"
           }
+        },
+        "item_zyf74P": {
+          "type": "item",
+          "settings": {
+            "title": "Cerasa",
+            "description": "<p>Distillerie Capitoline, Toscana, Italy</p>",
+            "price": "11"
+          }
         }
       },
       "block_order": [
@@ -919,7 +927,8 @@
         "item_UmPGTh",
         "item_fcAzCQ",
         "category_AgrJMN",
-        "item_BcFaEn"
+        "item_BcFaEn",
+        "item_zyf74P"
       ],
       "settings": {
         "title": "Afters",

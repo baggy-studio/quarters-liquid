@@ -790,6 +790,17 @@
     },
     "bar_menu_nt3DEH": {
       "type": "bar-menu",
+      "blocks": {
+        "category_kngppF": {
+          "type": "category",
+          "settings": {
+            "heading": "Desserts"
+          }
+        }
+      },
+      "block_order": [
+        "category_kngppF"
+      ],
       "settings": {
         "title": "Afters",
         "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",

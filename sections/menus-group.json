@@ -397,7 +397,7 @@
           "type": "item",
           "settings": {
             "title": "Gilda Pinxto",
-            "description": "<p>Boquerones, coppa</p>",
+            "description": "<p>Anchovies, guindillas, coppa, olives</p>",
             "price": "10"
           }
         },
@@ -405,7 +405,7 @@
           "type": "item",
           "settings": {
             "title": "Gilda Pinxto (Vegetarian)",
-            "description": "<p>Piquillo peppers, manchego</p>",
+            "description": "<p>Piquillos, guindillas, manchego, olives</p>",
             "price": "10"
           }
         },

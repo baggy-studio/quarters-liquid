@@ -167,13 +167,13 @@
         "category_CMfHpD": {
           "type": "category",
           "settings": {
-            "heading": "Low ABV Cocktails"
+            "heading": "House Cocktails (Low A.B.V.)"
           }
         },
         "item_V78Tjn": {
           "type": "item",
           "settings": {
-            "title": "Seasonal Spritz",
+            "title": "Clementina Spritz",
             "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
             "price": "18"
           }

@@ -363,6 +363,14 @@
             "price": "10"
           }
         },
+        "item_fU6gQd": {
+          "type": "item",
+          "settings": {
+            "title": "Seasonal Galette",
+            "description": "",
+            "price": "10"
+          }
+        },
         "category_KfbFhq": {
           "type": "category",
           "settings": {
@@ -470,6 +478,7 @@
         "item_paEfaz",
         "item_KKjeRB",
         "item_XebtKT",
+        "item_fU6gQd",
         "category_KfbFhq",
         "item_m3KNBF",
         "item_V7FrbE",

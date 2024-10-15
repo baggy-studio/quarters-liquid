@@ -682,15 +682,15 @@
           "type": "item",
           "settings": {
             "title": "Tomme de Savoie (France)",
-            "description": "<p>Fig and Earl Grey jam</p>",
-            "price": "26"
+            "description": "<p>Seasonal jam, crackers</p>",
+            "price": "31"
           }
         },
         "item_hXfRjw": {
           "type": "item",
           "settings": {
             "title": "3-year Comté (France)",
-            "description": "<p>Cherry confit, hazelnuts</p>",
+            "description": "<p>Cherry confit, hazelnuts, crackers</p>",
             "price": "42"
           }
         },

@@ -501,10 +501,18 @@
             "price": "6"
           }
         },
+        "item_zyQYxc": {
+          "type": "item",
+          "settings": {
+            "title": "Iced Tea (Black)",
+            "description": "",
+            "price": "6"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
-            "heading": "Juice & Tonics"
+            "heading": "Juice + Tonic"
           }
         },
         "item_hXfRjw": {
@@ -512,7 +520,7 @@
           "settings": {
             "title": "Fizz",
             "description": "<p>Ginger, lemon, honey, sparkling water</p>",
-            "price": "8"
+            "price": "12"
           }
         },
         "item_rrxBJj": {
@@ -520,7 +528,7 @@
           "settings": {
             "title": "Seasonal Shrub",
             "description": "<p>Market fruit, sparkling water, salt</p>",
-            "price": "8"
+            "price": "12"
           }
         },
         "item_ac9grz": {
@@ -528,15 +536,15 @@
           "settings": {
             "title": "Turmeric Tonic",
             "description": "<p>Turmeric, lemon, ginger, sparkling water</p>",
-            "price": "8"
+            "price": "12"
           }
         },
         "item_GmPmMX": {
           "type": "item",
           "settings": {
             "title": "Green Juice",
-            "description": "<p>Kale, cucumber, celery, kiwi, ginger</p>",
-            "price": "12"
+            "description": "<p>Kale, cucumber, celery, apple, ginger</p>",
+            "price": "15"
           }
         }
       },
@@ -566,6 +574,7 @@
         "category_adgbLb",
         "item_EnxWDr",
         "item_4PJqBx",
+        "item_zyQYxc",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

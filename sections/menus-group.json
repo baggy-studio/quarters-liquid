@@ -894,6 +894,14 @@
           "settings": {
             "heading": "Vermut"
           }
+        },
+        "item_BcFaEn": {
+          "type": "item",
+          "settings": {
+            "title": "Vermut Rosso",
+            "description": "<p>Distillerie Capitoline, Toscana, Italy</p>",
+            "price": "11"
+          }
         }
       },
       "block_order": [
@@ -910,7 +918,8 @@
         "item_EdjjMw",
         "item_UmPGTh",
         "item_fcAzCQ",
-        "category_AgrJMN"
+        "category_AgrJMN",
+        "item_BcFaEn"
       ],
       "settings": {
         "title": "Afters",

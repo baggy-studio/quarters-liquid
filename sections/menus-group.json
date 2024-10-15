@@ -447,6 +447,14 @@
             "price": "6"
           }
         },
+        "item_x8i7QD": {
+          "type": "item",
+          "settings": {
+            "title": "Macchiato",
+            "description": "",
+            "price": "5"
+          }
+        },
         "category_ARJMyX": {
           "type": "category",
           "settings": {
@@ -527,6 +535,7 @@
         "item_4qMiEF",
         "item_tUWRhT",
         "item_Q87yFK",
+        "item_x8i7QD",
         "category_ARJMyX",
         "item_hXfRjw",
         "item_rrxBJj",

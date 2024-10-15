@@ -824,7 +824,7 @@
         "category_BhFjEc": {
           "type": "category",
           "settings": {
-            "heading": "Digestifs"
+            "heading": "Fortified Wine"
           }
         },
         "item_fgbmT7": {
@@ -858,6 +858,20 @@
             "description": "<p>Enoliti Botanici, Marsala, Sicily, Italy</p>",
             "price": "20"
           }
+        },
+        "category_CRfAV8": {
+          "type": "category",
+          "settings": {
+            "heading": "Sherry"
+          }
+        },
+        "item_EdjjMw": {
+          "type": "item",
+          "settings": {
+            "title": "Don Nuno Oloroso",
+            "description": "<p>Lustau, Jerez de la Frontera, Spain</p>",
+            "price": "8"
+          }
         }
       },
       "block_order": [
@@ -869,7 +883,9 @@
         "item_fgbmT7",
         "item_wLebPj",
         "item_hWnjMU",
-        "item_C88wLy"
+        "item_C88wLy",
+        "category_CRfAV8",
+        "item_EdjjMw"
       ],
       "settings": {
         "title": "Afters",

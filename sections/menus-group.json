@@ -827,6 +827,14 @@
             "heading": "Fortified Wine"
           }
         },
+        "item_U8B6mq": {
+          "type": "item",
+          "settings": {
+            "title": "Speckbirne 302",
+            "description": "<p>Josef Farthofer, Mostviertel, Austria</p>",
+            "price": "10"
+          }
+        },
         "item_fgbmT7": {
           "type": "item",
           "settings": {
@@ -926,6 +934,7 @@
         "item_tPCGC9",
         "item_by9V9j",
         "category_BhFjEc",
+        "item_U8B6mq",
         "item_fgbmT7",
         "item_wLebPj",
         "item_hWnjMU",

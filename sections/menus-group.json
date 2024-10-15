@@ -380,7 +380,7 @@
         "item_m3KNBF": {
           "type": "item",
           "settings": {
-            "title": "Snack Trio",
+            "title": "House Snack Trio",
             "description": "<p>Nuts, fennel taralli, potato chips</p>",
             "price": "16"
           }
@@ -601,7 +601,7 @@
         "item_M9igxg": {
           "type": "item",
           "settings": {
-            "title": "Snack Trio",
+            "title": "House Snack Trio",
             "description": "<p>Nuts, fennel taralli, potato chips</p>",
             "price": "16"
           }

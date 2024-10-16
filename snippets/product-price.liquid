@@ -1,5 +1,5 @@
 <div id="product-price" class="flex flex-col">
-  {% if selected_variant.available == false %}
+  {% if selected_variant.available == false or product.tags contains 'OOAK' and selected_variant.inventory_quantity == 0 %}
     {% render 'product-status', type: 'sold-out', large: true, product: product %}
   {% elsif selected_variant.available and product.tags contains 'Hold' %}
     {% unless product.tags contains 'HidePrice' %}

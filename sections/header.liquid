@@ -1,5 +1,4 @@
 <header
- 
   :class="
     {
       'is-animating': animating
@@ -20,10 +19,12 @@
   ></button>
   {% render 'menu', menu: section.settings.menu %}
   <h1
-  :class="{ 'is-menu': menu }"
-  class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
+    :class="{ 'is-menu': menu }"
+    style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+    class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
   >
     <a
+      style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
       href="/"
       title="Quarters"
       class="
@@ -47,6 +48,7 @@
       {% endif %}
     >
       <svg
+        style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
         :class="
           {
             'opacity-100': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
@@ -60,6 +62,7 @@
       </svg>
 
       <svg
+        style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
         :class="
           {
             'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
@@ -85,7 +88,7 @@
     "
     :style="`--header-theme: ${forcedHeaderColor || headerColor}`"
     class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
-  > 
+  >
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}

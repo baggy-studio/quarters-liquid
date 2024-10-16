@@ -115,6 +115,11 @@
         @apply h-[120px] lg:h-[68px] absolute left-0 top-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
+    .menu-top-gradient {
+        content: '';
+        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
+    }
 
     .fullscreen-left-gradient {
         @apply w-[50vw] h-full absolute left-0 bottom-0 top-0 block pointer-events-none;

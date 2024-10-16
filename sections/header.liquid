@@ -135,16 +135,16 @@
       :title="$store.cart.visible ? 'Close Bag' : 'View Bag'"
       :class="menu && 'hidden'"
       @click="$store.cart.toggle()"
-      class="nav-link lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
+      class="nav-link relative lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
     >
       <span
         :class="
           {
-            'hidden': $store.cart.visible,
-            'contents': !$store.cart.visible
+            'opacity-0': $store.cart.visible,
+            '': !$store.cart.visible
           }
         "
-        class="contents lg:contents"
+        class="lg:contents transition-opacity duration-300 ease-linear"
         >Bag (<span class="contents" x-number="$store.cart.count">
           {%- render 'prefix-number', number: cart.item_count -%}</span
         >)</span
@@ -152,11 +152,11 @@
       <span
         :class="
           {
-            'contents': $store.cart.visible,
-            'hidden': !$store.cart.visible
+            '': $store.cart.visible,
+            'opacity-0': !$store.cart.visible
           }
         "
-        class="hidden lg:hidden"
+        class="opacity-0 text-right transition-opacity duration-300 ease-linear lg:hidden absolute left-0 top-0 w-full h-full"
         >(Close)</span
       >
     </button>

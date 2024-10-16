@@ -180,10 +180,10 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.$root.style.setProperty('--transform-y', `${progress}px`);
     }
 
-    if (url == '/' && window.innerWidth >= 1024) {
-      this.$root.style.setProperty('--menu-height', `${progress - 1}px`);
-    } else {
+    if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {
       this.$root.style.setProperty('--menu-height', `${progress}px`);
+    } else {
+      this.$root.style.setProperty('--menu-height', `${progress - 1}px`);
     }
   },
   trackMenuHeight() {

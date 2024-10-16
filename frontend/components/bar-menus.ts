@@ -1,4 +1,4 @@
-import { inView } from 'motion';
+import { inView, scroll } from 'motion';
 
 export default () => ({
     menu: 'drinks',
@@ -26,10 +26,11 @@ export default () => ({
             }
         })
 
-        this.bg = this.menus[0].bg 
+        this.bg = this.menus[0].bg
 
-        console.log(this.bg)
+       
 
+        // Observer for the top of the viewport
         inView('#menu',
             () => {
                 this.inView = true
@@ -37,16 +38,11 @@ export default () => ({
 
                 return () => {
                     this.inView = false
-                    this.bg = null
-                    this.text = null
-                    this.$dispatch('set-theme', null)
-                    this.$dispatch('set-colors', { bg: null, text: null })
+                    this.resetMenuData()
                 }
             }, {
-            margin: '-45% 0% -45% 0%'
-        }
-        )
-
+            margin: '0px 0px -100% 0px'
+        })
     },
     get activeMenu() {
         return this.menus.find((menu) => menu.id === this.menu)
@@ -56,7 +52,7 @@ export default () => ({
         this.text = this.activeMenu?.theme == 'light' ? '#F4EED0' : '#643600'
         this.lastBg = this.bg
         this.lastText = this.text
-        this.$dispatch('set-colors', { bg: this.activeMenu?.bg, text: this.text }) 
+        this.$dispatch('set-colors', { bg: this.activeMenu?.bg, text: this.text })
         this.$dispatch('set-theme', this.activeMenu?.theme)
     },
     setMenu(menu: string) {
@@ -65,5 +61,10 @@ export default () => ({
         document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
         this.dispatchMenuData()
     },
-   
+    resetMenuData() {
+        this.bg = null
+        this.text = null
+        this.$dispatch('set-theme', null)
+        this.$dispatch('set-colors', { bg: null, text: null })
+    },
 });

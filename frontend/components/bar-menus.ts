@@ -18,19 +18,20 @@ export default () => ({
     },
     hydrateMenus() {
         const menu = document.querySelectorAll('[data-bar-menu]')
+
         this.menus = Array.from(menu).map((menu) => {
             return {
+                title: menu.getAttribute('data-bar-title'),
                 id: menu.getAttribute('data-bar-menu'),
                 bg: menu.getAttribute('data-bar-bg'),
                 theme: menu.getAttribute('data-bar-theme')
             }
         })
 
-        this.bg = this.menus[0].bg
+        console.log(this.menus)
 
-       
+        this.bg = this.menus[0].bg 
 
-        // Observer for the top of the viewport
         inView('#menu',
             () => {
                 this.inView = true
@@ -56,10 +57,11 @@ export default () => ({
         this.$dispatch('set-theme', this.activeMenu?.theme)
     },
     setMenu(menu: string) {
+        console.log(menu)
         this.menu = menu
         this.$dispatch('set-menu', menu)
         document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
-        this.dispatchMenuData()
+        this.dispatchMenuData() 
     },
     resetMenuData() {
         this.bg = null

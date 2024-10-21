@@ -1,4 +1,4 @@
-import { inView, scroll } from 'motion';
+import Alpine from 'alpinejs'
 
 export default () => ({
     menu: 'drinks',
@@ -8,13 +8,29 @@ export default () => ({
     text: null,
     bg: null,
     theme: null,
-    inView: false,
+    isSticky: false,
+    isOverImage: false,
+    controller: new AbortController(),
     init() {
         this.$dispatch('set-menu', this.menu)
 
         setTimeout(() => {
             this.hydrateMenus()
         }, 50)
+
+        Alpine.effect(() => {
+            if (this.isSticky) {
+                this.dispatchMenuData()
+            } else {
+                this.resetMenuData()
+            }
+
+            if (window.innerWidth <= 1024) {
+                if (this.isOverImage) {
+                    this.$dispatch('set-theme', 'light')
+                }
+            }
+        })
     },
     hydrateMenus() {
         const menu = document.querySelectorAll('[data-bar-menu]')
@@ -28,22 +44,36 @@ export default () => ({
             }
         })
 
-        console.log(this.menus)
+        window.addEventListener('scroll', this.scroll.bind(this), { signal: this.controller.signal })
 
-        this.bg = this.menus[0].bg 
 
-        inView('#menu',
-            () => {
-                this.inView = true
-                this.dispatchMenuData()
+        this.bg = this.menus[0].bg
 
-                return () => {
-                    this.inView = false
-                    this.resetMenuData()
-                }
-            }, {
-            margin: '0px 0px -100% 0px'
-        })
+    },
+    destroy() {
+        this.controller.abort()
+    },
+    scroll() {
+        const section = document.getElementById('menu')
+        const image = document.getElementById('menu-image-mobile')
+
+        if (!section) return
+
+        const rect = section.getBoundingClientRect()
+        const isInView = rect.top <= 0 && rect.bottom - window.innerHeight > 0
+
+        if (this.isSticky !== isInView) {
+            this.isSticky = isInView
+        }
+
+        if (!image) return
+
+        const imageRect = image.getBoundingClientRect()
+        const isImageInView = imageRect.top <= 0 && imageRect.bottom > 0
+
+        if (this.isOverImage !== isImageInView) {
+            this.isOverImage = isImageInView
+        }
     },
     get activeMenu() {
         return this.menus.find((menu) => menu.id === this.menu)
@@ -57,11 +87,10 @@ export default () => ({
         this.$dispatch('set-theme', this.activeMenu?.theme)
     },
     setMenu(menu: string) {
-        console.log(menu)
         this.menu = menu
         this.$dispatch('set-menu', menu)
         document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
-        this.dispatchMenuData() 
+        this.dispatchMenuData()
     },
     resetMenuData() {
         this.bg = null

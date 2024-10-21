@@ -1,12 +1,4 @@
 <div
-  x-data="{ bg: null, text: null, theme: null }"
-  @set-colors.window="
-    bg = $event.detail.bg;
-    text = $event.detail.text;
-  "
-  @set-theme.window="theme = $event.detail"
-  :style="`--bg: ${bg}; --text: ${text};`"
-  :class="{ '!bg-[--bg] !text-[--text]': bg && text }"
   class="
     w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden transition-colors duration-200 ease-linear
 
@@ -24,11 +16,6 @@
       {% if section.settings.cta_link %}
         <div class="col-span-5">
           <a
-            :class="
-              {
-                'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
-              }
-            "
             href="{{ section.settings.cta_link }}"
             class="rez-button"
           >

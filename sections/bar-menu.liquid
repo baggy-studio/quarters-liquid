@@ -1,144 +1,153 @@
 <div
-  class="w-full relative row-start-1 row-end-1 col-start-1 col-end-1"
-  {% unless request.design_mode %}
-    x-show="'{{ section.settings.title | handleize }}' == menu"
-    x-transition.opacity.duration.800ms
-  {% endunless %}
-  data-bar-menu="{{ section.settings.title | handleize }}"
-  data-bar-bg="{{ section.settings.background_color }}"
-  data-bar-theme="{{ section.settings.color_scheme }}"
-  data-bar-title="{{ section.settings.title }}"
+	class='w-full relative row-start-1 row-end-1 col-start-1 col-end-1'
+	{% unless request.design_mode %}
+		x-show="'{{ section.settings.title | handleize }}' == menu"
+		x-transition.opacity.duration.800ms
+	{% endunless %}
+	data-bar-menu='{{ section.settings.title | handleize }}'
+	data-bar-bg='{{ section.settings.background_color }}'
+	data-bar-theme='{{ section.settings.color_scheme }}'
+	data-bar-title='{{ section.settings.title }}'
 >
-  <div
-    class="w-full grid lg:grid-cols-2  
-    {% if request.design_mode %}
-      bg-[--bg-color]"
-        {% endif %} 
-    style="--bg-color: {{ section.settings.background_color }};"
-  >
-    <div class="w-full relative">
-      <div class="w-full lg:top-0 lg:sticky h-auto aspect-[393/487] lg:aspect-auto lg:h-screen overflow-hidden flex items-end p-4 text-bone">
-        <div class="after:bar-left-gradient absolute inset-0 pointer-events-none">
-          {% render 'image', image: section.settings.image, width: 720, height: 860, sizes: '50vw' %}
-        </div>
-        <div class="w-full lg:grid grid-cols-10 gap-3 relative">
-          <div class="lg:block contents col-span-5">
-            <div class="small-sans">
-              {{ section.settings.details }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <ul
-      class="w-full {% if request.design_mode %}
-                {% if section.settings.color_scheme == 'light' %}
-                  text-bone
-                {% else %}
-                  text-mahogany
-                {% endif %}
-        {% else %}
-          text-current
-        {% endif %}
-        pt-10 pb-[160px] lg:py-32  grid grid-cols-10 gap-x-2 lg:gap-x-3 gap-y-16 px-4 lg:pl-1.5
-      "
-    >
-      {% for block in section.blocks %}
-        {% if block.type == 'category' %}
-          <li class="col-span-10 lg:col-span-9 flex flex-col gap-y-6 lg:col-start-2">
-            <h5 class="subheading">{{ block.settings.heading }}</h5>
-            <div class="flex flex-col gap-y-6">
-              {% for block in section.blocks offset: forloop.index %}
-                {% if block.type == 'category' %}
-                  {% break %}
-                {% elsif block.type == 'item' %}
-                  {% render 'bar-item', item: block %}
-                {% endif %}
-              {% endfor %}
-            </div>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </div>
+	<div
+		class='
+			w-full grid lg:grid-cols-2
+			{% if request.design_mode %}
+				bg-[--bg-color]
+			{% endif %}
+		'
+
+		style='--bg-color: {{ section.settings.background_color }};'
+	>
+		<div class='w-full relative z-10'>
+			<div class='w-full lg:top-0 lg:sticky h-auto aspect-[393/487] lg:aspect-auto lg:h-screen overflow-hidden flex items-end p-4 text-bone'>
+				<div class='after:bar-left-gradient absolute inset-0 pointer-events-none'>
+					{% render 'image',
+						image: section.settings.image,
+						width: 720,
+						height: 860,
+						sizes: '50vw'
+					%}
+				</div>
+				<div class='w-full lg:grid grid-cols-10 gap-3 relative'>
+					<div class='lg:block contents col-span-5'>
+						<div class='small-sans'>
+							{{ section.settings.details }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ul
+			class='
+				w-full {% if request.design_mode %}
+				        {% if section.settings.color_scheme == 'light' %}
+				          text-bone
+				        {% else %}
+				          text-mahogany
+				        {% endif %}
+				{% else %}
+				  text-current
+				{% endif %}
+				pt-10 pb-[160px] lg:py-32  grid grid-cols-10 gap-x-2 lg:gap-x-3 gap-y-16 px-4 lg:pl-1.5
+			'
+		>
+			{% for block in section.blocks %}
+				{% if block.type == 'category' %}
+					<li class='col-span-10 lg:col-span-9 flex flex-col gap-y-6 lg:col-start-2'>
+						<h5 class='subheading'>{{ block.settings.heading }}</h5>
+						<div class='flex flex-col gap-y-6'>
+							{% for block in section.blocks offset: forloop.index %}
+								{% if block.type == 'category' %}
+									{% break %}
+								{% elsif block.type == 'item' %}
+									{% render 'bar-item', item: block %}
+								{% endif %}
+							{% endfor %}
+						</div>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
 </div>
 
 {% schema %}
 {
-  "name": "Bar Menu",
-  "class": "contents",
-  "blocks": [
-    {
-      "type": "category",
-      "name": "Category",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Category"
-        }
-      ]
-    },
-    {
-      "type": "item",
-      "name": "Item",
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Price",
-          "info": "The price of the item without the currency symbol"
-        }
-      ]
-    }
-  ],
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "richtext",
-      "id": "details",
-      "label": "Details"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Text Color",
-      "options": [
-        { "label": "Light", "value": "light" },
-        { "label": "Dark", "value": "dark" }
-      ],
-      "default": "dark"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Bar Menu"
-    }
-  ]
+	"name": "Bar Menu",
+	"class": "contents",
+	"blocks": [
+		{
+			"type": "category",
+			"name": "Category",
+			"settings": [
+				{
+					"type": "text",
+					"id": "heading",
+					"label": "Heading",
+					"default": "Category"
+				}
+			]
+		},
+		{
+			"type": "item",
+			"name": "Item",
+			"settings": [
+				{
+					"type": "textarea",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"label": "Description"
+				},
+				{
+					"type": "text",
+					"id": "price",
+					"label": "Price",
+					"info": "The price of the item without the currency symbol"
+				}
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "richtext",
+			"id": "details",
+			"label": "Details"
+		},
+		{
+			"type": "select",
+			"id": "color_scheme",
+			"label": "Text Color",
+			"options": [
+				{ "label": "Light", "value": "light" },
+				{ "label": "Dark", "value": "dark" }
+			],
+			"default": "dark"
+		},
+		{
+			"type": "color",
+			"id": "background_color",
+			"label": "Background Color"
+		}
+	],
+	"presets": [
+		{
+			"name": "Bar Menu"
+		}
+	]
 }
 {% endschema %}

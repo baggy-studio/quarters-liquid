@@ -1,12 +1,4 @@
 <div
-  x-data="{ bg: null, text: null, theme: null }"
-  @set-theme.window="theme = $event.detail"
-  @set-colors.window="
-    bg = $event.detail.bg;
-    text = $event.detail.text;
-  "
-  :style="`--bg: ${bg}; --text: ${text};`"
-  :class="{ '!bg-[--bg] !text-[--text]': bg && text }"
   class="
     w-full relative overflow-hidden lg:overflow-clip  bg-vanilla transition-colors duration-200 ease-linear
     text-mahogany

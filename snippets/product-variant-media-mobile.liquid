@@ -40,11 +40,13 @@
 {% if variant_media_metafields %}
   {% for media in variant_media_metafields %}
     {% assign total_media_count = total_media_count | plus: 1 %}
+    {% assign total_media_count_mobile = total_media_count_mobile | plus: 1 %}
   {% endfor %}
 {% endif %}
 
 {% if section.settings.share_product_media %}
   {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
+  {% assign total_media_count_mobile = total_media_count_mobile | plus: filtered_product_media_ids.size %}
 {% endif %}
 
 {% assign rendered_small_count = 1 %}
@@ -70,7 +72,7 @@
               large: false
             })
           "
-          class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
+          class="w-full h-full hidden flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
         >
           <div class="w-full aspect-[140/175] relative overflow-hidden group-hover:opacity-70 duration-700 ease-in-out">
             {% if selected_variant.featured_media %}

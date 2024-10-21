@@ -13,6 +13,7 @@
     }
 
     body {
+        overscroll-behavior: none;
         @apply bg-bone-tint text-mahogany font-serif;
     }
 

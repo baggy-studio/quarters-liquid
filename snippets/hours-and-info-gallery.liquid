@@ -3,19 +3,7 @@
 {% endcomment %}
 
 <div class="relative">
-  <!-- Desktop view -->
-  {% comment %} <div class="hidden lg:grid grid-cols-12 gap-x-3">
-    {% for block in section.blocks  %}
-      {% if block.type == 'image' %}
-        <div class="col-span-4">
-          {% render 'hours-and-info-gallery-item', block: block, forloop: forloop %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div> {% endcomment %}
-
-  <!-- Mobile view -->
- <div x-data="carousel({ align: 'start', dragFree: true, skipSnaps: true, trimSnaps: true })" class="embla relative lg:overflow-hidden">
+ <div x-data="carousel({ align: 'start', dragFree: true, skipSnaps: true, trimSnaps: true, breakpoints: {'(min-width: 768px)': { active: false } } })" class="embla relative lg:overflow-hidden">
     <div class="embla__container flex lg:grid grid-cols-12 gap-x-3" x-ref="viewport">
       {% for block in section.blocks %}
         {% if block.type == 'image' %}

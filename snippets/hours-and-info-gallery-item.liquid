@@ -2,7 +2,7 @@
   snippets/hours-and-info-gallery-item.liquid
 {% endcomment %}
 
-<div class="embla__slide flex-[0_0_calc(80%)] lg:col-span-4 mr-2 lg:mr-0">
+<div class="embla__slide flex-[0_0_calc(80%)] lg:col-span-4 mr-2 lg:mr-0 {% if forloop.index > 3 %}block lg:hidden{% endif %}">
   <div
     class="w-full aspect-[140/175] relative overflow-hidden cursor-pointer group"
     @click="openFullscreen($event, { large: false, index: {{ forloop.index0 }}, clickedElement: $event.target })"

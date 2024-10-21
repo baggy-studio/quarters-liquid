@@ -42,12 +42,76 @@
             "gallery_image": "shopify://shop_images/57473c9422d3c5235b1bec9c47daf74b_7f3e057b-75aa-4b57-a08e-9909e1c28895.jpg",
             "caption": "The Kitchen & Pantry"
           }
+        },
+        "image_V3wPaj": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_GreatRoom_WJL_19.jpg",
+            "caption": "The Great Room"
+          }
+        },
+        "image_kebFGQ": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Antechamber_WJL_1.jpg",
+            "caption": "Antechamber"
+          }
+        },
+        "image_UfqELM": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_DiningRoom_WJL_1.jpg",
+            "caption": "The Dining Room"
+          }
+        },
+        "image_HEc77f": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Details_2_493d4839-4e4e-4e9a-b733-f45ba6ae5a1e.jpg",
+            "caption": "The Dining Room"
+          }
+        },
+        "image_rKbzTm": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Pantry_WJL_2.jpg",
+            "caption": "The Kitchen & Pantry"
+          }
+        },
+        "image_RzFVrx": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Pantry_WJL_3.jpg",
+            "caption": "The Kitchen & Pantry"
+          }
+        },
+        "image_XRKCaE": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Bedroom_WJL_6.jpg",
+            "caption": "The Bedroom"
+          }
+        },
+        "image_3yzhzb": {
+          "type": "image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/Quarters_Toilettes_WJL_1.jpg",
+            "caption": "Toilettes"
+          }
         }
       },
       "block_order": [
         "image_8Xfmi9",
         "image_7qbKfa",
-        "image_aP3QXC"
+        "image_aP3QXC",
+        "image_V3wPaj",
+        "image_kebFGQ",
+        "image_UfqELM",
+        "image_HEc77f",
+        "image_rKbzTm",
+        "image_RzFVrx",
+        "image_XRKCaE",
+        "image_3yzhzb"
       ],
       "settings": {
         "store_address": "<p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br/>New York, N.Y. 10013</a></p>",

@@ -75,6 +75,20 @@
                   </template>
                 {% endif %}
               {% endif %}
+
+
+              {% if  is_utility_page %} 
+                <div id="faqs">
+                  {% if template.suffix == 'faq' %}
+                  {% if request.design_mode %}
+                     {% sections 'faqs-group' %}
+                  {% else %}
+                    {% sections 'faqs-group' %}
+                  {% endif %}
+                {% endif %}
+                </div>
+              {% endif %}
+    
             </div>
             {% sections 'footer-group' %}
           </main>

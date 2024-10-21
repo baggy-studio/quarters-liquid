@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "colors": {
@@ -25,77 +16,77 @@
         "image_8Xfmi9": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/a08a09feb7c9703b46f12bc65f15649b_a2552842-f589-40a8-b67c-63d24c489c77.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/a08a09feb7c9703b46f12bc65f15649b_a2552842-f589-40a8-b67c-63d24c489c77.jpg",
             "caption": "The Study"
           }
         },
         "image_7qbKfa": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/b1bb18d40637fcf817576ae6e9629e3f.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/b1bb18d40637fcf817576ae6e9629e3f.jpg",
             "caption": "The Bedroom"
           }
         },
         "image_aP3QXC": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/57473c9422d3c5235b1bec9c47daf74b_7f3e057b-75aa-4b57-a08e-9909e1c28895.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/57473c9422d3c5235b1bec9c47daf74b_7f3e057b-75aa-4b57-a08e-9909e1c28895.jpg",
             "caption": "The Kitchen & Pantry"
           }
         },
         "image_V3wPaj": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_GreatRoom_WJL_19.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_GreatRoom_WJL_19.jpg",
             "caption": "The Great Room"
           }
         },
         "image_kebFGQ": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Antechamber_WJL_1.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Antechamber_WJL_1.jpg",
             "caption": "Antechamber"
           }
         },
         "image_UfqELM": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_DiningRoom_WJL_1.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_DiningRoom_WJL_1.jpg",
             "caption": "The Dining Room"
           }
         },
         "image_HEc77f": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Details_2_493d4839-4e4e-4e9a-b733-f45ba6ae5a1e.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Details_2_493d4839-4e4e-4e9a-b733-f45ba6ae5a1e.jpg",
             "caption": "The Dining Room"
           }
         },
         "image_rKbzTm": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Pantry_WJL_2.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Pantry_WJL_2.jpg",
             "caption": "The Kitchen & Pantry"
           }
         },
         "image_RzFVrx": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Pantry_WJL_3.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Pantry_WJL_3.jpg",
             "caption": "The Kitchen & Pantry"
           }
         },
         "image_XRKCaE": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Bedroom_WJL_6.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Bedroom_WJL_6.jpg",
             "caption": "The Bedroom"
           }
         },
         "image_3yzhzb": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/Quarters_Toilettes_WJL_1.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/Quarters_Toilettes_WJL_1.jpg",
             "caption": "Toilettes"
           }
         }
@@ -114,12 +105,12 @@
         "image_3yzhzb"
       ],
       "settings": {
-        "store_address": "<p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br/>New York, N.Y. 10013</a></p>",
-        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"tel:12124874040\" target=\"_blank\" title=\"Call Us\">+1 (212) 587-4040</a></p>",
-        "store_social": "<p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"@shopquarters on Instagram\">@shopquarters</a></p>",
-        "store_info": "<p>Tuesday – Saturday</p><p>11:00am to 6:00pm</p><p></p><p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"Quarters on Google Maps\">Get Directions</a></p><p><a href=\"/collections/all\" title=\"All Items\">Shop Online</a></p>",
-        "bar_info": "<p>Tuesday – Wednesday </p><p>11:00am to 4:00pm</p><p></p><p>Thursday – Saturday </p><p>11:00am to Midnight</p><p></p><p><a href=\"/pages/the-bar\" title=\"The Bar\">Learn More</a></p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Make a Reservation</a></p>",
-        "additional_info": "<p>Quarters is a concept store and gathering space created by Felicia Hung and Nick Ozemba, founders of the design studio <a href=\"https://www.incommonwith.com?utm_source=quarters&utm_medium=hours+info\" target=\"_blank\" title=\"In Common With\">In Common With</a>. Styled as a residence in a 19th-century Tribeca loft, Quarters represents a marriage of warmth and grandeur, and an inventive understanding of the concept of home. Visitors are warmly welcomed to explore the entirety of the In Common With lighting collection alongside curated vintage furnishings, rare books, specialty pantry items, and independent works by peers and fellow artists. </p><p>After hours, community-focused events range from book signings to live music performances and dinner parties. The Bar at Quarters, which specializes in  wine and seasonal small plates, is open day to night.</p><p>Quarters reimagines elements of familiar spaces—the traditional showroom, the well-appointed shop, the local café—to craft a vision of home and hospitality that’s not only completely novel, but ever-shifting, improvisational, and alive.</p>"
+        "store_address": "<p><a href=\"https:\/\/maps.app.goo.gl\/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br\/>New York, N.Y. 10013<\/a><\/p>",
+        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com<\/a><\/p><p><a href=\"tel:12124874040\" target=\"_blank\" title=\"Call Us\">+1 (212) 587-4040<\/a><\/p>",
+        "store_social": "<p><a href=\"https:\/\/www.instagram.com\/shopquarters\/\" target=\"_blank\" title=\"@shopquarters on Instagram\">@shopquarters<\/a><\/p>",
+        "store_info": "<p>Tuesday – Saturday<\/p><p>11:00am to 6:00pm<\/p><p><\/p><p><a href=\"https:\/\/maps.app.goo.gl\/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"Quarters on Google Maps\">Get Directions<\/a><\/p><p><a href=\"\/collections\/all\" title=\"All Items\">Shop Online<\/a><\/p>",
+        "bar_info": "<p>Tuesday – Wednesday\u2028<\/p><p>11:00am to 4:00pm<\/p><p><\/p><p>Thursday – Saturday <\/p><p>11:00am to Midnight<\/p><p><\/p><p><a href=\"\/pages\/the-bar\" title=\"The Bar\">Learn More<\/a><\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Make a Reservation<\/a><\/p>",
+        "additional_info": "<p>Quarters is a concept store and gathering space created by Felicia Hung and Nick Ozemba, founders of the design studio <a href=\"https:\/\/www.incommonwith.com?utm_source=quarters&utm_medium=hours+info\" target=\"_blank\" title=\"In Common With\">In Common With<\/a>. Styled as a residence in a 19th-century Tribeca loft, Quarters represents a marriage of warmth and grandeur, and an inventive understanding of the concept of home. Visitors are warmly welcomed to explore the entirety of the In Common With lighting collection alongside curated vintage furnishings, rare books, specialty pantry items, and independent works by peers and fellow artists. <\/p><p>After hours, community-focused events range from book signings to live music performances and dinner parties. The Bar at Quarters, which specializes in  wine and seasonal small plates, is open day to night.<\/p><p>Quarters reimagines elements of familiar spaces—the traditional showroom, the well-appointed shop, the local café—to craft a vision of home and hospitality that’s not only completely novel, but ever-shifting, improvisational, and alive.<\/p>"
       }
     }
   },

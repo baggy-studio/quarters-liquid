@@ -1,0 +1,97 @@
+{
+  "name": "FAQs",
+  "type": "aside",
+  "sections": {
+    "faq_NUYX7V": {
+      "type": "faq",
+      "blocks": {
+        "faq_9AfDVR": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        },
+        "faq_9qeFhp": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_9AfDVR",
+        "faq_9qeFhp"
+      ],
+      "settings": {
+        "heading": "ORDERS + SHIPPING"
+      }
+    },
+    "faq_HQrrgM": {
+      "type": "faq",
+      "blocks": {
+        "faq_YYEKiM": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        },
+        "faq_84VrDy": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        },
+        "faq_tJec3i": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_YYEKiM",
+        "faq_84VrDy",
+        "faq_tJec3i"
+      ],
+      "settings": {
+        "heading": "ORDERS + SHIPPING"
+      }
+    },
+    "faq_FKBbzQ": {
+      "type": "faq",
+      "blocks": {
+        "faq_6eT7ma": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        },
+        "faq_MyiTWM": {
+          "type": "faq",
+          "settings": {
+            "question": "Frequently asked question",
+            "answer": "<p>Provide the answer to the question here.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_6eT7ma",
+        "faq_MyiTWM"
+      ],
+      "settings": {
+        "heading": "ORDERS + SHIPPING"
+      }
+    }
+  },
+  "order": [
+    "faq_NUYX7V",
+    "faq_HQrrgM",
+    "faq_FKBbzQ"
+  ]
+}

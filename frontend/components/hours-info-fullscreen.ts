@@ -14,7 +14,12 @@ export default () => ({
   transformScale: 1,
   transformWidth: window.innerWidth,
   transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
+ 
   selectedIndex: 0,
+  transitionProgress: 0,
+  transitioning: false,
+  transitionTarget: null,
+
   visible: false,
   animating: false,
   pointer: {
@@ -189,20 +194,78 @@ export default () => ({
 
     container?.scrollTo({ top: 0 })
   },
-  nextImage() {
-    if (this.mediaCount === 0) {
-      console.warn('No media items available');
+  // nextImage() {
+  //   if (this.mediaCount === 0) {
+  //     console.warn('No media items available');
+  //     return;
+  //   }
+
+  //   this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    
+  //   this.$nextTick(() => {
+  //     this.resize();
+  //     this.$dispatch('fullscreen:index', this.selectedIndex);
+  //     document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
+  //   });
+  // },
+
+  async nextImage() {
+    console.log('nextImage called', { 
+      mediaCount: this.mediaCount, 
+      transitioning: this.transitioning, 
+      currentIndex: this.selectedIndex 
+    });
+
+    if (this.mediaCount === 0 || this.transitioning) {
+      console.warn('No media items available or transition in progress');
       return;
     }
 
-    this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
-    
-    this.$nextTick(() => {
+    console.log('Transitioning to next image', { nextIndex: this.nextIndex });
+    await this.transitionTo(this.nextIndex);
+  },
+  async transitionTo(index) {
+    console.log('transitionTo started', { targetIndex: index });
+    this.transitioning = true;
+    this.transitionTarget = index;
+    this.transitionProgress = 0;
+
+    try {
+      console.log('Starting transition animation');
+      // Animate transition
+      await animate((progress) => {
+        this.transitionProgress = progress;
+        console.log('Transition progress:', progress);
+      }, { duration: 0.5, easing: easeOutQuad }).finished;
+
+      console.log('Transition animation completed');
+
+      // Update selected index
+      this.selectedIndex = this.transitionTarget;
+      console.log('Updated selectedIndex', { newSelectedIndex: this.selectedIndex });
+
+      // Perform other necessary actions
       this.resize();
       this.$dispatch('fullscreen:index', this.selectedIndex);
-      document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
-    });
+      console.log('Dispatched fullscreen:index event', { index: this.selectedIndex });
+
+      const container = document.querySelector('[data-fullscreen-fixed]');
+      const targetWidth = window.innerWidth;
+      const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+      const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+
+      container?.scrollTo({ top: targetHeight / 2 });
+      console.log('Scrolled container', { targetHeight });
+    } catch (error) {
+      console.error('Error during image transition:', error);
+    } finally {
+      this.transitioning = false;
+      this.transitionTarget = null;
+      this.transitionProgress = 0;
+      console.log('Transition completed, transitioning set to false');
+    }
   },
+
   advanceImage(index: number) {
     this.selectedIndex = index
     this.resize()

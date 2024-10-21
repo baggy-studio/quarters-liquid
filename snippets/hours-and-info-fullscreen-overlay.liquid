@@ -14,7 +14,7 @@
       x-ref="fullscreenFixed"
       data-fullscreen-fixed
       class="
-        fixed top-0 left-0 h-screen  w-full text-bone z-[100] lg:z-50
+        fixed top-0 left-0 h-screen w-full text-bone z-[100] lg:z-50
         pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
       "
       :class="{
@@ -43,9 +43,10 @@
                 :src="item.src"
                 :sizes="'(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'"
                 :alt="item.alt"
-                class="w-full h-full object-cover"
+                 class="w-full h-full object-cover transition-opacity duration-300"
                 loading="lazy"
                 decoding="async"
+                :style="{ opacity: index === selectedIndex ? 1 : (index === transitionTarget ? transitionProgress : 0) }"
               >
             </li>
           </template>

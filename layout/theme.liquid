@@ -49,26 +49,25 @@
 		<a class='sr-only' href='#main'>Skip to main content</a>
 		<div class='relative' x-data='app' style='--menu-height: 0px; --transform-y: 0px;'>
 			<div class='contents' id='contents'>
-				{% section 'header' %} 
+				{% section 'header' %}
 				<div id='main'>
 					<main
 						class='relative will-change-transform lg:translate-y-[--transform-y] z-[1]'
 						x-ref='main'
 					>
-						{% assign utility_pages = 'page.legal,page.faq,page.shipping,page.privacy'
-							| split: ','
-						%}
-						{% assign is_utility_page = false %}
-
-						{% for page_type in utility_pages %}
-							{% if template == page_type %}
-								{% assign is_utility_page = true %}
-								{% break %}
-							{% endif %}
-						{% endfor %}
-						<div class='bg-bone-tint body-bg'>
-							{{ content_for_layout }}
-							{% if template.suffix == 'bar' %}
+						{% if template.suffix == 'bar' %}
+							<div 
+								class='bg-vanilla text-current transition-colors duration-500 ease-linear'
+								x-data='{ bg: null, text: null, theme: null }'
+								@set-theme.window='theme = $event.detail'
+								@set-colors.window='
+									bg = $event.detail.bg;
+									text = $event.detail.text;
+								'
+								:style='`--bg: ${bg}; --text: ${text};`'
+								:class="{ '!bg-[--bg] !text-[--text]': bg && text }"
+							>
+								{{ content_for_layout }}
 								{% if request.design_mode %}
 									{% sections 'menus-group' %}
 								{% else %}
@@ -82,8 +81,12 @@
 										</div>
 									</template>
 								{% endif %}
-							{% endif %}
-						</div>
+							</div>
+						{% else %}
+							<div class='bg-bone-tint body-bg'>
+								{{ content_for_layout }}
+							</div>
+						{% endif %}
 					</main>
 					{% sections 'footer-group' %}
 				</div>

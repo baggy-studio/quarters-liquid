@@ -1,13 +1,14 @@
 <div class='contents' x-data='barMenus'>
 	<div
-		class='w-full relative grid grid-cols-1 grid-rows-1  transition-colors duration-500 ease-linear bg-vanilla text-mahogany'
-		:style="`--text: ${text ||  'currentColor'}; --bg: ${bg || '#F0DA8F'};`"
-		:class="isSticky && '!bg-[--bg] !text-[--text]'"
+		class='w-full relative grid grid-cols-1 grid-rows-1'
 		id='menu'
 	>
 		<div class='contents' id='menu-container'></div>
 		<div class='absolute top-0 left-0 w-full h-full lg:grid lg:grid-cols-2 pointer-events-none text-bone'>
-			<div id="menu-image-mobile" class='w-full h-auto aspect-[393/487] lg:aspect-auto lg:h-screen lg:pt-[160px] z-10 relative p-4 lg:pr-0 flex items-center lg:items-start lg:top-0 lg:sticky'>
+			<div
+				id='menu-image-mobile'
+				class='w-full h-auto aspect-[393/487] lg:aspect-auto lg:h-screen lg:pt-[160px] z-10 relative p-4 lg:pr-0 flex items-center lg:items-start lg:top-0 lg:sticky'
+			>
 				<div class='w-full flex flex-col gap-y-8'>
 					<h2 class='text-[24px] leading-[1.2] font-serif'>Menu</h2>
 					<ul class='flex flex-col'>
@@ -43,25 +44,20 @@
 					</ul>
 				</div>
 			</div>
-			<div class='absolute bottom-0 top-0 lg:relative w-full'>
-				<div
-					class='w-full absolute top-0 left-0 bottom-0 after:bar-menu-bottom-gradient lg:before:bar-menu-top-gradient'
-				></div>
-				<div
-					:class="
-						{
-						  'opacity-0': !isSticky
-						}
-					"
-					:style='`--bg: ${lastBg};`'
-					class='absolute top-0 left-0 lg:left-auto lg:right-0 w-full lg:w-[calc(50vw)] bottom-0 pointer-events-none bar-gradient z-[1] opacity-0 transition-opacity duration-200 ease-linear'
-				></div>
-			</div>
 		</div>
 	</div>
 	<div
 		:class="isSticky && 'opacity-0'"
-		class='absolute top-0 left-0 w-full bottom-0 pointer-events-none bar-gradient-vanilla z-[1] transition-opacity duration-200 ease-linear'
+		class='absolute top-0 left-0 w-full bottom-0 pointer-events-none bar-gradient-vanilla z-[1] transition-opacity duration-500 ease-linear'
+	></div>
+	<div
+		:class="
+			 {
+			'opacity-0': !isSticky
+			 }
+		"
+		:style='`--bg: ${bg};`'
+		class='absolute top-0 left-0 lg:left-auto lg:right-0 w-full lg:w-[50vw] bottom-0 pointer-events-none bar-gradient z-[1] opacity-0 transition-opacity duration-500 ease-linear'
 	></div>
 </div>
 
@@ -69,7 +65,7 @@
 {
 	"name": "Bar Menus",
 	"class": "contents",
-  "settings": [
+	"settings": [
 		{
 			"type": "image_picker",
 			"id": "image",

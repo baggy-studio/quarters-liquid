@@ -18,7 +18,7 @@ export default () => ({
                 this.$dispatch('set-theme', 'dark')
             }
         }, {
-            amount: 0.9
+            amount: 0.75
         })
     },
     toggleCredits() {
@@ -30,7 +30,7 @@ export default () => ({
     },
     getCreditsHeight() {
         if (window.innerWidth < 1024) {
-            return 108
+            return 124
         } else {
             return 40
         }
@@ -46,7 +46,7 @@ export default () => ({
         await animate((progress) => {
 
             this.creditsDesktop = range(0, 1, 0, 40, progress)
-            this.creditsMobile = range(0, 1, 0, 108, progress)
+            this.creditsMobile = range(0, 1, 0, 124, progress)
             const y = range(0, 1, scrollY, scrollY + this.getCreditsHeight() + scrollLeft, progress)
 
             window.scrollTo({
@@ -63,7 +63,7 @@ export default () => ({
 
         await animate((progress) => {
             this.creditsDesktop = range(0, 1, 40, 0, progress)
-            this.creditsMobile = range(0, 1, 108, 0, progress)
+            this.creditsMobile = range(0, 1, 124, 0, progress)
 
         }, { duration: 1.2, easing: expoInOut }).finished
 

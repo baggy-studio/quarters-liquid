@@ -15,7 +15,11 @@ export default () => ({
             }
 
             return () => {
-                this.$dispatch('set-theme', 'dark')
+                if (this.siteCredits) {
+                   
+                } else {
+                    this.$dispatch('set-theme', 'dark')
+                }
             }
         }, {
             amount: 0.75

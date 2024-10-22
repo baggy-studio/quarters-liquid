@@ -32,21 +32,28 @@
         >
           <template x-for="(item, index) in media" :key="index">
             <li 
-              x-show="selectedIndex === index" 
-              class="contents"
+              x-show="selectedIndex === index || (previousIndex === index && animating)" 
+              class="absolute inset-0 w-full h-full"
+              :class="{
+                'z-10': selectedIndex === index && !fadeOutStarted,
+                'z-20': previousIndex === index && animating
+              }"
               data-fullscreen-image
               :data-aspect-ratio="item.aspectRatio"
               :data-width="item.width"
               :data-height="item.height"
             >
-                <img
+              <img
                 :src="item.src"
                 :sizes="'(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'"
                 :alt="item.alt"
-                 class="w-full h-full object-cover transition-opacity duration-300"
+                class="w-full h-full object-cover transition-opacity duration-300"
+                :class="{
+                  'opacity-0': (previousIndex === index && fadeOutStarted),
+                  'opacity-100': selectedIndex === index || (previousIndex === index && !fadeOutStarted)
+                }"
                 loading="lazy"
                 decoding="async"
-                :style="{ opacity: index === selectedIndex ? 1 : (index === transitionTarget ? transitionProgress : 0) }"
               >
             </li>
           </template>
@@ -62,7 +69,11 @@
         <div class="absolute inset-0 h-[100dvh] px-4 w-full gap-3 lg:grid lg:grid-cols-20">
           <div class="w-full col-span-5 pb-4 flex flex-col gap-8 lg:gap-0 justify-end h-[100dvh]">
             <div class="w-full relative flex flex-col gap-4">
-              <div class="w-full relative flex flex-row items-baseline gap-10">
+              <div class="w-full relative flex flex-row items-baseline gap-10 transition-opacity duration-300"
+              :class="{
+                'opacity-0 pointer-events-none': !visible || initialAnimating,
+                'opacity-100 pointer-events-auto': visible && !initialAnimating
+              }">
                 <span class="large-accent" x-text="String(selectedIndex + 1).padStart(2, '0')"></span>
                 <h2 class="large-serif" x-text="media[selectedIndex]?.caption"></h2>
               </div>
@@ -88,14 +99,17 @@
               </a>
             </h1>
             <button
-              class="medium-serif lg:hidden relative px-4 pb-4 -mr-4"
-              title="Close"
-              @click="closeFullscreen"
-              :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
-            >
-              <span class="absolute inset-0"></span>
-              <span class="relative z-10">(Close)</span>
-            </button>
+            class="medium-serif lg:hidden relative px-4 pb-4 -mr-4 transition-opacity duration-300"
+            title="Close"
+            @click="closeFullscreen"
+            :class="{
+              'opacity-0 pointer-events-none': !visible || initialAnimating,
+              'opacity-100 pointer-events-auto': visible && !initialAnimating
+            }"
+          >
+            <span class="absolute inset-0"></span>
+            <span class="relative z-10">(Close)</span>
+          </button>
           </div>
         </div>
       </div>

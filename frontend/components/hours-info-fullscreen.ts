@@ -14,11 +14,11 @@ export default () => ({
   transformScale: 1,
   transformWidth: window.innerWidth,
   transformHeight: window.innerWidth * (window.innerWidth / window.innerHeight),
- 
   selectedIndex: 0,
-  transitionProgress: 0,
-  transitioning: false,
-  transitionTarget: null,
+
+  previousIndex: null,
+  fadeOutStarted: false,
+  initialAnimating: false,
 
   visible: false,
   animating: false,
@@ -118,6 +118,7 @@ export default () => ({
     this.selectedIndex = index
 
     this.visible = true
+    this.initialAnimating = true
 
     this.pointer.x = e.clientX
     this.pointer.y = e.clientY
@@ -153,10 +154,12 @@ export default () => ({
     };
  
     this.animating = false;
+    this.initialAnimating = false; 
   },
   async closeFullscreen() {
     if (this.animating) return
-
+    this.initialAnimating = true; 
+    
     const container = document.querySelector('[data-fullscreen-fixed]')
     const element = document.querySelector('[data-fullscreen]')
 
@@ -194,89 +197,86 @@ export default () => ({
 
     container?.scrollTo({ top: 0 })
   },
-  // nextImage() {
-  //   if (this.mediaCount === 0) {
-  //     console.warn('No media items available');
-  //     return;
-  //   }
-
-  //   this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
-    
-  //   this.$nextTick(() => {
-  //     this.resize();
-  //     this.$dispatch('fullscreen:index', this.selectedIndex);
-  //     document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
-  //   });
-  // },
-
-  async nextImage() {
-    console.log('nextImage called', { 
-      mediaCount: this.mediaCount, 
-      transitioning: this.transitioning, 
-      currentIndex: this.selectedIndex 
-    });
-
-    if (this.mediaCount === 0 || this.transitioning) {
-      console.warn('No media items available or transition in progress');
+  nextImage() {
+    if (this.mediaCount === 0 || this.animating) {
+      console.warn('No media items available or animation in progress');
       return;
     }
 
-    console.log('Transitioning to next image', { nextIndex: this.nextIndex });
-    await this.transitionTo(this.nextIndex);
+    this.animating = true;
+    this.fadeOutStarted = false;
+    this.previousIndex = this.selectedIndex;
+    
+    // Update to next index
+    this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    
+    // Preload the next image
+    const nextImage = new Image();
+    nextImage.src = this.media[this.selectedIndex].src;
+    
+    nextImage.onload = () => {
+      // Start fade out of previous image
+      this.fadeOutStarted = true;
+      
+      // Complete the transition after fade out
+      setTimeout(() => {
+        this.animating = false;
+        this.fadeOutStarted = false;
+        this.previousIndex = null;
+        this.resize();
+        this.$dispatch('fullscreen:index', this.selectedIndex);
+        document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
+      }, 500);
+    };
   },
-  async transitionTo(index) {
-    console.log('transitionTo started', { targetIndex: index });
-    this.transitioning = true;
-    this.transitionTarget = index;
-    this.transitionProgress = 0;
+  // advanceImage(index: number) {
+  //   this.selectedIndex = index
+  //   this.resize()
 
-    try {
-      console.log('Starting transition animation');
-      // Animate transition
-      await animate((progress) => {
-        this.transitionProgress = progress;
-        console.log('Transition progress:', progress);
-      }, { duration: 0.5, easing: easeOutQuad }).finished;
+  //   const container = document.querySelector('[data-fullscreen-fixed]')
+  //   const targetWidth = window.innerWidth;
+  //   const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+  //   const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
 
-      console.log('Transition animation completed');
+  //   container?.scrollTo({ top: targetHeight / 2 })
 
-      // Update selected index
-      this.selectedIndex = this.transitionTarget;
-      console.log('Updated selectedIndex', { newSelectedIndex: this.selectedIndex });
-
-      // Perform other necessary actions
-      this.resize();
-      this.$dispatch('fullscreen:index', this.selectedIndex);
-      console.log('Dispatched fullscreen:index event', { index: this.selectedIndex });
-
-      const container = document.querySelector('[data-fullscreen-fixed]');
-      const targetWidth = window.innerWidth;
-      const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
-      const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
-
-      container?.scrollTo({ top: targetHeight / 2 });
-      console.log('Scrolled container', { targetHeight });
-    } catch (error) {
-      console.error('Error during image transition:', error);
-    } finally {
-      this.transitioning = false;
-      this.transitionTarget = null;
-      this.transitionProgress = 0;
-      console.log('Transition completed, transitioning set to false');
+  // },
+  advanceImage(index) {
+    if (this.animating || index === this.selectedIndex) {
+      return;
     }
-  },
 
-  advanceImage(index: number) {
-    this.selectedIndex = index
-    this.resize()
+    this.animating = true;
+    this.fadeOutStarted = false;
+    this.previousIndex = this.selectedIndex;
+    
+    this.selectedIndex = index;
+    
+    const nextImage = new Image();
+    nextImage.src = this.media[this.selectedIndex].src;
+    
+    nextImage.onload = () => {
+      this.fadeOutStarted = true;
+      
+      setTimeout(() => {
+        this.animating = false;
+        this.fadeOutStarted = false;
+        this.previousIndex = null;
+        this.resize();
+        
+        const container = document.querySelector('[data-fullscreen-fixed]');
+        const targetWidth = window.innerWidth;
+        const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+        const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
 
-    const container = document.querySelector('[data-fullscreen-fixed]')
-    const targetWidth = window.innerWidth;
-    const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
-    const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+        container?.scrollTo({ 
+          top: targetHeight / 2,
+          behavior: 'smooth'
+        });
 
-    container?.scrollTo({ top: targetHeight / 2 })
-
+        this.$dispatch('fullscreen:index', this.selectedIndex);
+      }, 500);
+    };
   },
   resize() {
     this.transformWidth = window.innerWidth;

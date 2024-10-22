@@ -1,12 +1,13 @@
 {% if template != 'index' %}
 	<div class='contents' x-data='footer'>
 		<footer
-			class='h-screen lg:h-[391px] z-[0] relative'
+			class='h-[calc(100vh+var(--credits-mobile))] lg:h-[calc(var(--height)+var(--credits-desktop))] z-[0] relative'
+			:style="`--height: 391px; --credits-mobile: ${creditsMobile}px; --credits-desktop: ${creditsDesktop}px;`"
 		>
-			<div class='w-full fixed left-0 right-0 bottom-0 h-screen lg:h-[391px] bg-mahogany'>
+			<div class='w-full fixed flex flex-col left-0 right-0 bottom-0 h-[calc(100vh+var(--credits-mobile))] lg:h-max bg-mahogany pt-[58px] lg:pt-0'>
 				<div
 					x-ref='footer'
-					class='w-full h-full flex flex-col justify-between footer-top-padding lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany footer-bg text-bone gap-y-12 lg:gap-y-24'
+					class='w-full h-full flex flex-col justify-between lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany footer-bg text-bone gap-y-12 lg:gap-y-24'
 				>
 					<div class='px-4 w-full flex flex-col lg:grid lg:grid-cols-20 gap-2 lg:gap-3'>
 						<ul class='hidden lg:grid grid-cols-3 gap-3 col-span-9'>
@@ -62,7 +63,7 @@
 							{% endif %}
 						</ul>
 					</div>
-					<div class='lg:px-4 w-full flex flex-col-reverse gap-12 items-end lg:grid lg:grid-cols-20 lg:gap-3 logo-bg h-full'>
+					<div class='lg:px-4 w-full flex flex-col-reverse gap-12 items-end lg:grid lg:grid-cols-20 lg:gap-3 logo-bg lg:h-full'>
 						<div class='flex lg:items-end lg:col-span-9 lg:pl-[30px] w-full'>
 							<a
 								href='/'
@@ -93,11 +94,10 @@
 					<div class='absolute inset-0 hidden lg:flex items-center justify-center pointer-events-none'>
 						<div class='w-[1px] bg-bone h-[calc(100%-32px)]'></div>
 					</div>
-				</div>
+				</div> 
+				{% render 'site-credits' %}
 			</div>
 		</footer>
-
-		{% render 'site-credits' %}
 	</div>
 {% endif %}
 

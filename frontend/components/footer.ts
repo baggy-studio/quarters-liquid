@@ -1,13 +1,25 @@
-import { animate } from "motion";
+import { animate, inView } from "motion";
 import { expoInOut } from "@/easing";
 import { range } from "@/utils";
 
 export default () => ({
-    siteCredits: false, 
-    animating: false, 
+    siteCredits: false,
+    animating: false,
     creditsDesktop: 0,
     creditsMobile: 0,
     init() {
+
+        inView('footer', (entry) => {
+            if (window.innerWidth < 1024) {
+                this.$dispatch('set-theme', 'light')
+            }
+
+            return () => {
+                this.$dispatch('set-theme', 'dark')
+            }
+        }, {
+            amount: 0.9
+        })
     },
     toggleCredits() {
         if (this.siteCredits) {
@@ -15,7 +27,7 @@ export default () => ({
         } else {
             this.openCredits()
         }
-    }, 
+    },
     getCreditsHeight() {
         if (window.innerWidth < 1024) {
             return 108

@@ -49,11 +49,11 @@
       <svg
         :class="
           {
-            'opacity-100': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
-            'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
+            'opacity-100 z-20': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+            'opacity-0 z-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
           }
         "
-        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+        class="absolute fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
         :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
       >
         <use xlink:href="#wordmark"></use>
@@ -62,8 +62,8 @@
       <svg
         :class="
           {
-            'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
-            'opacity-0':  headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+            'opacity-100 z-20': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+            'opacity-0 z-0':  headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
             '!opacity-0': isForcedTheme == 'light' && !menu
           }
         "
@@ -73,45 +73,6 @@
         <use xlink:href="#wordmark"></use>
       </svg>
     </a> 
-    {% comment %} <a href="/" title="Quarters" class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 transition-opacity duration-300 ease-linear
-    {% if section.settings.hideHomepageHeader and template == 'index' %}
-      opacity-0
-    {% elsif template.suffix == 'bar' %}
-      opacity-0
-    {% else %}
-      pointer-events-auto
-    {% endif %}
-  "
-  {% if section.settings.hideHomepageHeader %}
-    :class="{
-      'opacity-0': !hasHeader && !menu,
-      'opacity-100 lg:opacity-0': $store.cart.visible && window.innerWidth < 1024,
-      'pointer-events-auto': activeUrl !== '/' || menu
-    }"
-  {% endif %}
-  >
-    <div class="relative w-full h-full">
-      <!-- Light theme logo always on bottom -->
-      <svg
-        class="fill-current h-full w-full text-bone aspect-[138/22] lg:aspect-[185/31] absolute inset-0 transition-opacity duration-300 ease-linear"
-        :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
-      >
-        <use xlink:href="#wordmark"></use>
-      </svg>
-  
-      <!-- Dark theme logo on top with opacity transition -->
-      <svg
-      :class="{
-        'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
-        'opacity-0': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
-      }"
-      class="fill-current h-full w-full text-mahogany aspect-[138/22] lg:aspect-[185/31] absolute inset-0 transition-opacity duration-300 ease-linear z-10"
-      :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
-    >
-      <use xlink:href="#wordmark"></use>
-    </svg>
-    </div>
-  </a> {% endcomment %}
   </h1>
   <nav
     aria-label="Main Navigation"

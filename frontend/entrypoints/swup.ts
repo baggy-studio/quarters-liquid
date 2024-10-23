@@ -36,7 +36,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
       to: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
-      containers: ['#utility', '#page-settings', "#utility-nav", "#faqs"],
+      containers: ['#utility', '#page-settings', "#utility-nav", "#faqs", "#secondary-text"],
     }
   ]
 });

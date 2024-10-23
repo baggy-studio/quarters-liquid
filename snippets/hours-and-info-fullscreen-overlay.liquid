@@ -15,7 +15,7 @@
       data-fullscreen-fixed
       class="
         fixed top-0 left-0 h-screen w-full text-bone z-[100] lg:z-50
-        pointer-events-none opacity-0 duration-300 ease-linear transition-opacity lg:duration-0 lg:transition-none
+        pointer-events-none opacity-0 duration-300 ease-linear transition-opacity will-change-opacity
       "
       :class="{
         'pointer-events-auto opacity-100': visible,
@@ -47,7 +47,7 @@
                 :src="item.src"
                 :sizes="'(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'"
                 :alt="item.alt"
-                class="w-full h-full object-cover transition-opacity duration-300"
+                class="w-full h-full object-cover transition-opacity duration-300 will-change-opacity"
                 :class="{
                   'opacity-0': (previousIndex === index && fadeOutStarted),
                   'opacity-100': selectedIndex === index || (previousIndex === index && !fadeOutStarted)
@@ -69,7 +69,7 @@
         <div class="absolute inset-0 h-[100dvh] px-4 w-full gap-3 lg:grid lg:grid-cols-20">
           <div class="w-full col-span-5 pb-4 flex flex-col gap-8 lg:gap-0 justify-end h-[100dvh]">
             <div class="w-full relative flex flex-col gap-4">
-              <div class="w-full relative flex flex-row items-baseline gap-10 transition-opacity duration-300"
+              <div class="w-full relative flex flex-row items-baseline gap-10 transition-opacity duration-300 will-change-opacity"
               :class="{
                 'opacity-0 pointer-events-none': !visible || initialAnimating,
                 'opacity-100 pointer-events-auto': visible && !initialAnimating
@@ -99,7 +99,7 @@
               </a>
             </h1>
             <button
-            class="medium-serif lg:hidden relative px-4 pb-4 -mr-4 transition-opacity duration-300"
+            class="medium-serif lg:hidden relative px-4 pb-4 -mr-4 transition-opacity duration-300 will-change-opacity"
             title="Close"
             @click="closeFullscreen"
             :class="{

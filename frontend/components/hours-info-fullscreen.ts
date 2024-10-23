@@ -197,7 +197,7 @@ export default () => ({
 
     container?.scrollTo({ top: 0 })
   },
-  nextImage() {
+  async nextImage() {
     if (this.mediaCount === 0 || this.animating) {
       console.warn('No media items available or animation in progress');
       return;
@@ -210,37 +210,37 @@ export default () => ({
     // Update to next index
     this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
     
-    // Preload the next image
-    const nextImage = new Image();
-    nextImage.src = this.media[this.selectedIndex].src;
-    
-    nextImage.onload = () => {
-      // Start fade out of previous image
+    // Wait for the next image to fully load before starting any transition
+    try {
+      await new Promise((resolve, reject) => {
+        const nextImage = new Image();
+        nextImage.onload = resolve;
+        nextImage.onerror = reject;
+        nextImage.src = this.media[this.selectedIndex].src;
+      });
+      
+      // Only start fade out after new image is loaded
       this.fadeOutStarted = true;
       
       // Complete the transition after fade out
-      setTimeout(() => {
-        this.animating = false;
-        this.fadeOutStarted = false;
-        this.previousIndex = null;
-        this.resize();
-        this.$dispatch('fullscreen:index', this.selectedIndex);
-        document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
-      }, 500);
-    };
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      this.animating = false;
+      this.fadeOutStarted = false;
+      this.previousIndex = null;
+      this.resize();
+      this.$dispatch('fullscreen:index', this.selectedIndex);
+      document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
+    } catch (error) {
+      console.error('Failed to load next image:', error);
+      // Reset state on error
+      this.animating = false;
+      this.fadeOutStarted = false;
+      this.selectedIndex = this.previousIndex;
+      this.previousIndex = null;
+    }
   },
-  // advanceImage(index: number) {
-  //   this.selectedIndex = index
-  //   this.resize()
 
-  //   const container = document.querySelector('[data-fullscreen-fixed]')
-  //   const targetWidth = window.innerWidth;
-  //   const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
-  //   const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
-
-  //   container?.scrollTo({ top: targetHeight / 2 })
-
-  // },
   advanceImage(index) {
     if (this.animating || index === this.selectedIndex) {
       return;
@@ -249,33 +249,42 @@ export default () => ({
     this.animating = true;
     this.fadeOutStarted = false;
     this.previousIndex = this.selectedIndex;
-    
     this.selectedIndex = index;
     
     const nextImage = new Image();
     nextImage.src = this.media[this.selectedIndex].src;
     
     nextImage.onload = () => {
-      this.fadeOutStarted = true;
-      
-      setTimeout(() => {
-        this.animating = false;
-        this.fadeOutStarted = false;
-        this.previousIndex = null;
-        this.resize();
+      requestAnimationFrame(() => {
+        this.fadeOutStarted = true;
         
-        const container = document.querySelector('[data-fullscreen-fixed]');
-        const targetWidth = window.innerWidth;
-        const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
-        const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+        setTimeout(() => {
+          this.animating = false;
+          this.fadeOutStarted = false;
+          this.previousIndex = null;
+          this.resize();
+          
+          const container = document.querySelector('[data-fullscreen-fixed]');
+          const targetWidth = window.innerWidth;
+          const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+          const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
 
-        container?.scrollTo({ 
-          top: targetHeight / 2,
-          behavior: 'smooth'
-        });
+          container?.scrollTo({ 
+            top: targetHeight / 2,
+            behavior: 'smooth'
+          });
 
-        this.$dispatch('fullscreen:index', this.selectedIndex);
-      }, 500);
+          this.$dispatch('fullscreen:index', this.selectedIndex);
+        }, 500);
+      });
+    };
+
+    nextImage.onerror = () => {
+      this.animating = false;
+      this.fadeOutStarted = false;
+      this.selectedIndex = this.previousIndex;
+      this.previousIndex = null;
+      console.error('Failed to load image at index:', index);
     };
   },
   resize() {

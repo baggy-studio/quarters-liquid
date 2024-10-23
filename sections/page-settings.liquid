@@ -1,4 +1,4 @@
-<div id="page-settings" x-data="pageColors" class="contents">
+<div id="page-settings" class="contents">
   <style>
      :root {
        --text-color: {{ section.settings.textColor }};
@@ -63,15 +63,6 @@
     ></div>
   {% endif %}
 
-  <div 
-    class="contents"
-    data-color-settings
-    data-text-color="{{ section.settings.textColor }}"
-    data-background-color="{{ section.settings.backgroundColor }}"
-    data-header-theme="{{ section.settings.headerTheme }}"
-    data-footer-text-color="{{ section.settings.footerTextColor }}"
-    data-footer-background-color="{{ section.settings.footerBackgroundColor }}">
-  </div>
 </div>
 
 {% schema %}

@@ -197,64 +197,87 @@ export default () => ({
 
     container?.scrollTo({ top: 0 })
   },
+  // async nextImage() {
+  //   if (this.mediaCount === 0 || this.animating) {
+  //     console.warn('No media items available or animation in progress');
+  //     return;
+  //   }
+
+  //   this.animating = true;
+  //   this.fadeOutStarted = false;
+  //   this.previousIndex = this.selectedIndex;
+    
+  //   // Update to next index
+  //   this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    
+  //   // Wait for the next image to fully load before starting any transition
+  //   try {
+  //     await new Promise((resolve, reject) => {
+  //       const nextImage = new Image();
+  //       nextImage.onload = resolve;
+  //       nextImage.onerror = reject;
+  //       nextImage.src = this.media[this.selectedIndex].src;
+  //     });
+      
+  //     // Only start fade out after new image is loaded
+  //     this.fadeOutStarted = true;
+      
+  //     // Complete the transition after fade out
+  //     await new Promise(resolve => setTimeout(resolve, 500));
+      
+  //     this.animating = false;
+  //     this.fadeOutStarted = false;
+  //     this.previousIndex = null;
+  //     this.resize();
+  //     this.$dispatch('fullscreen:index', this.selectedIndex);
+  //     document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
+  //   } catch (error) {
+  //     console.error('Failed to load next image:', error);
+  //     // Reset state on error
+  //     this.animating = false;
+  //     this.fadeOutStarted = false;
+  //     this.selectedIndex = this.previousIndex;
+  //     this.previousIndex = null;
+  //   }
+  // },
   async nextImage() {
     if (this.mediaCount === 0 || this.animating) {
       console.warn('No media items available or animation in progress');
       return;
     }
-
+  
     this.animating = true;
     this.fadeOutStarted = false;
     this.previousIndex = this.selectedIndex;
     
-    // Update to next index
-    this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+    // Calculate next index but don't update selectedIndex yet
+    const nextIndex = (this.selectedIndex + 1) % this.mediaCount;
     
-    // Wait for the next image to fully load before starting any transition
     try {
+      // Create and load next image while keeping previous image visible
+      const nextImage = new Image();
+      nextImage.src = this.media[nextIndex].src;
+      
+      // Wait for the image to be fully loaded
       await new Promise((resolve, reject) => {
-        const nextImage = new Image();
-        nextImage.onload = resolve;
+        nextImage.onload = () => {
+          // Decode the image to ensure it's fully ready
+          if (nextImage.decode) {
+            nextImage.decode().then(resolve).catch(resolve);
+          } else {
+            resolve();
+          }
+        };
         nextImage.onerror = reject;
-        nextImage.src = this.media[this.selectedIndex].src;
       });
+  
+      // Only update selectedIndex after the new image is ready
+      this.selectedIndex = nextIndex;
       
-      // Only start fade out after new image is loaded
-      this.fadeOutStarted = true;
+      // Force a reflow to ensure proper transition
+      void document.querySelector('[data-fullscreen]')?.offsetHeight;
       
-      // Complete the transition after fade out
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      this.animating = false;
-      this.fadeOutStarted = false;
-      this.previousIndex = null;
-      this.resize();
-      this.$dispatch('fullscreen:index', this.selectedIndex);
-      document.querySelector('[data-fullscreen-fixed]')?.scrollTo({ top: 0 });
-    } catch (error) {
-      console.error('Failed to load next image:', error);
-      // Reset state on error
-      this.animating = false;
-      this.fadeOutStarted = false;
-      this.selectedIndex = this.previousIndex;
-      this.previousIndex = null;
-    }
-  },
-
-  advanceImage(index) {
-    if (this.animating || index === this.selectedIndex) {
-      return;
-    }
-
-    this.animating = true;
-    this.fadeOutStarted = false;
-    this.previousIndex = this.selectedIndex;
-    this.selectedIndex = index;
-    
-    const nextImage = new Image();
-    nextImage.src = this.media[this.selectedIndex].src;
-    
-    nextImage.onload = () => {
+      // Start fade transition
       requestAnimationFrame(() => {
         this.fadeOutStarted = true;
         
@@ -265,27 +288,143 @@ export default () => ({
           this.resize();
           
           const container = document.querySelector('[data-fullscreen-fixed]');
-          const targetWidth = window.innerWidth;
-          const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
-          const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
-
-          container?.scrollTo({ 
-            top: targetHeight / 2,
-            behavior: 'smooth'
-          });
-
+          if (container) {
+            container.scrollTo({ top: 0 });
+          }
+          
           this.$dispatch('fullscreen:index', this.selectedIndex);
-        }, 500);
+        }, 300); // Match your CSS transition duration
       });
-    };
-
-    nextImage.onerror = () => {
+    } catch (error) {
+      console.error('Failed to load next image:', error);
+      // Reset state on error but keep previous image visible
       this.animating = false;
       this.fadeOutStarted = false;
       this.selectedIndex = this.previousIndex;
       this.previousIndex = null;
+    }
+  },  
+  // advanceImage(index) {
+  //   if (this.animating || index === this.selectedIndex) {
+  //     return;
+  //   }
+
+  //   this.animating = true;
+  //   this.fadeOutStarted = false;
+  //   this.previousIndex = this.selectedIndex;
+  //   this.selectedIndex = index;
+    
+  //   const nextImage = new Image();
+  //   nextImage.src = this.media[this.selectedIndex].src;
+    
+  //   nextImage.onload = () => {
+  //     requestAnimationFrame(() => {
+  //       this.fadeOutStarted = true;
+        
+  //       setTimeout(() => {
+  //         this.animating = false;
+  //         this.fadeOutStarted = false;
+  //         this.previousIndex = null;
+  //         this.resize();
+          
+  //         const container = document.querySelector('[data-fullscreen-fixed]');
+  //         const targetWidth = window.innerWidth;
+  //         const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+  //         const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+
+  //         container?.scrollTo({ 
+  //           top: targetHeight / 2,
+  //           behavior: 'smooth'
+  //         });
+
+  //         this.$dispatch('fullscreen:index', this.selectedIndex);
+  //       }, 500);
+  //     });
+  //   };
+
+  //   nextImage.onerror = () => {
+  //     this.animating = false;
+  //     this.fadeOutStarted = false;
+  //     this.selectedIndex = this.previousIndex;
+  //     this.previousIndex = null;
+  //     console.error('Failed to load image at index:', index);
+  //   };
+  // },
+  advanceImage(index) {
+    if (this.animating || index === this.selectedIndex) {
+      return;
+    }
+  
+    this.animating = true;
+    this.fadeOutStarted = false;
+    this.previousIndex = this.selectedIndex;
+    
+    // Don't update selectedIndex yet
+    const targetIndex = index;
+    
+    const nextImage = new Image();
+    nextImage.src = this.media[targetIndex].src;
+    
+    // Use Promise to handle image loading
+    new Promise((resolve, reject) => {
+      if (nextImage.complete) {
+        // If image is already cached, decode it
+        if (nextImage.decode) {
+          nextImage.decode().then(resolve).catch(resolve);
+        } else {
+          resolve();
+        }
+      } else {
+        nextImage.onload = () => {
+          // Decode after load for new images
+          if (nextImage.decode) {
+            nextImage.decode().then(resolve).catch(resolve);
+          } else {
+            resolve();
+          }
+        };
+        nextImage.onerror = reject;
+      }
+    })
+    .then(() => {
+      // Only update selectedIndex after image is ready
+      this.selectedIndex = targetIndex;
+      
+      // Force reflow
+      void document.querySelector('[data-fullscreen]')?.offsetHeight;
+      
+      requestAnimationFrame(() => {
+        this.fadeOutStarted = true;
+        
+        setTimeout(() => {
+          this.animating = false;
+          this.fadeOutStarted = false;
+          this.previousIndex = null;
+          this.resize();
+          
+          const container = document.querySelector('[data-fullscreen-fixed]');
+          if (container) {
+            const targetWidth = window.innerWidth;
+            const heightBasedOnAspectRatio = targetWidth / this.activeMedia.aspectRatio;
+            const targetHeight = Math.max(heightBasedOnAspectRatio, window.innerHeight) - window.innerHeight;
+            
+            container.scrollTo({
+              top: targetHeight / 2,
+              behavior: 'smooth'
+            });
+          }
+          
+          this.$dispatch('fullscreen:index', this.selectedIndex);
+        }, 300);
+      });
+    })
+    .catch(() => {
       console.error('Failed to load image at index:', index);
-    };
+      this.animating = false;
+      this.fadeOutStarted = false;
+      this.selectedIndex = this.previousIndex;
+      this.previousIndex = null;
+    });
   },
   resize() {
     this.transformWidth = window.innerWidth;

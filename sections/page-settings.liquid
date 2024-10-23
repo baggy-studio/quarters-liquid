@@ -1,4 +1,4 @@
-<div id="page-settings" x-data="pageColors" class="contents" x-data>
+<div id="page-settings" x-data="pageColors" class="contents">
   <style>
      :root {
        --text-color: {{ section.settings.textColor }};
@@ -13,32 +13,39 @@
        {% endif %}
      }
 
-     body, .body-bg, #utility-nav {
-       color: var(--text-color) !important;
-       background-color: var(--background-color) !important;
-       transition: color 200ms ease-linear, background-color 200ms ease-linear;
-     }
+     body, .body-bg {
+      color: var(--text-color) !important;
+      background-color: var(--background-color) !important;
+      transition-property: color, background-color;
+      transition-duration: 200ms, 200ms;
+  }
 
     footer .logo-bg, .footer-bg {
        color: var(--footer-text-color) !important;
        background-color: var(--footer-background-color) !important;
-       transition: color 200ms ease-linear, background-color 200ms ease-linear;
+       transition-property: color, background-color;
+       transition-duration: 200ms, 200ms;
      }
 
-     {% if section.settings.footerTextColor  %}
+     {% if section.settings.footerTextColor %}
      footer .divider {
          background-color: var(--footer-text-color) !important;
+         transition-property: color, background-color;
+         transition-duration: 200ms, 200ms;
      }
      {% else %}
      footer .divider {
          background-color:#F4EED0;
+         transition-property: color, background-color;
+         transition-duration: 200ms, 200ms;
      }
    {% endif %}
 
      {% if template == 'page.hours-info' or template == 'page.faq' or template == 'page.shipping' or template == 'page.legal' or template == 'page.privacy' %}
        .nav-gradient::before {
          background: linear-gradient(180deg, var(--background-color) 0%, rgba(2, 43, 38, 0) 100%);
-         transition: color 200ms ease-linear, background-color 200ms ease-linear;
+         transition-property: color, background-color;
+         transition-duration: 200ms, 200ms;
        }
      {% endif %}
   </style>
@@ -57,14 +64,14 @@
   {% endif %}
 
   <div 
-  class="contents"
-  data-color-settings
-  data-text-color="{{ section.settings.textColor }}"
-  data-background-color="{{ section.settings.backgroundColor }}"
-  data-header-theme="{{ section.settings.headerTheme }}"
-  data-footer-text-color="{{ section.settings.footerTextColor }}"
-  data-footer-background-color="{{ section.settings.footerBackgroundColor }}">
-</div>
+    class="contents"
+    data-color-settings
+    data-text-color="{{ section.settings.textColor }}"
+    data-background-color="{{ section.settings.backgroundColor }}"
+    data-header-theme="{{ section.settings.headerTheme }}"
+    data-footer-text-color="{{ section.settings.footerTextColor }}"
+    data-footer-background-color="{{ section.settings.footerBackgroundColor }}">
+  </div>
 </div>
 
 {% schema %}

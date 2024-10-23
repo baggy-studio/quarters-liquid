@@ -1,85 +1,9 @@
 {% schema %}
   {
-    "name": "FAQ Category",
-    "settings": [
-      {
-        "type": "text",
-        "id": "category_1_title",
-        "label": "Category 1 Title",
-        "default": "ORDERS + SHIPPING"
-      },
-      {
-        "type": "text",
-        "id": "category_2_title",
-        "label": "Category 2 Title",
-        "default": "ORDERS + SHIPPING"
-      },
-      {
-        "type": "text",
-        "id": "category_3_title",
-        "label": "Category 3 Title",
-        "default": "ORDERS + SHIPPING"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "faq_category_1",
-        "name": "FAQ - Category 1",
-        "settings": [
-          {
-            "type": "text",
-            "id": "question",
-            "label": "Question",
-            "default": "What is your question for Category 1?"
-          },
-          {
-            "type": "richtext",
-            "id": "answer",
-            "label": "Answer",
-            "default": "<p>Provide your answer for Category 1 here.</p>"
-          }
-        ]
-      },
-      {
-        "type": "faq_category_2",
-        "name": "FAQ - Category 2",
-        "settings": [
-          {
-            "type": "text",
-            "id": "question",
-            "label": "Question",
-            "default": "What is your question for Category 2?"
-          },
-          {
-            "type": "richtext",
-            "id": "answer",
-            "label": "Answer",
-            "default": "<p>Provide your answer for Category 2 here.</p>"
-          }
-        ]
-      },
-      {
-        "type": "faq_category_3",
-        "name": "FAQ - Category 3",
-        "settings": [
-          {
-            "type": "text",
-            "id": "question",
-            "label": "Question",
-            "default": "What is your question for Category 3?"
-          },
-          {
-            "type": "richtext",
-            "id": "answer",
-            "label": "Answer",
-            "default": "<p>Provide your answer for Category 3 here.</p>"
-          }
-        ]
-      }
-    ],
+    "name": "FAQ Content",
     "presets": [
       {
-        "name": "FAQ Category",
+        "name": "FAQ Content",
         "category": "Content"
       }
     ]
@@ -87,67 +11,53 @@
 {% endschema %}
 
 
-<div id="utility" class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[48px] grid grid-cols-10 gap-x-3 lg:pl-1.5">
-  {% for category in (1..3) %}
-    {% assign category_title = 'category_' | append: category | append: '_title' %}
-    {% assign category_type = 'faq_category_' | append: category %}
+<div id="utility" 
+     class="utility-content md:mt-4 md:pt-[48px] py-[64px] md:pb-[48px] grid grid-cols-10 gap-x-3 lg:pl-1.5"
+     x-data="faqs">
 
-    {% if section.settings[category_title] != blank %}
+  <!-- Single template for both category and items -->
+  <template x-for="(section, sectionIndex) in faqSections" :key="sectionIndex">
+    <div class="lg:col-start-2 lg:col-span-9 col-span-10">
       <!-- Category Title -->
-      <div class="lg:col-start-2 lg:col-span-9 col-span-10 mt-8">
+      <div class="mt-8">
         <div class="faq-categories mb-6">
-          <span class="faq-category underline-none">{{ section.settings[category_title] }}</span>
+          <span class="faq-category underline-none" x-text="section.heading"></span>
         </div>
       </div>
 
       <!-- Category FAQs -->
-      <div class="md:col-start-2 md:col-span-9 col-span-10 lg:mb-8">
-        <div class="faq-items" x-data="{ openSection: null }">
-          {% for block in section.blocks %}
-            {% if block.type == category_type %}
-              <div id="{{ block.id }}" class="faq-item grid grid-cols-9 gap-x-3 border-b border-current">
-                <button 
-                  @click="openSection = openSection === '{{ block.id }}' ? null : '{{ block.id }}'" 
-                  class="faq-question col-span-9 body-sans w-full text-left flex items-center justify-between py-3"
+      <div class="lg:mb-8" x-data="{ openSection: null }">
+        <div class="faq-items">
+          <template x-for="(item, itemIndex) in section.faqItems" :key="itemIndex">
+            <div :id="'faq-' + sectionIndex + '-' + itemIndex" class="faq-item grid grid-cols-9 gap-x-3 border-b border-current">
+              <button 
+                @click="openSection = openSection === ('faq-' + sectionIndex + '-' + itemIndex) ? null : ('faq-' + sectionIndex + '-' + itemIndex)" 
+                class="faq-question col-span-9 body-sans w-full text-left flex items-center justify-between py-3"
+              >
+                <span class="medium-serif" x-text="item.question"></span>
+                <span
+                  :class="{ 'rotate-180': openSection === ('faq-' + sectionIndex + '-' + itemIndex) }"
+                  class="transition-transform duration-800 ease-in-out w-2 relative h-2 flex items-center justify-center"
                 >
-                  <span class="medium-serif">{{ block.settings.question }}</span>
+                  <span class="w-full h-[1px] bg-current block"></span>
                   <span
-                    :class="{ 'rotate-180': openSection === '{{ block.id }}' }"
-                    class="transition-transform duration-800 ease-in-out w-2 relative h-2 flex items-center justify-center"
-                  >
-                    <span class="w-full h-[1px] bg-current block"></span>
-                    <span
-                      :class="{ 'opacity-0': openSection === '{{ block.id }}' }"
-                      class="h-full w-[1px] bg-current absolute block transition-opacity duration-800 ease-in-out"
-                    ></span>
-                  </span>
-                </button>
-                <div
-                  class="h-0 col-span-8 overflow-hidden transition-all duration-800 ease-in-out"
-                  x-ref="container-{{ block.id }}"
-                  x-show="openSection === '{{ block.id }}'"
-                  x-collapse.duration.800ms
-                >
-                  <div class="faq-answer medium-sans pb-6">
-                    {{ block.settings.answer }}
-                  </div>
-                </div>
+                    :class="{ 'opacity-0': openSection === ('faq-' + sectionIndex + '-' + itemIndex) }"
+                    class="h-full w-[1px] bg-current absolute block transition-opacity duration-800 ease-in-out"
+                  ></span>
+                </span>
+              </button>
+              <div
+                class="h-0 col-span-8 overflow-hidden transition-all duration-800 ease-in-out"
+                :x-ref="'container-' + sectionIndex + '-' + itemIndex"
+                x-show="openSection === ('faq-' + sectionIndex + '-' + itemIndex)"
+                x-collapse.duration.800ms
+              >
+                <div class="faq-answer medium-sans pb-6" x-html="item.answer"></div>
               </div>
-            {% endif %}
-          {% endfor %}
+            </div>
+          </template>
         </div>
       </div>
-    {% endif %}
-  {% endfor %}
+    </div>
+  </template>
 </div>
-
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('faqAccordion', () => ({
-      openSection: null,
-      toggle(id) {
-        this.openSection = this.openSection === id ? null : id;
-      }
-    }));
-  });
-</script>

@@ -1,5 +1,11 @@
 export default () => ({
+    openSection: null,
     faqSections: [],
+    
+    toggle(id) {
+      this.openSection = this.openSection === id ? null : id;
+    },
+    
     init() {
       setTimeout(() => {
         this.hydrateFAQData();

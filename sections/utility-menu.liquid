@@ -1,7 +1,9 @@
 <div class="utility-menu">
-  {% if section.settings.menu != blank %}
+  {% comment %} {% if section.settings.menu != blank %}
     {% render 'utility-menu', menu: section.settings.menu %}
-  {% endif %}
+  {% endif %} {% endcomment %}
+
+  {% render 'utility-menu', menu: 'utility-menu-test' %}
     <div class="grid grid-cols-10 gap-x-3">
       <div class="text-sm font-sans col-span-10 md:col-span-6 text-underline md:max-w-[343px] richtext-hover-only">
           {{ section.settings.secondary_text }}

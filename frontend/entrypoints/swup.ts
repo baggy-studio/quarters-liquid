@@ -76,6 +76,8 @@ export const removeScrollHook = () => {
   swup.hooks.off('content:scroll', scrollToTopForUtilityPages);
 };
 
+
+
 export function updateCache(propUrl?: string) {
   const url = propUrl || swup.getCurrentUrl();
   const cachedPage = swup.cache.get(url);

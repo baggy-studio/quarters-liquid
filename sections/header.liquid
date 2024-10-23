@@ -19,11 +19,11 @@
     @click="closeMenu"
   ></button>
   {% render 'menu', menu: section.settings.menu %}
-  <h1
-  :class="{ 'is-menu': menu }"
-  class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
-  >
-    <a
+    <h1
+    :class="{ 'is-menu': menu }"
+    class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
+    >
+ <a
       href="/"
       title="Quarters"
       class="
@@ -72,7 +72,46 @@
       >
         <use xlink:href="#wordmark"></use>
       </svg>
-    </a>
+    </a> 
+    {% comment %} <a href="/" title="Quarters" class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300 transition-opacity duration-300 ease-linear
+    {% if section.settings.hideHomepageHeader and template == 'index' %}
+      opacity-0
+    {% elsif template.suffix == 'bar' %}
+      opacity-0
+    {% else %}
+      pointer-events-auto
+    {% endif %}
+  "
+  {% if section.settings.hideHomepageHeader %}
+    :class="{
+      'opacity-0': !hasHeader && !menu,
+      'opacity-100 lg:opacity-0': $store.cart.visible && window.innerWidth < 1024,
+      'pointer-events-auto': activeUrl !== '/' || menu
+    }"
+  {% endif %}
+  >
+    <div class="relative w-full h-full">
+      <!-- Light theme logo always on bottom -->
+      <svg
+        class="fill-current h-full w-full text-bone aspect-[138/22] lg:aspect-[185/31] absolute inset-0 transition-opacity duration-300 ease-linear"
+        :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+  
+      <!-- Dark theme logo on top with opacity transition -->
+      <svg
+      :class="{
+        'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+        'opacity-0': isForcedTheme == 'light' && !menu || headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)
+      }"
+      class="fill-current h-full w-full text-mahogany aspect-[138/22] lg:aspect-[185/31] absolute inset-0 transition-opacity duration-300 ease-linear z-10"
+      :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
+    >
+      <use xlink:href="#wordmark"></use>
+    </svg>
+    </div>
+  </a> {% endcomment %}
   </h1>
   <nav
     aria-label="Main Navigation"

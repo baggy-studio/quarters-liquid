@@ -1,156 +1,153 @@
 <div
-  x-data="{ bg: null, text: null, theme: null }"
-  @set-colors.window="
-    bg = $event.detail.bg;
-    text = $event.detail.text;
-  "
-  @set-theme.window="theme = $event.detail"
-  :style="`--bg: ${bg}; --text: ${text};`"
-  :class="{ '!bg-[--bg] !text-[--text]': bg && text }"
-  class="
-    w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden transition-colors duration-200 ease-linear
-
-    bg-vanilla
-    text-mahogany
-  "
-  id="events"
+	class='    w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden'
+	id='events'
 >
-  <div class="w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4 z-0 relative">
-    <div class="col-span-7 col-start-4 spicy-body uppercase">
-      {{ section.settings.title }}
-    </div>
-    <div class="col-span-7 flex flex-col lg:grid lg:grid-cols-7 gap-x-3 gap-y-8">
-      <div class="medium-sans col-span-7 flex flex-col gap-y-8">{{ section.settings.body }}</div>
-      {% if section.settings.cta_link %}
-        <div class="col-span-5">
-          <a
+	<div class='w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4 z-0 relative'>
+		<div class='col-span-7 col-start-4 spicy-body uppercase'>
+			{{ section.settings.title }}
+		</div>
+		<div class='col-span-7 flex flex-col lg:grid lg:grid-cols-7 gap-x-3 gap-y-8'>
+			<div class='medium-sans col-span-7 flex flex-col gap-y-8'>{{ section.settings.body }}</div>
+			{% if section.settings.cta_link %}
+				<div
+					class='col-span-5'
+					x-data='{ theme: null }'
+					@set-theme.window='theme = $event.detail'
+				>
+					<a
             :class="
               {
                 'bg-bone border-bone hover:bg-bone-hover hover:border-bone-hover text-mahogany hover:text-mahogany': theme === 'light'
               }
             "
-            href="{{ section.settings.cta_link }}"
-            class="rez-button"
-          >
-            {{- section.settings.cta_text -}}
-            <span class="block text-[15px] font-sans font-normal">→</span>
-          </a>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-  <div class="w-full flex flex-col gap-8" x-data="carousel">
-    <div class="w-full contents lg:grid grid-cols-20 gap-3 px-4">
-      <div class="w-full flex items-center justify-between col-span-8 lg:col-end-[20] col-start-2 px-4 lg:px-0">
-        <button
-          :disabled="!canScrollPrev"
-          aria-label="Prev slide"
-          class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible"
-          @click="prev"
-        >
-          ←
-        </button>
-        <button
-          :disabled="!canScrollNext"
-          aria-label="Next slide"
-          class="large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible"
-          @click="next"
-        >
-          →
-        </button>
-      </div>
-    </div>
-    <div class="w-full px-4">
-      <ul
-        x-ref="container"
-        class="w-full flex"
-      >
-        {% for block in section.blocks %}
-          {% assign image_width = block.settings.image.width | default: 0 %}
-          {% assign image_height = block.settings.image.height | default: 0 %}
-          {% assign aspect_ratio = image_width | divided_by: image_height | times: 1.0 %}
-          {% if aspect_ratio >= 1 %}
-            {% assign image_orientation = 'horizontal-image' %}
-          {% else %}
-            {% assign image_orientation = 'portrait-image' %}
-          {% endif %}
+						href='{{ section.settings.cta_link }}'
+						class='rez-button'
+					>
+						{{- section.settings.cta_text -}}
+						<span class='block text-[15px] font-sans font-normal'>→</span>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class='w-full flex flex-col gap-8' x-data='carousel'>
+		<div class='w-full contents lg:grid grid-cols-20 gap-3 px-4'>
+			<div class='w-full flex items-center justify-between col-span-8 lg:col-end-[20] col-start-2 px-4 lg:px-0'>
+				<button
+					:disabled='!canScrollPrev'
+					aria-label='Prev slide'
+					class='large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible'
+					@click='prev'
+				>
+					←
+				</button>
+				<button
+					:disabled='!canScrollNext'
+					aria-label='Next slide'
+					class='large-serif pointer-events-auto hover:opacity-50 duration-300 ease-linear transition-opacity disabled:invisible'
+					@click='next'
+				>
+					→
+				</button>
+			</div>
+		</div>
+		<div class='w-full px-4'>
+			<ul
+				x-ref='container'
+				class='w-full flex'
+			>
+				{% for block in section.blocks %}
+					{% assign image_width = block.settings.image.width | default: 0 %}
+					{% assign image_height = block.settings.image.height | default: 0 %}
+					{% assign aspect_ratio = image_width | divided_by: image_height | times: 1.0 %}
+					{% if aspect_ratio >= 1 %}
+						{% assign image_orientation = 'horizontal-image' %}
+					{% else %}
+						{% assign image_orientation = 'portrait-image' %}
+					{% endif %}
 
-          <li class="shrink-0 
-            {% if image_orientation == 'horizontal-image' %}
-           basis-[calc(100vw*(699/1440))]
-            {% else %}
-basis-[calc(100vw*(485/1440))]
-            {% endif %}
-            flex flex-col gap-2 mr-[calc(45/393*100vw)] lg:mr-[calc(100vw*(83/1440))]">
-            <div
-              style="--aspectRatio: {{ image_width }} / {{ image_height }}"
-              class="w-full aspect-[--aspectRatio] relative overflow-hidden"
-            >
-              {% render 'image', image: block.settings.image, width: 1440 %}
-            </div>
-            <p class="w-full text-left small-sans">
-              {{ block.settings.caption }}
-            </p>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
+					<li
+						class='
+							shrink-0
+							{% if image_orientation == 'horizontal-image' %}
+							  basis-[calc((100%-72px)*(6/10)+40px)] lg:basis-[calc((100%-228px)*(10/20)+108px)]
+							{% else %}
+							  basis-[calc((100%-72px)*(5/10)+32px)] lg:basis-[calc((100%-228px)*(7/20)+72px)]
+							{% endif %}
+							flex flex-col gap-2
+
+							mr-[calc((100%-144px)*(1/10)+24px)] lg:mr-[calc((100%-228px)*(1/20)+24px)]
+						'
+					>
+						<div
+							style='--aspectRatio: {{ image_width }} / {{ image_height }}'
+							class='w-full aspect-[--aspectRatio] relative overflow-hidden'
+						>
+							{% render 'image', image: block.settings.image, width: 1440 %}
+						</div>
+						<p class='w-full text-left text-[11px] lg:text-[13px] font-sans leading-[1.2]'>
+							{{ block.settings.caption }}
+						</p>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
 </div>
 
 {% schema %}
 {
-  "name": "Bar Events",
-  "class": "contents",
-  "blocks": [
-    {
-      "type": "event",
-      "name": "Event",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "caption",
-          "label": "Caption",
-          "info": "The caption of the event"
-        }
-      ]
-    }
-  ],
-  "settings": [
-    {
-      "type": "richtext",
-      "id": "title",
-      "label": "Title",
-      "info": "The title of the events section"
-    },
-    {
-      "type": "richtext",
-      "id": "body",
-      "label": "Body",
-      "info": "The body of the events section"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "CTA Link",
-      "info": "The link of the CTA"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "CTA Text",
-      "info": "The text of the CTA"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Bar Events"
-    }
-  ]
+	"name": "Bar Events",
+	"class": "contents",
+	"blocks": [
+		{
+			"type": "event",
+			"name": "Event",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "caption",
+					"label": "Caption",
+					"info": "The caption of the event"
+				}
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "richtext",
+			"id": "title",
+			"label": "Title",
+			"info": "The title of the events section"
+		},
+		{
+			"type": "richtext",
+			"id": "body",
+			"label": "Body",
+			"info": "The body of the events section"
+		},
+		{
+			"type": "url",
+			"id": "cta_link",
+			"label": "CTA Link",
+			"info": "The link of the CTA"
+		},
+		{
+			"type": "text",
+			"id": "cta_text",
+			"label": "CTA Text",
+			"info": "The text of the CTA"
+		}
+	],
+	"presets": [
+		{
+			"name": "Bar Events"
+		}
+	]
 }
 {% endschema %}

@@ -27,6 +27,7 @@ export default () => ({
   media: [],
   timeOut: null,
   offsetY: 0,
+  closing: false,
   contentReplace: () => { },
   init() {
     window.addEventListener('pointermove', this.move.bind(this), {
@@ -86,6 +87,8 @@ export default () => ({
   }) {
     if (this.animating) return
 
+    this.closing = false
+
     const container = document.querySelector('[data-fullscreen-fixed]')
     const element = document.querySelector('[data-fullscreen]')
 
@@ -98,8 +101,10 @@ export default () => ({
 
     this.pointer.x = e.clientX
     this.pointer.y = e.clientY
-
-    if (this.fromLarge) {
+ 
+    if (e.target instanceof HTMLElement) {
+      this.fromPosition = e.target.getBoundingClientRect()
+    } else if (this.fromLarge) {
       this.fromPosition = this.getLargeImageDimensions()
     } else {
       this.fromPosition = this.getSmallImageDimensions()
@@ -133,14 +138,10 @@ export default () => ({
   async closeFullscreen() {
     if (this.animating) return
 
+    this.closing = true
+
     const container = document.querySelector('[data-fullscreen-fixed]')
     const element = document.querySelector('[data-fullscreen]')
-
-    if (this.fromLarge) {
-      this.fromPosition = this.getLargeImageDimensions()
-    } else {
-      this.fromPosition = this.getSmallImageDimensions()
-    }
 
     this.offsetY = container?.scrollTop ?? 0
 

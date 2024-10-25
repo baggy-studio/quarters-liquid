@@ -15,9 +15,9 @@
       "settings": {
         "headerTheme": "light",
         "textColor": "#f4eed0",
-        "backgroundColor": "#826c1a",
-        "footerTextColor": "#643600",
-        "footerBackgroundColor": "#faf8ec"
+        "backgroundColor": "#022b26",
+        "footerTextColor": "#f4eed0",
+        "footerBackgroundColor": "#643600"
       }
     },
     "sidebar": {

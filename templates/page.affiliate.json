@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.utilty_template",
+  "sections": {
+    "colors": {
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "light",
+        "textColor": "#f4eed0",
+        "backgroundColor": "#826c1a",
+        "footerTextColor": "#643600",
+        "footerBackgroundColor": "#faf8ec"
+      }
+    },
+    "sidebar": {
+      "type": "utility-menu",
+      "settings": {
+        "menu": "utility-nav",
+        "secondary_text": "<p>Thank you for visiting us. We encourage you to read our Terms before using our site. If you have any questions, please email <a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>"
+      }
+    },
+    "main": {
+      "type": "text-content",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "colors",
+    "sidebar",
+    "main"
+  ]
+}

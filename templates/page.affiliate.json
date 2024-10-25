@@ -15,16 +15,16 @@
       "settings": {
         "headerTheme": "light",
         "textColor": "#f4eed0",
-        "backgroundColor": "#826c1a",
-        "footerTextColor": "#643600",
-        "footerBackgroundColor": "#faf8ec"
+        "backgroundColor": "#022b26",
+        "footerTextColor": "#f4eed0",
+        "footerBackgroundColor": "#643600"
       }
     },
     "sidebar": {
       "type": "utility-menu",
       "settings": {
         "menu": "utility-nav",
-        "secondary_text": "<p>Thank you for visiting us. We encourage you to read our Terms before using our site. If you have any questions, please email <a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>"
+        "secondary_text": "<p>If you have a question, send us a note at <a href=\"mailto:hello@shopquarters.com\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p>"
       }
     },
     "main": {

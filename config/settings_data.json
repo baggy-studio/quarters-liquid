@@ -1,6 +1,15 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/Quarters_Favicon.png",
+    "favicon": "shopify://shop_images/Quarters_Favicon.png",
     "sections": {
       "header": {
         "type": "header",
@@ -8,9 +17,9 @@
           "menu": "main-menu",
           "hideHomepageHeader": true,
           "contentHeading": "Visit the Store",
-          "content": "<p><a href=\"https:\/\/maps.app.goo.gl\/w5AybsdY2h8MZWHh7\" target=\"_blank\" title=\"Address on Google Maps\">383 Broadway, Floor 2\u2028<br\/>New York, N.Y. 10013<\/a><\/p><p>Tuesday through Saturday<br\/>11:00 A.M. – 6:00 P.M.<\/p>",
-          "address": "<p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2<\/a>\u2028<br\/><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">New York, N.Y. 10013<\/a><\/p>",
-          "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com<\/a><\/p><p><a href=\"https:\/\/www.instagram.com\/shopquarters\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/shopquarters\/\">@shopquarters<\/a><\/p>"
+          "content": "<p><a href=\"https://maps.app.goo.gl/w5AybsdY2h8MZWHh7\" target=\"_blank\" title=\"Address on Google Maps\">383 Broadway, Floor 2 <br/>New York, N.Y. 10013</a></p><p>Tuesday through Saturday<br/>11:00 A.M. – 6:00 P.M.</p>",
+          "address": "<p><a href=\"https://www.google.com/maps/place/383+Broadway+FLOOR+2,+New+York,+NY+10013/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2</a> <br/><a href=\"https://www.google.com/maps/place/383+Broadway+FLOOR+2,+New+York,+NY+10013/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">New York, N.Y. 10013</a></p>",
+          "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"https://www.instagram.com/shopquarters/\">@shopquarters</a></p>"
         }
       }
     },

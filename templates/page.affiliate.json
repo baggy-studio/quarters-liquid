@@ -23,8 +23,9 @@
     "sidebar": {
       "type": "utility-menu",
       "settings": {
-        "menu": "utility-nav",
+        "menu": "utility-nav", 
         "secondary_text": "<p>If you have a question, send us a note at <a href=\"mailto:hello@shopquarters.com\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p>"
+
       }
     },
     "main": {

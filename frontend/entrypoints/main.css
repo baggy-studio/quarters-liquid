@@ -272,8 +272,7 @@
 #product-grid,
 #main,
 #product-variant-media,
-#utility,
-#page-settings {
+#utility {
     @apply transition-opacity;
     will-change: opacity;
 }
@@ -282,8 +281,7 @@ html.is-animating #main,
 #collection-nav.is-animating,
 #product-grid.is-animating,
 #product-variant-media.is-animating,
-#utility.is-animating,
-#page-settings.is-animating {
+#utility.is-animating {
     opacity: 0;
 }
 
@@ -291,8 +289,7 @@ html.is-changing #main,
 #collection-nav.is-changing,
 #product-grid.is-changing,
 #product-variant-media.is-changing,
-#utility.is-changing,
-#page-settings.is-changing {
+#utility.is-changing {
     @apply duration-[--fade-in-duration] ease-[--fade-in-easing];
 }
 
@@ -300,8 +297,7 @@ html.is-leaving #main,
 #collection-nav.is-leaving,
 #product-grid.is-leaving,
 #product-variant-media.is-leaving,
-#utility.is-leaving,
-#page-settings.is-leaving {
+#utility.is-leaving {
     @apply duration-[--fade-out-duration] ease-[--fade-out-easing];
 }
 
@@ -369,9 +365,20 @@ input {
 /* Utility Template */
 
 .utilty_template {
-    @apply lg:grid lg:grid-cols-2 mx-4 mt-[120px] lg:mt-[160px] border-t border-[var(--text-color)] z-20;
+    @apply lg:grid lg:grid-cols-2 px-4 pt-[120px] lg:pt-[160px] z-20;
     position: relative;
 }
+
+.utilty_template::before {
+    @apply top-[120px] lg:top-[160px]; 
+    content: '';
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background-color: var(--text-color);
+}
+
 
 .utility_template>div:last-child {
     overflow-y: auto;
@@ -379,12 +386,12 @@ input {
 }
 
 .utilty_template .utility-menu {
-    @apply w-full flex flex-col gap-y-[64px] lg:justify-between border-b lg:border-b-0 lg:border-r border-[var(--text-color)] lg:my-4 lg:pt-[48px] overflow-y-auto py-6 lg:pb-0 lg:sticky lg:top-[96px];
+    @apply w-full flex flex-col gap-y-[64px] lg:justify-between border-b lg:border-b-0 lg:border-r border-[var(--text-color)] lg:my-4 lg:pt-[48px] overflow-y-auto py-6 lg:pb-0 lg:sticky lg:top-[170px];
 }
 
 @media (min-width: 1024px) {
     .utilty_template .utility-menu {
-        height: calc(100vh - 116px);
+        height: calc(100vh - 187px);
     }
 }
 
@@ -409,7 +416,7 @@ input {
     @apply underline;
 }
 
-.text-underline>a {
+.text-underline>a, .text-underline p a {
     @apply underline;
 }
 

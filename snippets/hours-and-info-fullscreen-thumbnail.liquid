@@ -17,7 +17,7 @@
     >
       <template x-for="(item, index) in media" :key="index">
         <div x-show="(selectedIndex + 1) % media.length === index">
-          <button class="w-full h-full" @click="selectedIndex = index">
+          <button class="w-full h-full"  @click="advanceImage(index)">
             <img
               :src="item.src"
               :alt="item.alt"

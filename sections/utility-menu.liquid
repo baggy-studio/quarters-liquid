@@ -1,9 +1,11 @@
 <div class="utility-menu">
-  {% if section.settings.menu != blank %}
+  {% comment %} {% if section.settings.menu != blank %}
     {% render 'utility-menu', menu: section.settings.menu %}
-  {% endif %}
-    <div class="grid grid-cols-10 gap-x-3">
-      <div class="text-sm font-sans col-span-10 md:col-span-5 text-underline">
+  {% endif %} {% endcomment %}
+
+  {% render 'utility-menu', menu: 'utility-menu-test' %}
+    <div id="secondary-text" class="grid grid-cols-10 gap-x-3">
+      <div class="text-sm font-sans col-span-10 md:col-span-6 text-underline md:max-w-[343px] richtext-hover-only">
           {{ section.settings.secondary_text }}
       </div>
     </div>
@@ -19,7 +21,7 @@
         "label": "Select Menu"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "secondary_text",
         "label": "Secondary Text"
       }

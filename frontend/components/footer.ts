@@ -8,18 +8,41 @@ export default () => ({
     creditsDesktop: 0,
     creditsMobile: 0,
     init() {
+        const excludedPages = [
+            '/pages/hours-info',
+            '/pages/shipping-returns',
+            '/pages/terms-and-conditions'
+        ];
+
 
         inView('footer', (entry) => {
-            if (window.innerWidth < 1024) {
-                this.$dispatch('set-theme', 'light')
-            }
-
-            return () => {
-                if (this.siteCredits) {
-                   
-                } else {
+            if (!excludedPages.includes(window.location.pathname)) {
+                if (window.innerWidth < 1024) {
+                    this.$dispatch('set-theme', 'light')
+                }
+            } else {
+                if (window.innerWidth < 1024) {
                     this.$dispatch('set-theme', 'dark')
                 }
+            }
+
+
+            return () => {
+
+                if (!excludedPages.includes(window.location.pathname)) {
+                    if (this.siteCredits) {
+                   
+                    } else {
+                        this.$dispatch('set-theme', 'dark')
+                    }
+                } else {
+                    if (this.siteCredits) {
+                       
+                    } else {
+                        this.$dispatch('set-theme', 'light')
+                    }
+                }
+        
             }
         }, {
             amount: 0.75

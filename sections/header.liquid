@@ -18,7 +18,7 @@
     @click="closeMenu"
   ></button>
   {% render 'menu', menu: section.settings.menu %}
-  <h1
+<h1
     :class="{ 'is-menu': menu }"
     style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
     class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
@@ -47,7 +47,7 @@
         "
       {% endif %}
     >
-      <svg
+       <svg
         style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
         :class="
           {
@@ -62,21 +62,35 @@
       </svg>
 
       <svg
-        style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
-        :class="
-          {
-            'opacity-100': headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
-            'opacity-0':  headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
-            '!opacity-0': isForcedTheme == 'light' && !menu
-          }
-        "
-        class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
-        :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
-      >
-        <use xlink:href="#wordmark"></use>
-      </svg>
+      style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+      :class="
+        {
+          'opacity-100': (isForcedTheme == 'dark' && !menu) || headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024),
+          'opacity-0':  headerColor !== '#643600' && !menu && (!$store.cart.visible || window.innerWidth >= 1024),
+          '!opacity-0': isForcedTheme == 'light' && !menu
+        }
+      "
+      class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+      :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
+    >
+      <use xlink:href="#wordmark"></use>
+    </svg> 
+
+    {% comment %} <svg
+      style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+      class="fill-current h-full aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-colors duration-300 ease-linear"
+      :class="{
+        'text-bone': (isForcedTheme == 'light' && !menu) || (headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)),
+        'text-mahogany': (isForcedTheme == 'dark' && !menu) || headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024)
+      }"
+    >
+      <use xlink:href="#wordmark"></use>
+    </svg> {% endcomment %}
+
+
     </a>
-  </h1>
+  </h1> 
+
   <nav
     aria-label="Main Navigation"
     :class="

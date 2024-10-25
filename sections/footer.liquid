@@ -4,7 +4,7 @@
 			class='h-[calc(100vh+var(--credits-mobile))] lg:h-[calc(var(--height)+var(--credits-desktop))] z-[0] relative'
 			:style="`--height: 391px; --credits-mobile: ${creditsMobile}px; --credits-desktop: ${creditsDesktop}px;`"
 		>
-			<div class='w-full fixed flex flex-col left-0 right-0 bottom-0 h-[calc(100vh+var(--credits-mobile))] lg:h-max bg-mahogany pt-[58px] lg:pt-0'>
+			<div class='w-full fixed flex flex-col left-0 right-0 bottom-0 h-[calc(100vh+var(--credits-mobile))] lg:h-max bg-mahogany footer-bg pt-[58px] lg:pt-0'>
 				<div
 					x-ref='footer'
 					class='w-full h-full flex flex-col justify-between lg:pt-12 pb-6 lg:pb-11 relative bg-mahogany footer-bg text-bone gap-y-12 lg:gap-y-24'
@@ -92,7 +92,7 @@
 						</div>
 					</div>
 					<div class='absolute inset-0 hidden lg:flex items-center justify-center pointer-events-none'>
-						<div class='w-[1px] bg-bone h-[calc(100%-32px)]'></div>
+						<div class='w-[1px] bg-bone h-[calc(100%-32px)] divider'></div>
 					</div>
 				</div> 
 				{% render 'site-credits' %}

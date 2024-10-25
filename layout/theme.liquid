@@ -52,9 +52,10 @@
 				{% section 'header' %}
 				<div id='main'>
 					<main
-						class='relative will-change-transform lg:translate-y-[--transform-y] z-[1]'
+						class='relative will-change-transform lg:translate-y-[--transform-y] z-[1] body-bg'
 						x-ref='main'
 					>
+				
 						{% if template.suffix == 'bar' %}
 							<div 
 								class='bg-vanilla text-current transition-colors duration-500 ease-linear'
@@ -83,9 +84,31 @@
 								{% endif %}
 							</div>
 						{% else %}
+						
 							<div class='bg-bone-tint body-bg'>
 								{{ content_for_layout }}
 							</div>
+
+
+							{% assign utility_pages = "page.legal,page.faq,page.shipping,page.privacy" | split: "," %}
+							{% assign is_utility_page = false %}
+							{% for page_type in utility_pages %}
+								{% if template == page_type %}
+									{% assign is_utility_page = true %}
+									{% break %}
+								{% endif %}
+							{% endfor %}
+							{% if is_utility_page %} 
+								<div id="faqs" class="contents">
+									{% if template.suffix == 'faq' %}
+										{% if request.design_mode %}
+											{% sections 'faqs-group' %}
+										{% else %}
+											{% sections 'faqs-group' %}
+										{% endif %}
+									{% endif %}
+								</div>
+							{% endif %}
 						{% endif %}
 					</main>
 					{% sections 'footer-group' %}
@@ -95,3 +118,4 @@
 		</div>
 	</body>
 </html>
+

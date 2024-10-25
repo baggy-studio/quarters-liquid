@@ -1,12 +1,3 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "wrapper": "div.utilty_template",
   "sections": {
@@ -24,132 +15,11 @@
       "type": "utility-menu",
       "settings": {
         "menu": "utility-nav",
-        "secondary_text": "Frequently asked questions, answered"
+        "secondary_text": "<p>Frequently asked questions, answered<\/p>"
       }
     },
     "faq_content_gJjAaz": {
-      "type": "faq-content",
-      "blocks": {
-        "faq_category_1_tNtyMG": {
-          "type": "faq_category_1",
-          "settings": {
-            "question": "Question",
-            "answer": "<p>Answer</p>"
-          }
-        },
-        "faq_category_1_rxcMgD": {
-          "type": "faq_category_1",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
-          }
-        },
-        "faq_category_1_jzAAxA": {
-          "type": "faq_category_1",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
-          }
-        },
-        "faq_category_1_d6CX4P": {
-          "type": "faq_category_1",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>Extra long question lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a cursus nunc, et sodales tortor. Nam at justo justo. Sed sit amet risus nec elit tempus vestibulum ?</p>"
-          }
-        },
-        "faq_category_2_fce7UF": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_2_ndRxPQ": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_2_LeipbC": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_2_knaXT3": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_2_jVCF3D": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_2_NymFTz": {
-          "type": "faq_category_2",
-          "settings": {
-            "question": "What shipping methods do you use?",
-            "answer": "<p>All shipments are sent with a Direct Signature Required unless otherwise specified.Within the US:FedEx Ground from Brooklyn, NY. Please note that FedEx does not ship to P.O. Boxes, APO or FPO addresses.International:We’ll determine the best method together, but we often use DHL or FedEx International.</p>"
-          }
-        },
-        "faq_category_3_4Ycxkp": {
-          "type": "faq_category_3",
-          "settings": {
-            "question": "What shipping methods do you use lorem ipsum dolor sit amet sdflkj asdlfkjasldkf sadlfkjasldkfj asldkfjaslkdjf +",
-            "answer": "<p>Provide your answer for Category 3 here.</p>"
-          }
-        },
-        "faq_category_3_n6NXJf": {
-          "type": "faq_category_3",
-          "settings": {
-            "question": "What shipping methods do you use lorem ipsum dolor sit amet sdflkj asdlfkjasldkf sadlfkjasldkfj asldkfjaslkdjf +",
-            "answer": "<p>Provide your answer for Category 3 here.</p>"
-          }
-        },
-        "faq_category_3_ReLRe8": {
-          "type": "faq_category_3",
-          "settings": {
-            "question": "What shipping methods do you use lorem ipsum dolor sit amet sdflkj asdlfkjasldkf sadlfkjasldkfj asldkfjaslkdjf +",
-            "answer": "<p>Provide your answer for Category 3 here.</p>"
-          }
-        },
-        "faq_category_3_GfLgKb": {
-          "type": "faq_category_3",
-          "settings": {
-            "question": "What shipping methods do you use lorem ipsum dolor sit amet sdflkj asdlfkjasldkf sadlfkjasldkfj asldkfjaslkdjf +",
-            "answer": "<p>Provide your answer for Category 3 here.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_category_1_tNtyMG",
-        "faq_category_1_rxcMgD",
-        "faq_category_1_jzAAxA",
-        "faq_category_1_d6CX4P",
-        "faq_category_2_fce7UF",
-        "faq_category_2_ndRxPQ",
-        "faq_category_2_LeipbC",
-        "faq_category_2_knaXT3",
-        "faq_category_2_jVCF3D",
-        "faq_category_2_NymFTz",
-        "faq_category_3_4Ycxkp",
-        "faq_category_3_n6NXJf",
-        "faq_category_3_ReLRe8",
-        "faq_category_3_GfLgKb"
-      ],
-      "settings": {
-        "category_1_title": "ORDERS + SHIPPING",
-        "category_2_title": "ORDERS + SHIPPING",
-        "category_3_title": "ORDERS + SHIPPING"
-      }
+      "type": "faq-content"
     }
   },
   "order": [

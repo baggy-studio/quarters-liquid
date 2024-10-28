@@ -58,7 +58,7 @@
 				
 						{% if template.suffix == 'bar' %}
 							<div 
-								class='bg-vanilla text-current transition-colors duration-500 ease-linear'
+								class='bg-vanilla text-current transition-colors duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)]'
 								x-data='{ bg: null, text: null, theme: null }'
 								@set-theme.window='theme = $event.detail'
 								@set-colors.window='

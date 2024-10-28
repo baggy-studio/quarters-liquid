@@ -34,6 +34,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
   activeCollection: 0,
+  hoverCollection: null,
   aboveTheFold: true,
   isScrolling: false,
   scrollTimeout: null,

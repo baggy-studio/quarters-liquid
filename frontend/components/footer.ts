@@ -14,6 +14,18 @@ export default () => ({
             '/pages/terms-and-conditions'
         ];
 
+        const element = this.$refs.footer
+
+        inView('footer', (entry) => {
+
+            console.log(element)
+
+            element.classList.remove('invisible')
+
+            return () => {
+                element.classList.add('invisible')
+            }
+        })
 
         inView('footer', (entry) => {
             if (!excludedPages.includes(window.location.pathname)) {
@@ -31,18 +43,18 @@ export default () => ({
 
                 if (!excludedPages.includes(window.location.pathname)) {
                     if (this.siteCredits) {
-                   
+
                     } else {
                         this.$dispatch('set-theme', 'dark')
                     }
                 } else {
                     if (this.siteCredits) {
-                       
+
                     } else {
                         this.$dispatch('set-theme', 'light')
                     }
                 }
-        
+
             }
         }, {
             amount: 0.75

@@ -36,7 +36,7 @@ export const fragmentPlugin = new SwupFragmentPlugin({
     {
       from: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
       to: ['/pages/frequently-asked-questions', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/privacy-policy'],
-      containers: ['#utility', '#page-settings', "#utility-nav"],
+      containers: ['#utility', '#page-settings', "#utility-nav", "#faqs", "#secondary-text"],
     }
   ]
 });
@@ -62,6 +62,21 @@ export const swup = new Swup({
     }),
   ],
 });
+
+// scroll to top for utility pages
+const scrollToTopForUtilityPages = () => {
+  if (isUtilityPage(swup.getCurrentUrl())) {
+    window.scrollTo({ top: 0 });
+  }
+};
+
+swup.hooks.on('content:scroll', scrollToTopForUtilityPages);
+
+export const removeScrollHook = () => {
+  swup.hooks.off('content:scroll', scrollToTopForUtilityPages);
+};
+
+
 
 export function updateCache(propUrl?: string) {
   const url = propUrl || swup.getCurrentUrl();

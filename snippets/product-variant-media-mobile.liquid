@@ -5,11 +5,14 @@
 {% assign selected_variant_media = selected_variant.featured_media %}
 {% assign variant_media_metafields = selected_variant.metafields.custom.media.value %}
 {% assign total_media_count = 1 %}
+{% assign total_media_count_mobile = 0 %}
 
 {% if selected_variant_media %}
   {% assign total_media_count = total_media_count | plus: 1 %}
+  {% assign total_media_count_mobile = total_media_count_mobile | plus: 1 %}
 {% else %}
   {% assign selected_variant_media = product.featured_image %}
+  {% assign total_media_count_mobile = total_media_count_mobile | plus: 1 %}
 {% endif %}
 
 {% for variant in product.variants %}
@@ -37,17 +40,19 @@
 {% if variant_media_metafields %}
   {% for media in variant_media_metafields %}
     {% assign total_media_count = total_media_count | plus: 1 %}
+    {% assign total_media_count_mobile = total_media_count_mobile | plus: 1 %}
   {% endfor %}
 {% endif %}
 
 {% if section.settings.share_product_media %}
   {% assign total_media_count = total_media_count | plus: filtered_product_media_ids.size %}
+  {% assign total_media_count_mobile = total_media_count_mobile | plus: filtered_product_media_ids.size %}
 {% endif %}
 
 {% assign rendered_small_count = 1 %}
 
 <div id="product-variant-media-mobile" class="contents">
-  {% if total_media_count > 1 %}
+  {% if total_media_count_mobile > 1 %}
     <div
       x-data="
         carousel({
@@ -67,7 +72,7 @@
               large: false
             })
           "
-          class="w-full h-full flex flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
+          class="w-full h-full hidden flex-col gap-1 basis-full shrink-0 relative overflow-hidden mr-2 group"
         >
           <div class="w-full aspect-[140/175] relative overflow-hidden group-hover:opacity-70 duration-700 ease-in-out">
             {% if selected_variant.featured_media %}

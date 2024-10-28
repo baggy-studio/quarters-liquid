@@ -83,7 +83,6 @@ export default (listId: string) => ({
     });
   },
   shouldOpen() {
-    console.log('shouldOpen')
     setTimeout(() => {
       this.visible = !cookie.get("newsletter");
     }, 5000)

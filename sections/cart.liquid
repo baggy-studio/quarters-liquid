@@ -1,9 +1,6 @@
 {% capture header %}
 <div class="px-4 w-full absolute top-0 left-0 z-[1] h-[120px] lg:h-[160px] before:cart-top-gradient">
-  <div :class="$store.cart.hasItems ? 'justify-between' : 'justify-end'" class="pt-3 flex items-start w-full relative">
-    <p class="medium-serif pt-[68px] hidden lg:block" x-show="$store.cart.hasItems">
-      Bag (<span class="contents" x-number="$store.cart.count">{{ cart.item_count }}</span>)
-    </p>
+  <div class="pt-3 flex items-start w-full relative justify-end">
     <button
       @click="$store.cart.close()"
       aria-label="Close bag"
@@ -69,22 +66,21 @@
       {{ header }}
       <div
         ref="container"
-        class="w-full h-full flex flex-col overflow-scroll no-scrollbar pt-[120px] lg:pt-[160px]"
+        class="w-full h-full flex flex-col overflow-scroll no-scrollbar pt-[120px] lg:pt-0"
       >
         <div class="px-4 w-full" x-show="$store.cart.hasItems">
-          <div class="w-full h-[1px] bg-current lg:block hidden"></div>
           <div
-            class="items-start w-full relative pt-4 lg:pt-3 h-[120px] lg:h-[160px] border-y border-current flex lg:hidden"
+            class="items-start w-full relative pt-4 lg:pt-3 h-[120px] lg:h-[160px] border-y border-current flex lg:border-t-0"
           >
             <p class="large-serif lg:medium-serif lg:pt-[68px]">
-              Bag (<span class="contents" x-text="$store.cart.count"></span>)
+              Bag (<span class="contents" x-number="$store.cart.count"></span>)
             </p>
           </div>
         </div>
         {{ items }}
         <div
           x-show="!$store.cart.hasItems"
-          class="px-4 w-full flex items-start large-serif lg:medium-serif"
+          class="px-4 w-full flex items-start large-serif lg:medium-serif h-[120px] lg:h-[160px] lg:pt-[160px]"
         >
           <div class="pt-4 border-t border-current w-full">
             {{ section.settings.emptyBody }}
@@ -108,13 +104,13 @@
         </div>
       </div>
       <div
-        class="sticky shrink-0 bottom-0 h-max w-full p-4 pt-0 before:cart-bottom-gradient"
+        class="sticky shrink-0 bottom-0 h-max w-full p-4 pb-8 lg:pb-4 pt-0 before:cart-bottom-gradient"
         x-show="$store.cart.hasItems"
       >
         {{ cartCheckout }}
       </div>
       <div
-        class="sticky shrink-0 bottom-0 h-max w-full p-4"
+        class="sticky shrink-0 bottom-0 h-max w-full p-4 pb-8 lg:pb-4"
         x-show="!$store.cart.hasItems"
       >
         <a

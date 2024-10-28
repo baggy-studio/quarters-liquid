@@ -39,7 +39,7 @@
         {{- product.title -}}
       </a>
     </h3>
-    {% if variant.available == false %}
+    {% if variant.available == false or product.tags contains 'OOAK' and variant.inventory_quantity == 0 %}
       {% render 'product-status', type: 'sold-out', product: product %}
     {% elsif product.tags contains 'Hold' %}
       {% render 'product-status', type: 'on-hold', product: product %}

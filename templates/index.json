@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "page_settings_t9GB6h": {
@@ -25,13 +16,13 @@
         "desktop_iWdeWf": {
           "type": "desktop",
           "settings": {
-            "image": "shopify://shop_images/desktop.jpg"
+            "image": "shopify:\/\/shop_images\/desktop.jpg"
           }
         },
         "mobile_cfjBrF": {
           "type": "mobile",
           "settings": {
-            "image": "shopify://shop_images/Quarters_GreatRoom_WJL_18.jpg"
+            "image": "shopify:\/\/shop_images\/Quarters_GreatRoom_WJL_18.jpg"
           }
         }
       },
@@ -41,9 +32,9 @@
       ],
       "settings": {
         "wordmark": true,
-        "content": "<p>Quarters is a concept store and gathering space from the founders of In Common With. Occupying two floors of an historic Tribeca loft, it’s a living ode to community, craftsmanship, and collaborative design.</p>",
-        "address": "<p><a href=\"https://www.google.com/maps/place/383+Broadway+FLOOR+2,+New+York,+NY+10013/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2</a><br/><a href=\"https://maps.app.goo.gl/oQQvogkuWkaZmv8p7\" target=\"_blank\" title=\"Quarters on Google Maps\">New York, N.Y. 10013</a></p>",
-        "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"https://www.instagram.com/shopquarters/\">@shopquarters</a></p>"
+        "content": "<p>Quarters is a concept store and gathering space from the founders of In Common With. Occupying two floors of an historic Tribeca loft, it’s a living ode to community, craftsmanship, and collaborative design.<\/p>",
+        "address": "<p><a href=\"https:\/\/www.google.com\/maps\/place\/383+Broadway+FLOOR+2,+New+York,+NY+10013\/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2<\/a><br\/><a href=\"https:\/\/maps.app.goo.gl\/oQQvogkuWkaZmv8p7\" target=\"_blank\" title=\"Quarters on Google Maps\">New York, N.Y. 10013<\/a><\/p>",
+        "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com<\/a><\/p><p><a href=\"https:\/\/www.instagram.com\/shopquarters\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/shopquarters\/\">@shopquarters<\/a><\/p>"
       }
     }
   },

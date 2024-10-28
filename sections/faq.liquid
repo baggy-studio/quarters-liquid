@@ -1,0 +1,70 @@
+<div 
+id="faq"
+class="customer-support flex flex-col gap-10"  
+x-data="faqs"
+x-init="init"
+data-faq-container
+data-heading="{{ section.settings.heading | escape }}"
+data-faq-items='[
+  {% for block in section.blocks %}
+    {% if block.type == 'faq' %}
+      {
+        "question": {{ block.settings.question | json | escape }},
+        "answer": {{ block.settings.answer | json | escape }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endif %}
+  {% endfor %}
+]'>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ section",
+  "class": "content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "ORDERS + SHIPPING"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Frequently asked question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Provide the answer to the question here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "templates": ["collection", "list-collections", "index", "product", "cart", "blog", "article", "password", "404", "gift_card", "search"],
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

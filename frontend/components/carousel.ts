@@ -18,10 +18,14 @@ export default (
     if (this.$refs.container) {
       this.carousel = EmblaCarousel(this.$refs.container, {
         ...options,
+        skipSnaps: true,
         container: this.$refs.container,
       }, [WheelGesturesPlugin()]);
     } else {
-      this.carousel = EmblaCarousel(this.$root, options, [WheelGesturesPlugin()]);
+      this.carousel = EmblaCarousel(this.$root, {
+        ...options,
+        skipSnaps: true,
+      }, [WheelGesturesPlugin()]);
     }
 
     this.update(this.carousel);
@@ -63,7 +67,10 @@ export default (
     if (carousel.slideNodes().length < 5) {
       this.canLoop = false;
     }
-
+    this.totalSlides = carousel.slideNodes().filter(node => node.childElementCount > 0).length;
+    // console.log('Slide nodes:', carousel.slideNodes());
+    // console.log('Non-empty slide nodes:', carousel.slideNodes().filter(node => node.childElementCount > 0));
+    // console.log('Total slides:', this.totalSlides);
   },
   destroy() {
     if (this.carousel) {

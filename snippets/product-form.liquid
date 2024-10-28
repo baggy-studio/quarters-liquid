@@ -1,3 +1,4 @@
+
 <div
   @cart:complete.window="loading = false"
   id="product-form"
@@ -65,7 +66,7 @@
     {% if product.tags contains 'OOAK' %}
       <input type="hidden" name="properties[_ooak]" value="true">
     {% endif %}
-    {% if product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
+    {% if product.tags contains 'OOAK' and selected_variant.inventory_quantity == 0 or product.tags contains 'Hold' or product.tags contains 'Inquire' or selected_variant.available == false %}
       <a
         href="mailto:hello@shopquarters.com?subject=Product%20Inquiry%3A%20{{ product.title | replace: ' ', '%20' }}"
         data-no-swup

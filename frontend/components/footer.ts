@@ -7,6 +7,7 @@ export default () => ({
     animating: false,
     creditsDesktop: 0,
     creditsMobile: 0,
+    abortController: new AbortController(),
     init() {
         const excludedPages = [
             '/pages/hours-info',
@@ -15,17 +16,21 @@ export default () => ({
         ];
 
         const element = this.$refs.footer
-
-        inView('footer', (entry) => {
-
-            console.log(element)
-
+        if (window.scrollY > window.innerHeight) {
             element.classList.remove('invisible')
+        } else {
+            element.classList.add('invisible')
+        }
 
-            return () => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight) {
+                element.classList.remove('invisible')
+            } else {
                 element.classList.add('invisible')
             }
-        })
+        }, {
+            signal: this.abortController.signal
+        }) 
 
         inView('footer', (entry) => {
             if (!excludedPages.includes(window.location.pathname)) {
@@ -59,6 +64,9 @@ export default () => ({
         }, {
             amount: 0.75
         })
+    },
+    destroy() {
+        this.abortController.abort()
     },
     toggleCredits() {
         if (this.siteCredits) {

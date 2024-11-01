@@ -4,6 +4,8 @@ import { swup } from "./swup";
 
 import Alpine from "alpinejs";
 import collapse from "@/plugins/collapse";
+import swipePlugin from "alpinejs-swipe";
+
 import focus from "@alpinejs/focus";
 import intersect from "@alpinejs/intersect"; 
 import collection from "@/components/collection";
@@ -61,6 +63,7 @@ Alpine.directive("number", (el, { expression }, { evaluateLater, effect }) => {
 Alpine.plugin(intersect);
 Alpine.plugin(focus);
 Alpine.plugin(collapse);
+Alpine.plugin(swipePlugin);
 Alpine.store('cart', cartStore)
 Alpine.data("footer", footer); 
 Alpine.data("app", app);

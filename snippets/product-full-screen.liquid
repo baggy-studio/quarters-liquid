@@ -164,7 +164,12 @@
 					<span class='sr-only'>Close</span>
 				</button>
 				{% if total_media_count > 1 %}
-					<button class='absolute left-0 inset-y-0 w-full lg:hidden block' @click='nextImage'>
+					<button
+						class='absolute left-0 inset-y-0 w-full lg:hidden block'
+						x-swipe:right="nextImage"
+						x-swipe:left="previousImage"
+						@click='nextImage'
+					>
 						<span class='sr-only'>Next image</span>
 					</button>
 				{% endif %}

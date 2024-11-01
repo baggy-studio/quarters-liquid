@@ -23,6 +23,7 @@
     "@swup/scroll-plugin": "^3.3.2",
     "@types/js-cookie": "^3.0.6",
     "alpinejs": "^3.11.1",
+    "alpinejs-swipe": "^1.0.2",
     "embla-carousel": "^8.3.0",
     "embla-carousel-auto-scroll": "^8.3.0",
     "embla-carousel-wheel-gestures": "^8.0.1",

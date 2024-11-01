@@ -159,7 +159,13 @@ export default () => ({
     container?.scrollTo({ top: 0 })
   },
   nextImage() {
+    
     this.selectedIndex = (this.selectedIndex + 1) % this.mediaCount;
+  },
+  previousImage() {
+    this.selectedIndex = this.selectedIndex <= 0 
+      ? this.mediaCount - 1 
+      : this.selectedIndex - 1;
   },
   advanceImage(index: number) {
     this.selectedIndex = index

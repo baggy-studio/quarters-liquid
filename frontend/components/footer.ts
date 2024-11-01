@@ -16,21 +16,21 @@ export default () => ({
         ];
 
         const element = this.$refs.footer
-        if (window.scrollY > window.innerHeight) {
-            element.classList.remove('invisible')
-        } else {
-            element.classList.add('invisible')
+
+
+        function onScroll() {
+            if (window.scrollY > 200) {
+                element.classList.remove('opacity-0')
+            } else {
+                element.classList.add('opacity-0')
+            }
         }
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight) {
-                element.classList.remove('invisible')
-            } else {
-                element.classList.add('invisible')
-            }
-        }, {
+        onScroll()
+
+        window.addEventListener('scroll', onScroll, {
             signal: this.abortController.signal
-        }) 
+        })
 
         inView('footer', (entry) => {
             if (!excludedPages.includes(window.location.pathname)) {

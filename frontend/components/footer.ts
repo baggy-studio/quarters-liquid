@@ -12,7 +12,8 @@ export default () => ({
         const excludedPages = [
             '/pages/hours-info',
             '/pages/shipping-returns',
-            '/pages/terms-and-conditions'
+            '/pages/terms-and-conditions',
+            '/pages/affiliate-program'
         ];
 
         const element = this.$refs.footer

@@ -4,7 +4,7 @@ import Swup from "swup";
 import SwupFragmentPlugin from "../plugins/fragmentPlugin";
 import SwupScrollPlugin from "@swup/scroll-plugin";
 
-const utilityPages = ['frequently-asked-questions', 'shipping-returns', 'terms-and-conditions', 'privacy-policy'];
+const utilityPages = ['frequently-asked-questions', 'shipping-returns', 'terms-and-conditions', 'privacy-policy', 'affiliate-program'];
 
 const isUtilityPage = (url) => {
   const currentPage = url.split('/').pop()?.split('?')[0] || '';

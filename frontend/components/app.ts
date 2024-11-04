@@ -22,7 +22,7 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns', '/pages/terms-and-conditions'];
+const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns', '/pages/terms-and-conditions','/pages/affiliate-program'];
 const hideHeaderRoutes = ['/', '/pages/the-bar'];
 const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 

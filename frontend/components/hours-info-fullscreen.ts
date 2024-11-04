@@ -42,58 +42,6 @@ export default () => ({
       signal: this.abortControllerResize.signal
     })
 
-    const fullscreenFixed = document.querySelector('[data-fullscreen-fixed]');
-    if (fullscreenFixed) {
-      let startX = 0;
-      let currentX = 0;
-      let hasMoved = false;
-      let touchStartY = 0;
-      
-      fullscreenFixed.addEventListener('touchstart', (e) => {
-        if (!this.visible || this.animating) return;
-        startX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        currentX = startX;
-        hasMoved = false;
-      }, { signal: this.abortController.signal, passive: false });
-    
-      fullscreenFixed.addEventListener('touchmove', (e) => {
-        if (!this.visible || this.animating) return;
-        
-        const touchCurrentY = e.touches[0].clientY;
-        const deltaY = Math.abs(touchCurrentY - touchStartY);
-        currentX = e.touches[0].clientX;
-        
-        // If horizontal movement is greater than vertical, it's likely a swipe
-        const deltaX = Math.abs(currentX - startX);
-        if (deltaX > deltaY && deltaX > 5) {
-          hasMoved = true;
-          e.preventDefault(); // Prevent scrolling when swiping horizontally
-        }
-      }, { signal: this.abortController.signal, passive: false });
-    
-      fullscreenFixed.addEventListener('touchend', (e) => {
-        if (!this.visible || this.animating || !hasMoved) return;
-        
-        const diff = currentX - startX;
-        const minSwipeDistance = 50;
-        
-        if (Math.abs(diff) > minSwipeDistance) {
-          if (diff > 0) {
-            // Previous image
-            const prevIndex = this.selectedIndex <= 0 
-              ? this.mediaCount - 1 
-              : this.selectedIndex - 1;
-            this.advanceImage(prevIndex);
-          } else {
-            // Next image
-            const nextIndex = (this.selectedIndex + 1) % this.mediaCount;
-            this.advanceImage(nextIndex);
-          }
-        }
-      }, { signal: this.abortController.signal, passive: false });
-    }
-
     this.contentReplace = () => {
       this.timeOut = setTimeout(() => {
         const fullscreenElement = document.querySelector('[data-fullscreen]');
@@ -163,6 +111,50 @@ export default () => ({
 
     const container = document.querySelector('[data-fullscreen-fixed]')
     const element = document.querySelector('[data-fullscreen]')
+
+
+    if (container) {
+      console.log('Setting up touch events');
+      let startX = 0;
+      let currentX = 0;
+      let hasMoved = false;
+      
+      container.addEventListener('touchstart', (e) => {
+        console.log('Touch start');
+        if (!this.visible || this.animating) return;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+        hasMoved = false;
+      }, { signal: this.abortController.signal });
+
+      container.addEventListener('touchmove', (e) => {
+        console.log('Touch move');
+        if (!this.visible || this.animating) return;
+        currentX = e.touches[0].clientX;
+        if (Math.abs(currentX - startX) > 5) {
+          hasMoved = true;
+          e.preventDefault();
+        }
+      }, { signal: this.abortController.signal, passive: false });
+
+      container.addEventListener('touchend', (e) => {
+        console.log('Touch end');
+        if (!this.visible || this.animating || !hasMoved) return;
+        
+        const diff = currentX - startX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            const prevIndex = this.selectedIndex <= 0 
+              ? this.mediaCount - 1 
+              : this.selectedIndex - 1;
+            this.advanceImage(prevIndex);
+          } else {
+            const nextIndex = (this.selectedIndex + 1) % this.mediaCount;
+            this.advanceImage(nextIndex);
+          }
+        }
+      }, { signal: this.abortController.signal });
+    }
 
     this.lockScroll()
 
@@ -297,7 +289,7 @@ export default () => ({
       console.warn('No media items available or animation in progress');
       return;
     }
-  
+
     this.animating = true;
     this.fadeOutStarted = false;
     this.previousIndex = this.selectedIndex;
@@ -406,7 +398,7 @@ export default () => ({
     if (this.animating || index === this.selectedIndex) {
       return;
     }
-  
+
     this.animating = true;
     this.fadeOutStarted = false;
     this.previousIndex = this.selectedIndex;

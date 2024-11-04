@@ -42,112 +42,47 @@ export default () => ({
       signal: this.abortControllerResize.signal
     })
 
-  // const fullscreenFixed = document.querySelector('[data-fullscreen-fixed]');
-  // if (fullscreenFixed) {
-  //   let startX = 0;
-  //   let currentX = 0;
-  //   let hasMoved = false;
+  const fullscreenFixed = document.querySelector('[data-fullscreen-fixed]');
+  if (fullscreenFixed) {
+    let startX = 0;
+    let currentX = 0;
+    let hasMoved = false;
     
-  //   fullscreenFixed.addEventListener('touchstart', (e) => {
-  //     if (!this.visible || this.animating) return;
-  //     startX = e.touches[0].pageX;
-  //     currentX = startX;
-  //     hasMoved = false;
-  //   }, { signal: this.abortController.signal });
+    fullscreenFixed.addEventListener('touchstart', (e) => {
+      if (!this.visible || this.animating) return;
+      startX = e.touches[0].pageX;
+      currentX = startX;
+      hasMoved = false;
+    }, { signal: this.abortController.signal });
 
-  //   fullscreenFixed.addEventListener('touchmove', (e) => {
-  //     if (!this.visible || this.animating) return;
-  //     currentX = e.touches[0].pageX;
-  //     if (Math.abs(currentX - startX) > 5) { // Small threshold to detect movement
-  //       hasMoved = true;
-  //       e.preventDefault();
-  //     }
-  //   }, { signal: this.abortController.signal, passive: false });
-
-  //   fullscreenFixed.addEventListener('touchend', (e) => {
-  //     if (!this.visible || this.animating || !hasMoved) return;
-      
-  //     const diff = currentX - startX;
-  //     if (Math.abs(diff) > 50) { // Minimum swipe distance
-  //       if (diff > 0) {
-  //         const prevIndex = this.selectedIndex <= 0 
-  //           ? this.mediaCount - 1 
-  //           : this.selectedIndex - 1;
-  //         this.advanceImage(prevIndex);
-  //       } else {
-  //         const nextIndex = (this.selectedIndex + 1) % this.mediaCount;
-  //         this.advanceImage(nextIndex);
-  //       }
-  //     }
-  //   }, { signal: this.abortController.signal });
-  // }
-
-
-      // Touch handling for mobile swipe
-      const fullscreenFixed = document.querySelector('[data-fullscreen-fixed]');
-      if (fullscreenFixed) {
-        let startX = 0;
-        let startY = 0;
-        let currentX = 0;
-        let currentY = 0;
-        let hasMoved = false;
-        let isScrolling = false;
-        
-        fullscreenFixed.addEventListener('touchstart', (e) => {
-          if (!this.visible || this.animating) return;
-          startX = e.touches[0].pageX;
-          startY = e.touches[0].pageY;
-          currentX = startX;
-          currentY = startY;
-          hasMoved = false;
-          isScrolling = false;
-        }, { signal: this.abortController.signal });
-  
-        fullscreenFixed.addEventListener('touchmove', (e) => {
-          if (!this.visible || this.animating) return;
-          
-          currentX = e.touches[0].pageX;
-          currentY = e.touches[0].pageY;
-          
-          // Calculate horizontal and vertical movement
-          const deltaX = Math.abs(currentX - startX);
-          const deltaY = Math.abs(currentY - startY);
-          
-          // Determine if this is a horizontal swipe or vertical scroll
-          if (!isScrolling && !hasMoved) {
-            isScrolling = deltaY > deltaX;
-            if (!isScrolling && deltaX > 5) {
-              hasMoved = true;
-              e.preventDefault();
-            }
-          }
-          
-          // If it's a horizontal swipe, prevent scrolling
-          if (hasMoved && !isScrolling) {
-            e.preventDefault();
-          }
-        }, { signal: this.abortController.signal, passive: false });
-  
-        fullscreenFixed.addEventListener('touchend', (e) => {
-          if (!this.visible || this.animating || !hasMoved || isScrolling) return;
-          
-          const diff = currentX - startX;
-          const swipeThreshold = window.innerWidth * 0.15; // 15% of screen width
-          
-          if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0 && this.selectedIndex > 0) {
-              // Swipe right - go to previous image
-              this.advanceImage(this.selectedIndex - 1);
-            } else if (diff < 0 && this.selectedIndex < this.mediaCount - 1) {
-              // Swipe left - go to next image
-              this.advanceImage(this.selectedIndex + 1);
-            } else {
-              // Bounce animation when at the end
-              this.animateBounce(diff);
-            }
-          }
-        }, { signal: this.abortController.signal });
+    fullscreenFixed.addEventListener('touchmove', (e) => {
+      if (!this.visible || this.animating) return;
+      currentX = e.touches[0].pageX;
+      if (Math.abs(currentX - startX) > 5) { // Small threshold to detect movement
+        hasMoved = true;
+        e.preventDefault();
       }
+    }, { signal: this.abortController.signal, passive: false });
+
+    fullscreenFixed.addEventListener('touchend', (e) => {
+      if (!this.visible || this.animating || !hasMoved) return;
+      
+      const diff = currentX - startX;
+      if (Math.abs(diff) > 50) { // Minimum swipe distance
+        if (diff > 0) {
+          const prevIndex = this.selectedIndex <= 0 
+            ? this.mediaCount - 1 
+            : this.selectedIndex - 1;
+          this.advanceImage(prevIndex);
+        } else {
+          const nextIndex = (this.selectedIndex + 1) % this.mediaCount;
+          this.advanceImage(nextIndex);
+        }
+      }
+    }, { signal: this.abortController.signal });
+  }
+
+
 
     this.contentReplace = () => {
       this.timeOut = setTimeout(() => {

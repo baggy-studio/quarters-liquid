@@ -13,9 +13,9 @@ export default () => ({
             '/pages/hours-info',
             '/pages/shipping-returns',
             '/pages/terms-and-conditions',
-            '/pages/affiliate-program'
         ];
 
+        const isAffiliatePage = window.location.pathname === '/pages/affiliate-program';
         const element = this.$refs.footer
 
 
@@ -34,7 +34,10 @@ export default () => ({
         })
 
         inView('footer', (entry) => {
-            if (!excludedPages.includes(window.location.pathname)) {
+            if (isAffiliatePage) {
+                this.$dispatch('set-theme', 'light');
+            } 
+            else if (!excludedPages.includes(window.location.pathname)) {
                 if (window.innerWidth < 1024) {
                     this.$dispatch('set-theme', 'light')
                 }
@@ -46,8 +49,9 @@ export default () => ({
 
 
             return () => {
-
-                if (!excludedPages.includes(window.location.pathname)) {
+                if (isAffiliatePage) {
+                    this.$dispatch('set-theme', 'light');
+                } else if (!excludedPages.includes(window.location.pathname)) {
                     if (this.siteCredits) {
 
                     } else {

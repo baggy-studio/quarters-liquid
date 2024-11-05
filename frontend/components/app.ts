@@ -178,7 +178,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
     } else {
-      this.$root.style.setProperty('--transform-y', `${progress}px`);
+      this.$root.style.setProperty('--transform-y', `${progress - 1}px`);
     }
 
     if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {

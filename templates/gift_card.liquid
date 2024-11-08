@@ -28,11 +28,6 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {% endunless %}
 
-    {% liquid
-      render 'typography'
-      render 'colors'
-    %}
-
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js')
       window.addEventListener('load', () => document.documentElement.classList.add('ready'))

@@ -48,9 +48,9 @@
           {% else %}
             {{ gift_card.initial_value | money }}
           {% endif %}
-        </p style="border:3px solid red; text-align:center;">
+        </p>
         {% if gift_card.enabled == false or gift_card.expired %}
-          <p style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.expired' | t }}</p>
+          <p style="border:3px solid red; text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.expired' | t }}</p>
         {% endif %}
       </div>
 
@@ -60,7 +60,7 @@
         {% assign gift_card_balance = gift_card.balance | money %}
       {% endif %}
       {% if gift_card.balance != gift_card.initial_value %}
-        <p style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
+        <p style="border:3px solid red; text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
       {% endif %}
     </header>
 

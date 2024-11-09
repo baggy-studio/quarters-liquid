@@ -59,7 +59,7 @@
         {% assign gift_card_balance = gift_card.balance | money %}
       {% endif %}
       {% if gift_card.balance != gift_card.initial_value %}
-        <p>{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
+        <p style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
       {% endif %}
     </header>
 

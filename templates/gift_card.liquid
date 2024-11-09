@@ -41,13 +41,13 @@
     <header>
       <h1 style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.subtext' | t }}</h1>
       <div>
-        <p>
+        <p style="border:3px solid red; text-align:center;">
           {% if settings.currency_code_enabled %}
             {{ gift_card.initial_value | money_with_currency }}
           {% else %}
             {{ gift_card.initial_value | money }}
           {% endif %}
-        </p>
+        </p style="border:3px solid red; text-align:center;">
         {% if gift_card.enabled == false or gift_card.expired %}
           <p style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.expired' | t }}</p>
         {% endif %}

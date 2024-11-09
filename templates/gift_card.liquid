@@ -38,7 +38,6 @@
 
   </head>
   <body>
-    <* style="border:2px solid blue; ">
     <header>
       <h1 style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.subtext' | t }}</h1>
       <div>
@@ -50,7 +49,7 @@
           {% endif %}
         </p>
         {% if gift_card.enabled == false or gift_card.expired %}
-          <p>{{ 'gift_cards.issued.expired' | t }}</p>
+          <p style="border:3px solid red; text-align:center;">{{ 'gift_cards.issued.expired' | t }}</p>
         {% endif %}
       </div>
 

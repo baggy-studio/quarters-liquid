@@ -40,9 +40,9 @@
   <body>
     <div style="min-height: 100vh; padding-top: 160px;">
     <header >
-      <h1 style="border:3px solid red; text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.subtext' | t }}</h1>
+      <h1 style="text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.subtext' | t }}</h1>
       <div>
-        <p style="border:3px solid red; text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">
+        <p style="text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">
           {% if settings.currency_code_enabled %}
             {{ gift_card.initial_value | money_with_currency }}
           {% else %}
@@ -50,7 +50,7 @@
           {% endif %}
         </p>
         {% if gift_card.enabled == false or gift_card.expired %}
-          <p style="border:3px solid red; text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.expired' | t }}</p>
+          <p style="text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.expired' | t }}</p>
         {% endif %}
       </div>
 
@@ -60,14 +60,14 @@
         {% assign gift_card_balance = gift_card.balance | money %}
       {% endif %}
       {% if gift_card.balance != gift_card.initial_value %}
-        <p style="border:3px solid red; text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
+        <p style="text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card_balance }}</p>
       {% endif %}
     </header>
 
     <main>
       <div
         class="gift-card__qr-code"
-        style="width:120px; margin:auto !important; display: block; border: 3px solid green; padding-top:32px; padding-bottom:16px;"
+        style="width:120px; margin:auto !important; display: block; padding-top:32px; padding-bottom:16px;"
         data-identifier="{{ gift_card.qr_identifier }}"></div>
       <div>
         <input
@@ -77,7 +77,7 @@
           aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
           style="text-align:center; padding-bottom: 32px; font-family: abc monument grotesk;"
           readonly>
-        <div style="border: 2px solid blue; text-align: center;">
+        <div style="text-align: center;">
           <button class="gift-card__copy-link">{{ 'gift_cards.issued.copy_code' | t }}</button>
           <span class="gift-card__copy-success" role="status"></span>
           <template>
@@ -96,7 +96,7 @@
           </a>
         {% endif %}
                 
-        <div style="border: 2px solid blue; text-align: center;">
+        <div style="text-align: center;">
           <button
             onclick="window.print();">
             {{ 'gift_cards.issued.print_gift_card' | t }}

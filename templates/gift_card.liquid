@@ -69,13 +69,13 @@
         class="gift-card__qr-code"
         style="width:128px; margin:auto !important; display: block; border: 3px solid green; padding-top:24px; padding-bottom:24px;"
         data-identifier="{{ gift_card.qr_identifier }}"></div>
-      <div style="padding-bottom: 32px;">
+      <div>
         <input
           type="text"
           class="gift-card__number"
           value="{{ gift_card.code | format_code }}"
           aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
-          style="text-align:center;"
+          style="text-align:center; padding-bottom: 32px;"
           readonly>
         <div style="border: 2px solid blue; text-align: center;">
           <button class="gift-card__copy-link">{{ 'gift_cards.issued.copy_code' | t }}</button>

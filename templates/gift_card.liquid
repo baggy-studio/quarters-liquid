@@ -84,6 +84,7 @@
             {{ 'gift_cards.issued.copy_code_success' | t }}
           </template>
         </div>
+        
         {% if gift_card.pass_url %}
           <a href="{{ gift_card.pass_url }}">
             <img
@@ -94,6 +95,7 @@
               loading="lazy">
           </a>
         {% endif %}
+        
         <div style="border: 2px solid blue; text-align: center;">
           <a
             href="{{ shop.url }}"
@@ -103,7 +105,8 @@
             {{ 'gift_cards.issued.shop_link' | t }}
           </a>
         </div>
-        <div>
+        
+        <div style="border: 2px solid blue; text-align: center;">
           <button
             onclick="window.print();">
             {{ 'gift_cards.issued.print_gift_card' | t }}

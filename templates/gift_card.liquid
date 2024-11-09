@@ -40,9 +40,9 @@
   <body>
     <div style="min-height: 100vh; padding-top: 160px;">
     <header >
-      <h1 style="border:3px solid red; text-align:center; font-size: 24pt;">{{ 'gift_cards.issued.subtext' | t }}</h1>
+      <h1 style="border:3px solid red; text-align:center; font-size: 24pt; line-height:30pt;">{{ 'gift_cards.issued.subtext' | t }}</h1>
       <div>
-        <p style="border:3px solid red; text-align:center;">
+        <p style="border:3px solid red; text-align:center; font-family:droulers; font-size: 22pt; line-height:30pt;">
           {% if settings.currency_code_enabled %}
             {{ gift_card.initial_value | money_with_currency }}
           {% else %}

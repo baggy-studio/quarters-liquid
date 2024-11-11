@@ -22,7 +22,7 @@ function getHeaderColor(dom = document) {
   return cssVariables['header-theme'];
 }
 
-const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns', '/pages/terms-and-conditions','/pages/affiliate-program'];
+const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/shipping-returns', '/pages/terms-and-conditions', '/pages/affiliate-program'];
 const hideHeaderRoutes = ['/', '/pages/the-bar'];
 const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 
@@ -141,9 +141,10 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.lockScroll();
     this.menu = true;
 
+    const url = this.activeUrl;
     this.animating = true;
     await animate((progress) => {
-      this.updateMenuHeight(progress)
+      this.updateMenuHeight(progress, url, false)
     }, { duration: 1.2, easing: expoInOut }).finished
     this.animating = false;
   },
@@ -156,7 +157,7 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.animating = true;
 
     await animate((progress) => {
-      this.updateMenuHeight(1 - progress, url)
+      this.updateMenuHeight(1 - progress, url, true)
     }, { duration: 1.2, easing: expoInOut }).finished
     this.animating = false;
 
@@ -171,14 +172,20 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.openMenu();
     }
   },
-  updateMenuHeight(height = 0, url = this.activeUrl) {
+  updateMenuHeight(height = 0, url = this.activeUrl, isClosing = false) {
 
     let progress = range(0, 1, 0, this.menuHeight, height);
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
       this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
     } else {
-      this.$root.style.setProperty('--transform-y', `${progress - 1}px`);
+
+      if (isClosing) {
+        this.$root.style.setProperty('--transform-y', `${progress}px`);
+      } else {
+        this.$root.style.setProperty('--transform-y', `${progress - 1}px`);
+      }
+
     }
 
     if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {

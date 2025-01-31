@@ -136,7 +136,7 @@
           "type": "item",
           "settings": {
             "title": "Xino Xano (750ml)",
-            "description": "",
+            "description": "<p>Cyclic, Catalonia, Spain </p>",
             "price": "28"
           }
         },
@@ -170,6 +170,22 @@
             "heading": "House Cocktails (Low A.B.V.)"
           }
         },
+        "item_e87PgU": {
+          "type": "item",
+          "settings": {
+            "title": "Pommeau Toddy",
+            "description": "<p>Pommeau, honey, lemon</p>",
+            "price": "16"
+          }
+        },
+        "item_tnUJxk": {
+          "type": "item",
+          "settings": {
+            "title": "Chai & Cardamon",
+            "description": "<p>Iced Chai, Cardamaro, walnut liqueur</p>",
+            "price": "16"
+          }
+        },
         "item_V78Tjn": {
           "type": "item",
           "settings": {
@@ -178,88 +194,42 @@
             "price": "18"
           }
         },
-        "item_e87PgU": {
-          "type": "item",
-          "settings": {
-            "title": "À La Normandie",
-            "description": "<p>Pommeau, blanc vermouth, gentiane</p>",
-            "price": "18"
-          }
-        },
-        "item_tnUJxk": {
-          "type": "item",
-          "settings": {
-            "title": "Che Figata",
-            "description": "<p>Vermouth di Torino, sherry, fig</p>",
-            "price": "18"
-          }
-        },
-        "item_HPwETy": {
-          "type": "item",
-          "settings": {
-            "title": "Paso Doble",
-            "description": "<p>Bianco aperitivo, blanc verjus, citrus oleo</p>",
-            "price": "18"
-          }
-        },
-        "item_HQ3jiq": {
-          "type": "item",
-          "settings": {
-            "title": "Quarters Cup",
-            "description": "<p>Vino amaro, ginger beer, lemon, vin cotto</p>",
-            "price": "18"
-          }
-        },
-        "category_GHcRNF": {
+        "category_banrjW": {
           "type": "category",
           "settings": {
-            "heading": "Zero-proof Cocktails"
+            "heading": "Juice"
           }
         },
-        "item_egqijV": {
+        "item_HPaUAH": {
           "type": "item",
           "settings": {
-            "title": "Spicy Margarita (NA)",
-            "description": "<p>Amalve, lime, Seedlip Garden, spicy agave</p>",
-            "price": "18"
+            "title": "Fizz",
+            "description": "<p>Ginger, lemon, honey, sparkling water</p>",
+            "price": "12"
           }
         },
-        "item_Pf69AF": {
+        "item_wq8ck6": {
           "type": "item",
           "settings": {
-            "title": "Spritz (NA)",
-            "description": "<p>Martini Vibrante, NA sparkling wine, elderflower, rosemary</p>",
-            "price": "18"
+            "title": "Pear Shrub",
+            "description": "<p>Pear, honey, sparkling water, salt </p>",
+            "price": "12"
           }
         },
-        "item_ac9grz": {
+        "item_JLhi48": {
           "type": "item",
           "settings": {
-            "title": "Negroni (NA)",
-            "description": "<p>NA gin, Lyre’s Aperitif Rosso, Lyre’s Italian orange</p>",
-            "price": "18"
+            "title": "Turmeric Tonic",
+            "description": "<p>Turmeric, ginger, lemon, sparkling water</p>",
+            "price": "12"
           }
         },
-        "category_qCLcAn": {
-          "type": "category",
-          "settings": {
-            "heading": "Water"
-          }
-        },
-        "item_A6HJgH": {
+        "item_Mqf9gg": {
           "type": "item",
           "settings": {
-            "title": "Acqua Panna (Still)",
-            "description": "",
-            "price": "9"
-          }
-        },
-        "item_TRbxnN": {
-          "type": "item",
-          "settings": {
-            "title": "S.Pellegrino (Sparkling)",
-            "description": "",
-            "price": "10"
+            "title": "Green Juice",
+            "description": "<p>Kale, cucumber, celery, apple, lemon, ginger</p>",
+            "price": "15"
           }
         }
       },
@@ -285,18 +255,14 @@
         "item_eQkA7P",
         "item_9nTrAn",
         "category_CMfHpD",
-        "item_V78Tjn",
         "item_e87PgU",
         "item_tnUJxk",
-        "item_HPwETy",
-        "item_HQ3jiq",
-        "category_GHcRNF",
-        "item_egqijV",
-        "item_Pf69AF",
-        "item_ac9grz",
-        "category_qCLcAn",
-        "item_A6HJgH",
-        "item_TRbxnN"
+        "item_V78Tjn",
+        "category_banrjW",
+        "item_HPaUAH",
+        "item_wq8ck6",
+        "item_JLhi48",
+        "item_Mqf9gg"
       ],
       "settings": {
         "title": "Drinks",

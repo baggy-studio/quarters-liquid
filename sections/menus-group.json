@@ -575,23 +575,7 @@
         "category_Yycy4X": {
           "type": "category",
           "settings": {
-            "heading": "Savory"
-          }
-        },
-        "item_M9igxg": {
-          "type": "item",
-          "settings": {
-            "title": "House Snack Trio",
-            "description": "<p>Nuts, fennel taralli, potato chips</p>",
-            "price": "16"
-          }
-        },
-        "item_paEfaz": {
-          "type": "item",
-          "settings": {
-            "title": "Marinated Olives",
-            "description": "<p>Fennel, citrus</p>",
-            "price": "10"
+            "heading": "Snacks"
           }
         },
         "item_m3KNBF": {
@@ -599,31 +583,61 @@
           "settings": {
             "title": "Gilda Pintxo",
             "description": "<p>Anchovies, guindillas, coppa, olives</p>",
-            "price": "10"
+            "price": "5/each"
           }
         },
         "item_V7FrbE": {
           "type": "item",
           "settings": {
-            "title": "Gilda Pintxo (Vegetarian)",
+            "title": "Vegetarian Gilda",
             "description": "<p>Piquillos, guindillas, manchego, olives</p>",
-            "price": "10"
+            "price": "5/each"
           }
         },
-        "item_WAycEp": {
+        "item_paEfaz": {
           "type": "item",
           "settings": {
-            "title": "Caviar Service",
-            "description": "<p>Ossetra, crème fraîche, chives, potato chips</p>",
-            "price": "135"
+            "title": "Marinated Olives",
+            "description": "<p>Fennel, citrus</p>",
+            "price": "9"
+          }
+        },
+        "item_M9igxg": {
+          "type": "item",
+          "settings": {
+            "title": "House Snack Trio",
+            "description": "<p>Nuts, fennel taralli, chip salad</p>",
+            "price": "15"
+          }
+        },
+        "item_QekK9M": {
+          "type": "item",
+          "settings": {
+            "title": "Market Vegetable Plate",
+            "description": "<p>Endive, radish, baguna cauda, breadcrumbs</p>",
+            "price": "15"
           }
         },
         "item_pekXfz": {
           "type": "item",
           "settings": {
             "title": "Boquerones",
-            "description": "<p>Vinegar, shallots, herbs, olive oil</p>",
+            "description": "<p>Anchovies, vinegar, red pepper, herbs, olive oil, potato </p>",
             "price": "24"
+          }
+        },
+        "item_WAycEp": {
+          "type": "item",
+          "settings": {
+            "title": "Caviar",
+            "description": "<p>Ossetra (30g), crème fraîche, chives, potato chips </p>",
+            "price": "135"
+          }
+        },
+        "category_cmz8AC": {
+          "type": "category",
+          "settings": {
+            "heading": "Toasts"
           }
         },
         "item_VdPMNd": {
@@ -642,123 +656,130 @@
             "price": "18"
           }
         },
-        "item_Pf69AF": {
-          "type": "item",
+        "category_AwYrmD": {
+          "type": "category",
           "settings": {
-            "title": "Robiola Tre Latti (Italy)",
-            "description": "<p>Apricot compote, breadsticks</p>",
-            "price": "32"
-          }
-        },
-        "item_egqijV": {
-          "type": "item",
-          "settings": {
-            "title": "Humboldt Fog (USA)",
-            "description": "<p>Seeded honey, breadsticks</p>",
-            "price": "34"
-          }
-        },
-        "item_rrxBJj": {
-          "type": "item",
-          "settings": {
-            "title": "Tomme de Savoie (France)",
-            "description": "<p>Seasonal jam, crackers</p>",
-            "price": "31"
-          }
-        },
-        "item_hXfRjw": {
-          "type": "item",
-          "settings": {
-            "title": "3-year Comté (France)",
-            "description": "<p>Cherry confit, hazelnuts, crackers</p>",
-            "price": "42"
-          }
-        },
-        "item_ac9grz": {
-          "type": "item",
-          "settings": {
-            "title": "Duck Rillettes",
-            "description": "<p>Walnut mustard, cornichon, sourdough</p>",
-            "price": "22"
-          }
-        },
-        "item_wiC4w3": {
-          "type": "item",
-          "settings": {
-            "title": "Speck",
-            "description": "<p>Balsamic saba, antipasti</p>",
-            "price": "26"
-          }
-        },
-        "item_C3CTDr": {
-          "type": "item",
-          "settings": {
-            "title": "Chorizo Ibérico",
-            "description": "<p>Guindillas, cilantro</p>",
-            "price": "26"
+            "heading": "Meat + Cheese Plates"
           }
         },
         "item_k4e4Gm": {
           "type": "item",
           "settings": {
             "title": "Bresaola",
-            "description": "<p>Arugula, parmesan, lemon, olive oil</p>",
+            "description": "<p>Cured beef, arugula, parmesan, lemon, olive oil</p>",
             "price": "24"
+          }
+        },
+        "item_ac9grz": {
+          "type": "item",
+          "settings": {
+            "title": "Duck Rillettes",
+            "description": "<p>Spreadable duck pâté, walnut mustard, cornichon, sourdough </p>",
+            "price": "22"
+          }
+        },
+        "item_C3CTDr": {
+          "type": "item",
+          "settings": {
+            "title": "Chorizo Ibérico",
+            "description": "<p>Cured pork, guindillas, cilantro </p>",
+            "price": "26"
+          }
+        },
+        "item_wiC4w3": {
+          "type": "item",
+          "settings": {
+            "title": "Speck",
+            "description": "<p>Smoked and cured Italian ham, balsamic saba, antipasti </p>",
+            "price": "26"
+          }
+        },
+        "item_jk9pR7": {
+          "type": "item",
+          "settings": {
+            "title": "Soft Cheese Plate",
+            "description": "<p>Two soft cheeses, apricot compote, breadsticks </p>",
+            "price": "28"
+          }
+        },
+        "item_PUbt4q": {
+          "type": "item",
+          "settings": {
+            "title": "Hard Cheese Plate",
+            "description": "<p>Two hard cheeses, cherry confit, hazelnuts, crackers </p>",
+            "price": "28"
           }
         },
         "category_eraxDf": {
           "type": "category",
           "settings": {
-            "heading": "Sweet"
+            "heading": "Sweets"
           }
         },
         "item_Djn39Y": {
           "type": "item",
           "settings": {
-            "title": "Raf's Cookie Plate",
-            "description": "<p>Baci di dama, amaretti, cantucci</p>",
-            "price": "12"
+            "title": "Dark Chocolate Mousse",
+            "description": "<p>Gianduja noir, hazelnuts, chantilly </p>",
+            "price": "19"
           }
         },
         "item_iBgtwr": {
           "type": "item",
           "settings": {
-            "title": "Piedras de Chocolate",
-            "description": "<p>Almonds, chocolate</p>",
-            "price": "10"
+            "title": "Apple Tart Tatin",
+            "description": "<p>Apple, caramel, crème fraîche, salt and pepper</p>",
+            "price": "16"
           }
         },
         "item_76FYD3": {
           "type": "item",
           "settings": {
-            "title": "Dark Chocolate Mousse",
-            "description": "<p>Gianduja noir, chantilly</p>",
-            "price": "19"
+            "title": "Chocolate Almonds",
+            "description": "<p>Almonds, chocolate</p>",
+            "price": "9"
+          }
+        },
+        "category_A68dng": {
+          "type": "category",
+          "settings": {
+            "heading": "Sides"
+          }
+        },
+        "item_cwQ9eq": {
+          "type": "item",
+          "settings": {
+            "title": "Bread",
+            "description": "<p>Sicilian olive oil </p>",
+            "price": "6"
           }
         }
       },
       "block_order": [
         "category_Yycy4X",
-        "item_M9igxg",
-        "item_paEfaz",
         "item_m3KNBF",
         "item_V7FrbE",
-        "item_WAycEp",
+        "item_paEfaz",
+        "item_M9igxg",
+        "item_QekK9M",
         "item_pekXfz",
+        "item_WAycEp",
+        "category_cmz8AC",
         "item_VdPMNd",
         "item_RkLHpc",
-        "item_Pf69AF",
-        "item_egqijV",
-        "item_rrxBJj",
-        "item_hXfRjw",
-        "item_ac9grz",
-        "item_wiC4w3",
-        "item_C3CTDr",
+        "category_AwYrmD",
         "item_k4e4Gm",
+        "item_ac9grz",
+        "item_C3CTDr",
+        "item_wiC4w3",
+        "item_jk9pR7",
+        "item_PUbt4q",
         "category_eraxDf",
         "item_Djn39Y",
         "item_iBgtwr",
-        "item_76FYD3"
+        "item_76FYD3",
+        "category_A68dng",
+        "item_cwQ9eq"
       ],
       "settings": {
         "title": "Evening",

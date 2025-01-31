@@ -798,12 +798,20 @@
             "heading": "Desserts"
           }
         },
+        "item_by9V9j": {
+          "type": "item",
+          "settings": {
+            "title": "Dark Chocolate Mousse",
+            "description": "<p>Gianduja noir, hazelnuts, chantilly </p>",
+            "price": "19"
+          }
+        },
         "item_fiihT3": {
           "type": "item",
           "settings": {
-            "title": "Raf's Cookie Plate",
-            "description": "<p>Baci di dama, amaretti, cantucci</p>",
-            "price": "12"
+            "title": "Apple Tart Tatin",
+            "description": "<p>Apple, caramel, crème fraîche, salt and pepper </p>",
+            "price": "16"
           }
         },
         "item_tPCGC9": {
@@ -814,26 +822,10 @@
             "price": "10"
           }
         },
-        "item_by9V9j": {
-          "type": "item",
-          "settings": {
-            "title": "Dark Chocolate Mousse",
-            "description": "<p>Gianduja noir, chantilly</p>",
-            "price": "19"
-          }
-        },
         "category_BhFjEc": {
           "type": "category",
           "settings": {
-            "heading": "Fortified Wine"
-          }
-        },
-        "item_U8B6mq": {
-          "type": "item",
-          "settings": {
-            "title": "Speckbirne 302",
-            "description": "<p>Josef Farthofer, Mostviertel, Austria</p>",
-            "price": "10"
+            "heading": "Digestifs"
           }
         },
         "item_fgbmT7": {
@@ -868,20 +860,6 @@
             "price": "20"
           }
         },
-        "category_CRfAV8": {
-          "type": "category",
-          "settings": {
-            "heading": "Sherry"
-          }
-        },
-        "item_kma7FJ": {
-          "type": "item",
-          "settings": {
-            "title": "Manzanilla Pasada Solear",
-            "description": "<p>Bodegas Barbadillo, Cádiz, Spain</p>",
-            "price": "12"
-          }
-        },
         "item_EdjjMw": {
           "type": "item",
           "settings": {
@@ -906,12 +884,6 @@
             "price": "8"
           }
         },
-        "category_AgrJMN": {
-          "type": "category",
-          "settings": {
-            "heading": "Vermut"
-          }
-        },
         "item_BcFaEn": {
           "type": "item",
           "settings": {
@@ -927,43 +899,23 @@
             "description": "<p>Distillerie Capitoline, Toscana, Italy</p>",
             "price": "11"
           }
-        },
-        "category_zUWTnx": {
-          "type": "category",
-          "settings": {
-            "heading": "Port"
-          }
-        },
-        "item_yzMikT": {
-          "type": "item",
-          "settings": {
-            "title": "20 Year Tawny Port",
-            "description": "<p>C.N. Kopke, Douro, Portugal</p>",
-            "price": "10"
-          }
         }
       },
       "block_order": [
         "category_kngppF",
+        "item_by9V9j",
         "item_fiihT3",
         "item_tPCGC9",
-        "item_by9V9j",
         "category_BhFjEc",
-        "item_U8B6mq",
         "item_fgbmT7",
         "item_wLebPj",
         "item_hWnjMU",
         "item_C88wLy",
-        "category_CRfAV8",
-        "item_kma7FJ",
         "item_EdjjMw",
         "item_UmPGTh",
         "item_fcAzCQ",
-        "category_AgrJMN",
         "item_BcFaEn",
-        "item_zyf74P",
-        "category_zUWTnx",
-        "item_yzMikT"
+        "item_zyf74P"
       ],
       "settings": {
         "title": "Afters",

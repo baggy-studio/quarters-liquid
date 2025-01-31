@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -38,7 +47,7 @@
         "section_nFCHzw"
       ],
       "settings": {
-        "link": "https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters",
+        "link": "https://resy.com/cities/new-york-ny/venues/quarters",
         "cta_text": "Make a Reservation"
       }
     },
@@ -48,13 +57,13 @@
         "desktop_nyL4iw": {
           "type": "desktop",
           "settings": {
-            "image": "shopify:\/\/shop_images\/bar-hero.png"
+            "image": "shopify://shop_images/bar-hero.png"
           }
         },
         "mobile_UgpmAx": {
           "type": "mobile",
           "settings": {
-            "image": "shopify:\/\/shop_images\/bar-mobile.png"
+            "image": "shopify://shop_images/bar-mobile.png"
           }
         }
       },
@@ -62,8 +71,7 @@
         "desktop_nyL4iw",
         "mobile_UgpmAx"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "bar_details_DAFdQ3": {
       "type": "bar-details",
@@ -71,28 +79,28 @@
         "media_k4T4RB": {
           "type": "media",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Quarters_Details_2.jpg",
+            "image": "shopify://shop_images/Quarters_Details_2.jpg",
             "caption": "Daytime"
           }
         },
         "media_naQ3bb": {
           "type": "media",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Quarters_Bar_WJL_5.jpg",
+            "image": "shopify://shop_images/Quarters_Bar_WJL_5.jpg",
             "caption": "Apéro"
           }
         },
         "media_Mn7Rix": {
           "type": "media",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Barware_Match_CocktailMixer_1_16a45e53-2494-4ebb-bb1a-b4f72c5c8076.jpg",
+            "image": "shopify://shop_images/Barware_Match_CocktailMixer_1_16a45e53-2494-4ebb-bb1a-b4f72c5c8076.jpg",
             "caption": "Evening"
           }
         },
         "media_6gHXye": {
           "type": "media",
           "settings": {
-            "image": "shopify:\/\/shop_images\/051724_QUARTERS_EVENT_003.jpg",
+            "image": "shopify://shop_images/051724_QUARTERS_EVENT_003.jpg",
             "caption": "Events"
           }
         }
@@ -104,19 +112,18 @@
         "media_6gHXye"
       ],
       "settings": {
-        "paragraph": "<p>A day-to-night bar and café specializing in wine and seasonal small plates, in a thoughtfully curated space designed to captivate the senses.<br\/><br\/>Each detail—from carefully sourced ingredients to handmade tableware to a swirling, hand-painted fresco—is a celebration of artistry, craftsmanship, and the joyful ritual of gathering.<\/p>",
-        "address": "<p><a href=\"https:\/\/maps.app.goo.gl\/sJqPE2PfDTtPNsak6\" target=\"_blank\" title=\"View on Google Maps\">383 BROADWAY, FLOOR 2<br\/>NEW YORK, N.Y. 10013 <\/a><\/p>",
-        "phone": "<p><a href=\"tel: +12125874040\" target=\"_blank\" title=\"tel: +12125874040\">212-587-4040<\/a><\/p><p><a href=\"https:\/\/maps.app.goo.gl\/Bk8XAHjwMpppmW3y7\" title=\"https:\/\/maps.app.goo.gl\/Bk8XAHjwMpppmW3y7\">(get directions)<\/a><\/p>",
-        "daytime": "<p>Afternoon coffee and tea, paired with handmade pastries.<\/p><p>Tuesday – Saturday<br\/>11:00 a.m. to 4:00 p.m.<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
-        "apero": "<p>Signature snacks and drinks to usher in the evening.<\/p><p>Thursday – Saturday<br\/>4:00pm to 5:00pm<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
-        "evening": "<p>Our full menu of small plates and beverages served until the stroke of midnight.<\/p><p>Thursday – Saturday<br\/>5:00pm to Midnight<\/p><p><a href=\"https:\/\/resy.com\/cities\/new-york-ny\/venues\/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table<\/a><\/p>",
+        "paragraph": "<p>A day-to-night bar and café specializing in wine and seasonal small plates, in a thoughtfully curated space designed to captivate the senses.<br/><br/>Each detail—from carefully sourced ingredients to handmade tableware to a swirling, hand-painted fresco—is a celebration of artistry, craftsmanship, and the joyful ritual of gathering.</p>",
+        "address": "<p><a href=\"https://maps.app.goo.gl/sJqPE2PfDTtPNsak6\" target=\"_blank\" title=\"View on Google Maps\">383 BROADWAY, FLOOR 2<br/>NEW YORK, N.Y. 10013 </a></p>",
+        "phone": "<p><a href=\"tel: +12125874040\" target=\"_blank\" title=\"tel: +12125874040\">212-587-4040</a></p><p><a href=\"https://maps.app.goo.gl/Bk8XAHjwMpppmW3y7\" title=\"https://maps.app.goo.gl/Bk8XAHjwMpppmW3y7\">(get directions)</a></p>",
+        "daytime": "<p>Afternoon coffee and tea, paired with handmade pastries.</p><p>Tuesday – Saturday<br/>11:00 a.m. to 4:00 p.m.</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
+        "apero": "<p>Signature snacks and drinks to usher in the evening.</p><p>Thursday – Saturday<br/>4:00pm to 5:00pm</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
+        "evening": "<p>Our full menu of small plates and beverages served until the stroke of midnight.</p><p>Thursday – Saturday<br/>5:00pm to 11:00pm</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
         "eyebrow": "See you soon!"
       }
     },
     "bar_menus_MaNd6f": {
       "type": "bar-menus",
-      "settings": {
-      }
+      "settings": {}
     },
     "bar_events_ydm99L": {
       "type": "bar-events",
@@ -124,28 +131,28 @@
         "event_aDUbQe": {
           "type": "event",
           "settings": {
-            "image": "shopify:\/\/shop_images\/demo-4.png",
+            "image": "shopify://shop_images/demo-4.png",
             "caption": ""
           }
         },
         "event_dfQThT": {
           "type": "event",
           "settings": {
-            "image": "shopify:\/\/shop_images\/051724_QUARTERS_EVENT_084.jpg",
+            "image": "shopify://shop_images/051724_QUARTERS_EVENT_084.jpg",
             "caption": ""
           }
         },
         "event_WqWqk6": {
           "type": "event",
           "settings": {
-            "image": "shopify:\/\/shop_images\/demo-1.png",
+            "image": "shopify://shop_images/demo-1.png",
             "caption": ""
           }
         },
         "event_xtjYyV": {
           "type": "event",
           "settings": {
-            "image": "shopify:\/\/shop_images\/HFA_8440_2.jpg",
+            "image": "shopify://shop_images/HFA_8440_2.jpg",
             "caption": ""
           }
         }
@@ -157,8 +164,8 @@
         "event_xtjYyV"
       ],
       "settings": {
-        "title": "<p>Private Events and <\/p><p>Professional photography<\/p>",
-        "body": "<p>Quarters is available to book for private events and occasional photoshoots. Please inquire for more details.<\/p>",
+        "title": "<p>Private Events and </p><p>Professional photography</p>",
+        "body": "<p>Quarters is available to book for private events and occasional photoshoots. Please inquire for more details.</p>",
         "cta_link": "mailto:events@shopquarters.com",
         "cta_text": "Inquire"
       }

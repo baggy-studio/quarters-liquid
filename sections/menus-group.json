@@ -193,44 +193,6 @@
             "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
             "price": "18"
           }
-        },
-        "category_banrjW": {
-          "type": "category",
-          "settings": {
-            "heading": "Juice"
-          }
-        },
-        "item_HPaUAH": {
-          "type": "item",
-          "settings": {
-            "title": "Fizz",
-            "description": "<p>Ginger, lemon, honey, sparkling water</p>",
-            "price": "12"
-          }
-        },
-        "item_wq8ck6": {
-          "type": "item",
-          "settings": {
-            "title": "Pear Shrub",
-            "description": "<p>Pear, honey, sparkling water, salt </p>",
-            "price": "12"
-          }
-        },
-        "item_JLhi48": {
-          "type": "item",
-          "settings": {
-            "title": "Turmeric Tonic",
-            "description": "<p>Turmeric, ginger, lemon, sparkling water</p>",
-            "price": "12"
-          }
-        },
-        "item_Mqf9gg": {
-          "type": "item",
-          "settings": {
-            "title": "Green Juice",
-            "description": "<p>Kale, cucumber, celery, apple, lemon, ginger</p>",
-            "price": "15"
-          }
         }
       },
       "block_order": [
@@ -257,12 +219,7 @@
         "category_CMfHpD",
         "item_e87PgU",
         "item_tnUJxk",
-        "item_V78Tjn",
-        "category_banrjW",
-        "item_HPaUAH",
-        "item_wq8ck6",
-        "item_JLhi48",
-        "item_Mqf9gg"
+        "item_V78Tjn"
       ],
       "settings": {
         "title": "Drinks",
@@ -281,14 +238,6 @@
             "heading": "Pastries by Raf's"
           }
         },
-        "item_WAycEp": {
-          "type": "item",
-          "settings": {
-            "title": "Cacio e Pepe Scone",
-            "description": "",
-            "price": "6"
-          }
-        },
         "item_M9igxg": {
           "type": "item",
           "settings": {
@@ -303,22 +252,6 @@
             "title": "Croissant with Jam",
             "description": "",
             "price": "10"
-          }
-        },
-        "item_paEfaz": {
-          "type": "item",
-          "settings": {
-            "title": "Seasonal Croissant",
-            "description": "",
-            "price": "12"
-          }
-        },
-        "item_KKjeRB": {
-          "type": "item",
-          "settings": {
-            "title": "Cantucci",
-            "description": "",
-            "price": "8"
           }
         },
         "item_XebtKT": {
@@ -337,18 +270,34 @@
             "price": "10"
           }
         },
+        "item_gcixBm": {
+          "type": "item",
+          "settings": {
+            "title": "Baguette",
+            "description": "<p>Sicillian olive oil</p>",
+            "price": "6"
+          }
+        },
         "category_KfbFhq": {
           "type": "category",
           "settings": {
             "heading": "Snacks"
           }
         },
-        "item_m3KNBF": {
+        "item_pekXfz": {
           "type": "item",
           "settings": {
-            "title": "House Snack Trio",
-            "description": "<p>Nuts, fennel taralli, potato chips</p>",
-            "price": "16"
+            "title": "Gilda Pintxo",
+            "description": "<p>Anchovies, guindillas, coppa, olives</p>",
+            "price": "5"
+          }
+        },
+        "item_VdPMNd": {
+          "type": "item",
+          "settings": {
+            "title": "Vegetarian Gilda",
+            "description": "<p>Piquillos, guindillas, manchego, olives</p>",
+            "price": "5"
           }
         },
         "item_V7FrbE": {
@@ -356,23 +305,15 @@
           "settings": {
             "title": "Marinated Olives",
             "description": "<p>Fennel, citrus</p>",
-            "price": "10"
+            "price": "9"
           }
         },
-        "item_pekXfz": {
+        "item_m3KNBF": {
           "type": "item",
           "settings": {
-            "title": "Gilda Pinxto",
-            "description": "<p>Anchovies, guindillas, coppa, olives</p>",
-            "price": "10"
-          }
-        },
-        "item_VdPMNd": {
-          "type": "item",
-          "settings": {
-            "title": "Gilda Pinxto (Vegetarian)",
-            "description": "<p>Piquillos, guindillas, manchego, olives</p>",
-            "price": "10"
+            "title": "House Snack Trio",
+            "description": "<p>Nuts, fennel taralli, chip salad </p>",
+            "price": "15"
           }
         },
         "category_7hnrcd": {
@@ -434,7 +375,7 @@
           "settings": {
             "title": "Cappuccino",
             "description": "",
-            "price": "6"
+            "price": "5"
           }
         },
         "item_tGVEDT": {
@@ -442,7 +383,7 @@
           "settings": {
             "title": "Latte",
             "description": "",
-            "price": "6"
+            "price": "5"
           }
         },
         "category_adgbLb": {
@@ -462,15 +403,15 @@
         "item_4PJqBx": {
           "type": "item",
           "settings": {
-            "title": "Emperor’s Flower (Oolong)",
-            "description": "<p>Noyaux, jasmine, pine nut</p>",
+            "title": "Orange Flower (Oolong)",
+            "description": "<p>Oolong, chamomile, orange peel</p>",
             "price": "6"
           }
         },
         "item_zyQYxc": {
           "type": "item",
           "settings": {
-            "title": "Iced Tea (Black)",
+            "title": "Black Iced Tea",
             "description": "",
             "price": "6"
           }
@@ -478,7 +419,7 @@
         "category_ARJMyX": {
           "type": "category",
           "settings": {
-            "heading": "Juice + Tonic"
+            "heading": "Juice"
           }
         },
         "item_hXfRjw": {
@@ -492,8 +433,8 @@
         "item_rrxBJj": {
           "type": "item",
           "settings": {
-            "title": "Seasonal Shrub",
-            "description": "<p>Market fruit, sparkling water, salt</p>",
+            "title": "Pear Shrub",
+            "description": "<p>Pear, honey, sparkling water, salt </p>",
             "price": "12"
           }
         },
@@ -509,25 +450,23 @@
           "type": "item",
           "settings": {
             "title": "Green Juice",
-            "description": "<p>Kale, cucumber, celery, apple, ginger</p>",
+            "description": "<p>Kale, cucumber, celery, apple, lemon, ginger</p>",
             "price": "15"
           }
         }
       },
       "block_order": [
         "category_Yycy4X",
-        "item_WAycEp",
         "item_M9igxg",
         "item_xEeV6L",
-        "item_paEfaz",
-        "item_KKjeRB",
         "item_XebtKT",
         "item_fU6gQd",
+        "item_gcixBm",
         "category_KfbFhq",
-        "item_m3KNBF",
-        "item_V7FrbE",
         "item_pekXfz",
         "item_VdPMNd",
+        "item_V7FrbE",
+        "item_m3KNBF",
         "category_7hnrcd",
         "item_nMG6jK",
         "item_4qMiEF",

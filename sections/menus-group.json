@@ -193,6 +193,28 @@
             "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
             "price": "18"
           }
+        },
+        "category_LaTWjU": {
+          "type": "category",
+          "settings": {
+            "heading": "Bottled Water"
+          }
+        },
+        "item_MVbPCE": {
+          "type": "item",
+          "settings": {
+            "title": "Still",
+            "description": "",
+            "price": "9"
+          }
+        },
+        "item_AHKN6G": {
+          "type": "item",
+          "settings": {
+            "title": "Sparkling",
+            "description": "",
+            "price": "10"
+          }
         }
       },
       "block_order": [
@@ -219,7 +241,10 @@
         "category_CMfHpD",
         "item_e87PgU",
         "item_tnUJxk",
-        "item_V78Tjn"
+        "item_V78Tjn",
+        "category_LaTWjU",
+        "item_MVbPCE",
+        "item_AHKN6G"
       ],
       "settings": {
         "title": "Drinks",
@@ -314,6 +339,50 @@
             "title": "House Snack Trio",
             "description": "<p>Nuts, fennel taralli, chip salad </p>",
             "price": "15"
+          }
+        },
+        "category_jy9fEH": {
+          "type": "category",
+          "settings": {
+            "heading": "Plates"
+          }
+        },
+        "item_aXJhQh": {
+          "type": "item",
+          "settings": {
+            "title": "Market Vegable Plate",
+            "description": "<p>Endive, radish, baguna cauda, breadcrumbs </p>",
+            "price": "15"
+          }
+        },
+        "item_RipftM": {
+          "type": "item",
+          "settings": {
+            "title": "Meat and Pickle Plate",
+            "description": "<p>Chorizo iberico, guindillas, cilantro</p>",
+            "price": "26"
+          }
+        },
+        "category_kxWhPA": {
+          "type": "category",
+          "settings": {
+            "heading": "Toasts"
+          }
+        },
+        "item_UJMkGD": {
+          "type": "item",
+          "settings": {
+            "title": "Mushroom Toastie",
+            "description": "<p>Baguette, garlic, parsley, aioli</p>",
+            "price": "16"
+          }
+        },
+        "item_etfWrA": {
+          "type": "item",
+          "settings": {
+            "title": "Ham Toastie",
+            "description": "<p>Baguette, ham, gruyere, cornichon, aioli</p>",
+            "price": "16"
           }
         },
         "category_7hnrcd": {
@@ -467,6 +536,12 @@
         "item_VdPMNd",
         "item_V7FrbE",
         "item_m3KNBF",
+        "category_jy9fEH",
+        "item_aXJhQh",
+        "item_RipftM",
+        "category_kxWhPA",
+        "item_UJMkGD",
+        "item_etfWrA",
         "category_7hnrcd",
         "item_nMG6jK",
         "item_4qMiEF",

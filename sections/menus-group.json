@@ -950,14 +950,6 @@
             "price": "160"
           }
         },
-        "item_nJH7B6": {
-          "type": "item",
-          "settings": {
-            "title": "Champagne L’Esquisse",
-            "description": "<p>Pinot Meunier, Pinot Noir / Mousse Fils, Champagne, France </p>",
-            "price": "34 | 136"
-          }
-        },
         "item_dkghht": {
           "type": "item",
           "settings": {
@@ -974,14 +966,6 @@
             "price": "195"
           }
         },
-        "item_UYdQEW": {
-          "type": "item",
-          "settings": {
-            "title": "Tinc Set Metode Ancestral (2023)",
-            "description": "<p>Xarel-lo / Ramon Jané, Penedes, Spain</p>",
-            "price": "17 | 68"
-          }
-        },
         "item_AFzNtq": {
           "type": "item",
           "settings": {
@@ -990,26 +974,10 @@
             "price": "90"
           }
         },
-        "item_ex4Mqq": {
-          "type": "item",
-          "settings": {
-            "title": "Lambrusco (2021)",
-            "description": "<p>Lambrusco Ruberti / `Villa Picta, Lombardy, Italy </p>",
-            "price": "17 | 68"
-          }
-        },
         "category_WVQrRB": {
           "type": "category",
           "settings": {
             "heading": "White"
-          }
-        },
-        "item_6jgDdR": {
-          "type": "item",
-          "settings": {
-            "title": "Schatz White (2023)",
-            "description": "<p>Gruner Vetliner, Riesling / Arndorfer Vereinter, Kamptal, Austria </p>",
-            "price": "16 | 64"
           }
         },
         "item_yqHr9y": {
@@ -1042,14 +1010,6 @@
             "title": "Schoffweg (2018)",
             "description": "<p>Riesling, Pinot Blanc, Muscat / Domaine Marcel Deiss, Alsace, France</p>",
             "price": "156"
-          }
-        },
-        "item_CNUgnK": {
-          "type": "item",
-          "settings": {
-            "title": "Empordà Connexió Còsmica (2023)",
-            "description": "<p>Xarel-lo, Malvasia de Sitges / Cosmic Vinyaters, Catalonia, Spain</p>",
-            "price": "20 | 80"
           }
         },
         "item_rWiDUj": {
@@ -1098,22 +1058,6 @@
             "title": "Gerne",
             "description": "<p>Sauvignon Blanc, Gruner Vetliner, Chardonnay, Neuberger / Arndorfer, Kamptal, Austria</p>",
             "price": "95"
-          }
-        },
-        "item_zMJW4F": {
-          "type": "item",
-          "settings": {
-            "title": "Little Bastard",
-            "description": "<p>Riesling, Sauvignon Blanc, Muller-Thurgau, Muscat / Jan Matthias Klein, Mosel, Germany </p>",
-            "price": "18 | 72"
-          }
-        },
-        "item_cb87QJ": {
-          "type": "item",
-          "settings": {
-            "title": "Chablis (2018)",
-            "description": "<p>Chardonnay / Guillaume Michaut, Burgundy, France</p>",
-            "price": "30 | 120"
           }
         },
         "item_ay4L9g": {
@@ -1182,14 +1126,6 @@
             "title": "Grolleau (2021)",
             "description": "<p>Cabernet Franc / Domaine des Hauts Baigneux, Loire, France</p>",
             "price": "80"
-          }
-        },
-        "item_fwNdgK": {
-          "type": "item",
-          "settings": {
-            "title": "Les Thorins (2021)",
-            "description": "<p>Gamay / Elisa Guerin, Beaujolais, France</p>",
-            "price": "22 | 88"
           }
         },
         "item_NT4D37": {
@@ -1264,28 +1200,12 @@
             "price": "70"
           }
         },
-        "item_xTRYtW": {
-          "type": "item",
-          "settings": {
-            "title": "Roero Renesio Riserva (2011)",
-            "description": "<p>Nebbiolo / Malvira, Piedmont, Italy</p>",
-            "price": "30 | 120"
-          }
-        },
         "item_7wWWRk": {
           "type": "item",
           "settings": {
             "title": "Barolo Classico (2019)",
             "description": "<p>Nebbiolo / Brezza, Piedmont, Italy</p>",
             "price": "158"
-          }
-        },
-        "item_FXbqia": {
-          "type": "item",
-          "settings": {
-            "title": "La Lumiere",
-            "description": "<p>Grenache, Carignan / Val de Combres, Rhone, France</p>",
-            "price": "18 | 72"
           }
         },
         "item_YdQ3Hd": {
@@ -1319,33 +1239,58 @@
             "description": "<p>Syrah / Aurelien Chatagnier, Rhone, France</p>",
             "price": "142"
           }
+        },
+        "item_wTmDnJ": {
+          "type": "item",
+          "settings": {
+            "title": "Fronsac (2017)",
+            "description": "<p>Merlot, Cabernet Franc, Cabernet Sauvignon / Chateau La Vielle Cure, Bordeaux, France</p>",
+            "price": "104"
+          }
+        },
+        "item_cGFzmr": {
+          "type": "item",
+          "settings": {
+            "title": "Rim Rock Vineyard",
+            "description": "<p>Syrah / Piedrasassi, Sta. Rita Hills, California </p>",
+            "price": "136"
+          }
+        },
+        "item_zT3MRw": {
+          "type": "item",
+          "settings": {
+            "title": "Montecillo Vineyard Moon Mountain (2021)",
+            "description": "<p>Cabernet Sauvignon / Di Costanzo, Sonoma, California</p>",
+            "price": "285"
+          }
+        },
+        "item_rQ3GNm": {
+          "type": "item",
+          "settings": {
+            "title": "Monkey Jacket (2022)",
+            "description": "<p>Valdiguie, Carignan, Petite Sirah, Tannat, St. Laurent / Cruse Wine Co., North Coast, California</p>",
+            "price": "80"
+          }
         }
       },
       "block_order": [
         "category_6p4dRJ",
         "item_UQH3QT",
         "item_CaGkDf",
-        "item_nJH7B6",
         "item_dkghht",
         "item_XLzP9P",
-        "item_UYdQEW",
         "item_AFzNtq",
-        "item_ex4Mqq",
         "category_WVQrRB",
-        "item_6jgDdR",
         "item_yqHr9y",
         "item_mgBWAf",
         "item_9MGkd6",
         "item_PBgftt",
-        "item_CNUgnK",
         "item_rWiDUj",
         "item_4LK37H",
         "item_L6trzB",
         "item_TMDXej",
         "item_F6HapK",
         "item_8zDBKa",
-        "item_zMJW4F",
-        "item_cb87QJ",
         "item_ay4L9g",
         "item_tGbYkR",
         "item_VbYzYr",
@@ -1355,7 +1300,6 @@
         "item_rwW4f3",
         "category_wMa8hA",
         "item_9Q9GxA",
-        "item_fwNdgK",
         "item_NT4D37",
         "item_73AYrY",
         "item_igUXeH",
@@ -1365,13 +1309,15 @@
         "item_tgpqfg",
         "item_DmML3P",
         "item_xBij4y",
-        "item_xTRYtW",
         "item_7wWWRk",
-        "item_FXbqia",
         "item_YdQ3Hd",
         "item_ncrnq3",
         "item_7JKeYK",
-        "item_ai4gUM"
+        "item_ai4gUM",
+        "item_wTmDnJ",
+        "item_cGFzmr",
+        "item_zT3MRw",
+        "item_rQ3GNm"
       ],
       "settings": {
         "title": "Bottle List",

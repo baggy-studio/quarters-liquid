@@ -1271,6 +1271,20 @@
             "description": "<p>Valdiguie, Carignan, Petite Sirah, Tannat, St. Laurent / Cruse Wine Co., North Coast, California</p>",
             "price": "80"
           }
+        },
+        "category_gEfkgW": {
+          "type": "category",
+          "settings": {
+            "heading": "Beer"
+          }
+        },
+        "item_WeJ8XK": {
+          "type": "item",
+          "settings": {
+            "title": "Xino Xano (750ml)",
+            "description": "<p>Cyclic, Catalonia, Spain</p>",
+            "price": "28"
+          }
         }
       },
       "block_order": [
@@ -1317,7 +1331,9 @@
         "item_wTmDnJ",
         "item_cGFzmr",
         "item_zT3MRw",
-        "item_rQ3GNm"
+        "item_rQ3GNm",
+        "category_gEfkgW",
+        "item_WeJ8XK"
       ],
       "settings": {
         "title": "Bottle List",

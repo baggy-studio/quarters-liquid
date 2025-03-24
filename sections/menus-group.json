@@ -561,6 +561,7 @@
         "item_ac9grz",
         "item_GmPmMX"
       ],
+      "disabled": true,
       "settings": {
         "title": "Daytime",
         "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",

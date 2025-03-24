@@ -76,20 +76,6 @@
     "bar_details_DAFdQ3": {
       "type": "bar-details",
       "blocks": {
-        "media_k4T4RB": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/Quarters_Details_2.jpg",
-            "caption": "Daytime"
-          }
-        },
-        "media_naQ3bb": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/Quarters_Bar_WJL_5.jpg",
-            "caption": "Apéro"
-          }
-        },
         "media_Mn7Rix": {
           "type": "media",
           "settings": {
@@ -106,8 +92,6 @@
         }
       },
       "block_order": [
-        "media_k4T4RB",
-        "media_naQ3bb",
         "media_Mn7Rix",
         "media_6gHXye"
       ],

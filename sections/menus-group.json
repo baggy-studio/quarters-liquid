@@ -733,14 +733,6 @@
             "price": "16"
           }
         },
-        "item_76FYD3": {
-          "type": "item",
-          "settings": {
-            "title": "Chocolate Almonds",
-            "description": "<p>Almonds, chocolate</p>",
-            "price": "9"
-          }
-        },
         "category_A68dng": {
           "type": "category",
           "settings": {
@@ -778,7 +770,6 @@
         "category_eraxDf",
         "item_Djn39Y",
         "item_iBgtwr",
-        "item_76FYD3",
         "category_A68dng",
         "item_cwQ9eq"
       ],
@@ -813,14 +804,6 @@
             "title": "Apple Tart Tatin",
             "description": "<p>Apple, caramel, crème fraîche, salt and pepper </p>",
             "price": "16"
-          }
-        },
-        "item_tPCGC9": {
-          "type": "item",
-          "settings": {
-            "title": "Piedras de Chocolate",
-            "description": "<p>Almonds, chocolate</p>",
-            "price": "10"
           }
         },
         "category_BhFjEc": {
@@ -906,7 +889,6 @@
         "category_kngppF",
         "item_by9V9j",
         "item_fiihT3",
-        "item_tPCGC9",
         "category_BhFjEc",
         "item_fgbmT7",
         "item_wLebPj",

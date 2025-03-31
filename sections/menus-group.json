@@ -937,7 +937,7 @@
           "type": "item",
           "settings": {
             "title": "Champagne L'Esquisse",
-            "description": "<p>Mousse Fils, Champagne, France / Pinot Meunier, Pinot Noir</p>",
+            "description": "<p>Pinot Meunier, Pinot Noir / Mousse Fils, Champagne, France</p>",
             "price": "136"
           }
         },
@@ -961,7 +961,7 @@
           "type": "item",
           "settings": {
             "title": "Pet Nat (NV)",
-            "description": "<p>Josef Trotter, Sytria, Austria / Souvignier Gris</p>",
+            "description": "<p>Souvignier Gris / Josef Trotter, Sytria, Austria</p>",
             "price": "68"
           }
         },
@@ -969,7 +969,7 @@
           "type": "item",
           "settings": {
             "title": "Visio",
-            "description": "<p>Koi Emilia, Emilia Romagna, Italy / Trebbiano Modenese, Labrusco di Sorbara</p>",
+            "description": "<p>Trebbiano Modenese, Labrusco di Sorbara / Koi Emilia, Emilia Romagna, Italy</p>",
             "price": "90"
           }
         },
@@ -977,7 +977,7 @@
           "type": "item",
           "settings": {
             "title": "Lambrusco",
-            "description": "<p>Villa Picta, Lombardy, Italy / Lambrusco Ruberti</p>",
+            "description": "<p>Lambrusco Ruberti / Villa Picta, Lombardy, Italy</p>",
             "price": "68"
           }
         },
@@ -987,10 +987,18 @@
             "heading": "White"
           }
         },
+        "item_NdyrHH": {
+          "type": "item",
+          "settings": {
+            "title": "Löss und Lehm (2023)",
+            "description": "<p>Grüner Veltliner / Schödl, Weinviertel, Austria</p>",
+            "price": "64"
+          }
+        },
         "item_yqHr9y": {
           "type": "item",
           "settings": {
-            "title": "Fosilni Breg Reserve (2019)",
+            "title": "Fosilni Breg Reserve",
             "description": "<p>Sauvignon Blanc / Domaine Ciringa, Podravje, Slovenia </p>",
             "price": "94"
           }
@@ -1305,6 +1313,7 @@
         "item_AFzNtq",
         "item_QBG3bQ",
         "category_WVQrRB",
+        "item_NdyrHH",
         "item_yqHr9y",
         "item_mgBWAf",
         "item_9MGkd6",

@@ -933,6 +933,14 @@
             "price": "160"
           }
         },
+        "item_kUYBnj": {
+          "type": "item",
+          "settings": {
+            "title": "Champagne L'Esquisse",
+            "description": "<p>Mousse Fils, Champagne, France / Pinot Meunier, Pinot Noir</p>",
+            "price": "136"
+          }
+        },
         "item_dkghht": {
           "type": "item",
           "settings": {
@@ -944,17 +952,33 @@
         "item_XLzP9P": {
           "type": "item",
           "settings": {
-            "title": "Blanc de Noirs (2020)",
+            "title": "Blanc de Noirs",
             "description": "<p>Pinot Noir / Cruse Wine Co., North Coast, California</p>",
             "price": "195"
+          }
+        },
+        "item_MYdJQc": {
+          "type": "item",
+          "settings": {
+            "title": "Pet Nat (NV)",
+            "description": "<p>Josef Trotter, Sytria, Austria / Souvignier Gris</p>",
+            "price": "68"
           }
         },
         "item_AFzNtq": {
           "type": "item",
           "settings": {
-            "title": "Visio (2021)",
-            "description": "<p>Trebbiano Modenese, Labrusco di Sorbara / Koi Emilia, Emilia Romagna, Italy</p>",
+            "title": "Visio",
+            "description": "<p>Koi Emilia, Emilia Romagna, Italy / Trebbiano Modenese, Labrusco di Sorbara</p>",
             "price": "90"
+          }
+        },
+        "item_QBG3bQ": {
+          "type": "item",
+          "settings": {
+            "title": "Lambrusco",
+            "description": "<p>Villa Picta, Lombardy, Italy / Lambrusco Ruberti</p>",
+            "price": "68"
           }
         },
         "category_WVQrRB": {
@@ -1274,9 +1298,12 @@
         "category_6p4dRJ",
         "item_UQH3QT",
         "item_CaGkDf",
+        "item_kUYBnj",
         "item_dkghht",
         "item_XLzP9P",
+        "item_MYdJQc",
         "item_AFzNtq",
+        "item_QBG3bQ",
         "category_WVQrRB",
         "item_yqHr9y",
         "item_mgBWAf",

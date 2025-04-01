@@ -24,23 +24,23 @@
           "type": "item",
           "settings": {
             "title": "Champagne L’Esquisse",
-            "description": "<p>Pinot Meunier & Pinot Noir, Mousse Fils, Champagne, France</p>",
+            "description": "<p>Pinot Meunier & Pinot Noir / Mousse Fils, Champagne, France</p>",
             "price": "34"
           }
         },
         "item_M9igxg": {
           "type": "item",
           "settings": {
-            "title": "Tinc Set Metode Ancestral (2023)",
-            "description": "<p>Xarel-lo, Ramon Jané, Penedes, Spain</p>",
+            "title": "Pet Nat (NV)",
+            "description": "<p>Souvignier Gris / Josef Trotter, Sytria, Austria</p>",
             "price": "17"
           }
         },
         "item_paEfaz": {
           "type": "item",
           "settings": {
-            "title": "Lambrusco (2021)",
-            "description": "<p>Lambrusco Ruberti, Villa Picta, Lombardy, Italy</p>",
+            "title": "Lambrusco",
+            "description": "<p>Lambrusco Ruberti / Villa Picta, Lombardy, Italy</p>",
             "price": "17"
           }
         },
@@ -53,24 +53,24 @@
         "item_V7FrbE": {
           "type": "item",
           "settings": {
-            "title": "Schatz White (2023)",
-            "description": "<p>Grüner Veltliner & Riesling, Arndorfer Vereinter, Kamptal, Austria</p>",
+            "title": "Löss und Lehm (2023)",
+            "description": "<p>Grüner Veltliner / Schödl, Weinviertel, Austria</p>",
             "price": "16"
           }
         },
         "item_heE8rJ": {
           "type": "item",
           "settings": {
-            "title": "Empordà Connexió Còsmica (2023)",
-            "description": "<p>Xarel-lo & Malvasia de Sitges, Cosmic Vinyaters, Spain</p>",
-            "price": "20"
+            "title": "Fior di Bianco (2023)",
+            "description": "<p>Grillo, Catarratto, Grecanico & Zibibbo / Barraco, Sicily, Italy</p>",
+            "price": "18"
           }
         },
         "item_NChRdi": {
           "type": "item",
           "settings": {
             "title": "Little Bastard",
-            "description": "<p>Field Blend, Jan Matthias Klein, Germany</p>",
+            "description": "<p>Field Blend / Jan Matthias Klein, Mosel, Germany</p>",
             "price": "18"
           }
         },
@@ -78,7 +78,7 @@
           "type": "item",
           "settings": {
             "title": "Chablis (2018)",
-            "description": "<p>Chardonnay, Guillaume Michaut, Burgundy, France</p>",
+            "description": "<p>Chardonnay / Guillaume Michaut, Burgundy, France</p>",
             "price": "30"
           }
         },
@@ -91,9 +91,9 @@
         "item_tc6qM3": {
           "type": "item",
           "settings": {
-            "title": "Nuserhoff (2022)",
-            "description": "<p>Lagrein, Nuserhoff, Trentino-Alto Adige, Italy</p>",
-            "price": "22"
+            "title": "Rose (2023)",
+            "description": "<p>Sangiovese / Montesecondo, Tuscany, Italy</p>",
+            "price": "19"
           }
         },
         "category_ARJMyX": {
@@ -105,24 +105,24 @@
         "item_VdPMNd": {
           "type": "item",
           "settings": {
-            "title": "Les Thorins (2021)",
-            "description": "<p>Gamay, Elisa Guerin, Beaujolias, France</p>",
+            "title": "Cuvée Rot (2022)",
+            "description": "<p>Blauer Prortugieser, Dornfelder / Dominik Held ,Rheinhessen, Germany</p>",
             "price": "22"
           }
         },
         "item_RkLHpc": {
           "type": "item",
           "settings": {
-            "title": "Roero Renesio Riserva (2011)",
-            "description": "<p>Nebbiolo, Malvira, Piedmont, Italy</p>",
+            "title": "Roero Renesio Riserva",
+            "description": "<p>Nebbiolo / Malvira, Piedmont, Italy</p>",
             "price": "30"
           }
         },
         "item_MpJVbn": {
           "type": "item",
           "settings": {
-            "title": "La Lumiere",
-            "description": "<p>Grenache & Carignan, Val de Combres, Rhone, France</p>",
+            "title": "Martha Rouge (2022)",
+            "description": "<p>Zweigelt / Arndorfer, Niederösterreich, Austria</p>",
             "price": "18"
           }
         },
@@ -138,30 +138,6 @@
             "title": "Xino Xano (750ml)",
             "description": "<p>Cyclic, Catalonia, Spain </p>",
             "price": "28"
-          }
-        },
-        "item_iyPHcM": {
-          "type": "item",
-          "settings": {
-            "title": "Nazionale",
-            "description": "<p>Baladin, Piedmont, Italy</p>",
-            "price": "14"
-          }
-        },
-        "item_eQkA7P": {
-          "type": "item",
-          "settings": {
-            "title": "L'Ippa",
-            "description": "<p>Baladin, Piedmont, Italy</p>",
-            "price": "14"
-          }
-        },
-        "item_9nTrAn": {
-          "type": "item",
-          "settings": {
-            "title": "Nora",
-            "description": "<p>Baladin, Piedmont, Italy</p>",
-            "price": "14"
           }
         },
         "category_CMfHpD": {
@@ -235,9 +211,6 @@
         "item_MpJVbn",
         "category_UrGbTN",
         "item_gJ7BVg",
-        "item_iyPHcM",
-        "item_eQkA7P",
-        "item_9nTrAn",
         "category_CMfHpD",
         "item_e87PgU",
         "item_tnUJxk",

@@ -906,14 +906,6 @@
             "price": "160"
           }
         },
-        "item_kUYBnj": {
-          "type": "item",
-          "settings": {
-            "title": "Champagne L'Esquisse",
-            "description": "<p>Pinot Meunier, Pinot Noir / Mousse Fils, Champagne, France</p>",
-            "price": "136"
-          }
-        },
         "item_dkghht": {
           "type": "item",
           "settings": {
@@ -930,14 +922,6 @@
             "price": "195"
           }
         },
-        "item_MYdJQc": {
-          "type": "item",
-          "settings": {
-            "title": "Pet Nat (NV)",
-            "description": "<p>Souvignier Gris / Josef Trotter, Sytria, Austria</p>",
-            "price": "68"
-          }
-        },
         "item_AFzNtq": {
           "type": "item",
           "settings": {
@@ -946,26 +930,10 @@
             "price": "90"
           }
         },
-        "item_QBG3bQ": {
-          "type": "item",
-          "settings": {
-            "title": "Lambrusco",
-            "description": "<p>Lambrusco Ruberti / Villa Picta, Lombardy, Italy</p>",
-            "price": "68"
-          }
-        },
         "category_WVQrRB": {
           "type": "category",
           "settings": {
             "heading": "White"
-          }
-        },
-        "item_NdyrHH": {
-          "type": "item",
-          "settings": {
-            "title": "Löss und Lehm (2023)",
-            "description": "<p>Grüner Veltliner / Schödl, Weinviertel, Austria</p>",
-            "price": "64"
           }
         },
         "item_yqHr9y": {
@@ -976,18 +944,18 @@
             "price": "94"
           }
         },
-        "item_mgBWAf": {
+        "item_NnWHkL": {
           "type": "item",
           "settings": {
-            "title": "Les Renarderies (2023)",
-            "description": "<p>Sauvignon Blanc / Cherrier Freres, Loire, France </p>",
-            "price": "95"
+            "title": "Sancerre",
+            "description": "<p>Sauvignon Blanc / François Crochet, Loire, France</p>",
+            "price": "130"
           }
         },
         "item_9MGkd6": {
           "type": "item",
           "settings": {
-            "title": "Rías Baixas Albariño (2023)",
+            "title": "Rías Baixas Albariño",
             "description": "<p>Albarino / Bodegas Albamar, Galicia, Spain</p>",
             "price": "112"
           }
@@ -1003,7 +971,7 @@
         "item_rWiDUj": {
           "type": "item",
           "settings": {
-            "title": "Cal Ros (2023)",
+            "title": "Cal Ros",
             "description": "<p>Xarel-lo / Amor Per La Terra, Catalonia, Spain</p>",
             "price": "72"
           }
@@ -1011,7 +979,7 @@
         "item_4LK37H": {
           "type": "item",
           "settings": {
-            "title": "Bis-lacco (2023)",
+            "title": "Bis-lacco",
             "description": "<p>Cortese, Arneis / Valfaccenda, Piedmont, Italy</p>",
             "price": "72"
           }
@@ -1019,7 +987,7 @@
         "item_L6trzB": {
           "type": "item",
           "settings": {
-            "title": "La Galoche (2023)",
+            "title": "La Galoche",
             "description": "<p>Chardonnay / Domaine Saint Cyr, Beaujolais, France</p>",
             "price": "76"
           }
@@ -1027,7 +995,7 @@
         "item_TMDXej": {
           "type": "item",
           "settings": {
-            "title": "Les Rondos (2022)",
+            "title": "Les Rondos",
             "description": "<p>Chardonnay / Domaine Courbet, Jura, France</p>",
             "price": "124"
           }
@@ -1035,7 +1003,7 @@
         "item_F6HapK": {
           "type": "item",
           "settings": {
-            "title": "Sota Els Ametllers (2022)",
+            "title": "Sota Els Ametllers",
             "description": "<p>Malvasia de Sitges / Celler La Salada, Penedes, Spain</p>",
             "price": "112"
           }
@@ -1051,7 +1019,7 @@
         "item_ay4L9g": {
           "type": "item",
           "settings": {
-            "title": "Grandes Gouttes (2022)",
+            "title": "Grandes Gouttes",
             "description": "<p>Chardonnay / Domaine Rougeot, Burgundy, France</p>",
             "price": "150"
           }
@@ -1059,7 +1027,7 @@
         "item_tGbYkR": {
           "type": "item",
           "settings": {
-            "title": "Les Charmes 1er Cru (2022)",
+            "title": "Les Charmes 1er Cru",
             "description": "<p>Chardonnay / Domaine Rougeot, Burgundy, France</p>",
             "price": "275"
           }
@@ -1067,7 +1035,7 @@
         "item_VbYzYr": {
           "type": "item",
           "settings": {
-            "title": "Combe (2018)",
+            "title": "Combe",
             "description": "<p>Chenin Blanc / Stolpman Vineyards, Ballard Canyon, California</p>",
             "price": "120"
           }
@@ -1075,7 +1043,7 @@
         "item_zKKbJY": {
           "type": "item",
           "settings": {
-            "title": "Dutton Ranch Shop Block (2022)",
+            "title": "Dutton Ranch Shop Block",
             "description": "<p>Pinot Blanc / Pax Mahle Wines, Russian River Valley, California</p>",
             "price": "112"
           }
@@ -1089,17 +1057,9 @@
         "item_rGd8ct": {
           "type": "item",
           "settings": {
-            "title": "Bandol Rosé (2023)",
+            "title": "Bandol Rosé",
             "description": "<p>Mouvèdre, Cinsault / Château de Pibarnon, Provence, France</p>",
             "price": "126"
-          }
-        },
-        "item_rwW4f3": {
-          "type": "item",
-          "settings": {
-            "title": "Lagrein (2022)",
-            "description": "<p>Lagrein / Nusserhof, Trentino-Alto Adige, Italy</p>",
-            "price": "22 | 88"
           }
         },
         "category_wMa8hA": {
@@ -1191,7 +1151,7 @@
         "item_7wWWRk": {
           "type": "item",
           "settings": {
-            "title": "Barolo Classico (2019)",
+            "title": "Barolo Classico (2020)",
             "description": "<p>Nebbiolo / Brezza, Piedmont, Italy</p>",
             "price": "158"
           }
@@ -1199,7 +1159,7 @@
         "item_YdQ3Hd": {
           "type": "item",
           "settings": {
-            "title": "Chateauneuf-du-Pape",
+            "title": "Chateauneuf-du-Pape (2011)",
             "description": "<p>Greanche, Syrah, Mouvedre, Cinsault / Clos du Mont-Olivet, Rhone, France</p>",
             "price": "260"
           }
@@ -1279,16 +1239,12 @@
         "category_6p4dRJ",
         "item_UQH3QT",
         "item_CaGkDf",
-        "item_kUYBnj",
         "item_dkghht",
         "item_XLzP9P",
-        "item_MYdJQc",
         "item_AFzNtq",
-        "item_QBG3bQ",
         "category_WVQrRB",
-        "item_NdyrHH",
         "item_yqHr9y",
-        "item_mgBWAf",
+        "item_NnWHkL",
         "item_9MGkd6",
         "item_PBgftt",
         "item_rWiDUj",
@@ -1303,7 +1259,6 @@
         "item_zKKbJY",
         "category_VWBCCw",
         "item_rGd8ct",
-        "item_rwW4f3",
         "category_wMa8hA",
         "item_9Q9GxA",
         "item_NT4D37",

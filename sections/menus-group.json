@@ -762,7 +762,7 @@
         "category_kngppF": {
           "type": "category",
           "settings": {
-            "heading": "Desserts"
+            "heading": "Sweets"
           }
         },
         "item_by9V9j": {
@@ -773,11 +773,11 @@
             "price": "19"
           }
         },
-        "item_fiihT3": {
+        "item_pcRDTj": {
           "type": "item",
           "settings": {
-            "title": "Apple Tart Tatin",
-            "description": "<p>Apple, caramel, crème fraîche, salt and pepper </p>",
+            "title": "Fruit & Cheese Plate",
+            "description": "<p>Cheese, seasonal fruit, hazelnuts (gf)</p>",
             "price": "16"
           }
         },
@@ -863,7 +863,7 @@
       "block_order": [
         "category_kngppF",
         "item_by9V9j",
-        "item_fiihT3",
+        "item_pcRDTj",
         "category_BhFjEc",
         "item_fgbmT7",
         "item_wLebPj",

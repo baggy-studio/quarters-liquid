@@ -556,7 +556,7 @@
           "type": "item",
           "settings": {
             "title": "Gilda Pintxo",
-            "description": "<p>Anchovies, guindillas, coppa, olives</p>",
+            "description": "<p>Anchovies, guindilla peppers, coppa, olives (gf)</p>",
             "price": "5/each"
           }
         },
@@ -564,7 +564,7 @@
           "type": "item",
           "settings": {
             "title": "Vegetarian Gilda",
-            "description": "<p>Piquillos, guindillas, manchego, olives</p>",
+            "description": "<p>Piquillos, guindilla peppers, manchego, olives (gf)</p>",
             "price": "5/each"
           }
         },
@@ -572,7 +572,7 @@
           "type": "item",
           "settings": {
             "title": "Marinated Olives",
-            "description": "<p>Fennel, citrus</p>",
+            "description": "<p>Fennel, citrus (gf)</p>",
             "price": "9"
           }
         },
@@ -584,11 +584,11 @@
             "price": "15"
           }
         },
-        "item_QekK9M": {
+        "item_8WCwWY": {
           "type": "item",
           "settings": {
-            "title": "Market Vegetable Plate",
-            "description": "<p>Endive, radish, baguna cauda, breadcrumbs</p>",
+            "title": "Crudite",
+            "description": "<p>Fresh & pickled vegetables, caper aioli (gf)</p>",
             "price": "15"
           }
         },
@@ -596,15 +596,31 @@
           "type": "item",
           "settings": {
             "title": "Boquerones",
-            "description": "<p>Anchovies, vinegar, red pepper, herbs, olive oil, potato </p>",
+            "description": "<p>Vinegar, shallots, herbs, olive oil, sourdough</p>",
             "price": "24"
+          }
+        },
+        "item_DcT6MF": {
+          "type": "item",
+          "settings": {
+            "title": "Gigantes Beans",
+            "description": "<p>Beans, basil, shallot, garlic (gf)</p>",
+            "price": "20"
+          }
+        },
+        "item_NGyTED": {
+          "type": "item",
+          "settings": {
+            "title": "Tortilla Espanola",
+            "description": "<p>Potato, eggs, shallot, crème fraîche (gf)</p>",
+            "price": "16"
           }
         },
         "item_WAycEp": {
           "type": "item",
           "settings": {
             "title": "Caviar",
-            "description": "<p>Ossetra (30g), crème fraîche, chives, potato chips </p>",
+            "description": "<p>Ossetra (30g), crème fraîche, chives, potato chips</p>",
             "price": "135"
           }
         },
@@ -617,17 +633,25 @@
         "item_VdPMNd": {
           "type": "item",
           "settings": {
-            "title": "Mussel Toast",
-            "description": "<p>Baguette, kombu mussels, shallots, tomato rouille, chervil</p>",
-            "price": "24"
+            "title": "Mushroom Toast",
+            "description": "<p>Shitake's, oysters, criminis, garlic, sherry, parsley</p>",
+            "price": "20"
           }
         },
         "item_RkLHpc": {
           "type": "item",
           "settings": {
-            "title": "Mushroom Toast",
-            "description": "<p>Baguette, mushrooms, garlic, sherry, parsley</p>",
-            "price": "18"
+            "title": "Sardine Toast",
+            "description": "<p>Calabrian chili, fine herbs, lemon, olive oil</p>",
+            "price": "22"
+          }
+        },
+        "item_YtdzGn": {
+          "type": "item",
+          "settings": {
+            "title": "Spring Vegetable Toast",
+            "description": "<p>Local market vegetables, lemon aioli</p>",
+            "price": "20"
           }
         },
         "category_AwYrmD": {
@@ -640,7 +664,7 @@
           "type": "item",
           "settings": {
             "title": "Bresaola",
-            "description": "<p>Cured beef, arugula, parmesan, lemon, olive oil</p>",
+            "description": "<p>Arugula, parmesan, lemon, olive oil (gf)</p>",
             "price": "24"
           }
         },
@@ -648,31 +672,23 @@
           "type": "item",
           "settings": {
             "title": "Duck Rillettes",
-            "description": "<p>Spreadable duck pâté, walnut mustard, cornichon, sourdough </p>",
+            "description": "<p>Walnut mustard, cornichon, Raf's sourdough</p>",
             "price": "22"
           }
         },
         "item_C3CTDr": {
           "type": "item",
           "settings": {
-            "title": "Chorizo Ibérico",
-            "description": "<p>Cured pork, guindillas, cilantro </p>",
-            "price": "26"
-          }
-        },
-        "item_wiC4w3": {
-          "type": "item",
-          "settings": {
-            "title": "Speck",
-            "description": "<p>Smoked and cured Italian ham, balsamic saba, antipasti </p>",
-            "price": "26"
+            "title": "Charcuterie du Chef",
+            "description": "<p>Chef's selection, accoutrements (gf)</p>",
+            "price": "24"
           }
         },
         "item_jk9pR7": {
           "type": "item",
           "settings": {
             "title": "Soft Cheese Plate",
-            "description": "<p>Two soft cheeses, apricot compote, breadsticks </p>",
+            "description": "<p>Two soft cheeses, apricot compote, breadsticks</p>",
             "price": "28"
           }
         },
@@ -680,7 +696,7 @@
           "type": "item",
           "settings": {
             "title": "Hard Cheese Plate",
-            "description": "<p>Two hard cheeses, cherry confit, hazelnuts, crackers </p>",
+            "description": "<p>Two hard cheeses, cherry confit, hazelnuts, crackers</p>",
             "price": "28"
           }
         },
@@ -694,30 +710,16 @@
           "type": "item",
           "settings": {
             "title": "Dark Chocolate Mousse",
-            "description": "<p>Gianduja noir, hazelnuts, chantilly </p>",
+            "description": "<p>Gianduja noir, hazelnuts, chantilly (gf)</p>",
             "price": "19"
           }
         },
-        "item_iBgtwr": {
+        "item_Hiey9d": {
           "type": "item",
           "settings": {
-            "title": "Apple Tart Tatin",
-            "description": "<p>Apple, caramel, crème fraîche, salt and pepper</p>",
+            "title": "Fruit & Cheese Plate",
+            "description": "<p>Cheese, seasonal fruit, hazelnuts (gf)</p>",
             "price": "16"
-          }
-        },
-        "category_A68dng": {
-          "type": "category",
-          "settings": {
-            "heading": "Sides"
-          }
-        },
-        "item_cwQ9eq": {
-          "type": "item",
-          "settings": {
-            "title": "Bread",
-            "description": "<p>Sicilian olive oil </p>",
-            "price": "6"
           }
         }
       },
@@ -727,24 +729,24 @@
         "item_V7FrbE",
         "item_paEfaz",
         "item_M9igxg",
-        "item_QekK9M",
+        "item_8WCwWY",
         "item_pekXfz",
+        "item_DcT6MF",
+        "item_NGyTED",
         "item_WAycEp",
         "category_cmz8AC",
         "item_VdPMNd",
         "item_RkLHpc",
+        "item_YtdzGn",
         "category_AwYrmD",
         "item_k4e4Gm",
         "item_ac9grz",
         "item_C3CTDr",
-        "item_wiC4w3",
         "item_jk9pR7",
         "item_PUbt4q",
         "category_eraxDf",
         "item_Djn39Y",
-        "item_iBgtwr",
-        "category_A68dng",
-        "item_cwQ9eq"
+        "item_Hiey9d"
       ],
       "settings": {
         "title": "Evening",

@@ -89,11 +89,25 @@
             "image": "shopify://shop_images/051724_QUARTERS_EVENT_003.jpg",
             "caption": "Events"
           }
+        },
+        "media_6Vp473": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "media_Jg7VwL": {
+          "type": "media",
+          "settings": {
+            "caption": ""
+          }
         }
       },
       "block_order": [
         "media_Mn7Rix",
-        "media_6gHXye"
+        "media_6gHXye",
+        "media_6Vp473",
+        "media_Jg7VwL"
       ],
       "settings": {
         "paragraph": "<p>An intimate neighborhood bar specializing in wine and seasonal small plates, in a thoughtfully curated space designed to captivate the senses. <br/><br/>Each detail—from carefully sourced ingredients to handmade tableware to a swirling, hand-painted fresco—is a celebration of artistry, craftsmanship, and the joyful ritual of gathering.</p>",

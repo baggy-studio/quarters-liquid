@@ -76,38 +76,24 @@
     "bar_details_DAFdQ3": {
       "type": "bar-details",
       "blocks": {
-        "media_Mn7Rix": {
+        "media_Jg7VwL": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/Barware_Match_CocktailMixer_1_16a45e53-2494-4ebb-bb1a-b4f72c5c8076.jpg",
-            "caption": "Evening"
+            "image": "shopify://shop_images/InCommon_With_New_York_Strata113305_da40ffc6-f5b3-4fd7-a66b-819d6573f8a3.jpg",
+            "caption": "Bar"
           }
         },
         "media_6gHXye": {
           "type": "media",
           "settings": {
-            "image": "shopify://shop_images/051724_QUARTERS_EVENT_003.jpg",
-            "caption": "Events"
-          }
-        },
-        "media_6Vp473": {
-          "type": "media",
-          "settings": {
-            "caption": ""
-          }
-        },
-        "media_Jg7VwL": {
-          "type": "media",
-          "settings": {
-            "caption": ""
+            "image": "shopify://shop_images/InCommon_With_New_York_Strata114022_68614230-78ec-42cf-a8f5-344eb57deb4c.jpg",
+            "caption": "Private Events"
           }
         }
       },
       "block_order": [
-        "media_Mn7Rix",
-        "media_6gHXye",
-        "media_6Vp473",
-        "media_Jg7VwL"
+        "media_Jg7VwL",
+        "media_6gHXye"
       ],
       "settings": {
         "paragraph": "<p>An intimate neighborhood bar specializing in wine and seasonal small plates, in a thoughtfully curated space designed to captivate the senses. <br/><br/>Each detail—from carefully sourced ingredients to handmade tableware to a swirling, hand-painted fresco—is a celebration of artistry, craftsmanship, and the joyful ritual of gathering.</p>",

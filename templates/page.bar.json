@@ -76,6 +76,13 @@
     "bar_details_DAFdQ3": {
       "type": "bar-details",
       "blocks": {
+        "media_wQdntB": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/InCommonWith_TheBarAtQuarters_Lucia_Bell-Epstein_14_1bad864d-236f-449e-85eb-19e0c5dfed01.jpg",
+            "caption": ""
+          }
+        },
         "media_jpGJDU": {
           "type": "media",
           "settings": {
@@ -87,13 +94,6 @@
           "type": "media",
           "settings": {
             "image": "shopify://shop_images/InCommon_With_New_York_Strata113305_da40ffc6-f5b3-4fd7-a66b-819d6573f8a3.jpg",
-            "caption": "Bar"
-          }
-        },
-        "media_wQdntB": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/InCommonWith_TheBarAtQuarters_Lucia_Bell-Epstein_14_1bad864d-236f-449e-85eb-19e0c5dfed01.jpg",
             "caption": ""
           }
         },
@@ -101,14 +101,14 @@
           "type": "media",
           "settings": {
             "image": "shopify://shop_images/InCommon_With_New_York_Strata114022_68614230-78ec-42cf-a8f5-344eb57deb4c.jpg",
-            "caption": "Private Events"
+            "caption": ""
           }
         }
       },
       "block_order": [
+        "media_wQdntB",
         "media_jpGJDU",
         "media_Jg7VwL",
-        "media_wQdntB",
         "media_6gHXye"
       ],
       "settings": {

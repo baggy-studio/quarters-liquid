@@ -31,15 +31,15 @@
         "item_M9igxg": {
           "type": "item",
           "settings": {
-            "title": "Pet Nat (NV)",
-            "description": "<p>Souvignier Gris / Josef Trotter, Sytria, Austria</p>",
+            "title": "Tinc Set Metode Ancestral (2023)",
+            "description": "<p>Xarel-lo / Ramon Jané, Penedes, Spain</p>",
             "price": "17"
           }
         },
         "item_paEfaz": {
           "type": "item",
           "settings": {
-            "title": "Lambrusco",
+            "title": "Lambrusco (2021)",
             "description": "<p>Lambrusco Ruberti / Villa Picta, Lombardy, Italy</p>",
             "price": "17"
           }
@@ -53,16 +53,8 @@
         "item_V7FrbE": {
           "type": "item",
           "settings": {
-            "title": "Löss und Lehm (2023)",
-            "description": "<p>Grüner Veltliner / Schödl, Weinviertel, Austria</p>",
-            "price": "16"
-          }
-        },
-        "item_heE8rJ": {
-          "type": "item",
-          "settings": {
-            "title": "Fior di Bianco (2023)",
-            "description": "<p>Grillo, Catarratto, Grecanico & Zibibbo / Barraco, Sicily, Italy</p>",
+            "title": "Fior di Bianco",
+            "description": "<p>Field Blend / Barraco, Sicily, Italy</p>",
             "price": "18"
           }
         },
@@ -77,8 +69,8 @@
         "item_3qkAJw": {
           "type": "item",
           "settings": {
-            "title": "Chablis (2018)",
-            "description": "<p>Chardonnay / Guillaume Michaut, Burgundy, France</p>",
+            "title": "Chablis Vigne de la Boissonneuse",
+            "description": "<p>Chardonnay / Julien Brocard, Burgundy, France</p>",
             "price": "30"
           }
         },
@@ -200,7 +192,6 @@
         "item_paEfaz",
         "category_KfbFhq",
         "item_V7FrbE",
-        "item_heE8rJ",
         "item_NChRdi",
         "item_3qkAJw",
         "category_hX8CnD",
@@ -280,7 +271,7 @@
           "type": "item",
           "settings": {
             "title": "Boquerones",
-            "description": "<p>Vinegar, shallots, herbs, olive oil, Raf's sourdough</p>",
+            "description": "<p>Vinegar, shallots, herbs, olive oil, sourdough</p>",
             "price": "24"
           }
         },
@@ -317,7 +308,7 @@
         "item_VdPMNd": {
           "type": "item",
           "settings": {
-            "title": "Mushroom Toast",
+            "title": "Mushroom",
             "description": "<p>Shitake's, oysters, criminis, garlic, sherry, parsley</p>",
             "price": "20"
           }
@@ -325,7 +316,7 @@
         "item_RkLHpc": {
           "type": "item",
           "settings": {
-            "title": "Sardine Toast",
+            "title": "Sardine",
             "description": "<p>Calabrian chili, fine herbs, lemon, olive oil</p>",
             "price": "22"
           }
@@ -333,8 +324,8 @@
         "item_YtdzGn": {
           "type": "item",
           "settings": {
-            "title": "Spring Vegetable Toast",
-            "description": "<p>Local market vegetables, lemon aioli</p>",
+            "title": "Market Vegetable",
+            "description": "<p>Seasonal vegetables, lemon aioli</p>",
             "price": "20"
           }
         },
@@ -401,7 +392,7 @@
         "item_Hiey9d": {
           "type": "item",
           "settings": {
-            "title": "Fruit & Cheese Plate",
+            "title": "Fruit and Cheese Plate",
             "description": "<p>Cheese, seasonal fruit, hazelnuts (gf)</p>",
             "price": "16"
           }

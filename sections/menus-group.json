@@ -83,9 +83,9 @@
         "item_tc6qM3": {
           "type": "item",
           "settings": {
-            "title": "Rose (2023)",
+            "title": "Rose",
             "description": "<p>Sangiovese / Montesecondo, Tuscany, Italy</p>",
-            "price": "19"
+            "price": "22"
           }
         },
         "category_ARJMyX": {
@@ -97,15 +97,15 @@
         "item_VdPMNd": {
           "type": "item",
           "settings": {
-            "title": "Cuvée Rot (2022)",
-            "description": "<p>Blauer Prortugieser, Dornfelder / Dominik Held ,Rheinhessen, Germany</p>",
+            "title": "Martha Rouge",
+            "description": "<p>Zweigelt / Arndorfer, Niederösterreich, Austria</p>",
             "price": "22"
           }
         },
         "item_RkLHpc": {
           "type": "item",
           "settings": {
-            "title": "Roero Renesio Riserva",
+            "title": "Roero Renesio Riserva (2011)",
             "description": "<p>Nebbiolo / Malvira, Piedmont, Italy</p>",
             "price": "30"
           }
@@ -113,8 +113,84 @@
         "item_MpJVbn": {
           "type": "item",
           "settings": {
-            "title": "Martha Rouge (2022)",
-            "description": "<p>Zweigelt / Arndorfer, Niederösterreich, Austria</p>",
+            "title": "'Mama'",
+            "description": "<p>Grenache / Domaine de la Goguette, Rhone, France</p>",
+            "price": "18"
+          }
+        },
+        "category_CMfHpD": {
+          "type": "category",
+          "settings": {
+            "heading": "House Cocktails (Low A.B.V.)"
+          }
+        },
+        "item_kHzHzJ": {
+          "type": "item",
+          "settings": {
+            "title": "Clementina Spritz",
+            "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
+            "price": "18"
+          }
+        },
+        "item_e87PgU": {
+          "type": "item",
+          "settings": {
+            "title": "Lambrusco Spritz",
+            "description": "<p>Pear wine, infused blanc vermouth, ginger, lambrusco</p>",
+            "price": "16"
+          }
+        },
+        "item_tnUJxk": {
+          "type": "item",
+          "settings": {
+            "title": "Pet Nat Spritz",
+            "description": "<p>Dry vermouth, citrus soda, olive brine, pet nat</p>",
+            "price": "18"
+          }
+        },
+        "item_V78Tjn": {
+          "type": "item",
+          "settings": {
+            "title": "À La Normandie",
+            "description": "<p>Pommeau, blanc vermouth, gentiane</p>",
+            "price": "18"
+          }
+        },
+        "item_a7bdKR": {
+          "type": "item",
+          "settings": {
+            "title": "Quarters Cup",
+            "description": "<p>Vino amaro, ginger beer, lemon, vin cotto</p>",
+            "price": "18"
+          }
+        },
+        "category_YMxHjU": {
+          "type": "category",
+          "settings": {
+            "heading": "Zero-Proof Cocktails"
+          }
+        },
+        "item_tFTH8q": {
+          "type": "item",
+          "settings": {
+            "title": "Spicy Margarita (NA)",
+            "description": "<p>Amalve, lime, Seedlip Garden, spicy agave</p>",
+            "price": "18"
+          }
+        },
+        "item_hmw9Nn": {
+          "type": "item",
+          "settings": {
+            "title": "Spritz (NA)",
+            "description": "<p>Martini Vibrante, NA sparkling, elderflower, rosemary</p>",
+            "price": "18"
+          }
+        },
+        "item_Nyhdgh": {
+          "type": "item",
+          "settings": {
+            "title": "Negroni (NA)",
+            "description": "<p>NA gin, Lyre's Aperitif Rosso, Lyre's Italian orange</p>",
             "price": "18"
           }
         },
@@ -128,38 +204,32 @@
           "type": "item",
           "settings": {
             "title": "Xino Xano (750ml)",
-            "description": "<p>Cyclic, Catalonia, Spain </p>",
+            "description": "<p>Berliner Weisse / Cyclic, Catalonia, Spain </p>",
             "price": "28"
           }
         },
-        "category_CMfHpD": {
-          "type": "category",
-          "settings": {
-            "heading": "House Cocktails (Low A.B.V.)"
-          }
-        },
-        "item_e87PgU": {
+        "item_VN8eft": {
           "type": "item",
           "settings": {
-            "title": "Pommeau Toddy",
-            "description": "<p>Pommeau, honey, lemon</p>",
-            "price": "16"
+            "title": "Nazionale",
+            "description": "<p>Belgian Blonde Ale / Baladin, Piedmont, Italy</p>",
+            "price": "14"
           }
         },
-        "item_tnUJxk": {
+        "item_RyK3NH": {
           "type": "item",
           "settings": {
-            "title": "Chai & Cardamon",
-            "description": "<p>Iced Chai, Cardamaro, walnut liqueur</p>",
-            "price": "16"
+            "title": "L'Ippa",
+            "description": "<p>IPA / Baladin, Piedmont, Italy</p>",
+            "price": "14"
           }
         },
-        "item_V78Tjn": {
+        "item_QJTwaX": {
           "type": "item",
           "settings": {
-            "title": "Clementina Spritz",
-            "description": "<p>Aperitivo, spiced clementine, sparkling wine</p>",
-            "price": "18"
+            "title": "Nora",
+            "description": "<p>Egyptian Style / Baladin, Piedmont, Italy</p>",
+            "price": "14"
           }
         },
         "category_LaTWjU": {
@@ -181,7 +251,7 @@
           "settings": {
             "title": "Sparkling",
             "description": "",
-            "price": "10"
+            "price": "9"
           }
         }
       },
@@ -200,12 +270,21 @@
         "item_VdPMNd",
         "item_RkLHpc",
         "item_MpJVbn",
-        "category_UrGbTN",
-        "item_gJ7BVg",
         "category_CMfHpD",
+        "item_kHzHzJ",
         "item_e87PgU",
         "item_tnUJxk",
         "item_V78Tjn",
+        "item_a7bdKR",
+        "category_YMxHjU",
+        "item_tFTH8q",
+        "item_hmw9Nn",
+        "item_Nyhdgh",
+        "category_UrGbTN",
+        "item_gJ7BVg",
+        "item_VN8eft",
+        "item_RyK3NH",
+        "item_QJTwaX",
         "category_LaTWjU",
         "item_MVbPCE",
         "item_AHKN6G"

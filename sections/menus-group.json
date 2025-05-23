@@ -11,219 +11,6 @@
   "name": "Menus",
   "type": "aside",
   "sections": {
-    "bar_menu_iQxB8A": {
-      "type": "bar-menu",
-      "blocks": {
-        "category_Yycy4X": {
-          "type": "category",
-          "settings": {
-            "heading": "Snacks"
-          }
-        },
-        "item_m3KNBF": {
-          "type": "item",
-          "settings": {
-            "title": "Gilda Pintxo",
-            "description": "<p>Anchovies, guindilla peppers, coppa, olives (gf)</p>",
-            "price": "5/each"
-          }
-        },
-        "item_V7FrbE": {
-          "type": "item",
-          "settings": {
-            "title": "Vegetarian Gilda",
-            "description": "<p>Piquillos, guindilla peppers, manchego, olives (gf)</p>",
-            "price": "5/each"
-          }
-        },
-        "item_paEfaz": {
-          "type": "item",
-          "settings": {
-            "title": "Marinated Olives",
-            "description": "<p>Fennel, citrus (gf)</p>",
-            "price": "9"
-          }
-        },
-        "item_M9igxg": {
-          "type": "item",
-          "settings": {
-            "title": "House Snack Trio",
-            "description": "<p>Nuts, fennel taralli, chip salad</p>",
-            "price": "15"
-          }
-        },
-        "item_8WCwWY": {
-          "type": "item",
-          "settings": {
-            "title": "Crudite",
-            "description": "<p>Fresh & pickled vegetables, caper aioli (gf)</p>",
-            "price": "15"
-          }
-        },
-        "item_pekXfz": {
-          "type": "item",
-          "settings": {
-            "title": "Boquerones",
-            "description": "<p>Vinegar, shallots, herbs, olive oil, Raf's sourdough</p>",
-            "price": "24"
-          }
-        },
-        "item_DcT6MF": {
-          "type": "item",
-          "settings": {
-            "title": "Gigantes Beans",
-            "description": "<p>Beans, basil, shallot, garlic (gf)</p>",
-            "price": "20"
-          }
-        },
-        "item_NGyTED": {
-          "type": "item",
-          "settings": {
-            "title": "Tortilla Espanola",
-            "description": "<p>Potato, eggs, shallot, crème fraîche (gf)</p>",
-            "price": "16"
-          }
-        },
-        "item_WAycEp": {
-          "type": "item",
-          "settings": {
-            "title": "Caviar",
-            "description": "<p>Ossetra (30g), crème fraîche, chives, potato chips</p>",
-            "price": "135"
-          }
-        },
-        "category_cmz8AC": {
-          "type": "category",
-          "settings": {
-            "heading": "Toasts"
-          }
-        },
-        "item_VdPMNd": {
-          "type": "item",
-          "settings": {
-            "title": "Mushroom Toast",
-            "description": "<p>Shitake's, oysters, criminis, garlic, sherry, parsley</p>",
-            "price": "20"
-          }
-        },
-        "item_RkLHpc": {
-          "type": "item",
-          "settings": {
-            "title": "Sardine Toast",
-            "description": "<p>Calabrian chili, fine herbs, lemon, olive oil</p>",
-            "price": "22"
-          }
-        },
-        "item_YtdzGn": {
-          "type": "item",
-          "settings": {
-            "title": "Spring Vegetable Toast",
-            "description": "<p>Local market vegetables, lemon aioli</p>",
-            "price": "20"
-          }
-        },
-        "category_AwYrmD": {
-          "type": "category",
-          "settings": {
-            "heading": "Meat + Cheese Plates"
-          }
-        },
-        "item_k4e4Gm": {
-          "type": "item",
-          "settings": {
-            "title": "Bresaola",
-            "description": "<p>Arugula, parmesan, lemon, olive oil (gf)</p>",
-            "price": "24"
-          }
-        },
-        "item_ac9grz": {
-          "type": "item",
-          "settings": {
-            "title": "Duck Rillettes",
-            "description": "<p>Walnut mustard, cornichon, Raf's sourdough</p>",
-            "price": "22"
-          }
-        },
-        "item_C3CTDr": {
-          "type": "item",
-          "settings": {
-            "title": "Charcuterie du Chef",
-            "description": "<p>Chef's selection, accoutrements (gf)</p>",
-            "price": "24"
-          }
-        },
-        "item_jk9pR7": {
-          "type": "item",
-          "settings": {
-            "title": "Soft Cheese Plate",
-            "description": "<p>Two soft cheeses, apricot compote, breadsticks</p>",
-            "price": "28"
-          }
-        },
-        "item_PUbt4q": {
-          "type": "item",
-          "settings": {
-            "title": "Hard Cheese Plate",
-            "description": "<p>Two hard cheeses, cherry confit, hazelnuts, crackers</p>",
-            "price": "28"
-          }
-        },
-        "category_eraxDf": {
-          "type": "category",
-          "settings": {
-            "heading": "Sweets"
-          }
-        },
-        "item_Djn39Y": {
-          "type": "item",
-          "settings": {
-            "title": "Dark Chocolate Mousse",
-            "description": "<p>Gianduja noir, hazelnuts, chantilly (gf)</p>",
-            "price": "19"
-          }
-        },
-        "item_Hiey9d": {
-          "type": "item",
-          "settings": {
-            "title": "Fruit & Cheese Plate",
-            "description": "<p>Cheese, seasonal fruit, hazelnuts (gf)</p>",
-            "price": "16"
-          }
-        }
-      },
-      "block_order": [
-        "category_Yycy4X",
-        "item_m3KNBF",
-        "item_V7FrbE",
-        "item_paEfaz",
-        "item_M9igxg",
-        "item_8WCwWY",
-        "item_pekXfz",
-        "item_DcT6MF",
-        "item_NGyTED",
-        "item_WAycEp",
-        "category_cmz8AC",
-        "item_VdPMNd",
-        "item_RkLHpc",
-        "item_YtdzGn",
-        "category_AwYrmD",
-        "item_k4e4Gm",
-        "item_ac9grz",
-        "item_C3CTDr",
-        "item_jk9pR7",
-        "item_PUbt4q",
-        "category_eraxDf",
-        "item_Djn39Y",
-        "item_Hiey9d"
-      ],
-      "settings": {
-        "title": "Food",
-        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
-        "details": "<p>Menu is subject to change.<br/>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
-        "color_scheme": "light",
-        "background_color": "#022b26"
-      }
-    },
     "bar_menu_6NgUfy": {
       "type": "bar-menu",
       "blocks": {
@@ -438,6 +225,219 @@
         "details": "<p>Menu is subject to change.<br/>Full wine list available upon request. </p>",
         "color_scheme": "dark",
         "background_color": "#d8d012"
+      }
+    },
+    "bar_menu_iQxB8A": {
+      "type": "bar-menu",
+      "blocks": {
+        "category_Yycy4X": {
+          "type": "category",
+          "settings": {
+            "heading": "Snacks"
+          }
+        },
+        "item_m3KNBF": {
+          "type": "item",
+          "settings": {
+            "title": "Gilda Pintxo",
+            "description": "<p>Anchovies, guindilla peppers, coppa, olives (gf)</p>",
+            "price": "5/each"
+          }
+        },
+        "item_V7FrbE": {
+          "type": "item",
+          "settings": {
+            "title": "Vegetarian Gilda",
+            "description": "<p>Piquillos, guindilla peppers, manchego, olives (gf)</p>",
+            "price": "5/each"
+          }
+        },
+        "item_paEfaz": {
+          "type": "item",
+          "settings": {
+            "title": "Marinated Olives",
+            "description": "<p>Fennel, citrus (gf)</p>",
+            "price": "9"
+          }
+        },
+        "item_M9igxg": {
+          "type": "item",
+          "settings": {
+            "title": "House Snack Trio",
+            "description": "<p>Nuts, fennel taralli, chip salad</p>",
+            "price": "15"
+          }
+        },
+        "item_8WCwWY": {
+          "type": "item",
+          "settings": {
+            "title": "Crudite",
+            "description": "<p>Fresh & pickled vegetables, caper aioli (gf)</p>",
+            "price": "15"
+          }
+        },
+        "item_pekXfz": {
+          "type": "item",
+          "settings": {
+            "title": "Boquerones",
+            "description": "<p>Vinegar, shallots, herbs, olive oil, Raf's sourdough</p>",
+            "price": "24"
+          }
+        },
+        "item_DcT6MF": {
+          "type": "item",
+          "settings": {
+            "title": "Gigantes Beans",
+            "description": "<p>Beans, basil, shallot, garlic (gf)</p>",
+            "price": "20"
+          }
+        },
+        "item_NGyTED": {
+          "type": "item",
+          "settings": {
+            "title": "Tortilla Espanola",
+            "description": "<p>Potato, eggs, shallot, crème fraîche (gf)</p>",
+            "price": "16"
+          }
+        },
+        "item_WAycEp": {
+          "type": "item",
+          "settings": {
+            "title": "Caviar",
+            "description": "<p>Ossetra (30g), crème fraîche, chives, potato chips</p>",
+            "price": "135"
+          }
+        },
+        "category_cmz8AC": {
+          "type": "category",
+          "settings": {
+            "heading": "Toasts"
+          }
+        },
+        "item_VdPMNd": {
+          "type": "item",
+          "settings": {
+            "title": "Mushroom Toast",
+            "description": "<p>Shitake's, oysters, criminis, garlic, sherry, parsley</p>",
+            "price": "20"
+          }
+        },
+        "item_RkLHpc": {
+          "type": "item",
+          "settings": {
+            "title": "Sardine Toast",
+            "description": "<p>Calabrian chili, fine herbs, lemon, olive oil</p>",
+            "price": "22"
+          }
+        },
+        "item_YtdzGn": {
+          "type": "item",
+          "settings": {
+            "title": "Spring Vegetable Toast",
+            "description": "<p>Local market vegetables, lemon aioli</p>",
+            "price": "20"
+          }
+        },
+        "category_AwYrmD": {
+          "type": "category",
+          "settings": {
+            "heading": "Meat + Cheese Plates"
+          }
+        },
+        "item_k4e4Gm": {
+          "type": "item",
+          "settings": {
+            "title": "Bresaola",
+            "description": "<p>Arugula, parmesan, lemon, olive oil (gf)</p>",
+            "price": "24"
+          }
+        },
+        "item_ac9grz": {
+          "type": "item",
+          "settings": {
+            "title": "Duck Rillettes",
+            "description": "<p>Walnut mustard, cornichon, Raf's sourdough</p>",
+            "price": "22"
+          }
+        },
+        "item_C3CTDr": {
+          "type": "item",
+          "settings": {
+            "title": "Charcuterie du Chef",
+            "description": "<p>Chef's selection, accoutrements (gf)</p>",
+            "price": "24"
+          }
+        },
+        "item_jk9pR7": {
+          "type": "item",
+          "settings": {
+            "title": "Soft Cheese Plate",
+            "description": "<p>Two soft cheeses, apricot compote, breadsticks</p>",
+            "price": "28"
+          }
+        },
+        "item_PUbt4q": {
+          "type": "item",
+          "settings": {
+            "title": "Hard Cheese Plate",
+            "description": "<p>Two hard cheeses, cherry confit, hazelnuts, crackers</p>",
+            "price": "28"
+          }
+        },
+        "category_eraxDf": {
+          "type": "category",
+          "settings": {
+            "heading": "Sweets"
+          }
+        },
+        "item_Djn39Y": {
+          "type": "item",
+          "settings": {
+            "title": "Dark Chocolate Mousse",
+            "description": "<p>Gianduja noir, hazelnuts, chantilly (gf)</p>",
+            "price": "19"
+          }
+        },
+        "item_Hiey9d": {
+          "type": "item",
+          "settings": {
+            "title": "Fruit & Cheese Plate",
+            "description": "<p>Cheese, seasonal fruit, hazelnuts (gf)</p>",
+            "price": "16"
+          }
+        }
+      },
+      "block_order": [
+        "category_Yycy4X",
+        "item_m3KNBF",
+        "item_V7FrbE",
+        "item_paEfaz",
+        "item_M9igxg",
+        "item_8WCwWY",
+        "item_pekXfz",
+        "item_DcT6MF",
+        "item_NGyTED",
+        "item_WAycEp",
+        "category_cmz8AC",
+        "item_VdPMNd",
+        "item_RkLHpc",
+        "item_YtdzGn",
+        "category_AwYrmD",
+        "item_k4e4Gm",
+        "item_ac9grz",
+        "item_C3CTDr",
+        "item_jk9pR7",
+        "item_PUbt4q",
+        "category_eraxDf",
+        "item_Djn39Y",
+        "item_Hiey9d"
+      ],
+      "settings": {
+        "title": "Food",
+        "image": "shopify://shop_images/Quarters_Bar_WJL_8.jpg",
+        "details": "<p>Menu is subject to change.<br/>Please notify your server of any food allergies or dietary restrictions. Consuming raw or under-cooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>",
+        "color_scheme": "light",
+        "background_color": "#022b26"
       }
     },
     "bar_menu_gKTkwY": {
@@ -1294,8 +1294,8 @@
     }
   },
   "order": [
-    "bar_menu_iQxB8A",
     "bar_menu_6NgUfy",
+    "bar_menu_iQxB8A",
     "bar_menu_gKTkwY",
     "bar_menu_nt3DEH",
     "bar_menu_VfgFVX"

@@ -11,9 +11,17 @@
 		</style>
 		<link rel='canonical' href='{{ canonical_url }}'>
 
+		<script>
+			console.log('{{ template }}');
+		</script>
 		{% if template == 'cart' %}
 			<script>
 				window.location.href = '/?cart=true';
+			</script>
+		{% endif %}
+		{% if template.name == '404' %}
+			<script>
+				window.location.href = '/';
 			</script>
 		{% endif %}
 		{% if settings.favicon != blank %}

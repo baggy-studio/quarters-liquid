@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "wrapper": "div.utilty_template",
   "sections": {
@@ -15,11 +24,12 @@
       "type": "utility-menu",
       "settings": {
         "menu": "utility-nav",
-        "secondary_text": "<p>Frequently asked questions, answered<\/p>"
+        "secondary_text": "<p>Frequently asked questions, answered</p>"
       }
     },
     "faq_content_gJjAaz": {
-      "type": "faq-content"
+      "type": "faq-content",
+      "settings": {}
     }
   },
   "order": [

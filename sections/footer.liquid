@@ -1,8 +1,8 @@
 {% if template != 'index' %}
 	<div class='contents' x-data='footer'>
 		<footer
-			class='h-[calc(100vh+var(--credits-mobile))] lg:h-[calc(var(--height)+var(--credits-desktop))] z-[0] relative'
-			:style='`--height: 391px; --credits-mobile: ${creditsMobile}px; --credits-desktop: ${creditsDesktop}px;`'
+			class='h-[calc(100vh+var(--credits-mobile))] lg:h-[calc(var(--height)+var(--credits-desktop))] z-[0] bg-mahogany relative'
+			:style='`--height: 375px; --credits-mobile: ${creditsMobile}px; --credits-desktop: ${creditsDesktop}px;`'
 		>
 			<div class='w-full fixed flex flex-col left-0 right-0 bottom-0 h-[calc(100vh+var(--credits-mobile))] lg:h-auto bg-mahogany footer-bg pt-[58px] lg:pt-0'>
 				<div
@@ -55,8 +55,8 @@
 							{% endif %}
 							{% if section.settings.bar != blank %}
 								<li class='lg:flex lg:flex-col lg:gap-4 grid grid-cols-10 gap-2 pt-2 border-t border-t-current lg:pt-0 lg:border-t-0'>
-									<h4 class='subheading col-span-4'>The Bar</h4>
-									<div class='flex flex-col gap-4 small-sans richtext col-span-6'>
+									<h4 class='subheading col-span-4'>Events</h4>
+									<div class='flex flex-col gap-4 small-sans richtext-hover-only col-span-6'>
 										{{ section.settings.bar }}
 									</div>
 								</li>

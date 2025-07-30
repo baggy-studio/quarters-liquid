@@ -1,8 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "page-settings"
+      "type": "page-settings",
+      "settings": {
+        "headerTheme": "light",
+        "textColor": "#faf8ec",
+        "backgroundColor": "#faf8ec",
+        "footerTextColor": "#faf8ec",
+        "footerBackgroundColor": "#643600"
+      }
+    },
+    "hero_xj6JHF": {
+      "type": "hero",
+      "blocks": {
+        "desktop_Xtk63t": {
+          "type": "desktop",
+          "settings": {
+            "image": "shopify://shop_images/InCommonWith_Strata_Quarters.jpg"
+          }
+        },
+        "mobile_CFHfaJ": {
+          "type": "mobile",
+          "settings": {
+            "image": "shopify://shop_images/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_07.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "desktop_Xtk63t",
+        "mobile_CFHfaJ"
+      ],
+      "name": "Hero",
+      "settings": {
+        "wordmark": false,
+        "content": "<p>Quarters is a concept store from the founders of <a href=\"http://www.incommonwith.com\" target=\"_blank\" title=\"http://www.incommonwith.com\">In Common With</a>. Tucked away on the second floor of a historic Tribeca loft, it’s a living ode to community, craftsmanship, and collaborative design.</p>",
+        "address": "<p><a href=\"https://www.google.com/maps/place/383+Broadway+FLOOR+2,+New+York,+NY+10013/data=!4m2!3m1!1s0x89c25a208233901b:0xe93261f2188444a1?sa=X&ved=2ahUKEwiEkKDQvOKEAxX7AHkGHXIeA5kQ8gF6BAgWEAA\" target=\"_blank\" title=\"Quarters HQ\">383 Broadway, Floor 2</a><br/><a href=\"https://maps.app.goo.gl/oQQvogkuWkaZmv8p7\" target=\"_blank\" title=\"Quarters on Google Maps\">New York, N.Y. 10013</a></p>",
+        "contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"https://www.instagram.com/shopquarters/\">@shopquarters</a></p>"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "hero_xj6JHF"
+  ]
 }

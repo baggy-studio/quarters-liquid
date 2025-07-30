@@ -81,7 +81,13 @@ Alpine.data("productVariantSelector", productVariantSelector);
 Alpine.data("productFullscreen", productFullscreen);
 Alpine.data("hoursfullScreen", hoursfullScreen);
 Alpine.data("faqs", faqs);
-Alpine.data("barMenu", barMenu);
-Alpine.data("barMenus", barMenus);
+Alpine.data("barMenu", barMenu); 
 Alpine.data('video', video)
-Alpine.start();
+// Ensure DOM is ready before starting AlpineJS
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        Alpine.start();
+    });
+} else {
+    Alpine.start();
+}

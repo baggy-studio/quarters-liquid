@@ -21,34 +21,9 @@
     },
     "sticky_bar_menu_EFKR8Y": {
       "type": "sticky-bar-menu",
-      "blocks": {
-        "section_9RnJaj": {
-          "type": "section",
-          "settings": {
-            "title": "Hours"
-          }
-        },
-        "section_Vwf4VK": {
-          "type": "section",
-          "settings": {
-            "title": "Menu"
-          }
-        },
-        "section_nFCHzw": {
-          "type": "section",
-          "settings": {
-            "title": "Events"
-          }
-        }
-      },
-      "block_order": [
-        "section_9RnJaj",
-        "section_Vwf4VK",
-        "section_nFCHzw"
-      ],
       "settings": {
         "link": "https://resy.com/cities/new-york-ny/venues/quarters",
-        "cta_text": "Make a Reservation"
+        "cta_text": "Inquire"
       }
     },
     "bar_hero_kdrLGg": {
@@ -71,58 +46,6 @@
         "desktop_nyL4iw",
         "mobile_UgpmAx"
       ],
-      "settings": {}
-    },
-    "bar_details_DAFdQ3": {
-      "type": "bar-details",
-      "blocks": {
-        "media_wQdntB": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/InCommonWith_TheBarAtQuarters_Lucia_Bell-Epstein_14_1bad864d-236f-449e-85eb-19e0c5dfed01.jpg",
-            "caption": ""
-          }
-        },
-        "media_jpGJDU": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/FoodandBeverage_10.jpg",
-            "caption": ""
-          }
-        },
-        "media_Jg7VwL": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/InCommon_With_New_York_Strata113305_da40ffc6-f5b3-4fd7-a66b-819d6573f8a3.jpg",
-            "caption": ""
-          }
-        },
-        "media_6gHXye": {
-          "type": "media",
-          "settings": {
-            "image": "shopify://shop_images/InCommon_With_New_York_Strata114022_68614230-78ec-42cf-a8f5-344eb57deb4c.jpg",
-            "caption": ""
-          }
-        }
-      },
-      "block_order": [
-        "media_wQdntB",
-        "media_jpGJDU",
-        "media_Jg7VwL",
-        "media_6gHXye"
-      ],
-      "settings": {
-        "paragraph": "<p>The Bar is closing July 12. Join us for one more drink.<br/><br/>An intimate neighborhood bar specializing in wine and seasonal small plates, in a thoughtfully curated space designed to captivate the senses. <br/><br/>Each detail—from carefully sourced ingredients to handmade tableware to a swirling, hand-painted fresco—is a celebration of artistry, craftsmanship, and the joyful ritual of gathering.</p>",
-        "address": "<p><a href=\"https://maps.app.goo.gl/sJqPE2PfDTtPNsak6\" target=\"_blank\" title=\"View on Google Maps\">383 BROADWAY, FLOOR 2<br/>NEW YORK, N.Y. 10013 </a></p>",
-        "phone": "<p><a href=\"tel: +12125874040\" target=\"_blank\" title=\"tel: +12125874040\">212-587-4040</a></p><p><a href=\"https://maps.app.goo.gl/Bk8XAHjwMpppmW3y7\" title=\"https://maps.app.goo.gl/Bk8XAHjwMpppmW3y7\">(get directions)</a></p>",
-        "daytime": "<p>Afternoon coffee and tea, paired with handmade pastries.</p><p>Tuesday – Saturday<br/>11:00 a.m. to 4:00 p.m.</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
-        "apero": "<p>Signature snacks and drinks to usher in the evening.</p><p>Thursday – Saturday<br/>4:00pm to 5:00pm</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
-        "evening": "<p>Our full menu of small plates and beverages served until the stroke of midnight.</p><p>Thursday – Saturday<br/>5:00pm to 11:00pm</p><p><a href=\"https://resy.com/cities/new-york-ny/venues/quarters\" target=\"_blank\" title=\"Quarters on Resy\">Book a Table</a></p>",
-        "eyebrow": "See you soon!"
-      }
-    },
-    "bar_menus_MaNd6f": {
-      "type": "bar-menus",
       "settings": {}
     },
     "bar_events_ydm99L": {
@@ -164,8 +87,8 @@
         "event_xtjYyV"
       ],
       "settings": {
-        "title": "<p>Private Events and </p><p>Professional photography</p>",
-        "body": "<p>Quarters is available to book for private events and occasional photoshoots. Please inquire for more details.</p>",
+        "title": "<p>Host at Quarters</p>",
+        "body": "<p>Quarters is a home for gatherings—and available to book for private events, brand activations, photo and video shoots. Whether you’re launching a new collection, hosting a panel discussion, or celebrating a brand milestone, Quarters offers a refined yet inviting backdrop that feels warm, personal, and lived in.<br/><br/>Spanning 4,000 square feet, the space was designed to feel like an apartment and can accommodate 40 to 125 guests. Whatever the format, we tailor each experience to your needs and bring thoughtful attention to every detail. With curated food and beverage options, we work closely with each client to shape events that feel effortless, intentional, and memorable.<br/><br/>To inquire about pricing and availability, please email <a href=\"mailto:events@shopquarters.com\"><span style=\"text-decoration:underline\">events@shopquarters.com</span></a>.</p>",
         "cta_link": "mailto:events@shopquarters.com",
         "cta_text": "Inquire"
       }
@@ -175,8 +98,6 @@
     "main",
     "sticky_bar_menu_EFKR8Y",
     "bar_hero_kdrLGg",
-    "bar_details_DAFdQ3",
-    "bar_menus_MaNd6f",
     "bar_events_ydm99L"
   ]
 }

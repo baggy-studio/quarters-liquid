@@ -10,12 +10,13 @@
 			}
 		</style>
 		<link rel='canonical' href='{{ canonical_url }}'>
+
 		{% if template == 'cart' %}
 			<script>
 				window.location.href = '/?cart=true';
 			</script>
 		{% endif %}
-		{% if template.name == '404' %}
+        {% if template.name == '404' %}
 			<script>
 				window.location.href = '/';
 			</script>
@@ -63,29 +64,10 @@
 						{% if template.suffix == 'bar' %}
 							<div 
 								class='bg-vanilla text-current transition-colors duration-[400ms] ease-[cubic-bezier(.4,0,.2,1)]'
-								x-data='{ bg: null, text: null, theme: null }'
-								@set-theme.window='theme = $event.detail'
-								@set-colors.window='
-									bg = $event.detail.bg;
-									text = $event.detail.text;
-								'
-								:style='`--bg: ${bg}; --text: ${text};`'
-								:class="{ '!bg-[--bg] !text-[--text]': bg && text }"
+							 
 							>
 								{{ content_for_layout }}
-								{% if request.design_mode %}
-									{% sections 'menus-group' %}
-								{% else %}
-									<template x-teleport='#menu-container'>
-										<div
-											class='contents'
-											x-data="{ menu: 'drinks' }"
-											@set-menu.window='menu = $event.detail'
-										>
-											{% sections 'menus-group' %}
-										</div>
-									</template>
-								{% endif %}
+							 
 							</div>
 						{% else %}
 						

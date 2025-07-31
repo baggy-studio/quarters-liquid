@@ -43,7 +43,9 @@ export default () => ({
                 }
             } else {
                 if (window.innerWidth < 1024) {
-                    this.$dispatch('set-theme', 'dark')
+                    if (!window.location.pathname.includes('/events')) {
+                        this.$dispatch('set-theme', 'dark')
+                    }
                 }
             }
 
@@ -54,7 +56,7 @@ export default () => ({
                 } else if (!excludedPages.includes(window.location.pathname)) {
                     if (this.siteCredits) {
 
-                    } else {
+                    } else if (!window.location.pathname.includes('/events')) {
                         this.$dispatch('set-theme', 'dark')
                     }
                 } else {

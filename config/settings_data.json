@@ -14,7 +14,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "menu": "test-menu",
+          "menu": "main-menu",
           "hideHomepageHeader": true,
           "contentHeading": "Visit the Store",
           "content": "<p><a href=\"https://maps.app.goo.gl/w5AybsdY2h8MZWHh7\" target=\"_blank\" title=\"Address on Google Maps\">383 Broadway, Floor 2 <br/>New York, N.Y. 10013</a></p><p>Tuesday through Saturday<br/>11:00 A.M. – 6:00 P.M.</p>",

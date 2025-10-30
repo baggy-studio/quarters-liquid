@@ -11,6 +11,8 @@
       {% else %}
         <p class="large-accent">{{ selected_variant.price | money }}</p>
       {% endif %}
+    {% else %}
+      {% render 'product-status', type: 'request-price', large: true, product: product %}
     {% endunless %}
     {% if product.tags contains 'Hold' %}
       {% render 'product-status', type: 'on-hold', large: true, product: product %}
@@ -25,6 +27,8 @@
       {% else %}
         <p class="large-accent">{{ selected_variant.price | money }}</p>
       {% endif %}
+    {% else %}
+      {% render 'product-status', type: 'request-price', large: true, product: product %}
     {% endunless %}
   {% endif %}
 </div>

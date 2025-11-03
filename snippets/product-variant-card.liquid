@@ -53,6 +53,8 @@
         {% else %}
           <p class="small-accent">{{ variant.price | money }}</p>
         {% endif %}
+      {% else %}
+        {% render 'product-status', type: 'request-price', product: product %}
       {% endunless %}
     {% endif %}
   </div>

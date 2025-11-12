@@ -97,10 +97,10 @@
           {% endif %}
         </li>
       {% endif %}
-            {% if artist != blank %}
+      {% if artist != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Artist</p>
-          {% if producer %}
+          {% if artist %}
             <div class="col-span-6 richtext small-sans">{{ artist | metafield_tag }}</div>
           {% else %}
             <p class="col-span-6 small-sans">--</p>

@@ -97,6 +97,16 @@
           {% endif %}
         </li>
       {% endif %}
+            {% if artist != blank %}
+        <li class="w-full grid grid-cols-10 gap-3">
+          <p class="small-sans col-span-4">Artist</p>
+          {% if producer %}
+            <div class="col-span-6 richtext small-sans">{{ artist | metafield_tag }}</div>
+          {% else %}
+            <p class="col-span-6 small-sans">--</p>
+          {% endif %}
+        </li>
+      {% endif %}
       {% if origin != blank %}
         <li class="w-full grid grid-cols-10 gap-3">
           <p class="small-sans col-span-4">Origin</p>

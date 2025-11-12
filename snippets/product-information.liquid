@@ -1,5 +1,6 @@
 {% assign designer = product.metafields.custom.designer %}
 {% assign producer = product.metafields.custom.producer %}
+{% assign artist = product.metafields.custom.artist %}
 {% assign origin = product.metafields.custom.origin %}
 {% assign period = product.metafields.custom.period %}
 {% assign material = product.metafields.custom.material %}
@@ -18,6 +19,10 @@
 
 {% if selected_variant.metafields.custom.producer %}
   {% assign producer = selected_variant.metafields.custom.producer %}
+{% endif %}
+
+{% if selected_variant.metafields.custom.artist %}
+  {% assign artist = selected_variant.metafields.custom.artist %}
 {% endif %}
 
 {% if selected_variant.metafields.custom.origin %}

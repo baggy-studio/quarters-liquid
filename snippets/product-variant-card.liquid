@@ -23,9 +23,15 @@
         {% endif %}
       </div>
     {% endif %}
-    {% if product.tags contains 'New' %}
+    {% if product.tags contains 'New' or product.tags contains 'Exclusive' %}
       <div class="absolute top-0 left-0 w-full h-full pointer-events-none p-2">
-        {% render 'product-card-tag', tag: 'New' %}
+        {% if product.tags contains 'New' and product.tags contains 'Exclusive' %}
+          {% render 'product-card-tag', tag: 'Exclusive' %}
+        {% elsif product.tags contains 'Exclusive' %}
+          {% render 'product-card-tag', tag: 'Exclusive' %}
+        {% elsif product.tags contains 'New' %}
+          {% render 'product-card-tag', tag: 'New' %}
+        {% endif %}
       </div>
     {% endif %}
   </a>

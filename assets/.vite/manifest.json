@@ -5,7 +5,7 @@
     "isEntry": true
   },
   "frontend/entrypoints/main.js": {
-    "file": "main-CRFh1TIc.js",
+    "file": "main-C6nDLV7o.js",
     "name": "main",
     "src": "frontend/entrypoints/main.js",
     "isEntry": true,
@@ -14,7 +14,7 @@
     ]
   },
   "frontend/entrypoints/swup.ts": {
-    "file": "swup-Cmn50Gd8.js",
+    "file": "swup-D5t_rxgq.js",
     "name": "swup",
     "src": "frontend/entrypoints/swup.ts",
     "isEntry": true

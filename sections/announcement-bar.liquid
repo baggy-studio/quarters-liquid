@@ -62,7 +62,10 @@
 
 
 
-      <!-- Left fade overlay -->
+
+    </div>
+
+          <!-- Left fade overlay -->
       <div
         class="announcement-fade announcement-fade--left"
         x-show="isScrolling && hasStartedScrolling"
@@ -76,7 +79,6 @@
         class="announcement-fade announcement-fade--right"
         x-show="isScrolling"
       ></div>
-    </div>
   </div>
 
   <style>
@@ -126,58 +128,20 @@
     .announcement-fade {
       position: absolute;
       top: 0;
-      height: 100%;
-      width: 80px;
+      height: 90%;
+      width: 20px;
       pointer-events: none;
       z-index: 20;
-    }
-
-    @media (min-width: 1024px) {
-      .announcement-fade {
-        width: 120px;
-      }
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
     }
 
     .announcement-fade--left {
       left: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.3) 0%,
-        transparent 100%
-      );
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      mask-image: linear-gradient(
-        to right,
-        black 0%,
-        transparent 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to right,
-        black 0%,
-        transparent 100%
-      );
     }
 
     .announcement-fade--right {
       right: 0;
-      background: linear-gradient(
-        to left,
-        rgba(0, 0, 0, 0.3) 0%,
-        transparent 100%
-      );
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      mask-image: linear-gradient(
-        to left,
-        black 0%,
-        transparent 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to left,
-        black 0%,
-        transparent 100%
-      );
     }
 
     /* Additional support for image backgrounds */
@@ -185,11 +149,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        transparent 100%
-      );
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
       z-index: 5;
       pointer-events: none;
     }

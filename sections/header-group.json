@@ -2,6 +2,11 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar",
+      "settings": {
+      }
+    },
     "header_j7EMEV": {
       "type": "header",
       "settings": {
@@ -12,6 +17,7 @@
     }
   },
   "order": [
+    "announcement_bar",
     "header_j7EMEV"
   ]
 }

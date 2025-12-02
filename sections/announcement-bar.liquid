@@ -1,0 +1,224 @@
+{% liquid
+  assign announcement_text = section.settings.announcement_text
+  assign speed = section.settings.animation_speed
+  assign enabled = section.settings.enabled
+%}
+
+{% if enabled and announcement_text != blank %}
+  <div
+    x-data="announcementBar"
+    x-ref="announcementBar"
+    class="announcement-bar fixed top-0 left-0 w-full overflow-hidden z-[52] h-[40px] transition-colors ease-linear duration-200"
+    :class="{
+      'delay-[600ms]': !$root.querySelector('html.is-changing')
+    }"
+    :style="`color: var(--header-theme, #643600)`"
+  >
+
+    <div
+      class="relative z-10"
+      x-ref="container"
+      :style="`--scroll-speed: ${speed}s`"
+    >
+      <div
+        class="announcement-content flex h-[40px] items-center"
+        x-ref="content"
+        :class="{ 'is-scrolling': isScrolling }"
+      >
+        <div class="announcement-track flex" x-ref="track">
+          <span class="announcement-text whitespace-nowrap px-4 small-accent">
+            {{ announcement_text }}
+          </span>
+          <span
+            class="announcement-text whitespace-nowrap px-4 small-accent"
+            x-show="isScrolling"
+            aria-hidden="true"
+          >
+            {{ announcement_text }}
+          </span>
+          <span
+            class="announcement-text whitespace-nowrap px-4 small-accent"
+            x-show="isScrolling"
+            aria-hidden="true"
+          >
+            {{ announcement_text }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Left fade overlay -->
+      <div
+        class="announcement-fade announcement-fade--left"
+        x-show="isScrolling && hasStartedScrolling"
+        x-transition:enter="transition-opacity duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+      ></div>
+
+      <!-- Right fade overlay -->
+      <div
+        class="announcement-fade announcement-fade--right"
+        x-show="isScrolling"
+      ></div>
+    </div>
+  </div>
+
+  <style>
+    .announcement-bar {
+      width: 100%;
+      position: relative;
+    }
+
+    .announcement-content {
+      position: relative;
+      width: 100%;
+    }
+
+    .announcement-content.is-scrolling {
+      cursor: pointer;
+    }
+
+    .announcement-track {
+      display: inline-flex;
+      will-change: transform;
+    }
+
+    .announcement-content.is-scrolling .announcement-track {
+      animation: marquee var(--scroll-speed, 20s) linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .announcement-content.is-scrolling .announcement-track {
+        animation: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    .announcement-content.is-scrolling.paused .announcement-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-33.333%);
+      }
+    }
+
+    .announcement-fade {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 80px;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    @media (min-width: 1024px) {
+      .announcement-fade {
+        width: 120px;
+      }
+    }
+
+    .announcement-fade--left {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.3) 0%,
+        transparent 100%
+      );
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      mask-image: linear-gradient(
+        to right,
+        black 0%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        black 0%,
+        transparent 100%
+      );
+    }
+
+    .announcement-fade--right {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.3) 0%,
+        transparent 100%
+      );
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      mask-image: linear-gradient(
+        to left,
+        black 0%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to left,
+        black 0%,
+        transparent 100%
+      );
+    }
+
+    /* Additional support for image backgrounds */
+    .announcement-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 100%
+      );
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .announcement-content[href]:hover {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "announcement-bar-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable announcement bar",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "<p>Free shipping on orders over $100 • New arrivals weekly • <a href=\"/collections/all\">Shop now</a></p>"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 20,
+      "info": "Lower is faster"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

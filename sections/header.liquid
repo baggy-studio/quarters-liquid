@@ -4,7 +4,8 @@
       'is-animating': animating
     }
   "
-  class="fixed top-0 left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none group"
+  class="fixed left-0 w-full h-screen z-[51] lg:z-50 pointer-events-none group"
+  style="top: var(--announcement-bar-height, 0px);"
   @set-theme.window="isForcedTheme = $event.detail"
 >
   <button

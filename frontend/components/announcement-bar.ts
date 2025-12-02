@@ -1,13 +1,23 @@
 import { swup } from "@/entrypoints/swup";
 
-export default () => ({
+export default (speed = 20) => ({
   isScrolling: false,
   hasStartedScrolling: false,
   isPaused: false,
+  isVisible: true,
+  speed: speed,
   resizeObserver: null,
   contentReplace: null,
 
   init() {
+    // Check if announcement bar was previously dismissed
+    const isDismissed = sessionStorage.getItem('announcement-bar-dismissed') === 'true';
+    if (isDismissed) {
+      this.isVisible = false;
+      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+      return;
+    }
+
     // Check if scrolling is needed on mount
     this.$nextTick(() => {
       this.checkScrollNeeded();
@@ -88,5 +98,15 @@ export default () => ({
       this.$refs.content.classList.remove('paused');
       this.isPaused = false;
     }
+  },
+
+  close() {
+    this.isVisible = false;
+    sessionStorage.setItem('announcement-bar-dismissed', 'true');
+    
+    // Animate height to 0 and update CSS variable
+    setTimeout(() => {
+      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+    }, 300); // Match transition duration
   }
 });

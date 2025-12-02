@@ -6,9 +6,13 @@
 
 {% if enabled and announcement_text != blank %}
   <div
-    x-data="announcementBar"
+    x-data="announcementBar({{ speed }})"
     x-ref="announcementBar"
-    class="announcement-bar fixed top-0 left-0 w-full overflow-hidden z-[52] h-[40px] transition-colors ease-linear duration-200"
+    x-show="isVisible"
+    x-transition:leave="transition-all duration-300 ease-linear"
+    x-transition:leave-start="translate-y-0"
+    x-transition:leave-end="-translate-y-full"
+    class="announcement-bar fixed top-0 left-4 right-4 w-auto overflow-hidden z-[52] h-[40px] transition-colors ease-linear duration-200"
     :class="{
       'delay-[600ms]': !$root.querySelector('html.is-changing')
     }"
@@ -21,12 +25,12 @@
       :style="`--scroll-speed: ${speed}s`"
     >
       <div
-        class="announcement-content flex h-[40px] items-center"
+        class="announcement-content flex justify-between h-[40px] items-center border-b border-current"
         x-ref="content"
         :class="{ 'is-scrolling': isScrolling }"
       >
         <div class="announcement-track flex" x-ref="track">
-          <span class="announcement-text whitespace-nowrap px-4 small-accent">
+          <span class="announcement-text whitespace-nowrap small-accent">
             {{ announcement_text }}
           </span>
           <span
@@ -44,7 +48,19 @@
             {{ announcement_text }}
           </span>
         </div>
+
+        <!-- Close button -->
+      <button
+        @click="close"
+        type="button"
+        class="h-[40px] flex items-center justify-center small-accent hover:opacity-50 transition-opacity duration-300 ease-linear z-30"
+        aria-label="Close announcement"
+      >
+        (x)
+      </button>
       </div>
+
+
 
       <!-- Left fade overlay -->
       <div
@@ -64,11 +80,6 @@
   </div>
 
   <style>
-    .announcement-bar {
-      width: 100%;
-      position: relative;
-    }
-
     .announcement-content {
       position: relative;
       width: 100%;
@@ -76,6 +87,10 @@
 
     .announcement-content.is-scrolling {
       cursor: pointer;
+    }
+
+    .announcement-text a {
+      text-decoration: underline;
     }
 
     .announcement-track {

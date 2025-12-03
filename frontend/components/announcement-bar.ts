@@ -5,6 +5,7 @@ export default (speed = 20) => ({
   hasStartedScrolling: false,
   isPaused: false,
   isVisible: true,
+  isMenuOpen: false,
   speed: speed,
   resizeObserver: null,
   contentReplace: null,
@@ -16,6 +17,15 @@ export default (speed = 20) => ({
       this.isVisible = false;
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
       return;
+    }
+
+    // Watch for menu state changes by observing the nav element
+    const nav = document.querySelector('nav');
+    if (nav) {
+      const menuObserver = new MutationObserver(() => {
+        this.isMenuOpen = nav.classList.contains('is-menu');
+      });
+      menuObserver.observe(nav, { attributes: true, attributeFilter: ['class'] });
     }
 
     // Check if scrolling is needed on mount - add delay for proper rendering

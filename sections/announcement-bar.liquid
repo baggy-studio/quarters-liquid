@@ -13,9 +13,9 @@
     x-transition:leave-end="-translate-y-full"
     class="announcement-bar fixed top-0 left-4 right-4 w-auto overflow-hidden z-[52] h-[40px] transition-colors ease-linear duration-200"
     :class="{
-      'delay-[600ms]': !$root.querySelector('html.is-changing')
+      'delay-[600ms]': !$root.querySelector('html.is-changing'),
+      'is-menu': isMenuOpen
     }"
-    :style="`color: var(--header-theme, #643600)`"
   >
 
     <div
@@ -69,6 +69,15 @@
 
 
   <style>
+    .announcement-bar {
+      color: var(--header-theme, #643600);
+    }
+
+    .announcement-bar.is-menu {
+      color: #643600;
+      transition-delay: 300ms;
+    }
+
     .announcement-content {
       position: relative;
       width: 100%;

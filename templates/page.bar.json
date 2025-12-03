@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -32,13 +23,13 @@
         "desktop_nyL4iw": {
           "type": "desktop",
           "settings": {
-            "image": "shopify://shop_images/bar-hero.png"
+            "image": "shopify:\/\/shop_images\/bar-hero.png"
           }
         },
         "mobile_UgpmAx": {
           "type": "mobile",
           "settings": {
-            "image": "shopify://shop_images/bar-mobile.png"
+            "image": "shopify:\/\/shop_images\/bar-mobile.png"
           }
         }
       },
@@ -54,28 +45,28 @@
         "event_aDUbQe": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-4.png",
+            "image": "shopify:\/\/shop_images\/demo-4.png",
             "caption": ""
           }
         },
         "event_dfQThT": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/051724_QUARTERS_EVENT_084.jpg",
+            "image": "shopify:\/\/shop_images\/051724_QUARTERS_EVENT_084.jpg",
             "caption": ""
           }
         },
         "event_WqWqk6": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/demo-1.png",
+            "image": "shopify:\/\/shop_images\/demo-1.png",
             "caption": ""
           }
         },
         "event_xtjYyV": {
           "type": "event",
           "settings": {
-            "image": "shopify://shop_images/HFA_8440_2.jpg",
+            "image": "shopify:\/\/shop_images\/HFA_8440_2.jpg",
             "caption": ""
           }
         }
@@ -87,8 +78,8 @@
         "event_xtjYyV"
       ],
       "settings": {
-        "title": "<p>Host at Quarters</p>",
-        "body": "<p>Quarters is a home for gatherings—and available to book for private events, brand activations, photo and video shoots. Whether you’re launching a new collection, hosting a panel discussion, or celebrating a brand milestone, Quarters offers a refined yet inviting backdrop that feels warm, personal, and lived in.<br/><br/>Spanning 4,000 square feet, the space was designed to feel like a friends home, with capacity for 40 to 125 guests. Every element from food and drinks to the overall atmosphere is curated to feel effortless for your team and unforgettable for your guests.<br/><br/>To inquire about pricing and availability, please email <a href=\"mailto:events@shopquarters.com\">events@shopquarters.com</a>.</p>",
+        "title": "<p>Host at Quarters<\/p>",
+        "body": "<p>Quarters is a home for gatherings—and available to book for private events, brand activations, photo and video shoots. Whether you’re launching a new collection, hosting a panel discussion, or celebrating a brand milestone, Quarters offers a refined yet inviting backdrop that feels warm, personal, and lived in.<br\/><br\/>Spanning 4,000 square feet, the space was designed to feel like a friends home, with capacity for 40 to 125 guests. Every element from food and drinks to the overall atmosphere is curated to feel effortless for your team and unforgettable for your guests.<br\/><br\/>To inquire about pricing and availability, please email <a href=\"mailto:events@shopquarters.com\">events@shopquarters.com<\/a>.<\/p>",
         "cta_link": "mailto:events@shopquarters.com",
         "cta_text": "Inquire"
       }

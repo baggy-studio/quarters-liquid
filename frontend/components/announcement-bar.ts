@@ -68,11 +68,17 @@ export default (speed = 20) => ({
   checkScrollNeeded() {
     if (!this.$refs.content || !this.$refs.track) return;
 
+    // Get the first text span to measure single instance width
+    const firstText = this.$refs.track.querySelector('.announcement-text');
+    if (!firstText) return;
+
     const containerWidth = this.$refs.container.offsetWidth;
-    const contentWidth = this.$refs.track.scrollWidth / 3; // Divide by 3 since we duplicate text
+    const contentWidth = firstText.scrollWidth;
 
     // Enable scrolling if content is wider than container
     const shouldScroll = contentWidth > containerWidth;
+
+    console.log('Container width:', containerWidth, 'Content width:', contentWidth, 'Should scroll:', shouldScroll);
 
     if (shouldScroll && !this.isScrolling) {
       this.isScrolling = true;

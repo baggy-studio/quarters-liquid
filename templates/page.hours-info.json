@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "colors": {
@@ -25,35 +16,35 @@
         "image_8Xfmi9": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_William_Jess_Laird_45.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_William_Jess_Laird_45.jpg",
             "caption": "The Great Room"
           }
         },
         "image_V3wPaj": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_16.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_16.jpg",
             "caption": "The Dining Room"
           }
         },
         "image_aP3QXC": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Quarters_William_Jess_Laird_11.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Quarters_William_Jess_Laird_11.jpg",
             "caption": "The Salon"
           }
         },
         "image_kebFGQ": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_07.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_07.jpg",
             "caption": "The Great Room"
           }
         },
         "image_UfqELM": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_William_Jess_Laird_Quarters_29.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_William_Jess_Laird_Quarters_29.jpg",
             "caption": "Reception"
           }
         }
@@ -66,12 +57,12 @@
         "image_UfqELM"
       ],
       "settings": {
-        "store_address": "<p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br/>New York, N.Y. 10013</a></p>",
-        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a></p><p><a href=\"tel:12124874040\" target=\"_blank\" title=\"Call Us\">+1 (212) 587-4040</a></p>",
-        "store_social": "<p><a href=\"https://www.instagram.com/shopquarters/\" target=\"_blank\" title=\"@shopquarters on Instagram\">@shopquarters</a></p>",
-        "store_info": "<p>Tuesday – Saturday</p><p>11:00am to 6:00pm</p><p></p><p><a href=\"https://maps.app.goo.gl/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"Quarters on Google Maps\">Get Directions</a></p><p><a href=\"/collections/all\" title=\"All Items\">Shop Online</a></p>",
-        "bar_info": "<p>Inquire for pricing and availability</p><p></p><p><a href=\"mailto:events@shopquarters.com\" target=\"_blank\">events@shopquarters.com</a></p>",
-        "additional_info": "<p>Quarters is a concept store and gathering space created by Felicia Hung and Nick Ozemba, founders of the design studio <a href=\"https://www.incommonwith.com?utm_source=quarters&utm_medium=hours+info\" target=\"_blank\" title=\"In Common With\">In Common With</a>. Styled as a residence in a 19th-century Tribeca loft, Quarters represents a marriage of warmth and grandeur, and an inventive understanding of the concept of home. Visitors are warmly welcomed to explore the entirety of the In Common With lighting collection alongside curated vintage furnishings, rare books, specialty pantry items, and independent works by peers and fellow artists. Through ongoing collaborations with artists, designers, gallerists, and chefs, Quarters explores how we live with objects and come together around them.<br/><br/>After hours, Quarters is available for private events, from intimate dinners and celebrations to brand activations and cultural programming.<br/><br/>Quarters reimagines elements of familiar spaces—the traditional showroom, the well-appointed shop, to craft a vision of home and hospitality that’s not only novel, but ever-shifting, improvisational, and alive.</p>"
+        "store_address": "<p><a href=\"https:\/\/maps.app.goo.gl\/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"View on Google Maps\">383 Broadway, Floor 2<br\/>New York, N.Y. 10013<\/a><\/p>",
+        "store_contact": "<p><a href=\"mailto:hello@shopquarters.com\" target=\"_blank\" title=\"mailto:hello@shopquarters.com\">hello@shopquarters.com<\/a><\/p><p><a href=\"tel:12124874040\" target=\"_blank\" title=\"Call Us\">+1 (212) 587-4040<\/a><\/p>",
+        "store_social": "<p><a href=\"https:\/\/www.instagram.com\/shopquarters\/\" target=\"_blank\" title=\"@shopquarters on Instagram\">@shopquarters<\/a><\/p>",
+        "store_info": "<p>Tuesday – Saturday<\/p><p>11:00am to 6:00pm<\/p><p><\/p><p><a href=\"https:\/\/maps.app.goo.gl\/a6S3vGNVxqLWHRhR7\" target=\"_blank\" title=\"Quarters on Google Maps\">Get Directions<\/a><\/p><p><a href=\"\/collections\/all\" title=\"All Items\">Shop Online<\/a><\/p>",
+        "bar_info": "<p>Inquire for pricing and availability<\/p><p><\/p><p><a href=\"mailto:events@shopquarters.com\" target=\"_blank\">events@shopquarters.com<\/a><\/p>",
+        "additional_info": "<p>Quarters is a concept store and gathering space created by Felicia Hung and Nick Ozemba, founders of the design studio <a href=\"https:\/\/www.incommonwith.com?utm_source=quarters&utm_medium=hours+info\" target=\"_blank\" title=\"In Common With\">In Common With<\/a>. Styled as a residence in a 19th-century Tribeca loft, Quarters represents a marriage of warmth and grandeur, and an inventive understanding of the concept of home. Visitors are warmly welcomed to explore the entirety of the In Common With lighting collection alongside curated vintage furnishings, rare books, specialty pantry items, and independent works by peers and fellow artists. Through ongoing collaborations with artists, designers, gallerists, and chefs, Quarters explores how we live with objects and come together around them.<br\/><br\/>After hours, Quarters is available for private events, from intimate dinners and celebrations to brand activations and cultural programming.<br\/><br\/>Quarters reimagines elements of familiar spaces—the traditional showroom, the well-appointed shop, to craft a vision of home and hospitality that’s not only novel, but ever-shifting, improvisational, and alive.<\/p>"
       }
     }
   },

@@ -1,10 +1,9 @@
 {% liquid
   assign announcement_text = section.settings.announcement_text
   assign speed = section.settings.animation_speed
-  assign enabled = section.settings.enabled
 %}
 
-{% if enabled and announcement_text != blank %}
+{% if announcement_text != blank %}
   <div
     x-data="announcementBar({{ speed }})"
     x-ref="announcementBar"
@@ -25,28 +24,43 @@
       :style="`--scroll-speed: ${speed}s`"
     >
       <div
-        class="announcement-content flex justify-between h-[40px] items-center border-b border-current"
+        class="announcement-content flex gap-1 md:justify-between h-[40px] items-center border-b border-current"
         x-ref="content"
         :class="{ 'is-scrolling': isScrolling }"
       >
-        <div class="announcement-track flex" x-ref="track">
-          <span class="announcement-text whitespace-nowrap small-accent">
-            {{ announcement_text }}
-          </span>
-          <span
-            class="announcement-text whitespace-nowrap px-4 small-accent"
+        <div class="announcement-track-container flex-1 overflow-hidden">
+          <div class="announcement-track flex" x-ref="track">
+            <span class="announcement-text whitespace-nowrap small-accent">
+              {{ announcement_text }}
+            </span>
+            <span
+              class="announcement-text whitespace-nowrap px-4 small-accent"
+              x-show="isScrolling"
+              aria-hidden="true"
+            >
+              {{ announcement_text }}
+            </span>
+            <span
+              class="announcement-text whitespace-nowrap px-4 small-accent"
+              x-show="isScrolling"
+              aria-hidden="true"
+            >
+              {{ announcement_text }}
+            </span>
+          </div>
+          <!-- Left fade overlay -->
+          <div
+            class="announcement-fade announcement-fade--left"
+            x-show="isScrolling && hasStartedScrolling"
+            x-transition:enter="transition-opacity duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+          ></div>
+          <!-- Right fade overlay -->
+          <div
+            class="announcement-fade announcement-fade--right"
             x-show="isScrolling"
-            aria-hidden="true"
-          >
-            {{ announcement_text }}
-          </span>
-          <span
-            class="announcement-text whitespace-nowrap px-4 small-accent"
-            x-show="isScrolling"
-            aria-hidden="true"
-          >
-            {{ announcement_text }}
-          </span>
+          ></div>
         </div>
 
         <!-- Close button -->
@@ -59,27 +73,10 @@
         (x)
       </button>
       </div>
-
-
-
-
     </div>
-
-          <!-- Left fade overlay -->
-      <div
-        class="announcement-fade announcement-fade--left"
-        x-show="isScrolling && hasStartedScrolling"
-        x-transition:enter="transition-opacity duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-      ></div>
-
-      <!-- Right fade overlay -->
-      <div
-        class="announcement-fade announcement-fade--right"
-        x-show="isScrolling"
-      ></div>
   </div>
+
+
 
   <style>
     .announcement-content {
@@ -93,6 +90,11 @@
 
     .announcement-text a {
       text-decoration: underline;
+    }
+
+    .announcement-track-container {
+      position: relative;
+      overflow: hidden;
     }
 
     .announcement-track {
@@ -129,7 +131,7 @@
       position: absolute;
       top: 0;
       height: 90%;
-      width: 20px;
+      width: 15px;
       pointer-events: none;
       z-index: 20;
       backdrop-filter: blur(1px);
@@ -137,11 +139,11 @@
     }
 
     .announcement-fade--left {
-      left: 0;
+      left: -6px;
     }
 
     .announcement-fade--right {
-      right: 0;
+      right: -6px;
     }
 
     /* Additional support for image backgrounds */
@@ -155,10 +157,12 @@
       pointer-events: none;
     }
 
-    .announcement-content[href]:hover {
+    .announcement-content[href]:hover, .announcement-text a:hover {
       opacity: 0.9;
       transition: opacity 0.2s ease;
     }
+
+
   </style>
 {% endif %}
 
@@ -168,12 +172,6 @@
   "tag": "section",
   "class": "announcement-bar-section",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "enabled",
-      "label": "Enable announcement bar",
-      "default": true
-    },
     {
       "type": "richtext",
       "id": "announcement_text",

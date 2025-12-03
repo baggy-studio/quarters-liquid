@@ -28,7 +28,10 @@
         x-ref="content"
         :class="{ 'is-scrolling': isScrolling }"
       >
-        <div class="announcement-track-container flex-1 overflow-hidden">
+        <div 
+          class="announcement-track-container flex-1 overflow-hidden"
+          :class="{ 'is-scrolling': isScrolling }"
+        >
           <div class="announcement-track flex" x-ref="track">
             <span class="announcement-text whitespace-nowrap small-accent">
               {{ announcement_text }}
@@ -48,19 +51,6 @@
               {{ announcement_text }}
             </span>
           </div>
-          <!-- Left fade overlay -->
-          <div
-            class="announcement-fade announcement-fade--left"
-            x-show="isScrolling && hasStartedScrolling"
-            x-transition:enter="transition-opacity duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-          ></div>
-          <!-- Right fade overlay -->
-          <div
-            class="announcement-fade announcement-fade--right"
-            x-show="isScrolling"
-          ></div>
         </div>
 
         <!-- Close button -->
@@ -97,6 +87,23 @@
       overflow: hidden;
     }
 
+    .announcement-track-container.is-scrolling {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 40px,
+        black calc(100% - 40px),
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 40px,
+        black calc(100% - 40px),
+        transparent 100%
+      );
+    }
+
     .announcement-track {
       display: inline-flex;
       will-change: transform;
@@ -127,42 +134,10 @@
       }
     }
 
-    .announcement-fade {
-      position: absolute;
-      top: 0;
-      height: 90%;
-      width: 15px;
-      pointer-events: none;
-      z-index: 20;
-      backdrop-filter: blur(1px);
-      -webkit-backdrop-filter: blur(1px);
-    }
-
-    .announcement-fade--left {
-      left: -6px;
-    }
-
-    .announcement-fade--right {
-      right: -6px;
-    }
-
-    /* Additional support for image backgrounds */
-    .announcement-bar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      backdrop-filter: blur(1px);
-      -webkit-backdrop-filter: blur(1px);
-      z-index: 5;
-      pointer-events: none;
-    }
-
     .announcement-content[href]:hover, .announcement-text a:hover {
       opacity: 0.9;
       transition: opacity 0.2s ease;
     }
-
-
   </style>
 {% endif %}
 

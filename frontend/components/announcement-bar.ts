@@ -18,10 +18,12 @@ export default (speed = 20) => ({
       return;
     }
 
-    // Check if scrolling is needed on mount
+    // Check if scrolling is needed on mount - add delay for proper rendering
     this.$nextTick(() => {
-      this.checkScrollNeeded();
-      this.setAnnouncementBarHeight();
+      setTimeout(() => {
+        this.checkScrollNeeded();
+        this.setAnnouncementBarHeight();
+      }, 50);
     });
 
     // Setup resize observer to check when viewport changes

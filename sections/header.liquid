@@ -1,4 +1,5 @@
 <header
+  x-init="$nextTick(() => setTimeout(() => $el.classList.add('header-loaded'), 100))"
   :class="
     {
       'is-animating': animating
@@ -218,3 +219,9 @@
   ]
 }
 {% endschema %}
+
+<style>
+  header.header-loaded {
+    transition: top 300ms linear;
+  }
+</style>

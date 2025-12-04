@@ -11,15 +11,14 @@
     x-transition:leave="transition-all duration-300 ease-linear"
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
-    class="announcement-bar fixed top-0 left-4 right-4 w-auto overflow-hidden z-[52] h-[40px] transition-colors ease-linear duration-200"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px]"
     :class="{
-      'delay-[600ms]': !$root.querySelector('html.is-changing'),
       'is-menu': isMenuOpen
     }"
   >
 
     <div
-      class="relative z-10"
+      class="relative z-10 mx-4"
       x-ref="container"
       :style="`--scroll-speed: ${speed}s`"
     >
@@ -73,8 +72,28 @@
       color: var(--header-theme, #643600);
     }
 
+    .announcement-bar:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background-color: #FAF8EC;
+      transition: height 600ms linear;
+      transition-delay: 600ms;
+      z-index: -1;
+    }
+
     .announcement-bar.is-menu {
       color: #643600;
+      transition: color 200ms linear;
+      transition-delay: 300ms;
+    }
+
+    .announcement-bar.is-menu:before {
+      height: 100%;
+      transition: height 200ms linear;
       transition-delay: 300ms;
     }
 

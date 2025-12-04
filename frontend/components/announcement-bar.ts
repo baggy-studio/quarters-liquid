@@ -94,6 +94,20 @@ export default (speed = 20) => ({
 
     if (shouldScroll && !this.isScrolling) {
       this.isScrolling = true;
+      // Force animation restart by removing and re-adding class
+      this.$nextTick(() => {
+        if (this.$refs.content) {
+          this.$refs.content.classList.remove('is-scrolling');
+          // Use requestAnimationFrame to ensure the class removal is processed
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              if (this.$refs.content) {
+                this.$refs.content.classList.add('is-scrolling');
+              }
+            });
+          });
+        }
+      });
       // Slight delay before showing left fade to let animation start
       setTimeout(() => {
         this.hasStartedScrolling = true;

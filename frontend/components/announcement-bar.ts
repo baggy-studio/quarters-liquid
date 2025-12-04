@@ -1,23 +1,25 @@
 import { swup } from "@/entrypoints/swup";
 
-export default (speed = 20) => ({
-  isScrolling: false,
-  hasStartedScrolling: false,
-  isPaused: false,
-  isVisible: true,
-  isMenuOpen: false,
-  speed: speed,
-  resizeObserver: null,
-  contentReplace: null,
+export default (speed = 20) => {
+  // Check sessionStorage immediately before Alpine initializes
+  const isDismissed = sessionStorage.getItem('announcement-bar-dismissed') === 'true';
+  
+  return {
+    isScrolling: false,
+    hasStartedScrolling: false,
+    isPaused: false,
+    isVisible: !isDismissed,
+    isMenuOpen: false,
+    speed: speed,
+    resizeObserver: null,
+    contentReplace: null,
 
-  init() {
-    // Check if announcement bar was previously dismissed
-    const isDismissed = sessionStorage.getItem('announcement-bar-dismissed') === 'true';
-    if (isDismissed) {
-      this.isVisible = false;
-      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
-      return;
-    }
+    init() {
+      // Set initial height based on visibility
+      if (this.isVisible === false) {
+        document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+        return;
+      }
 
     // Watch for menu state changes by observing the nav element
     const nav = document.querySelector('nav');
@@ -141,4 +143,5 @@ export default (speed = 20) => ({
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     }, 300); // Match transition duration
   }
-});
+};
+};

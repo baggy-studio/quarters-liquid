@@ -22,7 +22,8 @@
   {% render 'menu', menu: section.settings.menu %}
 <h1
     :class="{ 'is-menu': menu }"
-    style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+    x-init="$nextTick(() => $el.style.opacity = '1')"
+    style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden; opacity: 0; transition: opacity 150ms ease-out;"
     class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
   >
     <a
@@ -50,6 +51,7 @@
       {% endif %}
     >
        <svg
+        x-cloak
         style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
         :class="
           {
@@ -64,6 +66,7 @@
       </svg>
 
       <svg
+      x-cloak
       style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
       :class="
         {
@@ -221,6 +224,8 @@
 {% endschema %}
 
 <style>
+  [x-cloak] { display: none !important; }
+  
   header.header-loaded {
     transition: top 300ms linear;
   }

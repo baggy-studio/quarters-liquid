@@ -51,6 +51,7 @@ export default (speed = 20) => {
     // Setup swup hook for page transitions
     this.contentReplace = () => {
       this.checkScrollNeeded();
+      this.setAnnouncementBarHeight();
     };
 
     swup.hooks.on('content:replace', this.contentReplace);

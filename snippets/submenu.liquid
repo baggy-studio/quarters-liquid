@@ -1,9 +1,17 @@
 <div class="overflow-hidden contents gap-4 lg:block">
   <ul class="flex flex-col gap-1.5 lg:gap-0 pt-6 py-[18px] lg:pl-[30px] lg:pb-4 lg:pt-2 ">
+    {% assign collection_index = 0 %}
     {% for sublink in link.links %}
-      <li class="contents">
-          <a  @mouseover="activeCollection = {{ forloop.index }}" href="{{ sublink.url }}#shop" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
-      </li>
+      {% if sublink.type == 'collection_link' %}
+        {% assign collection_index = collection_index | plus: 1 %}
+        <li class="contents">
+            <a  @mouseover="activeCollection = {{ collection_index }}; activeParent = {{ parentIndex }}" href="{{ sublink.url }}#shop" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
+        </li>
+      {% else %}
+        <li class="contents">
+            <a href="{{ sublink.url }}#shop" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>

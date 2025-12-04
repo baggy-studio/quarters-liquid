@@ -52,14 +52,19 @@
 											href='{{ link.url }}#shop'
 											title='{{ link.title }}'
 											class='menu-item'
-											@mouseenter='hoverCollection = {{ forloop.index0 }}'
-											@mouseleave='hoverCollection = null'
-											@mouseover='activeCollection = {{ forloop.index0 }}'
+											{% if link.links != blank %}
+												@mouseenter='hoverCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
+												@mouseleave='hoverCollection = null'
+												@mouseover='activeCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
+											{% else %}
+												@mouseenter='hoverCollection = {{ forloop.index0 }}'
+												@mouseleave='hoverCollection = null'
+											{% endif %}
 										>
 											{{- link.title -}}
 										</a>
 										{% if link.links != blank %}
-											{% render 'submenu', link: link %}
+											{% render 'submenu', link: link, parentIndex: forloop.parentloop.index %}
 										{% endif %}
 									</li>
 								{% endfor %}
@@ -87,52 +92,56 @@
 			{% endif %}
 		{% endfor %}
 	</ul>
-	{% assign parent_link = menu.links | first %}
-	{% assign parent_collection = parent_link.links | where: 'title', 'All Items' | first %}
-
 	<ul class='col-span-4 hidden gap-x-3 lg:grid'>
-		<li
-			class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
-			:class="{ 'opacity-0 pointer-events-none': activeCollection != 0 }"
-		>
-			<a
-				title='{{ parent_collection.title }}'
-				href='{{ parent_collection.url }}'
-				class='col-span-2 relative flex items-start flex-nowrap gap-x-3'
-			>
-				{% assign collection = parent_collection.object %}
-				<span class='aspect-[130/162] relative shrink-0 w-full'>
-					{% render 'image', image: collection.featured_image, width: 260, height: 324 %}
-				</span>
-				<span
-					class='whitespace-nowrap text-left medium-accent leading-none -mt-1 opacity-0 duration-300 transition-opacity'
-					:class="{ 'opacity-0': hoverCollection != 0 }"
-				>
-					({{ collection.all_products_count }})
-				</span>
-			</a>
-		</li>
-		{% for link in parent_collection.links %}
-			{% if link.type == 'collection_link' %}
-				<li
-					class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
-					:class="{ 'opacity-0 pointer-events-none': activeCollection != {{ forloop.index }} }"
-				>
-					<a
-						title='{{ link.title }}'
-						href='{{ link.url }}'
-						class='col-span-2 relative flex items-start flex-nowrap gap-x-3'
+		{% for navLink in menu.links %}
+			{% unless navLink.title == 'Mobile Only' %}
+				{% assign nav_parent_collection = navLink.links | where: 'title', 'All Items' | first %}
+				{% if nav_parent_collection %}
+					<li
+						class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
+						:class="{ 'opacity-0 pointer-events-none': activeCollection != 0 && activeParent != {{ forloop.index }} }"
 					>
-						{% assign collection = link.object %}
-						<span class='aspect-[130/162] relative shrink-0 w-full'>
-							{% render 'image', image: collection.featured_image, width: 260, height: 324 %}
-						</span>
-						<span class='whitespace-nowrap text-left medium-accent leading-none -mt-1'>
-							({{ collection.all_products_count }})
-						</span>
-					</a>
-				</li>
-			{% endif %}
+						<a
+							title='{{ nav_parent_collection.title }}'
+							href='{{ nav_parent_collection.url }}'
+							class='col-span-2 relative flex items-start flex-nowrap gap-x-3'
+						>
+							{% assign collection = nav_parent_collection.object %}
+							<span class='aspect-[130/162] relative shrink-0 w-full'>
+								{% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+							</span>
+							<span
+								class='whitespace-nowrap text-left medium-accent leading-none -mt-1 opacity-0 duration-300 transition-opacity'
+								:class="{ 'opacity-0': hoverCollection != 0 }"
+							>
+								({{ collection.all_products_count }})
+							</span>
+						</a>
+					</li>
+					{% for link in nav_parent_collection.links %}
+						{% if link.type == 'collection_link' %}
+							<li
+								class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
+								:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != {{ forloop.index }} }"
+							>
+								<a
+									title='{{ link.title }}'
+									href='{{ link.url }}'
+									class='col-span-2 relative flex items-start flex-nowrap gap-x-3'
+								>
+									{% assign collection = link.object %}
+									<span class='aspect-[130/162] relative shrink-0 w-full'>
+										{% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+									</span>
+									<span class='whitespace-nowrap text-left medium-accent leading-none -mt-1'>
+										({{ collection.all_products_count }})
+									</span>
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endunless %}
 		{% endfor %}
 	</ul>
 	<div class='lg:hidden px-4 mt-auto pt-16'>

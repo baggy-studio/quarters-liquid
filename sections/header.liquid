@@ -24,14 +24,14 @@
     :class="{ 'is-menu': menu }"
     x-init="$nextTick(() => $el.style.opacity = '1')"
     style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden; opacity: 0; transition: opacity 150ms ease-out;"
-    class="flex items-start absolute p-4 pt-[15px] top-0 left-0 w-full justify-center group"
+    class="flex items-start absolute p-4 py-[0.7rem] top-0 left-0 w-full justify-center group"
   >
     <a
       style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
       href="/"
       title="Quarters"
       class="
-        relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px] group-[.is-menu]:delay-300  transition-opacity duration-300 ease-linear
+        relative h-[22px] lg:h-[40px] w-[138px] lg:w-[154px] group-[.is-menu]:delay-300  transition-opacity duration-300 ease-linear
         {% if section.settings.hideHomepageHeader and template == 'index' %}
           opacity-0
         {% elsif template.suffix == 'bar' %}
@@ -59,7 +59,7 @@
             'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
           }
         "
-        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear"
         :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
       >
         <use xlink:href="#wordmark"></use>
@@ -75,7 +75,7 @@
           '!opacity-0': isForcedTheme == 'light' && !menu
         }
       "
-      class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-opacity duration-300 ease-linear"
+      class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear"
       :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
     >
       <use xlink:href="#wordmark"></use>
@@ -83,7 +83,7 @@
 
     {% comment %} <svg
       style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
-      class="fill-current h-full aspect-[138/22] lg:aspect-[185/31] shrink-0 transition-colors duration-300 ease-linear"
+      class="fill-current h-full aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-colors duration-300 ease-linear"
       :class="{
         'text-bone': (isForcedTheme == 'light' && !menu) || (headerColor === '#F4EED0' && !menu && (!$store.cart.visible || window.innerWidth >= 1024)),
         'text-mahogany': (isForcedTheme == 'dark' && !menu) || headerColor === '#643600' || menu || ($store.cart.visible && window.innerWidth < 1024)

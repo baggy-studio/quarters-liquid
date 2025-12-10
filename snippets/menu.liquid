@@ -45,30 +45,38 @@
 							x-show='subMenu == {{ forloop.index }}'
 							x-collapse.duration.800ms
 						>
-							<ul class='grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents'>
-								{% for link in navLink.links %}
-									<li class='col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4'>
-										<a
-											href='{{ link.url }}#shop'
-											title='{{ link.title }}'
-											class='menu-item'
-											{% if link.links != blank %}
-												@mouseenter='hoverCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
-												@mouseleave='hoverCollection = null'
-												@mouseover='activeCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
-											{% else %}
-												@mouseenter='hoverCollection = {{ forloop.index0 }}'
-												@mouseleave='hoverCollection = null'
-											{% endif %}
-										>
-											{{- link.title -}}
-										</a>
+						<ul class='grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents'>
+							{% assign collection_counter = 0 %}
+							{% for link in navLink.links %}
+								{% if link.type == 'collection_link' %}
+									{% assign collection_counter = collection_counter | plus: 1 %}
+								{% endif %}
+								<li class='col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4'>
+									<a
+										href='{{ link.url }}#shop'
+										title='{{ link.title }}'
+										class='menu-item'
 										{% if link.links != blank %}
-											{% render 'submenu', link: link, parentIndex: forloop.parentloop.index %}
+											@mouseenter='hoverCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
+											@mouseleave='hoverCollection = null'
+											@mouseover='activeCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
+										{% elsif link.type == 'collection_link' %}
+											@mouseenter='hoverCollection = {{ forloop.index0 }}; activeParent = {{ forloop.parentloop.index }}'
+											@mouseleave='hoverCollection = null'
+											@mouseover='activeCollection = {{ collection_counter }}; activeParent = {{ forloop.parentloop.index }}'
+										{% else %}
+											@mouseenter='hoverCollection = {{ forloop.index0 }}'
+											@mouseleave='hoverCollection = null'
 										{% endif %}
-									</li>
-								{% endfor %}
-							</ul>
+									>
+										{{- link.title -}}
+									</a>
+									{% if link.links != blank %}
+										{% render 'submenu', link: link, parentIndex: forloop.parentloop.index %}
+									{% endif %}
+								</li>
+							{% endfor %}
+						</ul>
 						</div>
 					{% endif %}
 				</li>
@@ -118,11 +126,37 @@
 							</span>
 						</a>
 					</li>
+					{% assign collection_counter = 0 %}
 					{% for link in nav_parent_collection.links %}
-						{% if link.type == 'collection_link' %}
+					{% if link.type == 'collection_link' %}
+						{% assign collection_counter = collection_counter | plus: 1 %}
+						<li
+							class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
+							:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != {{ collection_counter }} }"
+						>
+							<a
+								title='{{ link.title }}'
+								href='{{ link.url }}'
+									class='col-span-2 relative flex items-start flex-nowrap gap-x-3'
+								>
+									{% assign collection = link.object %}
+									<span class='aspect-[130/162] relative shrink-0 w-full'>
+										{% render 'image', image: collection.featured_image, width: 260, height: 324 %}
+									</span>
+									<span class='whitespace-nowrap text-left medium-accent leading-none -mt-1'>
+										({{ collection.all_products_count }})
+									</span>
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+					{% assign collection_counter = 0 %}
+					{% for link in navLink.links %}
+						{% if link.title != 'All Items' and link.type == 'collection_link' %}
+							{% assign collection_counter = collection_counter | plus: 1 %}
 							<li
 								class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
-								:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != {{ forloop.index }} }"
+								:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != {{ collection_counter }} }"
 							>
 								<a
 									title='{{ link.title }}'

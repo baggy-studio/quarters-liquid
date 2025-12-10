@@ -130,9 +130,10 @@
 					{% for link in nav_parent_collection.links %}
 					{% if link.type == 'collection_link' %}
 						{% assign collection_counter = collection_counter | plus: 1 %}
+						<!-- DEBUG: Subcategory thumbnail {{ forloop.parentloop.index }} - {{ link.title }} - counter: -{{ collection_counter }} -->
 						<li
 							class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
-							:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != {{ collection_counter }} }"
+							:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != -{{ collection_counter }} }"
 						>
 							<a
 								title='{{ link.title }}'

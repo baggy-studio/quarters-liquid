@@ -5,7 +5,7 @@
       {% if sublink.type == 'collection_link' %}
         {% assign collection_index = collection_index | plus: 1 %}
         <li class="contents">
-            <a  @mouseover="activeCollection = {{ collection_index }}; activeParent = {{ parentIndex }}" href="{{ sublink.url }}#shop" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
+            <a  @mouseover="activeCollection = -{{ collection_index }}; activeParent = {{ parentIndex }}" href="{{ sublink.url }}#shop" title="{{ sublink.title }}" class="menu-item">{{ sublink.title }}</a>
         </li>
       {% else %}
         <li class="contents">

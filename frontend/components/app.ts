@@ -176,19 +176,36 @@ export default (activeUrl: string = window.location.pathname) => ({
   updateMenuHeight(height = 0, url = this.activeUrl, isClosing = false) {
 
     let progress = range(0, 1, 0, this.menuHeight, height);
+    const announcementBarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--announcement-bar-height') || '0');
+    
+    // Scale announcement bar height with the animation progress
+    const scaledAnnouncementHeight = announcementBarHeight * height;
+    const totalHeight = progress + scaledAnnouncementHeight;
+
+    console.log('DEBUG updateMenuHeight:', {
+      height,
+      progress,
+      announcementBarHeight,
+      scaledAnnouncementHeight,
+      totalHeight,
+      menuHeight: this.menuHeight
+    });
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
-      this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
+      this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161 + announcementBarHeight, height)}px`);
     } else {
 
       if (isClosing) {
-        this.$root.style.setProperty('--transform-y', `${progress}px`);
+        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
       } else {
-        this.$root.style.setProperty('--transform-y', `${progress - 1}px`);
+        this.$root.style.setProperty('--transform-y', `${totalHeight - 1}px`);
       }
 
     }
 
+    // Set menu-background-height to total (menu + scaled announcement bar)
+    this.$root.style.setProperty('--menu-background-height', `${totalHeight}px`);
+    
     if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {
       this.$root.style.setProperty('--menu-height', `${progress}px`);
     } else {

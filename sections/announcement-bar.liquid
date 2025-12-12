@@ -10,10 +10,11 @@
     x-show="isVisible"
     x-cloak
     x-init="$nextTick(() => $el.style.opacity = '1')"
-    x-transition:leave="transition-all duration-300 ease-linear"
+    x-transition:leave="transition-all duration-[1200ms]"
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
-    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px]"
+    style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[51] h-[40px]"
     style="opacity: 0; transition: opacity 150ms ease-out;"
     :class="{
       'is-menu': isMenuOpen
@@ -35,18 +36,18 @@
           :class="{ 'is-scrolling': isScrolling }"
         >
           <div class="announcement-track flex" x-ref="track">
-            <span class="announcement-text whitespace-nowrap small-accent">
+            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px]">
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px]"
               x-show="isScrolling"
               aria-hidden="true"
             >
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px]"
               x-show="isScrolling"
               aria-hidden="true"
             >
@@ -59,7 +60,7 @@
       <button
         @click="close"
         type="button"
-        class="h-[40px] flex items-center justify-center small-accent hover:opacity-50 transition-opacity duration-300 ease-linear z-30"
+        class="h-[40px] flex items-center justify-center small-accent lg:text-[14.5px] hover:opacity-50 transition-opacity duration-300 ease-linear z-30"
         aria-label="Close announcement"
       >
         (x)
@@ -77,28 +78,9 @@
       color: var(--header-theme, #643600);
     }
 
-    .announcement-bar:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 0;
-      background-color: #FAF8EC;
-      transition: height 600ms linear;
-      transition-delay: 600ms;
-      z-index: -1;
-    }
-
     .announcement-bar.is-menu {
       color: #643600;
       transition: color 200ms linear;
-      transition-delay: 300ms;
-    }
-
-    .announcement-bar.is-menu:before {
-      height: 100%;
-      transition: height 200ms linear;
       transition-delay: 300ms;
     }
 

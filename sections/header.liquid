@@ -19,6 +19,10 @@
     class="absolute top-0 left-0 h-full w-full opacity-0 delay-[400ms] bg-bone-tint/30 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
     @click="closeMenu"
   ></button>
+  <div
+    class="menu-background fixed top-0 left-0 right-0 pointer-events-none"
+    style="z-index: -1;"
+  ></div>
   {% render 'menu', menu: section.settings.menu %}
 <h1
     :class="{ 'is-menu': menu }"
@@ -106,7 +110,8 @@
       }
     "
     :style="`--header-theme: ${forcedHeaderColor || headerColor}`"
-    class="absolute left-0 w-full top-0 flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
+    style="top: var(--announcement-bar-height, 0px);"
+    class="absolute left-0 w-full flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
   >
     <ul class="hidden lg:flex items-center gap-16">
       {% for link in section.settings.menu.links %}
@@ -175,7 +180,7 @@
             'opacity-0': !$store.cart.visible
           }
         "
-        class="opacity-0 text-right transition-opacity duration-300 ease-linear lg:hidden absolute left-0 top-0 w-full h-full"
+        class="opacity-0 text-right transition-opacity duration-300 ease-linear lg:hidden absolute left-0 top-0 w-full h-full pointer-events-none flex items-center justify-end"
         >(Close)</span
       >
     </button>
@@ -228,5 +233,10 @@
   
   header.header-loaded {
     transition: top 300ms linear;
+  }
+
+  .menu-background {
+    height: var(--menu-background-height, 0px);
+    background-color: #FAF8EC;
   }
 </style>

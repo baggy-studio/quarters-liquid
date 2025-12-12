@@ -63,7 +63,7 @@
             'opacity-0': headerColor !== '#F4EED0' || menu || ($store.cart.visible && window.innerWidth < 1024)
           }
         "
-        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear"
+        class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear delay-[350ms]"
         :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
       >
         <use xlink:href="#wordmark"></use>
@@ -79,7 +79,7 @@
           '!opacity-0': isForcedTheme == 'light' && !menu
         }
       "
-      class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear"
+      class="absolute w-full h-full top-0 left-0 fill-current text-mahogany aspect-[138/22] lg:aspect-[154/40] shrink-0 transition-opacity duration-300 ease-linear delay-[350ms]"
       :class="{ 'delay-500': $store.cart.visible && window.innerWidth < 1024 }"
     >
       <use xlink:href="#wordmark"></use>

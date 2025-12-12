@@ -144,8 +144,18 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     const url = this.activeUrl;
     this.animating = true;
+    
+    // Capture the starting color before menu opens
+    const startColor = this.headerColor;
+    const endColor = '#643600'; // Menu is always dark/mahogany
+    
     await animate((progress) => {
-      this.updateMenuHeight(progress, url, false)
+      this.updateMenuHeight(progress, url, false);
+      // Animate color change along with menu opening
+      if (startColor !== endColor) {
+        const currentColor = this.interpolateColor(startColor, endColor, progress);
+        this.updatePageColors(currentColor);
+      }
     }, { duration: 1.2, easing: expoInOut }).finished
     this.animating = false;
   },
@@ -157,8 +167,12 @@ export default (activeUrl: string = window.location.pathname) => ({
     const url = this.activeUrl;
     this.animating = true;
 
+    // Immediately snap color back to page color (no animation)
+    const pageColor = this.getThemeForUrl(url) === 'light' ? '#F4EED0' : '#643600';
+    this.updatePageColors(pageColor);
+
     await animate((progress) => {
-      this.updateMenuHeight(1 - progress, url, true)
+      this.updateMenuHeight(1 - progress, url, true);
     }, { duration: 1.2, easing: expoInOut }).finished
     this.animating = false;
 

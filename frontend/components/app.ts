@@ -192,7 +192,13 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
-      this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161 + announcementBarHeight, height)}px`);
+      // For collection/product pages on desktop, account for announcement bar in the offset
+      // The base offset is menuHeight - 161 (header height), plus announcement bar height
+      const baseOffset = this.menuHeight - 161 + announcementBarHeight;
+      const transformValue = range(0, 1, 0, baseOffset, height);
+      // When menu is closed (height = 0), add announcement bar height to push content down
+      const finalTransform = height === 0 ? transformValue + announcementBarHeight : transformValue;
+      this.$root.style.setProperty('--transform-y', `${finalTransform}px`);
     } else {
 
       if (isClosing) {

@@ -1,7 +1,13 @@
 <div
-	class='    w-full pb-16 pt-14 lg:pt-[152px] flex flex-col gap-y-16 overflow-hidden'
+	class='w-full pb-16 flex flex-col gap-y-16 overflow-hidden'
+	style="padding-top: calc(56px + var(--announcement-bar-height, 0px));"
 	id='events'
 >
+	<style>
+		@media (min-width: 1024px) {
+			#events { padding-top: calc(152px + var(--announcement-bar-height, 0px)) !important; }
+		}
+	</style>
 	<div class='w-full flex flex-col gap-y-8 lg:grid grid-cols-20 gap-3 px-4 z-0 relative'>
 		<div class='col-span-7 col-start-4 spicy-body uppercase'>
 			{{ section.settings.title }}

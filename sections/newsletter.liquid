@@ -2,7 +2,7 @@
   aria-modal
   role="dialog"
   @set-consent.window="shouldOpen"
-  x-data="newsletter"
+  x-data="newsletter('{{ section.settings.listId }}', {{ section.settings.delay | default: 5 }})"
   
   class="absolute top-0 left-0 w-full bottom-0 flex items-end pointer-events-none z-50"
 >
@@ -23,7 +23,7 @@
         }
       "
       data-newsletter-content
-      class="w-full flex flex-col text-mahogany bg-chartreuse border-current border col-start-[16] col-span-5 {% if section.settings.image %}h-auto{% else %}h-[160px]{% endif %} sm:max-w-[360px] lg:max-w-none overflow-hidden"
+      class="w-full flex flex-col text-mahogany bg-chartreuse border-current border lg:col-start-[16] lg:col-span-5 {% if section.settings.image %}h-auto{% else %}h-[160px]{% endif %} sm:max-w-[360px] lg:max-w-none overflow-hidden ml-auto"
     >
       {% if section.settings.image %}
         <div class="w-full relative pb-[100%] border-b border-current">
@@ -69,6 +69,16 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image (optional)"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Popup delay (seconds)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "info": "Time to wait before showing popup after cookie banner is closed. 0 = immediate."
     }
   ],
   "presets": [

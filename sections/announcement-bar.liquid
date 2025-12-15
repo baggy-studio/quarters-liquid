@@ -14,7 +14,7 @@
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
     style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);"
-    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[51] h-[40px]"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[51] h-[40px] group"
     style="opacity: 0; transition: opacity 150ms ease-out;"
     :class="{
       'is-menu': isMenuOpen
@@ -36,18 +36,18 @@
           :class="{ 'is-scrolling': isScrolling }"
         >
           <div class="announcement-track flex" x-ref="track">
-            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px]">
+            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200">
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px]"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
               x-show="isScrolling"
               aria-hidden="true"
             >
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px]"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
               x-show="isScrolling"
               aria-hidden="true"
             >
@@ -76,12 +76,13 @@
     
     .announcement-bar {
       color: var(--header-theme, #643600);
+      transition: color 200ms linear;
+      transition-delay: 600ms;
     }
 
     .announcement-bar.is-menu {
-      color: #643600;
-      transition: color 200ms linear;
-      transition-delay: 300ms;
+        color: #643600;
+        transition-delay: 200ms;
     }
 
     .announcement-content {

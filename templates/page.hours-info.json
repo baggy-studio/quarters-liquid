@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "colors": {
@@ -25,35 +16,35 @@
         "image_8Xfmi9": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_William_Jess_Laird_45.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_William_Jess_Laird_45.jpg",
             "caption": "The Great Room"
           }
         },
         "image_V3wPaj": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_16.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_16.jpg",
             "caption": "The Dining Room"
           }
         },
         "image_aP3QXC": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Quarters_William_Jess_Laird_11.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Quarters_William_Jess_Laird_11.jpg",
             "caption": "The Salon"
           }
         },
         "image_kebFGQ": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_07.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_Strata_Quarters_Willliam_Jess_Laird_07.jpg",
             "caption": "The Great Room"
           }
         },
         "image_UfqELM": {
           "type": "image",
           "settings": {
-            "gallery_image": "shopify://shop_images/InCommonWith_William_Jess_Laird_Quarters_29.jpg",
+            "gallery_image": "shopify:\/\/shop_images\/InCommonWith_William_Jess_Laird_Quarters_29.jpg",
             "caption": "Reception"
           }
         }

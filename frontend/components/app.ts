@@ -182,15 +182,6 @@ export default (activeUrl: string = window.location.pathname) => ({
     const scaledAnnouncementHeight = announcementBarHeight * height;
     const totalHeight = progress + scaledAnnouncementHeight;
 
-    console.log('DEBUG updateMenuHeight:', {
-      height,
-      progress,
-      announcementBarHeight,
-      scaledAnnouncementHeight,
-      totalHeight,
-      menuHeight: this.menuHeight
-    });
-
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
       // For collection/product pages on desktop, account for announcement bar in the offset
       // The base offset is menuHeight - 161 (header height), plus announcement bar height

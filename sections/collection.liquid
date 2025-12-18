@@ -5,8 +5,8 @@
     id="shop"
   >
     <div
-      class="w-full border-t pt-2 border-current relative z-10"
-      :class="isSticky ? 'opacity-0 pointer-events-none transition-none' : 'transition-opacity duration-300 ease-linear'"
+      class="w-full border-t pt-2 border-current relative z-10 transition-none"
+      :class="isSticky ? 'opacity-0 pointer-events-none' : ''"
     >
       {% render 'collection-nav', menu: section.settings.menu %}
     </div>
@@ -219,7 +219,7 @@
         'pointer-events-auto opacity-100': isSticky && scrollDirection == 'up',
         'pointer-events-none opacity-0': !(isSticky && scrollDirection == 'up')
       }"
-      class="w-full sticky opacity-0 delay-0 z-20 transition-opacity duration-300 ease-linear"
+      class="w-full sticky opacity-0 delay-0 z-20 transition-none"
       :style="`top: calc(var(--announcement-bar-height, 0px) + 4rem)`"
     >
       <div

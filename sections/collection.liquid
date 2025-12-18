@@ -6,11 +6,7 @@
   >
     <div
       class="w-full border-t pt-2 border-current relative z-10"
-      :class="
-        {
-          'opacity-0': isSticky
-        }
-      "
+      :class="isSticky ? 'opacity-0 pointer-events-none transition-none' : 'transition-opacity duration-300 ease-linear'"
     >
       {% render 'collection-nav', menu: section.settings.menu %}
     </div>
@@ -220,11 +216,10 @@
   <div class="absolute z-10 top-0 left-0 bottom-0 w-full pointer-events-none px-4 lg:pt-16 lg:block hidden">
     <div
       :class="{
-        'pointer-events-auto': isSticky,
-        'opacity-0 delay-0': !isSticky,
-        'delay-700': scrollDirection == 'down'
+        'pointer-events-auto opacity-100': isSticky && scrollDirection == 'up',
+        'pointer-events-none opacity-0': !(isSticky && scrollDirection == 'up')
       }"
-      class="w-full sticky opacity-0 delay-0"
+      class="w-full sticky opacity-0 delay-0 z-20 transition-opacity duration-300 ease-linear"
       :style="`top: calc(var(--announcement-bar-height, 0px) + 4rem)`"
     >
       <div

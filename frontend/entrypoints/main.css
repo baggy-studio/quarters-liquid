@@ -138,7 +138,7 @@
 
     .nav-gradient::before {
         @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full block;
-        top:0;
+        top: calc(-1 * var(--announcement-bar-height, 0px));
         content: '';
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;

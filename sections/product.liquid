@@ -6,10 +6,10 @@
     x-data="productFullscreen"
   {% endunless %}
 >
-  <section class="lg:h-[calc(100vh+1px)] px-4 overflow-hidden" style="padding-top: calc(120px + var(--announcement-bar-height, 0px)); padding-top: calc(160px + var(--announcement-bar-height, 0px)) /* lg */;">
+    <section class="lg:h-[calc(100vh+1px)] px-4 overflow-hidden product-page" style="padding-top: calc(120px + var(--announcement-bar-height, 0px)); padding-top: calc(160px + var(--announcement-bar-height, 0px)) /* lg */;">
     <style>
       @media (min-width: 1024px) {
-        section { padding-top: calc(160px + var(--announcement-bar-height, 0px)) !important; }
+        section.product-page { padding-top: calc(160px + var(--announcement-bar-height, 0px)) !important; }
       }
     </style>
     <div class="w-full flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 lg:gap-3 border-b h-full border-current pt-[73px] lg:py-4 pb-12 relative">

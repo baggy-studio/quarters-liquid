@@ -106,19 +106,19 @@
 
     .cart-bottom-gradient {
         content: ''; ; 
-        @apply h-[120px] absolute left-0 bottom-0 w-full block pointer-events-none;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] absolute left-0 bottom-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
         transform: rotate(-180deg);
     }
 
     .cart-top-gradient {
         content: '';
-        @apply h-[120px] lg:h-[68px] absolute left-0 top-0 w-full block pointer-events-none;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(68px+var(--announcement-bar-height,0px))] absolute left-0 top-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
     .menu-top-gradient {
         content: '';
-        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
 
@@ -135,21 +135,24 @@
     }
 
     .nav-gradient::before {
-        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full block;
+        top:0;
         content: '';
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
 
     .bar-gradient::before {
-        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
+        top:0;
         content: '';
         background: linear-gradient(180deg, var(--bg) 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
     }
 
     .bar-gradient-vanilla::before {
-        @apply h-[120px] lg:h-[160px] sticky w-full top-0 block;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
+        top:0;
         content: '';
         background: linear-gradient(180deg, #F0DA8F 0%, rgba(250, 248, 236, 0) 100%);
         pointer-events: none;
@@ -169,19 +172,19 @@
     }
 
     .hero-bar-top-gradient {
-        @apply h-[160px] absolute left-0 top-0 w-full block pointer-events-none;
+        @apply h-[calc(160px+var(--announcement-bar-height,0px))] absolute left-0 top-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
     }
 
     .hero-bar-y-top {
-        @apply h-[120px] lg:h-[160px] absolute left-0 top-0 w-full block pointer-events-none z-[1];
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] absolute left-0 top-0 w-full block pointer-events-none z-[1];
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
     }
 
     .hero-bar-bottom {
-        @apply h-[120px] lg:h-[160px] absolute left-0 bottom-0 w-full block pointer-events-none z-[1];
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] absolute left-0 bottom-0 w-full block pointer-events-none z-[1];
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
         transform: rotate(-180deg);

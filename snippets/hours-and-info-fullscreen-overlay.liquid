@@ -14,7 +14,7 @@
       x-ref="fullscreenFixed"
       data-fullscreen-fixed
       class="
-        fixed top-0 left-0 h-screen w-full text-bone z-[100] lg:z-50
+        fixed top-0 left-0 h-screen w-full text-bone z-[100] lg:z-[53]
         pointer-events-none opacity-0 duration-300 ease-linear transition-opacity will-change-opacity
       "
       :class="{
@@ -88,11 +88,12 @@
               <a
                 href="/"
                 title="Quarters"
-                class="relative h-[22px] lg:h-[31px] w-[138px] lg:w-[185px]"
+                class="relative h-[22px] lg:h-[40px] w-[138px] lg:w-[154px]
+                "
                 :class="visible ? 'pointer-events-auto' : 'pointer-events-none'"
               >
                 <svg
-                  class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[185/31] shrink-0"
+                  class="fill-current h-full text-bone aspect-[138/22] lg:aspect-[154/40] shrink-0"
                 >
                   <use xlink:href="#wordmark"></use>
                 </svg>

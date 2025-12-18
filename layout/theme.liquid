@@ -9,6 +9,10 @@
 				display: none !important;
 			}
 		</style>
+
+		<style>
+			:root { --announcement-bar-height: 0px; }
+		</style>
 		<link rel='canonical' href='{{ canonical_url }}'>
 
 		{% if template == 'cart' %}
@@ -70,7 +74,6 @@
 							 
 							</div>
 						{% else %}
-						
 							<div class='bg-bone-tint body-bg'>
 								{{ content_for_layout }}
 							</div>

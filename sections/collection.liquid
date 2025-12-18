@@ -219,18 +219,19 @@
   {% render 'nav-gradient' %}
   <div class="absolute z-10 top-0 left-0 bottom-0 w-full pointer-events-none px-4 lg:pt-16 lg:block hidden">
     <div
-      :class="
-        {
+      :class="{
         'pointer-events-auto': isSticky,
         'opacity-0 delay-0': !isSticky,
-         'delay-700': scrollDirection == 'down'
-        }
-      "
-      class="w-full top-16 sticky opacity-0 delay-0"
+        'delay-700': scrollDirection == 'down'
+      }"
+      class="w-full sticky opacity-0 delay-0"
+      :style="`top: calc(var(--announcement-bar-height, 0px) + 4rem)`"
     >
       <div
         class="w-full h-max transition-transform ease-in-out duration-700 pt-2 border-t border-current"
-        :class="{ '-translate-y-[calc(100%+74px)]':  scrollDirection == 'down' }"
+        :style="scrollDirection == 'down'
+          ? 'transform: translateY(calc(-100% - 74px - var(--announcement-bar-height, 0px)))'
+          : ''"
       >
         {% render 'collection-nav', menu: section.settings.menu, clone: true %}
       </div>

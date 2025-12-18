@@ -105,7 +105,7 @@
     }
 
     .cart-bottom-gradient {
-        content: ''; ; 
+        content: ''; 
         @apply h-[calc(120px+var(--announcement-bar-height,0px))] absolute left-0 bottom-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
         transform: rotate(-180deg);
@@ -113,11 +113,13 @@
 
     .cart-top-gradient {
         content: '';
+        top:0;
         @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(68px+var(--announcement-bar-height,0px))] absolute left-0 top-0 w-full block pointer-events-none;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
     .menu-top-gradient {
         content: '';
+        top:0;
         @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }

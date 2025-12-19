@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "<p>Orders placed online will arrive after Dec 25th</p>",
+        "announcement_text": "<p>Please note, orders placed online will now be delivered post-Christmas.</p>",
         "animation_speed": 20
       }
     },

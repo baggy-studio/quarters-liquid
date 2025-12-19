@@ -13,9 +13,8 @@
   "sections": {
     "announcement_bar": {
       "type": "announcement-bar",
-      "disabled": true,
       "settings": {
-        "announcement_text": "<p>Closed for installation November 11th – November 18th. <a href=\"/collections/all\">Shop now</a></p>",
+        "announcement_text": "<p>Orders placed online will arrive after Dec 25th</p>",
         "animation_speed": 20
       }
     },

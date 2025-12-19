@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "aside",
   "name": "Aside",
@@ -5,24 +14,26 @@
     "cart_Vtp9qk": {
       "type": "cart",
       "settings": {
-        "emptyBody": "<p>Your bag is empty.<\/p>",
+        "emptyBody": "<p>Your bag is empty.</p>",
         "emptyCTAText": "Back to Shop",
-        "emptyCTALink": "shopify:\/\/collections\/all"
+        "emptyCTALink": "shopify://collections/all"
       }
     },
     "newsletter_WETVt4": {
       "type": "newsletter",
       "settings": {
-        "content": "<p>Stay up-to-date on new arrivals, special events, and other worthwhile diversions.<\/p>",
-        "listId": "VFb6cz"
+        "content": "<p>Stay up-to-date on new arrivals, special events, and other worthwhile diversions.</p>",
+        "listId": "VFb6cz",
+        "image": "shopify://shop_images/01112025_Quarters_Lifestyle_Furniture_DelfinoLoungeChairs_01.jpg",
+        "delay": 0
       }
     },
     "cookie_consent_KaJewp": {
       "type": "cookie-consent",
       "settings": {
-        "content": "<p>We use cookies to remember your preferences and personalize your experience.<\/p>",
+        "content": "<p>We use cookies to remember your preferences and personalize your experience.</p>",
         "ctaText": "View Privacy Policy",
-        "ctaUrl": "shopify:\/\/pages\/privacy-policy"
+        "ctaUrl": "shopify://pages/privacy-policy"
       }
     },
     "grid_bpk4Lw": {

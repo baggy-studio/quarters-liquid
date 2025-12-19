@@ -6,7 +6,7 @@ interface Response {
   errors?: string[];
 }
 
-export default (listId: string) => ({
+export default (listId: string, delay: number = 5) => ({
   visible: false,
   email: "",
   success: false,
@@ -85,6 +85,6 @@ export default (listId: string) => ({
   shouldOpen() {
     setTimeout(() => {
       this.visible = !cookie.get("newsletter");
-    }, 5000)
+    }, delay * 1000)
   }
 });

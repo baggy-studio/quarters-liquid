@@ -32,6 +32,7 @@ export default (collectionUrl) => ({
     swup.hooks.on('visit:start', this.visitStart)
 
     this.scrollHandler = () => this.scroll();
+    this.lastScrollY = window.scrollY || 0;
 
     window.addEventListener('scroll', this.scrollHandler, {
       signal: this.abortController.signal
@@ -67,6 +68,13 @@ export default (collectionUrl) => ({
   scroll() {
     const currentScrollY = window.scrollY;
 
+    // Account for dynamic announcement bar height when deciding sticky threshold
+    const annRaw = getComputedStyle(document.documentElement).getPropertyValue('--announcement-bar-height') || '0px';
+    const annHeight = parseInt(annRaw, 10) || 0;
+    // Match the padding-top of the original nav container (160px + announcement bar height)
+    const thresholdBase = 160;
+    const threshold = thresholdBase + annHeight;
+
     // Determine scroll direction by comparing current scroll position to the last one
     if (currentScrollY > this.lastScrollY) {
       this.scrollDirection = 'down';
@@ -74,9 +82,11 @@ export default (collectionUrl) => ({
       this.scrollDirection = 'up';
     }
 
-    if (currentScrollY > 96 && this.scrollDirection == 'up') {
+    // Only show sticky nav when scrolled past threshold AND scrolling up
+    // Hide when scrolling down or when at/below threshold (original nav is visible)
+    if (currentScrollY > threshold && this.scrollDirection == 'up') {
       this.isSticky = true
-    } else {
+    } else if (this.scrollDirection == 'down' || currentScrollY <= threshold) {
       this.isSticky = false
     }
 

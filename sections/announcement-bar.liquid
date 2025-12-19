@@ -1,0 +1,189 @@
+{% liquid
+  assign announcement_text = section.settings.announcement_text
+  assign speed = section.settings.animation_speed
+%}
+
+{% if announcement_text != blank %}
+  <div
+    x-data="announcementBar({{ speed }})"
+    x-ref="announcementBar"
+    x-show="isVisible"
+    x-cloak
+    x-init="$nextTick(() => $el.style.opacity = '1')"
+    x-transition:leave="transition-all duration-[1200ms]"
+    x-transition:leave-start="translate-y-0"
+    x-transition:leave-end="-translate-y-full"
+    style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group"
+    style="opacity: 0; transition: opacity 150ms ease-out;"
+    :class="{
+      'is-menu': isMenuOpen
+    }"
+  >
+
+    <div
+      class="relative z-10 mx-4"
+      x-ref="container"
+      :style="`--scroll-speed: ${speed}s`"
+    >
+      <div
+        class="announcement-content flex gap-1 md:justify-between h-[40px] items-center border-b border-current"
+        x-ref="content"
+        :class="{ 'is-scrolling': isScrolling }"
+      >
+        <div 
+          class="announcement-track-container flex-1 overflow-hidden"
+          :class="{ 'is-scrolling': isScrolling }"
+        >
+          <div class="announcement-track flex" x-ref="track">
+            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200">
+              {{ announcement_text }}
+            </span>
+            <span
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
+              x-show="isScrolling"
+              aria-hidden="true"
+            >
+              {{ announcement_text }}
+            </span>
+            <span
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
+              x-show="isScrolling"
+              aria-hidden="true"
+            >
+              {{ announcement_text }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Close button -->
+      <button
+        @click="close"
+        type="button"
+        class="h-[40px] flex items-center justify-center small-accent lg:text-[14.5px] hover:opacity-50 transition-opacity duration-300 ease-linear z-30"
+        aria-label="Close announcement"
+      >
+        (x)
+      </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <style>
+    [x-cloak] { display: none !important; }
+    
+    .announcement-bar {
+      color: var(--header-theme, #643600);
+      transition: color 200ms linear;
+      transition-delay: 600ms;
+    }
+
+    .announcement-bar.is-menu {
+        color: #643600;
+        transition-delay: 200ms;
+    }
+
+    .announcement-content {
+      position: relative;
+      width: 100%;
+    }
+
+    .announcement-content.is-scrolling {
+      cursor: pointer;
+    }
+
+    .announcement-text a {
+      text-decoration: underline;
+    }
+
+    .announcement-track-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcement-track-container.is-scrolling {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 40px,
+        black calc(100% - 40px),
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 40px,
+        black calc(100% - 40px),
+        transparent 100%
+      );
+    }
+
+    .announcement-track {
+      display: inline-flex;
+      will-change: transform;
+    }
+
+    .announcement-content.is-scrolling .announcement-track {
+      animation: marquee var(--scroll-speed, 20s) linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .announcement-content.is-scrolling .announcement-track {
+        animation: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    .announcement-content.is-scrolling.paused .announcement-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-33.333%);
+      }
+    }
+
+    .announcement-content[href]:hover, .announcement-text a:hover {
+      opacity: 0.9;
+      transition: opacity 0.2s ease;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "announcement-bar-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "<p>Free shipping on orders over $100 • New arrivals weekly • <a href=\"/collections/all\">Shop now</a></p>"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 20,
+      "info": "Lower is faster"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

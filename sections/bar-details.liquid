@@ -5,7 +5,12 @@
   "
   id="hours"
 >
-  <div class="w-full py-12 lg:pt-[147px] lg:pb-[160px]">
+  <div class="w-full py-12" style="padding-top: calc(48px + var(--announcement-bar-height, 0px)); padding-bottom: 48px;">
+    <style>
+      @media (min-width: 1024px) {
+        #hours > div { padding-top: calc(147px + var(--announcement-bar-height, 0px)) !important; padding-bottom: 160px !important; }
+      }
+    </style>
     <div class="w-full flex flex-col lg:grid lg:grid-cols-20 lg:gap-3 gap-y-12 lg:gap-y-[127px] px-4">
       <div class="col-span-8 spicy-body col-start-2 lg:rotate-[-2.5deg] richtext-hover-only">
         {{ section.settings.paragraph }}

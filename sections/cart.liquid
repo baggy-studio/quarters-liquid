@@ -4,7 +4,7 @@
     <button
       @click="$store.cart.close()"
       aria-label="Close bag"
-      class="medium-serif leading-none hidden lg:block transition-opacity duration-300 ease-linear hover:opacity-50"
+      class="medium-serif leading-none transition-opacity duration-300 ease-linear hover:opacity-50"
     >
       (Close)
     </button>
@@ -37,7 +37,7 @@
 <div
   x-data
   @keyup.escape.window="$store.cart.close"
-  class="fixed top-0 left-0 w-full h-full z-50 lg:grid lg:grid-cols-20 lg:gap-3 lg:px-4 pointer-events-none"
+  class="fixed top-0 left-0 w-full h-full z-[60] lg:grid lg:grid-cols-20 lg:gap-3 lg:px-4 pointer-events-none"
 >
   <script id="cart-data" type="application/json">
     {{ cart | json }}
@@ -67,6 +67,8 @@
       <div
         ref="container"
         class="w-full h-full flex flex-col overflow-scroll no-scrollbar pt-[120px] lg:pt-0"
+        style="padding-top: calc(120px + var(--announcement-bar-height, 0px));"
+        x-bind:style="window.innerWidth >= 1024 ? 'padding-top: 0;' : 'padding-top: calc(120px + var(--announcement-bar-height, 0px));'"
       >
         <div class="px-4 w-full" x-show="$store.cart.hasItems">
           <div

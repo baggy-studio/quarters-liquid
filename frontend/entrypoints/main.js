@@ -27,6 +27,7 @@ import footer from "@/components/footer";
 import barMenu from "@/components/sticky-bar-menu";
 import barMenus from "@/components/bar-menus";
 import video from "@/components/video";
+import announcementBar from "@/components/announcement-bar";
 import { store as cartStore } from "@/stores/cart";
 import { getQuantity, money } from "@/utils";
 
@@ -83,6 +84,7 @@ Alpine.data("hoursfullScreen", hoursfullScreen);
 Alpine.data("faqs", faqs);
 Alpine.data("barMenu", barMenu); 
 Alpine.data('video', video)
+Alpine.data('announcementBar', announcementBar)
 // Ensure DOM is ready before starting AlpineJS
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

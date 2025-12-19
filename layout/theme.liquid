@@ -9,6 +9,10 @@
 				display: none !important;
 			}
 		</style>
+
+		<style>
+			:root { --announcement-bar-height: 0px; }
+		</style>
 		<link rel='canonical' href='{{ canonical_url }}'>
 
 		{% if template == 'cart' %}
@@ -54,7 +58,7 @@
 		<a class='sr-only' href='#main'>Skip to main content</a>
 		<div class='relative' x-data='app' style='--menu-height: 0px; --transform-y: 0px;'>
 			<div class='contents' id='contents'>
-				{% section 'header' %}
+				{% sections 'header-group' %}
 				<div id='main'>
 					<main
 						class='relative will-change-transform lg:translate-y-[--transform-y] z-[1] body-bg'
@@ -70,7 +74,6 @@
 							 
 							</div>
 						{% else %}
-						
 							<div class='bg-bone-tint body-bg'>
 								{{ content_for_layout }}
 							</div>

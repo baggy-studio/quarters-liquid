@@ -1,5 +1,10 @@
 <div  x-data="hoursfullScreen()" class="relative">
-  <div class="pt-[120px] lg:pt-[160px] w-full px-4 overflow-x-clip z-10 relative pb-0 lg:pb-[64px]">
+  <div class="hours-info-container w-full px-4 overflow-x-clip z-10 relative pb-0 lg:pb-[64px]" style="padding-top: calc(120px + var(--announcement-bar-height, 0px));">
+    <style>
+      @media (min-width: 1024px) {
+        .hours-info-container { padding-top: calc(160px + var(--announcement-bar-height, 0px)) !important; }
+      }
+    </style>
     <div class="flex flex-col lg:grid grid-cols-20 gap-x-3 gap-y-[64px]">
       {% render 'hours-and-info-location', section: section %}
       {% render 'hours-and-info-content', section: section %}

@@ -34,6 +34,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   headerColor: getHeaderColor(),
   activeUrl: activeUrl,
   activeCollection: 0,
+  activeParent: 1,
   hoverCollection: null,
   aboveTheFold: true,
   isScrolling: false,
@@ -175,23 +176,37 @@ export default (activeUrl: string = window.location.pathname) => ({
   updateMenuHeight(height = 0, url = this.activeUrl, isClosing = false) {
 
     let progress = range(0, 1, 0, this.menuHeight, height);
+    const announcementBarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--announcement-bar-height') || '0');
+    
+    // Scale announcement bar height with the animation progress
+    const scaledAnnouncementHeight = announcementBarHeight * height;
+    const totalHeight = progress + scaledAnnouncementHeight;
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
-      this.$root.style.setProperty('--transform-y', `${range(0, 1, 0, this.menuHeight - 161, height)}px`);
+      // For collection/product pages on desktop, account for announcement bar in the offset
+      // The base offset is menuHeight - 161 (header height), plus announcement bar height
+      const baseOffset = this.menuHeight - 161 + announcementBarHeight;
+      const transformValue = range(0, 1, 0, baseOffset, height);
+      // When menu is closed (height = 0), add announcement bar height to push content down
+      const finalTransform = height === 0 ? transformValue + announcementBarHeight : transformValue;
+      this.$root.style.setProperty('--transform-y', `${finalTransform}px`);
     } else {
 
       if (isClosing) {
-        this.$root.style.setProperty('--transform-y', `${progress}px`);
+        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
       } else {
-        this.$root.style.setProperty('--transform-y', `${progress - 1}px`);
+        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
       }
 
     }
 
+    // Set menu-background-height to total (menu + scaled announcement bar)
+    this.$root.style.setProperty('--menu-background-height', `${totalHeight}px`);
+    
     if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {
       this.$root.style.setProperty('--menu-height', `${progress}px`);
     } else {
-      this.$root.style.setProperty('--menu-height', `${progress - 1}px`);
+      this.$root.style.setProperty('--menu-height', `${progress}px`);
     }
   },
   trackMenuHeight() {

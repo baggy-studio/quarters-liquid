@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "<p>The Quarters store will be closed from Dec 25 - January 5th. We look forward to welcoming you back on January 6th, 2026. </p>",
+        "announcement_text": "<p>Quarters will be closed from December 25th - January 5th. We look forward to welcoming you back on January 6th, 2026. </p>",
         "animation_speed": 20
       }
     },

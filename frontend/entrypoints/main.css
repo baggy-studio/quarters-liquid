@@ -120,11 +120,11 @@
     .menu-top-gradient {
         content: '';
         top:0;
-        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
+        @apply h-[calc(120px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
 
-        @media (min-width: 1024px) {
+    @media (min-width: 1024px) {
         .menu-top-gradient {
             height: calc(160px + var(--announcement-bar-height, 0px));
         }

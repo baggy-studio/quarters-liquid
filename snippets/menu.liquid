@@ -8,7 +8,7 @@
 	style='clip-path: inset(0 0 calc(100% - var(--menu-height)) 0)'
 	class='fixed lg:absolute text-mahogany flex flex-col top-0 left-0 w-full h-svh lg:px-4 overflow-scroll lg:pt-20 lg:pb-8 lg:overflow-hidden lg:h-auto pb-4 lg:grid lg:grid-cols-20 gap-x-3 after:absolute after:left-4 after:right-4 after:bottom-0 after:h-[1px] after:bg-current after:hidden {% if template == "collection" or template == "product" %}lg:after:block{% endif %}'
 >
-	<ul class='flex flex-col gap-1.5 lg:gap-0 relative px-4 lg:px-0 w-full pt-[120px]  pb-[107px] lg:py-0 lg:col-span-5'>
+	<ul class='flex flex-col gap-1.5 lg:gap-0 relative px-4 lg:px-0 w-full pb-[107px] lg:py-0 lg:col-span-5' style='padding-top: calc(120px + var(--announcement-bar-height, 0px));'>
 		{% for navLink in menu.links %}
 			{% unless navLink.title == 'Mobile Only' %}
 				<li

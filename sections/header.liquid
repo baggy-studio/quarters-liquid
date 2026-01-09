@@ -48,7 +48,7 @@
         :class="
           {
             'opacity-0': !hasHeader && !menu,
-            'opacity-100 lg:opacity-0': $store.cart.visible && window.innerWidth < 1024,
+            'opacity-100 lg:opacity-0': $store.cart.visible && window.innerWidth < 1024 && activeUrl !== '/',
             'pointer-events-auto': activeUrl !== '/' || menu
           }
         "

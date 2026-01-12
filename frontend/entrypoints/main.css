@@ -119,7 +119,7 @@
     }
     .menu-top-gradient {
         content: '';
-        top: -80px;
+        top: -20px;
         @apply h-[calc(120px+var(--announcement-bar-height,0px))] sticky w-full block;
         background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }

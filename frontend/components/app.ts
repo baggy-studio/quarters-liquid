@@ -44,6 +44,16 @@ export default (activeUrl: string = window.location.pathname) => ({
   init() {
     this.trackMenuHeight();
 
+    // Watch for forced theme changes and update CSS variable on document root
+    (this as any).$watch('isForcedTheme', (theme: 'light' | 'dark' | null) => {
+      if (theme) {
+        const color = theme === 'light' ? '#F4EED0' : '#643600';
+        document.documentElement.style.setProperty('--header-theme', color);
+      } else {
+        document.documentElement.style.setProperty('--header-theme', this.headerColor);
+      }
+    });
+
     swup.hooks.before('content:replace', (visit) => {
       this.activeUrl = visit.to.url;
       this.isForcedTheme = null

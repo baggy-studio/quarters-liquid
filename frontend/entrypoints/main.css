@@ -344,19 +344,28 @@ html.is-leaving #main,
 }
 
 
-nav {
+nav,
+.announcement-bar {
     color: var(--header-theme);
-    @apply delay-[600ms]
+    transition-delay: 600ms;
 }
 
 html.is-changing nav,
+html.is-changing .announcement-bar,
 html.is-changing header h1 a,
 html.is-changing header h1 a svg:last-child {
-    @apply delay-0;
+    transition-delay: 0s;
 }
 
-nav.is-menu {
-    @apply text-mahogany delay-300;
+nav.delay-0,
+.announcement-bar.delay-0 {
+    transition-delay: 0s !important;
+}
+
+nav.is-menu,
+.announcement-bar.is-menu {
+    color: #643600;
+    transition-delay: 300ms;
 }
 
 @media (max-width: 1023px) {

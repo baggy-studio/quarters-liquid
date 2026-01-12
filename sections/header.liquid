@@ -106,7 +106,7 @@
       {
         'is-menu': menu,
         'is-cart': $store.cart.visible,
-        'delay-0': isScrolling || forcedHeaderColor
+        'delay-0': (isScrolling || forcedHeaderColor) && !menu && !animating
       }
     "
     :style="`--header-theme: ${forcedHeaderColor || headerColor}`"

@@ -14,10 +14,11 @@
     x-transition:leave-start="translate-y-0"
     x-transition:leave-end="-translate-y-full"
     style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);"
-    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group transition-colors ease-linear duration-200"
     style="opacity: 0; transition: opacity 150ms ease-out;"
     :class="{
-      'is-menu': isMenuOpen
+      'is-menu': isMenuOpen,
+      'delay-0': isPageScrolling
     }"
   >
 
@@ -73,15 +74,6 @@
 
   <style>
     [x-cloak] { display: none !important; }
-    
-    .announcement-bar {
-      color: var(--header-theme, #643600);
-      transition: color 200ms linear 0ms;
-    }
-
-    .announcement-bar.is-menu {
-        color: #643600;
-    }
 
     .announcement-content {
       position: relative;

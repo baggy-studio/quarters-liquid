@@ -3,13 +3,15 @@ import { swup } from "@/entrypoints/swup";
 export default (speed = 20) => {
   // Check sessionStorage immediately before Alpine initializes
   const isDismissed = sessionStorage.getItem('announcement-bar-dismissed') === 'true';
-  
+
   return {
     isScrolling: false,
     hasStartedScrolling: false,
     isPaused: false,
     isVisible: !isDismissed,
     isMenuOpen: false,
+    isPageScrolling: false,
+    hasForcedHeaderColor: false,
     speed: speed,
     resizeObserver: null,
     contentReplace: null,
@@ -26,8 +28,13 @@ export default (speed = 20) => {
     if (nav) {
       const menuObserver = new MutationObserver(() => {
         this.isMenuOpen = nav.classList.contains('is-menu');
+        this.isPageScrolling = nav.classList.contains('delay-0');
       });
       menuObserver.observe(nav, { attributes: true, attributeFilter: ['class'] });
+
+      // Set initial state
+      this.isMenuOpen = nav.classList.contains('is-menu');
+      this.isPageScrolling = nav.classList.contains('delay-0');
     }
 
     // Check if scrolling is needed on mount - add delay for proper rendering

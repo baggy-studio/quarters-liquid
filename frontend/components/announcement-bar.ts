@@ -12,7 +12,6 @@ export default (speed = 20) => {
     isMenuOpen: false,
     isPageScrolling: false,
     hasForcedHeaderColor: false,
-    forcedTheme: null as 'light' | 'dark' | null,
     speed: speed,
     resizeObserver: null,
     contentReplace: null,
@@ -138,10 +137,5 @@ export default (speed = 20) => {
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     }, 300); // Match transition duration
   },
-
-  get forcedColor() {
-    if (!this.forcedTheme) return null;
-    return this.forcedTheme === 'light' ? '#F4EED0' : '#643600';
-  }
 };
 };

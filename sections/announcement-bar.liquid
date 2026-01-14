@@ -15,7 +15,7 @@
     x-transition:leave-end="-translate-y-full"
     style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1); opacity: 0;"
     class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group transition-colors ease-linear duration-200"
-    :style="forcedColor ? `color: ${forcedColor}` : ''"
+    :style="forcedColor && !$data.menu ? `color: ${forcedColor}` : ''"
     :class="{
       'is-menu': $data.menu,
       'delay-0': ($data.isScrolling || $data.forcedHeaderColor) && !$data.menu && !$data.animating

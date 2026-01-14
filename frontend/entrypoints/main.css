@@ -119,9 +119,9 @@
     }
     .menu-top-gradient {
         content: '';
-        top: -40px;
-        @apply h-[calc(120px+var(--announcement-bar-height,0px))] sticky w-full block;
-        background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
+        bottom: 0;
+        @apply h-[120px] absolute w-full block;
+        background: linear-gradient(0deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
     }
 
     @media (min-width: 1024px) {
@@ -224,7 +224,6 @@
 
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
-        border: 1px solid #FF0000;
         transform: rotate(-90deg);
     }
 

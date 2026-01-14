@@ -347,6 +347,7 @@ html.is-leaving #main,
 nav,
 .announcement-bar {
     color: var(--header-theme);
+    transition: color 200ms ease-linear;
     transition-delay: 600ms;
 }
 

@@ -12,6 +12,7 @@ export default (speed = 20) => {
     isMenuOpen: false,
     isPageScrolling: false,
     hasForcedHeaderColor: false,
+    forcedTheme: null as 'light' | 'dark' | null,
     speed: speed,
     resizeObserver: null,
     contentReplace: null,
@@ -22,20 +23,6 @@ export default (speed = 20) => {
         document.documentElement.style.setProperty('--announcement-bar-height', '0px');
         return;
       }
-
-    // Watch for menu state changes by observing the nav element
-    const nav = document.querySelector('nav');
-    if (nav) {
-      const menuObserver = new MutationObserver(() => {
-        this.isMenuOpen = nav.classList.contains('is-menu');
-        this.isPageScrolling = nav.classList.contains('delay-0');
-      });
-      menuObserver.observe(nav, { attributes: true, attributeFilter: ['class'] });
-
-      // Set initial state
-      this.isMenuOpen = nav.classList.contains('is-menu');
-      this.isPageScrolling = nav.classList.contains('delay-0');
-    }
 
     // Check if scrolling is needed on mount - add delay for proper rendering
     this.$nextTick(() => {
@@ -145,11 +132,16 @@ export default (speed = 20) => {
   close() {
     this.isVisible = false;
     sessionStorage.setItem('announcement-bar-dismissed', 'true');
-    
+
     // Animate height to 0 and update CSS variable
     setTimeout(() => {
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     }, 300); // Match transition duration
+  },
+
+  get forcedColor() {
+    if (!this.forcedTheme) return null;
+    return this.forcedTheme === 'light' ? '#F4EED0' : '#643600';
   }
 };
 };

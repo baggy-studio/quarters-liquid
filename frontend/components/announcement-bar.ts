@@ -9,6 +9,7 @@ export default (speed = 20) => {
     hasStartedScrolling: false,
     isPaused: false,
     isVisible: !isDismissed,
+    isHidden: isDismissed, // Track if fully hidden (after animation completes)
     isMenuOpen: false,
     isPageScrolling: false,
     hasForcedHeaderColor: false,
@@ -136,6 +137,11 @@ export default (speed = 20) => {
     setTimeout(() => {
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     }, 300); // Match transition duration
+
+    // Mark as fully hidden after the leave transition completes (1200ms)
+    setTimeout(() => {
+      this.isHidden = true;
+    }, 1200);
   },
 };
 };

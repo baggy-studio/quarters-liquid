@@ -153,7 +153,7 @@
         position: sticky;
         width: 100%;
         display: block;
-        height: calc(120px + (2 * var(--announcement-bar-height, 0px)) + env(safe-area-inset-top, 0px));
+        height: calc(160px + var(--announcement-bar-height, 0px) + env(safe-area-inset-top, 0px));
         top: calc(-2 * (var(--announcement-bar-height, 0px) + env(safe-area-inset-top, 0px)));
         content: '';
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);

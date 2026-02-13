@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "",
+        "announcement_text": "<p>Quarters will be closed for scheduled maintenance on Tuesday February 17, reopening on Wednesday February 18.</p>",
         "animation_speed": 20
       }
     },

@@ -24,6 +24,7 @@
     style="z-index: -1;"
   ></div>
   {% render 'menu', menu: section.settings.menu %}
+  {% render 'search-overlay', section: section %}
 <h1
     :class="{ 'is-menu': menu }"
     x-init="$nextTick(() => $el.style.opacity = '1')"
@@ -111,9 +112,9 @@
     "
     :style="`--header-theme: ${forcedHeaderColor || headerColor}`"
     style="top: var(--announcement-bar-height, 0px);"
-    class="absolute left-0 w-full flex items-start justify-between h-max p-4 pt-3 transition-colors ease-linear duration-200"
+    class="absolute left-0 w-full flex items-start h-max p-4 pt-3 transition-colors ease-linear duration-200 gap-4"
   >
-    <ul class="hidden lg:flex items-center gap-16">
+    <ul class="hidden lg:flex items-center gap-16 shrink-0">
       {% for link in section.settings.menu.links %}
         {% unless link.title == 'Mobile Only' %}
           <li class="contents">
@@ -138,52 +139,63 @@
         {% endunless %}
       {% endfor %}
     </ul>
-    <button
-      @click="toggleMenu"
-      title="Toggle Menu"
-      class="lg:hidden nav-link"
-      :class="menu || $store.cart.visible ? 'opacity-0' : 'pointer-events-auto'"
-    >
-      Menu
-    </button>
-    <button
-      @click="closeMenu"
-      title="Close Menu"
-      x-cloak
-      x-show="menu"
-      class="lg:hidden nav-link pointer-events-auto"
-    >
-      (Close)
-    </button>
-    <button
-      :title="$store.cart.visible ? 'Close Bag' : 'View Bag'"
-      :class="menu && 'hidden'"
-      @click="$store.cart.toggle()"
-      class="nav-link relative lg:block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto"
-    >
-      <span
-        :class="
-          {
-            'opacity-0': $store.cart.visible,
-            '': !$store.cart.visible
-          }
-        "
-        class="lg:contents transition-opacity duration-300 ease-linear"
-        >Bag (<span class="contents" x-number="$store.cart.count">
-          {%- render 'prefix-number', number: cart.item_count -%}</span
-        >)</span
+    <div class="flex flex-1 min-w-0 items-center justify-between lg:justify-end">
+      <button
+        @click="toggleMenu"
+        title="Toggle Menu"
+        class="lg:hidden nav-link shrink-0"
+        :class="menu || $store.cart.visible || searchOpen ? 'opacity-0 pointer-events-none' : 'pointer-events-auto'"
       >
-      <span
-        :class="
-          {
-            '': $store.cart.visible,
-            'opacity-0': !$store.cart.visible
-          }
-        "
-        class="opacity-0 text-right transition-opacity duration-300 ease-linear lg:hidden absolute left-0 top-0 w-full h-full pointer-events-none flex items-center justify-end"
-        >(Close)</span
-      >
-    </button>
+        Menu
+      </button>
+      <div class="flex items-center gap-4 lg:gap-12">
+        <button
+          @click="closeMenu"
+          title="Close Menu"
+          x-cloak
+          x-show="menu"
+          class="lg:hidden nav-link pointer-events-auto"
+        >
+          (Close)
+        </button>
+        <button
+          @click="toggleSearch"
+          title="Search"
+          class="nav-link hidden lg:inline-block group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto whitespace-nowrap"
+        >
+          Search
+        </button>
+        <button
+          :title="$store.cart.visible ? 'Close Bag' : 'View Bag'"
+          :class="menu && 'hidden lg:inline-block'"
+          @click="$store.cart.toggle()"
+          class="nav-link relative group-[.is-menu]:opacity-50 group-[.is-menu]:delay-200 group-[.is-menu]:hover:delay-0 group-[.is-menu]:hover:opacity-100 pointer-events-auto whitespace-nowrap"
+        >
+          <span
+            :class="
+              {
+                'opacity-0': $store.cart.visible,
+                '': !$store.cart.visible
+              }
+            "
+            class="lg:contents transition-opacity duration-300 ease-linear"
+            >Bag (<span class="contents" x-number="$store.cart.count">
+              {%- render 'prefix-number', number: cart.item_count -%}</span
+            >)</span
+          >
+          <span
+            :class="
+              {
+                '': $store.cart.visible,
+                'opacity-0': !$store.cart.visible
+              }
+            "
+            class="opacity-0 text-right transition-opacity duration-300 ease-linear lg:hidden absolute left-0 top-0 w-full h-full pointer-events-none flex items-center justify-end"
+            >(Close)</span
+          >
+        </button>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -224,7 +236,22 @@
       "id": "contact",
       "label": "Mobile Contact"
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "popular_search",
+      "name": "Popular search",
+      "settings": [
+        {
+          "type": "text",
+          "id": "term",
+          "label": "Search term",
+          "info": "Links to your store search results for this text."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 30
 }
 {% endschema %}
 

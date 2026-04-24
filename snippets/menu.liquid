@@ -83,13 +83,16 @@
 			{% endunless %}
 		{% endfor %}
 		<li class='block lg:hidden'>
-			<a
-				href='{{ routes.search_url }}'
+			<button
+				@click='closeMenu().then(() => openSearch())'
 				title='Search'
 				class='menu-item'
 			>
 				Search
-			</a>
+			</button>
+			<noscript>
+				<a href='{{ routes.search_url }}' title='Search' class='menu-item'>Search</a>
+			</noscript>
 		</li>
 	</ul>
 	<ul class='px-4 flex flex-col gap-2 lg:hidden'>

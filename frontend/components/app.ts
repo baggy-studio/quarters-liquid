@@ -41,6 +41,8 @@ export default (activeUrl: string = window.location.pathname) => ({
   scrollTimeout: null,
   scrollY: 0,
   isForcedTheme: null,
+  searchOpen: false,
+  searchClosing: false,
   init() {
     this.trackMenuHeight();
 
@@ -63,6 +65,10 @@ export default (activeUrl: string = window.location.pathname) => ({
     swup.hooks.on('animation:out:start', (visit) => {
       if (this.menu) {
         this.closeMenu();
+      }
+
+      if (this.searchOpen) {
+        this.closeSearch();
       }
 
       const fromTheme = this.getThemeForUrl(visit.from.url);
@@ -183,41 +189,66 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.openMenu();
     }
   },
-  updateMenuHeight(height = 0, url = this.activeUrl, isClosing = false) {
-
-    let progress = range(0, 1, 0, this.menuHeight, height);
+  async openSearch() {
+    if (this.searchOpen || this.searchClosing) return;
+    if (this.menu) this.closeMenu();
+    this.searchOpen = true;
+    this.lockScroll();
+    await (this as any).$nextTick();
+    const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
+    if (!panel) return;
+    panel.style.setProperty('--search-clip-height', '0px');
+    await (this as any).$nextTick();
+    const h = panel.scrollHeight;
+    await animate((progress) => {
+      panel.style.setProperty('--search-clip-height', `${h * progress}px`);
+    }, { duration: 1.2, easing: expoInOut }).finished;
+    const input = document.getElementById('search-input') as HTMLInputElement | null;
+    if (input) input.focus();
+  },
+  async closeSearch() {
+    if (this.searchClosing) return;
+    if (!this.searchOpen) return;
+    const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
+    const h = panel?.scrollHeight ?? 0;
+    this.searchOpen = false;
+    this.searchClosing = true;
+    if (panel && h > 0) {
+      await animate((progress) => {
+        panel.style.setProperty('--search-clip-height', `${h * (1 - progress)}px`);
+      }, { duration: 1.2, easing: expoInOut }).finished;
+      panel.style.removeProperty('--search-clip-height');
+    }
+    this.searchClosing = false;
+    this.unlockScroll();
+  },
+  toggleSearch() {
+    if (this.searchOpen) {
+      this.closeSearch();
+    } else {
+      this.openSearch();
+    }
+  },
+  getTransformYValues(progress01: number, extentPx: number, url: string) {
+    const progress = range(0, 1, 0, extentPx, progress01);
     const announcementBarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--announcement-bar-height') || '0');
-    
-    // Scale announcement bar height with the animation progress
-    const scaledAnnouncementHeight = announcementBarHeight * height;
+    const scaledAnnouncementHeight = announcementBarHeight * progress01;
     const totalHeight = progress + scaledAnnouncementHeight;
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
-      // For collection/product pages on desktop, account for announcement bar in the offset
-      // The base offset is menuHeight - 161 (header height), plus announcement bar height
-      const baseOffset = this.menuHeight - 161 + announcementBarHeight;
-      const transformValue = range(0, 1, 0, baseOffset, height);
-      // When menu is closed (height = 0), add announcement bar height to push content down
-      const finalTransform = height === 0 ? transformValue + announcementBarHeight : transformValue;
-      this.$root.style.setProperty('--transform-y', `${finalTransform}px`);
-    } else {
-
-      if (isClosing) {
-        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
-      } else {
-        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
-      }
-
+      const baseOffset = extentPx - 161 + announcementBarHeight;
+      const transformValue = range(0, 1, 0, baseOffset, progress01);
+      const finalTransform = progress01 === 0 ? transformValue + announcementBarHeight : transformValue;
+      return { totalHeight, menuHeightProgress: progress, transformY: finalTransform };
     }
 
-    // Set menu-background-height to total (menu + scaled announcement bar)
+    return { totalHeight, menuHeightProgress: progress, transformY: totalHeight };
+  },
+  updateMenuHeight(height = 0, url = this.activeUrl, _isClosing = false) {
+    const { totalHeight, menuHeightProgress, transformY } = this.getTransformYValues(height, this.menuHeight, url);
+    this.$root.style.setProperty('--transform-y', `${transformY}px`);
     this.$root.style.setProperty('--menu-background-height', `${totalHeight}px`);
-    
-    if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {
-      this.$root.style.setProperty('--menu-height', `${progress}px`);
-    } else {
-      this.$root.style.setProperty('--menu-height', `${progress}px`);
-    }
+    this.$root.style.setProperty('--menu-height', `${menuHeightProgress}px`);
   },
   trackMenuHeight() {
     this.menuHeight = this.$refs.menu.getBoundingClientRect().height;

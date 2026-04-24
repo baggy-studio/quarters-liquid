@@ -1,0 +1,119 @@
+{% doc %}
+  Renders the search overlay panel. Controlled by `searchOpen` state on the parent `app` Alpine component.
+
+  Popular suggestions come from Header section blocks of type `popular_search` (text setting `term`).
+
+  @param {section} section - The header section (pass `section` from `sections/header.liquid`).
+
+  @example
+  {% render 'search-overlay', section: section %}
+{% enddoc %}
+
+{%- liquid
+  assign popular_blocks = section.blocks | where: 'type', 'popular_search'
+  assign has_popular_terms = false
+  for block in popular_blocks
+    if block.settings.term != blank
+      assign has_popular_terms = true
+    endif
+  endfor
+-%}
+
+<div
+  x-show="searchOpen || searchClosing"
+  x-cloak
+  @keyup.escape.window="closeSearch"
+  class="pointer-events-none fixed left-0 right-0 z-[55] top-0 h-dvh min-h-dvh max-lg:max-h-dvh
+    lg:top-[var(--announcement-bar-height,0px)] lg:bottom-0 lg:h-max lg:min-h-0 lg:max-h-none"
+>
+  <button
+    type="button"
+    @click="closeSearch"
+    :class="(searchOpen || searchClosing) ? 'pointer-events-auto' : 'pointer-events-none'"
+    class="absolute inset-0 border-0 bg-transparent p-0 cursor-pointer"
+    aria-label="Close search"
+    tabindex="-1"
+  ></button>
+
+  <div
+    x-ref="searchPanel"
+    class="search-panel pointer-events-auto fixed left-0 right-0 z-[1] w-full overflow-hidden bg-bone-tint text-mahogany
+      top-0 h-dvh min-h-0
+      lg:top-[var(--announcement-bar-height,0px)] lg:bottom-0 lg:h-max lg:min-h-0
+      pt-[120px] lg:pt-[160px]"
+    style="clip-path: inset(0 0 calc(100% - var(--search-clip-height, 0px)) 0);"
+  >
+    <a
+      href="/"
+      title="Quarters"
+      @click="closeSearch"
+      class="absolute left-1/2 top-[0.7rem] z-10 -translate-x-1/2 pointer-events-auto h-[22px] lg:h-[40px] w-[138px] lg:w-[154px] shrink-0"
+    >
+      <svg
+        class="fill-current h-full w-full text-mahogany aspect-[138/22] lg:aspect-[154/40]"
+        style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+    </a>
+    <button
+      type="button"
+      @click="closeSearch"
+      title="Cancel search"
+      class="absolute z-10 right-4 top-3 nav-link pointer-events-auto text-right"
+    >
+      (Cancel)
+    </button>
+    <div class="w-full px-4 pb-8 flex flex-col gap-14 lg:gap-[60px]">
+
+      <div class="w-full flex flex-col gap-1">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          @submit="closeSearch"
+          class="w-full flex items-end justify-between gap-4"
+        >
+          <input
+            id="search-input"
+            type="search"
+            name="q"
+            autocomplete="off"
+            placeholder="Search for..."
+            class="flex-1 bg-transparent outline-none font-serif text-[22px] lg:text-[24px] leading-[1.25] text-mahogany placeholder:text-mahogany min-w-0"
+          >
+          <button
+            type="submit"
+            class="subheading opacity-50 hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0 pb-[3px]"
+          >
+            Enter
+          </button>
+        </form>
+        <div class="w-full border-t border-current"></div>
+      </div>
+
+      {%- if has_popular_terms -%}
+        <div class="flex flex-col gap-[19px]">
+          <p class="subheading">Popular Searches</p>
+          <ul class="flex flex-col gap-2 lg:gap-0">
+            {%- for block in popular_blocks -%}
+              {%- if block.settings.term != blank -%}
+                <li {{ block.shopify_attributes }}>
+                  <a
+                    href="{{ routes.search_url }}?q={{ block.settings.term | url_encode }}"
+                    title="{{ block.settings.term | escape }}"
+                    @click="closeSearch"
+                    class="medium-serif hover:opacity-50 transition-opacity duration-200 ease-linear block leading-[20px]"
+                  >
+                    {{- block.settings.term | escape -}}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>

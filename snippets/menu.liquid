@@ -82,6 +82,15 @@
 				</li>
 			{% endunless %}
 		{% endfor %}
+		<li class='block lg:hidden'>
+			<a
+				href='{{ routes.search_url }}'
+				title='Search'
+				class='menu-item'
+			>
+				Search
+			</a>
+		</li>
 	</ul>
 	<ul class='px-4 flex flex-col gap-2 lg:hidden'>
 		{% for navLink in menu.links %}

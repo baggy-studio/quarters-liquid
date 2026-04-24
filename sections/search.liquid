@@ -1,0 +1,70 @@
+<div
+  id="search"
+  class="w-full px-4"
+  style="padding-top: calc(var(--announcement-bar-height, 0px) + 120px);"
+>
+  <style>
+    @media (min-width: 1024px) {
+      #search { padding-top: calc(var(--announcement-bar-height, 0px) + 160px) !important; }
+    }
+  </style>
+
+  <div class="w-full min-h-screen pb-32 lg:pb-36">
+    <div class="w-full border-t border-current pt-2 flex items-start gap-3 relative">
+      {%- if search.performed and search.terms != blank -%}
+        {%- if search.results_count > 0 -%}
+          <h1 class="subheading">
+            {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for &ldquo;{{ search.terms | escape }}&rdquo;
+          </h1>
+        {%- else -%}
+          <h1 class="subheading">
+            No results for &ldquo;{{ search.terms | escape }}&rdquo;
+          </h1>
+        {%- endif -%}
+        <a
+          href="{{ routes.search_url }}"
+          title="Clear search"
+          class="subheading collection-link ml-auto lg:hidden"
+        >
+          (Clear search)
+        </a>
+        <div class="hidden lg:flex absolute inset-x-0 top-2 justify-center pointer-events-none">
+          <a
+            href="{{ routes.search_url }}"
+            title="Clear search"
+            class="subheading collection-link pointer-events-auto"
+          >
+            (Clear search)
+          </a>
+        </div>
+      {%- else -%}
+        <h1 class="subheading">
+          {{ section.settings.empty_heading }}
+        </h1>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Empty state heading",
+      "default": "Search the shop"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Search"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["search"]
+  }
+}
+{% endschema %}

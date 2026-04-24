@@ -1,5 +1,14 @@
 {
   "general": {
+    "search": {
+      "aria_results": "Search results",
+      "products": "Products",
+      "other": "Other",
+      "view_all": "View all results",
+      "no_results": "No results found for “{{ terms }}”.",
+      "no_results_help": "Please check the spelling, or try a different word.",
+      "shop_all": "Shop all items"
+    },
     "social": {
       "links": {
         "twitter": "Twitter",

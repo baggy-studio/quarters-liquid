@@ -43,6 +43,23 @@ export default (activeUrl: string = window.location.pathname) => ({
   isForcedTheme: null,
   searchOpen: false,
   searchClosing: false,
+  searchQuery: '',
+  searchPopularMinChars: 2,
+  predictiveEmpty: false,
+  predictiveLoading: false,
+  /** True when the suggest mount has markup; with x-show avoids flex gap when idle */
+  predictiveHasSurface: false,
+  predictiveAbort: null as AbortController | null,
+  get showSearchPopular() {
+    const q = (this.searchQuery ?? '').trim();
+    return q.length < this.searchPopularMinChars;
+  },
+  get searchEnterOpacityClass() {
+    const q = (this.searchQuery ?? '').trim();
+    if (q.length < this.searchPopularMinChars) return 'opacity-50';
+    if (this.predictiveLoading) return 'opacity-50';
+    return this.predictiveEmpty ? 'opacity-50' : 'opacity-100';
+  },
   init() {
     this.trackMenuHeight();
 
@@ -189,6 +206,76 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.openMenu();
     }
   },
+  clearPredictiveSearchResults() {
+    const mount = document.getElementById('predictive-search-results');
+    if (mount) mount.innerHTML = '';
+    this.predictiveEmpty = false;
+    this.predictiveHasSurface = false;
+  },
+  onPredictiveInput() {
+    const q = (this.searchQuery ?? '').trim();
+    if (q.length < this.searchPopularMinChars) {
+      this.clearPredictiveSearchResults();
+      return;
+    }
+    this.fetchPredictiveSearch(q);
+  },
+  selectPopularSearchTerm(term: string | undefined) {
+    const raw = term ?? '';
+    this.searchQuery = raw;
+    const q = raw.trim();
+    if (q.length < this.searchPopularMinChars) {
+      this.clearPredictiveSearchResults();
+    } else {
+      this.fetchPredictiveSearch(q);
+    }
+    void (this as any).$nextTick(() => {
+      document.getElementById('search-input')?.focus();
+    });
+  },
+  async fetchPredictiveSearch(q: string) {
+    if (this.predictiveAbort) this.predictiveAbort.abort();
+    this.predictiveAbort = new AbortController();
+    const root = (window as any).Shopify?.routes?.root ?? '/';
+    const params = new URLSearchParams({
+      q,
+      section_id: 'predictive-search',
+      'resources[type]': 'product,collection,page,article',
+      'resources[limit]': '10',
+      'resources[limit_scope]': 'each',
+    });
+    const url = `${root}search/suggest?${params.toString()}`;
+    this.predictiveLoading = true;
+    try {
+      const res = await fetch(url, {
+        signal: this.predictiveAbort.signal,
+        headers: { Accept: 'text/html' },
+      });
+      if (!res.ok) {
+        if (res.status !== 429) {
+          const mountErr = document.getElementById('predictive-search-results');
+          if (mountErr) mountErr.innerHTML = '';
+        }
+        return;
+      }
+      const text = await res.text();
+      const parsed = new DOMParser().parseFromString(text, 'text/html');
+      const sectionEl = parsed.querySelector('[id^="shopify-section-"]');
+      const mount = document.getElementById('predictive-search-results');
+      if (!mount) return;
+      mount.innerHTML = sectionEl ? sectionEl.innerHTML : '';
+      const rootEl = mount.querySelector('#predictive-search');
+      this.predictiveEmpty = rootEl?.getAttribute('data-predictive-state') === 'empty';
+    } catch (e) {
+      if ((e as Error).name === 'AbortError') return;
+      const mountFail = document.getElementById('predictive-search-results');
+      if (mountFail) mountFail.innerHTML = '';
+    } finally {
+      this.predictiveLoading = false;
+      const m = document.getElementById('predictive-search-results');
+      this.predictiveHasSurface = !!(m && m.innerHTML.trim().length > 0);
+    }
+  },
   async openSearch() {
     if (this.searchOpen || this.searchClosing) return;
     if (this.menu) this.closeMenu();
@@ -197,12 +284,11 @@ export default (activeUrl: string = window.location.pathname) => ({
     await (this as any).$nextTick();
     const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
     if (!panel) return;
-    panel.style.setProperty('--search-clip-height', '0px');
-    await (this as any).$nextTick();
-    const h = panel.scrollHeight;
+    panel.style.setProperty('--search-clip-progress', '0');
     await animate((progress) => {
-      panel.style.setProperty('--search-clip-height', `${h * progress}px`);
+      panel.style.setProperty('--search-clip-progress', String(progress));
     }, { duration: 1.2, easing: expoInOut }).finished;
+    panel.style.removeProperty('--search-clip-progress');
     const input = document.getElementById('search-input') as HTMLInputElement | null;
     if (input) input.focus();
   },
@@ -210,14 +296,14 @@ export default (activeUrl: string = window.location.pathname) => ({
     if (this.searchClosing) return;
     if (!this.searchOpen) return;
     const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
-    const h = panel?.scrollHeight ?? 0;
     this.searchOpen = false;
     this.searchClosing = true;
-    if (panel && h > 0) {
+    if (panel) {
+      panel.style.setProperty('--search-clip-progress', '1');
       await animate((progress) => {
-        panel.style.setProperty('--search-clip-height', `${h * (1 - progress)}px`);
+        panel.style.setProperty('--search-clip-progress', String(1 - progress));
       }, { duration: 1.2, easing: expoInOut }).finished;
-      panel.style.removeProperty('--search-clip-height');
+      panel.style.removeProperty('--search-clip-progress');
     }
     this.searchClosing = false;
     this.unlockScroll();

@@ -2,6 +2,7 @@
   Renders the search overlay panel. Controlled by `searchOpen` state on the parent `app` Alpine component.
 
   Popular suggestions come from Header section blocks of type `popular_search` (text setting `term`).
+  Predictive results mount in `#predictive-search-results` (fetched from `/search/suggest`).
 
   @param {section} section - The header section (pass `section` from `sections/header.liquid`).
 
@@ -37,14 +38,14 @@
 
   <div
     x-ref="searchPanel"
-    class="search-panel pointer-events-auto fixed left-0 right-0 z-[1] w-full overflow-hidden bg-bone-tint text-mahogany
+    class="search-panel pointer-events-auto fixed left-0 right-0 z-[1] w-full flex flex-col overflow-hidden bg-bone-tint text-mahogany
       top-0 h-dvh min-h-0
       lg:top-[var(--announcement-bar-height,0px)] lg:bottom-0 lg:h-max lg:min-h-0
       pt-[120px] lg:pt-[160px]"
-    style="clip-path: inset(0 0 calc(100% - var(--search-clip-height, 0px)) 0);"
+    style="clip-path: inset(0 0 calc((1 - var(--search-clip-progress, 1)) * 100%) 0);"
   >
     <a
-      href="/"
+      href="{{ routes.root_url }}"
       title="Quarters"
       @click="closeSearch"
       class="absolute left-1/2 top-[0.7rem] z-10 -translate-x-1/2 pointer-events-auto h-[22px] lg:h-[40px] w-[138px] lg:w-[154px] shrink-0"
@@ -64,9 +65,9 @@
     >
       (Cancel)
     </button>
-    <div class="w-full px-4 pb-8 flex flex-col gap-14 lg:gap-[60px]">
+    <div class="flex flex-col flex-1 min-h-0 overflow-y-auto w-full px-4 pb-8 gap-14 lg:gap-[60px]">
 
-      <div class="w-full flex flex-col gap-1">
+      <div class="w-full flex flex-col gap-1 shrink-0">
         <form
           action="{{ routes.search_url }}"
           method="get"
@@ -76,15 +77,18 @@
         >
           <input
             id="search-input"
-            type="search"
+            type="text"
             name="q"
             autocomplete="off"
             placeholder="Search for..."
+            x-model="searchQuery"
+            @input.debounce.280ms="onPredictiveInput()"
             class="flex-1 bg-transparent outline-none font-serif text-[22px] lg:text-[24px] leading-[1.25] text-mahogany placeholder:text-mahogany min-w-0"
           >
           <button
             type="submit"
-            class="subheading opacity-50 hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0 pb-[3px]"
+            class="subheading hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0 pb-[3px]"
+            :class="searchEnterOpacityClass"
           >
             Enter
           </button>
@@ -92,21 +96,31 @@
         <div class="w-full border-t border-current"></div>
       </div>
 
+      <div
+        id="predictive-search-results"
+        class="w-full shrink-0 min-h-0"
+        x-show="predictiveLoading || predictiveHasSurface"
+        x-cloak
+        aria-live="polite"
+        :aria-busy="predictiveLoading"
+      ></div>
+
       {%- if has_popular_terms -%}
-        <div class="flex flex-col gap-[19px]">
+        <div class="flex flex-col gap-[19px]" x-show="showSearchPopular" x-cloak>
           <p class="subheading">Popular Searches</p>
           <ul class="flex flex-col gap-2 lg:gap-0">
             {%- for block in popular_blocks -%}
               {%- if block.settings.term != blank -%}
                 <li {{ block.shopify_attributes }}>
-                  <a
-                    href="{{ routes.search_url }}?q={{ block.settings.term | url_encode }}"
+                  <button
+                    type="button"
+                    data-popular-term="{{ block.settings.term | escape }}"
                     title="{{ block.settings.term | escape }}"
-                    @click="closeSearch"
-                    class="medium-serif hover:opacity-50 transition-opacity duration-200 ease-linear block leading-[20px]"
+                    @click="selectPopularSearchTerm($event.currentTarget.dataset.popularTerm)"
+                    class="medium-serif hover:opacity-50 transition-opacity duration-200 ease-linear block w-full text-left leading-[20px] bg-transparent border-0 p-0 cursor-pointer text-inherit"
                   >
                     {{- block.settings.term | escape -}}
-                  </a>
+                  </button>
                 </li>
               {%- endif -%}
             {%- endfor -%}

@@ -28,11 +28,11 @@
     {%- if has_any -%}
       {%- comment -%}
         Mobile/tablet (Figma 1461:4739): stacked sections, gap 60px; PRODUCTS/OTHER use 19px heading-to-list
-        and 8px between links; product titles only (no thumbnails). Desktop: 18-col grid, image cards, OTHER sidebar.
+        and 8px between links; product titles only (no thumbnails). Desktop: 20-col grid, image cards, OTHER in last 5 cols.
       {%- endcomment -%}
       <div class="flex flex-col gap-[60px] lg:grid lg:grid-cols-20 lg:gap-x-3 lg:gap-y-[60px] lg:items-start">
         {%- if product_count > 0 -%}
-          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none lg:gap-0 {% if show_other %}lg:col-span-13{% else %}lg:col-span-18{% endif %}">
+          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none lg:gap-0 {% if show_other %}lg:col-span-13{% else %}lg:col-span-20{% endif %}">
             <p class="subheading lg:mb-5">{{ 'general.search.products' | t }}</p>
             <div class="flex flex-col gap-2 lg:grid lg:grid-cols-4 lg:gap-[35px]">
               {%- for product in ps_products limit: 4 -%}
@@ -67,7 +67,7 @@
         {%- endif -%}
 
         {%- if show_other -%}
-          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none {% if product_count > 0 %}lg:col-span-5{% else %}lg:col-span-18{% endif %}">
+          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none {% if product_count > 0 %}lg:col-span-5 lg:col-start-[16]{% else %}lg:col-span-20{% endif %}">
             <p class="subheading">{{ 'general.search.other' | t }}</p>
             <ul class="flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5">
               {%- for collection in ps_collections limit: 4 -%}
@@ -105,8 +105,8 @@
         {%- endif -%}
 
         <a
-          href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}"
-          class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear {% if product_count > 0 and show_other %}lg:col-span-13{% else %}lg:col-span-18{% endif %}"
+          href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&type=product"
+          class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear {% if product_count > 0 and show_other %}lg:col-span-13{% else %}lg:col-span-20{% endif %}"
         >
           {{- 'general.search.view_all' | t -}}
         </a>

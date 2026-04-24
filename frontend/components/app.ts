@@ -284,11 +284,15 @@ export default (activeUrl: string = window.location.pathname) => ({
     await (this as any).$nextTick();
     const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
     if (!panel) return;
+    panel.classList.remove('search-panel--open');
+    panel.classList.add('search-panel--clip-driven');
     panel.style.setProperty('--search-clip-progress', '0');
     await animate((progress) => {
       panel.style.setProperty('--search-clip-progress', String(progress));
     }, { duration: 1.2, easing: expoInOut }).finished;
     panel.style.removeProperty('--search-clip-progress');
+    panel.classList.remove('search-panel--clip-driven');
+    panel.classList.add('search-panel--open');
     const input = document.getElementById('search-input') as HTMLInputElement | null;
     if (input) input.focus();
   },
@@ -299,11 +303,14 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.searchOpen = false;
     this.searchClosing = true;
     if (panel) {
+      panel.classList.remove('search-panel--open');
+      panel.classList.add('search-panel--clip-driven');
       panel.style.setProperty('--search-clip-progress', '1');
       await animate((progress) => {
         panel.style.setProperty('--search-clip-progress', String(1 - progress));
       }, { duration: 1.2, easing: expoInOut }).finished;
       panel.style.removeProperty('--search-clip-progress');
+      panel.classList.remove('search-panel--clip-driven');
     }
     this.searchClosing = false;
     this.unlockScroll();

@@ -20,6 +20,10 @@
   endfor
 -%}
 
+{%- comment -%}
+  Backdrop z-[55] and panel z-[57] are siblings so the header scrim can use z-[56] and receive
+  outside clicks while the panel stays above the scrim.
+{%- endcomment -%}
 <div
   x-show="searchOpen || searchClosing"
   x-cloak
@@ -31,18 +35,24 @@
     type="button"
     @click="closeSearch"
     :class="(searchOpen || searchClosing) ? 'pointer-events-auto' : 'pointer-events-none'"
-    class="absolute inset-0 border-0 bg-transparent p-0 cursor-pointer"
+    class="absolute inset-0 z-0 border-0 bg-transparent p-0 cursor-pointer"
     aria-label="Close search"
     tabindex="-1"
   ></button>
+</div>
 
+<div
+  x-show="searchOpen || searchClosing"
+  x-cloak
+  class="pointer-events-none fixed left-0 right-0 z-[57] top-0 h-dvh min-h-dvh max-lg:max-h-dvh
+    lg:top-[var(--announcement-bar-height,0px)] lg:bottom-0 lg:h-max lg:min-h-0 lg:max-h-none"
+>
   <div
     x-ref="searchPanel"
     class="search-panel pointer-events-auto fixed left-0 right-0 z-[1] w-full flex flex-col overflow-hidden bg-bone-tint text-mahogany
       top-0 h-dvh min-h-0
       lg:top-[var(--announcement-bar-height,0px)] lg:bottom-0 lg:h-max lg:min-h-0
       pt-[120px] lg:pt-[160px]"
-    style="clip-path: inset(0 0 calc((1 - var(--search-clip-progress, 1)) * 100%) 0);"
   >
     <a
       href="{{ routes.root_url }}"
@@ -75,6 +85,7 @@
           @submit="closeSearch"
           class="w-full flex items-end justify-between gap-4"
         >
+          <input type="hidden" name="type" value="product">
           <input
             id="search-input"
             type="text"
@@ -131,3 +142,4 @@
     </div>
   </div>
 </div>
+

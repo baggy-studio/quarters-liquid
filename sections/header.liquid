@@ -10,14 +10,16 @@
   @set-theme.window="isForcedTheme = $event.detail"
 >
   <button
-    :class="
-      {
-        'opacity-0': !menu,
-        'pointer-events-auto': menu
-      }
-    "
-    class="absolute top-0 left-0 h-full w-full opacity-0 delay-[400ms] bg-bone-tint/30 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
-    @click="closeMenu"
+    type="button"
+    aria-hidden="true"
+    @click="closeMenu(); closeSearch()"
+    :class="{
+      'opacity-0': !menu && !searchOpen && !searchClosing,
+      'opacity-100': menu,
+      'pointer-events-auto': menu || searchOpen || searchClosing,
+      'z-[56]': searchOpen || searchClosing
+    }"
+    class="absolute top-0 left-0 h-full w-full delay-[400ms] bg-bone-tint/30 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
   ></button>
   <div
     class="menu-background fixed top-0 left-0 right-0 pointer-events-none"

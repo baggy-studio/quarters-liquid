@@ -282,6 +282,19 @@
         @apply bg-transparent border-bone border hover:bg-bone hover:text-mahogany;
     }
 
+    /* Search overlay panel: SSR-safe default fully clipped; --clip-driven uses inline --search-clip-progress while animating */
+    .search-panel {
+        clip-path: inset(0 0 100% 0);
+    }
+
+    .search-panel.search-panel--clip-driven {
+        clip-path: inset(0 0 calc((1 - var(--search-clip-progress, 0)) * 100%) 0);
+    }
+
+    .search-panel.search-panel--open {
+        clip-path: none;
+    }
+
 }
 
 /*

@@ -12,16 +12,16 @@
   <div class="w-full min-h-screen pb-32 lg:pb-36 text-mahogany">
     {%- if search.performed -%}
       {%- if search.terms != blank -%}
-        <div class="w-full border-t border-current pt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between relative z-10">
+        <div class="w-full border-t border-current pt-2 flex flex-row items-center justify-between gap-3 relative z-10">
           {%- assign search_terms_safe = search.terms | escape -%}
           {%- if search.results_count > 0 -%}
             <h1 class="subheading shrink-0">
               {{ 'general.search.results_for' | t: terms: search_terms_safe }}
             </h1>
             <a
-              href="{{ routes.search_url }}"
+              href="{{ routes.all_products_collection_url }}"
               title="{{ 'general.search.clear_search' | t }}"
-              class="subheading collection-link shrink-0 sm:text-right"
+              class="subheading collection-link shrink-0 sm:text-right lg:hidden"
             >
               ({{ 'general.search.clear_search' | t }})
             </a>
@@ -30,13 +30,25 @@
               {{ 'general.search.no_results' | t: terms: search_terms_safe }}
             </h1>
             <a
-              href="{{ routes.search_url }}"
+              href="{{ routes.all_products_collection_url }}"
               title="{{ 'general.search.clear_search' | t }}"
-              class="subheading collection-link shrink-0 sm:ml-auto sm:text-right"
+              class="subheading collection-link shrink-0 sm:text-right lg:hidden"
             >
               ({{ 'general.search.clear_search' | t }})
             </a>
           {%- endif -%}
+          {%- comment -%} Viewport-centered duplicate for lg+ (escapes section padding via w-screen) {%- endcomment -%}
+          <div
+            class="pointer-events-none absolute left-1/2 top-0 z-[1] hidden w-screen -translate-x-1/2 text-center lg:block"
+          >
+            <a
+              href="{{ routes.all_products_collection_url }}"
+              title="{{ 'general.search.clear_search' | t }}"
+              class="subheading collection-link pointer-events-auto inline-block"
+            >
+              ({{ 'general.search.clear_search' | t }})
+            </a>
+          </div>
         </div>
 
         {%- if search.results_count > 0 -%}

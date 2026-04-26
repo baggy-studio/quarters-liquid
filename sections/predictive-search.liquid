@@ -28,46 +28,44 @@
     {%- if has_any -%}
       {%- comment -%}
         Mobile/tablet (Figma 1461:4739): stacked sections, gap 60px; PRODUCTS/OTHER use 19px heading-to-list
-        and 8px between links; product titles only (no thumbnails). Desktop: 20-col grid, image cards, OTHER in last 5 cols.
+        and 8px between links; product titles only (no thumbnails). Desktop: 20-col grid, PRODUCTS always reserves 13 cols, OTHER in last 5 cols.
       {%- endcomment -%}
       <div class="flex flex-col gap-[60px] lg:grid lg:grid-cols-20 lg:gap-x-3 lg:gap-y-[60px] lg:items-start">
-        {%- if product_count > 0 -%}
-          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none lg:gap-0 {% if show_other %}lg:col-span-13{% else %}lg:col-span-20{% endif %}">
-            <p class="subheading lg:mb-5">{{ 'general.search.products' | t }}</p>
-            <div class="flex flex-col gap-2 lg:grid lg:grid-cols-4 lg:gap-[35px]">
-              {%- for product in ps_products limit: 4 -%}
-                <a
-                  href="{{ product.url }}"
-                  class="group flex min-w-0 flex-col gap-2 text-left max-lg:min-h-[20px] max-lg:justify-center"
-                >
-                  <div class="relative hidden aspect-[201/252] w-full overflow-hidden bg-bone lg:block">
-                    {%- if product.featured_image != blank -%}
-                      {%- assign img_h = 800 -%}
-                      {%- if product.featured_image.aspect_ratio > 0 -%}
-                        {%- assign img_h = 800 | divided_by: product.featured_image.aspect_ratio | round -%}
-                      {%- endif -%}
-                      <img
-                        src="{{ product.featured_image | image_url: width: 800 }}"
-                        alt="{{ product.featured_image.alt | default: product.title | escape }}"
-                        width="800"
-                        height="{{ img_h }}"
-                        loading="lazy"
-                        decoding="async"
-                        class="absolute inset-0 size-full object-cover transition-opacity duration-200 group-hover:opacity-90"
-                      >
+        <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-13 lg:max-w-none lg:gap-0">
+          <p class="subheading lg:mb-5">{{ 'general.search.products' | t }}</p>
+          <div class="flex flex-col gap-2 lg:grid lg:min-h-[1px] lg:grid-cols-4 lg:gap-[35px]">
+            {%- for product in ps_products limit: 4 -%}
+              <a
+                href="{{ product.url }}"
+                class="group flex min-w-0 flex-col gap-2 text-left max-lg:min-h-[20px] max-lg:justify-center"
+              >
+                <div class="relative hidden aspect-[201/252] w-full overflow-hidden bg-bone lg:block">
+                  {%- if product.featured_image != blank -%}
+                    {%- assign img_h = 800 -%}
+                    {%- if product.featured_image.aspect_ratio > 0 -%}
+                      {%- assign img_h = 800 | divided_by: product.featured_image.aspect_ratio | round -%}
                     {%- endif -%}
-                  </div>
-                  <span class="medium-serif text-base leading-5 lg:text-[14px] lg:leading-[17px]">
-                    {{- product.title | escape -}}
-                  </span>
-                </a>
-              {%- endfor -%}
-            </div>
+                    <img
+                      src="{{ product.featured_image | image_url: width: 800 }}"
+                      alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                      width="800"
+                      height="{{ img_h }}"
+                      loading="lazy"
+                      decoding="async"
+                      class="absolute inset-0 size-full object-cover transition-opacity duration-200 group-hover:opacity-90"
+                    >
+                  {%- endif -%}
+                </div>
+                <span class="medium-serif text-base leading-5 lg:text-[14px] lg:leading-[17px]">
+                  {{- product.title | escape -}}
+                </span>
+              </a>
+            {%- endfor -%}
           </div>
-        {%- endif -%}
+        </div>
 
         {%- if show_other -%}
-          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:max-w-none {% if product_count > 0 %}lg:col-span-5 lg:col-start-[16]{% else %}lg:col-span-20{% endif %}">
+          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none">
             <p class="subheading">{{ 'general.search.other' | t }}</p>
             <ul class="flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5">
               {%- for collection in ps_collections limit: 4 -%}
@@ -106,7 +104,7 @@
 
         <a
           href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&type=product"
-          class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear {% if product_count > 0 and show_other %}lg:col-span-13{% else %}lg:col-span-20{% endif %}"
+          class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear lg:col-span-13 lg:col-start-1"
         >
           {{- 'general.search.view_all' | t -}}
         </a>

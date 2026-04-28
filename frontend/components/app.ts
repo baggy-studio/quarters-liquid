@@ -282,35 +282,35 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.searchOpen = true;
     this.lockScroll();
     await (this as any).$nextTick();
-    const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
-    if (!panel) return;
-    panel.classList.remove('search-panel--open');
-    panel.classList.add('search-panel--clip-driven');
-    panel.style.setProperty('--search-clip-progress', '0');
+    const clipHost = (this as any).$refs.searchClipHost as HTMLElement | undefined;
+    if (!clipHost) return;
+    clipHost.classList.remove('search-overlay-clip-host--open');
+    clipHost.classList.add('search-overlay-clip-host--clip-driven');
+    clipHost.style.setProperty('--search-clip-progress', '0');
     await animate((progress) => {
-      panel.style.setProperty('--search-clip-progress', String(progress));
+      clipHost.style.setProperty('--search-clip-progress', String(progress));
     }, { duration: 1.2, easing: expoInOut }).finished;
-    panel.style.removeProperty('--search-clip-progress');
-    panel.classList.remove('search-panel--clip-driven');
-    panel.classList.add('search-panel--open');
+    clipHost.style.removeProperty('--search-clip-progress');
+    clipHost.classList.remove('search-overlay-clip-host--clip-driven');
+    clipHost.classList.add('search-overlay-clip-host--open');
     const input = document.getElementById('search-input') as HTMLInputElement | null;
     if (input) input.focus();
   },
   async closeSearch() {
     if (this.searchClosing) return;
     if (!this.searchOpen) return;
-    const panel = (this as any).$refs.searchPanel as HTMLElement | undefined;
+    const clipHost = (this as any).$refs.searchClipHost as HTMLElement | undefined;
     this.searchOpen = false;
     this.searchClosing = true;
-    if (panel) {
-      panel.classList.remove('search-panel--open');
-      panel.classList.add('search-panel--clip-driven');
-      panel.style.setProperty('--search-clip-progress', '1');
+    if (clipHost) {
+      clipHost.classList.remove('search-overlay-clip-host--open');
+      clipHost.classList.add('search-overlay-clip-host--clip-driven');
+      clipHost.style.setProperty('--search-clip-progress', '1');
       await animate((progress) => {
-        panel.style.setProperty('--search-clip-progress', String(1 - progress));
+        clipHost.style.setProperty('--search-clip-progress', String(1 - progress));
       }, { duration: 1.2, easing: expoInOut }).finished;
-      panel.style.removeProperty('--search-clip-progress');
-      panel.classList.remove('search-panel--clip-driven');
+      clipHost.style.removeProperty('--search-clip-progress');
+      clipHost.classList.remove('search-overlay-clip-host--clip-driven');
     }
     this.searchClosing = false;
     this.unlockScroll();

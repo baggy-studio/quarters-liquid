@@ -282,16 +282,16 @@
         @apply bg-transparent border-bone border hover:bg-bone hover:text-mahogany;
     }
 
-    /* Search overlay panel: SSR-safe default fully clipped; --clip-driven uses inline --search-clip-progress while animating */
-    .search-panel {
+    /* Search overlay outer shell: clip reveals panel + chrome; --clip-driven uses inline --search-clip-progress while animating */
+    .search-overlay-clip-host {
         clip-path: inset(0 0 100% 0);
     }
 
-    .search-panel.search-panel--clip-driven {
+    .search-overlay-clip-host.search-overlay-clip-host--clip-driven {
         clip-path: inset(0 0 calc((1 - var(--search-clip-progress, 0)) * 100%) 0);
     }
 
-    .search-panel.search-panel--open {
+    .search-overlay-clip-host.search-overlay-clip-host--open {
         clip-path: none;
     }
 

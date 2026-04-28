@@ -1,4 +1,6 @@
 import { swup } from "@/entrypoints/swup";
+import { animate } from "motion";
+import { expoInOut } from "@/easing";
 
 export default (speed = 20) => {
   // Check sessionStorage immediately before Alpine initializes
@@ -9,12 +11,11 @@ export default (speed = 20) => {
     hasStartedScrolling: false,
     isPaused: false,
     isVisible: !isDismissed,
-    isHidden: isDismissed, // Track if fully hidden (after animation completes)
+    isClosing: false,
     isMenuOpen: false,
     isPageScrolling: false,
     hasForcedHeaderColor: false,
     speed: speed,
-    resizeObserver: null,
     contentReplace: null,
 
     init() {
@@ -32,16 +33,6 @@ export default (speed = 20) => {
       }, 50);
     });
 
-    // Setup resize observer to check when viewport changes
-    this.resizeObserver = new ResizeObserver(() => {
-      this.checkScrollNeeded();
-      this.setAnnouncementBarHeight();
-    });
-
-    if (this.$refs.container) {
-      this.resizeObserver.observe(this.$refs.container);
-    }
-
     // Setup swup hook for page transitions
     this.contentReplace = () => {
       this.checkScrollNeeded();
@@ -57,9 +48,6 @@ export default (speed = 20) => {
   },
 
   destroy() {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
     if (this.contentReplace) {
       swup.hooks.off('content:replace', this.contentReplace);
     }
@@ -86,8 +74,6 @@ export default (speed = 20) => {
 
     // Enable scrolling if content is wider than container
     const shouldScroll = contentWidth > containerWidth;
-
-    console.log('Container width:', containerWidth, 'Content width:', contentWidth, 'Should scroll:', shouldScroll);
 
     if (shouldScroll && !this.isScrolling) {
       this.isScrolling = true;
@@ -129,19 +115,33 @@ export default (speed = 20) => {
     }
   },
 
-  close() {
-    this.isVisible = false;
+  async close() {
+    if (this.isClosing || !this.isVisible) return;
+
+    this.isClosing = true;
     sessionStorage.setItem('announcement-bar-dismissed', 'true');
 
-    // Animate height to 0 and update CSS variable
-    setTimeout(() => {
+    const bar = this.$refs.announcementBar as HTMLElement | undefined;
+    if (!bar) {
+      this.isVisible = false;
+      this.isClosing = false;
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
-    }, 300); // Match transition duration
+      return;
+    }
 
-    // Mark as fully hidden after the leave transition completes (1200ms)
-    setTimeout(() => {
-      this.isHidden = true;
-    }, 1200);
+    const startHeight = bar.offsetHeight;
+    bar.style.height = `${startHeight}px`;
+
+    await animate((progress) => {
+      const height = startHeight * (1 - progress);
+      bar.style.height = `${height}px`;
+      document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
+    }, { duration: 1.2, easing: expoInOut }).finished;
+
+    bar.style.removeProperty('height');
+    document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+    this.isVisible = false;
+    this.isClosing = false;
   },
 };
 };

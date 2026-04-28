@@ -1,5 +1,4 @@
 <header
-  x-init="$nextTick(() => setTimeout(() => $el.classList.add('header-loaded'), 100))"
   :class="
     {
       'is-animating': animating
@@ -260,10 +259,6 @@
 <style>
   [x-cloak] { display: none !important; }
   
-  header.header-loaded {
-    transition: top 300ms linear;
-  }
-
   .menu-background {
     height: var(--menu-background-height, 0px);
     background-color: #FAF8EC;

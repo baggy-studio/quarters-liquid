@@ -11,10 +11,58 @@
   "sections": {
     "main": {
       "type": "page-settings",
+      "settings": {
+        "headerTheme": "dark",
+        "textColor": "#643600",
+        "backgroundColor": "#faf8ec",
+        "footerTextColor": "#faf8ec",
+        "footerBackgroundColor": "#643600"
+      }
+    },
+    "17774710892004d66c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_226dcbc_wVnenW": {
+          "type": "ai_gen_block_226dcbc",
+          "settings": {
+            "featured_article": "news/sit-down-with-alex-crowder-of-field-studies-flora",
+            "sidebar_article_1": "",
+            "sidebar_article_2": "",
+            "sidebar_article_3": "",
+            "show_category": true,
+            "show_excerpt": true,
+            "show_author": true,
+            "show_date": true,
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "grid_gap": 30,
+            "sidebar_gap": 30,
+            "content_spacing": 20,
+            "image_border_radius": 0,
+            "featured_title_size": 42,
+            "category_font_size": 12,
+            "excerpt_font_size": 16,
+            "meta_font_size": 14,
+            "sidebar_title_size": 16,
+            "sidebar_category_size": 10,
+            "sidebar_meta_size": 12,
+            "background_color": "#ffffff",
+            "title_color": "#000000",
+            "text_color": "#333333",
+            "category_color": "#666666",
+            "meta_color": "#666666"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_226dcbc_wVnenW"
+      ],
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "17774710892004d66c"
   ]
 }

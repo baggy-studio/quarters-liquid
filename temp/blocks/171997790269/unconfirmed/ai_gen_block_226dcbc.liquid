@@ -1,6 +1,587 @@
+{% doc %}
+  @prompt
+    A magazine-style editorial layout
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-layout-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-editorial-layout__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ai-editorial-layout__featured-{{ ai_gen_id }} {
+    grid-column: span 8;
+    position: relative;
+  }
+
+  .ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    background-color: #f4f4f4;
+  }
+
+  .ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-layout__featured-content-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-editorial-layout__category-{{ ai_gen_id }} {
+    display: inline-block;
+    font-size: {{ block.settings.category_font_size }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: {{ block.settings.category_color }};
+    margin-bottom: 12px;
+  }
+
+  .ai-editorial-layout__featured-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.featured_title_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 16px 0;
+  }
+
+  .ai-editorial-layout__featured-excerpt-{{ ai_gen_id }} {
+    font-size: {{ block.settings.excerpt_font_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 20px;
+  }
+
+  .ai-editorial-layout__meta-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: {{ block.settings.meta_font_size }}px;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-editorial-layout__author-{{ ai_gen_id }} {
+    font-weight: 500;
+  }
+
+  .ai-editorial-layout__date-{{ ai_gen_id }} {
+    opacity: 0.8;
+  }
+
+  .ai-editorial-layout__sidebar-{{ ai_gen_id }} {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.sidebar_gap }}px;
+  }
+
+  .ai-editorial-layout__sidebar-item-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+  }
+
+  .ai-editorial-layout__sidebar-image-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-editorial-layout__sidebar-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-layout__sidebar-image-wrapper-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-layout__sidebar-content-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ai-editorial-layout__sidebar-category-{{ ai_gen_id }} {
+    font-size: {{ block.settings.sidebar_category_size }}px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: {{ block.settings.category_color }};
+    margin-bottom: 8px;
+  }
+
+  .ai-editorial-layout__sidebar-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.sidebar_title_size }}px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 8px 0;
+  }
+
+  .ai-editorial-layout__sidebar-date-{{ ai_gen_id }} {
+    font-size: {{ block.settings.sidebar_meta_size }}px;
+    color: {{ block.settings.meta_color }};
+    opacity: 0.8;
+  }
+
+  .ai-editorial-layout__link-{{ ai_gen_id }} {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-editorial-layout__link-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  .ai-editorial-layout__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-editorial-layout__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-editorial-layout__featured-{{ ai_gen_id }},
+    .ai-editorial-layout__sidebar-{{ ai_gen_id }} {
+      grid-column: span 1;
+    }
+
+    .ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }} {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-editorial-layout-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding | times: 0.6 }}px 16px;
+    }
+
+    .ai-editorial-layout__featured-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.featured_title_size | times: 0.7 }}px;
+    }
+
+    .ai-editorial-layout__sidebar-image-wrapper-{{ ai_gen_id }} {
+      width: 100px;
+      height: 100px;
+    }
+  }
+{% endstyle %}
+
+<editorial-layout-{{ ai_gen_id }}
+  class="ai-editorial-layout-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-editorial-layout__container-{{ ai_gen_id }}">
+    <article class="ai-editorial-layout__featured-{{ ai_gen_id }}">
+      {% if block.settings.featured_article != blank %}
+        <a
+          href="{{ block.settings.featured_article.url }}"
+          class="ai-editorial-layout__link-{{ ai_gen_id }}"
+        >
+          <div class="ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.featured_article.image %}
+              <img
+                src="{{ block.settings.featured_article.image | image_url: width: 1200 }}"
+                alt="{{ block.settings.featured_article.image.alt | escape }}"
+                loading="lazy"
+                width="1200"
+                height="1600"
+              >
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+        </a>
+        <div class="ai-editorial-layout__featured-content-{{ ai_gen_id }}">
+          {% if block.settings.show_category and block.settings.featured_article.tags.size > 0 %}
+            <span class="ai-editorial-layout__category-{{ ai_gen_id }}">
+              {{ block.settings.featured_article.tags.first }}
+            </span>
+          {% endif %}
+          <h2 class="ai-editorial-layout__featured-title-{{ ai_gen_id }}">
+            <a
+              href="{{ block.settings.featured_article.url }}"
+              class="ai-editorial-layout__link-{{ ai_gen_id }}"
+            >
+              {{ block.settings.featured_article.title }}
+            </a>
+          </h2>
+          {% if block.settings.show_excerpt and block.settings.featured_article.excerpt != blank %}
+            <div class="ai-editorial-layout__featured-excerpt-{{ ai_gen_id }}">
+              {{ block.settings.featured_article.excerpt | strip_html | truncate: 200 }}
+            </div>
+          {% endif %}
+          <div class="ai-editorial-layout__meta-{{ ai_gen_id }}">
+            {% if block.settings.show_author and block.settings.featured_article.author != blank %}
+              <span class="ai-editorial-layout__author-{{ ai_gen_id }}">
+                {{ block.settings.featured_article.author }}
+              </span>
+            {% endif %}
+            {% if block.settings.show_date %}
+              <span class="ai-editorial-layout__date-{{ ai_gen_id }}">
+                {{ block.settings.featured_article.published_at | date: '%B %d, %Y' }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <div class="ai-editorial-layout__featured-image-wrapper-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-editorial-layout__empty-state-{{ ai_gen_id }}">
+            Next, add a featured article
+          </div>
+        </div>
+      {% endif %}
+    </article>
+
+    <aside class="ai-editorial-layout__sidebar-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% liquid
+          assign article_key = 'sidebar_article_' | append: i
+          assign article = block.settings[article_key]
+        %}
+        {% if article != blank %}
+          <article class="ai-editorial-layout__sidebar-item-{{ ai_gen_id }}">
+            <a
+              href="{{ article.url }}"
+              class="ai-editorial-layout__link-{{ ai_gen_id }}"
+            >
+              <div class="ai-editorial-layout__sidebar-image-wrapper-{{ ai_gen_id }}">
+                {% if article.image %}
+                  <img
+                    src="{{ article.image | image_url: width: 240 }}"
+                    alt="{{ article.image.alt | escape }}"
+                    loading="lazy"
+                    width="240"
+                    height="240"
+                  >
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag }}
+                {% endif %}
+              </div>
+            </a>
+            <div class="ai-editorial-layout__sidebar-content-{{ ai_gen_id }}">
+              {% if block.settings.show_category and article.tags.size > 0 %}
+                <span class="ai-editorial-layout__sidebar-category-{{ ai_gen_id }}">
+                  {{ article.tags.first }}
+                </span>
+              {% endif %}
+              <h3 class="ai-editorial-layout__sidebar-title-{{ ai_gen_id }}">
+                <a
+                  href="{{ article.url }}"
+                  class="ai-editorial-layout__link-{{ ai_gen_id }}"
+                >
+                  {{ article.title }}
+                </a>
+              </h3>
+              {% if block.settings.show_date %}
+                <span class="ai-editorial-layout__sidebar-date-{{ ai_gen_id }}">
+                  {{ article.published_at | date: '%B %d, %Y' }}
+                </span>
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </aside>
+  </div>
+</editorial-layout-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EditorialLayout{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('editorial-layout-{{ ai_gen_id }}', EditorialLayout{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Magazine editorial layout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Featured article"
+    },
+    {
+      "type": "article",
+      "id": "featured_article",
+      "label": "Featured article"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar articles"
+    },
+    {
+      "type": "article",
+      "id": "sidebar_article_1",
+      "label": "Sidebar article 1"
+    },
+    {
+      "type": "article",
+      "id": "sidebar_article_2",
+      "label": "Sidebar article 2"
+    },
+    {
+      "type": "article",
+      "id": "sidebar_article_3",
+      "label": "Sidebar article 3"
+    },
+    {
+      "type": "header",
+      "content": "Display options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show category",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "sidebar_gap",
+      "label": "Sidebar gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "label": "Content spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "featured_title_size",
+      "label": "Featured title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "category_font_size",
+      "label": "Category size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "excerpt_font_size",
+      "label": "Excerpt size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size",
+      "label": "Meta size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "sidebar_title_size",
+      "label": "Sidebar title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "sidebar_category_size",
+      "label": "Sidebar category size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "sidebar_meta_size",
+      "label": "Sidebar meta size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "category_color",
+      "label": "Category",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Magazine editorial layout"
+    }
+  ]
+}
 {% endschema %}

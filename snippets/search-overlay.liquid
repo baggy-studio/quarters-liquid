@@ -54,7 +54,7 @@
   ></div>
   <div
     class="pointer-events-auto relative left-0 right-0 z-[1] w-full flex-1 min-h-0 flex flex-col overflow-hidden
-      pt-[120px] lg:pt-[160px]"
+      pt-[120px] lg:pt-[130px]"
   >
     <a
       href="{{ routes.root_url }}"
@@ -77,15 +77,19 @@
     >
       (Cancel)
     </button>
-    <div class="flex flex-col flex-1 min-h-0 overflow-y-auto w-full px-4 pb-8 gap-14 lg:gap-[60px]">
+    {%- comment -%}
+      lg: Desktop top padding ~130px (see design); lg:mt-[30px] keeps the search rule aligned with PLP/PDP
+      ~160px from the banner bottom (matches previous pt-[160px] rhythm for flow content).
+    {%- endcomment -%}
+    <div class="flex flex-col flex-1 min-h-0 overflow-y-auto w-full px-4 pb-8 gap-14 lg:gap-[60px] lg:mt-[30px]">
 
-      <div class="w-full flex flex-col gap-1 shrink-0">
+      <div class="w-full flex flex-col shrink-0">
         <form
           action="{{ routes.search_url }}"
           method="get"
           role="search"
-          @submit="closeSearch"
-          class="w-full flex items-end justify-between gap-4"
+          @submit="handleSearchSubmit($event)"
+          class="w-full flex items-baseline justify-between gap-4"
         >
           <input type="hidden" name="type" value="product">
           <input
@@ -100,7 +104,9 @@
           >
           <button
             type="submit"
-            class="subheading hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0 pb-[3px]"
+            :disabled="!canSubmitSearch"
+            :aria-disabled="(!canSubmitSearch).toString()"
+            class="subheading normal-case hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0"
             :class="searchEnterOpacityClass"
           >
             Enter
@@ -125,15 +131,14 @@
             {%- for block in popular_blocks -%}
               {%- if block.settings.term != blank -%}
                 <li {{ block.shopify_attributes }}>
-                  <button
-                    type="button"
+                  <a
+                    href="{{ routes.search_url }}?q={{ block.settings.term | url_encode }}&type=product"
                     data-popular-term="{{ block.settings.term | escape }}"
                     title="{{ block.settings.term | escape }}"
-                    @click="selectPopularSearchTerm($event.currentTarget.dataset.popularTerm)"
                     class="medium-serif hover:opacity-50 transition-opacity duration-200 ease-linear block w-full text-left leading-[20px] bg-transparent border-0 p-0 cursor-pointer text-inherit"
                   >
                     {{- block.settings.term | escape -}}
-                  </button>
+                  </a>
                 </li>
               {%- endif -%}
             {%- endfor -%}

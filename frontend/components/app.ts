@@ -58,7 +58,13 @@ export default (activeUrl: string = window.location.pathname) => ({
     const q = (this.searchQuery ?? '').trim();
     if (q.length < this.searchPopularMinChars) return 'opacity-50';
     if (this.predictiveLoading) return 'opacity-50';
-    return this.predictiveEmpty ? 'opacity-50' : 'opacity-100';
+    if (this.predictiveEmpty) return 'opacity-50';
+    // Desktop: rest muted so hover:opacity-100 (on the button) reads as a fade; mobile stays solid.
+    return 'max-lg:opacity-100 lg:opacity-50';
+  },
+  get canSubmitSearch() {
+    const q = (this.searchQuery ?? '').trim();
+    return q.length >= this.searchPopularMinChars && !this.predictiveLoading && !this.predictiveEmpty;
   },
   init() {
     this.trackMenuHeight();
@@ -114,7 +120,8 @@ export default (activeUrl: string = window.location.pathname) => ({
     window.addEventListener('scroll', this.onScroll.bind(this));
   },
   getThemeForUrl(url: string): 'light' | 'dark' {
-    return lightRoutes.includes(url) ? 'light' : 'dark';
+    const pathname = url.split('?')[0].replace(/\/$/, '');
+    return lightRoutes.includes(pathname) ? 'light' : 'dark';
   },
   startColorTransition(fromTheme: 'light' | 'dark', toTheme: 'light' | 'dark') {
     const fromColor = fromTheme === 'light' ? '#F4EED0' : '#643600';
@@ -154,7 +161,8 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
 
   getTheme(toUrl: string) {
-    if (lightRoutes.includes(toUrl)) {
+    const pathname = toUrl.split('?')[0].replace(/\/$/, '');
+    if (lightRoutes.includes(pathname)) {
       return this.setTheme('light');
     }
 
@@ -212,6 +220,15 @@ export default (activeUrl: string = window.location.pathname) => ({
     this.predictiveEmpty = false;
     this.predictiveHasSurface = false;
   },
+  resetSearch() {
+    if (this.predictiveAbort) {
+      this.predictiveAbort.abort();
+      this.predictiveAbort = null;
+    }
+    this.searchQuery = '';
+    this.predictiveLoading = false;
+    this.clearPredictiveSearchResults();
+  },
   onPredictiveInput() {
     const q = (this.searchQuery ?? '').trim();
     if (q.length < this.searchPopularMinChars) {
@@ -219,6 +236,13 @@ export default (activeUrl: string = window.location.pathname) => ({
       return;
     }
     this.fetchPredictiveSearch(q);
+  },
+  handleSearchSubmit(event: SubmitEvent) {
+    if (!this.canSubmitSearch) {
+      event.preventDefault();
+      return;
+    }
+    this.closeSearch();
   },
   selectPopularSearchTerm(term: string | undefined) {
     const raw = term ?? '';
@@ -313,6 +337,8 @@ export default (activeUrl: string = window.location.pathname) => ({
       clipHost.classList.remove('search-overlay-clip-host--clip-driven');
     }
     this.searchClosing = false;
+    await (this as any).$nextTick();
+    this.resetSearch();
     this.unlockScroll();
   },
   toggleSearch() {

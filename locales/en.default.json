@@ -3,6 +3,7 @@
     "search": {
       "aria_results": "Search results",
       "products": "Products",
+      "no_matching_products": "No matching products",
       "other": "Other",
       "view_all": "View all results",
       "results_for": "Results for “{{ terms }}”",

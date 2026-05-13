@@ -10,15 +10,22 @@
 >
   <button
     type="button"
+    x-show="menu || searchOpen || searchClosing"
+    x-cloak
+    x-transition:enter="transition-opacity ease-linear delay-[400ms] duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition-opacity ease-linear duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
     aria-hidden="true"
     @click="closeMenu(); closeSearch()"
     :class="{
-      'opacity-0': !menu && !searchOpen && !searchClosing,
-      'opacity-100': menu,
-      'pointer-events-auto': menu || searchOpen || searchClosing,
-      'z-[56]': searchOpen || searchClosing
+      'z-[56]': searchOpen || searchClosing,
+      'bg-bone-tint/30 lg:bg-transparent': menu,
+      'bg-transparent': !menu
     }"
-    class="absolute top-0 left-0 h-full w-full delay-[400ms] bg-bone-tint/30 transition-opacity duration-300 ease-linear lg:bg-transparent lg:transition-none"
+    class="absolute top-0 left-0 h-full w-full pointer-events-auto"
   ></button>
   <div
     class="menu-background fixed top-0 left-0 right-0 pointer-events-none"

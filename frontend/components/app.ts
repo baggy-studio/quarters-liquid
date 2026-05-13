@@ -50,6 +50,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   /** True when the suggest mount has markup; with x-show avoids flex gap when idle */
   predictiveHasSurface: false,
   predictiveAbort: null as AbortController | null,
+  predictiveCountAbort: null as AbortController | null,
   get showSearchPopular() {
     const q = (this.searchQuery ?? '').trim();
     return q.length < this.searchPopularMinChars;
@@ -80,9 +81,12 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
     swup.hooks.before('content:replace', (visit) => {
-      this.activeUrl = visit.to.url;
+      const nextPath = this.normalizePath(visit.to.url);
+      this.activeUrl = nextPath;
       this.isForcedTheme = null
-      this.getTheme(visit.to.url);
+      this.getTheme(nextPath);
+      // Reset stale transform/menu vars during route swaps.
+      this.updateMenuHeight(0, nextPath, true);
     });
 
     swup.hooks.on('animation:out:start', (visit) => {
@@ -119,8 +123,18 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     window.addEventListener('scroll', this.onScroll.bind(this));
   },
+  normalizePath(url: string): string {
+    try {
+      const parsed = new URL(url, window.location.origin);
+      const pathname = parsed.pathname.replace(/\/$/, '');
+      return pathname || '/';
+    } catch {
+      const pathname = url.split('?')[0].replace(/\/$/, '');
+      return pathname || '/';
+    }
+  },
   getThemeForUrl(url: string): 'light' | 'dark' {
-    const pathname = url.split('?')[0].replace(/\/$/, '');
+    const pathname = this.normalizePath(url);
     return lightRoutes.includes(pathname) ? 'light' : 'dark';
   },
   startColorTransition(fromTheme: 'light' | 'dark', toTheme: 'light' | 'dark') {
@@ -161,7 +175,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
 
   getTheme(toUrl: string) {
-    const pathname = toUrl.split('?')[0].replace(/\/$/, '');
+    const pathname = this.normalizePath(toUrl);
     if (lightRoutes.includes(pathname)) {
       return this.setTheme('light');
     }
@@ -170,6 +184,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   setTheme(theme: 'light' | 'dark') {
     this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
+    document.documentElement.style.setProperty('--header-theme', this.headerColor);
   },
 
   hide() {
@@ -225,9 +240,42 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.predictiveAbort.abort();
       this.predictiveAbort = null;
     }
+    if (this.predictiveCountAbort) {
+      this.predictiveCountAbort.abort();
+      this.predictiveCountAbort = null;
+    }
     this.searchQuery = '';
     this.predictiveLoading = false;
     this.clearPredictiveSearchResults();
+  },
+  updatePredictiveSearchProductTotal(total: number | null) {
+    const mount = document.getElementById('predictive-search-results');
+    if (!mount) return;
+    const countEls = mount.querySelectorAll('[data-search-product-total]');
+    countEls.forEach((el) => {
+      el.textContent = typeof total === 'number' ? `(${total})` : '';
+    });
+  },
+  async fetchSearchProductTotal(q: string, signal: AbortSignal): Promise<number | null> {
+    const root = (window as any).Shopify?.routes?.root ?? '/';
+    const params = new URLSearchParams({
+      q,
+      section_id: 'search-product-count',
+      type: 'product',
+    });
+    const url = `${root}search?${params.toString()}`;
+    const res = await fetch(url, {
+      signal,
+      headers: { Accept: 'text/html' },
+    });
+    if (!res.ok) return null;
+    const text = await res.text();
+    const parsed = new DOMParser().parseFromString(text, 'text/html');
+    const countNode = parsed.querySelector('#search-product-count');
+    const raw = countNode?.getAttribute('data-product-count');
+    if (!raw) return null;
+    const count = Number(raw);
+    return Number.isFinite(count) && count >= 0 ? count : null;
   },
   onPredictiveInput() {
     const q = (this.searchQuery ?? '').trim();
@@ -259,22 +307,28 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   async fetchPredictiveSearch(q: string) {
     if (this.predictiveAbort) this.predictiveAbort.abort();
+    if (this.predictiveCountAbort) this.predictiveCountAbort.abort();
     this.predictiveAbort = new AbortController();
+    this.predictiveCountAbort = new AbortController();
     const root = (window as any).Shopify?.routes?.root ?? '/';
     const params = new URLSearchParams({
       q,
       section_id: 'predictive-search',
-      'resources[type]': 'product,collection,page,article',
-      'resources[limit]': '10',
-      'resources[limit_scope]': 'each',
+      type: 'product,collection,page,article',
     });
-    const url = `${root}search/suggest?${params.toString()}`;
+    const url = `${root}search?${params.toString()}`;
     this.predictiveLoading = true;
     try {
-      const res = await fetch(url, {
-        signal: this.predictiveAbort.signal,
-        headers: { Accept: 'text/html' },
-      });
+      const [res, productTotal] = await Promise.all([
+        fetch(url, {
+          signal: this.predictiveAbort.signal,
+          headers: { Accept: 'text/html' },
+        }),
+        this.fetchSearchProductTotal(q, this.predictiveCountAbort.signal).catch((e) => {
+          if ((e as Error).name === 'AbortError') return null;
+          return null;
+        }),
+      ]);
       if (!res.ok) {
         if (res.status !== 429) {
           const mountErr = document.getElementById('predictive-search-results');
@@ -288,6 +342,7 @@ export default (activeUrl: string = window.location.pathname) => ({
       const mount = document.getElementById('predictive-search-results');
       if (!mount) return;
       mount.innerHTML = sectionEl ? sectionEl.innerHTML : '';
+      this.updatePredictiveSearchProductTotal(productTotal);
       const rootEl = mount.querySelector('#predictive-search');
       this.predictiveEmpty = rootEl?.getAttribute('data-predictive-state') === 'empty';
     } catch (e) {
@@ -357,7 +412,8 @@ export default (activeUrl: string = window.location.pathname) => ({
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
       const baseOffset = extentPx - 161 + announcementBarHeight;
       const transformValue = range(0, 1, 0, baseOffset, progress01);
-      const finalTransform = progress01 === 0 ? transformValue + announcementBarHeight : transformValue;
+      // Ensure closed state never leaves a stale top offset.
+      const finalTransform = progress01 === 0 ? 0 : transformValue;
       return { totalHeight, menuHeightProgress: progress, transformY: finalTransform };
     }
 

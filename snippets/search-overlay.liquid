@@ -24,22 +24,27 @@
   Backdrop z-[55] and panel z-[57] are siblings so the header scrim can use z-[56] and receive
   outside clicks while the panel stays above the scrim.
 {%- endcomment -%}
-<div
-  x-show="searchOpen || searchClosing"
+<button
+  type="button"
+  x-show="searchOpen"
   x-cloak
+  x-transition:enter="transition-opacity ease-linear delay-[50ms] duration-300"
+  x-transition:enter-start="opacity-0"
+  x-transition:enter-end="opacity-100"
+  x-transition:leave="transition-opacity ease-linear duration-300"
+  x-transition:leave-start="opacity-100"
+  x-transition:leave-end="opacity-0"
   @keyup.escape.window="closeSearch"
-  class="pointer-events-none fixed left-0 right-0 z-[55] top-0 h-dvh min-h-dvh max-lg:max-h-dvh
-    lg:bottom-0 lg:h-max lg:min-h-0 lg:max-h-none"
->
-  <button
-    type="button"
-    @click="closeSearch"
-    :class="(searchOpen || searchClosing) ? 'pointer-events-auto' : 'pointer-events-none'"
-    class="absolute inset-0 z-0 border-0 bg-transparent p-0 cursor-pointer"
-    aria-label="Close search"
-    tabindex="-1"
-  ></button>
-</div>
+  @click="closeSearch"
+  :class="
+    {
+      'pointer-events-auto': searchOpen || searchClosing
+    }
+  "
+  class="fixed inset-0 z-[55] border-0 p-0 cursor-pointer bg-bone-tint/30 pointer-events-none"
+  aria-label="Close search"
+  tabindex="-1"
+></button>
 
 <div
   x-show="searchOpen || searchClosing"
@@ -53,7 +58,7 @@
     class="w-full shrink-0 h-[var(--announcement-bar-height,0px)]"
   ></div>
   <div
-    class="pointer-events-auto relative left-0 right-0 z-[1] w-full flex-1 min-h-0 flex flex-col overflow-hidden
+    class="pointer-events-auto relative left-0 right-0 z-[1] w-full flex-1 min-h-0 flex flex-col overflow-hidden border-b border-current
       pt-[120px] lg:pt-[130px]"
   >
     <a

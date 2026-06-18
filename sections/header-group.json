@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "<p>Quarters will be closed Thursday June 18, reopening Friday, June 19. Our team is available during this time and here to help —<a href=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>",
+        "announcement_text": "",
         "animation_speed": 20
       }
     },

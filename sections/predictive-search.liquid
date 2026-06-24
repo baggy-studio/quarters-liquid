@@ -1,13 +1,14 @@
 {%- comment -%}
-  Rendered via Predictive Search API: GET /search/suggest?section_id=predictive-search&q=...
+  Rendered via Search endpoint section rendering:
+  GET /search?section_id=predictive-search&q=...
   Root id and data-predictive-state are used by theme JavaScript.
 {%- endcomment -%}
-{%- if predictive_search.performed -%}
+{%- if search.performed -%}
   {%- liquid
-    assign ps_products = predictive_search.resources.products
-    assign ps_collections = predictive_search.resources.collections
-    assign ps_pages = predictive_search.resources.pages
-    assign ps_articles = predictive_search.resources.articles
+    assign ps_products = search.results | where: 'object_type', 'product'
+    assign ps_collections = search.results | where: 'object_type', 'collection'
+    assign ps_pages = search.results | where: 'object_type', 'page'
+    assign ps_articles = search.results | where: 'object_type', 'article'
     assign product_count = ps_products.size
     assign has_non_empty_collections = false
     for collection in ps_collections
@@ -36,7 +37,10 @@
         Mobile/tablet (Figma 1461:4739): stacked sections, gap 60px; PRODUCTS/OTHER use 19px heading-to-list
         and 8px between links; product titles only (no thumbnails). Desktop: 20-col grid, PRODUCTS always reserves 13 cols, OTHER in last 5 cols.
       {%- endcomment -%}
-      <div class="flex flex-col gap-[60px] lg:grid lg:grid-cols-20 lg:gap-x-3 lg:gap-y-[60px] lg:items-start">
+      <div
+        data-search-results-layout
+        class="flex flex-col gap-[60px] lg:grid lg:grid-cols-20 lg:gap-x-3 lg:gap-y-[60px] lg:items-start"
+      >
         <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-13 lg:max-w-none lg:gap-0">
           <p class="subheading lg:mb-5">{{ 'general.search.products' | t }}</p>
           {%- if product_count > 0 -%}
@@ -95,9 +99,15 @@
         </div>
 
         {%- if show_other -%}
-          <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none">
+          <div
+            data-search-other
+            class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none"
+          >
             <p class="subheading">{{ 'general.search.other' | t }}</p>
-            <ul class="flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5">
+            <ul
+              data-search-other-list
+              class="flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5"
+            >
               {%- for collection in ps_collections limit: 4 -%}
                 {%- if collection.products_count > 0 -%}
                   <li>
@@ -136,7 +146,7 @@
 
         {%- if product_count > 0 -%}
           <a
-            href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&type=product"
+            href="{{ routes.search_url }}?q={{ search.terms | url_encode }}&type=product"
             class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear lg:col-span-13 lg:col-start-1"
           >
             {{- 'general.search.view_all' | t -}}
@@ -146,7 +156,7 @@
     {%- else -%}
       <div class="flex flex-col gap-10 lg:gap-14 max-w-[343px] lg:max-w-none">
         <p class="font-serif text-base leading-5 text-mahogany">
-          {%- assign safe_terms = predictive_search.terms | escape -%}
+          {%- assign safe_terms = search.terms | escape -%}
           <span class="block">
             {{ 'general.search.no_results' | t: terms: safe_terms }}
           </span>

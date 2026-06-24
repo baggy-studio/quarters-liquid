@@ -24,6 +24,14 @@
   Backdrop z-[55] and panel z-[57] are siblings so the header scrim can use z-[56] and receive
   outside clicks while the panel stays above the scrim.
 {%- endcomment -%}
+<style>
+  @media (hover: hover) and (pointer: fine) {
+    .search-enter-button:not(:disabled):hover {
+      opacity: 0.5;
+    }
+  }
+</style>
+
 <button
   type="button"
   x-show="searchOpen"
@@ -111,7 +119,7 @@
             type="submit"
             :disabled="!canSubmitSearch"
             :aria-disabled="(!canSubmitSearch).toString()"
-            class="subheading normal-case hover:opacity-100 transition-opacity duration-200 ease-linear shrink-0"
+            class="search-enter-button subheading normal-case transition-opacity duration-200 ease-linear shrink-0"
             :class="searchEnterOpacityClass"
           >
             Enter
@@ -154,4 +162,3 @@
     </div>
   </div>
 </div>
-

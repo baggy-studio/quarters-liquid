@@ -26,6 +26,11 @@ const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/events'
 const hideHeaderRoutes = ['/', '/pages/the-bar'];
 const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 
+type SearchCollectionResult = {
+  title?: string;
+  url?: string;
+};
+
 export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
   animating: false,
@@ -50,22 +55,18 @@ export default (activeUrl: string = window.location.pathname) => ({
   /** True when the suggest mount has markup; with x-show avoids flex gap when idle */
   predictiveHasSurface: false,
   predictiveAbort: null as AbortController | null,
-  predictiveCountAbort: null as AbortController | null,
   get showSearchPopular() {
     const q = (this.searchQuery ?? '').trim();
     return q.length < this.searchPopularMinChars;
   },
   get searchEnterOpacityClass() {
     const q = (this.searchQuery ?? '').trim();
-    if (q.length < this.searchPopularMinChars) return 'opacity-50';
-    if (this.predictiveLoading) return 'opacity-50';
-    if (this.predictiveEmpty) return 'opacity-50';
-    // Desktop: rest muted so hover:opacity-100 (on the button) reads as a fade; mobile stays solid.
-    return 'max-lg:opacity-100 lg:opacity-50';
+    if (!q || !this.canSubmitSearch) return 'opacity-50 pointer-events-none';
+    return 'opacity-100 lg:hover:opacity-50';
   },
   get canSubmitSearch() {
     const q = (this.searchQuery ?? '').trim();
-    return q.length >= this.searchPopularMinChars && !this.predictiveLoading && !this.predictiveEmpty;
+    return q.length > 0 && !this.predictiveLoading && !this.predictiveEmpty;
   },
   init() {
     this.trackMenuHeight();
@@ -107,6 +108,10 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
     swup.hooks.on('link:self', (visit) => {
+      if (this.searchOpen) {
+        this.closeSearch();
+      }
+
       if (this.menu) {
         this.closeMenu().then(() => {
           window.scrollTo({
@@ -240,42 +245,9 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.predictiveAbort.abort();
       this.predictiveAbort = null;
     }
-    if (this.predictiveCountAbort) {
-      this.predictiveCountAbort.abort();
-      this.predictiveCountAbort = null;
-    }
     this.searchQuery = '';
     this.predictiveLoading = false;
     this.clearPredictiveSearchResults();
-  },
-  updatePredictiveSearchProductTotal(total: number | null) {
-    const mount = document.getElementById('predictive-search-results');
-    if (!mount) return;
-    const countEls = mount.querySelectorAll('[data-search-product-total]');
-    countEls.forEach((el) => {
-      el.textContent = typeof total === 'number' ? `(${total})` : '';
-    });
-  },
-  async fetchSearchProductTotal(q: string, signal: AbortSignal): Promise<number | null> {
-    const root = (window as any).Shopify?.routes?.root ?? '/';
-    const params = new URLSearchParams({
-      q,
-      section_id: 'search-product-count',
-      type: 'product',
-    });
-    const url = `${root}search?${params.toString()}`;
-    const res = await fetch(url, {
-      signal,
-      headers: { Accept: 'text/html' },
-    });
-    if (!res.ok) return null;
-    const text = await res.text();
-    const parsed = new DOMParser().parseFromString(text, 'text/html');
-    const countNode = parsed.querySelector('#search-product-count');
-    const raw = countNode?.getAttribute('data-product-count');
-    if (!raw) return null;
-    const count = Number(raw);
-    return Number.isFinite(count) && count >= 0 ? count : null;
   },
   onPredictiveInput() {
     const q = (this.searchQuery ?? '').trim();
@@ -307,9 +279,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   async fetchPredictiveSearch(q: string) {
     if (this.predictiveAbort) this.predictiveAbort.abort();
-    if (this.predictiveCountAbort) this.predictiveCountAbort.abort();
     this.predictiveAbort = new AbortController();
-    this.predictiveCountAbort = new AbortController();
     const root = (window as any).Shopify?.routes?.root ?? '/';
     const params = new URLSearchParams({
       q,
@@ -319,16 +289,14 @@ export default (activeUrl: string = window.location.pathname) => ({
     const url = `${root}search?${params.toString()}`;
     this.predictiveLoading = true;
     try {
-      const [res, productTotal] = await Promise.all([
-        fetch(url, {
-          signal: this.predictiveAbort.signal,
-          headers: { Accept: 'text/html' },
-        }),
-        this.fetchSearchProductTotal(q, this.predictiveCountAbort.signal).catch((e) => {
-          if ((e as Error).name === 'AbortError') return null;
-          return null;
-        }),
-      ]);
+      const collectionsPromise = this.fetchPredictiveCollections(q, this.predictiveAbort.signal).catch((e) => {
+        if ((e as Error).name === 'AbortError') throw e;
+        return [] as SearchCollectionResult[];
+      });
+      const res = await fetch(url, {
+        signal: this.predictiveAbort.signal,
+        headers: { Accept: 'text/html' },
+      });
       if (!res.ok) {
         if (res.status !== 429) {
           const mountErr = document.getElementById('predictive-search-results');
@@ -342,9 +310,10 @@ export default (activeUrl: string = window.location.pathname) => ({
       const mount = document.getElementById('predictive-search-results');
       if (!mount) return;
       mount.innerHTML = sectionEl ? sectionEl.innerHTML : '';
-      this.updatePredictiveSearchProductTotal(productTotal);
+      const collections = await collectionsPromise;
+      const hasCollections = this.renderPredictiveCollections(collections);
       const rootEl = mount.querySelector('#predictive-search');
-      this.predictiveEmpty = rootEl?.getAttribute('data-predictive-state') === 'empty';
+      this.predictiveEmpty = rootEl?.getAttribute('data-predictive-state') === 'empty' && !hasCollections;
     } catch (e) {
       if ((e as Error).name === 'AbortError') return;
       const mountFail = document.getElementById('predictive-search-results');
@@ -354,6 +323,79 @@ export default (activeUrl: string = window.location.pathname) => ({
       const m = document.getElementById('predictive-search-results');
       this.predictiveHasSurface = !!(m && m.innerHTML.trim().length > 0);
     }
+  },
+  async fetchPredictiveCollections(q: string, signal: AbortSignal): Promise<SearchCollectionResult[]> {
+    const root = (window as any).Shopify?.routes?.root ?? '/';
+    const params = new URLSearchParams({
+      q,
+      'resources[type]': 'collection',
+      'resources[limit]': '4',
+    });
+    const url = `${root}search/suggest.json?${params.toString()}`;
+    const res = await fetch(url, {
+      signal,
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const collections = json?.resources?.results?.collections;
+    return Array.isArray(collections) ? collections : [];
+  },
+  ensurePredictiveOtherList(): HTMLUListElement | null {
+    const root = document.getElementById('predictive-search');
+    if (!root) return null;
+
+    const existing = root.querySelector('[data-search-other-list]');
+    if (existing instanceof HTMLUListElement) return existing;
+
+    const layout = root.querySelector('[data-search-results-layout]');
+    if (!layout) return null;
+
+    const other = document.createElement('div');
+    other.setAttribute('data-search-other', '');
+    other.className = 'flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none';
+
+    const heading = document.createElement('p');
+    heading.className = 'subheading';
+    heading.textContent = 'Other';
+
+    const list = document.createElement('ul');
+    list.setAttribute('data-search-other-list', '');
+    list.className = 'flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5';
+
+    other.append(heading, list);
+    const viewAll = layout.querySelector('a.subheading');
+    layout.insertBefore(other, viewAll);
+
+    return list;
+  },
+  renderPredictiveCollections(collections: SearchCollectionResult[]): boolean {
+    if (!collections.length) return false;
+    const list = this.ensurePredictiveOtherList();
+    if (!list) return false;
+
+    const existingHrefs = new Set(
+      Array.from(list.querySelectorAll('a'))
+        .map((link) => link.getAttribute('href'))
+        .filter(Boolean)
+    );
+
+    let rendered = false;
+    collections.forEach((collection) => {
+      if (!collection.title || !collection.url || existingHrefs.has(collection.url)) return;
+
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = collection.url;
+      link.className = 'flex min-h-[20px] items-center hover:opacity-50 transition-opacity duration-200 ease-linear';
+      link.textContent = collection.title;
+      item.append(link);
+      list.append(item);
+      existingHrefs.add(collection.url);
+      rendered = true;
+    });
+
+    return rendered;
   },
   async openSearch() {
     if (this.searchOpen || this.searchClosing) return;

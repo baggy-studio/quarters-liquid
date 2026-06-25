@@ -1,0 +1,159 @@
+<div
+  id="search"
+  class="w-full px-4"
+  style="padding-top: calc(var(--announcement-bar-height, 0px) + 120px);"
+>
+  <style>
+    @media (min-width: 1024px) {
+      #search { padding-top: calc(var(--announcement-bar-height, 0px) + 160px) !important; }
+    }
+  </style>
+
+  <div class="w-full min-h-screen pb-32 lg:pb-36 text-mahogany">
+    {%- if search.performed -%}
+      {%- if search.terms != blank -%}
+        <div class="w-full border-t border-current pt-2 flex flex-row items-center justify-between gap-3 relative z-10">
+          {%- assign search_terms_safe = search.terms | escape -%}
+          {%- if search.results_count > 0 -%}
+            <h1 class="subheading shrink-0">
+              {{ 'general.search.results_for' | t: terms: search_terms_safe }}
+            </h1>
+            <a
+              href="{{ routes.all_products_collection_url }}"
+              title="{{ 'general.search.clear_search' | t }}"
+              class="subheading collection-link shrink-0 sm:text-right lg:hidden"
+            >
+              ({{ 'general.search.clear_search' | t }})
+            </a>
+          {%- else -%}
+            <h1 class="subheading">
+              {{ 'general.search.no_results' | t: terms: search_terms_safe }}
+            </h1>
+            <a
+              href="{{ routes.all_products_collection_url }}"
+              title="{{ 'general.search.clear_search' | t }}"
+              class="subheading collection-link shrink-0 sm:text-right lg:hidden"
+            >
+              ({{ 'general.search.clear_search' | t }})
+            </a>
+          {%- endif -%}
+          {%- comment -%} Viewport-centered duplicate for lg+ (escapes section padding via w-screen) {%- endcomment -%}
+          <div
+            class="pointer-events-none absolute left-1/2 top-0 z-[1] hidden w-screen -translate-x-1/2 text-center lg:block"
+          >
+            <a
+              href="{{ routes.all_products_collection_url }}"
+              title="{{ 'general.search.clear_search' | t }}"
+              class="subheading collection-link pointer-events-auto inline-block"
+            >
+              ({{ 'general.search.clear_search' | t }})
+            </a>
+          </div>
+        </div>
+
+        {%- if search.results_count > 0 -%}
+          <div
+            x-data="collection"
+            id="product-grid"
+            class="w-full pb-32 lg:pb-36 relative flex flex-col items-center justify-start gap-y-8 lg:gap-y-[66px] pt-12 lg:pt-[71px] min-h-screen"
+          >
+            {%- paginate search.results by 48 -%}
+              {% if paginate.previous %}
+                <div
+                  data-load-previous
+                  class="absolute left-0 top-0 w-full h-64 invisible flex items-center justify-center"
+                >
+                  <a
+                    href="{{ paginate.previous.url }}"
+                    class="w-max collection-link subheading"
+                    title="Load previous"
+                  >
+                    Load previous
+                  </a>
+                </div>
+              {% endif %}
+              <div
+                data-product-grid
+                class="w-full grid grid-cols-4 lg:grid-cols-20 gap-x-2 lg:gap-x-3 gap-y-8 lg:gap-y-[108px]"
+              >
+                <ul class="contents">
+                  {% assign product_render_index = 0 %}
+                  {% for item in search.results %}
+                    {% if item.object_type == 'product' %}
+                      {% assign product = item %}
+                      {% assign is_archive = false %}
+                      {% if product.tags contains 'Archive' %}
+                        {% assign is_archive = true %}
+                      {% endif %}
+                      {% unless product.tags contains 'Hide' or is_archive %}
+                        {% assign product_render_index = product_render_index | plus: 1 %}
+                        {% assign is_priority = false %}
+                        {% if product_render_index <= 9 %}
+                          {% assign is_priority = true %}
+                        {% endif %}
+                        {% assign render_variants = false %}
+                        {% if product.has_only_default_variant == false and paginate.pages == 1 %}
+                          {% assign render_variants = true %}
+                        {% endif %}
+                        {% render 'product-card', product: product, priority: is_priority, renderVariants: render_variants %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+              {% if paginate.next %}
+                <div
+                  data-load-next
+                  class="absolute left-0 bottom-0 w-full h-64 invisible flex items-center justify-center"
+                >
+                  <a
+                    href="{{ paginate.next.url }}"
+                    class="w-max collection-link subheading"
+                    title="Load more"
+                  >
+                    Load more
+                  </a>
+                </div>
+              {% endif %}
+            {%- endpaginate -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="w-full border-t border-current pt-2">
+          <h1 class="subheading">
+            {{ section.settings.empty_heading }}
+          </h1>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="w-full border-t border-current pt-2">
+        <h1 class="subheading">
+          {{ section.settings.empty_heading }}
+        </h1>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "class": "contents",
+  "settings": [
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Empty state heading",
+      "default": "Search the shop"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Search"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["search"]
+  }
+}
+{% endschema %}

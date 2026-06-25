@@ -1,5 +1,27 @@
 import "vite/modulepreload-polyfill";
 
+// iOS 26 Safari workaround: Force body background color on load
+// This helps Safari's dynamic UI bars recognize the page background
+// and render correctly behind the status bar/dynamic island
+// See: https://discussions.apple.com/thread/256138682
+(function initIOSSafariWorkaround() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+
+    if (isIOS) {
+        // Set background immediately
+        document.documentElement.style.backgroundColor = '#FAF8EC';
+        document.body.style.backgroundColor = '#FAF8EC';
+
+        // Re-apply after DOM is ready to ensure Safari picks it up
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.style.backgroundColor = '#FAF8EC';
+            });
+        }
+    }
+})();
+
 import { swup } from "./swup";
 
 import Alpine from "alpinejs";

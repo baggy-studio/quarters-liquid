@@ -1,0 +1,164 @@
+{% doc %}
+  Renders the search overlay panel. Controlled by `searchOpen` state on the parent `app` Alpine component.
+
+  Popular suggestions come from Header section blocks of type `popular_search` (text setting `term`).
+  Predictive results mount in `#predictive-search-results` (fetched from `/search/suggest`).
+
+  @param {section} section - The header section (pass `section` from `sections/header.liquid`).
+
+  @example
+  {% render 'search-overlay', section: section %}
+{% enddoc %}
+
+{%- liquid
+  assign popular_blocks = section.blocks | where: 'type', 'popular_search'
+  assign has_popular_terms = false
+  for block in popular_blocks
+    if block.settings.term != blank
+      assign has_popular_terms = true
+    endif
+  endfor
+-%}
+
+{%- comment -%}
+  Backdrop z-[55] and panel z-[57] are siblings so the header scrim can use z-[56] and receive
+  outside clicks while the panel stays above the scrim.
+{%- endcomment -%}
+<style>
+  @media (hover: hover) and (pointer: fine) {
+    .search-enter-button:not(:disabled):hover {
+      opacity: 0.5;
+    }
+  }
+</style>
+
+<button
+  type="button"
+  x-show="searchOpen"
+  x-cloak
+  x-transition:enter="transition-opacity ease-linear delay-[50ms] duration-300"
+  x-transition:enter-start="opacity-0"
+  x-transition:enter-end="opacity-100"
+  x-transition:leave="transition-opacity ease-linear duration-300"
+  x-transition:leave-start="opacity-100"
+  x-transition:leave-end="opacity-0"
+  @keyup.escape.window="closeSearch"
+  @click="closeSearch"
+  :class="
+    {
+      'pointer-events-auto': searchOpen || searchClosing
+    }
+  "
+  class="fixed inset-0 z-[55] border-0 p-0 cursor-pointer bg-bone-tint/30 pointer-events-none"
+  aria-label="Close search"
+  tabindex="-1"
+></button>
+
+<div
+  x-show="searchOpen || searchClosing"
+  x-cloak
+  x-ref="searchClipHost"
+  class="search-overlay-clip-host pointer-events-none fixed left-0 right-0 z-[57] top-0 h-dvh min-h-dvh max-lg:max-h-dvh flex flex-col bg-bone-tint text-mahogany
+    lg:bottom-0 lg:h-max lg:min-h-0 lg:max-h-none overflow-hidden"
+>
+  <div
+    aria-hidden="true"
+    class="w-full shrink-0 h-[var(--announcement-bar-height,0px)]"
+  ></div>
+  <div
+    class="pointer-events-auto relative left-0 right-0 z-[1] w-full flex-1 min-h-0 flex flex-col overflow-hidden lg:border-b lg:border-current
+      pt-[120px] lg:pt-[130px]"
+  >
+    <a
+      href="{{ routes.root_url }}"
+      title="Quarters"
+      @click="closeSearch"
+      class="absolute left-1/2 top-[0.7rem] z-10 -translate-x-1/2 pointer-events-auto h-[22px] lg:h-[40px] w-[138px] lg:w-[154px] shrink-0"
+    >
+      <svg
+        class="fill-current h-full w-full text-mahogany aspect-[138/22] lg:aspect-[154/40]"
+        style="-webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden;"
+      >
+        <use xlink:href="#wordmark"></use>
+      </svg>
+    </a>
+    <button
+      type="button"
+      @click="closeSearch"
+      title="Cancel search"
+      class="absolute z-10 right-4 top-3 nav-link pointer-events-auto text-right"
+    >
+      (Cancel)
+    </button>
+    {%- comment -%}
+      lg: Desktop top padding ~130px (see design); lg:mt-[30px] keeps the search rule aligned with PLP/PDP
+      ~160px from the banner bottom (matches previous pt-[160px] rhythm for flow content).
+    {%- endcomment -%}
+    <div class="flex flex-col flex-1 min-h-0 overflow-y-auto w-full px-4 pb-8 gap-14 lg:gap-[60px] lg:mt-[30px]">
+
+      <div class="w-full flex flex-col shrink-0">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          @submit="handleSearchSubmit($event)"
+          class="w-full flex items-baseline justify-between gap-4"
+        >
+          <input type="hidden" name="type" value="product">
+          <input
+            id="search-input"
+            type="text"
+            name="q"
+            autocomplete="off"
+            placeholder="Search for..."
+            x-model="searchQuery"
+            @input.debounce.280ms="onPredictiveInput()"
+            class="flex-1 bg-transparent outline-none font-serif text-[22px] lg:text-[24px] leading-[1.25] text-mahogany placeholder:text-mahogany min-w-0"
+          >
+          <button
+            type="submit"
+            :disabled="!canSubmitSearch"
+            :aria-disabled="(!canSubmitSearch).toString()"
+            class="search-enter-button subheading normal-case transition-opacity duration-200 ease-linear shrink-0"
+            :class="searchEnterOpacityClass"
+          >
+            Enter
+          </button>
+        </form>
+        <div class="w-full border-t border-current"></div>
+      </div>
+
+      <div
+        id="predictive-search-results"
+        class="w-full shrink-0 min-h-0"
+        x-show="predictiveLoading || predictiveHasSurface"
+        x-cloak
+        aria-live="polite"
+        :aria-busy="predictiveLoading"
+      ></div>
+
+      {%- if has_popular_terms -%}
+        <div class="flex flex-col gap-[19px]" x-show="showSearchPopular" x-cloak>
+          <p class="subheading">Popular Searches</p>
+          <ul class="flex flex-col gap-2 lg:gap-0">
+            {%- for block in popular_blocks -%}
+              {%- if block.settings.term != blank -%}
+                <li {{ block.shopify_attributes }}>
+                  <a
+                    href="{{ routes.search_url }}?q={{ block.settings.term | url_encode }}&type=product"
+                    data-popular-term="{{ block.settings.term | escape }}"
+                    title="{{ block.settings.term | escape }}"
+                    class="medium-serif hover:opacity-50 transition-opacity duration-200 ease-linear block w-full text-left leading-[20px] bg-transparent border-0 p-0 cursor-pointer text-inherit"
+                  >
+                    {{- block.settings.term | escape -}}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>

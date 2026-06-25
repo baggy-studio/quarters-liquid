@@ -1,0 +1,183 @@
+{%- comment -%}
+  Rendered via Search endpoint section rendering:
+  GET /search?section_id=predictive-search&q=...
+  Root id and data-predictive-state are used by theme JavaScript.
+{%- endcomment -%}
+{%- if search.performed -%}
+  {%- liquid
+    assign ps_products = search.results | where: 'object_type', 'product'
+    assign ps_collections = search.results | where: 'object_type', 'collection'
+    assign ps_pages = search.results | where: 'object_type', 'page'
+    assign ps_articles = search.results | where: 'object_type', 'article'
+    assign product_count = ps_products.size
+    assign has_non_empty_collections = false
+    for collection in ps_collections
+      if collection.products_count > 0
+        assign has_non_empty_collections = true
+      endif
+    endfor
+    assign has_any = false
+    if product_count > 0 or has_non_empty_collections or ps_pages.size > 0 or ps_articles.size > 0
+      assign has_any = true
+    endif
+    assign show_other = false
+    if has_non_empty_collections or ps_pages.size > 0 or ps_articles.size > 0
+      assign show_other = true
+    endif
+  -%}
+  <div
+    id="predictive-search"
+    class="predictive-search w-full text-mahogany"
+    data-predictive-state="{% if has_any %}results{% else %}empty{% endif %}"
+    role="region"
+    aria-label="{{ 'general.search.aria_results' | t }}"
+  >
+    {%- if has_any -%}
+      {%- comment -%}
+        Mobile/tablet (Figma 1461:4739): stacked sections, gap 60px; PRODUCTS/OTHER use 19px heading-to-list
+        and 8px between links; product titles only (no thumbnails). Desktop: 20-col grid, PRODUCTS always reserves 13 cols, OTHER in last 5 cols.
+      {%- endcomment -%}
+      <div
+        data-search-results-layout
+        class="flex flex-col gap-[60px] lg:grid lg:grid-cols-20 lg:gap-x-3 lg:gap-y-[60px] lg:items-start"
+      >
+        <div class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-13 lg:max-w-none lg:gap-0">
+          <p class="subheading lg:mb-5">{{ 'general.search.products' | t }}</p>
+          {%- if product_count > 0 -%}
+            <div class="flex flex-col gap-2 lg:grid lg:min-h-[1px] lg:grid-cols-4 lg:gap-[35px]">
+              {%- for product in ps_products limit: 4 -%}
+                <a
+                  href="{{ product.url }}"
+                  class="group/card flex min-w-0 flex-col gap-2 text-left max-lg:min-h-[20px] max-lg:justify-center"
+                >
+                  <div class="relative hidden aspect-[201/252] w-full overflow-hidden bg-bone lg:block">
+                    {%- if product.featured_image != blank -%}
+                      {%- assign img_h = 800 -%}
+                      {%- if product.featured_image.aspect_ratio > 0 -%}
+                        {%- assign img_h = 800 | divided_by: product.featured_image.aspect_ratio | round -%}
+                      {%- endif -%}
+                      <img
+                        src="{{ product.featured_image | image_url: width: 800 }}"
+                        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                        width="800"
+                        height="{{ img_h }}"
+                        loading="lazy"
+                        decoding="async"
+                        class="absolute inset-0 size-full object-cover"
+                      >
+                    {%- endif -%}
+                    {%- if product.metafields.custom.hover_image != blank -%}
+                      {%- assign hover_img = product.metafields.custom.hover_image -%}
+                      {%- assign hover_h = 800 -%}
+                      {%- if hover_img.aspect_ratio > 0 -%}
+                        {%- assign hover_h = 800 | divided_by: hover_img.aspect_ratio | round -%}
+                      {%- endif -%}
+                      <div class="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 ease-in-out">
+                        <img
+                          src="{{ hover_img | image_url: width: 800 }}"
+                          alt="{{ hover_img.alt | default: product.title | escape }}"
+                          width="800"
+                          height="{{ hover_h }}"
+                          loading="lazy"
+                          decoding="async"
+                          class="absolute inset-0 size-full object-cover"
+                        >
+                      </div>
+                    {%- endif -%}
+                  </div>
+                  <span class="medium-serif text-base leading-5 lg:text-[14px] lg:leading-[17px]">
+                    {{- product.title | escape -}}
+                  </span>
+                </a>
+              {%- endfor -%}
+            </div>
+          {%- elsif show_other -%}
+            <p class="medium-serif text-base leading-5 lg:text-[14px] lg:leading-[17px]">
+              {{- 'general.search.no_matching_products' | t -}}
+            </p>
+          {%- endif -%}
+        </div>
+
+        {%- if show_other -%}
+          <div
+            data-search-other
+            class="flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none"
+          >
+            <p class="subheading">{{ 'general.search.other' | t }}</p>
+            <ul
+              data-search-other-list
+              class="flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5"
+            >
+              {%- for collection in ps_collections limit: 4 -%}
+                {%- if collection.products_count > 0 -%}
+                  <li>
+                    <a
+                      href="{{ collection.url }}"
+                      class="flex min-h-[20px] items-center hover:opacity-50 transition-opacity duration-200 ease-linear"
+                    >
+                      {{- collection.title | escape -}}
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- for page in ps_pages limit: 4 -%}
+                <li>
+                  <a
+                    href="{{ page.url }}"
+                    class="flex min-h-[20px] items-center hover:opacity-50 transition-opacity duration-200 ease-linear"
+                  >
+                    {{- page.title | escape -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+              {%- for article in ps_articles limit: 4 -%}
+                <li>
+                  <a
+                    href="{{ article.url }}"
+                    class="flex min-h-[20px] items-center hover:opacity-50 transition-opacity duration-200 ease-linear"
+                  >
+                    {{- article.title | escape -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if product_count > 0 -%}
+          <a
+            href="{{ routes.search_url }}?q={{ search.terms | url_encode }}&type=product"
+            class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear lg:col-span-13 lg:col-start-1"
+          >
+            {{- 'general.search.view_all' | t -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="flex flex-col gap-10 lg:gap-14 max-w-[343px] lg:max-w-none">
+        <p class="font-serif text-base leading-5 text-mahogany">
+          {%- assign safe_terms = search.terms | escape -%}
+          <span class="block">
+            {{ 'general.search.no_results' | t: terms: safe_terms }}
+          </span>
+          <span class="block">
+            {{ 'general.search.no_results_help' | t }}
+          </span>
+        </p>
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="subheading w-max underline decoration-solid underline-offset-[0.15em] hover:opacity-50 transition-opacity duration-200 ease-linear"
+        >
+          {{- 'general.search.shop_all' | t -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Predictive search",
+  "settings": []
+}
+{% endschema %}

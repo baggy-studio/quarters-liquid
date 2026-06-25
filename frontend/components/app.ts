@@ -26,6 +26,11 @@ const lightRoutes = ['/', '/pages/the-bar', '/pages/hours-info', '/pages/events'
 const hideHeaderRoutes = ['/', '/pages/the-bar'];
 const darkHeaderOnScrollRoutes = ['/pages/the-bar'];
 
+type SearchCollectionResult = {
+  title?: string;
+  url?: string;
+};
+
 export default (activeUrl: string = window.location.pathname) => ({
   menu: false,
   animating: false,
@@ -41,18 +46,57 @@ export default (activeUrl: string = window.location.pathname) => ({
   scrollTimeout: null,
   scrollY: 0,
   isForcedTheme: null,
+  searchOpen: false,
+  searchClosing: false,
+  searchQuery: '',
+  searchPopularMinChars: 2,
+  predictiveEmpty: false,
+  predictiveLoading: false,
+  /** True when the suggest mount has markup; with x-show avoids flex gap when idle */
+  predictiveHasSurface: false,
+  predictiveAbort: null as AbortController | null,
+  get showSearchPopular() {
+    const q = (this.searchQuery ?? '').trim();
+    return q.length < this.searchPopularMinChars;
+  },
+  get searchEnterOpacityClass() {
+    const q = (this.searchQuery ?? '').trim();
+    if (!q || !this.canSubmitSearch) return 'opacity-50 pointer-events-none';
+    return 'opacity-100 lg:hover:opacity-50';
+  },
+  get canSubmitSearch() {
+    const q = (this.searchQuery ?? '').trim();
+    return q.length > 0 && !this.predictiveLoading && !this.predictiveEmpty;
+  },
   init() {
     this.trackMenuHeight();
 
+    // Watch for forced theme changes and update CSS variable on document root
+    (this as any).$watch('isForcedTheme', (theme: 'light' | 'dark' | null) => {
+      if (theme) {
+        const color = theme === 'light' ? '#F4EED0' : '#643600';
+        document.documentElement.style.setProperty('--header-theme', color);
+      } else {
+        document.documentElement.style.setProperty('--header-theme', this.headerColor);
+      }
+    });
+
     swup.hooks.before('content:replace', (visit) => {
-      this.activeUrl = visit.to.url;
+      const nextPath = this.normalizePath(visit.to.url);
+      this.activeUrl = nextPath;
       this.isForcedTheme = null
-      this.getTheme(visit.to.url);
+      this.getTheme(nextPath);
+      // Reset stale transform/menu vars during route swaps.
+      this.updateMenuHeight(0, nextPath, true);
     });
 
     swup.hooks.on('animation:out:start', (visit) => {
       if (this.menu) {
         this.closeMenu();
+      }
+
+      if (this.searchOpen) {
+        this.closeSearch();
       }
 
       const fromTheme = this.getThemeForUrl(visit.from.url);
@@ -64,6 +108,10 @@ export default (activeUrl: string = window.location.pathname) => ({
     });
 
     swup.hooks.on('link:self', (visit) => {
+      if (this.searchOpen) {
+        this.closeSearch();
+      }
+
       if (this.menu) {
         this.closeMenu().then(() => {
           window.scrollTo({
@@ -80,8 +128,19 @@ export default (activeUrl: string = window.location.pathname) => ({
 
     window.addEventListener('scroll', this.onScroll.bind(this));
   },
+  normalizePath(url: string): string {
+    try {
+      const parsed = new URL(url, window.location.origin);
+      const pathname = parsed.pathname.replace(/\/$/, '');
+      return pathname || '/';
+    } catch {
+      const pathname = url.split('?')[0].replace(/\/$/, '');
+      return pathname || '/';
+    }
+  },
   getThemeForUrl(url: string): 'light' | 'dark' {
-    return lightRoutes.includes(url) ? 'light' : 'dark';
+    const pathname = this.normalizePath(url);
+    return lightRoutes.includes(pathname) ? 'light' : 'dark';
   },
   startColorTransition(fromTheme: 'light' | 'dark', toTheme: 'light' | 'dark') {
     const fromColor = fromTheme === 'light' ? '#F4EED0' : '#643600';
@@ -121,7 +180,8 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
 
   getTheme(toUrl: string) {
-    if (lightRoutes.includes(toUrl)) {
+    const pathname = this.normalizePath(toUrl);
+    if (lightRoutes.includes(pathname)) {
       return this.setTheme('light');
     }
 
@@ -129,6 +189,7 @@ export default (activeUrl: string = window.location.pathname) => ({
   },
   setTheme(theme: 'light' | 'dark') {
     this.headerColor = theme === 'light' ? '#F4EED0' : '#643600';
+    document.documentElement.style.setProperty('--header-theme', this.headerColor);
   },
 
   hide() {
@@ -173,41 +234,238 @@ export default (activeUrl: string = window.location.pathname) => ({
       this.openMenu();
     }
   },
-  updateMenuHeight(height = 0, url = this.activeUrl, isClosing = false) {
+  clearPredictiveSearchResults() {
+    const mount = document.getElementById('predictive-search-results');
+    if (mount) mount.innerHTML = '';
+    this.predictiveEmpty = false;
+    this.predictiveHasSurface = false;
+  },
+  resetSearch() {
+    if (this.predictiveAbort) {
+      this.predictiveAbort.abort();
+      this.predictiveAbort = null;
+    }
+    this.searchQuery = '';
+    this.predictiveLoading = false;
+    this.clearPredictiveSearchResults();
+  },
+  onPredictiveInput() {
+    const q = (this.searchQuery ?? '').trim();
+    if (q.length < this.searchPopularMinChars) {
+      this.clearPredictiveSearchResults();
+      return;
+    }
+    this.fetchPredictiveSearch(q);
+  },
+  handleSearchSubmit(event: SubmitEvent) {
+    if (!this.canSubmitSearch) {
+      event.preventDefault();
+      return;
+    }
+    this.closeSearch();
+  },
+  selectPopularSearchTerm(term: string | undefined) {
+    const raw = term ?? '';
+    this.searchQuery = raw;
+    const q = raw.trim();
+    if (q.length < this.searchPopularMinChars) {
+      this.clearPredictiveSearchResults();
+    } else {
+      this.fetchPredictiveSearch(q);
+    }
+    void (this as any).$nextTick(() => {
+      document.getElementById('search-input')?.focus();
+    });
+  },
+  async fetchPredictiveSearch(q: string) {
+    if (this.predictiveAbort) this.predictiveAbort.abort();
+    this.predictiveAbort = new AbortController();
+    const root = (window as any).Shopify?.routes?.root ?? '/';
+    const params = new URLSearchParams({
+      q,
+      section_id: 'predictive-search',
+      type: 'product,collection,page,article',
+    });
+    const url = `${root}search?${params.toString()}`;
+    this.predictiveLoading = true;
+    try {
+      const collectionsPromise = this.fetchPredictiveCollections(q, this.predictiveAbort.signal).catch((e) => {
+        if ((e as Error).name === 'AbortError') throw e;
+        return [] as SearchCollectionResult[];
+      });
+      const res = await fetch(url, {
+        signal: this.predictiveAbort.signal,
+        headers: { Accept: 'text/html' },
+      });
+      if (!res.ok) {
+        if (res.status !== 429) {
+          const mountErr = document.getElementById('predictive-search-results');
+          if (mountErr) mountErr.innerHTML = '';
+        }
+        return;
+      }
+      const text = await res.text();
+      const parsed = new DOMParser().parseFromString(text, 'text/html');
+      const sectionEl = parsed.querySelector('[id^="shopify-section-"]');
+      const mount = document.getElementById('predictive-search-results');
+      if (!mount) return;
+      mount.innerHTML = sectionEl ? sectionEl.innerHTML : '';
+      const collections = await collectionsPromise;
+      const hasCollections = this.renderPredictiveCollections(collections);
+      const rootEl = mount.querySelector('#predictive-search');
+      this.predictiveEmpty = rootEl?.getAttribute('data-predictive-state') === 'empty' && !hasCollections;
+    } catch (e) {
+      if ((e as Error).name === 'AbortError') return;
+      const mountFail = document.getElementById('predictive-search-results');
+      if (mountFail) mountFail.innerHTML = '';
+    } finally {
+      this.predictiveLoading = false;
+      const m = document.getElementById('predictive-search-results');
+      this.predictiveHasSurface = !!(m && m.innerHTML.trim().length > 0);
+    }
+  },
+  async fetchPredictiveCollections(q: string, signal: AbortSignal): Promise<SearchCollectionResult[]> {
+    const root = (window as any).Shopify?.routes?.root ?? '/';
+    const params = new URLSearchParams({
+      q,
+      'resources[type]': 'collection',
+      'resources[limit]': '4',
+    });
+    const url = `${root}search/suggest.json?${params.toString()}`;
+    const res = await fetch(url, {
+      signal,
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const collections = json?.resources?.results?.collections;
+    return Array.isArray(collections) ? collections : [];
+  },
+  ensurePredictiveOtherList(): HTMLUListElement | null {
+    const root = document.getElementById('predictive-search');
+    if (!root) return null;
 
-    let progress = range(0, 1, 0, this.menuHeight, height);
+    const existing = root.querySelector('[data-search-other-list]');
+    if (existing instanceof HTMLUListElement) return existing;
+
+    const layout = root.querySelector('[data-search-results-layout]');
+    if (!layout) return null;
+
+    const other = document.createElement('div');
+    other.setAttribute('data-search-other', '');
+    other.className = 'flex w-full max-w-[343px] flex-col gap-[19px] lg:col-span-5 lg:col-start-[16] lg:max-w-none';
+
+    const heading = document.createElement('p');
+    heading.className = 'subheading';
+    heading.textContent = 'Other';
+
+    const list = document.createElement('ul');
+    list.setAttribute('data-search-other-list', '');
+    list.className = 'flex flex-col gap-2 lg:gap-0.5 medium-serif text-base leading-5';
+
+    other.append(heading, list);
+    const viewAll = layout.querySelector('a.subheading');
+    layout.insertBefore(other, viewAll);
+
+    return list;
+  },
+  renderPredictiveCollections(collections: SearchCollectionResult[]): boolean {
+    if (!collections.length) return false;
+    const list = this.ensurePredictiveOtherList();
+    if (!list) return false;
+
+    const existingHrefs = new Set(
+      Array.from(list.querySelectorAll('a'))
+        .map((link) => link.getAttribute('href'))
+        .filter(Boolean)
+    );
+
+    let rendered = false;
+    collections.forEach((collection) => {
+      if (!collection.title || !collection.url || existingHrefs.has(collection.url)) return;
+
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = collection.url;
+      link.className = 'flex min-h-[20px] items-center hover:opacity-50 transition-opacity duration-200 ease-linear';
+      link.textContent = collection.title;
+      item.append(link);
+      list.append(item);
+      existingHrefs.add(collection.url);
+      rendered = true;
+    });
+
+    return rendered;
+  },
+  async openSearch() {
+    if (this.searchOpen || this.searchClosing) return;
+    if (this.menu) this.closeMenu();
+    this.searchOpen = true;
+    this.lockScroll();
+    await (this as any).$nextTick();
+    const clipHost = (this as any).$refs.searchClipHost as HTMLElement | undefined;
+    if (!clipHost) return;
+    clipHost.classList.remove('search-overlay-clip-host--open');
+    clipHost.classList.add('search-overlay-clip-host--clip-driven');
+    clipHost.style.setProperty('--search-clip-progress', '0');
+    await animate((progress) => {
+      clipHost.style.setProperty('--search-clip-progress', String(progress));
+    }, { duration: 1.2, easing: expoInOut }).finished;
+    clipHost.style.removeProperty('--search-clip-progress');
+    clipHost.classList.remove('search-overlay-clip-host--clip-driven');
+    clipHost.classList.add('search-overlay-clip-host--open');
+    const input = document.getElementById('search-input') as HTMLInputElement | null;
+    if (input) input.focus();
+  },
+  async closeSearch() {
+    if (this.searchClosing) return;
+    if (!this.searchOpen) return;
+    const clipHost = (this as any).$refs.searchClipHost as HTMLElement | undefined;
+    this.searchOpen = false;
+    this.searchClosing = true;
+    if (clipHost) {
+      clipHost.classList.remove('search-overlay-clip-host--open');
+      clipHost.classList.add('search-overlay-clip-host--clip-driven');
+      clipHost.style.setProperty('--search-clip-progress', '1');
+      await animate((progress) => {
+        clipHost.style.setProperty('--search-clip-progress', String(1 - progress));
+      }, { duration: 1.2, easing: expoInOut }).finished;
+      clipHost.style.removeProperty('--search-clip-progress');
+      clipHost.classList.remove('search-overlay-clip-host--clip-driven');
+    }
+    this.searchClosing = false;
+    await (this as any).$nextTick();
+    this.resetSearch();
+    this.unlockScroll();
+  },
+  toggleSearch() {
+    if (this.searchOpen) {
+      this.closeSearch();
+    } else {
+      this.openSearch();
+    }
+  },
+  getTransformYValues(progress01: number, extentPx: number, url: string) {
+    const progress = range(0, 1, 0, extentPx, progress01);
     const announcementBarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--announcement-bar-height') || '0');
-    
-    // Scale announcement bar height with the animation progress
-    const scaledAnnouncementHeight = announcementBarHeight * height;
+    const scaledAnnouncementHeight = announcementBarHeight * progress01;
     const totalHeight = progress + scaledAnnouncementHeight;
 
     if ((url.includes('/collections/') || url.includes('/products/') || url.includes('/pages/frequently-asked-questions') || url.includes('/pages/shipping-returns') || url.includes('/pages/terms-and-conditions') || url.includes('/pages/privacy-policy')) && window.innerWidth >= 1024) {
-      // For collection/product pages on desktop, account for announcement bar in the offset
-      // The base offset is menuHeight - 161 (header height), plus announcement bar height
-      const baseOffset = this.menuHeight - 161 + announcementBarHeight;
-      const transformValue = range(0, 1, 0, baseOffset, height);
-      // When menu is closed (height = 0), add announcement bar height to push content down
-      const finalTransform = height === 0 ? transformValue + announcementBarHeight : transformValue;
-      this.$root.style.setProperty('--transform-y', `${finalTransform}px`);
-    } else {
-
-      if (isClosing) {
-        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
-      } else {
-        this.$root.style.setProperty('--transform-y', `${totalHeight}px`);
-      }
-
+      const baseOffset = extentPx - 161 + announcementBarHeight;
+      const transformValue = range(0, 1, 0, baseOffset, progress01);
+      // Ensure closed state never leaves a stale top offset.
+      const finalTransform = progress01 === 0 ? 0 : transformValue;
+      return { totalHeight, menuHeightProgress: progress, transformY: finalTransform };
     }
 
-    // Set menu-background-height to total (menu + scaled announcement bar)
+    return { totalHeight, menuHeightProgress: progress, transformY: totalHeight };
+  },
+  updateMenuHeight(height = 0, url = this.activeUrl, _isClosing = false) {
+    const { totalHeight, menuHeightProgress, transformY } = this.getTransformYValues(height, this.menuHeight, url);
+    this.$root.style.setProperty('--transform-y', `${transformY}px`);
     this.$root.style.setProperty('--menu-background-height', `${totalHeight}px`);
-    
-    if (window.innerWidth >= 1024 && window.scrollY > 0 && (url.includes('/products/') || url.includes('/collections/'))) {
-      this.$root.style.setProperty('--menu-height', `${progress}px`);
-    } else {
-      this.$root.style.setProperty('--menu-height', `${progress}px`);
-    }
+    this.$root.style.setProperty('--menu-height', `${menuHeightProgress}px`);
   },
   trackMenuHeight() {
     this.menuHeight = this.$refs.menu.getBoundingClientRect().height;

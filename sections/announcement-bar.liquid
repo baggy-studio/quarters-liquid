@@ -9,15 +9,10 @@
     x-ref="announcementBar"
     x-show="isVisible"
     x-cloak
-    x-init="$nextTick(() => $el.style.opacity = '1')"
-    x-transition:leave="transition-all duration-[1200ms]"
-    x-transition:leave-start="translate-y-0"
-    x-transition:leave-end="-translate-y-full"
-    style="transition-timing-function: cubic-bezier(0.87, 0, 0.13, 1);"
-    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group"
-    style="opacity: 0; transition: opacity 150ms ease-out;"
+    class="announcement-bar fixed top-0 left-0 right-0 w-full overflow-hidden z-[52] h-[40px] group transition-colors ease-linear duration-200"
     :class="{
-      'is-menu': isMenuOpen
+      'is-menu': $data.menu || $data.searchOpen,
+      'delay-0': ($data.isScrolling || $data.forcedHeaderColor) && !$data.menu && !$data.animating
     }"
   >
 
@@ -36,18 +31,18 @@
           :class="{ 'is-scrolling': isScrolling }"
         >
           <div class="announcement-track flex" x-ref="track">
-            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200">
+            <span class="announcement-text whitespace-nowrap small-accent lg:text-[14.5px] ">
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] "
               x-show="isScrolling"
               aria-hidden="true"
             >
               {{ announcement_text }}
             </span>
             <span
-              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] group-[.is-menu]:opacity-100 group-[.is-menu]:delay-200"
+              class="announcement-text whitespace-nowrap px-4 small-accent lg:text-[14.5px] "
               x-show="isScrolling"
               aria-hidden="true"
             >
@@ -73,17 +68,6 @@
 
   <style>
     [x-cloak] { display: none !important; }
-    
-    .announcement-bar {
-      color: var(--header-theme, #643600);
-      transition: color 200ms linear;
-      transition-delay: 600ms;
-    }
-
-    .announcement-bar.is-menu {
-        color: #643600;
-        transition-delay: 200ms;
-    }
 
     .announcement-content {
       position: relative;
@@ -150,9 +134,12 @@
       }
     }
 
-    .announcement-content[href]:hover, .announcement-text a:hover {
-      opacity: 0.9;
-      transition: opacity 0.2s ease;
+    .announcement-text a {
+      transition: opacity 300ms linear;
+    }
+
+    .announcement-text a:hover {
+      opacity: 0.5;
     }
   </style>
 {% endif %}

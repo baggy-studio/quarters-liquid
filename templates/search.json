@@ -3,9 +3,16 @@
     "main": {
       "type": "page-settings",
       "settings": {}
+    },
+    "search": {
+      "type": "search",
+      "settings": {
+        "empty_heading": "Search the shop"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "search"
   ]
 }

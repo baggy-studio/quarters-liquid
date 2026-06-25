@@ -20,6 +20,38 @@
     },
     "header_j7EMEV": {
       "type": "header",
+      "blocks": {
+        "popular_search_7PPK6x": {
+          "type": "popular_search",
+          "settings": {
+            "term": "Candles"
+          }
+        },
+        "popular_search_pAUTkf": {
+          "type": "popular_search",
+          "settings": {
+            "term": "Vases"
+          }
+        },
+        "popular_search_Vayi4G": {
+          "type": "popular_search",
+          "settings": {
+            "term": "Lighting"
+          }
+        },
+        "popular_search_YGDerm": {
+          "type": "popular_search",
+          "settings": {
+            "term": "Tabletop"
+          }
+        }
+      },
+      "block_order": [
+        "popular_search_7PPK6x",
+        "popular_search_pAUTkf",
+        "popular_search_Vayi4G",
+        "popular_search_YGDerm"
+      ],
       "settings": {
         "menu": "main-menu",
         "hideHomepageHeader": true,

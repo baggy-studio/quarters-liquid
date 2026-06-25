@@ -19,6 +19,12 @@
 
     html {
         @apply !pb-0;
+        /* iOS safe area: extend background under status bar */
+        min-height: calc(100% + env(safe-area-inset-top, 0px));
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-left: env(safe-area-inset-left, 0px);
+        padding-right: env(safe-area-inset-right, 0px);
+        background-color: #FAF8EC; /* bone-tint - fills area under iOS status bar */
     }
 
     a,
@@ -119,9 +125,16 @@
     }
     .menu-top-gradient {
         content: '';
-        top:0;
-        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full top-0 block;
-        background: linear-gradient(180deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
+        bottom: 0;
+        @apply h-[120px] absolute w-full block;
+        background: linear-gradient(0deg, #F8F8EC 0%, rgba(248, 248, 236, 0) 100%);
+    }
+
+    @media (min-width: 1024px) {
+        .menu-top-gradient {
+            top: 0;
+            height: calc(160px + var(--announcement-bar-height, 0px));
+        }
     }
 
     .fullscreen-left-gradient {
@@ -137,7 +150,10 @@
     }
 
     .nav-gradient::before {
-        @apply h-[calc(120px+var(--announcement-bar-height,0px))] lg:h-[calc(160px+var(--announcement-bar-height,0px))] sticky w-full block;
+        position: sticky;
+        width: 100%;
+        display: block;
+        height: calc(120px + var(--announcement-bar-height, 0px));
         top: calc(-1 * var(--announcement-bar-height, 0px));
         content: '';
         background: linear-gradient(180deg, #FAF8EC 0%, rgba(250, 248, 236, 0) 100%);
@@ -217,7 +233,6 @@
 
         background: linear-gradient(180deg, rgba(100, 54, 0, 0.5) 0%, rgba(100, 54, 0, 0) 100%);
         mix-blend-mode: multiply;
-        border: 1px solid #FF0000;
         transform: rotate(-90deg);
     }
 
@@ -259,6 +274,19 @@
 
     .rez-button.is-alt {
         @apply bg-transparent border-bone border hover:bg-bone hover:text-mahogany;
+    }
+
+    /* Search overlay outer shell: clip reveals panel + chrome; --clip-driven uses inline --search-clip-progress while animating */
+    .search-overlay-clip-host {
+        clip-path: inset(0 0 100% 0);
+    }
+
+    .search-overlay-clip-host.search-overlay-clip-host--clip-driven {
+        clip-path: inset(0 0 calc((1 - var(--search-clip-progress, 0)) * 100%) 0);
+    }
+
+    .search-overlay-clip-host.search-overlay-clip-host--open {
+        clip-path: none;
     }
 
 }
@@ -337,19 +365,29 @@ html.is-leaving #main,
 }
 
 
-nav {
+nav,
+.announcement-bar {
     color: var(--header-theme);
-    @apply delay-[600ms]
+    transition: color 200ms ease-linear;
+    transition-delay: 600ms;
 }
 
 html.is-changing nav,
+html.is-changing .announcement-bar,
 html.is-changing header h1 a,
 html.is-changing header h1 a svg:last-child {
-    @apply delay-0;
+    transition-delay: 0s;
 }
 
-nav.is-menu {
-    @apply text-mahogany delay-300;
+nav.delay-0,
+.announcement-bar.delay-0 {
+    transition-delay: 0s !important;
+}
+
+nav.is-menu,
+.announcement-bar.is-menu {
+    color: #643600;
+    transition-delay: 300ms;
 }
 
 @media (max-width: 1023px) {

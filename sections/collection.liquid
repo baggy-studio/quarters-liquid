@@ -1,9 +1,14 @@
 <div class="contents" x-data="collectionNav('{{ collection.url }}')">
   <div
     class="w-full px-4"
-    style="padding-top: calc(var(--announcement-bar-height, 0px) + 160px);"
+    style="padding-top: calc(var(--announcement-bar-height, 0px) + 120px);"
     id="shop"
   >
+    <style>
+      @media (min-width: 1024px) {
+        #shop { padding-top: calc(var(--announcement-bar-height, 0px) + 160px) !important; }
+      }
+    </style>
     <div
       class="w-full border-t pt-2 border-current relative z-10 transition-none"
       :class="isSticky ? 'opacity-0 pointer-events-none' : ''"

@@ -49,7 +49,7 @@
 						<ul class='grid grid-cols-10 gap-y-1.5 pt-10 pb-[34px] lg:contents'>
 							{% assign collection_counter = 0 %}
 							{% for link in navLink.links %}
-								{% if link.type == 'collection_link' %}
+								{% if link.type == 'collection_link' and link.title != 'All Items' %}
 									{% assign collection_counter = collection_counter | plus: 1 %}
 								{% endif %}
 								<li class='col-start-2 col-end-10 last:pt-[18px] lg:last:pt-4'>
@@ -143,7 +143,6 @@
 					{% for link in nav_parent_collection.links %}
 					{% if link.type == 'collection_link' %}
 						{% assign collection_counter = collection_counter | plus: 1 %}
-						<!-- DEBUG: Subcategory thumbnail {{ forloop.parentloop.index }} - {{ link.title }} - counter: -{{ collection_counter }} -->
 						<li
 							class='transition-opacity gap-3 duration-300 ease-linear grid-cols-4 row-start-1 row-end-1 col-start-1 col-end-1 relative grid'
 							:class="{ 'opacity-0 pointer-events-none': activeParent != {{ forloop.parentloop.index }} || activeCollection != -{{ collection_counter }} }"

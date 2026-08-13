@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "<p>Quarters will be closed Thursday, August 13, reopening Friday, August 14. Our team is available during this time and here to help — <a href=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>",
+        "announcement_text": "<p>Quarters will be closed today, Thursday, August 13, for a private event. For assistance, please email us at <a href=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>",
         "animation_speed": 20
       }
     },

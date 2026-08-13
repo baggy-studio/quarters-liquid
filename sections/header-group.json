@@ -14,44 +14,12 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "",
+        "announcement_text": "<p>Quarters will be closed Thursday, August 13, reopening Friday, August 14. Our team is available during this time and here to help —<a href=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a>.</p>",
         "animation_speed": 20
       }
     },
     "header_j7EMEV": {
       "type": "header",
-      "blocks": {
-        "popular_search_7PPK6x": {
-          "type": "popular_search",
-          "settings": {
-            "term": "Candles"
-          }
-        },
-        "popular_search_pAUTkf": {
-          "type": "popular_search",
-          "settings": {
-            "term": "Vases"
-          }
-        },
-        "popular_search_Vayi4G": {
-          "type": "popular_search",
-          "settings": {
-            "term": "Lighting"
-          }
-        },
-        "popular_search_YGDerm": {
-          "type": "popular_search",
-          "settings": {
-            "term": "Tabletop"
-          }
-        }
-      },
-      "block_order": [
-        "popular_search_7PPK6x",
-        "popular_search_pAUTkf",
-        "popular_search_Vayi4G",
-        "popular_search_YGDerm"
-      ],
       "settings": {
         "menu": "main-menu",
         "hideHomepageHeader": true,

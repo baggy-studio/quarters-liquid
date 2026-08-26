@@ -14,7 +14,7 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "settings": {
-        "announcement_text": "",
+        "announcement_text": "<p>Quarters will be closed from Tuesday, September 1 – Saturday, September 5. For assistance, please email us at <a href=\"mailto:hello@shopquarters.com\">hello@shopquarters.com</a> or shop online <a href=\"/collections/all\" title=\"All Items\">here</a>.</p>",
         "animation_speed": 20
       }
     },

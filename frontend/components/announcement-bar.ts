@@ -17,6 +17,7 @@ export default (speed = 20) => {
     hasForcedHeaderColor: false,
     speed: speed,
     contentReplace: null,
+    resizeObserver: null as ResizeObserver | null,
 
     init() {
       // Set initial height based on visibility
@@ -25,13 +26,16 @@ export default (speed = 20) => {
         return;
       }
 
-    // Check if scrolling is needed on mount - add delay for proper rendering
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.checkScrollNeeded();
-        this.setAnnouncementBarHeight();
-      }, 50);
+    this.setAnnouncementBarHeight();
+
+    // Re-check whenever the container's actual laid-out size changes, including
+    // the first time it settles - this avoids racing a fixed timeout against
+    // layout/font loading, which was unreliable on wider (e.g. XL) breakpoints.
+    this.resizeObserver = new ResizeObserver(() => {
+      this.checkScrollNeeded();
+      this.setAnnouncementBarHeight();
     });
+    this.resizeObserver.observe(this.$refs.container);
 
     // Setup swup hook for page transitions
     this.contentReplace = () => {
@@ -40,16 +44,14 @@ export default (speed = 20) => {
     };
 
     swup.hooks.on('content:replace', this.contentReplace);
-
-    // Listen for orientation changes on mobile
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => this.checkScrollNeeded(), 100);
-    });
   },
 
   destroy() {
     if (this.contentReplace) {
       swup.hooks.off('content:replace', this.contentReplace);
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
     // Reset the CSS variable when component is destroyed
     document.documentElement.style.removeProperty('--announcement-bar-height');

@@ -28,14 +28,21 @@ export default (speed = 20) => {
 
     this.setAnnouncementBarHeight();
 
-    // Re-check whenever the container's actual laid-out size changes, including
-    // the first time it settles - this avoids racing a fixed timeout against
-    // layout/font loading, which was unreliable on wider (e.g. XL) breakpoints.
-    this.resizeObserver = new ResizeObserver(() => {
-      this.checkScrollNeeded();
-      this.setAnnouncementBarHeight();
+    // Wait a tick so child x-ref elements (e.g. $refs.container) are bound
+    // before we read them - refs aren't registered yet while init() runs.
+    this.$nextTick(() => {
+      if (!this.$refs.container) return;
+
+      // Re-check whenever the container's actual laid-out size changes,
+      // including the first time it settles - this avoids racing a fixed
+      // timeout against layout/font loading, which was unreliable on wider
+      // (e.g. XL) breakpoints.
+      this.resizeObserver = new ResizeObserver(() => {
+        this.checkScrollNeeded();
+        this.setAnnouncementBarHeight();
+      });
+      this.resizeObserver.observe(this.$refs.container);
     });
-    this.resizeObserver.observe(this.$refs.container);
 
     // Setup swup hook for page transitions
     this.contentReplace = () => {

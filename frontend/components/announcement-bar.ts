@@ -7,7 +7,9 @@ export default (speed = 20) => {
   const isDismissed = sessionStorage.getItem('announcement-bar-dismissed') === 'true';
 
   return {
-    isScrolling: false,
+    // The marquee always scrolls (that's what the triple-span loop markup
+    // is built for) - it's not conditional on whether the text overflows.
+    isScrolling: true,
     hasStartedScrolling: false,
     isPaused: false,
     isVisible: !isDismissed,
@@ -17,6 +19,7 @@ export default (speed = 20) => {
     hasForcedHeaderColor: false,
     speed: speed,
     contentReplace: null,
+    resizeObserver: null as ResizeObserver | null,
 
     init() {
       // Set initial height based on visibility
@@ -25,31 +28,39 @@ export default (speed = 20) => {
         return;
       }
 
-    // Check if scrolling is needed on mount - add delay for proper rendering
+    this.setAnnouncementBarHeight();
+
+    // Slight delay before showing the edge fade mask so it doesn't appear
+    // before the scroll animation has visually started.
+    setTimeout(() => {
+      this.hasStartedScrolling = true;
+    }, 100);
+
+    // Wait a tick so child x-ref elements (e.g. $refs.trackContainer) are
+    // bound before we read them - refs aren't registered yet while init() runs.
     this.$nextTick(() => {
-      setTimeout(() => {
-        this.checkScrollNeeded();
+      if (!this.$refs.trackContainer) return;
+
+      this.resizeObserver = new ResizeObserver(() => {
         this.setAnnouncementBarHeight();
-      }, 50);
+      });
+      this.resizeObserver.observe(this.$refs.trackContainer);
     });
 
     // Setup swup hook for page transitions
     this.contentReplace = () => {
-      this.checkScrollNeeded();
       this.setAnnouncementBarHeight();
     };
 
     swup.hooks.on('content:replace', this.contentReplace);
-
-    // Listen for orientation changes on mobile
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => this.checkScrollNeeded(), 100);
-    });
   },
 
   destroy() {
     if (this.contentReplace) {
       swup.hooks.off('content:replace', this.contentReplace);
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
     // Reset the CSS variable when component is destroyed
     document.documentElement.style.removeProperty('--announcement-bar-height');
@@ -59,45 +70,6 @@ export default (speed = 20) => {
     if (this.$refs.announcementBar) {
       const height = this.$refs.announcementBar.offsetHeight;
       document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
-    }
-  },
-
-  checkScrollNeeded() {
-    if (!this.$refs.content || !this.$refs.track) return;
-
-    // Get the first text span to measure single instance width
-    const firstText = this.$refs.track.querySelector('.announcement-text');
-    if (!firstText) return;
-
-    const containerWidth = this.$refs.container.offsetWidth;
-    const contentWidth = firstText.scrollWidth;
-
-    // Enable scrolling if content is wider than container
-    const shouldScroll = contentWidth > containerWidth;
-
-    if (shouldScroll && !this.isScrolling) {
-      this.isScrolling = true;
-      // Force animation restart by removing and re-adding class
-      this.$nextTick(() => {
-        if (this.$refs.content) {
-          this.$refs.content.classList.remove('is-scrolling');
-          // Use requestAnimationFrame to ensure the class removal is processed
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              if (this.$refs.content) {
-                this.$refs.content.classList.add('is-scrolling');
-              }
-            });
-          });
-        }
-      });
-      // Slight delay before showing left fade to let animation start
-      setTimeout(() => {
-        this.hasStartedScrolling = true;
-      }, 100);
-    } else if (!shouldScroll && this.isScrolling) {
-      this.isScrolling = false;
-      this.hasStartedScrolling = false;
     }
   },
 

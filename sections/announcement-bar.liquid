@@ -26,8 +26,9 @@
         x-ref="content"
         :class="{ 'is-scrolling': isScrolling }"
       >
-        <div 
+        <div
           class="announcement-track-container flex-1 overflow-hidden"
+          x-ref="trackContainer"
           :class="{ 'is-scrolling': isScrolling }"
         >
           <div class="announcement-track flex" x-ref="track">

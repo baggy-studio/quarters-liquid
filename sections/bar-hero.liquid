@@ -5,9 +5,9 @@
     {% if allBlock != blank %}
       <div class="absolute top-0 left-0 w-full h-full">
         {% if allBlock.settings.video != blank %}
-          {% render 'video'; video: allBlock.settings.video; loop: true %}
+          {% render 'video', video: allBlock.settings.video, loop: true %}
         {% else %}
-          {% render 'image'; image: allBlock.settings.image, width: 2400, height: 860, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image', image: allBlock.settings.image, width: 2400, height: 860, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% else %}
@@ -16,23 +16,23 @@
 
       <div class="absolute top-0 left-0 w-full h-full hidden md:block">
         {% if desktopBlock.settings.video != blank %}
-          {% render 'video'; video: desktopBlock.settings.video; loop: true %}
+          {% render 'video', video: desktopBlock.settings.video, loop: true %}
         {% else %}
-          {% render 'image'; image: desktopBlock.settings.image, width: 2400, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image', image: desktopBlock.settings.image, width: 2400, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full hidden md:block lg:hidden">
         {% if mobileBlock.settings.video != blank %}
-          {% render 'video'; video: mobileBlock.settings.video; loop: true %}
+          {% render 'video', video: mobileBlock.settings.video, loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 2400, sizes: '100vw', nopin: true %}
+          {% render 'image', image: mobileBlock.settings.image, width: 2400, sizes: '100vw', nopin: true %}
         {% endif %}
       </div>
       <div class="absolute top-0 left-0 w-full h-full md:hidden">
         {% if mobileBlock.settings.video != blank %}
-          {% render 'video'; video: mobileBlock.settings.video; loop: true %}
+          {% render 'video', video: mobileBlock.settings.video, loop: true %}
         {% else %}
-          {% render 'image'; image: mobileBlock.settings.image, width: 1024, sizes: '100vw', priority: true, nopin: true %}
+          {% render 'image', image: mobileBlock.settings.image, width: 1024, sizes: '100vw', priority: true, nopin: true %}
         {% endif %}
       </div>
     {% endif %}
@@ -99,3 +99,42 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'video'; video: allBlock.settings.video; loop: true %}"
+  to: "{% render 'video', video: allBlock.settings.video, loop: true %}"
+  position: 470..534
+- from: "{% render 'image'; image: allBlock.settings.image, width: 2400, height: 860,
+    sizes: '100vw', priority: true, nopin: true %}"
+  to: "{% render 'image', image: allBlock.settings.image, width: 2400, height: 860,
+    sizes: '100vw', priority: true, nopin: true %}"
+  position: 564..687
+- from: "{% render 'video'; video: desktopBlock.settings.video; loop: true %}"
+  to: "{% render 'video', video: desktopBlock.settings.video, loop: true %}"
+  position: 1039..1107
+- from: "{% render 'image'; image: desktopBlock.settings.image, width: 2400, sizes:
+    '100vw', priority: true, nopin: true %}"
+  to: "{% render 'image', image: desktopBlock.settings.image, width: 2400, sizes:
+    '100vw', priority: true, nopin: true %}"
+  position: 1137..1251
+- from: "{% render 'video'; video: mobileBlock.settings.video; loop: true %}"
+  to: "{% render 'video', video: mobileBlock.settings.video, loop: true %}"
+  position: 1430..1497
+- from: "{% render 'image'; image: mobileBlock.settings.image, width: 2400, sizes:
+    '100vw', nopin: true %}"
+  to: "{% render 'image', image: mobileBlock.settings.image, width: 2400, sizes: '100vw',
+    nopin: true %}"
+  position: 1527..1624
+- from: "{% render 'video'; video: mobileBlock.settings.video; loop: true %}"
+  to: "{% render 'video', video: mobileBlock.settings.video, loop: true %}"
+  position: 1787..1854
+- from: "{% render 'image'; image: mobileBlock.settings.image, width: 1024, sizes:
+    '100vw', priority: true, nopin: true %}"
+  to: "{% render 'image', image: mobileBlock.settings.image, width: 1024, sizes: '100vw',
+    priority: true, nopin: true %}"
+  position: 1884..1997
+{% endcomment %}

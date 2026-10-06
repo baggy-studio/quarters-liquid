@@ -40,7 +40,7 @@
               </p>
               <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
                 {% if block.settings.video != blank %}
-                  {% render 'video'; video: block.settings.video; loop: true %}
+                  {% render 'video', video: block.settings.video, loop: true %}
                 {% else %}
                   {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
                 {% endif %}
@@ -54,7 +54,7 @@
               </p>
               <div class="h-auto lg:h-full w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
                 {% if block.settings.video != blank %}
-                  {% render 'video'; video: block.settings.video; loop: true %}
+                  {% render 'video', video: block.settings.video, loop: true %}
                 {% else %}
                   {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
                 {% endif %}
@@ -85,7 +85,7 @@
               </p>
               <div class="h-auto lg:h-[calc(25vh-4px)] w-full lg:w-auto aspect-[170/212] relative overflow-hidden">
                 {% if block.settings.video != blank %}
-                  {% render 'video'; video: block.settings.video; loop: true %}
+                  {% render 'video', video: block.settings.video, loop: true %}
                 {% else %}
                   {% render 'image', image: block.settings.image, width: 340, height: 424, sizes: '170px' %}
                 {% endif %}
@@ -202,3 +202,19 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'video'; video: block.settings.video; loop: true %}"
+  to: "{% render 'video', video: block.settings.video, loop: true %}"
+  position: 2229..2290
+- from: "{% render 'video'; video: block.settings.video; loop: true %}"
+  to: "{% render 'video', video: block.settings.video, loop: true %}"
+  position: 3073..3134
+- from: "{% render 'video'; video: block.settings.video; loop: true %}"
+  to: "{% render 'video', video: block.settings.video, loop: true %}"
+  position: 4505..4566
+{% endcomment %}
